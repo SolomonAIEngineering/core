@@ -1,0 +1,23 @@
+{
+  "inputs": [
+    {
+      "inputFile": "./user-service-backend-api.yaml",
+      "operationSelection": {
+        "includeTags": ["user-service-v1", "user-service-v2"]
+      }
+    },
+    {
+      "inputFile": "./social-service-backend-api.yaml",
+      "operationSelection": {
+        "includeTags": ["social-service"]
+      }
+    },
+    {
+      "inputFile": "./financial-service-backend-api.yaml",
+      "operationSelection": {
+        "includeTags": ["financial-service"]
+      }
+    }
+  ],
+  "output": "./backend-api.yaml"
+}

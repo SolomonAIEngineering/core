@@ -1,0 +1,839 @@
+syntax = "proto3";
+
+package user_service.v1;
+
+import "user_service/v1/request_response.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+import "google/api/annotations.proto";
+// import "google/api/field_behavior.proto";
+// import "google/protobuf/timestamp.proto";
+// import "google/protobuf/wrappers.proto";
+option go_package = "github.com/SolomonAIEngineering/service-level-api/pkg/generated/user_service/v1";
+
+// UserService API.
+service UserService {
+    rpc GetUser(GetUserRequest) returns (GetUserResponse) {
+        option (google.api.http) = {get: "/user-microservice/api/v1/user-service/user/{user_id}"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Gets a user account"
+            tags: ["user-service-v1"]
+            operation_id: "GetUser"
+            description: "Queries and obtains a user account based on the provided parameters"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetUserResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc GetUserByUsername(GetUserByUsernameRequest) returns (GetUserByUsernameResponse) {
+        option (google.api.http) = {get: "/user-microservice/api/v1/user-service/user/username/{username}"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Gets a user account by user name"
+            tags: ["user-service-v1"]
+            operation_id: "GetUserByUsername"
+            description: "Queries and obtains a user account based on the username"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetUserByUsernameResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc GetUserByEmail(GetUserByEmailRequest) returns (GetUserByEmailResponse) {
+        option (google.api.http) = {get: "/user-microservice/api/v1/user-service/user/email/{email}"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Gets a user account by email"
+            tags: ["user-service-v1"]
+            operation_id: "GetUserByEmail"
+            description: "Queries and obtains a user account based on the email"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetUserByEmailResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc CheckUsernameExists(CheckUsernameExistsRequest) returns (CheckUsernameExistsResponse) {
+        option (google.api.http) = {get: "/user-microservice/api/v1/user-service/user/username/{username}/exists"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Checks that a username exists or not"
+            tags: ["user-service-v1"]
+            operation_id: "CheckUsernameExists"
+            description: "Checks if a username exists or not"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.CheckUsernameExistsResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc CheckEmailExists(CheckEmailExistsRequest) returns (CheckEmailExistsResponse) {
+        option (google.api.http) = {get: "/user-microservice/api/v1/user-service/user/email/{email}/exists"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Checks that an email exists or not"
+            tags: ["user-service-v1"]
+            operation_id: "CheckEmailExists"
+            description: "Checks if an email exists or not"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.CheckEmailExistsResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc DeleteUser(DeleteUserRequest) returns (DeleteUserResponse) {
+        option (google.api.http) = {delete: "/user-microservice/api/v1/user-service/user/{user_id}"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "deletes a user account"
+            tags: ["user-service-v1"]
+            operation_id: "DeleteUser"
+            description: 
+                "This endpoint performs a delete operation on a user account based on the provided parameters"
+                "This deletion operation spans multiple services as user details are stored across a suite of our backend services"
+                "The operation itself is an atomic one of nature. Either all services successfully delete the recod or we fail the request"
+                "Divergent state is not expected to be encountered with this endpoint."
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.DeleteUserResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc UpdateUser(UpdateUserRequest) returns (UpdateUserResponse) {
+        option (google.api.http) = {
+            put: "/user-microservice/api/v1/user-service/user" 
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "update a user account"
+            tags: ["user-service-v1"]
+            operation_id: "UpdateUser"
+            description: 
+                "This endpoint performs an updates operation on a user account based on the provided parameters"
+                "This update operation can span multiple services on specific cases (such as when the client is explicitly attempting to update the email of the user)"
+                "All update operations are atomic by nature hence we should not expect any form of divergent state"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.UpdateUserResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc GetUserId(GetUserIdRequest) returns (GetUserIdResponse) {
+        option (google.api.http) = {
+            get: "/user-microservice/api/v1/user-service/user/query-id" 
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "get a user account id"
+            tags: ["user-service-v1"]
+            operation_id: "GetUserId"
+            description: 
+                "This endpoint returns the user record id if the user record exists"
+                "\n"
+                "example: /api/v1/user-service?email=testuser@gmail.com&&username=testuser"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetUserIdResponse"}
+                    }
+                }
+            }
+        };
+       
+    }
+
+    rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {
+        option (google.api.http) = {
+            get: "/user-microservice/api/v1/user-service/user/health" 
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "health check"
+            tags: ["user-service-v1"]
+            operation_id: "HealthCheck"
+            description: 
+                "This endpoint performs a healc check on the service"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.HealthCheckResponse"}
+                    }
+                }
+            }
+        };
+    }
+    rpc ReadynessCheck(ReadynessCheckRequest) returns (ReadynessCheckResponse) {
+        option (google.api.http) = {
+            get: "/user-microservice/api/v1/user-service/user/ready" 
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "readyness check"
+            tags: ["user-service-v1"]
+            operation_id: "ReadynessCheck"
+            description: 
+                "This endpoint performs a readiness check on the service"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.ReadynessCheckResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc GetUserByEmailOrUsername(GetUserByEmailOrUsernameRequest) returns (GetUserByEmailOrUsernameResponse) {
+        option (google.api.http) = {
+            get: "/user-microservice/api/v1/user-service/user/query-account-by-email-or-username" 
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "gets a user account by either email or username"
+            tags: ["user-service-v1"]
+            operation_id: "GetUserByEmailOrUsername"
+            description: 
+                "This endpoint returns a user account by either provided email or username"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetUserByEmailOrUsernameResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc VerifyUser(VerifyUserRequest) returns (VerifyUserResponse) {
+        option (google.api.http) = {
+            post: "/user-microservice/api/v1/user-service/user/verification/{user_id}" 
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "user verification"
+            tags: ["user-service-v1"]
+            operation_id: "Verification"
+            description: 
+                "This endpoint performs verification of a user account email"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.VerifyUserResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc PasswordResetWebhook(PasswordResetWebhookRequest) returns (PasswordResetWebhookResponse) {
+        option (google.api.http) = {
+            post: "/user-microservice/api/v1/user-service/user/webhook/password-reset" 
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "password reset"
+            tags: ["user-service-v1"]
+            operation_id: "PasswordReset"
+            description: 
+                "This endpoint performs password reset for a given user account"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.PasswordResetWebhookResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief Retrieves details of a user account.
+    * This RPC provides access to detailed information about a user account
+    * based on the provided user ID. The endpoint for this service is `/api/v2/user-service/user/{user_id}`.
+    * The service provides a concise and clear response encapsulated in `GetUserV2Response`.
+    * URI - /api/v2/user-service/user/{user_id}
+    */
+    rpc GetUserV2(GetUserV2Request) returns (GetUserV2Response) {
+        option (google.api.http) = {get: "/user-microservice/api/v2/user-service/user/{user_id}"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Retrieve user account details",
+            tags: ["user-service-v2"]
+            operation_id: "GetUserV2",
+            description: "Fetches detailed information about a user account based on the specified user ID.",
+            responses: {
+                key: "200",
+                value: {
+                    description: "Successful retrieval of user account details.",
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetUserV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+
+    /**
+    * @brief Fetches user account details based on the username.
+    * This RPC provides access to user account information based on the given username.
+    * URI -/api/v2/user-service/user/username/{username}
+    */
+    rpc GetUserByUsernameV2(GetUserByUsernameV2Request) returns (GetUserByUsernameV2Response) {
+        option (google.api.http) = {get: "/user-microservice/api/v2/user-service/user/username/{username}"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Retrieve user details by username",
+            tags: ["user-service-v2"]
+            operation_id: "GetUserByUsernameV2",
+            description: "Provides detailed information of a user based on the given username.",
+            responses: {
+                key: "200",
+                value: {
+                    description: "Successfully retrieved user details.",
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetUserByUsernameV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+
+    /**
+    * @brief Fetches user account details based on the email.
+    * This RPC provides access to user account information based on the provided email.
+    * URI -/api/v2/user-service/user/email/{email}
+    */
+    rpc GetUserByEmailV2(GetUserByEmailV2Request) returns (GetUserByEmailV2Response) {
+        option (google.api.http) = {get: "/user-microservice/api/v2/user-service/user/email/{email}"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Retrieve user details by email",
+            tags: ["user-service-v2"]
+            operation_id: "GetUserByEmailV2",
+            description: "Provides detailed information of a user based on the given email.",
+            responses: {
+                key: "200",
+                value: {
+                    description: "Successfully retrieved user details.",
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetUserByEmailV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * Retrieves a user account using either email or username.
+    * URI - /api/v2/user-service/user/account
+    */
+    rpc GetUserByEmailOrUsernameV2(GetUserByEmailOrUsernameV2Request) returns (GetUserByEmailOrUsernameV2Response) {
+        option (google.api.http) = {
+            get: "/user-microservice/api/v2/user-service/user/account/query-by-email-or-username"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Retrieve user account by email or username",
+            tags: ["user-service-v2"]
+            operation_id: "GetUserByEmailOrUsernameV2",
+            description: "Fetches a user account using the provided email or username.",
+            responses: {
+                key: "200",
+                value: {
+                    description: "Successful retrieval.",
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetUserByEmailOrUsernameV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+
+    /**
+    * @brief Checks if a username exists for a given account type
+    * This RPC performs checks to ensure a username exists based on the provided parameters
+    * URI - /api/v2/user-service/user/username/{username}/exists
+    */
+    rpc CheckUsernameExistsV2(CheckUsernameExistsV2Request) returns (CheckUsernameExistsV2Response) {
+        option (google.api.http) = {get: "/user-microservice/api/v2/user-service/user/username/{username}/exists"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Checks that a username exists or not"
+            tags: ["user-service-v2"]
+            operation_id: "CheckUsernameExistsV2"
+            description: "Checks if a username exists or not"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.CheckUsernameExistsV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief Checks if a email exists for a given account type
+    * This RPC performs checks to ensure a email exists based on the provided parameters
+    * URI - /api/v2/user-service/user/email/{email}/exists
+    */
+    rpc CheckEmailExistsV2(CheckEmailExistsV2Request) returns (CheckEmailExistsV2Response) {
+        option (google.api.http) = {get: "/user-microservice/api/v2/user-service/user/email/{email}/exists"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Checks that an email exists or not"
+            tags: ["user-service-v2"]
+            operation_id: "CheckEmailExistsV2"
+            description: "Checks if an email exists or not"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.CheckEmailExistsV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief deletes a user account based on the provided user ID.
+    * This RPC performs account deletion based on the provided parameter
+    * URI - /api/v2/user-service/user/{user_id}
+    */
+    rpc DeleteUserV2(DeleteUserV2Request) returns (DeleteUserV2Response) {
+        option (google.api.http) = {delete: "/user-microservice/api/v2/user-service/user/{user_id}"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "deletes a user account"
+            tags: ["user-service-v2"]
+            operation_id: "DeleteUserV2"
+            description: 
+                "This endpoint performs a delete operation on a user account based on the provided parameters"
+                "This deletion operation spans multiple services as user details are stored across a suite of our backend services"
+                "The operation itself is an atomic one of nature. Either all services successfully delete the recod or we fail the request"
+                "Divergent state is not expected to be encountered with this endpoint."
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.DeleteUserV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief update a user account based on the provided parameters
+    * This RPC updates the account of the requestor
+    * URI - /api/v2/user-service/user
+    */
+    rpc UpdateUserV2(UpdateUserV2Request) returns (UpdateUserV2Response) {
+        option (google.api.http) = {
+            put: "/user-microservice/api/v2/user-service/user" 
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "update a user account"
+            tags: ["user-service-v2"]
+            operation_id: "UpdateUserV2"
+            description: 
+                "This endpoint performs an updates operation on a user account based on the provided parameters"
+                "This update operation can span multiple services on specific cases (such as when the client is explicitly attempting to update the email of the user)"
+                "All update operations are atomic by nature hence we should not expect any form of divergent state"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.UpdateUserV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief Creates a user account for the specified user of interest
+    * This RPC creates either a user or business account based on the provided parameters
+    * URI - /api/v2/user-service/user
+    */
+    rpc CreateUserV2(CreateUserV2Request) returns (CreateUserV2Response) {
+        option (google.api.http) = {
+            post: "/user-microservice/api/v2/user-service/user" 
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "create a user account"
+            tags: ["user-service-v2"]
+            operation_id: "CreateUserV2"
+            description: 
+                "This endpoint performs an a creation operation of a user account based on the provided parameters"
+                "This operation is implemented as a distributed transactions as this operation spans multiple services"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.CreateUserV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief Gets a user account id based on a provided set of parameters
+    * This RPC queries the user id of an account based on certain provided parameters
+    * URI - /api/v2/user-service/user
+    */
+    rpc GetUserIdV2(GetUserIdV2Request) returns (GetUserIdV2Response) {
+        option (google.api.http) = {
+            get: "/user-microservice/api/v2/user-service/user/query-id" 
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "get a user account id"
+            tags: ["user-service-v2"]
+            operation_id: "GetUserIdV2"
+            description: 
+                "This endpoint returns the user record id if the user record exists"
+                "\n"
+                "example: /api/v1/user-service?email=testuser@gmail.com&&username=testuser"
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetUserIdV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief Verifies a user's email account.
+    * This RPC is used to perform email verification for a user account. It leverages the provided
+    * user ID and profile type to determine which user's email needs verification. On successful 
+    * verification, it returns a confirmation of the process.
+    * URI - /api/v2/user-service/user/verification/{user_id}/{profile_type}
+    */
+    rpc VerifyUserV2(VerifyUserV2Request) returns (VerifyUserV2Response) {
+        option (google.api.http) = {
+            post: "/user-microservice/api/v2/user-service/user/verification/{user_id}/profile-type/{profile_type}" 
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "User Email Verification"
+            tags: ["user-service-v2"]
+            operation_id: "VerifyUserV2"
+            description: "Performs verification of a user account's email based on the provided user ID and profile type."
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response indicating the outcome of the verification."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.VerifyUserV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief Handles password reset via webhook.
+    * This RPC facilitates the process of resetting a user's password using a webhook. It ensures
+    * that the provided credentials match an existing user and initiates the reset process.
+    * URI - /api/v2/user-service/user/webhook/password-reset
+    */
+    rpc PasswordResetWebhookV2(PasswordResetWebhookV2Request) returns (PasswordResetWebhookV2Response) {
+        option (google.api.http) = {
+            post: "/user-microservice/api/v2/user-service/user/webhook/password-reset" 
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Webhook for Password Reset"
+            tags: ["user-service-v2"]
+            operation_id: "PasswordResetWebhookV2"
+            description: "Handles password reset operations for a specified user account through a webhook."
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response indicating the outcome of the reset process."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.PasswordResetWebhookV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief Retrieves business account settings.
+    * This RPC is used to fetch settings for a specific business account. It queries based on
+    * the user ID and returns the associated settings.
+    * URI - /api/v2/user-service/user/business/settings/{user_id}
+    */
+    rpc GetBusinessSettings(GetBusinessSettingsRequest) returns (GetBusinessSettingsResponse) {
+        option (google.api.http) = {
+            get: "/user-microservice/api/v2/user-service/user/business/settings/{user_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Retrieve Business Account Settings"
+            tags: ["user-service-v2"]
+            operation_id: "RetrieveBusinessSettings"
+            description: "Fetches settings associated with a specified business account using the user ID."
+            responses: {
+                key: "200"
+                value: {
+                    description: "A successful response containing the business settings."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetBusinessSettingsResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc GetUserByAuthnIDV2(GetUserByAuthnIDV2Request) returns (GetUserByAuthnIDV2Response) {
+        option (google.api.http) = {get: "/user-microservice/api/v2/user-service/user/authn/{authn_id}"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Retrieve user account details by authn id",
+            tags: ["user-service-v2"]
+            operation_id: "GetUserByAuthnIDV2",
+            description: "Fetches detailed information about a user account based on the specified authn ID.",
+            responses: {
+                key: "200",
+                value: {
+                    description: "Successful retrieval of user account details.",
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetUserByAuthnIDV2Response"}
+                    }
+                }
+            }
+        };
+    }
+
+    // the following endpoints are for the canny integration. it returns the sso token for a given user
+    rpc GetCannyUserSSOToken(GetCannyUserSSOTokenRequest) returns (GetCannyUserSSOTokenResponse) {
+        option (google.api.http) = {get: "/user-microservice/api/v2/user-service/user/canny/{user_id}"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Retrieves user sso token for canny",
+            tags: ["user-service-v2"]
+            operation_id: "GetCannyUserSSOToken",
+            description: "Fetches a user sso token for canny",
+            responses: {
+                key: "200",
+                value: {
+                    description: "Successful retrieval of user account sso token.",
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetCannyUserSSOTokenResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc GetUserByAuth0ID(GetUserByAuth0IDRequest) returns (GetUserByAuth0IDResponse) {
+        option (google.api.http) = {get: "/user-microservice/api/v2/user-service/user/auth-zero/{auth0_user_id}"};
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Retrieve user account details by auth0 id and profile type",
+            tags: ["user-service-v2"]
+            operation_id: "GetUserByAuth0ID",
+            description: "Fetches detailed information about a user account based on the specified authn ID.",
+            responses: {
+                key: "200",
+                value: {
+                    description: "Successful retrieval of user account details.",
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetUserByAuth0IDResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+     /**
+    * @brief Creates a new role with the given details.
+    * This RPC adds a new role to the system with the provided information.
+    * URI - /api/v1/role
+    */
+    rpc CreateRole(CreateRoleRequest) returns (CreateRoleResponse) {
+        option (google.api.http) = {
+            post: "/user-microservice/api/v2/user-service/user/role"
+            body: "role"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Creates a new role"
+            tags: ["user-service-v2"]
+            operation_id: "CreateRole"
+            description: 
+                "This endpoint adds a new role to the system. It requires role details such as name, type, and permissions."
+                "The creation process involves adding the role to the database and initializing its permissions."
+            responses: {
+                key: "200"
+                value: {
+                    description: "Role created successfully."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.CreateRoleResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief Retrieves a role based on the provided role ID.
+    * This RPC fetches role details based on the role ID.
+    * URI - /api/v1/role/{id}
+    */
+    rpc GetRole(GetRoleRequest) returns (GetRoleResponse) {
+        option (google.api.http) = {
+            get: "/user-microservice/api/v2/user-service/user/role/{id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Retrieves a role"
+            tags: ["user-service-v2"]
+            operation_id: "GetRole"
+            description: 
+                "This endpoint fetches details of a specific role using the role ID."
+                "It retrieves the role's name, type, permissions, and audit history."
+            responses: {
+                key: "200"
+                value: {
+                    description: "Role retrieval successful."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetRoleResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief Updates an existing role based on the provided role details.
+    * This RPC updates role details in the system.
+    * URI - /api/v1/role/{id}
+    */
+    rpc UpdateRole(UpdateRoleRequest) returns (UpdateRoleResponse) {
+        option (google.api.http) = {
+            patch: "/user-microservice/api/v2/user/role"
+            body: "role"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Updates an existing role"
+            tags: ["user-service-v2"]
+            operation_id: "UpdateRole"
+            description: 
+                "This endpoint updates the details of an existing role. The role ID is used to identify the role to be updated."
+                "The update operation can modify the role's name, type, and permissions."
+            responses: {
+                key: "200"
+                value: {
+                    description: "Role updated successfully."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.UpdateRoleResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief Deletes a role based on the provided role ID.
+    * This RPC performs deletion of a role in the system.
+    * URI - /api/v1/role/{id}
+    */
+    rpc DeleteRole(DeleteRoleRequest) returns (DeleteRoleResponse) {
+        option (google.api.http) = {
+            delete: "/user-microservice/api/v2/user-service/user/role/{id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Deletes a role"
+            tags: ["user-service-v2"]
+            operation_id: "DeleteRole"
+            description: 
+                "This endpoint deletes a role from the system based on the provided role ID."
+                "The deletion process ensures that all related data and permissions are properly removed."
+            responses: {
+                key: "200"
+                value: {
+                    description: "Role deleted successfully."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.DeleteRoleResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    /**
+    * @brief Lists all roles in the system.
+    * This RPC fetches a list of all roles, with optional pagination.
+    * URI - /api/v1/roles
+    */
+    rpc ListRoles(ListRolesRequest) returns (ListRolesResponse) {
+        option (google.api.http) = {
+            get: "/user-microservice/api/v2/user-service/user/roles"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Lists all roles"
+            tags: ["user-service-v2"]
+            operation_id: "ListRoles"
+            description: 
+                "This endpoint retrieves a list of all roles in the system. It supports pagination to handle large sets of data."
+                "Each role in the list includes details like name, type, and permissions."
+            responses: {
+                key: "200"
+                value: {
+                    description: "Roles list retrieved successfully."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.ListRolesResponse"}
+                    }
+                }
+            }
+        };
+    }
+}

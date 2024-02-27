@@ -1,0 +1,54 @@
+syntax = "proto3";
+
+package social_service.v2;
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/social_service/v2";
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Social Service";
+    description: "Solomon AI Social Service";
+    version: "0.1";
+    contact: {
+      name: "YoanYomba";
+      email: "yoanyomba@solomon-ai.co";
+      url: "https://solomon-ai.io";
+    };
+    license: {
+      name: "Apache-2.0";
+      url: "https://github.com/openfga/openfga/blob/main/LICENSE";
+    };
+  };
+  consumes: "application/json";
+  produces: "application/json";
+  schemes: [HTTP];
+  host: "social-service.platform.svc.cluster.local:9896";
+  responses: {
+    key: "400"
+    value: {
+      description: "Request failed due to invalid input."
+      schema: {
+        json_schema: {ref: ".social_service.v2.ValidationErrorMessageResponse"}
+      }
+    }
+  }
+  responses: {
+    key: "404"
+    value: {
+      description: "Request failed due to incorrect path."
+      schema: {
+        json_schema: {ref: ".social_service.v2.PathUnknownErrorMessageResponse"}
+      }
+    }
+  }
+  responses: {
+    key: "500"
+    value: {
+      description: "Request failed due to internal server error."
+      schema: {
+        json_schema: {ref: ".social_service.v2.InternalErrorMessageResponse"}
+      }
+    }
+  }
+};

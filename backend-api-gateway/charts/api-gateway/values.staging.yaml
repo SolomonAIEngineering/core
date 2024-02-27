@@ -1,0 +1,130 @@
+# Default values for api-gateway.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+environment: staging
+
+image:
+  repository: feelguuds/api-gateway
+  pullPolicy: Always
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: staging
+
+imagePullSecrets: []
+nameOverride: ""
+fullnameOverride: ""
+
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: true
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+podAnnotations:
+  prometheus.io/scrape: "true"
+  prometheus.io/port: "8081"
+  prometheus.io/path: "__stats"
+  service.beta.kubernetes.io/do-loadbalancer-protocol: "https"
+  service.beta.kubernetes.io/do-loadbalancer-healthcheck-port: "8080"
+  service.beta.kubernetes.io/do-loadbalancer-healthcheck-protocol: "http"
+  service.beta.kubernetes.io/do-loadbalancer-healthcheck-path: "/__health"
+  service.beta.kubernetes.io/do-loadbalancer-healthcheck-check-interval-seconds: "3"
+  service.beta.kubernetes.io/do-loadbalancer-healthcheck-response-timeout-seconds: "5"
+  service.beta.kubernetes.io/do-loadbalancer-healthcheck-unhealthy-threshold: "3"
+  service.beta.kubernetes.io/do-loadbalancer-healthcheck-healthy-threshold: "5"
+  service.beta.kubernetes.io/do-loadbalancer-disable-lets-encrypt-dns-records: "false"
+  service.beta.kubernetes.io/do-loadbalancer-certificate-id: "ee5129f8-c4ff-495a-84c5-6dad4b6c05d4"
+
+podSecurityContext:
+  {}
+  # fsGroup: 2000
+
+securityContext:
+  {}
+  #capabilities:
+  #   drop:
+  #   - ALL
+  #readOnlyRootFilesystem: true
+  #runAsNonRoot: true
+  #runAsUser: 1000
+
+service:
+  type: NodePort
+  port: 8080
+  nodeport: 32093
+  metrics:
+    port: 8081
+    nodeport: 32094
+
+ingress:
+  enabled: false
+  className: ""
+  annotations:
+    {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: gateway.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+# https://sdbrett.com/post/2019-11-25-kubernetes-resource-limits/
+resources:
+  limits:
+    cpu: "1000m"
+    memory: "1Gi"
+  requests:
+    cpu: "100m"
+    memory: "512Mi"
+
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 1
+  targetCPUUtilizationPercentage: 95
+  targetMemoryUtilizationPercentage: 95
+  requests: 100000
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
+
+krakendJson: "krakend.json"
+addlVolumes: []
+addlVolumeMounts: []
+env: []
+
+sidecar:
+  enabled: false
+  name: kraken-designer
+  repository: devopsfaith/krakendesigner
+  tag: "latest"
+  port: 80
+
+linkerd:
+  profile:
+    enabled: false
+  annotations:
+    linkerd.io/inject: enabled # Controls whether or not a pod should be injected; accepted values are enabled, disabled and ingress
+    config.linkerd.io/access-log: json
+    config.linkerd.io/proxy-log-format: json
+    config.linkerd.io/proxy-log-level: warn
+
+tests:
+  enabled: false
+
+auth0:
+  domain: dev-26i1fsf2m1n6hqk1.us.auth0.com
+  audience: https://dev-26i1fsf2m1n6hqk1.us.auth0.com/api/v2/

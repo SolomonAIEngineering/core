@@ -1,0 +1,48 @@
+# Reusable workflow for releases; to eject, you can replace this file with
+# https://github.com/ryansonshine/ryansonshine/blob/main/.github/workflows/release.yml
+name: Release TypeScript SDK
+on:
+  push:
+    branches:
+      - main
+  workflow_call:
+    secrets:
+      NPM_TOKEN:
+        required: true
+
+defaults:
+  run:
+    working-directory: ./solomon-ai-typescript-sdk
+
+permissions:
+  contents: write # needed to write releases
+  id-token: write # needed for keyless signing
+  packages: write # needed for ghcr access
+
+jobs:
+  release:
+    name: Release TypeScript SDK
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: ./solomon-ai-typescript-sdk
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: lts/*
+      - name: Install dependencies
+        run: npm ci --only=production --ignore-scripts
+      - name: Build
+        run: npm run build
+      - name: Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: HUSKY_SKIP_HOOKS=1 npx semantic-release
+      - name: Upload Code Coverage
+        uses: codecov/codecov-action@v3.1.0

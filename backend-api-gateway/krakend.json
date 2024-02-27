@@ -1,0 +1,4802 @@
+{
+  "version": 3,
+  "port": 8080,
+  "name": "Tenera API",
+  "cache_ttl": "300s",
+  "timeout": "3000ms",
+  "read_timeout": "15s",
+  "write_timeout": "15s",
+  "idle_timeout": "15s",
+  "read_header_timeout": "15s",
+  "max_idle_connections": 150,
+  "extra_config": {
+    "documentation/openapi": {
+      "description": "This is the api gateway for the solomon ai backend",
+      "version": "1.0.0",
+      "host": "http://solomon-ai.io",
+      "base_path": "/v1",
+      "terms_of_service": "http://url.to/tos",
+      "contact_name": "yoan yomba",
+      "contact_email": "yoanyomba@solomon-ai.co",
+      "contact_url": "http://solomon-ai.io/contact",
+      "license_name": "MIT",
+      "license_url": "https://opensource.org/licenses/MIT",
+      "tags": [
+        "platform",
+        "fin-tech",
+        "Restricted"
+      ],
+      "schemes": [
+        "http",
+        "https"
+      ]
+    },
+    "security/bot-detector": {
+      "allow": [
+        "MyAndroidClient/1.0",
+        "Pingdom.com_bot_version_1.1"
+      ],
+      "deny": [],
+      "patterns": [
+        "(GoogleBot)/.*",
+        "(facebookexternalhit)/.*"
+      ],
+      "cache_size": 10000,
+      "empty_user_agent_is_bot": true
+    },
+    "auth/validator": {
+      "@comment": "Enable a JWK shared cache amongst all endpoints of 15 minutes",
+      "shared_cache_duration": 900
+    },
+    "router": {
+      "return_error_msg": true,
+      "forwarded_by_client_ip": true,
+      "disable_access_log": true,
+      "hide_version_header": true
+    },
+    "telemetry/logging": {
+      "level": "DEBUG",
+      "prefix": "[SOLOMON AI  API-GATEWAY]",
+      "syslog": false,
+      "stdout": true
+    },
+    "telemetry/metrics": {
+      "collection_time": "120s",
+      "proxy_disabled": false,
+      "router_disabled": false,
+      "backend_disabled": false,
+      "endpoint_disabled": false,
+      "listen_address": ":8081"
+    },
+    "security/http": {
+      "allowed_hosts": [
+        "solomon-ai.io"
+      ],
+      "ssl_proxy_headers": {
+        "X-Forwarded-Proto": "https"
+      },
+      "host_proxy_headers": [
+        "X-Forwarded-Hosts"
+      ],
+      "ssl_redirect": false,
+      "ssl_host": "solomon-ai.io",
+      "sts_seconds": 300,
+      "sts_include_subdomains": true,
+      "frame_deny": true,
+      "referrer_policy": "same-origin",
+      "custom_frame_options_value": "",
+      "hpkp_public_key": "pin-sha256=\"base64==\"; max-age=expireTime [; includeSubDomains][; report-uri=\"reportURI\"]",
+      "content_type_nosniff": true,
+      "browser_xss_filter": true,
+      "content_security_policy": "default-src 'self';",
+      "is_development": true
+    },
+    "security/cors": {
+      "allow_origins": [
+        "*"
+      ],
+      "allow_methods": [
+        "GET",
+        "HEAD",
+        "POST",
+        "PUT",
+        "PATCH",
+        "DELETE",
+        "OPTIONS"
+      ],
+      "allow_headers": [
+        "*"
+      ],
+      "expose_headers": [
+        "Content-Length"
+      ],
+      "max_age": "12h"
+    },
+    "telemetry/opencensus": {
+      "sample_rate": 10,
+      "reporting_period": 60,
+      "enabled_layers": {
+        "backend": true,
+        "router": true
+      },
+      "exporters": {
+        "prometheus": {
+          "port": 9091,
+          "namespace": "krakend",
+          "tag_host": false,
+          "tag_path": true,
+          "tag_method": true,
+          "tag_statuscode": false
+        }
+      }
+    }
+  },
+  "$schema": "https://www.krakend.io/schema/v3.json",
+  "output_encoding": "json",
+  "endpoints": [
+    {
+      "endpoint": "/financial-microservice/api/v1/plaid/exchange-token",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/plaid/exchange-token",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/smart-goal/pocket/{pocketId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/smart-goal/pocket/{pocketId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/recurring/{transactionId}/notes",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/recurring/{transactionId}/notes",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction/search",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction/search",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction/unsplit",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction/unsplit",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/account/{userId}/student-loan/{studentLoanAccountId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/account/{userId}/student-loan/{studentLoanAccountId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/income-expense-ratio/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/income-expense-ratio/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/monthly-expenditure/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/monthly-expenditure/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/profile",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/profile",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/profile",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/profile",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/stripe/subscription",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/stripe/subscription",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction/{transactionId}/notes",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction/{transactionId}/notes",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction/bulk",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction/bulk",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "paymentChannel",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/plaid/initiate-token-update",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/plaid/initiate-token-update",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "accountId",
+        "userId",
+        "pageNumber",
+        "pageSize",
+        "profileType",
+        "financialAccountType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/{userId}/pageNumber/{pageNumber}/pageSize/{pageSize}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/{userId}/pageNumber/{pageNumber}/pageSize/{pageSize}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/budget",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "pocketId",
+        "smartGoalId",
+        "milestoneId"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/budget",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/budget",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/budget",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/budget",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/budget",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/pocket",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/pocket",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/smart-goal",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/smart-goal",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/smart-goal",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/smart-goal",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/recurring-transactions/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/recurring-transactions/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/bank-account/{bankAccountId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "userId",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/bank-account/{bankAccountId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/bank-account/{bankAccountId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/bank-account/{bankAccountId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/health",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/health",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/pocket/{pocketId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/pocket/{pocketId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/pocket/{pocketId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/pocket/{pocketId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/finance-profile/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/finance-profile/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/recurring/bulk",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/recurring/bulk",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction/{transactionId}/split",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction/{transactionId}/split",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/smart-goal/{smartGoalId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/smart-goal/{smartGoalId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/category-monthly-transaction-count/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "personalFinanceCategoryPrimary",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/category-monthly-transaction-count/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/copilot/quota/exceeded/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/copilot/quota/exceeded/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/historical-account-balance/user/{userId}/plaid-account-id/{plaidAccountId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/historical-account-balance/user/{userId}/plaid-account-id/{plaidAccountId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/monthly-transaction-count/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/monthly-transaction-count/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/link",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/link",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/ready",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/ready",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/recurring/{transactionId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/recurring/{transactionId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/recurring/{transactionId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/recurring/{transactionId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/recurring/{transactionId}/note/{noteId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/recurring/{transactionId}/note/{noteId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/balance-history/account/{plaidAccountId}/pagenumber/{pageNumber}/pagesize/{pageSize}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/balance-history/account/{plaidAccountId}/pagenumber/{pageNumber}/pagesize/{pageSize}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/balance-history/user/{userId}/pagenumber/{pageNumber}/pagesize/{pageSize}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/balance-history/user/{userId}/pagenumber/{pageNumber}/pagesize/{pageSize}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/monthly-balance/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/monthly-balance/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/user/{userId}/plaid-account-id/{plaidAccountId}/pageNumber/{pageNumber}/pageSize/{pageSize}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/user/{userId}/plaid-account-id/{plaidAccountId}/pageNumber/{pageNumber}/pageSize/{pageSize}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/smart-goal/note/{noteId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "smartGoalId"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/smart-goal/note/{noteId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/smart-goal/note/{noteId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/smart-goal/note/{noteId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/recurring",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/recurring",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/account/{userId}/investment/{investmentAccountId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/account/{userId}/investment/{investmentAccountId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/async-task/{workflowId}/run/{runId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/async-task/{workflowId}/run/{runId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/pocket/bank-account",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/pocket/bank-account",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/account/{userId}/liability/{liabilityAccountId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/account/{userId}/liability/{liabilityAccountId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/smart-goal/{smartGoalId}/note",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/smart-goal/{smartGoalId}/note",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/users/{userId}/accounts/{plaidAccountId}/transactions/week",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "page",
+        "limit",
+        "profileType",
+        "financialAccountType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/users/{userId}/accounts/{plaidAccountId}/transactions/week",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/users/{userId}/accounts/{plaidAccountId}/transactions/range",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "startDate",
+        "endDate",
+        "page",
+        "limit",
+        "profileType",
+        "financialAccountType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/users/{userId}/accounts/{plaidAccountId}/transactions/range",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/category-monthly-income/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "personalFinanceCategoryPrimary",
+        "month",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/category-monthly-income/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/milestone",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/milestone",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/milestone",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/milestone",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction/note",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction/note",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction/note",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction/note",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/monthly-total-quantity-by-security-and-user/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "securityId",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/monthly-total-quantity-by-security-and-user/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/bank-account",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/bank-account",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/link/{linkId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "userId",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/link/{linkId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/link/{linkId}/user/{userId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/link/{linkId}/user/{userId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/links/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/links/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/debt-to-income-ratio/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/debt-to-income-ratio/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/income/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "personalFinanceCategoryPrimary",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/income/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/monthly-savings/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/monthly-savings/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/bank-account/profile",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/bank-account/profile",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/copilot/quota/question",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/copilot/quota/question",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/milestone/{milestoneId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/milestone/{milestoneId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/milestone/{milestoneId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/milestone/{milestoneId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction/{transactionId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction/{transactionId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction/{transactionId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction/{transactionId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/category-monthly-expenditure/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "personalFinanceCategoryPrimary",
+        "month",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/category-monthly-expenditure/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/melody-financial-context/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/melody-financial-context/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/transaction-aggregates/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "personalFinanceCategoryPrimary",
+        "locationCity",
+        "paymentChannel",
+        "merchantName",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/transaction-aggregates/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/merchant-monthly-expenditure/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "merchantName",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/merchant-monthly-expenditure/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/budget/{budgetId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/budget/{budgetId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/budget/{budgetId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/budget/{budgetId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/profile/{userId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/profile/{userId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/profile/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/profile/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/sync/trigger",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/sync/trigger",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/recurrings",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "accountId",
+        "userId",
+        "pageNumber",
+        "pageSize",
+        "profileType",
+        "financialAccountType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/recurrings",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/transaction/split",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/transaction/split",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/account/{userId}/mortgage/{mortgageAccountId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/account/{userId}/mortgage/{mortgageAccountId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/milestone/smart-goal/{smartGoalId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/milestone/smart-goal/{smartGoalId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/smart-goal/note",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/smart-goal/note",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/smart-goal/note",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/smart-goal/note",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/forecast/{smartGoalId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/forecast/{smartGoalId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/plaid/initiate-token-exchange",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/plaid/initiate-token-exchange",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/all_accounts",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "userId",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/all_accounts",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/recurring/note",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/recurring/note",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/transactions/recurring/note",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/transactions/recurring/note",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/users/{userId}/accounts/{plaidAccountId}/transactions/month",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "page",
+        "limit",
+        "profileType",
+        "financialAccountType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/users/{userId}/accounts/{plaidAccountId}/transactions/month",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/expenses/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "personalFinanceCategoryPrimary",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/expenses/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/monthly-income/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "month",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/monthly-income/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/financial-microservice/api/v1/analytics/total-investment/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "securityId",
+        "pageNumber",
+        "pageSize",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/financial-microservice/api/v1/analytics/total-investment/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://financial-integration-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/user/{userId}/canny/email/{email}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/user/{userId}/canny/email/{email}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/thread/{parentPostId}/type/{postType}/target/{participantPostId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/thread/{parentPostId}/type/{postType}/target/{participantPostId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/type/{postType}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/type/{postType}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/type/{postType}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/type/{postType}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/publication/{publicationId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/publication/{publicationId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/topics",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "limit"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/topics",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/thread/{postId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/thread/{postId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/community-profiles/{communityProfileId}/posts/blog",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/community-profiles/{communityProfileId}/posts/blog",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/follow-requests/{followRecordId}/accept",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/follow-requests/{followRecordId}/accept",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/admin/{adminUserId}/publication/{publicationId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/admin/{adminUserId}/publication/{publicationId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/admin/{adminUserId}/publication/{publicationId}/editor/{editorUserId}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/admin/{adminUserId}/publication/{publicationId}/editor/{editorUserId}",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/admin/{adminUserId}/publication/{publicationId}/editor/{editorUserId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/admin/{adminUserId}/publication/{publicationId}/editor/{editorUserId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/bookmarks/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/bookmarks/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/bookmark/{postId}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/bookmark/{postId}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/community-profiles/{communityProfileId}/timeline",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "feedType",
+        "accountType",
+        "nextPageToken"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/community-profiles/{communityProfileId}/timeline",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/communities-followed",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "limit"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/communities-followed",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/profile/{profileId}/followers",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "limit"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/profile/{profileId}/followers",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/editor/{editorUserId}/publication/{publicationId}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/editor/{editorUserId}/publication/{publicationId}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/community-profiles/{communityProfileId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/community-profiles/{communityProfileId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/community-profiles/{communityProfileId}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/community-profiles/{communityProfileId}",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/community/{communityProfileId}/topic",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/community/{communityProfileId}/topic",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/polls",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/polls",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/share/{parentPostId}/type/{parentPostType}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/share/{parentPostId}/type/{parentPostType}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "requestorProfileId",
+        "requestorProfileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/account-type/{accountType}/reaction/{reaction}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/account-type/{accountType}/reaction/{reaction}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/post/{postId}/comment/{commentId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/post/{postId}/comment/{commentId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/poll/{postId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/poll/{postId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/poll/{postId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/poll/{postId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}/account-type/{accountType}/reaction/{reaction}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}/account-type/{accountType}/reaction/{reaction}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/publication/{publicationId}/bookmark",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/publication/{publicationId}/bookmark",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/publication/{publicationId}/bookmark",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/publication/{publicationId}/bookmark",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/social/community-profiles/{communityId}/requestor/{requestorProfileId}/profile-type/{requestorProfileType}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/social/community-profiles/{communityId}/requestor/{requestorProfileId}/profile-type/{requestorProfileType}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/discover/limit/{limit}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/discover/limit/{limit}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/thread/{parentPostId}/type/{postType}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/thread/{parentPostId}/type/{postType}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/report",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/report",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/type/{postType}/report",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/type/{postType}/report",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/source/{sourceUserId}/follow/target/{targetUserId}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/source/{sourceUserId}/follow/target/{targetUserId}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/account-type/{accountType}/reaction/{reaction}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/account-type/{accountType}/reaction/{reaction}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/quality",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/quality",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/ready",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/ready",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/poll",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/poll",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/poll/{pollId}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/poll/{pollId}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/quality",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/quality",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/profile/{profileId}/account-type/{accountType}/following",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "limit"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/profile/{profileId}/account-type/{accountType}/following",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/community-profiles/page-size/{pageSize}/page-number/{pageNumber}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/community-profiles/page-size/{pageSize}/page-number/{pageNumber}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/editor/{editorUserId}/publication/{publicationId}/post/{postId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/editor/{editorUserId}/publication/{publicationId}/post/{postId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/source/{sourceUserId}/follow/community-profiles/{targetCommunityProfileId}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/source/{sourceUserId}/follow/community-profiles/{targetCommunityProfileId}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/bookmark",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/bookmark",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/follow/pending-requests",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/follow/pending-requests",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "communityProfileId",
+        "accountType",
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/replies",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/replies",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/reply",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/reply",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/posts",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/posts",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}/report",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/comment/{commentId}/reply/{replyId}/report",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/note",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/note",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/note/{noteId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/note/{noteId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post/{postId}/note/{noteId}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post/{postId}/note/{noteId}",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/page-size/{pageSize}/page-number/{pageNumber}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/page-size/{pageSize}/page-number/{pageNumber}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/timeline",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "feedType",
+        "accountType",
+        "nextPageToken"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/timeline",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/source/{sourceUserId}/block/target/{targetUserId}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/source/{sourceUserId}/block/target/{targetUserId}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/post",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "communityProfileId",
+        "accountType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/post",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/community-profiles/{userId}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/community-profiles/{userId}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/community/{communityProfileId}/topic/{topicName}/posts",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/community/{communityProfileId}/topic/{topicName}/posts",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/health",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/health",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/post/{postId}/type/{postType}",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/post/{postId}/type/{postType}",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/posts/blog/tag/{tag}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "postType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/posts/blog/tag/{tag}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/user/{userId}/category/{category}/posts/{postType}/limit/{limit}/offset/{offset}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/user/{userId}/category/{category}/posts/{postType}/limit/{limit}/offset/{offset}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/social-microservice/api/v1/users/{userId}/publication",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/social-microservice/api/v1/users/{userId}/publication",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://social-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user/query-account-by-email-or-username",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "email",
+        "username"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user/query-account-by-email-or-username",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/verification/{userId}/profile-type/{profileType}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/verification/{userId}/profile-type/{profileType}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/authn/{authnId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/authn/{authnId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user/verification/{userId}",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user/verification/{userId}",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/email/{email}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/email/{email}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/webhook/password-reset",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "accountId",
+        "token"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/webhook/password-reset",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user/email/{email}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user/email/{email}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user/email/{email}/exists",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user/email/{email}/exists",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user/ready",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user/ready",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/account/query-by-email-or-username",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "email",
+        "username",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/account/query-by-email-or-username",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/auth-zero/{auth0UserId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/auth-zero/{auth0UserId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/canny/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/canny/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/{userId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/{userId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user/health",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user/health",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user",
+      "method": "PUT",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user",
+          "encoding": "json",
+          "method": "PUT",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/query-id",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "email",
+        "username",
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/query-id",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/role/{id}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/role/{id}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/role/{id}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/role/{id}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user/query-id",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "email",
+        "username"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user/query-id",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user/webhook/password-reset",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "accountId",
+        "token"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user/webhook/password-reset",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/business/settings/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/business/settings/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/username/{username}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/username/{username}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user/role",
+      "method": "PATCH",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user/role",
+          "encoding": "json",
+          "method": "PATCH",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user/username/{username}/exists",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user/username/{username}/exists",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user/{userId}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user/{userId}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user/{userId}",
+      "method": "DELETE",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user/{userId}",
+          "encoding": "json",
+          "method": "DELETE",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/email/{email}/exists",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/email/{email}/exists",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/role",
+      "method": "POST",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/role",
+          "encoding": "json",
+          "method": "POST",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v1/user-service/user/username/{username}",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v1/user-service/user/username/{username}",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/roles",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "page",
+        "pageSize"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/roles",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    },
+    {
+      "endpoint": "/user-microservice/api/v2/user-service/user/username/{username}/exists",
+      "method": "GET",
+      "output_encoding": "json",
+      "timeout": "3000ms",
+      "input_query_strings": [
+        "profileType"
+      ],
+      "backend": [
+        {
+          "url_pattern": "/user-microservice/api/v2/user-service/user/username/{username}/exists",
+          "encoding": "json",
+          "method": "GET",
+          "host": [
+            "http://user-service.platform.svc.cluster.local:9896"
+          ],
+          "disable_host_sanitize": false
+        }
+      ],
+      "input_headers": [
+        "Content-Type"
+      ]
+    }
+  ]
+}

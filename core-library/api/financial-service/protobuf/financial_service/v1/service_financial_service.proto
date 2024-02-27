@@ -1,0 +1,2269 @@
+syntax = "proto3";
+
+package financial_service.v1;
+
+import "financial_service/v1/request_response_financial_analytics_service.proto";
+import "financial_service/v1/request_response_financial_service.proto";
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+// import "google/api/field_behavior.proto";
+// import "google/protobuf/timestamp.proto";
+// import "google/protobuf/wrappers.proto";
+option go_package = "github.com/SolomonAIEngineering/service-level-api/pkg/generated/financial_service/v1";
+
+// FinancialService API.
+service FinancialService {
+  // PlaidInitiateTokenExchange enables the client to get a link_token to initialize a Link session for your end user.
+  rpc PlaidInitiateTokenExchange(PlaidInitiateTokenExchangeRequest) returns (PlaidInitiateTokenExchangeResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/plaid/initiate-token-exchange"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "initiate plaid setup"
+      tags: ["financial-service"]
+      operation_id: "InitiatePlaidSetup"
+      description: "This endpoint initiates a plaid link token creation"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.PlaidInitiateTokenExchangeResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // PlaidInitiateTokenUpdate enables the cleint to initiate a plaid token update operation
+  rpc PlaidInitiateTokenUpdate(PlaidInitiateTokenUpdateRequest) returns (PlaidInitiateTokenUpdateResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/plaid/initiate-token-update"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "initiate plaid link token update"
+      tags: ["financial-service"]
+      operation_id: "InitiatePlaidTokenUpdate"
+      description: "This endpoint initiates a plaid link token update"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.PlaidInitiateTokenUpdateResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // PlaidExchangeToken enables the client to exchange a plaid link token for an access token
+  rpc PlaidExchangeToken(PlaidExchangeTokenRequest) returns (PlaidExchangeTokenResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/plaid/exchange-token"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "exchange plaid token"
+      tags: ["financial-service"]
+      operation_id: "ExchangePlaidToken"
+      description: "This endpoint exchanges a plaid link token for a plaid access token"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.PlaidExchangeTokenResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // CreateUserProfile performs an a creation operation of a user profile based on the provided parameters
+  // This operation is implemented as a distributed transactions as this operation can span multiple services
+  rpc CreateUserProfile(CreateUserProfileRequest) returns (CreateUserProfileResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/profile"
+      body: "*"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "create a user profile"
+      tags: ["financial-service"]
+      operation_id: "CreateUserProfile"
+      description:
+        "This endpoint performs an a creation operation of a user profile based on the provided parameters"
+        "This operation is implemented as a distributed transactions as this operation can span multiple services"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.CreateUserProfileResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // GetUserProfile Queries and obtains a user profile based on the provided parameters
+  rpc GetUserProfile(GetUserProfileRequest) returns (GetUserProfileResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/profile/{user_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Gets a user profile"
+      tags: ["financial-service"]
+      operation_id: "GetUserProfile"
+      description: "Queries and obtains a user profile based on the provided parameters"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetUserProfileResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // DeleteUserProfile performs a delete operation on a user profile based on the provided parameters
+  rpc DeleteUserProfile(DeleteUserProfileRequest) returns (DeleteUserProfileResponse) {
+    option (google.api.http) = {delete: "/financial-microservice/api/v1/profile/{user_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "deletes a user profile"
+      tags: ["financial-service"]
+      operation_id: "DeleteUserProfile"
+      description:
+        "This endpoint performs a delete operation on a user profile based on the provided parameters"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.DeleteUserProfileResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // UpdateUserProfile  performs an updates operation on a user profile based on the provided parameters
+  rpc UpdateUserProfile(UpdateUserProfileRequest) returns (UpdateUserProfileResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/profile"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "update a user profile"
+      tags: ["financial-service"]
+      operation_id: "UpdateUserProfile"
+      description:
+        "This endpoint performs an updates operation on a user profile based on the provided parameters"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.UpdateUserProfileResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // CreateBankAccount creates a bank account for a given user profile
+  rpc CreateBankAccount(CreateBankAccountRequest) returns (CreateBankAccountResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/bank-account/profile"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "create a bank account for a given user profile"
+      tags: ["financial-service"]
+      operation_id: "CreateBankAccount"
+      description: "This endpoint creates a bank account for a given user profile"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.CreateBankAccountResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // GetBankAccount gets a bank account for a given user
+  rpc GetBankAccount(GetBankAccountRequest) returns (GetBankAccountResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/bank-account/{bank_account_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get a bank account for a given user profile"
+      tags: ["financial-service"]
+      operation_id: "GetBankAccount"
+      description:
+        "This endpoint returns the bank account if the user record id and bank account id exists"
+        "\n"
+        "example: /api/v1/bank-account?user_id=xxxxxx&&bank_account_id=xxxxxxx"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetBankAccountResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // UpdateBankAccount updates the bank account for a given user profile
+  rpc UpdateBankAccount(UpdateBankAccountRequest) returns (UpdateBankAccountResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/bank-account"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "update a bank account for a given user profile"
+      tags: ["financial-service"]
+      operation_id: "UpdateBankAccount"
+      description: "This endpoint updates a bank account if the user record id and bank account id exists"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.UpdateBankAccountResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // DeleteBankAccount deletes a bank account for a given user profile
+  rpc DeleteBankAccount(DeleteBankAccountRequest) returns (DeleteBankAccountResponse) {
+    option (google.api.http) = {delete: "/financial-microservice/api/v1/bank-account/{bank_account_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "deletes a bank account for a given user profile"
+      tags: ["financial-service"]
+      operation_id: "DeleteUserProfile"
+      description:
+        "This endpoint performs a delete operation on a user profile based on the provided parameters"
+        "This deletion operation spans multiple services (plaid) as user details are stored across a suite of our backend services"
+        "The operation itself is an atomic one of nature. Either all services successfully delete the recod or we fail the request"
+        "Divergent state is not expected to be encountered with this endpoint."
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.DeleteBankAccountResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // GetPocket get a pocket tied to a given users account
+  rpc GetPocket(GetPocketRequest) returns (GetPocketResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/pocket/{pocket_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get a pocket"
+      tags: ["financial-service"]
+      operation_id: "GetPocket"
+      description:
+        "This endpoint returns the pocket if the pocket exists"
+        "\n"
+        "example: /api/v1/pocket/xxxxxxx"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetPocketResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // GetSmartGoalsByPocketId gets a smart goal tied to a pocket
+  rpc GetSmartGoalsByPocketId(GetSmartGoalsByPocketIdRequest) returns (GetSmartGoalsByPocketIdResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/smart-goal/pocket/{pocket_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get smart goals by pocket id"
+      tags: ["financial-service"]
+      operation_id: "GetSmartGoalsByPocketId"
+      description: "This endpoint returns the smart goals if the pocket exists"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetSmartGoalsByPocketIdResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // CreateSmartGoal creates a smart goal 
+  rpc CreateSmartGoal(CreateSmartGoalRequest) returns (CreateSmartGoalResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/smart-goal"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "create a smart goal"
+      tags: ["financial-service"]
+      operation_id: "CreateSmartGoal"
+      description: "This endpoint creates a smart goal"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.CreateSmartGoalResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // UpdateSmartGoal updates a smart goal
+  rpc UpdateSmartGoal(UpdateSmartGoalRequest) returns (UpdateSmartGoalResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/smart-goal"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "update a smart goal"
+      tags: ["financial-service"]
+      operation_id: "UpdateSmartGoal"
+      description: "This endpoint updates a smart goal"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.UpdateSmartGoalResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // deletes a smart goal
+  rpc DeleteSmartGoal(DeleteSmartGoalRequest) returns (DeleteSmartGoalResponse) {
+    option (google.api.http) = {delete: "/financial-microservice/api/v1/smart-goal/{smart_goal_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "delete a smart goal"
+      tags: ["financial-service"]
+      operation_id: "DeleteSmartGoal"
+      description: "This endpoint deletes a smart goal"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.DeleteSmartGoalResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // creates a milestone
+  rpc CreateMilestone(CreateMilestoneRequest) returns (CreateMilestoneResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/milestone"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "create a milestone"
+      tags: ["financial-service"]
+      operation_id: "CreateMilestone"
+      description: "This endpoint creates a milestone"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.CreateMilestoneResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // deletes a milestone
+  rpc DeleteMilestone(DeleteMilestoneRequest) returns (DeleteMilestoneResponse) {
+    option (google.api.http) = {delete: "/financial-microservice/api/v1/milestone/{milestone_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "delete a milestone"
+      tags: ["financial-service"]
+      operation_id: "DeleteMilestone"
+      description: "This endpoint deletes a milestone"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.DeleteMilestoneResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // updates a milestone
+  rpc UpdateMilestone(UpdateMilestoneRequest) returns (UpdateMilestoneResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/milestone"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "updates a milestone"
+      tags: ["financial-service"]
+      operation_id: "UpdatesMilestone"
+      description: "This endpoint updates a milestone"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.UpdateMilestoneResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // gets a milestone
+  rpc GetMilestone(GetMilestoneRequest) returns (GetMilestoneResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/milestone/{milestone_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get milestone by id"
+      tags: ["financial-service"]
+      operation_id: "GetMilestone"
+      description: "This endpoint returns the milestone if the milestone exists"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetMilestoneResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // gets milestones tied to a smart goal
+  rpc GetMilestonesBySmartGoalId(GetMilestonesBySmartGoalIdRequest) returns (GetMilestonesBySmartGoalIdResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/milestone/smart-goal/{smart_goal_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get milestones by smart goal id"
+      tags: ["financial-service"]
+      operation_id: "GetMilestones"
+      description: "This endpoint returns the milestones if the smart goal exists"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetMilestonesBySmartGoalIdResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // gets a forecast
+  rpc GetForecast(GetForecastRequest) returns (GetForecastResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/forecast/{smart_goal_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get forecast by id"
+      tags: ["financial-service"]
+      operation_id: "GetForecast"
+      description: "This endpoint returns the forecast if the forecast exists"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetForecastResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // creates a budget
+  rpc CreateBudget(CreateBudgetRequest) returns (CreateBudgetResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/budget"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "create a budget"
+      tags: ["financial-service"]
+      operation_id: "CreateBudget"
+      description: "This endpoint creates a budget"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.CreateBudgetResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // updates a budget
+  rpc UpdateBudget(UpdateBudgetRequest) returns (UpdateBudgetResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/budget"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "updates a budget"
+      tags: ["financial-service"]
+      operation_id: "UpdatesBudget"
+      description: "This endpoint updates a budget"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.UpdateBudgetResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // deletes a budget
+  rpc DeleteBudget(DeleteBudgetRequest) returns (DeleteBudgetResponse) {
+    option (google.api.http) = {delete: "/financial-microservice/api/v1/budget/{budget_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "delete a budget"
+      tags: ["financial-service"]
+      operation_id: "DeleteBudget"
+      description: "This endpoint deletes a budget"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.DeleteBudgetResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // gets a given budget for a given user
+  rpc GetBudget(GetBudgetRequest) returns (GetBudgetResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/budget/{budget_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get budget by id"
+      tags: ["financial-service"]
+      operation_id: "GetBudget"
+      description: "This endpoint returns the budget if the budget exists"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetBudgetResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Gets all budgets
+  rpc GetAllBudgets(GetAllBudgetsRequest) returns (GetAllBudgetsResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/budget"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get all budgets"
+      tags: ["financial-service"]
+      operation_id: "GetAllBudgets"
+      description: "This endpoint returns all budgets"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetAllBudgetsResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/health"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "health check"
+      tags: ["financial-service"]
+      operation_id: "HealthCheck"
+      description: "This endpoint performs a healc check on the service"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.HealthCheckResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  rpc ReadynessCheck(ReadynessCheckRequest) returns (ReadynessCheckResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/ready"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "readyness check"
+      tags: ["financial-service"]
+      operation_id: "ReadynessCheck"
+      description: "This endpoint performs a readiness check on the service"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.ReadynessCheckResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Gets an investment account
+  rpc GetInvestmentAcccount(GetInvestmentAcccountRequest) returns (GetInvestmentAcccountResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/account/{user_id}/investment/{investment_account_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get investment account by id"
+      tags: ["financial-service"]
+      operation_id: "GetInvestmentAccount"
+      description: "This endpoint returns the investment account if the investment account exists"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetInvestmentAcccountResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Gets a mortgage account
+  rpc GetMortgageAccount(GetMortgageAccountRequest) returns (GetMortgageAccountResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/account/{user_id}/mortgage/{mortgage_account_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get mortgage account by id"
+      tags: ["financial-service"]
+      operation_id: "GetMortageAccount"
+      description: "This endpoint returns the mortgage account if the mortgage account exists"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetMortgageAccountResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get a liability account
+  rpc GetLiabilityAccount(GetLiabilityAccountRequest) returns (GetLiabilityAccountResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/account/{user_id}/liability/{liability_account_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get liability account by id"
+      tags: ["financial-service"]
+      operation_id: "GetLiabilityAccount"
+      description: "This endpoint returns the liability account if the liability account exists"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetLiabilityAccountResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Gets student loan account
+  rpc GetStudentLoanAccount(GetStudentLoanAccountRequest) returns (GetStudentLoanAccountResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/account/{user_id}/student-loan/{student_loan_account_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get student loan account by id"
+      tags: ["financial-service"]
+      operation_id: "GetStudentLoanAccount"
+      description: "This endpoint returns the student loan account if the student loan account exists"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetStudentLoanAccountResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Creates a manual link
+  rpc CreateManualLink(CreateManualLinkRequest) returns (CreateManualLinkResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/link"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "create link"
+      tags: ["financial-service"]
+      operation_id: "CreateLink"
+      description: "This endpoint creates a link"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.CreateManualLinkResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get a specific linked account
+  rpc GetLink(GetLinkRequest) returns (GetLinkResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/link/{link_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get link by id"
+      tags: ["financial-service"]
+      operation_id: "GetLink"
+      description: "This endpoint returns the link if the link exists"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetLinkResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Gets all the links for a given user
+  rpc GetLinks(GetLinksRequest) returns (GetLinksResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/links/{user_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get links"
+      tags: ["financial-service"]
+      operation_id: "GetLinks"
+      description: "This endpoint returns the links"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetLinksResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Deletes a linked account
+  rpc DeleteLink(DeleteLinkRequest) returns (DeleteLinkResponse) {
+    option (google.api.http) = {delete: "/financial-microservice/api/v1/link/{link_id}/user/{user_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "delete link by id"
+      tags: ["financial-service"]
+      operation_id: "DeleteLink"
+      description: "This endpoint deletes the link if the link exists"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.DeleteLinkResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // This endpoint enables end users to get recurring transactions
+  rpc GetReCurringTransactions(GetReCurringTransactionsRequest) returns (GetReCurringTransactionsResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/transactions/recurring-transactions/{user_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get recurring transactions"
+      tags: ["financial-service"]
+      operation_id: "GetRecurringTransactions"
+      description: "This endpoint returns the recurring transactions for a given user id"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {json_schema: {ref: ".financial_service.v1.GetRecurringTransactionsResponse"}}
+        }
+      }
+    };
+  }
+
+  // This endpoint enables end users to get transactions in a paginated manner
+  rpc GetTransactions(GetTransactionsRequest) returns (GetTransactionsResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/transactions/{user_id}/pageNumber/{page_number}/pageSize/{page_size}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get transactions"
+      tags: ["financial-service"]
+      operation_id: "GetTransactions"
+      description: "This endpoint returns the transactions for a given user id"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {json_schema: {ref: ".financial_service.v1.GetTransactionsResponse"}}
+        }
+      }
+    };
+  }
+
+  // This endpoint enables end users to get transactions in a paginated manner
+  rpc CreateSubscription(CreateSubscriptionRequest) returns (CreateSubscriptionResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/stripe/subscription"
+      body: "*"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Creates a new subscription for a given customer against stripe"
+      tags: ["financial-service"]
+      operation_id: "CreateSubscription"
+      description: "This endpoint enabled a user to create a new subscription against stripe"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.CreateSubscriptionResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Transaction Aggregates By Various parameters
+  rpc GetTransactionAggregates(GetTransactionAggregatesRequest) returns (GetTransactionAggregatesResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/transaction-aggregates/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Returns the aggregated transactions for a user and month"
+      tags: ["financial-service"]
+      operation_id: "TransactionAggregates"
+      description: "This API could accept user_id and month as input parameters and return the aggregated transactions for that user and month."
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetTransactionAggregatesResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // This endpoint enables end users to get the historical account balances for all accounts the user has
+  rpc GetUserAccountBalanceHistory(GetUserAccountBalanceHistoryRequest) returns (GetUserAccountBalanceHistoryResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/balance-history/user/{user_id}/pagenumber/{page_number}/pagesize/{page_size}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Returns the account balance history for a user"
+      tags: ["financial-service"]
+      operation_id: "GetUserAccountBalanceHistory"
+      description: "This API could accept user_id as input parameters and return the account balance history for that user."
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetUserAccountBalanceHistoryResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // This endpoint enables end users to get the historical account balances for a given account the user has
+  rpc GetAccountBalanceHistory(GetAccountBalanceHistoryRequest) returns (GetAccountBalanceHistoryResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/balance-history/account/{plaid_account_id}/pagenumber/{page_number}/pagesize/{page_size}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Returns the account balance history for an account"
+      tags: ["financial-service"]
+      operation_id: "GetAccountBalanceHistory"
+      description: "This API could accept account_id as input parameters and return the account balance history for that account."
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetAccountBalanceHistoryResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  //  enables end users to get their categorized monthly expenditures
+  rpc GetUserCategoryMonthlyExpenditure(GetUserCategoryMonthlyExpenditureRequest) returns (GetUserCategoryMonthlyExpenditureResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/category-monthly-expenditure/user/{user_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Returns the monthly category expenditure for a user"
+      tags: ["financial-service"]
+      operation_id: "GetUserCategoryMonthlyExpenditure"
+      description: "This API could accept user_id as an input parameter and return the monthly category expenditure for that user."
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetUserCategoryMonthlyExpenditureResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  //  returns all CategoryMonthlyIncome records for a specific user for a specific personal finance category
+  rpc GetUserCategoryMonthlyIncome(GetUserCategoryMonthlyIncomeRequest) returns (GetUserCategoryMonthlyIncomeResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/category-monthly-income/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get monthly income by user for a specific category"
+      tags: ["financial-service"]
+      operation_id: "GetUserCategoryMonthlyIncome"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetUserCategoryMonthlyIncomeResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // returns all CategoryMonthlyTransactionCount records for a specific user
+  rpc GetCategoryMonthlyTransactionCount(GetCategoryMonthlyTransactionCountRequest) returns (GetCategoryMonthlyTransactionCountResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/category-monthly-transaction-count/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get monthly transaction count by user, month, and category"
+      tags: ["financial-service"]
+      operation_id: "GetCategoryMonthlyTransactionCount"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetCategoryMonthlyTransactionCountResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get debt to income ratio
+  rpc GetDebtToIncomeRatio(GetDebtToIncomeRatioRequest) returns (GetDebtToIncomeRatioResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/debt-to-income-ratio/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Debt-to-Income ratio by user and month"
+      tags: ["financial-service"]
+      operation_id: "GetDebtToIncomeRatio"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetDebtToIncomeRatioResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get expense metrics
+  rpc GetExpenseMetrics(GetExpenseMetricsRequest) returns (GetExpenseMetricsResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/expenses/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Expense Metrics by user, month and category"
+      tags: ["financial-service"]
+      operation_id: "GetExpenseMetrics"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetExpenseMetricsResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get financial profile
+  rpc GetFinancialProfile(GetFinancialProfileRequest) returns (GetFinancialProfileResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/finance-profile/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Financial Profile by user and month"
+      tags: ["financial-service"]
+      operation_id: "GetFinancialProfile"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetFinancialProfileResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  //  Get income expense ratio
+  rpc GetIncomeExpenseRatio(GetIncomeExpenseRatioRequest) returns (GetIncomeExpenseRatioResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/income-expense-ratio/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Income Expense Ratio by user and month"
+      tags: ["financial-service"]
+      operation_id: "GetIncomeExpenseRatio"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetIncomeExpenseRatioResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get income metrics
+  rpc GetIncomeMetrics(GetIncomeMetricsRequest) returns (GetIncomeMetricsResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/income/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Income Metrics by user, month and category"
+      tags: ["financial-service"]
+      operation_id: "GetIncomeMetrics"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetIncomeMetricsResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get merchant monthly expenditures
+  rpc GetMerchantMonthlyExpenditure(GetMerchantMonthlyExpenditureRequest) returns (GetMerchantMonthlyExpenditureResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/merchant-monthly-expenditure/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Merchant Monthly Expenditure by user, month and merchant name"
+      tags: ["financial-service"]
+      operation_id: "GetMerchantMonthlyExpenditure"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetMerchantMonthlyExpenditureResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get monthly balance
+  rpc GetMonthlyBalance(GetMonthlyBalanceRequest) returns (GetMonthlyBalanceResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/monthly-balance/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Monthly Balance by user and month"
+      tags: ["financial-service"]
+      operation_id: "GetMonthlyBalance"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetMonthlyBalanceResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get monthly expenditures
+  rpc GetMonthlyExpenditure(GetMonthlyExpenditureRequest) returns (GetMonthlyExpenditureResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/monthly-expenditure/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Monthly Expenditure by user and month"
+      tags: ["financial-service"]
+      operation_id: "GetMonthlyExpenditure"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetMonthlyExpenditureResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get monthly Income
+  rpc GetMonthlyIncome(GetMonthlyIncomeRequest) returns (GetMonthlyIncomeResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/monthly-income/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Monthly Income by user and month"
+      tags: ["financial-service"]
+      operation_id: "GetMonthlyIncome"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetMonthlyIncomeResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get monthly savings
+  rpc GetMonthlySavings(GetMonthlySavingsRequest) returns (GetMonthlySavingsResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/monthly-savings/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Monthly Savings by user and month"
+      tags: ["financial-service"]
+      operation_id: "GetMonthlySavings"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetMonthlySavingsResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get monthly total quantity by security and user
+  rpc GetMonthlyTotalQuantityBySecurityAndUser(GetMonthlyTotalQuantityBySecurityAndUserRequest) returns (GetMonthlyTotalQuantityBySecurityAndUserResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/monthly-total-quantity-by-security-and-user/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Monthly Total Quantity of Security by user, month and security"
+      tags: ["financial-service"]
+      operation_id: "GetMonthlyTotalQuantityBySecurityAndUser"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetMonthlyTotalQuantityBySecurityAndUserResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get monthly transaction
+  rpc GetMonthlyTransactionCount(GetMonthlyTransactionCountRequest) returns (GetMonthlyTransactionCountResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/monthly-transaction-count/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Monthly Transaction Count by user and month"
+      tags: ["financial-service"]
+      operation_id: "GetMonthlyTransactionCount"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetMonthlyTransactionCountResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get monthly channel expenditure
+  rpc GetPaymentChannelMonthlyExpenditure(GetPaymentChannelMonthlyExpenditureRequest) returns (GetPaymentChannelMonthlyExpenditureResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Payment Channel Monthly Expenditure by user, month, and payment channel"
+      tags: ["financial-service"]
+      operation_id: "GetPaymentChannelMonthlyExpenditure"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetPaymentChannelMonthlyExpenditureResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get total investment security
+  rpc GetTotalInvestmentBySecurity(GetTotalInvestmentBySecurityRequest) returns (GetTotalInvestmentBySecurityResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/total-investment/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Total Investment by user and security"
+      tags: ["financial-service"]
+      operation_id: "GetTotalInvestmentBySecurity"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetTotalInvestmentBySecurityResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Get financial context
+  rpc GetMelodyFinancialContext(GetMelodyFinancialContextRequest) returns (GetMelodyFinancialContextResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/analytics/melody-financial-context/user/{user_id}"
+    };
+
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Melody Financial Context"
+      tags: ["financial-service"]
+      operation_id: "GetMelodyFinancialContext"
+      responses: {
+        key: "200"
+        value: {
+          description: "Successful operation"
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetMelodyFinancialContextResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Gets transactions for a given bank account
+  rpc GetTransactionsForBankAccount(GetTransactionsForBankAccountRequest) returns (GetTransactionsForBankAccountResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/transactions/user/{user_id}/plaid-account-id/{plaid_account_id}/pageNumber/{page_number}/pageSize/{page_size}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get transactions tied to a bank account and account id"
+      tags: ["financial-service"]
+      operation_id: "GetTransactions"
+      description: "This endpoint returns the transactions for a given user id and a business account id"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {json_schema: {ref: ".financial_service.v1.GetTransactionsForBankAccountResponse"}}
+        }
+      }
+    };
+  }
+
+  // Gets the historical account balance of a given accout
+  rpc GetHistoricalAccountBalance(GetHistoricalAccountBalanceRequest) returns (GetHistoricalAccountBalanceResponse) {
+    option (google.api.http) = {get: "/financial-microservice/api/v1/historical-account-balance/user/{user_id}/plaid-account-id/{plaid_account_id}"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "gets account balance of an account"
+      tags: ["financial-service"]
+      operation_id: "GetAccountBalance"
+      description: "This endpoint returns the historical balance for a given account"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {json_schema: {ref: ".financial_service.v1.GetHistoricalAccountBalanceResponse"}}
+        }
+      }
+    };
+  }
+
+  // Adds default pocket to a bank account
+  rpc AddDefaultPocketsToBankAccount(AddDefaultPocketsToBankAccountRequest) returns (AddDefaultPocketsToBankAccountResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/pocket/bank-account"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "adds a default set of pockets to a specific bank account of interest"
+      tags: ["financial-service"]
+      operation_id: "AddDefaultPocketsToBankAccount"
+      description: "This endpoint adds a default pocket to a specific bank account of interest"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.AddDefaultPocketsToBankAccountResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Updates a pocket
+  rpc UpdatePocket(UpdatePocketRequest) returns (UpdatePocketResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/pocket"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "updates a pocket"
+      tags: ["financial-service"]
+      operation_id: "UpdatePocket"
+      description: "This endpoint updates a pocket"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.UpdatePocketResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Deletes a pocket
+  rpc DeletePocket(DeletePocketRequest) returns (DeletePocketResponse) {
+    option (google.api.http) = {
+      delete: "/financial-microservice/api/v1/pocket/{pocket_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "deletes a pocket"
+      tags: ["financial-service"]
+      operation_id: "DeletePocket"
+      description: "This endpoint deletes a pocket"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.DeletePocketResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // Time Based Transaction Queries
+  rpc GetTransactionsBetweenTimeRanges(GetTransactionsBetweenTimeRangesRequest) returns (GetTransactionsBetweenTimeRangesResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/users/{user_id}/accounts/{plaid_account_id}/transactions/range"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get transactions by time"
+      tags: ["financial-service"]
+      operation_id: "GetTransactionsByTime"
+      description: "This endpoint returns the transactions for a given user id and time"
+       "\n"
+        "example: /api/v1/users/{user_id}/accounts/{plaid_account_id}/transactions?start_time={start_time}&end_time={end_time}"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {json_schema: {ref: ".financial_service.v1.GetTransactionsBetweenTimeRangesResponse"}}
+        }
+      }
+    };
+  }
+
+  // get transactions for the past week
+  rpc GetTransactionsForPastWeek(GetTransactionsForPastWeekRequest) returns (GetTransactionsForPastWeekResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/users/{user_id}/accounts/{plaid_account_id}/transactions/week"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "get transactions for the past week"
+      tags: ["financial-service"]
+      operation_id: "GetTransactionsForPastWeek"
+      description: "This endpoint returns the transactions for a given user id and time"
+       "\n"
+        "example: /api/v1/users/{user_id}/accounts/{plaid_account_id}/transactions/week"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {json_schema: {ref: ".financial_service.v1.GetTransactionsForPastWeekResponse"}}
+        }
+      }
+    };
+  }
+
+  // Get transactions for the past month
+  rpc GetTransactionsForPastMonth(GetTransactionsForPastMonthRequest) returns (GetTransactionsForPastMonthResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/users/{user_id}/accounts/{plaid_account_id}/transactions/month"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get transactions for the past month"
+      tags: ["financial-service"]
+      operation_id: "GetTransactionsForPastMonth"
+      description: "This endpoint returns the transactions for a given user id over the past month"
+       "\n"
+        "example: /api/v1/users/{user_id}/accounts/{plaid_account_id}/transactions/month"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {json_schema: {ref: ".financial_service.v1.GetTransactionsForPastMonthResponse"}}
+        }
+      }
+    };
+  }
+
+  // Smart goal and note CRUD api
+  rpc AddNoteToSmartGoal(AddNoteToSmartGoalRequest) returns (AddNoteToSmartGoalResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/smart-goal/note"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "adds a note to a smart goal"
+      tags: ["financial-service"]
+      operation_id: "AddNoteToSmartGoal"
+      description: "This endpoint adds a note to a smart goal"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.AddNoteToSmartGoalResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // update the smart note tied to a goal
+  rpc UpdateNoteToSmartGoal(UpdateNoteToSmartGoalRequest) returns (UpdateNoteToSmartGoalResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/smart-goal/note"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "updates a note to a smart goal"
+      tags: ["financial-service"]
+      operation_id: "UpdateNoteToSmartGoal"
+      description: "This endpoint updates a note to a smart goal"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.UpdateNoteToSmartGoalResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // // delete a note from a smart goal
+  rpc DeleteNoteFromSmartGoal(DeleteNoteFromSmartGoalRequest) returns (DeleteNoteFromSmartGoalResponse) {
+    option (google.api.http) = {
+      delete: "/financial-microservice/api/v1/smart-goal/note/{note_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "deletes a note from a smart goal"
+      tags: ["financial-service"]
+      operation_id: "DeleteNoteFromSmartGoal"
+      description: "This endpoint deletes a note from a smart goal"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.DeleteNoteFromSmartGoalResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // get notes from a smart goal
+  rpc GetNotesFromSmartGoal(GetNotesFromSmartGoalRequest) returns (GetNotesFromSmartGoalResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/smart-goal/{smart_goal_id}/note"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "gets notes from a smart goal"
+      tags: ["financial-service"]
+      operation_id: "GetNotesFromSmartGoal"
+      description: "This endpoint gets notes from a smart goal"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetNotesFromSmartGoalResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // get a note from a smart goal
+  rpc GetNoteFromSmartGoal(GetNoteFromSmartGoalRequest) returns (GetNoteFromSmartGoalResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/smart-goal/note/{note_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "gets a note from a smart goal"
+      tags: ["financial-service"]
+      operation_id: "GetNoteFromSmartGoal"
+      description: "This endpoint gets a note from a smart goal"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetNoteFromSmartGoalResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // ListTransactions lists a set of transactions against an account of interest
+  rpc ListTransactions(ListTransactionsRequest) returns (ListTransactionsResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/transactions"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "lists a set of transactions against a given account of interest"
+      tags: ["financial-service"]
+      operation_id: "ListTransactions"
+      description: "This endpoint gets a list of transactions against a given account of interest"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.ListTransactionsResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  rpc ListTransactionsAcrossAllAccounts(ListTransactionsAcrossAllAccountsRequest) returns (ListTransactionsAcrossAllAccountsResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/transactions/all_accounts"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "lists a set of transactions across all connected accounts"
+      tags: ["financial-service"]
+      operation_id: "ListTransactions"
+      description: "This endpoint gets a list of transactions across all connected accounts"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.ListTransactionsAcrossAllAccountsResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // GetTransaction lists a set of transactions against an account of interest
+  rpc GetTransaction(GetTransactionRequest) returns (GetTransactionResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/transactions/transaction/{transaction_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "lists a set of transactions against a given account of interest"
+      tags: ["financial-service"]
+      operation_id: "GetTransaction"
+      description: "This endpoint gets a specific transaction based on the transaction id"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetTransactionResponse"}
+          }
+        }
+      }
+    };
+  }
+  
+  // updates a transaction
+  rpc UpdateTransaction(UpdateTransactionRequest) returns (UpdateTransactionResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/transactions/transaction"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "update a transaction"
+      tags: ["financial-service"]
+      operation_id: "UpdateTransaction"
+      description:
+        "This endpoint updates a transaction"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.UpdateTransactionResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // performs a bulk update of transactions
+  rpc BulkUpdateTransaction(BulkUpdateTransactionRequest) returns (BulkUpdateTransactionResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/transactions/transaction/bulk"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "update a transaction"
+      tags: ["financial-service"]
+      operation_id: "BulkUpdateTransaction"
+      description:
+        "This endpoint updates a set of transactions"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.BulkUpdateTransactionResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // deletes a transaction by id
+  rpc DeleteTransaction(DeleteTransactionRequest) returns (DeleteTransactionResponse) {
+    option (google.api.http) = {
+      delete: "/financial-microservice/api/v1/transactions/transaction/{transaction_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "deletes a transaction by id"
+      tags: ["financial-service"]
+      operation_id: "DeleteTransaction"
+      description: "This endpoint deletes a specific transaction based on the transaction id"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.DeleteTransactionResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // adds a note to a transaction
+ rpc AddNoteToTransaction(AddNoteToTransactionRequest) returns (AddNoteToTransactionResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/transactions/transaction/note"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "adds a note to a transaction"
+      tags: ["financial-service"]
+      operation_id: "AddNoteToTransaction"
+      description: "This endpoint adds a note to a transaction"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.AddNoteToTransactionResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // updates a note on a transaction
+  rpc UpdateNoteToTransaction(UpdateNoteToTransactionRequest) returns (UpdateNoteToTransactionResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/transactions/transaction/note",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Updates a note to a transaction"
+      tags: ["financial-service"]
+      operation_id: "UpdateNoteToTransaction"
+      description: "This endpoint Updates a note to a transaction"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.UpdateNoteToTransactionResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // deletes a note from a transaction
+  rpc DeleteNoteFromTransaction(DeleteNoteFromTransactionRequest) returns (DeleteNoteFromTransactionResponse) {
+    option (google.api.http) = {
+      delete: "/financial-microservice/api/v1/transactions/transaction/{transaction_id}/note/{note_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "deletes a note from a transaction"
+      tags: ["financial-service"]
+      operation_id: "DeleteNoteFromTransaction"
+      description: "This endpoint deletes a note from a transaction"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {
+              ref: ".financial_service.v1.DeleteNoteFromTransactionResponse"
+            }
+          }
+        }
+      }
+    };
+  }
+
+  // list transaction notes
+  rpc ListTransactionNotes(ListTransactionNotesRequest) returns (ListTransactionNotesResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/transactions/transaction/{transaction_id}/notes"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "lists notes from a transaction"
+      tags: ["financial-service"]
+      operation_id: "ListTransactionNotes"
+      description: "This endpoint lists notes from a transaction"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {
+              ref: ".financial_service.v1.ListTransactionNotesResponse"
+            }
+          }
+        }
+      }
+    };
+  }
+
+  // gets a note from a transaction
+  rpc GetNoteFromTransaction(GetNoteFromTransactionRequest) returns (GetNoteFromTransactionResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/transactions/transaction/{transaction_id}/note/{note_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "gets a note from a transaction"
+      tags: ["financial-service"]
+      operation_id: "GetNoteFromTransaction"
+      description: "This endpoint gets a note from a transaction"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {
+              ref: ".financial_service.v1.GetNoteFromTransactionResponse"
+            }
+          }
+        }
+      }
+    };
+  }
+
+  // splits a transaction
+  rpc SplitTransaction(SplitTransactionRequest) returns (SplitTransactionResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/transactions/transaction/split"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "splits a transaction"
+      tags: ["financial-service"]
+      operation_id: "SplitTransaction"
+      description: "This endpoint splits a transaction into multiple transactions"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {
+              ref: ".financial_service.v1.SplitTransactionResponse"
+            }
+          }
+        }
+      }
+    };
+  }
+
+  // unsplits a transaction
+  rpc UnSplitTransactions(UnSplitTransactionsRequest) returns (UnSplitTransactionsResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/transactions/transaction/unsplit"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "unsplit a transaction"
+      tags: ["financial-service"]
+      operation_id: "UnsplitTransactions"
+      description: "This endpoint unsplit a transaction that was split previously into multiple transactions"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {
+              ref: ".financial_service.v1.UnSplitTransactionsResponse"
+            }
+          }
+        }
+      }
+    };
+  }
+
+  // get all the split transactions for a given transaction
+  rpc GetSplitTransaction(GetSplitTransactionRequest) returns (GetSplitTransactionResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/transactions/transaction/{transaction_id}/split"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "gets a split transaction"
+      tags: ["financial-service"]
+      operation_id: "GetSplitTransaction"
+      description: "This endpoint gets a split transaction that was split previously into multiple transactions"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {
+              ref: ".financial_service.v1.GetSplitTransactionResponse"
+            }
+          }
+        }
+      }
+    };
+  }
+
+  // searchs for a set of transactions that fit a given filter
+  rpc SearchTransactions(SearchTransactionsRequest) returns (SearchTransactionsResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/transactions/transaction/search"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "searches transactions"
+      tags: ["financial-service"]
+      operation_id: "SearchTransactions"
+      description: "This endpoint searches transactions based on a search query and returns a list of transactions that match the search query"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {
+              ref: ".financial_service.v1.SearchTransactionsResponse"
+            }
+          }
+        }
+      }
+    };
+  }
+
+  // RECURRING TRANSACTION APIS
+
+  // ListRecurringTransactions lists a set of transactions against an account of interest
+  rpc ListRecurringTransactions(ListRecurringTransactionsRequest) returns (ListRecurringTransactionsResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/transactions/recurrings"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "lists a set of transactions against a given account of interest"
+      tags: ["financial-service"]
+      operation_id: "ListRecurringTransactions"
+      description: "This endpoint gets a list of transactions against a given account of interest"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.ListRecurringTransactionsResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // GetRecurringTransaction lists a set of transactions against an account of interest
+  rpc GetRecurringTransaction(GetRecurringTransactionRequest) returns (GetRecurringTransactionResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/transactions/recurring/{transaction_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "lists a set of transactions against a given account of interest"
+      tags: ["financial-service"]
+      operation_id: "GetRecurringTransaction"
+      description: "This endpoint gets a specific transaction based on the transaction id"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.GetRecurringTransactionResponse"}
+          }
+        }
+      }
+    };
+  }
+  
+  // updates a transaction
+  rpc UpdateRecurringTransaction(UpdateRecurringTransactionRequest) returns (UpdateRecurringTransactionResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/transactions/recurring"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "update a transaction"
+      tags: ["financial-service"]
+      operation_id: "UpdateTransaction"
+      description:
+        "This endpoint updates a transaction"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.UpdateRecurringTransactionResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // performs a bulk update of transactions
+  rpc BulkUpdateRecurringTransaction(BulkUpdateRecurringTransactionRequest) returns (BulkUpdateRecurringTransactionResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/transactions/recurring/bulk"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "update a transaction"
+      tags: ["financial-service"]
+      operation_id: "BulkUpdateRecurringTransaction"
+      description:
+        "This endpoint updates a set of transactions"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.BulkUpdateRecurringTransactionResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // deletes a transaction by id
+  rpc DeleteRecurringTransaction(DeleteRecurringTransactionRequest) returns (DeleteRecurringTransactionResponse) {
+    option (google.api.http) = {
+      delete: "/financial-microservice/api/v1/transactions/recurring/{transaction_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "deletes a transaction by id"
+      tags: ["financial-service"]
+      operation_id: "DeleteTransaction"
+      description: "This endpoint deletes a specific transaction based on the transaction id"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.DeleteRecurringTransactionResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // adds a note to a transaction
+ rpc AddNoteToRecurringTransaction(AddNoteToRecurringTransactionRequest) returns (AddNoteToRecurringTransactionResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/transactions/recurring/note"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "adds a note to a transaction"
+      tags: ["financial-service"]
+      operation_id: "AddNoteToRecurringTransaction"
+      description: "This endpoint adds a note to a transaction"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.AddNoteToRecurringTransactionResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // updates a note on a transaction
+  rpc UpdateNoteToRecurringTransaction(UpdateNoteToRecurringTransactionRequest) returns (UpdateNoteToRecurringTransactionResponse) {
+    option (google.api.http) = {
+      put: "/financial-microservice/api/v1/transactions/recurring/note",
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Updates a note to a transaction"
+      tags: ["financial-service"]
+      operation_id: "UpdateNoteToRecurringTransaction"
+      description: "This endpoint Updates a note to a transaction"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.UpdateNoteToRecurringTransactionResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // deletes a note from a transaction
+  rpc DeleteNoteFromRecurringTransaction(DeleteNoteFromRecurringTransactionRequest) returns (DeleteNoteFromRecurringTransactionResponse) {
+    option (google.api.http) = {
+      delete: "/financial-microservice/api/v1/transactions/recurring/{transaction_id}/note/{note_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "deletes a note from a transaction"
+      tags: ["financial-service"]
+      operation_id: "DeleteNoteFromRecurringTransaction"
+      description: "This endpoint deletes a note from a transaction"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {
+              ref: ".financial_service.v1.DeleteNoteFromRecurringTransactionResponse"
+            }
+          }
+        }
+      }
+    };
+  }
+
+  // list transaction notes
+  rpc ListRecurringTransactionNotes(ListRecurringTransactionNotesRequest) returns (ListRecurringTransactionNotesResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/transactions/recurring/{transaction_id}/notes"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "lists notes from a transaction"
+      tags: ["financial-service"]
+      operation_id: "ListRecurringTransactionNotes"
+      description: "This endpoint lists notes from a transaction"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {
+              ref: ".financial_service.v1.ListRecurringTransactionNotesResponse"
+            }
+          }
+        }
+      }
+    };
+  }
+
+  rpc PollAsyncTaskExecutionStatus(PollAsyncTaskExecutionStatusRequest) returns (PollAsyncTaskExecutionStatusResponse) {
+    option (google.api.http) = {
+      get: "/financial-microservice/api/v1/async-task/{workflow_id}/run/{run_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "polls the status of an async task"
+      tags: ["financial-service"]
+      operation_id: "PollAsyncTaskExecutionStatus"
+      description: "This endpoint polls the status of an async task"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {json_schema: {ref: ".financial_service.v1.PollAsyncTaskExecutionStatusResponse"}}
+        }
+      }
+    };
+  }
+
+  // This checks if a user can ask the copilot a question
+  rpc RecordAskCopilotQuestion(RecordAskCopilotQuestionRequest) returns (RecordAskCopilotQuestionResponse) {
+      option (google.api.http) = {
+          post: "/financial-microservice/api/v1/copilot/quota/question" 
+          body: "*"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          summary: "Ask a question to copilot"
+          tags: ["financial-service"]
+          operation_id: "AskCopilotQuestion"
+          description: 
+              "This endpoint checks if a user can ask his/her copilot a question"
+          responses: {
+              key: "200"
+              value: {
+                  description: "A successful response."
+                  schema: {
+                      json_schema: {ref: ".financial_service.v1.RecordAskCopilotQuestionResponse"}
+                  }
+              }
+          }
+      };
+    }
+
+  // This checks if a user can ask the copilot a question
+  rpc CheckIfQuotaExceeded(CheckIfQuotaExceededRequest) returns (CheckIfQuotaExceededResponse) {
+      option (google.api.http) = {
+          get: "/financial-microservice/api/v1/copilot/quota/exceeded/{user_id}" 
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          summary: "Checks if the question quota has been exceeded"
+          tags: ["financial-service"]
+          operation_id: "CheckIfQuotaExceeded"
+          description: 
+              "This endpoint checks if a user has exceeded his/her copilot question quota"
+          responses: {
+              key: "200"
+              value: {
+                  description: "A successful response."
+                  schema: {
+                      json_schema: {ref: ".financial_service.v1.CheckIfQuotaExceededResponse"}
+                  }
+              }
+          }
+      };
+    }
+
+    rpc TriggerSync(TriggerSyncRequest) returns (TriggerSyncResponse) {
+      option (google.api.http) = {
+          post: "/financial-microservice/api/v1/sync/trigger" 
+          body: "*"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          summary: "Triggers a sync"
+          tags: ["financial-service"]
+          operation_id: "TriggerSync"
+          description: 
+              "This endpoint triggers a sync"
+          responses: {
+              key: "200"
+              value: {
+                  description: "A successful response."
+                  schema: {
+                      json_schema: {ref: ".financial_service.v1.TriggerSyncResponse"}
+                  }
+              }
+          }
+      };
+    } 
+}

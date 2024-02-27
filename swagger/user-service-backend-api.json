@@ -1,0 +1,3843 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "User Service",
+        "description": "Solomon AI User Service API",
+        "version": "0.1",
+        "contact": {
+            "name": "YoanYomba",
+            "url": "https://solomon-ai.io",
+            "email": "yoanyomba@solomon-ai.co"
+        },
+        "license": {
+            "name": "Apache-2.0",
+            "url": "https://github.com/openfga/openfga/blob/main/LICENSE"
+        }
+    },
+    "tags": [
+        {
+            "name": "UserService"
+        }
+    ],
+    "paths": {
+        "/user-microservice/api/v1/user-service/user": {
+            "put": {
+                "summary": "update a user account",
+                "description": "This endpoint performs an updates operation on a user account based on the provided parametersThis update operation can span multiple services on specific cases (such as when the client is explicitly attempting to update the email of the user)All update operations are atomic by nature hence we should not expect any form of divergent state",
+                "operationId": "UpdateUser",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateUserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "user-service-v1"
+                ]
+            }
+        },
+        "/user-microservice/api/v1/user-service/user/email/{email}": {
+            "get": {
+                "summary": "Gets a user account by email",
+                "description": "Queries and obtains a user account based on the email",
+                "operationId": "GetUserByEmail",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserByEmailResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "email",
+                        "description": "The email of the user of interest",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v1"
+                ]
+            }
+        },
+        "/user-microservice/api/v1/user-service/user/email/{email}/exists": {
+            "get": {
+                "summary": "Checks that an email exists or not",
+                "description": "Checks if an email exists or not",
+                "operationId": "CheckEmailExists",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CheckEmailExistsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "email",
+                        "description": "The email of the user of interest",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v1"
+                ]
+            }
+        },
+        "/user-microservice/api/v1/user-service/user/health": {
+            "get": {
+                "summary": "health check",
+                "description": "This endpoint performs a healc check on the service",
+                "operationId": "HealthCheck",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/HealthCheckResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "user-service-v1"
+                ]
+            }
+        },
+        "/user-microservice/api/v1/user-service/user/query-account-by-email-or-username": {
+            "get": {
+                "summary": "gets a user account by either email or username",
+                "description": "This endpoint returns a user account by either provided email or username",
+                "operationId": "GetUserByEmailOrUsername",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserByEmailOrUsernameResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "email",
+                        "description": "The email of the user of interest",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "username",
+                        "description": "The username of the user of interest",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v1"
+                ]
+            }
+        },
+        "/user-microservice/api/v1/user-service/user/query-id": {
+            "get": {
+                "summary": "get a user account id",
+                "description": "This endpoint returns the user record id if the user record exists\nexample: /api/v1/user-service?email=testuser@gmail.com&&username=testuser",
+                "operationId": "GetUserId",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserIdResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "email",
+                        "description": "The email of the user of interest",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "username",
+                        "description": "The username of the user of interest",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v1"
+                ]
+            }
+        },
+        "/user-microservice/api/v1/user-service/user/ready": {
+            "get": {
+                "summary": "readyness check",
+                "description": "This endpoint performs a readiness check on the service",
+                "operationId": "ReadynessCheck",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReadynessCheckResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "tags": [
+                    "user-service-v1"
+                ]
+            }
+        },
+        "/user-microservice/api/v1/user-service/user/username/{username}": {
+            "get": {
+                "summary": "Gets a user account by user name",
+                "description": "Queries and obtains a user account based on the username",
+                "operationId": "GetUserByUsername",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserByUsernameResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "username",
+                        "description": "The username of the user of interest",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v1"
+                ]
+            }
+        },
+        "/user-microservice/api/v1/user-service/user/username/{username}/exists": {
+            "get": {
+                "summary": "Checks that a username exists or not",
+                "description": "Checks if a username exists or not",
+                "operationId": "CheckUsernameExists",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CheckUsernameExistsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "username",
+                        "description": "The username of the user of interest",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v1"
+                ]
+            }
+        },
+        "/user-microservice/api/v1/user-service/user/verification/{userId}": {
+            "post": {
+                "summary": "user verification",
+                "description": "This endpoint performs verification of a user account email",
+                "operationId": "Verification",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VerifyUserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "description": "The account ID associated with the user",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uint64"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v1"
+                ]
+            }
+        },
+        "/user-microservice/api/v1/user-service/user/webhook/password-reset": {
+            "post": {
+                "summary": "password reset",
+                "description": "This endpoint performs password reset for a given user account",
+                "operationId": "PasswordReset",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PasswordResetWebhookResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uint64"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v1"
+                ]
+            }
+        },
+        "/user-microservice/api/v1/user-service/user/{userId}": {
+            "get": {
+                "summary": "Gets a user account",
+                "description": "Queries and obtains a user account based on the provided parameters",
+                "operationId": "GetUser",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "description": "The account ID associated with the user\nValidations:\n- user_id must be greater than 0",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uint64"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v1"
+                ]
+            },
+            "delete": {
+                "summary": "deletes a user account",
+                "description": "This endpoint performs a delete operation on a user account based on the provided parametersThis deletion operation spans multiple services as user details are stored across a suite of our backend servicesThe operation itself is an atomic one of nature. Either all services successfully delete the recod or we fail the requestDivergent state is not expected to be encountered with this endpoint.",
+                "operationId": "DeleteUser",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeleteUserResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "description": "The account ID associated with the user to delete\nValidations:\n- user_id must be greater than 0",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uint64"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v1"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user": {
+            "post": {
+                "summary": "create a user account",
+                "description": "This endpoint performs an a creation operation of a user account based on the provided parametersThis operation is implemented as a distributed transactions as this operation spans multiple services",
+                "operationId": "CreateUserV2",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateUserV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateUserV2Request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "user-service-v2"
+                ]
+            },
+            "put": {
+                "summary": "update a user account",
+                "description": "This endpoint performs an updates operation on a user account based on the provided parametersThis update operation can span multiple services on specific cases (such as when the client is explicitly attempting to update the email of the user)All update operations are atomic by nature hence we should not expect any form of divergent state",
+                "operationId": "UpdateUserV2",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateUserV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/UpdateUserV2Request"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/account/query-by-email-or-username": {
+            "get": {
+                "summary": "Retrieve user account by email or username",
+                "description": "Fetches a user account using the provided email or username.",
+                "operationId": "GetUserByEmailOrUsernameV2",
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieval.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserByEmailOrUsernameV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "email",
+                        "description": "The email of the user of interest",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "username",
+                        "description": "The username of the user of interest",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "profileType",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROFILE_TYPE_UNSPECIFIED",
+                                "PROFILE_TYPE_USER",
+                                "PROFILE_TYPE_BUSINESS"
+                            ],
+                            "default": "PROFILE_TYPE_UNSPECIFIED"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/auth-zero/{auth0UserId}": {
+            "get": {
+                "summary": "Retrieve user account details by auth0 id and profile type",
+                "description": "Fetches detailed information about a user account based on the specified authn ID.",
+                "operationId": "GetUserByAuth0ID",
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieval of user account details.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserByAuth0IDResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "auth0UserId",
+                        "description": "The account ID associated with the user",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "profileType",
+                        "description": "Indicates the profile type to be queried.\nFor example: \"username:testuser\"",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROFILE_TYPE_UNSPECIFIED",
+                                "PROFILE_TYPE_USER",
+                                "PROFILE_TYPE_BUSINESS"
+                            ],
+                            "default": "PROFILE_TYPE_UNSPECIFIED"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/authn/{authnId}": {
+            "get": {
+                "summary": "Retrieve user account details by authn id",
+                "description": "Fetches detailed information about a user account based on the specified authn ID.",
+                "operationId": "GetUserByAuthnIDV2",
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieval of user account details.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserByAuthnIDV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "authnId",
+                        "description": "Specifies the user's authn account ID.\n\nValidations:\n- Must be greater than 0.",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uint64"
+                        }
+                    },
+                    {
+                        "name": "profileType",
+                        "description": "Indicates the profile type to be queried.\nFor example: \"username:testuser\"",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROFILE_TYPE_UNSPECIFIED",
+                                "PROFILE_TYPE_USER",
+                                "PROFILE_TYPE_BUSINESS"
+                            ],
+                            "default": "PROFILE_TYPE_UNSPECIFIED"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/business/settings/{userId}": {
+            "get": {
+                "summary": "Retrieve Business Account Settings",
+                "description": "Fetches settings associated with a specified business account using the user ID.",
+                "operationId": "RetrieveBusinessSettings",
+                "responses": {
+                    "200": {
+                        "description": "A successful response containing the business settings.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetBusinessSettingsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "description": "The account ID associated with the user (business)",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uint64"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/canny/{userId}": {
+            "get": {
+                "summary": "Retrieves user sso token for canny",
+                "description": "Fetches a user sso token for canny",
+                "operationId": "GetCannyUserSSOToken",
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieval of user account sso token.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetCannyUserSSOTokenResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "description": "The account ID associated with the user",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uint64"
+                        }
+                    },
+                    {
+                        "name": "profileType",
+                        "description": "Indicates the profile type to be queried.\nFor example: \"username:testuser\"",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROFILE_TYPE_UNSPECIFIED",
+                                "PROFILE_TYPE_USER",
+                                "PROFILE_TYPE_BUSINESS"
+                            ],
+                            "default": "PROFILE_TYPE_UNSPECIFIED"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/email/{email}": {
+            "get": {
+                "summary": "Retrieve user details by email",
+                "description": "Provides detailed information of a user based on the given email.",
+                "operationId": "GetUserByEmailV2",
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved user details.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserByEmailV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "profileType",
+                        "description": "the profile type of the given user we hope to query",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROFILE_TYPE_UNSPECIFIED",
+                                "PROFILE_TYPE_USER",
+                                "PROFILE_TYPE_BUSINESS"
+                            ],
+                            "default": "PROFILE_TYPE_UNSPECIFIED"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/email/{email}/exists": {
+            "get": {
+                "summary": "Checks that an email exists or not",
+                "description": "Checks if an email exists or not",
+                "operationId": "CheckEmailExistsV2",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CheckEmailExistsV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "email",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "profileType",
+                        "description": "the profile type of the given user we hope to query",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROFILE_TYPE_UNSPECIFIED",
+                                "PROFILE_TYPE_USER",
+                                "PROFILE_TYPE_BUSINESS"
+                            ],
+                            "default": "PROFILE_TYPE_UNSPECIFIED"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/query-id": {
+            "get": {
+                "summary": "get a user account id",
+                "description": "This endpoint returns the user record id if the user record exists\nexample: /api/v1/user-service?email=testuser@gmail.com&&username=testuser",
+                "operationId": "GetUserIdV2",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserIdV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "email",
+                        "description": "The email of the user of interest",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "username",
+                        "description": "The username of the user of interest",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "profileType",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROFILE_TYPE_UNSPECIFIED",
+                                "PROFILE_TYPE_USER",
+                                "PROFILE_TYPE_BUSINESS"
+                            ],
+                            "default": "PROFILE_TYPE_UNSPECIFIED"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/role": {
+            "post": {
+                "summary": "Creates a new role",
+                "description": "This endpoint adds a new role to the system. It requires role details such as name, type, and permissions.The creation process involves adding the role to the database and initializing its permissions.",
+                "operationId": "CreateRole",
+                "responses": {
+                    "200": {
+                        "description": "Role created successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateRoleResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Role"
+                },
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/role/{id}": {
+            "get": {
+                "summary": "Retrieves a role",
+                "description": "This endpoint fetches details of a specific role using the role ID.It retrieves the role's name, type, permissions, and audit history.",
+                "operationId": "GetRole",
+                "responses": {
+                    "200": {
+                        "description": "Role retrieval successful.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetRoleResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            },
+            "delete": {
+                "summary": "Deletes a role",
+                "description": "This endpoint deletes a role from the system based on the provided role ID.The deletion process ensures that all related data and permissions are properly removed.",
+                "operationId": "DeleteRole",
+                "responses": {
+                    "200": {
+                        "description": "Role deleted successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeleteRoleResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "int64"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/roles": {
+            "get": {
+                "summary": "Lists all roles",
+                "description": "This endpoint retrieves a list of all roles in the system. It supports pagination to handle large sets of data.Each role in the list includes details like name, type, and permissions.",
+                "operationId": "ListRoles",
+                "responses": {
+                    "200": {
+                        "description": "Roles list retrieved successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ListRolesResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "page",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    },
+                    {
+                        "name": "pageSize",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int32"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/username/{username}": {
+            "get": {
+                "summary": "Retrieve user details by username",
+                "description": "Provides detailed information of a user based on the given username.",
+                "operationId": "GetUserByUsernameV2",
+                "responses": {
+                    "200": {
+                        "description": "Successfully retrieved user details.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserByUsernameV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "username",
+                        "description": "The username of the user of interest",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "profileType",
+                        "description": "the profile type of the given user we hope to query",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROFILE_TYPE_UNSPECIFIED",
+                                "PROFILE_TYPE_USER",
+                                "PROFILE_TYPE_BUSINESS"
+                            ],
+                            "default": "PROFILE_TYPE_UNSPECIFIED"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/username/{username}/exists": {
+            "get": {
+                "summary": "Checks that a username exists or not",
+                "description": "Checks if a username exists or not",
+                "operationId": "CheckUsernameExistsV2",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CheckUsernameExistsV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "username",
+                        "description": "The username of the user of interest",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    },
+                    {
+                        "name": "profileType",
+                        "description": "the profile type of the given user we hope to query",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROFILE_TYPE_UNSPECIFIED",
+                                "PROFILE_TYPE_USER",
+                                "PROFILE_TYPE_BUSINESS"
+                            ],
+                            "default": "PROFILE_TYPE_UNSPECIFIED"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/verification/{userId}/profile-type/{profileType}": {
+            "post": {
+                "summary": "User Email Verification",
+                "description": "Performs verification of a user account's email based on the provided user ID and profile type.",
+                "operationId": "VerifyUserV2",
+                "responses": {
+                    "200": {
+                        "description": "A successful response indicating the outcome of the verification.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/VerifyUserV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "description": "The account ID associated with the user",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uint64"
+                        }
+                    },
+                    {
+                        "name": "profileType",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROFILE_TYPE_UNSPECIFIED",
+                                "PROFILE_TYPE_USER",
+                                "PROFILE_TYPE_BUSINESS"
+                            ]
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/webhook/password-reset": {
+            "post": {
+                "summary": "Webhook for Password Reset",
+                "description": "Handles password reset operations for a specified user account through a webhook.",
+                "operationId": "PasswordResetWebhookV2",
+                "responses": {
+                    "200": {
+                        "description": "A successful response indicating the outcome of the reset process.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PasswordResetWebhookV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "accountId",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string",
+                            "format": "uint64"
+                        }
+                    },
+                    {
+                        "name": "token",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user-service/user/{userId}": {
+            "get": {
+                "summary": "Retrieve user account details",
+                "description": "Fetches detailed information about a user account based on the specified user ID.",
+                "operationId": "GetUserV2",
+                "responses": {
+                    "200": {
+                        "description": "Successful retrieval of user account details.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetUserV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "description": "Specifies the user's account ID.\n\nValidations:\n- Must be greater than 0.",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uint64"
+                        }
+                    },
+                    {
+                        "name": "profileType",
+                        "description": "Indicates the profile type to be queried.\nFor example: \"username:testuser\"",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROFILE_TYPE_UNSPECIFIED",
+                                "PROFILE_TYPE_USER",
+                                "PROFILE_TYPE_BUSINESS"
+                            ],
+                            "default": "PROFILE_TYPE_UNSPECIFIED"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            },
+            "delete": {
+                "summary": "deletes a user account",
+                "description": "This endpoint performs a delete operation on a user account based on the provided parametersThis deletion operation spans multiple services as user details are stored across a suite of our backend servicesThe operation itself is an atomic one of nature. Either all services successfully delete the recod or we fail the requestDivergent state is not expected to be encountered with this endpoint.",
+                "operationId": "DeleteUserV2",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/DeleteUserV2Response"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "userId",
+                        "description": "The account ID associated with the user to delete\nValidations:\n- user_id must be greater than 0",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uint64"
+                        }
+                    },
+                    {
+                        "name": "profileType",
+                        "description": "the profile type of the given user we hope to query",
+                        "in": "query",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "enum": [
+                                "PROFILE_TYPE_UNSPECIFIED",
+                                "PROFILE_TYPE_USER",
+                                "PROFILE_TYPE_BUSINESS"
+                            ],
+                            "default": "PROFILE_TYPE_UNSPECIFIED"
+                        }
+                    }
+                ],
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        },
+        "/user-microservice/api/v2/user/role": {
+            "patch": {
+                "summary": "Updates an existing role",
+                "description": "This endpoint updates the details of an existing role. The role ID is used to identify the role to be updated.The update operation can modify the role's name, type, and permissions.",
+                "operationId": "UpdateRole",
+                "responses": {
+                    "200": {
+                        "description": "Role updated successfully.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/UpdateRoleResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "$ref": "#/components/requestBodies/Role"
+                },
+                "tags": [
+                    "user-service-v2"
+                ]
+            }
+        }
+    },
+    "servers": [
+        {
+            "url": "http://user-service.platform.svc.cluster.local:9896"
+        }
+    ],
+    "components": {
+        "requestBodies": {
+            "Role": {
+                "content": {
+                    "application/json": {
+                        "schema": {
+                            "$ref": "#/components/schemas/Role"
+                        }
+                    }
+                },
+                "required": true
+            }
+        },
+        "schemas": {
+            "Address": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uint64",
+                        "title": "address id"
+                    },
+                    "address": {
+                        "type": "string",
+                        "example": "1234 5th Ave",
+                        "title": "the address field\nValidations:\n- must be at least 5 character long (meaning cannot be empty)"
+                    },
+                    "unit": {
+                        "type": "string",
+                        "example": "Apt 1",
+                        "title": "the unit if the address is an apartment\nValidations:\n- must be at least 1 character long (meaning cannot be empty)"
+                    },
+                    "zipcode": {
+                        "type": "string",
+                        "example": "12345",
+                        "title": "the address zipcode\nValidations: \n- must be exactly 5 characters this is to ensure the client inputs the proper zip code"
+                    },
+                    "city": {
+                        "type": "string",
+                        "example": "New York",
+                        "title": "the city\nValidations:\n- must be at least 3 characters long (meaning cannot be empty)"
+                    },
+                    "state": {
+                        "type": "string",
+                        "example": "New York",
+                        "title": "the state/municipality\nValidations\n- must be at least 2 characters long"
+                    },
+                    "longitude": {
+                        "type": "string",
+                        "example": "-73.987654",
+                        "title": "longitude\nValidations: None - can be empty"
+                    },
+                    "lattitude": {
+                        "type": "string",
+                        "example": "40.123456",
+                        "title": "latittude\nValidations: None - can be empty"
+                    }
+                },
+                "title": "Address: represents an account's address"
+            },
+            "Any": {
+                "type": "object",
+                "properties": {
+                    "@type": {
+                        "type": "string"
+                    }
+                },
+                "additionalProperties": {}
+            },
+            "ApplicationTheme": {
+                "type": "string",
+                "enum": [
+                    "APPLICATION_THEME_UNSPECIFIED",
+                    "APPLICATION_THEME_LIGHT",
+                    "APPLICATION_THEME_DARK"
+                ],
+                "default": "APPLICATION_THEME_UNSPECIFIED",
+                "description": "Display and interaction preferences."
+            },
+            "AuditAction": {
+                "type": "string",
+                "enum": [
+                    "AUDIT_ACTION_UNSPECIFIED",
+                    "AUDIT_ACTION_CREATED",
+                    "AUDIT_ACTION_UPDATED",
+                    "AUDIT_ACTION_DELETED"
+                ],
+                "default": "AUDIT_ACTION_UNSPECIFIED",
+                "description": "AuditAction defines the types of actions that can be audited."
+            },
+            "BusinessAccount": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uint64",
+                        "description": "Unique identifier for the business account."
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "example@gmail.com",
+                        "description": "Email associated with the business account."
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "bio": {
+                        "type": "string",
+                        "example": "sample description",
+                        "description": "Short description of the business account. Maximum of 200 characters."
+                    },
+                    "headline": {
+                        "type": "string",
+                        "example": "sample headline",
+                        "description": "Headline for the profile of the business account."
+                    },
+                    "phoneNumber": {
+                        "type": "string",
+                        "example": "6513424124",
+                        "description": "Phone number associated with the business account."
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Tags"
+                        },
+                        "description": "Tags associated with the business account. Between 1 and 10 tags are allowed."
+                    },
+                    "authnAccountId": {
+                        "type": "string",
+                        "format": "uint64",
+                        "description": "Identifier for the associated authentication service account."
+                    },
+                    "isActive": {
+                        "type": "boolean",
+                        "example": true,
+                        "description": "Indicates whether the business account is active."
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "testuser9696",
+                        "description": "Username for the business account. Must be at least 10 characters long."
+                    },
+                    "isPrivate": {
+                        "type": "boolean",
+                        "example": false,
+                        "description": "Indicates whether the business account is private."
+                    },
+                    "isEmailVerified": {
+                        "type": "boolean",
+                        "example": false,
+                        "description": "Indicates whether the email associated with the business account has been verified."
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp indicating when the business account was created."
+                    },
+                    "verifiedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp indicating when the email for the business account was verified."
+                    },
+                    "companyEstablishedDate": {
+                        "type": "string",
+                        "description": "Date when the company associated with the business account was established."
+                    },
+                    "companyIndustryType": {
+                        "type": "string",
+                        "example": "fintech",
+                        "description": "Industry type of the company associated with the business account."
+                    },
+                    "companyWebsiteUrl": {
+                        "type": "string",
+                        "description": "Website URL of the company associated with the business account."
+                    },
+                    "companyDescription": {
+                        "type": "string",
+                        "example": "We help businesses succeed",
+                        "description": "Description of the company associated with the business account."
+                    },
+                    "companyName": {
+                        "type": "string",
+                        "example": "Solomon AI",
+                        "description": "Name of the company associated with the business account."
+                    },
+                    "settings": {
+                        "$ref": "#/components/schemas/Settings"
+                    },
+                    "accountType": {
+                        "$ref": "#/components/schemas/ProfileType"
+                    },
+                    "profileImageUrl": {
+                        "type": "string",
+                        "description": "Profile image associated with the user account."
+                    },
+                    "auth0UserId": {
+                        "type": "string",
+                        "title": "auth0 user id associated with the business account"
+                    },
+                    "role": {
+                        "$ref": "#/components/schemas/Role"
+                    }
+                },
+                "description": "BusinessAccount represents a business account within the context of solomon-ai."
+            },
+            "CheckEmailExistsResponse": {
+                "type": "object",
+                "properties": {
+                    "exists": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "CheckEmailExistsV2Response": {
+                "type": "object",
+                "properties": {
+                    "exists": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "CheckUsernameExistsResponse": {
+                "type": "object",
+                "properties": {
+                    "exists": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "CheckUsernameExistsV2Response": {
+                "type": "object",
+                "properties": {
+                    "exists": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "CreateRoleResponse": {
+                "type": "object",
+                "properties": {
+                    "role": {
+                        "$ref": "#/components/schemas/Role"
+                    }
+                }
+            },
+            "CreateUserV2Request": {
+                "type": "object",
+                "properties": {
+                    "userAccount": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    },
+                    "businessAccount": {
+                        "$ref": "#/components/schemas/BusinessAccount"
+                    },
+                    "communityIdsToFollow": {
+                        "type": "array",
+                        "items": {
+                            "type": "string",
+                            "format": "uint64"
+                        },
+                        "title": "set of community IDs to follow \nValidations:\n- at least 0 and at most 20 community ids supported at one time"
+                    },
+                    "profileImageUrl": {
+                        "type": "string",
+                        "example": "lksdjhfgsdhfghdsgfhgdh.com",
+                        "title": "The profile image of the user\nValidations:\n- must be a valid URI"
+                    },
+                    "auth0UserId": {
+                        "type": "string",
+                        "example": "lksdjhfgsdhfghdsgfhgdh.com",
+                        "title": "The auth0 user id of the user"
+                    }
+                },
+                "title": "CreateUserV2Request: Represents the request object invoked against the user\nservice to create a user account",
+                "required": [
+                    "profileImageUrl",
+                    "auth0UserId"
+                ]
+            },
+            "CreateUserV2Response": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string",
+                        "format": "uint64"
+                    }
+                },
+                "title": "CreateUserResponse: Represents the response object returned as a response to\nthe `create-user` request"
+            },
+            "DeleteRoleResponse": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "DeleteUserResponse": {
+                "type": "object",
+                "properties": {
+                    "accountDeleted": {
+                        "type": "boolean"
+                    }
+                },
+                "title": "DeleteUserResponse: Represents the object returned as a response to\n`delete-user` request"
+            },
+            "DeleteUserV2Response": {
+                "type": "object",
+                "properties": {
+                    "accountDeleted": {
+                        "type": "boolean"
+                    }
+                },
+                "title": "DeleteUserResponse: Represents the object returned as a response to\n`delete-user` request"
+            },
+            "DigitalWorkerSettings": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uint64",
+                        "description": "Unique identifier for the toolchain configuration."
+                    },
+                    "workerName": {
+                        "type": "string"
+                    },
+                    "workerVersion": {
+                        "type": "string"
+                    },
+                    "enableLogging": {
+                        "type": "boolean"
+                    }
+                },
+                "description": "DigitalWorkerToolChainConfiguration defines the overall settings for a digital worker."
+            },
+            "ErrorCode": {
+                "type": "string",
+                "enum": [
+                    "no_error",
+                    "validation_error",
+                    "authorization_model_not_found",
+                    "authorization_model_resolution_too_complex",
+                    "invalid_write_input",
+                    "cannot_allow_duplicate_tuples_in_one_request",
+                    "cannot_allow_duplicate_types_in_one_request",
+                    "cannot_allow_multiple_references_to_one_relation",
+                    "invalid_continuation_token",
+                    "invalid_tuple_set",
+                    "invalid_check_input",
+                    "invalid_expand_input",
+                    "unsupported_user_set",
+                    "invalid_object_format",
+                    "write_failed_due_to_invalid_input",
+                    "authorization_model_assertions_not_found",
+                    "latest_authorization_model_not_found",
+                    "type_not_found",
+                    "relation_not_found",
+                    "empty_relation_definition",
+                    "invalid_user",
+                    "invalid_tuple",
+                    "unknown_relation",
+                    "store_id_invalid_length",
+                    "assertions_too_many_items",
+                    "id_too_long",
+                    "authorization_model_id_too_long",
+                    "tuple_key_value_not_specified",
+                    "tuple_keys_too_many_or_too_few_items",
+                    "page_size_invalid",
+                    "param_missing_value",
+                    "difference_base_missing_value",
+                    "subtract_base_missing_value",
+                    "object_too_long",
+                    "relation_too_long",
+                    "type_definitions_too_few_items",
+                    "type_invalid_length",
+                    "type_invalid_pattern",
+                    "relations_too_few_items",
+                    "relations_too_long",
+                    "relations_invalid_pattern",
+                    "object_invalid_pattern",
+                    "query_string_type_continuation_token_mismatch",
+                    "exceeded_entity_limit",
+                    "invalid_contextual_tuple",
+                    "duplicate_contextual_tuple",
+                    "invalid_authorization_model",
+                    "unsupported_schema_version"
+                ],
+                "default": "no_error"
+            },
+            "FinancialPreferences": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uint64",
+                        "title": "address id"
+                    },
+                    "currencyPreference": {
+                        "type": "string"
+                    },
+                    "financialYearStart": {
+                        "type": "string"
+                    },
+                    "taxPercentage": {
+                        "type": "number",
+                        "format": "double"
+                    },
+                    "taxCode": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GetBusinessSettingsResponse": {
+                "type": "object",
+                "properties": {
+                    "settings": {
+                        "$ref": "#/components/schemas/Settings"
+                    }
+                }
+            },
+            "GetCannyUserSSOTokenResponse": {
+                "type": "object",
+                "properties": {
+                    "token": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GetRoleResponse": {
+                "type": "object",
+                "properties": {
+                    "role": {
+                        "$ref": "#/components/schemas/Role"
+                    }
+                }
+            },
+            "GetUserByAuth0IDResponse": {
+                "type": "object",
+                "properties": {
+                    "userAccount": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    },
+                    "businessAccount": {
+                        "$ref": "#/components/schemas/BusinessAccount"
+                    }
+                }
+            },
+            "GetUserByAuthnIDV2Response": {
+                "type": "object",
+                "properties": {
+                    "userAccount": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    },
+                    "businessAccount": {
+                        "$ref": "#/components/schemas/BusinessAccount"
+                    }
+                },
+                "description": "Represents the response object for fetching user details by authn id."
+            },
+            "GetUserByEmailOrUsernameResponse": {
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    }
+                }
+            },
+            "GetUserByEmailOrUsernameV2Response": {
+                "type": "object",
+                "properties": {
+                    "userAccount": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    },
+                    "businessAccount": {
+                        "$ref": "#/components/schemas/BusinessAccount"
+                    },
+                    "ssoToken": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GetUserByEmailResponse": {
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    }
+                }
+            },
+            "GetUserByEmailV2Response": {
+                "type": "object",
+                "properties": {
+                    "userAccount": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    },
+                    "businessAccount": {
+                        "$ref": "#/components/schemas/BusinessAccount"
+                    }
+                }
+            },
+            "GetUserByUsernameResponse": {
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    }
+                }
+            },
+            "GetUserByUsernameV2Response": {
+                "type": "object",
+                "properties": {
+                    "userAccount": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    },
+                    "businessAccount": {
+                        "$ref": "#/components/schemas/BusinessAccount"
+                    },
+                    "ssoToken": {
+                        "type": "string"
+                    }
+                }
+            },
+            "GetUserIdResponse": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string",
+                        "format": "uint64",
+                        "title": "The account ID associated with the user"
+                    }
+                },
+                "title": "GetUserIdResponse: Represents the response object returned as a product of\ncalling the `get-user-id` request"
+            },
+            "GetUserIdV2Response": {
+                "type": "object",
+                "properties": {
+                    "userId": {
+                        "type": "string",
+                        "format": "uint64",
+                        "title": "The account ID associated with the user"
+                    }
+                },
+                "title": "GetUserIdResponse: Represents the response object returned as a product of\ncalling the `get-user-id` request"
+            },
+            "GetUserResponse": {
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    }
+                },
+                "title": "GetUserResponse: Represents the object returned as a response to `get-user`\nrequest"
+            },
+            "GetUserV2Response": {
+                "type": "object",
+                "properties": {
+                    "userAccount": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    },
+                    "businessAccount": {
+                        "$ref": "#/components/schemas/BusinessAccount"
+                    }
+                },
+                "description": "Represents the response object for fetching user details."
+            },
+            "HealthCheckResponse": {
+                "type": "object",
+                "properties": {
+                    "healthy": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "InternalErrorCode": {
+                "type": "string",
+                "enum": [
+                    "no_internal_error",
+                    "internal_error",
+                    "cancelled",
+                    "deadline_exceeded",
+                    "already_exists",
+                    "resource_exhausted",
+                    "failed_precondition",
+                    "aborted",
+                    "out_of_range",
+                    "unavailable",
+                    "data_loss"
+                ],
+                "default": "no_internal_error"
+            },
+            "InternalErrorMessageResponse": {
+                "type": "object",
+                "example": {
+                    "code": "internal_error",
+                    "message": "Internal Server Error"
+                },
+                "properties": {
+                    "code": {
+                        "$ref": "#/components/schemas/InternalErrorCode"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "LikedDashboardPanels": {
+                "type": "string",
+                "enum": [
+                    "LIKED_DASHBOARD_PANELS_TRANSACTIONS_UNSPECIFIED",
+                    "LIKED_DASHBOARD_PANELS_TRANSACTIONS_OVERVIEW",
+                    "LIKED_DASHBOARD_PANELS_INVESTMENT_SUMMARY",
+                    "LIKED_DASHBOARD_PANELS_MONTHLY_SPENDING_REPORT",
+                    "LIKED_DASHBOARD_PANELS_SAVINGS_TRACKER",
+                    "LIKED_DASHBOARD_PANELS_CREDIT_SCORE_MONITOR"
+                ],
+                "default": "LIKED_DASHBOARD_PANELS_TRANSACTIONS_UNSPECIFIED"
+            },
+            "ListRolesResponse": {
+                "type": "object",
+                "properties": {
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Role"
+                        }
+                    },
+                    "totalCount": {
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                }
+            },
+            "NotFoundErrorCode": {
+                "type": "string",
+                "enum": [
+                    "no_not_found_error",
+                    "undefined_endpoint",
+                    "store_id_not_found",
+                    "unimplemented"
+                ],
+                "default": "no_not_found_error"
+            },
+            "NotificationSettings": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uint64",
+                        "title": "address id"
+                    },
+                    "notificationType": {
+                        "$ref": "#/components/schemas/NotificationType"
+                    },
+                    "alerts": {
+                        "type": "boolean",
+                        "title": "True if user wants to be alerted for anomalies"
+                    }
+                }
+            },
+            "NotificationType": {
+                "type": "string",
+                "enum": [
+                    "NOTIFICATION_TYPE_UNSPECIFIED",
+                    "NOTIFICATION_TYPE_EMAIL",
+                    "NOTIFICATION_TYPE_SMS",
+                    "NOTIFICATION_TYPE_IN_APP",
+                    "NOTIFICATION_TYPE_SLACK"
+                ],
+                "default": "NOTIFICATION_TYPE_UNSPECIFIED",
+                "title": "- NOTIFICATION_TYPE_EMAIL: email based notification\n - NOTIFICATION_TYPE_SMS: sms based notification\n - NOTIFICATION_TYPE_IN_APP: app based notification\n - NOTIFICATION_TYPE_SLACK: slack based notification"
+            },
+            "PasswordResetWebhookResponse": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "PasswordResetWebhookV2Response": {
+                "type": "object",
+                "properties": {
+                    "success": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "PathUnknownErrorMessageResponse": {
+                "type": "object",
+                "example": {
+                    "code": "undefined_endpoint",
+                    "message": "Endpoint not enabled"
+                },
+                "properties": {
+                    "code": {
+                        "$ref": "#/components/schemas/NotFoundErrorCode"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "ProfileType": {
+                "type": "string",
+                "enum": [
+                    "PROFILE_TYPE_UNSPECIFIED",
+                    "PROFILE_TYPE_USER",
+                    "PROFILE_TYPE_BUSINESS"
+                ],
+                "default": "PROFILE_TYPE_UNSPECIFIED",
+                "title": "ProfileType: represents the type of account tied to a given profile"
+            },
+            "ReadynessCheckResponse": {
+                "type": "object",
+                "properties": {
+                    "healthy": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "RiskToleranceSettings": {
+                "type": "string",
+                "enum": [
+                    "RISK_TOLERANCE_SETTINGS_UNSPECIFIED",
+                    "RISK_TOLERANCE_SETTINGS_LOW",
+                    "RISK_TOLERANCE_SETTINGS_MEDIUM",
+                    "RISK_TOLERANCE_SETTINGS_HIGH"
+                ],
+                "default": "RISK_TOLERANCE_SETTINGS_UNSPECIFIED",
+                "description": "Risk Tolerance Investment preferences."
+            },
+            "Role": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "int64",
+                        "description": "Unique identifier for the role."
+                    },
+                    "name": {
+                        "type": "string",
+                        "description": "Name of the role."
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/RoleType"
+                    },
+                    "canCreateUsers": {
+                        "type": "boolean",
+                        "description": "Permissions related to user management."
+                    },
+                    "canReadUsers": {
+                        "type": "boolean"
+                    },
+                    "canUpdateUsers": {
+                        "type": "boolean"
+                    },
+                    "canDeleteUsers": {
+                        "type": "boolean"
+                    },
+                    "canCreateProjects": {
+                        "type": "boolean",
+                        "description": "Permissions related to project management."
+                    },
+                    "canReadProjects": {
+                        "type": "boolean"
+                    },
+                    "canUpdateProjects": {
+                        "type": "boolean"
+                    },
+                    "canDeleteProjects": {
+                        "type": "boolean"
+                    },
+                    "canCreateReports": {
+                        "type": "boolean",
+                        "description": "Permissions related to report management."
+                    },
+                    "canReadReports": {
+                        "type": "boolean"
+                    },
+                    "canUpdateReports": {
+                        "type": "boolean"
+                    },
+                    "canDeleteReports": {
+                        "type": "boolean"
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Add more permissions as necessary for other modules or features.\nTimestamps for tracking creation and modification times."
+                    },
+                    "updatedAt": {
+                        "type": "string",
+                        "format": "date-time"
+                    },
+                    "auditLog": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/RoleAuditEvents"
+                        },
+                        "description": "Audit log for this role."
+                    }
+                },
+                "description": "Role defines the role of a user in the system with specific permissions."
+            },
+            "RoleAuditEvents": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "int64"
+                    },
+                    "action": {
+                        "$ref": "#/components/schemas/AuditAction"
+                    },
+                    "performedBy": {
+                        "type": "string",
+                        "title": "Identifier of the user who performed the action"
+                    },
+                    "timestamp": {
+                        "type": "string",
+                        "format": "date-time",
+                        "title": "Time of the event"
+                    },
+                    "affectedFields": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "description": "Specific fields that were changed (if applicable)",
+                        "title": "Additional fields for enhanced auditing:"
+                    },
+                    "previousValues": {
+                        "type": "array",
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "Values of those fields before the change"
+                    },
+                    "clientIp": {
+                        "type": "string",
+                        "title": "IP address of the client that initiated the change"
+                    },
+                    "userAgent": {
+                        "type": "string",
+                        "title": "User agent string of the client"
+                    },
+                    "context": {
+                        "type": "string",
+                        "title": "Additional context about the change (e.g., reason for change)"
+                    }
+                },
+                "description": "RoleAuditEvents defines the audit record for any changes made to a role."
+            },
+            "RoleType": {
+                "type": "string",
+                "enum": [
+                    "ROLE_TYPE_UNSPECIFIED",
+                    "ROLE_TYPE_SUPER_ADMIN",
+                    "ROLE_TYPE_TEAM_ADMIN",
+                    "ROLE_TYPE_REGULAR"
+                ],
+                "default": "ROLE_TYPE_UNSPECIFIED",
+                "description": "RoleType defines the different types of roles."
+            },
+            "Settings": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uint64",
+                        "title": "address id"
+                    },
+                    "appTheme": {
+                        "$ref": "#/components/schemas/ApplicationTheme"
+                    },
+                    "notificationSettings": {
+                        "$ref": "#/components/schemas/NotificationSettings"
+                    },
+                    "preferredLanguage": {
+                        "type": "string",
+                        "description": "Language preference."
+                    },
+                    "riskTolerance": {
+                        "$ref": "#/components/schemas/RiskToleranceSettings"
+                    },
+                    "likedDashboardPanels": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/LikedDashboardPanels"
+                        },
+                        "description": "Dashboard customization, e.g., specific widgets or reports."
+                    },
+                    "digitalWorkerSettings": {
+                        "$ref": "#/components/schemas/DigitalWorkerSettings"
+                    },
+                    "financialPreferences": {
+                        "$ref": "#/components/schemas/FinancialPreferences"
+                    }
+                },
+                "description": "User settings for the fintech application."
+            },
+            "Status": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    "message": {
+                        "type": "string"
+                    },
+                    "details": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Any"
+                        }
+                    }
+                }
+            },
+            "Tags": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uint64",
+                        "title": "tag id"
+                    },
+                    "tagName": {
+                        "type": "string",
+                        "example": "testtagname",
+                        "title": "name of tag\nvalidations: \n- cannot be empty\n- must be at least 3 characters long"
+                    },
+                    "tagDescription": {
+                        "type": "string",
+                        "example": "testtagdescription",
+                        "title": "description of tag\nvalidations: \n- cannot be empty\n- must be at least 10 characters long"
+                    },
+                    "metadata": {
+                        "type": "array",
+                        "example": [
+                            "testmetadata1",
+                            "testmetadata2"
+                        ],
+                        "items": {
+                            "type": "string"
+                        },
+                        "title": "metadata associated with tag\nvalidations:\n- must provide between 1 and 10 metadata tags"
+                    }
+                },
+                "title": "Tags: represents metadata tags associated to an account"
+            },
+            "UpdateRoleResponse": {
+                "type": "object",
+                "properties": {
+                    "role": {
+                        "$ref": "#/components/schemas/Role"
+                    }
+                }
+            },
+            "UpdateUserRequest": {
+                "type": "object",
+                "properties": {
+                    "account": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    }
+                },
+                "title": "UpdateUserRequest: Represents the request object invoked against the user\nservice to update a given user account",
+                "required": [
+                    "account"
+                ]
+            },
+            "UpdateUserResponse": {
+                "type": "object",
+                "properties": {
+                    "accountUpdated": {
+                        "type": "boolean"
+                    },
+                    "account": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    }
+                },
+                "title": "UpdateUserResponse: Represents the response object returned as a response to\nthe `update-user` request"
+            },
+            "UpdateUserV2Request": {
+                "type": "object",
+                "properties": {
+                    "userAccount": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    },
+                    "businessAccount": {
+                        "$ref": "#/components/schemas/BusinessAccount"
+                    }
+                }
+            },
+            "UpdateUserV2Response": {
+                "type": "object",
+                "properties": {
+                    "accountUpdated": {
+                        "type": "boolean"
+                    },
+                    "userAccount": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    },
+                    "businessAccount": {
+                        "$ref": "#/components/schemas/BusinessAccount"
+                    }
+                }
+            },
+            "UserAccount": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string",
+                        "format": "uint64",
+                        "description": "Unique identifier for the account."
+                    },
+                    "email": {
+                        "type": "string",
+                        "example": "sample@example.com",
+                        "description": "Email associated with the user account."
+                    },
+                    "address": {
+                        "$ref": "#/components/schemas/Address"
+                    },
+                    "bio": {
+                        "type": "string",
+                        "description": "Brief description about the user, up to 200 characters."
+                    },
+                    "headline": {
+                        "type": "string",
+                        "description": "Short headline for the user's profile."
+                    },
+                    "phoneNumber": {
+                        "type": "string",
+                        "description": "Phone number associated with the account."
+                    },
+                    "tags": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Tags"
+                        },
+                        "description": "Tags associated with the user account, between 1 and 10."
+                    },
+                    "authnAccountId": {
+                        "type": "string",
+                        "format": "uint64",
+                        "description": "ID for the authentication service linked to this account."
+                    },
+                    "isActive": {
+                        "type": "boolean",
+                        "description": "Indicates if the account is currently active."
+                    },
+                    "firstname": {
+                        "type": "string",
+                        "description": "User's first name."
+                    },
+                    "lastname": {
+                        "type": "string",
+                        "description": "User's last name."
+                    },
+                    "username": {
+                        "type": "string",
+                        "example": "testuser9696",
+                        "description": "Username associated with the account, minimum of 10 characters."
+                    },
+                    "isPrivate": {
+                        "type": "boolean",
+                        "description": "Indicates if the account is set to private."
+                    },
+                    "isEmailVerified": {
+                        "type": "boolean",
+                        "description": "Indicates if the user's email has been verified."
+                    },
+                    "createdAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp for when the account was created."
+                    },
+                    "verifiedAt": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "Timestamp for when the email was verified."
+                    },
+                    "settings": {
+                        "$ref": "#/components/schemas/Settings"
+                    },
+                    "accountType": {
+                        "$ref": "#/components/schemas/ProfileType"
+                    },
+                    "profileImageUrl": {
+                        "type": "string",
+                        "description": "Profile image associated with the user account."
+                    },
+                    "auth0UserId": {
+                        "type": "string",
+                        "title": "Auth0 user id"
+                    },
+                    "role": {
+                        "$ref": "#/components/schemas/Role"
+                    }
+                },
+                "description": "@brief Represents a user account in the context of simfinni."
+            },
+            "ValidationErrorMessageResponse": {
+                "type": "object",
+                "example": {
+                    "code": "validation_error",
+                    "message": "Generic validation error"
+                },
+                "properties": {
+                    "code": {
+                        "$ref": "#/components/schemas/ErrorCode"
+                    },
+                    "message": {
+                        "type": "string"
+                    }
+                }
+            },
+            "VerifyUserResponse": {
+                "type": "object",
+                "properties": {
+                    "accountVerified": {
+                        "type": "boolean"
+                    }
+                }
+            },
+            "VerifyUserV2Response": {
+                "type": "object",
+                "properties": {
+                    "accountVerified": {
+                        "type": "boolean"
+                    }
+                }
+            }
+        }
+    }
+}
