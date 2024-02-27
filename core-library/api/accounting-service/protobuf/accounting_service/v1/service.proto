@@ -1,0 +1,284 @@
+syntax = "proto3";
+
+package accounting_service.v1;
+
+import "accounting_service/v1/request.proto";
+import "accounting_service/v1/response.proto";
+import "protoc-gen-gorm/options/gorm.proto";
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/accounting_service/v1";
+
+// AccountingService API.
+service AccountingService {
+  option (gorm.server).autogen = true;
+  // Healthcheck performs a health check on the service
+  rpc HealthCheck(HealthCheckRequest) returns (HealthCheckResponse) {
+    option (google.api.http) = {get: "/accounting-microservice/api/v1/health"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Health Check",
+      tags: ["accounting-service"]
+      operation_id: "HealthCheck"
+      description: "Performs a health check on the service.",
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".accounting_service.v1.HealthCheckResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // ReadynessCheck performs a readiness check on the service
+  rpc ReadynessCheck(ReadynessCheckRequest) returns (ReadynessCheckResponse) {
+    option (google.api.http) = {get: "/accounting-microservice/api/v1/ready"};
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Readiness Check",
+      tags: ["accounting-service"],
+      operation_id: "ReadinessCheck",
+      description: "Performs a readiness check on the service.",
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".accounting_service.v1.ReadynessCheckResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // creates a business accouting profile on the service
+  rpc CreateAccountingProfile(CreateAccountingProfileRequest) returns (CreateAccountingProfileResponse) {
+    option (google.api.http) = {
+      post: "/accounting-microservice/api/v1/profile"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Create Payroll Profile",
+      tags: ["accounting-service"],
+      operation_id: "CreatePayrollProfile"
+      description: "Creates a payroll profile.",
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".accounting_service.v1.CreateAccountingProfileResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // gets business accounting profile
+  rpc ReadAccountingProfile(ReadAccountingProfileRequest) returns (ReadAccountingProfileResponse) {
+    option (google.api.http) = {
+      get: "/accounting-microservice/api/v1/profile/{auth_zero_user_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Business Account Profile",
+      tags: ["accounting-service"]
+      operation_id: "ReadAccountingProfileResponse"
+      description: "Retrieves a business account profile.",
+      responses: {
+        key: "200"
+        value: {
+          description: ""
+          schema: {
+            json_schema: {ref: ".accounting_service.v1.ReadAccountingProfileResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // delete business payroll profile
+  rpc DeleteAccountingProfile(DeleteAccountingProfileRequest) returns (DeleteAccountingProfileResponse) {
+    option (google.api.http) = {
+      delete: "/accounting-microservice/api/v1/profile/{auth_zero_user_id}"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Delete Payroll Profile",
+      tags: ["accounting-service"],
+      operation_id: "DeleteProfile"
+      description: "Deletes a business payroll profile.",
+      responses: {
+        key: "200"
+        value: {
+          description: ""
+          schema: {
+            json_schema: {ref: ".accounting_service.v1.DeleteAccountingProfileResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // updates a business account
+  rpc UpdateAccountingProfile(UpdateAccountingProfileRequest) returns (UpdateAccountingProfileResponse) {
+    option (google.api.http) = {
+      put: "/accounting-microservice/api/v1/profile"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Update Payroll Profile",
+      tags: ["accounting-service"],
+      operation_id: "UpdatePayrollProfile"
+      description: "Updates a payroll profile.",
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".accounting_service.v1.UpdateAccountingProfileResponse"}
+          }
+        }
+      }
+    };
+  }
+
+
+  // enables the client to get a link_token to initialize a Link session for your end user.
+  rpc GetMergeLinkToken(GetMergeLinkTokenRequest) returns (GetMergeLinkTokenResponse) {
+    option (google.api.http) = {
+      post: "/accounting-microservice/api/v1/merge/initiate-token-exchange"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Get Link Token",
+      tags: ["accounting-service"],
+      operation_id: "GetLinkToken"
+      description: "Provides a link token to initialize a Link session for the user.",
+      responses: {
+        key: "200"
+        value: {
+          description: ""
+          schema: {
+            json_schema: {ref: ".accounting_service.v1.GetMergeLinkTokenResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // enables the client to exchange a public link token for an access token
+  rpc ExchangePublicLinkTokenForAccountToken(ExchangePublicLinkTokenForAccountTokenRequest) returns (ExchangePublicLinkTokenForAccountTokenResponse) {
+    option (google.api.http) = {
+      post: "/accounting-microservice/api/v1/merge/exchange-token"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Exchange Link Token",
+      tags: ["accounting-service"],
+      operation_id: "ExchangePublicLinkTokenForAccountTokenResponse"
+      description: "Exchanges a public link token for an account token.",
+      responses: {
+        key: "200"
+        value: {
+          description: ""
+          schema: {
+            json_schema: {ref: ".accounting_service.v1.ExchangePublicLinkTokenForAccountTokenResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // ReadBalanceSheets reads the balances sheet for a given a user
+  rpc ReadBalanceSheets(ReadBalanceSheetsRequest) returns (ReadBalanceSheetsResponse) {
+    option (google.api.http) = {
+      post: "/accounting-microservice/api/v1/balance-sheets"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Gets Balance Sheets",
+      tags: ["accounting-service"],
+      operation_id: "ReadBalanceSheets"
+      description: "Queries balance sheets for a business.",
+      responses: {
+        key: "200"
+        value: {
+          description: ""
+          schema: {
+            json_schema: {ref: ".accounting_service.v1.ReadBalanceSheetsResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // ReadCashFlowStatements reads the cash flow statements for a given a user
+  rpc ReadCashFlowStatements(ReadCashFlowStatementsRequest) returns (ReadCashFlowStatementsResponse) {
+    option (google.api.http) = {
+      post: "/accounting-microservice/api/v1/cashflow-statements"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Gets Cashfloe Sheets",
+      tags: ["accounting-service"],
+      operation_id: "ReadCashFlowStatements"
+      description: "Queries cashflow sheets for a business.",
+      responses: {
+        key: "200"
+        value: {
+          description: ""
+          schema: {
+            json_schema: {ref: ".accounting_service.v1.ReadCashFlowStatementsResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  // ReadIncomeStatements reads the income statements for a given a user 
+  rpc ReadIncomeStatements(ReadIncomeStatementsRequest) returns (ReadIncomeStatementsResponse) {
+    option (google.api.http) = {
+      post: "/accounting-microservice/api/v1/income-statements"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Gets Cashfloe Sheets",
+      tags: ["accounting-service"],
+      operation_id: "ReadIncomeStatements"
+      description: "Queries income sheets for a business.",
+      responses: {
+        key: "200"
+        value: {
+          description: ""
+          schema: {
+            json_schema: {ref: ".accounting_service.v1.ReadIncomeStatementsResponse"}
+          }
+        }
+      }
+    };
+  }
+
+  rpc ReadBusinessChartOfAccounts(ReadBusinessChartOfAccountsRequest) returns (ReadBusinessChartOfAccountsResponse) {
+    option (google.api.http) = {
+      post: "/accounting-microservice/api/v1/chart-of-accounts"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "Gets Chart of Accounts",
+      tags: ["accounting-service"],
+      operation_id: "ReadBusinessChartOfAccounts"
+      description: "Queries chart of accounts for a business.",
+      responses: {
+        key: "200"
+        value: {
+          description: ""
+          schema: {
+            json_schema: {ref: ".accounting_service.v1.ReadBusinessChartOfAccountsResponse"}
+          }
+        }
+      }
+    };
+  }
+}

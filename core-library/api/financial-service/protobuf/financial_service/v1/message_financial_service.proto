@@ -10,7 +10,7 @@ import "google/api/field_behavior.proto";
 import "google/protobuf/timestamp.proto";
 import "google/protobuf/any.proto";
 
-option go_package = "github.com/SolomonAIEngineering/service-level-api/pkg/generated/financial_service/v1";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/financial_service/v1";
 
 enum FinancialAccountType {
   FINANCIAL_ACCOUNT_TYPE_UNSPECIFIED = 0;

@@ -9,7 +9,7 @@ import "protoc-gen-openapiv2/options/annotations.proto";
 import "user_service/v1/settings.proto";
 import "user_service/v1/roles.proto";
 
-option go_package = "github.com/SolomonAIEngineering/service-level-api/pkg/generated/user_service/v1";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1";
 
 /*
   ProfileType: represents the type of account tied to a given profile

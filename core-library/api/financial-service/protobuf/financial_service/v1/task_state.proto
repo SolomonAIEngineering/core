@@ -1,6 +1,6 @@
 syntax = "proto3";
 package financial_service.v1;
-option go_package = "github.com/SolomonAIEngineering/service-level-api/pkg/generated/financial_service/v1";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/financial_service/v1";
 
 enum TaskState {
   // The zero value is omitted in proto3 by convention if it's not used.

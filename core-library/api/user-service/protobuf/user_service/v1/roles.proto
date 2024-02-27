@@ -6,7 +6,7 @@ import "protoc-gen-gorm/options/gorm.proto";
 import "google/protobuf/timestamp.proto";
 import "validate/validate.proto";
 
-option go_package = "github.com/SolomonAIEngineering/service-level-api/pkg/generated/user_service/v1";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1";
 
 // RoleType defines the different types of roles.
 enum RoleType {

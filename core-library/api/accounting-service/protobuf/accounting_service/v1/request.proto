@@ -1,0 +1,255 @@
+syntax = "proto3";
+
+package accounting_service.v1;
+
+import "validate/validate.proto";
+import "google/api/field_behavior.proto";
+import "gogoproto/gogo.proto";
+import "accounting_service/v1/business_profile_database_schema.proto";
+import "google/protobuf/timestamp.proto";
+
+option go_package = "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/accounting_service/v1";
+
+option (gogoproto.gostring_all) = true;
+option (gogoproto.equal_all) = true;
+option (gogoproto.verbose_equal_all) = true;
+option (gogoproto.goproto_stringer_all) = false;
+option (gogoproto.stringer_all) =  true;
+option (gogoproto.populate_all) = true;
+option (gogoproto.testgen_all) = true;
+option (gogoproto.benchgen_all) = true;
+option (gogoproto.marshaler_all) = true;
+option (gogoproto.sizer_all) = true;
+option (gogoproto.unmarshaler_all) = true;
+
+message HealthCheckRequest {} // Defines an empty message named HealthCheckRequest.
+
+message ReadynessCheckRequest {} // Defines an empty message named ReadynessCheckRequest.
+
+message CreateAccountingProfileRequest { // Defines a message named CreateAccountingProfileRequest.
+  // the auth0 user id is required to create an account as it will be the source of truth used across the platform
+  string auth_zero_user_id = 1 [
+    (validate.rules).string.min_len = 1, // Validation rule: auth0UserId must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: auth0UserId is required.
+  ];
+
+  string email = 2 [
+    (validate.rules).string.email = true, // Validation rule: email must be valid.
+    (google.api.field_behavior) = REQUIRED // Field behavior: email is required.
+  ];
+
+  string company_name = 3 [
+    (validate.rules).string.min_len = 1, // Validation rule: company_name must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: company_name is required.
+  ];
+}
+
+message ReadAccountingProfileRequest { // Defines a message named ReadAccountingProfileRequest.
+  string auth_zero_user_id = 1  [
+    (validate.rules).string.min_len = 1, // Validation rule: auth0UserId must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: user_id is required.
+  ];
+  uint64 linked_accounting_account_id = 2 [
+    (validate.rules).uint64.gt = 0, // Validation rule: linked_accounting_account_id must be greater than 0.
+    (google.api.field_behavior) = REQUIRED // Field behavior: linked_accounting_account_id is required.
+  ];
+}
+
+message DeleteAccountingProfileRequest { // Defines a message named DeleteProfile.
+  string auth_zero_user_id = 1  [
+    (validate.rules).string.min_len = 1, // Validation rule: auth0UserId must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: user_id is required.
+  ];
+}
+
+message UpdateAccountingProfileRequest { // Defines a message named UpdateAccountingProfileRequest.
+  // business accounting profile to update 
+  MergeBusinessProfile profile = 1; // A field named "profile" of type BusinessPayrollProfile.
+}
+
+message GetMergeLinkTokenRequest { // Defines a message named GetMergeLinkTokenRequest.
+  // This unique identifier typically represents the ID for your end user across all services.
+  // This value must be distinct from other Linked Accounts' unique identifiers.
+  string auth_zero_user_id = 1  [
+    (validate.rules).string.min_len = 1, // Validation rule: auth0UserId must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: user_id is required.
+  ];
+
+  // Your end user's organization.
+  string organization_name	= 2 [
+    (validate.rules).string.min_len = 1, // Validation rule: organization_name must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: organization_name is required.
+  ];
+
+  // Your end user's email address. This is purely for
+  // identification purposes - setting this value will not cause any emails to be sent.
+  string email	= 3 [
+    (validate.rules).string.min_len = 1, // Validation rule: email must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: email is required.
+  ];
+}
+
+message ExchangePublicLinkTokenForAccountTokenRequest {
+  // the platform wide auth user id
+  string auth_zero_user_id = 1  [
+    (validate.rules).string.min_len = 1, // Validation rule: auth0UserId must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: user_id is required.
+  ];
+
+  // the public link token
+  string public_token = 2 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // the end user's origin id
+  string end_user_origin_id = 3  [
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // the organization name
+  string organization_name = 4  [
+    (google.api.field_behavior) = REQUIRED
+  ];
+}
+
+message ReadBalanceSheetsRequest {
+  // The platform wide end user id
+  string auth_zero_user_id = 1  [
+    (validate.rules).string.min_len = 1, // Validation rule: auth0UserId must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: user_id is required.
+  ];
+
+  // The accounting integration merge link id
+  // Validations:
+  // - acounting_integration_merge_link_id must be greater than 0
+  uint64 acounting_integration_merge_link_id = 2 [
+    (validate.rules).uint64.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The start date
+  // Validations:
+  // - start_date must be a valid date
+  google.protobuf.Timestamp start_date = 3 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The end date
+  // Validations:
+  // - end_date must be a valid date
+  google.protobuf.Timestamp end_date = 4 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The page size
+  int32 page_size = 5 [
+    (validate.rules).int32.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The page number
+  int32 page_number = 6 [
+    (validate.rules).int32.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+}
+
+message ReadCashFlowStatementsRequest {
+  // The platform wide end user id
+  string auth_zero_user_id = 1  [
+    (validate.rules).string.min_len = 1, // Validation rule: auth0UserId must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: user_id is required.
+  ];
+
+  // The accounting integration merge link id
+  // Validations:
+  // - acounting_integration_merge_link_id must be greater than 0
+  uint64 acounting_integration_merge_link_id = 2 [
+    (validate.rules).uint64.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The start date
+  // Validations:
+  // - start_date must be a valid date
+  google.protobuf.Timestamp start_date = 3 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The end date
+  // Validations:
+  // - end_date must be a valid date
+  google.protobuf.Timestamp end_date = 4 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The page size
+  int32 page_size = 5 [
+    (validate.rules).int32.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The page number
+  int32 page_number = 6 [
+    (validate.rules).int32.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+}
+
+message ReadIncomeStatementsRequest {
+  // The platform wide end user id
+  string auth_zero_user_id = 1  [
+    (validate.rules).string.min_len = 1, // Validation rule: auth0UserId must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: user_id is required.
+  ];
+
+  // The accounting integration merge link id
+  // Validations:
+  // - acounting_integration_merge_link_id must be greater than 0
+  uint64 acounting_integration_merge_link_id = 2 [
+    (validate.rules).uint64.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The start date
+  // Validations:
+  // - start_date must be a valid date
+  google.protobuf.Timestamp start_date = 3 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The end date
+  // Validations:
+  // - end_date must be a valid date
+  google.protobuf.Timestamp end_date = 4 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The page size
+  int32 page_size = 5 [
+    (validate.rules).int32.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The page number
+  int32 page_number = 6 [
+    (validate.rules).int32.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+}
+
+message ReadBusinessChartOfAccountsRequest {
+  // The platform wide end user id
+  string auth_zero_user_id = 1  [
+    (validate.rules).string.min_len = 1, // Validation rule: auth0UserId must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: user_id is required.
+  ];
+
+  // The accounting integration merge link id
+  // Validations:
+  // - acounting_integration_merge_link_id must be greater than 0
+  uint64 acounting_integration_merge_link_id = 2 [
+    (validate.rules).uint64.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+}

@@ -8,7 +8,7 @@ import "google/api/annotations.proto";
 // import "google/api/field_behavior.proto";
 // import "google/protobuf/timestamp.proto";
 // import "google/protobuf/wrappers.proto";
-option go_package = "github.com/SolomonAIEngineering/service-level-api/pkg/generated/user_service/v1";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1";
 
 // UserService API.
 service UserService {

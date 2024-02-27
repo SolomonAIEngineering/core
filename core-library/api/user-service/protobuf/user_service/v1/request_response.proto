@@ -10,7 +10,7 @@ import "validate/validate.proto";
 import "google/api/field_behavior.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
-option go_package = "github.com/SolomonAIEngineering/service-level-api/pkg/generated/user_service/v1";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1";
 
 // GetUserRequest: Represents the request object invoked against the user
 // service to obtain a user account

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package financial_service.v1;
 
-option go_package = "github.com/SolomonAIEngineering/service-level-api/pkg/generated/financial_service/v1";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/financial_service/v1";
 import "protoc-gen-gorm/options/gorm.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 import "validate/validate.proto";

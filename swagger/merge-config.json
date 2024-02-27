@@ -17,6 +17,12 @@
       "operationSelection": {
         "includeTags": ["financial-service"]
       }
+    },
+    {
+      "inputFile": "./accounting-service-backend-api.yaml",
+      "operationSelection": {
+        "includeTags": ["accounting-service"]
+      }
     }
   ],
   "output": "./backend-api.yaml"

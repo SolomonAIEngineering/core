@@ -10,6 +10,609 @@
 	},
 	"item": [
 	        {
+	            "name": "accounting-service",
+	            "item": [
+	                        {
+    "name": "/accounting-microservice/api/v1/balance-sheets",
+                "description": "Queries balance sheets for a business.",
+                 "item": [
+                            {
+                                "name": "Gets Balance Sheets",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"acountingIntegrationMergeLinkId\": \"<string>\",\n \"startDate\": \"<string>\",\n \"endDate\": \"<string>\",\n \"pageSize\": \"<number>\",\n \"pageNumber\": \"<number>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/balance-sheets",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "balance-sheets"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Queries balance sheets for a business."
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/accounting-microservice/api/v1/cashflow-statements",
+                "description": "Queries cashflow sheets for a business.",
+                 "item": [
+                            {
+                                "name": "Gets Cashfloe Sheets",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"acountingIntegrationMergeLinkId\": \"<string>\",\n \"startDate\": \"<string>\",\n \"endDate\": \"<string>\",\n \"pageSize\": \"<number>\",\n \"pageNumber\": \"<number>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/cashflow-statements",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "cashflow-statements"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Queries cashflow sheets for a business."
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/accounting-microservice/api/v1/chart-of-accounts",
+                "description": "Queries chart of accounts for a business.",
+                 "item": [
+                            {
+                                "name": "Gets Chart of Accounts",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"acountingIntegrationMergeLinkId\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/chart-of-accounts",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "chart-of-accounts"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Queries chart of accounts for a business."
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/accounting-microservice/api/v1/health",
+                "description": "Performs a health check on the service.",
+                 "item": [
+                            {
+                                "name": "Health Check",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/health",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "health"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Performs a health check on the service."
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/accounting-microservice/api/v1/income-statements",
+                "description": "Queries income sheets for a business.",
+                 "item": [
+                            {
+                                "name": "Gets Cashfloe Sheets",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"acountingIntegrationMergeLinkId\": \"<string>\",\n \"startDate\": \"<string>\",\n \"endDate\": \"<string>\",\n \"pageSize\": \"<number>\",\n \"pageNumber\": \"<number>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/income-statements",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "income-statements"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Queries income sheets for a business."
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/accounting-microservice/api/v1/merge/exchange-token",
+                "description": "Exchanges a public link token for an account token.",
+                 "item": [
+                            {
+                                "name": "Exchange Link Token",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"publicToken\": \"<string>\",\n \"endUserOriginId\": \"<string>\",\n \"organizationName\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/merge/exchange-token",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "merge",
+                                            "exchange-token"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Exchanges a public link token for an account token."
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/accounting-microservice/api/v1/merge/initiate-token-exchange",
+                "description": "Provides a link token to initialize a Link session for the user.",
+                 "item": [
+                            {
+                                "name": "Get Link Token",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"organizationName\": \"<string>\",\n \"email\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/merge/initiate-token-exchange",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "merge",
+                                            "initiate-token-exchange"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Provides a link token to initialize a Link session for the user."
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/accounting-microservice/api/v1/profile",
+                "description": "Creates a payroll profile.",
+                 "item": [
+                            {
+                                "name": "Create Payroll Profile",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"email\": \"<string>\",\n \"companyName\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/profile",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "profile"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Creates a payroll profile."
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/accounting-microservice/api/v1/profile",
+                "description": "Updates a payroll profile.",
+                 "item": [
+                            {
+                                "name": "Update Payroll Profile",
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"profile\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/profile",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "profile"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Updates a payroll profile."
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/accounting-microservice/api/v1/profile/:authZeroUserId",
+                "description": "Deletes a business payroll profile.",
+                 "item": [
+                            {
+                                "name": "Delete Payroll Profile",
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/profile/:authZeroUserId",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "profile",
+                                            ":authZeroUserId"
+                                        ],
+                                        "variable": [
+                                            {
+                                                "key": "authZeroUserId",
+                                                "value": "",
+                                                "description": ""
+                                            }
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Deletes a business payroll profile."
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/accounting-microservice/api/v1/profile/:authZeroUserId",
+                "description": "Retrieves a business account profile.",
+                 "item": [
+                            {
+                                "name": "Get Business Account Profile",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/profile/:authZeroUserId",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "profile",
+                                            ":authZeroUserId"
+                                        ],
+                                        "variable": [
+                                            {
+                                                "key": "authZeroUserId",
+                                                "value": "",
+                                                "description": ""
+                                            }
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "linkedAccountingAccountId",
+                                                "value": "linkedAccountingAccountId_example"
+                                            }
+                                        ]
+                                    },
+                                    "description": "Retrieves a business account profile."
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/accounting-microservice/api/v1/ready",
+                "description": "Performs a readiness check on the service.",
+                 "item": [
+                            {
+                                "name": "Readiness Check",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/ready",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "ready"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Performs a readiness check on the service."
+                                }
+                            }
+                            ]
+                        }
+	                    ]
+	        },
+	        {
 	            "name": "social-service",
 	            "item": [
 	                        {
