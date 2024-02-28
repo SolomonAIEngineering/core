@@ -1,3 +1,4 @@
+.openapi-generator-ignore
 apis/AccountingServiceApi.ts
 apis/FinancialServiceApi.ts
 apis/SocialServiceApi.ts
