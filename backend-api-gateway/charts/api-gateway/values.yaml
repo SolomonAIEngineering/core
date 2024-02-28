@@ -6,7 +6,7 @@ replicaCount: 3
 environment: staging
 
 image:
-  repository: feelguuds/api-gateway
+  repository: solomonai/api-gateway
   pullPolicy: IfNotPresent
   # Overrides the image tag whose default is the chart appVersion.
   tag: 4.0.0
