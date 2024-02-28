@@ -812,18 +812,18 @@ service FinancialService {
   }
 
   // This endpoint enables end users to get recurring transactions
-  rpc GetRecurringTransactions(GetRecurringTransactionsRequest) returns (GetRecurringTransactionsResponse) {
+  rpc GetRecurringTransactionsForUser(GetRecurringTransactionsForUserRequest) returns (GetRecurringTransactionsForUserResponse) {
     option (google.api.http) = {get: "/financial-microservice/api/v1/transactions/recurring-transactions/{user_id}"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "get recurring transactions"
       tags: ["financial-service"]
-      operation_id: "GetRecurringTransactions"
+      operation_id: "GetRecurringTransactionsForUser"
       description: "This endpoint returns the recurring transactions for a given user id"
       responses: {
         key: "200"
         value: {
           description: "A successful response."
-          schema: {json_schema: {ref: ".financial_service.v1.GetRecurringTransactionsResponse"}}
+          schema: {json_schema: {ref: ".financial_service.v1.GetRecurringTransactionsForUserResponse"}}
         }
       }
     };
@@ -1971,21 +1971,21 @@ service FinancialService {
   // RECURRING TRANSACTION APIS
 
   // ListRecurringTransactions lists a set of transactions against an account of interest
-  rpc ListRecurringTransactions(ListRecurringTransactionsRequest) returns (ListRecurringTransactionsResponse) {
+  rpc ListRecurringTransactionsForUserAndAccount(ListRecurringTransactionsForUserAndAccountRequest) returns (ListRecurringTransactionsForUserAndAccountResponse) {
     option (google.api.http) = {
       get: "/financial-microservice/api/v1/transactions/recurrings"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "lists a set of transactions against a given account of interest"
       tags: ["financial-service"]
-      operation_id: "ListRecurringTransactions"
+      operation_id: "ListRecurringTransactionsForUserAndAccount"
       description: "This endpoint gets a list of transactions against a given account of interest"
       responses: {
         key: "200"
         value: {
           description: "A successful response."
           schema: {
-            json_schema: {ref: ".financial_service.v1.ListRecurringTransactionsResponse"}
+            json_schema: {ref: ".financial_service.v1.ListRecurringTransactionsForUserAndAccountResponse"}
           }
         }
       }

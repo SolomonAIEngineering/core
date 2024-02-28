@@ -4879,12 +4879,12 @@
       "get": {
         "summary": "get recurring transactions",
         "description": "This endpoint returns the recurring transactions for a given user id",
-        "operationId": "GetRecurringTransactions",
+        "operationId": "GetRecurringTransactionsForUser",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/GetRecurringTransactionsResponse"
+              "$ref": "#/definitions/GetRecurringTransactionsForUserResponse"
             }
           },
           "400": {
@@ -5324,12 +5324,12 @@
       "get": {
         "summary": "lists a set of transactions against a given account of interest",
         "description": "This endpoint gets a list of transactions against a given account of interest",
-        "operationId": "ListRecurringTransactions",
+        "operationId": "ListRecurringTransactionsForUserAndAccount",
         "responses": {
           "200": {
             "description": "A successful response.",
             "schema": {
-              "$ref": "#/definitions/ListRecurringTransactionsResponse"
+              "$ref": "#/definitions/ListRecurringTransactionsForUserAndAccountResponse"
             }
           },
           "400": {
@@ -8263,7 +8263,7 @@
         }
       }
     },
-    "GetRecurringTransactionsResponse": {
+    "GetRecurringTransactionsForUserResponse": {
       "type": "object",
       "properties": {
         "transactions": {
@@ -9026,7 +9026,7 @@
         }
       }
     },
-    "ListRecurringTransactionsResponse": {
+    "ListRecurringTransactionsForUserAndAccountResponse": {
       "type": "object",
       "properties": {
         "nextPage": {

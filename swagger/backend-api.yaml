@@ -10756,14 +10756,14 @@ paths:
     get:
       summary: get recurring transactions
       description: This endpoint returns the recurring transactions for a given user id
-      operationId: GetRecurringTransactions
+      operationId: GetRecurringTransactionsForUser
       responses:
         '200':
           description: A successful response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetRecurringTransactionsResponse'
+                $ref: '#/components/schemas/GetRecurringTransactionsForUserResponse'
         '400':
           description: Request failed due to invalid input.
           content:
@@ -11159,14 +11159,15 @@ paths:
       description: >-
         This endpoint gets a list of transactions against a given account of
         interest
-      operationId: ListRecurringTransactions
+      operationId: ListRecurringTransactionsForUserAndAccount
       responses:
         '200':
           description: A successful response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/ListRecurringTransactionsResponse'
+                $ref: >-
+                  #/components/schemas/ListRecurringTransactionsForUserAndAccountResponse
         '400':
           description: Request failed due to invalid input.
           content:
@@ -18171,7 +18172,7 @@ components:
       properties:
         pocket:
           $ref: '#/components/schemas/Pocket'
-    GetRecurringTransactionsResponse:
+    GetRecurringTransactionsForUserResponse:
       type: object
       properties:
         transactions:
@@ -18712,7 +18713,7 @@ components:
           items:
             $ref: '#/components/schemas/SmartNote'
           title: The notes
-    ListRecurringTransactionsResponse:
+    ListRecurringTransactionsForUserAndAccountResponse:
       type: object
       properties:
         nextPage:

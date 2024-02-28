@@ -1,4 +1,3 @@
-.openapi-generator-ignore
 apis/AccountingServiceApi.ts
 apis/FinancialServiceApi.ts
 apis/SocialServiceApi.ts
@@ -251,7 +250,7 @@ models/GetPostsByCategoryResponse.ts
 models/GetPostsByTopicResponse.ts
 models/GetPostsResponse.ts
 models/GetPublicationResponse.ts
-models/GetRecurringTransactionsResponse.ts
+models/GetRecurringTransactionsForUserResponse.ts
 models/GetRoleResponse.ts
 models/GetSingleRecurringTransactionResponse.ts
 models/GetSmartGoalsByPocketIdResponse.ts
@@ -313,7 +312,7 @@ models/LinkType.ts
 models/LinkedAccountingAccount.ts
 models/ListFolderResponse.ts
 models/ListRecurringTransactionNotesResponse.ts
-models/ListRecurringTransactionsResponse.ts
+models/ListRecurringTransactionsForUserAndAccountResponse.ts
 models/ListRolesResponse.ts
 models/ListTransactionNotesResponse.ts
 models/ListTransactionsAcrossAllAccountsResponse.ts

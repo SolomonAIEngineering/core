@@ -7514,7 +7514,7 @@ func (x *SearchTransactionsResponse) GetNextPageNumber() uint64 {
 
 // RECURRING TRANSACTIONS
 // ListRecurringTransactionsRequest is the list transaction request
-type ListRecurringTransactionsRequest struct {
+type ListRecurringTransactionsForUserAndAccountRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -7527,8 +7527,8 @@ type ListRecurringTransactionsRequest struct {
 	FinancialAccountType FinancialAccountType     `protobuf:"varint,10,opt,name=financial_account_type,json=financialAccountType,proto3,enum=financial_service.v1.FinancialAccountType" json:"financial_account_type,omitempty"`
 }
 
-func (x *ListRecurringTransactionsRequest) Reset() {
-	*x = ListRecurringTransactionsRequest{}
+func (x *ListRecurringTransactionsForUserAndAccountRequest) Reset() {
+	*x = ListRecurringTransactionsForUserAndAccountRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_financial_service_v1_request_response_financial_service_proto_msgTypes[132]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7536,13 +7536,13 @@ func (x *ListRecurringTransactionsRequest) Reset() {
 	}
 }
 
-func (x *ListRecurringTransactionsRequest) String() string {
+func (x *ListRecurringTransactionsForUserAndAccountRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListRecurringTransactionsRequest) ProtoMessage() {}
+func (*ListRecurringTransactionsForUserAndAccountRequest) ProtoMessage() {}
 
-func (x *ListRecurringTransactionsRequest) ProtoReflect() protoreflect.Message {
+func (x *ListRecurringTransactionsForUserAndAccountRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_financial_service_v1_request_response_financial_service_proto_msgTypes[132]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7554,47 +7554,47 @@ func (x *ListRecurringTransactionsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListRecurringTransactionsRequest.ProtoReflect.Descriptor instead.
-func (*ListRecurringTransactionsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListRecurringTransactionsForUserAndAccountRequest.ProtoReflect.Descriptor instead.
+func (*ListRecurringTransactionsForUserAndAccountRequest) Descriptor() ([]byte, []int) {
 	return file_financial_service_v1_request_response_financial_service_proto_rawDescGZIP(), []int{132}
 }
 
-func (x *ListRecurringTransactionsRequest) GetAccountId() uint64 {
+func (x *ListRecurringTransactionsForUserAndAccountRequest) GetAccountId() uint64 {
 	if x != nil {
 		return x.AccountId
 	}
 	return 0
 }
 
-func (x *ListRecurringTransactionsRequest) GetUserId() string {
+func (x *ListRecurringTransactionsForUserAndAccountRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *ListRecurringTransactionsRequest) GetPageNumber() uint64 {
+func (x *ListRecurringTransactionsForUserAndAccountRequest) GetPageNumber() uint64 {
 	if x != nil {
 		return x.PageNumber
 	}
 	return 0
 }
 
-func (x *ListRecurringTransactionsRequest) GetPageSize() uint64 {
+func (x *ListRecurringTransactionsForUserAndAccountRequest) GetPageSize() uint64 {
 	if x != nil {
 		return x.PageSize
 	}
 	return 0
 }
 
-func (x *ListRecurringTransactionsRequest) GetProfileType() FinancialUserProfileType {
+func (x *ListRecurringTransactionsForUserAndAccountRequest) GetProfileType() FinancialUserProfileType {
 	if x != nil {
 		return x.ProfileType
 	}
 	return FinancialUserProfileType_FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
 }
 
-func (x *ListRecurringTransactionsRequest) GetFinancialAccountType() FinancialAccountType {
+func (x *ListRecurringTransactionsForUserAndAccountRequest) GetFinancialAccountType() FinancialAccountType {
 	if x != nil {
 		return x.FinancialAccountType
 	}
@@ -7602,7 +7602,7 @@ func (x *ListRecurringTransactionsRequest) GetFinancialAccountType() FinancialAc
 }
 
 // ListRecurringTransactionsResponse is the list transaction response
-type ListRecurringTransactionsResponse struct {
+type ListRecurringTransactionsForUserAndAccountResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -7611,8 +7611,8 @@ type ListRecurringTransactionsResponse struct {
 	Transactions []*PlaidAccountRecurringTransaction `protobuf:"bytes,4,rep,name=transactions,proto3" json:"transactions,omitempty"`
 }
 
-func (x *ListRecurringTransactionsResponse) Reset() {
-	*x = ListRecurringTransactionsResponse{}
+func (x *ListRecurringTransactionsForUserAndAccountResponse) Reset() {
+	*x = ListRecurringTransactionsForUserAndAccountResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_financial_service_v1_request_response_financial_service_proto_msgTypes[133]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7620,13 +7620,13 @@ func (x *ListRecurringTransactionsResponse) Reset() {
 	}
 }
 
-func (x *ListRecurringTransactionsResponse) String() string {
+func (x *ListRecurringTransactionsForUserAndAccountResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*ListRecurringTransactionsResponse) ProtoMessage() {}
+func (*ListRecurringTransactionsForUserAndAccountResponse) ProtoMessage() {}
 
-func (x *ListRecurringTransactionsResponse) ProtoReflect() protoreflect.Message {
+func (x *ListRecurringTransactionsForUserAndAccountResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_financial_service_v1_request_response_financial_service_proto_msgTypes[133]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7638,26 +7638,26 @@ func (x *ListRecurringTransactionsResponse) ProtoReflect() protoreflect.Message 
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use ListRecurringTransactionsResponse.ProtoReflect.Descriptor instead.
-func (*ListRecurringTransactionsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use ListRecurringTransactionsForUserAndAccountResponse.ProtoReflect.Descriptor instead.
+func (*ListRecurringTransactionsForUserAndAccountResponse) Descriptor() ([]byte, []int) {
 	return file_financial_service_v1_request_response_financial_service_proto_rawDescGZIP(), []int{133}
 }
 
-func (x *ListRecurringTransactionsResponse) GetNextPage() string {
+func (x *ListRecurringTransactionsForUserAndAccountResponse) GetNextPage() string {
 	if x != nil {
 		return x.NextPage
 	}
 	return ""
 }
 
-func (x *ListRecurringTransactionsResponse) GetTransactions() []*PlaidAccountRecurringTransaction {
+func (x *ListRecurringTransactionsForUserAndAccountResponse) GetTransactions() []*PlaidAccountRecurringTransaction {
 	if x != nil {
 		return x.Transactions
 	}
 	return nil
 }
 
-type GetRecurringTransactionsRequest struct {
+type GetRecurringTransactionsForUserRequest struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -7671,8 +7671,8 @@ type GetRecurringTransactionsRequest struct {
 	ProfileType FinancialUserProfileType `protobuf:"varint,9,opt,name=profile_type,json=profileType,proto3,enum=financial_service.v1.FinancialUserProfileType" json:"profile_type,omitempty"`
 }
 
-func (x *GetRecurringTransactionsRequest) Reset() {
-	*x = GetRecurringTransactionsRequest{}
+func (x *GetRecurringTransactionsForUserRequest) Reset() {
+	*x = GetRecurringTransactionsForUserRequest{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_financial_service_v1_request_response_financial_service_proto_msgTypes[134]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7680,13 +7680,13 @@ func (x *GetRecurringTransactionsRequest) Reset() {
 	}
 }
 
-func (x *GetRecurringTransactionsRequest) String() string {
+func (x *GetRecurringTransactionsForUserRequest) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRecurringTransactionsRequest) ProtoMessage() {}
+func (*GetRecurringTransactionsForUserRequest) ProtoMessage() {}
 
-func (x *GetRecurringTransactionsRequest) ProtoReflect() protoreflect.Message {
+func (x *GetRecurringTransactionsForUserRequest) ProtoReflect() protoreflect.Message {
 	mi := &file_financial_service_v1_request_response_financial_service_proto_msgTypes[134]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7698,40 +7698,40 @@ func (x *GetRecurringTransactionsRequest) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRecurringTransactionsRequest.ProtoReflect.Descriptor instead.
-func (*GetRecurringTransactionsRequest) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetRecurringTransactionsForUserRequest.ProtoReflect.Descriptor instead.
+func (*GetRecurringTransactionsForUserRequest) Descriptor() ([]byte, []int) {
 	return file_financial_service_v1_request_response_financial_service_proto_rawDescGZIP(), []int{134}
 }
 
-func (x *GetRecurringTransactionsRequest) GetUserId() string {
+func (x *GetRecurringTransactionsForUserRequest) GetUserId() string {
 	if x != nil {
 		return x.UserId
 	}
 	return ""
 }
 
-func (x *GetRecurringTransactionsRequest) GetPageNumber() uint64 {
+func (x *GetRecurringTransactionsForUserRequest) GetPageNumber() uint64 {
 	if x != nil {
 		return x.PageNumber
 	}
 	return 0
 }
 
-func (x *GetRecurringTransactionsRequest) GetPageSize() uint64 {
+func (x *GetRecurringTransactionsForUserRequest) GetPageSize() uint64 {
 	if x != nil {
 		return x.PageSize
 	}
 	return 0
 }
 
-func (x *GetRecurringTransactionsRequest) GetProfileType() FinancialUserProfileType {
+func (x *GetRecurringTransactionsForUserRequest) GetProfileType() FinancialUserProfileType {
 	if x != nil {
 		return x.ProfileType
 	}
 	return FinancialUserProfileType_FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
 }
 
-type GetRecurringTransactionsResponse struct {
+type GetRecurringTransactionsForUserResponse struct {
 	state         protoimpl.MessageState
 	sizeCache     protoimpl.SizeCache
 	unknownFields protoimpl.UnknownFields
@@ -7741,8 +7741,8 @@ type GetRecurringTransactionsResponse struct {
 	NextPageNumber uint64                              `protobuf:"varint,2,opt,name=next_page_number,json=nextPageNumber,proto3" json:"next_page_number,omitempty"`
 }
 
-func (x *GetRecurringTransactionsResponse) Reset() {
-	*x = GetRecurringTransactionsResponse{}
+func (x *GetRecurringTransactionsForUserResponse) Reset() {
+	*x = GetRecurringTransactionsForUserResponse{}
 	if protoimpl.UnsafeEnabled {
 		mi := &file_financial_service_v1_request_response_financial_service_proto_msgTypes[135]
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7750,13 +7750,13 @@ func (x *GetRecurringTransactionsResponse) Reset() {
 	}
 }
 
-func (x *GetRecurringTransactionsResponse) String() string {
+func (x *GetRecurringTransactionsForUserResponse) String() string {
 	return protoimpl.X.MessageStringOf(x)
 }
 
-func (*GetRecurringTransactionsResponse) ProtoMessage() {}
+func (*GetRecurringTransactionsForUserResponse) ProtoMessage() {}
 
-func (x *GetRecurringTransactionsResponse) ProtoReflect() protoreflect.Message {
+func (x *GetRecurringTransactionsForUserResponse) ProtoReflect() protoreflect.Message {
 	mi := &file_financial_service_v1_request_response_financial_service_proto_msgTypes[135]
 	if protoimpl.UnsafeEnabled && x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
@@ -7768,19 +7768,19 @@ func (x *GetRecurringTransactionsResponse) ProtoReflect() protoreflect.Message {
 	return mi.MessageOf(x)
 }
 
-// Deprecated: Use GetRecurringTransactionsResponse.ProtoReflect.Descriptor instead.
-func (*GetRecurringTransactionsResponse) Descriptor() ([]byte, []int) {
+// Deprecated: Use GetRecurringTransactionsForUserResponse.ProtoReflect.Descriptor instead.
+func (*GetRecurringTransactionsForUserResponse) Descriptor() ([]byte, []int) {
 	return file_financial_service_v1_request_response_financial_service_proto_rawDescGZIP(), []int{135}
 }
 
-func (x *GetRecurringTransactionsResponse) GetTransactions() []*PlaidAccountRecurringTransaction {
+func (x *GetRecurringTransactionsForUserResponse) GetTransactions() []*PlaidAccountRecurringTransaction {
 	if x != nil {
 		return x.Transactions
 	}
 	return nil
 }
 
-func (x *GetRecurringTransactionsResponse) GetNextPageNumber() uint64 {
+func (x *GetRecurringTransactionsForUserResponse) GetNextPageNumber() uint64 {
 	if x != nil {
 		return x.NextPageNumber
 	}
@@ -10176,55 +10176,58 @@ var file_financial_service_v1_request_response_financial_service_proto_rawDesc =
 	0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x12, 0x28, 0x0a, 0x10, 0x6e, 0x65,
 	0x78, 0x74, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x02,
 	0x20, 0x01, 0x28, 0x04, 0x52, 0x0e, 0x6e, 0x65, 0x78, 0x74, 0x50, 0x61, 0x67, 0x65, 0x4e, 0x75,
-	0x6d, 0x62, 0x65, 0x72, 0x22, 0xea, 0x02, 0x0a, 0x20, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x63,
+	0x6d, 0x62, 0x65, 0x72, 0x22, 0xfb, 0x02, 0x0a, 0x31, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x63,
 	0x75, 0x72, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f,
-	0x6e, 0x73, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x29, 0x0a, 0x0a, 0x61, 0x63, 0x63,
-	0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x42, 0x0a, 0xe0,
-	0x41, 0x02, 0xfa, 0x42, 0x04, 0x32, 0x02, 0x20, 0x00, 0x52, 0x09, 0x61, 0x63, 0x63, 0x6f, 0x75,
-	0x6e, 0x74, 0x49, 0x64, 0x12, 0x23, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x0a, 0xe0, 0x41, 0x02, 0xfa, 0x42, 0x04, 0x72, 0x02, 0x10,
-	0x01, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x61, 0x67,
-	0x65, 0x5f, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a,
-	0x70, 0x61, 0x67, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x1b, 0x0a, 0x09, 0x70, 0x61,
-	0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x70,
-	0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x56, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x2e, 0x2e,
-	0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x55, 0x73,
-	0x65, 0x72, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x42, 0x03, 0xe0,
-	0x41, 0x02, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12,
-	0x60, 0x0a, 0x16, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x61, 0x63, 0x63,
-	0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0e, 0x32,
-	0x2a, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c,
-	0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x14, 0x66, 0x69, 0x6e,
-	0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x79, 0x70,
-	0x65, 0x22, 0x9c, 0x01, 0x0a, 0x21, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x63, 0x75, 0x72, 0x72,
-	0x69, 0x6e, 0x67, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52,
-	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x6e, 0x65, 0x78, 0x74, 0x5f,
-	0x70, 0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6e, 0x65, 0x78, 0x74,
-	0x50, 0x61, 0x67, 0x65, 0x12, 0x5a, 0x0a, 0x0c, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74,
-	0x69, 0x6f, 0x6e, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x36, 0x2e, 0x66, 0x69, 0x6e,
-	0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76,
-	0x31, 0x2e, 0x50, 0x6c, 0x61, 0x69, 0x64, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x52, 0x65,
-	0x63, 0x75, 0x72, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69,
-	0x6f, 0x6e, 0x52, 0x0c, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73,
-	0x22, 0xdc, 0x01, 0x0a, 0x1f, 0x47, 0x65, 0x74, 0x52, 0x65, 0x63, 0x75, 0x72, 0x72, 0x69, 0x6e,
-	0x67, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x71,
-	0x75, 0x65, 0x73, 0x74, 0x12, 0x23, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18,
-	0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x0a, 0xe0, 0x41, 0x02, 0xfa, 0x42, 0x04, 0x72, 0x02, 0x10,
-	0x01, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x61, 0x67,
-	0x65, 0x5f, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a,
-	0x70, 0x61, 0x67, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x1b, 0x0a, 0x09, 0x70, 0x61,
-	0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x70,
-	0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x56, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x66, 0x69,
-	0x6c, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x2e, 0x2e,
-	0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x55, 0x73,
-	0x65, 0x72, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x42, 0x03, 0xe0,
-	0x41, 0x02, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x22,
-	0xa8, 0x01, 0x0a, 0x20, 0x47, 0x65, 0x74, 0x52, 0x65, 0x63, 0x75, 0x72, 0x72, 0x69, 0x6e, 0x67,
-	0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x52, 0x65, 0x73, 0x70,
+	0x6e, 0x73, 0x46, 0x6f, 0x72, 0x55, 0x73, 0x65, 0x72, 0x41, 0x6e, 0x64, 0x41, 0x63, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x29, 0x0a, 0x0a, 0x61, 0x63,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x42, 0x0a,
+	0xe0, 0x41, 0x02, 0xfa, 0x42, 0x04, 0x32, 0x02, 0x20, 0x00, 0x52, 0x09, 0x61, 0x63, 0x63, 0x6f,
+	0x75, 0x6e, 0x74, 0x49, 0x64, 0x12, 0x23, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64,
+	0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x0a, 0xe0, 0x41, 0x02, 0xfa, 0x42, 0x04, 0x72, 0x02,
+	0x10, 0x01, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x61,
+	0x67, 0x65, 0x5f, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52,
+	0x0a, 0x70, 0x61, 0x67, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x1b, 0x0a, 0x09, 0x70,
+	0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08,
+	0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x12, 0x56, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x66,
+	0x69, 0x6c, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x09, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x2e,
+	0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x55,
+	0x73, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x42, 0x03,
+	0xe0, 0x41, 0x02, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65,
+	0x12, 0x60, 0x0a, 0x16, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x61, 0x63,
+	0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x0a, 0x20, 0x01, 0x28, 0x0e,
+	0x32, 0x2a, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61,
+	0x6c, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x52, 0x14, 0x66, 0x69,
+	0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x79,
+	0x70, 0x65, 0x22, 0xad, 0x01, 0x0a, 0x32, 0x4c, 0x69, 0x73, 0x74, 0x52, 0x65, 0x63, 0x75, 0x72,
+	0x72, 0x69, 0x6e, 0x67, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73,
+	0x46, 0x6f, 0x72, 0x55, 0x73, 0x65, 0x72, 0x41, 0x6e, 0x64, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e,
+	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1b, 0x0a, 0x09, 0x6e, 0x65, 0x78,
+	0x74, 0x5f, 0x70, 0x61, 0x67, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x6e, 0x65,
+	0x78, 0x74, 0x50, 0x61, 0x67, 0x65, 0x12, 0x5a, 0x0a, 0x0c, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x61,
+	0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x18, 0x04, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x36, 0x2e, 0x66,
+	0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x50, 0x6c, 0x61, 0x69, 0x64, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
+	0x52, 0x65, 0x63, 0x75, 0x72, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x52, 0x0c, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f,
+	0x6e, 0x73, 0x22, 0xe3, 0x01, 0x0a, 0x26, 0x47, 0x65, 0x74, 0x52, 0x65, 0x63, 0x75, 0x72, 0x72,
+	0x69, 0x6e, 0x67, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74, 0x69, 0x6f, 0x6e, 0x73, 0x46,
+	0x6f, 0x72, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x23, 0x0a,
+	0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x0a,
+	0xe0, 0x41, 0x02, 0xfa, 0x42, 0x04, 0x72, 0x02, 0x10, 0x01, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72,
+	0x49, 0x64, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x6e, 0x75, 0x6d, 0x62, 0x65,
+	0x72, 0x18, 0x03, 0x20, 0x01, 0x28, 0x04, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x65, 0x4e, 0x75, 0x6d,
+	0x62, 0x65, 0x72, 0x12, 0x1b, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x04, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65,
+	0x12, 0x56, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65,
+	0x18, 0x09, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x2e, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69,
+	0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69,
+	0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x55, 0x73, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x66, 0x69,
+	0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x42, 0x03, 0xe0, 0x41, 0x02, 0x52, 0x0b, 0x70, 0x72, 0x6f,
+	0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x22, 0xaf, 0x01, 0x0a, 0x27, 0x47, 0x65, 0x74,
+	0x52, 0x65, 0x63, 0x75, 0x72, 0x72, 0x69, 0x6e, 0x67, 0x54, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63,
+	0x74, 0x69, 0x6f, 0x6e, 0x73, 0x46, 0x6f, 0x72, 0x55, 0x73, 0x65, 0x72, 0x52, 0x65, 0x73, 0x70,
 	0x6f, 0x6e, 0x73, 0x65, 0x12, 0x5a, 0x0a, 0x0c, 0x74, 0x72, 0x61, 0x6e, 0x73, 0x61, 0x63, 0x74,
 	0x69, 0x6f, 0x6e, 0x73, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x36, 0x2e, 0x66, 0x69, 0x6e,
 	0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76,
@@ -10463,188 +10466,188 @@ func file_financial_service_v1_request_response_financial_service_proto_rawDescG
 
 var file_financial_service_v1_request_response_financial_service_proto_msgTypes = make([]protoimpl.MessageInfo, 160)
 var file_financial_service_v1_request_response_financial_service_proto_goTypes = []interface{}{
-	(*CreateUserProfileRequest)(nil),                   // 0: financial_service.v1.CreateUserProfileRequest
-	(*CreateUserProfileResponse)(nil),                  // 1: financial_service.v1.CreateUserProfileResponse
-	(*GetUserProfileRequest)(nil),                      // 2: financial_service.v1.GetUserProfileRequest
-	(*GetUserProfileResponse)(nil),                     // 3: financial_service.v1.GetUserProfileResponse
-	(*DeleteUserProfileRequest)(nil),                   // 4: financial_service.v1.DeleteUserProfileRequest
-	(*DeleteUserProfileResponse)(nil),                  // 5: financial_service.v1.DeleteUserProfileResponse
-	(*UpdateUserProfileRequest)(nil),                   // 6: financial_service.v1.UpdateUserProfileRequest
-	(*UpdateUserProfileResponse)(nil),                  // 7: financial_service.v1.UpdateUserProfileResponse
-	(*CreateBankAccountRequest)(nil),                   // 8: financial_service.v1.CreateBankAccountRequest
-	(*CreateBankAccountResponse)(nil),                  // 9: financial_service.v1.CreateBankAccountResponse
-	(*GetBankAccountRequest)(nil),                      // 10: financial_service.v1.GetBankAccountRequest
-	(*GetBankAccountResponse)(nil),                     // 11: financial_service.v1.GetBankAccountResponse
-	(*DeleteBankAccountRequest)(nil),                   // 12: financial_service.v1.DeleteBankAccountRequest
-	(*DeleteBankAccountResponse)(nil),                  // 13: financial_service.v1.DeleteBankAccountResponse
-	(*UpdateBankAccountRequest)(nil),                   // 14: financial_service.v1.UpdateBankAccountRequest
-	(*UpdateBankAccountResponse)(nil),                  // 15: financial_service.v1.UpdateBankAccountResponse
-	(*GetPocketRequest)(nil),                           // 16: financial_service.v1.GetPocketRequest
-	(*GetPocketResponse)(nil),                          // 17: financial_service.v1.GetPocketResponse
-	(*GetSmartGoalsByPocketIdRequest)(nil),             // 18: financial_service.v1.GetSmartGoalsByPocketIdRequest
-	(*GetSmartGoalsByPocketIdResponse)(nil),            // 19: financial_service.v1.GetSmartGoalsByPocketIdResponse
-	(*CreateSmartGoalRequest)(nil),                     // 20: financial_service.v1.CreateSmartGoalRequest
-	(*CreateSmartGoalResponse)(nil),                    // 21: financial_service.v1.CreateSmartGoalResponse
-	(*UpdateSmartGoalRequest)(nil),                     // 22: financial_service.v1.UpdateSmartGoalRequest
-	(*UpdateSmartGoalResponse)(nil),                    // 23: financial_service.v1.UpdateSmartGoalResponse
-	(*DeleteSmartGoalRequest)(nil),                     // 24: financial_service.v1.DeleteSmartGoalRequest
-	(*DeleteSmartGoalResponse)(nil),                    // 25: financial_service.v1.DeleteSmartGoalResponse
-	(*CreateMilestoneRequest)(nil),                     // 26: financial_service.v1.CreateMilestoneRequest
-	(*CreateMilestoneResponse)(nil),                    // 27: financial_service.v1.CreateMilestoneResponse
-	(*DeleteMilestoneRequest)(nil),                     // 28: financial_service.v1.DeleteMilestoneRequest
-	(*DeleteMilestoneResponse)(nil),                    // 29: financial_service.v1.DeleteMilestoneResponse
-	(*UpdateMilestoneRequest)(nil),                     // 30: financial_service.v1.UpdateMilestoneRequest
-	(*UpdateMilestoneResponse)(nil),                    // 31: financial_service.v1.UpdateMilestoneResponse
-	(*GetMilestonesBySmartGoalIdRequest)(nil),          // 32: financial_service.v1.GetMilestonesBySmartGoalIdRequest
-	(*GetMilestonesBySmartGoalIdResponse)(nil),         // 33: financial_service.v1.GetMilestonesBySmartGoalIdResponse
-	(*GetMilestoneRequest)(nil),                        // 34: financial_service.v1.GetMilestoneRequest
-	(*GetMilestoneResponse)(nil),                       // 35: financial_service.v1.GetMilestoneResponse
-	(*GetForecastRequest)(nil),                         // 36: financial_service.v1.GetForecastRequest
-	(*GetForecastResponse)(nil),                        // 37: financial_service.v1.GetForecastResponse
-	(*CreateBudgetRequest)(nil),                        // 38: financial_service.v1.CreateBudgetRequest
-	(*CreateBudgetResponse)(nil),                       // 39: financial_service.v1.CreateBudgetResponse
-	(*UpdateBudgetRequest)(nil),                        // 40: financial_service.v1.UpdateBudgetRequest
-	(*UpdateBudgetResponse)(nil),                       // 41: financial_service.v1.UpdateBudgetResponse
-	(*DeleteBudgetRequest)(nil),                        // 42: financial_service.v1.DeleteBudgetRequest
-	(*DeleteBudgetResponse)(nil),                       // 43: financial_service.v1.DeleteBudgetResponse
-	(*GetBudgetRequest)(nil),                           // 44: financial_service.v1.GetBudgetRequest
-	(*GetBudgetResponse)(nil),                          // 45: financial_service.v1.GetBudgetResponse
-	(*GetAllBudgetsRequest)(nil),                       // 46: financial_service.v1.GetAllBudgetsRequest
-	(*GetAllBudgetsResponse)(nil),                      // 47: financial_service.v1.GetAllBudgetsResponse
-	(*HealthCheckRequest)(nil),                         // 48: financial_service.v1.HealthCheckRequest
-	(*HealthCheckResponse)(nil),                        // 49: financial_service.v1.HealthCheckResponse
-	(*ReadynessCheckRequest)(nil),                      // 50: financial_service.v1.ReadynessCheckRequest
-	(*ReadynessCheckResponse)(nil),                     // 51: financial_service.v1.ReadynessCheckResponse
-	(*PlaidInitiateTokenExchangeRequest)(nil),          // 52: financial_service.v1.PlaidInitiateTokenExchangeRequest
-	(*PlaidInitiateTokenExchangeResponse)(nil),         // 53: financial_service.v1.PlaidInitiateTokenExchangeResponse
-	(*PlaidInitiateTokenUpdateRequest)(nil),            // 54: financial_service.v1.PlaidInitiateTokenUpdateRequest
-	(*PlaidInitiateTokenUpdateResponse)(nil),           // 55: financial_service.v1.PlaidInitiateTokenUpdateResponse
-	(*PlaidExchangeTokenRequest)(nil),                  // 56: financial_service.v1.PlaidExchangeTokenRequest
-	(*PlaidExchangeTokenResponse)(nil),                 // 57: financial_service.v1.PlaidExchangeTokenResponse
-	(*GetInvestmentAcccountRequest)(nil),               // 58: financial_service.v1.GetInvestmentAcccountRequest
-	(*GetInvestmentAcccountResponse)(nil),              // 59: financial_service.v1.GetInvestmentAcccountResponse
-	(*GetMortgageAccountRequest)(nil),                  // 60: financial_service.v1.GetMortgageAccountRequest
-	(*GetMortgageAccountResponse)(nil),                 // 61: financial_service.v1.GetMortgageAccountResponse
-	(*GetLiabilityAccountRequest)(nil),                 // 62: financial_service.v1.GetLiabilityAccountRequest
-	(*GetLiabilityAccountResponse)(nil),                // 63: financial_service.v1.GetLiabilityAccountResponse
-	(*GetStudentLoanAccountRequest)(nil),               // 64: financial_service.v1.GetStudentLoanAccountRequest
-	(*GetStudentLoanAccountResponse)(nil),              // 65: financial_service.v1.GetStudentLoanAccountResponse
-	(*CreateManualLinkRequest)(nil),                    // 66: financial_service.v1.CreateManualLinkRequest
-	(*CreateManualLinkResponse)(nil),                   // 67: financial_service.v1.CreateManualLinkResponse
-	(*GetLinkRequest)(nil),                             // 68: financial_service.v1.GetLinkRequest
-	(*GetLinkResponse)(nil),                            // 69: financial_service.v1.GetLinkResponse
-	(*GetLinksRequest)(nil),                            // 70: financial_service.v1.GetLinksRequest
-	(*GetLinksResponse)(nil),                           // 71: financial_service.v1.GetLinksResponse
-	(*DeleteLinkRequest)(nil),                          // 72: financial_service.v1.DeleteLinkRequest
-	(*DeleteLinkResponse)(nil),                         // 73: financial_service.v1.DeleteLinkResponse
-	(*GetTransactionsRequest)(nil),                     // 74: financial_service.v1.GetTransactionsRequest
-	(*GetTransactionsResponse)(nil),                    // 75: financial_service.v1.GetTransactionsResponse
-	(*CreateSubscriptionRequest)(nil),                  // 76: financial_service.v1.CreateSubscriptionRequest
-	(*CreateSubscriptionResponse)(nil),                 // 77: financial_service.v1.CreateSubscriptionResponse
-	(*GetTransactionsForBankAccountRequest)(nil),       // 78: financial_service.v1.GetTransactionsForBankAccountRequest
-	(*GetTransactionsForBankAccountResponse)(nil),      // 79: financial_service.v1.GetTransactionsForBankAccountResponse
-	(*AddDefaultPocketsToBankAccountRequest)(nil),      // 80: financial_service.v1.AddDefaultPocketsToBankAccountRequest
-	(*AddDefaultPocketsToBankAccountResponse)(nil),     // 81: financial_service.v1.AddDefaultPocketsToBankAccountResponse
-	(*DeletePocketRequest)(nil),                        // 82: financial_service.v1.DeletePocketRequest
-	(*DeletePocketResponse)(nil),                       // 83: financial_service.v1.DeletePocketResponse
-	(*UpdatePocketRequest)(nil),                        // 84: financial_service.v1.UpdatePocketRequest
-	(*UpdatePocketResponse)(nil),                       // 85: financial_service.v1.UpdatePocketResponse
-	(*GetTransactionsBetweenTimeRangesRequest)(nil),    // 86: financial_service.v1.GetTransactionsBetweenTimeRangesRequest
-	(*GetTransactionsBetweenTimeRangesResponse)(nil),   // 87: financial_service.v1.GetTransactionsBetweenTimeRangesResponse
-	(*GetTransactionsForPastWeekRequest)(nil),          // 88: financial_service.v1.GetTransactionsForPastWeekRequest
-	(*GetTransactionsForPastWeekResponse)(nil),         // 89: financial_service.v1.GetTransactionsForPastWeekResponse
-	(*GetTransactionsForPastMonthRequest)(nil),         // 90: financial_service.v1.GetTransactionsForPastMonthRequest
-	(*GetTransactionsForPastMonthResponse)(nil),        // 91: financial_service.v1.GetTransactionsForPastMonthResponse
-	(*AddNoteToSmartGoalRequest)(nil),                  // 92: financial_service.v1.AddNoteToSmartGoalRequest
-	(*AddNoteToSmartGoalResponse)(nil),                 // 93: financial_service.v1.AddNoteToSmartGoalResponse
-	(*UpdateNoteToSmartGoalRequest)(nil),               // 94: financial_service.v1.UpdateNoteToSmartGoalRequest
-	(*UpdateNoteToSmartGoalResponse)(nil),              // 95: financial_service.v1.UpdateNoteToSmartGoalResponse
-	(*DeleteNoteFromSmartGoalRequest)(nil),             // 96: financial_service.v1.DeleteNoteFromSmartGoalRequest
-	(*DeleteNoteFromSmartGoalResponse)(nil),            // 97: financial_service.v1.DeleteNoteFromSmartGoalResponse
-	(*GetNotesFromSmartGoalRequest)(nil),               // 98: financial_service.v1.GetNotesFromSmartGoalRequest
-	(*GetNotesFromSmartGoalResponse)(nil),              // 99: financial_service.v1.GetNotesFromSmartGoalResponse
-	(*GetNoteFromSmartGoalRequest)(nil),                // 100: financial_service.v1.GetNoteFromSmartGoalRequest
-	(*GetNoteFromSmartGoalResponse)(nil),               // 101: financial_service.v1.GetNoteFromSmartGoalResponse
-	(*ListTransactionsRequest)(nil),                    // 102: financial_service.v1.ListTransactionsRequest
-	(*ListTransactionsResponse)(nil),                   // 103: financial_service.v1.ListTransactionsResponse
-	(*ListTransactionsAcrossAllAccountsRequest)(nil),   // 104: financial_service.v1.ListTransactionsAcrossAllAccountsRequest
-	(*ListTransactionsAcrossAllAccountsResponse)(nil),  // 105: financial_service.v1.ListTransactionsAcrossAllAccountsResponse
-	(*GetTransactionRequest)(nil),                      // 106: financial_service.v1.GetTransactionRequest
-	(*GetTransactionResponse)(nil),                     // 107: financial_service.v1.GetTransactionResponse
-	(*UpdateSingleTransactionRequest)(nil),             // 108: financial_service.v1.UpdateSingleTransactionRequest
-	(*UpdateSingleTransactionResponse)(nil),            // 109: financial_service.v1.UpdateSingleTransactionResponse
-	(*BulkUpdateTransactionRequest)(nil),               // 110: financial_service.v1.BulkUpdateTransactionRequest
-	(*BulkUpdateTransactionResponse)(nil),              // 111: financial_service.v1.BulkUpdateTransactionResponse
-	(*DeleteTransactionRequest)(nil),                   // 112: financial_service.v1.DeleteTransactionRequest
-	(*DeleteTransactionResponse)(nil),                  // 113: financial_service.v1.DeleteTransactionResponse
-	(*AddNoteToTransactionRequest)(nil),                // 114: financial_service.v1.AddNoteToTransactionRequest
-	(*AddNoteToTransactionResponse)(nil),               // 115: financial_service.v1.AddNoteToTransactionResponse
-	(*UpdateNoteToTransactionRequest)(nil),             // 116: financial_service.v1.UpdateNoteToTransactionRequest
-	(*UpdateNoteToTransactionResponse)(nil),            // 117: financial_service.v1.UpdateNoteToTransactionResponse
-	(*DeleteNoteFromTransactionRequest)(nil),           // 118: financial_service.v1.DeleteNoteFromTransactionRequest
-	(*DeleteNoteFromTransactionResponse)(nil),          // 119: financial_service.v1.DeleteNoteFromTransactionResponse
-	(*ListTransactionNotesRequest)(nil),                // 120: financial_service.v1.ListTransactionNotesRequest
-	(*ListTransactionNotesResponse)(nil),               // 121: financial_service.v1.ListTransactionNotesResponse
-	(*GetNoteFromTransactionRequest)(nil),              // 122: financial_service.v1.GetNoteFromTransactionRequest
-	(*GetNoteFromTransactionResponse)(nil),             // 123: financial_service.v1.GetNoteFromTransactionResponse
-	(*SplitTransactionRequest)(nil),                    // 124: financial_service.v1.SplitTransactionRequest
-	(*SplitTransactionResponse)(nil),                   // 125: financial_service.v1.SplitTransactionResponse
-	(*UnSplitTransactionsRequest)(nil),                 // 126: financial_service.v1.UnSplitTransactionsRequest
-	(*UnSplitTransactionsResponse)(nil),                // 127: financial_service.v1.UnSplitTransactionsResponse
-	(*GetSplitTransactionRequest)(nil),                 // 128: financial_service.v1.GetSplitTransactionRequest
-	(*GetSplitTransactionResponse)(nil),                // 129: financial_service.v1.GetSplitTransactionResponse
-	(*SearchTransactionsRequest)(nil),                  // 130: financial_service.v1.SearchTransactionsRequest
-	(*SearchTransactionsResponse)(nil),                 // 131: financial_service.v1.SearchTransactionsResponse
-	(*ListRecurringTransactionsRequest)(nil),           // 132: financial_service.v1.ListRecurringTransactionsRequest
-	(*ListRecurringTransactionsResponse)(nil),          // 133: financial_service.v1.ListRecurringTransactionsResponse
-	(*GetRecurringTransactionsRequest)(nil),            // 134: financial_service.v1.GetRecurringTransactionsRequest
-	(*GetRecurringTransactionsResponse)(nil),           // 135: financial_service.v1.GetRecurringTransactionsResponse
-	(*UpdateRecurringTransactionRequest)(nil),          // 136: financial_service.v1.UpdateRecurringTransactionRequest
-	(*UpdateRecurringTransactionResponse)(nil),         // 137: financial_service.v1.UpdateRecurringTransactionResponse
-	(*BulkUpdateRecurringTransactionRequest)(nil),      // 138: financial_service.v1.BulkUpdateRecurringTransactionRequest
-	(*BulkUpdateRecurringTransactionResponse)(nil),     // 139: financial_service.v1.BulkUpdateRecurringTransactionResponse
-	(*DeleteRecurringTransactionRequest)(nil),          // 140: financial_service.v1.DeleteRecurringTransactionRequest
-	(*DeleteRecurringTransactionResponse)(nil),         // 141: financial_service.v1.DeleteRecurringTransactionResponse
-	(*AddNoteToRecurringTransactionRequest)(nil),       // 142: financial_service.v1.AddNoteToRecurringTransactionRequest
-	(*AddNoteToRecurringTransactionResponse)(nil),      // 143: financial_service.v1.AddNoteToRecurringTransactionResponse
-	(*UpdateNoteToRecurringTransactionRequest)(nil),    // 144: financial_service.v1.UpdateNoteToRecurringTransactionRequest
-	(*UpdateNoteToRecurringTransactionResponse)(nil),   // 145: financial_service.v1.UpdateNoteToRecurringTransactionResponse
-	(*DeleteNoteFromRecurringTransactionRequest)(nil),  // 146: financial_service.v1.DeleteNoteFromRecurringTransactionRequest
-	(*DeleteNoteFromRecurringTransactionResponse)(nil), // 147: financial_service.v1.DeleteNoteFromRecurringTransactionResponse
-	(*ListRecurringTransactionNotesRequest)(nil),       // 148: financial_service.v1.ListRecurringTransactionNotesRequest
-	(*ListRecurringTransactionNotesResponse)(nil),      // 149: financial_service.v1.ListRecurringTransactionNotesResponse
-	(*GetSingleRecurringTransactionRequest)(nil),       // 150: financial_service.v1.GetSingleRecurringTransactionRequest
-	(*GetSingleRecurringTransactionResponse)(nil),      // 151: financial_service.v1.GetSingleRecurringTransactionResponse
-	(*PollAsyncTaskExecutionStatusRequest)(nil),        // 152: financial_service.v1.PollAsyncTaskExecutionStatusRequest
-	(*PollAsyncTaskExecutionStatusResponse)(nil),       // 153: financial_service.v1.PollAsyncTaskExecutionStatusResponse
-	(*RecordAskCopilotQuestionRequest)(nil),            // 154: financial_service.v1.RecordAskCopilotQuestionRequest
-	(*RecordAskCopilotQuestionResponse)(nil),           // 155: financial_service.v1.RecordAskCopilotQuestionResponse
-	(*CheckIfQuotaExceededRequest)(nil),                // 156: financial_service.v1.CheckIfQuotaExceededRequest
-	(*CheckIfQuotaExceededResponse)(nil),               // 157: financial_service.v1.CheckIfQuotaExceededResponse
-	(*TriggerSyncRequest)(nil),                         // 158: financial_service.v1.TriggerSyncRequest
-	(*TriggerSyncResponse)(nil),                        // 159: financial_service.v1.TriggerSyncResponse
-	(*FinancialUserProfile)(nil),                       // 160: financial_service.v1.FinancialUserProfile
-	(FinancialUserProfileType)(0),                      // 161: financial_service.v1.FinancialUserProfileType
-	(*MelodyFinancialContext)(nil),                     // 162: financial_service.v1.MelodyFinancialContext
-	(*BankAccount)(nil),                                // 163: financial_service.v1.BankAccount
-	(*Pocket)(nil),                                     // 164: financial_service.v1.Pocket
-	(*SmartGoal)(nil),                                  // 165: financial_service.v1.SmartGoal
-	(*Milestone)(nil),                                  // 166: financial_service.v1.Milestone
-	(*Forecast)(nil),                                   // 167: financial_service.v1.Forecast
-	(*Budget)(nil),                                     // 168: financial_service.v1.Budget
-	(*InvestmentAccount)(nil),                          // 169: financial_service.v1.InvestmentAccount
-	(*MortgageAccount)(nil),                            // 170: financial_service.v1.MortgageAccount
-	(*CreditAccount)(nil),                              // 171: financial_service.v1.CreditAccount
-	(*StudentLoanAccount)(nil),                         // 172: financial_service.v1.StudentLoanAccount
-	(*Link)(nil),                                       // 173: financial_service.v1.Link
-	(*Transaction)(nil),                                // 174: financial_service.v1.Transaction
-	(FinancialAccountType)(0),                          // 175: financial_service.v1.FinancialAccountType
-	(*timestamppb.Timestamp)(nil),                      // 176: google.protobuf.Timestamp
-	(*PlaidAccountTransaction)(nil),                    // 177: financial_service.v1.PlaidAccountTransaction
-	(*SmartNote)(nil),                                  // 178: financial_service.v1.SmartNote
-	(*TransactionSplit)(nil),                           // 179: financial_service.v1.TransactionSplit
-	(*PlaidAccountRecurringTransaction)(nil),           // 180: financial_service.v1.PlaidAccountRecurringTransaction
-	(TaskState)(0),                                     // 181: financial_service.v1.TaskState
+	(*CreateUserProfileRequest)(nil),                           // 0: financial_service.v1.CreateUserProfileRequest
+	(*CreateUserProfileResponse)(nil),                          // 1: financial_service.v1.CreateUserProfileResponse
+	(*GetUserProfileRequest)(nil),                              // 2: financial_service.v1.GetUserProfileRequest
+	(*GetUserProfileResponse)(nil),                             // 3: financial_service.v1.GetUserProfileResponse
+	(*DeleteUserProfileRequest)(nil),                           // 4: financial_service.v1.DeleteUserProfileRequest
+	(*DeleteUserProfileResponse)(nil),                          // 5: financial_service.v1.DeleteUserProfileResponse
+	(*UpdateUserProfileRequest)(nil),                           // 6: financial_service.v1.UpdateUserProfileRequest
+	(*UpdateUserProfileResponse)(nil),                          // 7: financial_service.v1.UpdateUserProfileResponse
+	(*CreateBankAccountRequest)(nil),                           // 8: financial_service.v1.CreateBankAccountRequest
+	(*CreateBankAccountResponse)(nil),                          // 9: financial_service.v1.CreateBankAccountResponse
+	(*GetBankAccountRequest)(nil),                              // 10: financial_service.v1.GetBankAccountRequest
+	(*GetBankAccountResponse)(nil),                             // 11: financial_service.v1.GetBankAccountResponse
+	(*DeleteBankAccountRequest)(nil),                           // 12: financial_service.v1.DeleteBankAccountRequest
+	(*DeleteBankAccountResponse)(nil),                          // 13: financial_service.v1.DeleteBankAccountResponse
+	(*UpdateBankAccountRequest)(nil),                           // 14: financial_service.v1.UpdateBankAccountRequest
+	(*UpdateBankAccountResponse)(nil),                          // 15: financial_service.v1.UpdateBankAccountResponse
+	(*GetPocketRequest)(nil),                                   // 16: financial_service.v1.GetPocketRequest
+	(*GetPocketResponse)(nil),                                  // 17: financial_service.v1.GetPocketResponse
+	(*GetSmartGoalsByPocketIdRequest)(nil),                     // 18: financial_service.v1.GetSmartGoalsByPocketIdRequest
+	(*GetSmartGoalsByPocketIdResponse)(nil),                    // 19: financial_service.v1.GetSmartGoalsByPocketIdResponse
+	(*CreateSmartGoalRequest)(nil),                             // 20: financial_service.v1.CreateSmartGoalRequest
+	(*CreateSmartGoalResponse)(nil),                            // 21: financial_service.v1.CreateSmartGoalResponse
+	(*UpdateSmartGoalRequest)(nil),                             // 22: financial_service.v1.UpdateSmartGoalRequest
+	(*UpdateSmartGoalResponse)(nil),                            // 23: financial_service.v1.UpdateSmartGoalResponse
+	(*DeleteSmartGoalRequest)(nil),                             // 24: financial_service.v1.DeleteSmartGoalRequest
+	(*DeleteSmartGoalResponse)(nil),                            // 25: financial_service.v1.DeleteSmartGoalResponse
+	(*CreateMilestoneRequest)(nil),                             // 26: financial_service.v1.CreateMilestoneRequest
+	(*CreateMilestoneResponse)(nil),                            // 27: financial_service.v1.CreateMilestoneResponse
+	(*DeleteMilestoneRequest)(nil),                             // 28: financial_service.v1.DeleteMilestoneRequest
+	(*DeleteMilestoneResponse)(nil),                            // 29: financial_service.v1.DeleteMilestoneResponse
+	(*UpdateMilestoneRequest)(nil),                             // 30: financial_service.v1.UpdateMilestoneRequest
+	(*UpdateMilestoneResponse)(nil),                            // 31: financial_service.v1.UpdateMilestoneResponse
+	(*GetMilestonesBySmartGoalIdRequest)(nil),                  // 32: financial_service.v1.GetMilestonesBySmartGoalIdRequest
+	(*GetMilestonesBySmartGoalIdResponse)(nil),                 // 33: financial_service.v1.GetMilestonesBySmartGoalIdResponse
+	(*GetMilestoneRequest)(nil),                                // 34: financial_service.v1.GetMilestoneRequest
+	(*GetMilestoneResponse)(nil),                               // 35: financial_service.v1.GetMilestoneResponse
+	(*GetForecastRequest)(nil),                                 // 36: financial_service.v1.GetForecastRequest
+	(*GetForecastResponse)(nil),                                // 37: financial_service.v1.GetForecastResponse
+	(*CreateBudgetRequest)(nil),                                // 38: financial_service.v1.CreateBudgetRequest
+	(*CreateBudgetResponse)(nil),                               // 39: financial_service.v1.CreateBudgetResponse
+	(*UpdateBudgetRequest)(nil),                                // 40: financial_service.v1.UpdateBudgetRequest
+	(*UpdateBudgetResponse)(nil),                               // 41: financial_service.v1.UpdateBudgetResponse
+	(*DeleteBudgetRequest)(nil),                                // 42: financial_service.v1.DeleteBudgetRequest
+	(*DeleteBudgetResponse)(nil),                               // 43: financial_service.v1.DeleteBudgetResponse
+	(*GetBudgetRequest)(nil),                                   // 44: financial_service.v1.GetBudgetRequest
+	(*GetBudgetResponse)(nil),                                  // 45: financial_service.v1.GetBudgetResponse
+	(*GetAllBudgetsRequest)(nil),                               // 46: financial_service.v1.GetAllBudgetsRequest
+	(*GetAllBudgetsResponse)(nil),                              // 47: financial_service.v1.GetAllBudgetsResponse
+	(*HealthCheckRequest)(nil),                                 // 48: financial_service.v1.HealthCheckRequest
+	(*HealthCheckResponse)(nil),                                // 49: financial_service.v1.HealthCheckResponse
+	(*ReadynessCheckRequest)(nil),                              // 50: financial_service.v1.ReadynessCheckRequest
+	(*ReadynessCheckResponse)(nil),                             // 51: financial_service.v1.ReadynessCheckResponse
+	(*PlaidInitiateTokenExchangeRequest)(nil),                  // 52: financial_service.v1.PlaidInitiateTokenExchangeRequest
+	(*PlaidInitiateTokenExchangeResponse)(nil),                 // 53: financial_service.v1.PlaidInitiateTokenExchangeResponse
+	(*PlaidInitiateTokenUpdateRequest)(nil),                    // 54: financial_service.v1.PlaidInitiateTokenUpdateRequest
+	(*PlaidInitiateTokenUpdateResponse)(nil),                   // 55: financial_service.v1.PlaidInitiateTokenUpdateResponse
+	(*PlaidExchangeTokenRequest)(nil),                          // 56: financial_service.v1.PlaidExchangeTokenRequest
+	(*PlaidExchangeTokenResponse)(nil),                         // 57: financial_service.v1.PlaidExchangeTokenResponse
+	(*GetInvestmentAcccountRequest)(nil),                       // 58: financial_service.v1.GetInvestmentAcccountRequest
+	(*GetInvestmentAcccountResponse)(nil),                      // 59: financial_service.v1.GetInvestmentAcccountResponse
+	(*GetMortgageAccountRequest)(nil),                          // 60: financial_service.v1.GetMortgageAccountRequest
+	(*GetMortgageAccountResponse)(nil),                         // 61: financial_service.v1.GetMortgageAccountResponse
+	(*GetLiabilityAccountRequest)(nil),                         // 62: financial_service.v1.GetLiabilityAccountRequest
+	(*GetLiabilityAccountResponse)(nil),                        // 63: financial_service.v1.GetLiabilityAccountResponse
+	(*GetStudentLoanAccountRequest)(nil),                       // 64: financial_service.v1.GetStudentLoanAccountRequest
+	(*GetStudentLoanAccountResponse)(nil),                      // 65: financial_service.v1.GetStudentLoanAccountResponse
+	(*CreateManualLinkRequest)(nil),                            // 66: financial_service.v1.CreateManualLinkRequest
+	(*CreateManualLinkResponse)(nil),                           // 67: financial_service.v1.CreateManualLinkResponse
+	(*GetLinkRequest)(nil),                                     // 68: financial_service.v1.GetLinkRequest
+	(*GetLinkResponse)(nil),                                    // 69: financial_service.v1.GetLinkResponse
+	(*GetLinksRequest)(nil),                                    // 70: financial_service.v1.GetLinksRequest
+	(*GetLinksResponse)(nil),                                   // 71: financial_service.v1.GetLinksResponse
+	(*DeleteLinkRequest)(nil),                                  // 72: financial_service.v1.DeleteLinkRequest
+	(*DeleteLinkResponse)(nil),                                 // 73: financial_service.v1.DeleteLinkResponse
+	(*GetTransactionsRequest)(nil),                             // 74: financial_service.v1.GetTransactionsRequest
+	(*GetTransactionsResponse)(nil),                            // 75: financial_service.v1.GetTransactionsResponse
+	(*CreateSubscriptionRequest)(nil),                          // 76: financial_service.v1.CreateSubscriptionRequest
+	(*CreateSubscriptionResponse)(nil),                         // 77: financial_service.v1.CreateSubscriptionResponse
+	(*GetTransactionsForBankAccountRequest)(nil),               // 78: financial_service.v1.GetTransactionsForBankAccountRequest
+	(*GetTransactionsForBankAccountResponse)(nil),              // 79: financial_service.v1.GetTransactionsForBankAccountResponse
+	(*AddDefaultPocketsToBankAccountRequest)(nil),              // 80: financial_service.v1.AddDefaultPocketsToBankAccountRequest
+	(*AddDefaultPocketsToBankAccountResponse)(nil),             // 81: financial_service.v1.AddDefaultPocketsToBankAccountResponse
+	(*DeletePocketRequest)(nil),                                // 82: financial_service.v1.DeletePocketRequest
+	(*DeletePocketResponse)(nil),                               // 83: financial_service.v1.DeletePocketResponse
+	(*UpdatePocketRequest)(nil),                                // 84: financial_service.v1.UpdatePocketRequest
+	(*UpdatePocketResponse)(nil),                               // 85: financial_service.v1.UpdatePocketResponse
+	(*GetTransactionsBetweenTimeRangesRequest)(nil),            // 86: financial_service.v1.GetTransactionsBetweenTimeRangesRequest
+	(*GetTransactionsBetweenTimeRangesResponse)(nil),           // 87: financial_service.v1.GetTransactionsBetweenTimeRangesResponse
+	(*GetTransactionsForPastWeekRequest)(nil),                  // 88: financial_service.v1.GetTransactionsForPastWeekRequest
+	(*GetTransactionsForPastWeekResponse)(nil),                 // 89: financial_service.v1.GetTransactionsForPastWeekResponse
+	(*GetTransactionsForPastMonthRequest)(nil),                 // 90: financial_service.v1.GetTransactionsForPastMonthRequest
+	(*GetTransactionsForPastMonthResponse)(nil),                // 91: financial_service.v1.GetTransactionsForPastMonthResponse
+	(*AddNoteToSmartGoalRequest)(nil),                          // 92: financial_service.v1.AddNoteToSmartGoalRequest
+	(*AddNoteToSmartGoalResponse)(nil),                         // 93: financial_service.v1.AddNoteToSmartGoalResponse
+	(*UpdateNoteToSmartGoalRequest)(nil),                       // 94: financial_service.v1.UpdateNoteToSmartGoalRequest
+	(*UpdateNoteToSmartGoalResponse)(nil),                      // 95: financial_service.v1.UpdateNoteToSmartGoalResponse
+	(*DeleteNoteFromSmartGoalRequest)(nil),                     // 96: financial_service.v1.DeleteNoteFromSmartGoalRequest
+	(*DeleteNoteFromSmartGoalResponse)(nil),                    // 97: financial_service.v1.DeleteNoteFromSmartGoalResponse
+	(*GetNotesFromSmartGoalRequest)(nil),                       // 98: financial_service.v1.GetNotesFromSmartGoalRequest
+	(*GetNotesFromSmartGoalResponse)(nil),                      // 99: financial_service.v1.GetNotesFromSmartGoalResponse
+	(*GetNoteFromSmartGoalRequest)(nil),                        // 100: financial_service.v1.GetNoteFromSmartGoalRequest
+	(*GetNoteFromSmartGoalResponse)(nil),                       // 101: financial_service.v1.GetNoteFromSmartGoalResponse
+	(*ListTransactionsRequest)(nil),                            // 102: financial_service.v1.ListTransactionsRequest
+	(*ListTransactionsResponse)(nil),                           // 103: financial_service.v1.ListTransactionsResponse
+	(*ListTransactionsAcrossAllAccountsRequest)(nil),           // 104: financial_service.v1.ListTransactionsAcrossAllAccountsRequest
+	(*ListTransactionsAcrossAllAccountsResponse)(nil),          // 105: financial_service.v1.ListTransactionsAcrossAllAccountsResponse
+	(*GetTransactionRequest)(nil),                              // 106: financial_service.v1.GetTransactionRequest
+	(*GetTransactionResponse)(nil),                             // 107: financial_service.v1.GetTransactionResponse
+	(*UpdateSingleTransactionRequest)(nil),                     // 108: financial_service.v1.UpdateSingleTransactionRequest
+	(*UpdateSingleTransactionResponse)(nil),                    // 109: financial_service.v1.UpdateSingleTransactionResponse
+	(*BulkUpdateTransactionRequest)(nil),                       // 110: financial_service.v1.BulkUpdateTransactionRequest
+	(*BulkUpdateTransactionResponse)(nil),                      // 111: financial_service.v1.BulkUpdateTransactionResponse
+	(*DeleteTransactionRequest)(nil),                           // 112: financial_service.v1.DeleteTransactionRequest
+	(*DeleteTransactionResponse)(nil),                          // 113: financial_service.v1.DeleteTransactionResponse
+	(*AddNoteToTransactionRequest)(nil),                        // 114: financial_service.v1.AddNoteToTransactionRequest
+	(*AddNoteToTransactionResponse)(nil),                       // 115: financial_service.v1.AddNoteToTransactionResponse
+	(*UpdateNoteToTransactionRequest)(nil),                     // 116: financial_service.v1.UpdateNoteToTransactionRequest
+	(*UpdateNoteToTransactionResponse)(nil),                    // 117: financial_service.v1.UpdateNoteToTransactionResponse
+	(*DeleteNoteFromTransactionRequest)(nil),                   // 118: financial_service.v1.DeleteNoteFromTransactionRequest
+	(*DeleteNoteFromTransactionResponse)(nil),                  // 119: financial_service.v1.DeleteNoteFromTransactionResponse
+	(*ListTransactionNotesRequest)(nil),                        // 120: financial_service.v1.ListTransactionNotesRequest
+	(*ListTransactionNotesResponse)(nil),                       // 121: financial_service.v1.ListTransactionNotesResponse
+	(*GetNoteFromTransactionRequest)(nil),                      // 122: financial_service.v1.GetNoteFromTransactionRequest
+	(*GetNoteFromTransactionResponse)(nil),                     // 123: financial_service.v1.GetNoteFromTransactionResponse
+	(*SplitTransactionRequest)(nil),                            // 124: financial_service.v1.SplitTransactionRequest
+	(*SplitTransactionResponse)(nil),                           // 125: financial_service.v1.SplitTransactionResponse
+	(*UnSplitTransactionsRequest)(nil),                         // 126: financial_service.v1.UnSplitTransactionsRequest
+	(*UnSplitTransactionsResponse)(nil),                        // 127: financial_service.v1.UnSplitTransactionsResponse
+	(*GetSplitTransactionRequest)(nil),                         // 128: financial_service.v1.GetSplitTransactionRequest
+	(*GetSplitTransactionResponse)(nil),                        // 129: financial_service.v1.GetSplitTransactionResponse
+	(*SearchTransactionsRequest)(nil),                          // 130: financial_service.v1.SearchTransactionsRequest
+	(*SearchTransactionsResponse)(nil),                         // 131: financial_service.v1.SearchTransactionsResponse
+	(*ListRecurringTransactionsForUserAndAccountRequest)(nil),  // 132: financial_service.v1.ListRecurringTransactionsForUserAndAccountRequest
+	(*ListRecurringTransactionsForUserAndAccountResponse)(nil), // 133: financial_service.v1.ListRecurringTransactionsForUserAndAccountResponse
+	(*GetRecurringTransactionsForUserRequest)(nil),             // 134: financial_service.v1.GetRecurringTransactionsForUserRequest
+	(*GetRecurringTransactionsForUserResponse)(nil),            // 135: financial_service.v1.GetRecurringTransactionsForUserResponse
+	(*UpdateRecurringTransactionRequest)(nil),                  // 136: financial_service.v1.UpdateRecurringTransactionRequest
+	(*UpdateRecurringTransactionResponse)(nil),                 // 137: financial_service.v1.UpdateRecurringTransactionResponse
+	(*BulkUpdateRecurringTransactionRequest)(nil),              // 138: financial_service.v1.BulkUpdateRecurringTransactionRequest
+	(*BulkUpdateRecurringTransactionResponse)(nil),             // 139: financial_service.v1.BulkUpdateRecurringTransactionResponse
+	(*DeleteRecurringTransactionRequest)(nil),                  // 140: financial_service.v1.DeleteRecurringTransactionRequest
+	(*DeleteRecurringTransactionResponse)(nil),                 // 141: financial_service.v1.DeleteRecurringTransactionResponse
+	(*AddNoteToRecurringTransactionRequest)(nil),               // 142: financial_service.v1.AddNoteToRecurringTransactionRequest
+	(*AddNoteToRecurringTransactionResponse)(nil),              // 143: financial_service.v1.AddNoteToRecurringTransactionResponse
+	(*UpdateNoteToRecurringTransactionRequest)(nil),            // 144: financial_service.v1.UpdateNoteToRecurringTransactionRequest
+	(*UpdateNoteToRecurringTransactionResponse)(nil),           // 145: financial_service.v1.UpdateNoteToRecurringTransactionResponse
+	(*DeleteNoteFromRecurringTransactionRequest)(nil),          // 146: financial_service.v1.DeleteNoteFromRecurringTransactionRequest
+	(*DeleteNoteFromRecurringTransactionResponse)(nil),         // 147: financial_service.v1.DeleteNoteFromRecurringTransactionResponse
+	(*ListRecurringTransactionNotesRequest)(nil),               // 148: financial_service.v1.ListRecurringTransactionNotesRequest
+	(*ListRecurringTransactionNotesResponse)(nil),              // 149: financial_service.v1.ListRecurringTransactionNotesResponse
+	(*GetSingleRecurringTransactionRequest)(nil),               // 150: financial_service.v1.GetSingleRecurringTransactionRequest
+	(*GetSingleRecurringTransactionResponse)(nil),              // 151: financial_service.v1.GetSingleRecurringTransactionResponse
+	(*PollAsyncTaskExecutionStatusRequest)(nil),                // 152: financial_service.v1.PollAsyncTaskExecutionStatusRequest
+	(*PollAsyncTaskExecutionStatusResponse)(nil),               // 153: financial_service.v1.PollAsyncTaskExecutionStatusResponse
+	(*RecordAskCopilotQuestionRequest)(nil),                    // 154: financial_service.v1.RecordAskCopilotQuestionRequest
+	(*RecordAskCopilotQuestionResponse)(nil),                   // 155: financial_service.v1.RecordAskCopilotQuestionResponse
+	(*CheckIfQuotaExceededRequest)(nil),                        // 156: financial_service.v1.CheckIfQuotaExceededRequest
+	(*CheckIfQuotaExceededResponse)(nil),                       // 157: financial_service.v1.CheckIfQuotaExceededResponse
+	(*TriggerSyncRequest)(nil),                                 // 158: financial_service.v1.TriggerSyncRequest
+	(*TriggerSyncResponse)(nil),                                // 159: financial_service.v1.TriggerSyncResponse
+	(*FinancialUserProfile)(nil),                               // 160: financial_service.v1.FinancialUserProfile
+	(FinancialUserProfileType)(0),                              // 161: financial_service.v1.FinancialUserProfileType
+	(*MelodyFinancialContext)(nil),                             // 162: financial_service.v1.MelodyFinancialContext
+	(*BankAccount)(nil),                                        // 163: financial_service.v1.BankAccount
+	(*Pocket)(nil),                                             // 164: financial_service.v1.Pocket
+	(*SmartGoal)(nil),                                          // 165: financial_service.v1.SmartGoal
+	(*Milestone)(nil),                                          // 166: financial_service.v1.Milestone
+	(*Forecast)(nil),                                           // 167: financial_service.v1.Forecast
+	(*Budget)(nil),                                             // 168: financial_service.v1.Budget
+	(*InvestmentAccount)(nil),                                  // 169: financial_service.v1.InvestmentAccount
+	(*MortgageAccount)(nil),                                    // 170: financial_service.v1.MortgageAccount
+	(*CreditAccount)(nil),                                      // 171: financial_service.v1.CreditAccount
+	(*StudentLoanAccount)(nil),                                 // 172: financial_service.v1.StudentLoanAccount
+	(*Link)(nil),                                               // 173: financial_service.v1.Link
+	(*Transaction)(nil),                                        // 174: financial_service.v1.Transaction
+	(FinancialAccountType)(0),                                  // 175: financial_service.v1.FinancialAccountType
+	(*timestamppb.Timestamp)(nil),                              // 176: google.protobuf.Timestamp
+	(*PlaidAccountTransaction)(nil),                            // 177: financial_service.v1.PlaidAccountTransaction
+	(*SmartNote)(nil),                                          // 178: financial_service.v1.SmartNote
+	(*TransactionSplit)(nil),                                   // 179: financial_service.v1.TransactionSplit
+	(*PlaidAccountRecurringTransaction)(nil),                   // 180: financial_service.v1.PlaidAccountRecurringTransaction
+	(TaskState)(0),                                             // 181: financial_service.v1.TaskState
 }
 var file_financial_service_v1_request_response_financial_service_proto_depIdxs = []int32{
 	160, // 0: financial_service.v1.CreateUserProfileRequest.profile:type_name -> financial_service.v1.FinancialUserProfile
@@ -10746,11 +10749,11 @@ var file_financial_service_v1_request_response_financial_service_proto_depIdxs =
 	176, // 96: financial_service.v1.SearchTransactionsRequest.end_date:type_name -> google.protobuf.Timestamp
 	175, // 97: financial_service.v1.SearchTransactionsRequest.financial_account_type:type_name -> financial_service.v1.FinancialAccountType
 	177, // 98: financial_service.v1.SearchTransactionsResponse.transactions:type_name -> financial_service.v1.PlaidAccountTransaction
-	161, // 99: financial_service.v1.ListRecurringTransactionsRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	175, // 100: financial_service.v1.ListRecurringTransactionsRequest.financial_account_type:type_name -> financial_service.v1.FinancialAccountType
-	180, // 101: financial_service.v1.ListRecurringTransactionsResponse.transactions:type_name -> financial_service.v1.PlaidAccountRecurringTransaction
-	161, // 102: financial_service.v1.GetRecurringTransactionsRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	180, // 103: financial_service.v1.GetRecurringTransactionsResponse.transactions:type_name -> financial_service.v1.PlaidAccountRecurringTransaction
+	161, // 99: financial_service.v1.ListRecurringTransactionsForUserAndAccountRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	175, // 100: financial_service.v1.ListRecurringTransactionsForUserAndAccountRequest.financial_account_type:type_name -> financial_service.v1.FinancialAccountType
+	180, // 101: financial_service.v1.ListRecurringTransactionsForUserAndAccountResponse.transactions:type_name -> financial_service.v1.PlaidAccountRecurringTransaction
+	161, // 102: financial_service.v1.GetRecurringTransactionsForUserRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	180, // 103: financial_service.v1.GetRecurringTransactionsForUserResponse.transactions:type_name -> financial_service.v1.PlaidAccountRecurringTransaction
 	180, // 104: financial_service.v1.UpdateRecurringTransactionRequest.transaction:type_name -> financial_service.v1.PlaidAccountRecurringTransaction
 	180, // 105: financial_service.v1.UpdateRecurringTransactionResponse.transaction:type_name -> financial_service.v1.PlaidAccountRecurringTransaction
 	180, // 106: financial_service.v1.BulkUpdateRecurringTransactionRequest.transactions:type_name -> financial_service.v1.PlaidAccountRecurringTransaction
@@ -12367,7 +12370,7 @@ func file_financial_service_v1_request_response_financial_service_proto_init() {
 			}
 		}
 		file_financial_service_v1_request_response_financial_service_proto_msgTypes[132].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListRecurringTransactionsRequest); i {
+			switch v := v.(*ListRecurringTransactionsForUserAndAccountRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12379,7 +12382,7 @@ func file_financial_service_v1_request_response_financial_service_proto_init() {
 			}
 		}
 		file_financial_service_v1_request_response_financial_service_proto_msgTypes[133].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*ListRecurringTransactionsResponse); i {
+			switch v := v.(*ListRecurringTransactionsForUserAndAccountResponse); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12391,7 +12394,7 @@ func file_financial_service_v1_request_response_financial_service_proto_init() {
 			}
 		}
 		file_financial_service_v1_request_response_financial_service_proto_msgTypes[134].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRecurringTransactionsRequest); i {
+			switch v := v.(*GetRecurringTransactionsForUserRequest); i {
 			case 0:
 				return &v.state
 			case 1:
@@ -12403,7 +12406,7 @@ func file_financial_service_v1_request_response_financial_service_proto_init() {
 			}
 		}
 		file_financial_service_v1_request_response_financial_service_proto_msgTypes[135].Exporter = func(v interface{}, i int) interface{} {
-			switch v := v.(*GetRecurringTransactionsResponse); i {
+			switch v := v.(*GetRecurringTransactionsForUserResponse); i {
 			case 0:
 				return &v.state
 			case 1:

@@ -65,7 +65,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**getPaymentChannelMonthlyExpenditure**](FinancialServiceApi.md#getPaymentChannelMonthlyExpenditure) | **GET** /financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{userId} | Get Payment Channel Monthly Expenditure by user, month, and payment channel |
 | [**getPocket**](FinancialServiceApi.md#getPocket) | **GET** /financial-microservice/api/v1/pocket/{pocketId} | get a pocket |
 | [**getRecurringTransaction**](FinancialServiceApi.md#getRecurringTransaction) | **GET** /financial-microservice/api/v1/transactions/recurring/{transactionId} | lists a set of transactions against a given account of interest |
-| [**getRecurringTransactions**](FinancialServiceApi.md#getRecurringTransactions) | **GET** /financial-microservice/api/v1/transactions/recurring-transactions/{userId} | get recurring transactions |
+| [**getRecurringTransactionsForUser**](FinancialServiceApi.md#getRecurringTransactionsForUser) | **GET** /financial-microservice/api/v1/transactions/recurring-transactions/{userId} | get recurring transactions |
 | [**getSmartGoalsByPocketId**](FinancialServiceApi.md#getSmartGoalsByPocketId) | **GET** /financial-microservice/api/v1/smart-goal/pocket/{pocketId} | get smart goals by pocket id |
 | [**getSplitTransaction**](FinancialServiceApi.md#getSplitTransaction) | **GET** /financial-microservice/api/v1/transactions/transaction/{transactionId}/split | gets a split transaction |
 | [**getStudentLoanAccount**](FinancialServiceApi.md#getStudentLoanAccount) | **GET** /financial-microservice/api/v1/account/{userId}/student-loan/{studentLoanAccountId} | get student loan account by id |
@@ -84,7 +84,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**initiatePlaidSetup**](FinancialServiceApi.md#initiatePlaidSetup) | **POST** /financial-microservice/api/v1/plaid/initiate-token-exchange | initiate plaid setup |
 | [**initiatePlaidTokenUpdate**](FinancialServiceApi.md#initiatePlaidTokenUpdate) | **POST** /financial-microservice/api/v1/plaid/initiate-token-update | initiate plaid link token update |
 | [**listRecurringTransactionNotes**](FinancialServiceApi.md#listRecurringTransactionNotes) | **GET** /financial-microservice/api/v1/transactions/recurring/{transactionId}/notes | lists notes from a transaction |
-| [**listRecurringTransactions**](FinancialServiceApi.md#listRecurringTransactions) | **GET** /financial-microservice/api/v1/transactions/recurrings | lists a set of transactions against a given account of interest |
+| [**listRecurringTransactionsForUserAndAccount**](FinancialServiceApi.md#listRecurringTransactionsForUserAndAccount) | **GET** /financial-microservice/api/v1/transactions/recurrings | lists a set of transactions against a given account of interest |
 | [**listTransactionNotes**](FinancialServiceApi.md#listTransactionNotes) | **GET** /financial-microservice/api/v1/transactions/transaction/{transactionId}/notes | lists notes from a transaction |
 | [**listTransactions**](FinancialServiceApi.md#listTransactions) | **GET** /financial-microservice/api/v1/transactions | lists a set of transactions against a given account of interest |
 | [**listTransactions1**](FinancialServiceApi.md#listTransactions1) | **GET** /financial-microservice/api/v1/transactions/all_accounts | lists a set of transactions across all connected accounts |
@@ -1813,9 +1813,9 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-<a name="getRecurringTransactions"></a>
-# **getRecurringTransactions**
-> GetRecurringTransactionsResponse getRecurringTransactions(userId, profileType, pageNumber, pageSize)
+<a name="getRecurringTransactionsForUser"></a>
+# **getRecurringTransactionsForUser**
+> GetRecurringTransactionsForUserResponse getRecurringTransactionsForUser(userId, profileType, pageNumber, pageSize)
 
 get recurring transactions
 
@@ -1832,7 +1832,7 @@ get recurring transactions
 
 ### Return type
 
-[**GetRecurringTransactionsResponse**](../Models/GetRecurringTransactionsResponse.md)
+[**GetRecurringTransactionsForUserResponse**](../Models/GetRecurringTransactionsForUserResponse.md)
 
 ### Authorization
 
@@ -2366,9 +2366,9 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-<a name="listRecurringTransactions"></a>
-# **listRecurringTransactions**
-> ListRecurringTransactionsResponse listRecurringTransactions(accountId, userId, profileType, pageNumber, pageSize, financialAccountType)
+<a name="listRecurringTransactionsForUserAndAccount"></a>
+# **listRecurringTransactionsForUserAndAccount**
+> ListRecurringTransactionsForUserAndAccountResponse listRecurringTransactionsForUserAndAccount(accountId, userId, profileType, pageNumber, pageSize, financialAccountType)
 
 lists a set of transactions against a given account of interest
 
@@ -2387,7 +2387,7 @@ lists a set of transactions against a given account of interest
 
 ### Return type
 
-[**ListRecurringTransactionsResponse**](../Models/ListRecurringTransactionsResponse.md)
+[**ListRecurringTransactionsForUserAndAccountResponse**](../Models/ListRecurringTransactionsForUserAndAccountResponse.md)
 
 ### Authorization
 

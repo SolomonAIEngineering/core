@@ -1421,7 +1421,7 @@ message SearchTransactionsResponse {
 
 // RECURRING TRANSACTIONS
 // ListRecurringTransactionsRequest is the list transaction request
-message ListRecurringTransactionsRequest {
+message ListRecurringTransactionsForUserAndAccountRequest {
   uint64 account_id = 1 [
     (validate.rules).uint64.gt = 0,
     (google.api.field_behavior) = REQUIRED
@@ -1439,12 +1439,12 @@ message ListRecurringTransactionsRequest {
 }
 
 // ListRecurringTransactionsResponse is the list transaction response
-message ListRecurringTransactionsResponse {
+message ListRecurringTransactionsForUserAndAccountResponse {
   string next_page = 2;
   repeated PlaidAccountRecurringTransaction transactions = 4;
 }
 
-message GetRecurringTransactionsRequest {
+message GetRecurringTransactionsForUserRequest {
   // The user id
   // Validations:
   // - user_id must be greater than 0
@@ -1460,7 +1460,7 @@ message GetRecurringTransactionsRequest {
   ];
 }
 
-message GetRecurringTransactionsResponse {
+message GetRecurringTransactionsForUserResponse {
   // The transactions
   repeated PlaidAccountRecurringTransaction transactions = 1;
   uint64 next_page_number = 2;

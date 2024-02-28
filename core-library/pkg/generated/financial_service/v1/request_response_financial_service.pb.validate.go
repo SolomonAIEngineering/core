@@ -16973,23 +16973,24 @@ var _ interface {
 	ErrorName() string
 } = SearchTransactionsResponseValidationError{}
 
-// Validate checks the field values on ListRecurringTransactionsRequest with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, the first error encountered is returned, or nil if there are
-// no violations.
-func (m *ListRecurringTransactionsRequest) Validate() error {
+// Validate checks the field values on
+// ListRecurringTransactionsForUserAndAccountRequest with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *ListRecurringTransactionsForUserAndAccountRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ListRecurringTransactionsRequest with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, the result is a list of violation errors wrapped in
-// ListRecurringTransactionsRequestMultiError, or nil if none found.
-func (m *ListRecurringTransactionsRequest) ValidateAll() error {
+// ValidateAll checks the field values on
+// ListRecurringTransactionsForUserAndAccountRequest with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// ListRecurringTransactionsForUserAndAccountRequestMultiError, or nil if none found.
+func (m *ListRecurringTransactionsForUserAndAccountRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ListRecurringTransactionsRequest) validate(all bool) error {
+func (m *ListRecurringTransactionsForUserAndAccountRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -16997,7 +16998,7 @@ func (m *ListRecurringTransactionsRequest) validate(all bool) error {
 	var errors []error
 
 	if m.GetAccountId() <= 0 {
-		err := ListRecurringTransactionsRequestValidationError{
+		err := ListRecurringTransactionsForUserAndAccountRequestValidationError{
 			field:  "AccountId",
 			reason: "value must be greater than 0",
 		}
@@ -17008,7 +17009,7 @@ func (m *ListRecurringTransactionsRequest) validate(all bool) error {
 	}
 
 	if utf8.RuneCountInString(m.GetUserId()) < 1 {
-		err := ListRecurringTransactionsRequestValidationError{
+		err := ListRecurringTransactionsForUserAndAccountRequestValidationError{
 			field:  "UserId",
 			reason: "value length must be at least 1 runes",
 		}
@@ -17027,20 +17028,20 @@ func (m *ListRecurringTransactionsRequest) validate(all bool) error {
 	// no validation rules for FinancialAccountType
 
 	if len(errors) > 0 {
-		return ListRecurringTransactionsRequestMultiError(errors)
+		return ListRecurringTransactionsForUserAndAccountRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// ListRecurringTransactionsRequestMultiError is an error wrapping multiple
-// validation errors returned by
-// ListRecurringTransactionsRequest.ValidateAll() if the designated
-// constraints aren't met.
-type ListRecurringTransactionsRequestMultiError []error
+// ListRecurringTransactionsForUserAndAccountRequestMultiError is an error
+// wrapping multiple validation errors returned by
+// ListRecurringTransactionsForUserAndAccountRequest.ValidateAll() if the
+// designated constraints aren't met.
+type ListRecurringTransactionsForUserAndAccountRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ListRecurringTransactionsRequestMultiError) Error() string {
+func (m ListRecurringTransactionsForUserAndAccountRequestMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -17049,12 +17050,13 @@ func (m ListRecurringTransactionsRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ListRecurringTransactionsRequestMultiError) AllErrors() []error { return m }
+func (m ListRecurringTransactionsForUserAndAccountRequestMultiError) AllErrors() []error { return m }
 
-// ListRecurringTransactionsRequestValidationError is the validation error
-// returned by ListRecurringTransactionsRequest.Validate if the designated
-// constraints aren't met.
-type ListRecurringTransactionsRequestValidationError struct {
+// ListRecurringTransactionsForUserAndAccountRequestValidationError is the
+// validation error returned by
+// ListRecurringTransactionsForUserAndAccountRequest.Validate if the
+// designated constraints aren't met.
+type ListRecurringTransactionsForUserAndAccountRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -17062,24 +17064,30 @@ type ListRecurringTransactionsRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListRecurringTransactionsRequestValidationError) Field() string { return e.field }
+func (e ListRecurringTransactionsForUserAndAccountRequestValidationError) Field() string {
+	return e.field
+}
 
 // Reason function returns reason value.
-func (e ListRecurringTransactionsRequestValidationError) Reason() string { return e.reason }
+func (e ListRecurringTransactionsForUserAndAccountRequestValidationError) Reason() string {
+	return e.reason
+}
 
 // Cause function returns cause value.
-func (e ListRecurringTransactionsRequestValidationError) Cause() error { return e.cause }
+func (e ListRecurringTransactionsForUserAndAccountRequestValidationError) Cause() error {
+	return e.cause
+}
 
 // Key function returns key value.
-func (e ListRecurringTransactionsRequestValidationError) Key() bool { return e.key }
+func (e ListRecurringTransactionsForUserAndAccountRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListRecurringTransactionsRequestValidationError) ErrorName() string {
-	return "ListRecurringTransactionsRequestValidationError"
+func (e ListRecurringTransactionsForUserAndAccountRequestValidationError) ErrorName() string {
+	return "ListRecurringTransactionsForUserAndAccountRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ListRecurringTransactionsRequestValidationError) Error() string {
+func (e ListRecurringTransactionsForUserAndAccountRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -17091,14 +17099,14 @@ func (e ListRecurringTransactionsRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListRecurringTransactionsRequest.%s: %s%s",
+		"invalid %sListRecurringTransactionsForUserAndAccountRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListRecurringTransactionsRequestValidationError{}
+var _ error = ListRecurringTransactionsForUserAndAccountRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -17106,25 +17114,27 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListRecurringTransactionsRequestValidationError{}
+} = ListRecurringTransactionsForUserAndAccountRequestValidationError{}
 
-// Validate checks the field values on ListRecurringTransactionsResponse with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, the first error encountered is returned, or nil if there are
-// no violations.
-func (m *ListRecurringTransactionsResponse) Validate() error {
+// Validate checks the field values on
+// ListRecurringTransactionsForUserAndAccountResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *ListRecurringTransactionsForUserAndAccountResponse) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on ListRecurringTransactionsResponse
-// with the rules defined in the proto definition for this message. If any
-// rules are violated, the result is a list of violation errors wrapped in
-// ListRecurringTransactionsResponseMultiError, or nil if none found.
-func (m *ListRecurringTransactionsResponse) ValidateAll() error {
+// ValidateAll checks the field values on
+// ListRecurringTransactionsForUserAndAccountResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// ListRecurringTransactionsForUserAndAccountResponseMultiError, or nil if
+// none found.
+func (m *ListRecurringTransactionsForUserAndAccountResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *ListRecurringTransactionsResponse) validate(all bool) error {
+func (m *ListRecurringTransactionsForUserAndAccountResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -17140,7 +17150,7 @@ func (m *ListRecurringTransactionsResponse) validate(all bool) error {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, ListRecurringTransactionsResponseValidationError{
+					errors = append(errors, ListRecurringTransactionsForUserAndAccountResponseValidationError{
 						field:  fmt.Sprintf("Transactions[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -17148,7 +17158,7 @@ func (m *ListRecurringTransactionsResponse) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, ListRecurringTransactionsResponseValidationError{
+					errors = append(errors, ListRecurringTransactionsForUserAndAccountResponseValidationError{
 						field:  fmt.Sprintf("Transactions[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -17157,7 +17167,7 @@ func (m *ListRecurringTransactionsResponse) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return ListRecurringTransactionsResponseValidationError{
+				return ListRecurringTransactionsForUserAndAccountResponseValidationError{
 					field:  fmt.Sprintf("Transactions[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -17168,20 +17178,20 @@ func (m *ListRecurringTransactionsResponse) validate(all bool) error {
 	}
 
 	if len(errors) > 0 {
-		return ListRecurringTransactionsResponseMultiError(errors)
+		return ListRecurringTransactionsForUserAndAccountResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// ListRecurringTransactionsResponseMultiError is an error wrapping multiple
-// validation errors returned by
-// ListRecurringTransactionsResponse.ValidateAll() if the designated
-// constraints aren't met.
-type ListRecurringTransactionsResponseMultiError []error
+// ListRecurringTransactionsForUserAndAccountResponseMultiError is an error
+// wrapping multiple validation errors returned by
+// ListRecurringTransactionsForUserAndAccountResponse.ValidateAll() if the
+// designated constraints aren't met.
+type ListRecurringTransactionsForUserAndAccountResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m ListRecurringTransactionsResponseMultiError) Error() string {
+func (m ListRecurringTransactionsForUserAndAccountResponseMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -17190,12 +17200,13 @@ func (m ListRecurringTransactionsResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m ListRecurringTransactionsResponseMultiError) AllErrors() []error { return m }
+func (m ListRecurringTransactionsForUserAndAccountResponseMultiError) AllErrors() []error { return m }
 
-// ListRecurringTransactionsResponseValidationError is the validation error
-// returned by ListRecurringTransactionsResponse.Validate if the designated
-// constraints aren't met.
-type ListRecurringTransactionsResponseValidationError struct {
+// ListRecurringTransactionsForUserAndAccountResponseValidationError is the
+// validation error returned by
+// ListRecurringTransactionsForUserAndAccountResponse.Validate if the
+// designated constraints aren't met.
+type ListRecurringTransactionsForUserAndAccountResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -17203,24 +17214,30 @@ type ListRecurringTransactionsResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e ListRecurringTransactionsResponseValidationError) Field() string { return e.field }
+func (e ListRecurringTransactionsForUserAndAccountResponseValidationError) Field() string {
+	return e.field
+}
 
 // Reason function returns reason value.
-func (e ListRecurringTransactionsResponseValidationError) Reason() string { return e.reason }
+func (e ListRecurringTransactionsForUserAndAccountResponseValidationError) Reason() string {
+	return e.reason
+}
 
 // Cause function returns cause value.
-func (e ListRecurringTransactionsResponseValidationError) Cause() error { return e.cause }
+func (e ListRecurringTransactionsForUserAndAccountResponseValidationError) Cause() error {
+	return e.cause
+}
 
 // Key function returns key value.
-func (e ListRecurringTransactionsResponseValidationError) Key() bool { return e.key }
+func (e ListRecurringTransactionsForUserAndAccountResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e ListRecurringTransactionsResponseValidationError) ErrorName() string {
-	return "ListRecurringTransactionsResponseValidationError"
+func (e ListRecurringTransactionsForUserAndAccountResponseValidationError) ErrorName() string {
+	return "ListRecurringTransactionsForUserAndAccountResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e ListRecurringTransactionsResponseValidationError) Error() string {
+func (e ListRecurringTransactionsForUserAndAccountResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -17232,14 +17249,14 @@ func (e ListRecurringTransactionsResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sListRecurringTransactionsResponse.%s: %s%s",
+		"invalid %sListRecurringTransactionsForUserAndAccountResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = ListRecurringTransactionsResponseValidationError{}
+var _ error = ListRecurringTransactionsForUserAndAccountResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -17247,24 +17264,26 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = ListRecurringTransactionsResponseValidationError{}
+} = ListRecurringTransactionsForUserAndAccountResponseValidationError{}
 
-// Validate checks the field values on GetRecurringTransactionsRequest with the
-// rules defined in the proto definition for this message. If any rules are
-// violated, the first error encountered is returned, or nil if there are no violations.
-func (m *GetRecurringTransactionsRequest) Validate() error {
+// Validate checks the field values on GetRecurringTransactionsForUserRequest
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *GetRecurringTransactionsForUserRequest) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on GetRecurringTransactionsRequest with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, the result is a list of violation errors wrapped in
-// GetRecurringTransactionsRequestMultiError, or nil if none found.
-func (m *GetRecurringTransactionsRequest) ValidateAll() error {
+// ValidateAll checks the field values on
+// GetRecurringTransactionsForUserRequest with the rules defined in the proto
+// definition for this message. If any rules are violated, the result is a
+// list of violation errors wrapped in
+// GetRecurringTransactionsForUserRequestMultiError, or nil if none found.
+func (m *GetRecurringTransactionsForUserRequest) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *GetRecurringTransactionsRequest) validate(all bool) error {
+func (m *GetRecurringTransactionsForUserRequest) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -17272,7 +17291,7 @@ func (m *GetRecurringTransactionsRequest) validate(all bool) error {
 	var errors []error
 
 	if utf8.RuneCountInString(m.GetUserId()) < 1 {
-		err := GetRecurringTransactionsRequestValidationError{
+		err := GetRecurringTransactionsForUserRequestValidationError{
 			field:  "UserId",
 			reason: "value length must be at least 1 runes",
 		}
@@ -17289,19 +17308,20 @@ func (m *GetRecurringTransactionsRequest) validate(all bool) error {
 	// no validation rules for ProfileType
 
 	if len(errors) > 0 {
-		return GetRecurringTransactionsRequestMultiError(errors)
+		return GetRecurringTransactionsForUserRequestMultiError(errors)
 	}
 
 	return nil
 }
 
-// GetRecurringTransactionsRequestMultiError is an error wrapping multiple
-// validation errors returned by GetRecurringTransactionsRequest.ValidateAll()
-// if the designated constraints aren't met.
-type GetRecurringTransactionsRequestMultiError []error
+// GetRecurringTransactionsForUserRequestMultiError is an error wrapping
+// multiple validation errors returned by
+// GetRecurringTransactionsForUserRequest.ValidateAll() if the designated
+// constraints aren't met.
+type GetRecurringTransactionsForUserRequestMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m GetRecurringTransactionsRequestMultiError) Error() string {
+func (m GetRecurringTransactionsForUserRequestMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -17310,12 +17330,12 @@ func (m GetRecurringTransactionsRequestMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m GetRecurringTransactionsRequestMultiError) AllErrors() []error { return m }
+func (m GetRecurringTransactionsForUserRequestMultiError) AllErrors() []error { return m }
 
-// GetRecurringTransactionsRequestValidationError is the validation error
-// returned by GetRecurringTransactionsRequest.Validate if the designated
-// constraints aren't met.
-type GetRecurringTransactionsRequestValidationError struct {
+// GetRecurringTransactionsForUserRequestValidationError is the validation
+// error returned by GetRecurringTransactionsForUserRequest.Validate if the
+// designated constraints aren't met.
+type GetRecurringTransactionsForUserRequestValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -17323,24 +17343,24 @@ type GetRecurringTransactionsRequestValidationError struct {
 }
 
 // Field function returns field value.
-func (e GetRecurringTransactionsRequestValidationError) Field() string { return e.field }
+func (e GetRecurringTransactionsForUserRequestValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e GetRecurringTransactionsRequestValidationError) Reason() string { return e.reason }
+func (e GetRecurringTransactionsForUserRequestValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e GetRecurringTransactionsRequestValidationError) Cause() error { return e.cause }
+func (e GetRecurringTransactionsForUserRequestValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e GetRecurringTransactionsRequestValidationError) Key() bool { return e.key }
+func (e GetRecurringTransactionsForUserRequestValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e GetRecurringTransactionsRequestValidationError) ErrorName() string {
-	return "GetRecurringTransactionsRequestValidationError"
+func (e GetRecurringTransactionsForUserRequestValidationError) ErrorName() string {
+	return "GetRecurringTransactionsForUserRequestValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e GetRecurringTransactionsRequestValidationError) Error() string {
+func (e GetRecurringTransactionsForUserRequestValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -17352,14 +17372,14 @@ func (e GetRecurringTransactionsRequestValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sGetRecurringTransactionsRequest.%s: %s%s",
+		"invalid %sGetRecurringTransactionsForUserRequest.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = GetRecurringTransactionsRequestValidationError{}
+var _ error = GetRecurringTransactionsForUserRequestValidationError{}
 
 var _ interface {
 	Field() string
@@ -17367,25 +17387,26 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = GetRecurringTransactionsRequestValidationError{}
+} = GetRecurringTransactionsForUserRequestValidationError{}
 
-// Validate checks the field values on GetRecurringTransactionsResponse with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, the first error encountered is returned, or nil if there are
-// no violations.
-func (m *GetRecurringTransactionsResponse) Validate() error {
+// Validate checks the field values on GetRecurringTransactionsForUserResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *GetRecurringTransactionsForUserResponse) Validate() error {
 	return m.validate(false)
 }
 
-// ValidateAll checks the field values on GetRecurringTransactionsResponse with
-// the rules defined in the proto definition for this message. If any rules
-// are violated, the result is a list of violation errors wrapped in
-// GetRecurringTransactionsResponseMultiError, or nil if none found.
-func (m *GetRecurringTransactionsResponse) ValidateAll() error {
+// ValidateAll checks the field values on
+// GetRecurringTransactionsForUserResponse with the rules defined in the proto
+// definition for this message. If any rules are violated, the result is a
+// list of violation errors wrapped in
+// GetRecurringTransactionsForUserResponseMultiError, or nil if none found.
+func (m *GetRecurringTransactionsForUserResponse) ValidateAll() error {
 	return m.validate(true)
 }
 
-func (m *GetRecurringTransactionsResponse) validate(all bool) error {
+func (m *GetRecurringTransactionsForUserResponse) validate(all bool) error {
 	if m == nil {
 		return nil
 	}
@@ -17399,7 +17420,7 @@ func (m *GetRecurringTransactionsResponse) validate(all bool) error {
 			switch v := interface{}(item).(type) {
 			case interface{ ValidateAll() error }:
 				if err := v.ValidateAll(); err != nil {
-					errors = append(errors, GetRecurringTransactionsResponseValidationError{
+					errors = append(errors, GetRecurringTransactionsForUserResponseValidationError{
 						field:  fmt.Sprintf("Transactions[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -17407,7 +17428,7 @@ func (m *GetRecurringTransactionsResponse) validate(all bool) error {
 				}
 			case interface{ Validate() error }:
 				if err := v.Validate(); err != nil {
-					errors = append(errors, GetRecurringTransactionsResponseValidationError{
+					errors = append(errors, GetRecurringTransactionsForUserResponseValidationError{
 						field:  fmt.Sprintf("Transactions[%v]", idx),
 						reason: "embedded message failed validation",
 						cause:  err,
@@ -17416,7 +17437,7 @@ func (m *GetRecurringTransactionsResponse) validate(all bool) error {
 			}
 		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				return GetRecurringTransactionsResponseValidationError{
+				return GetRecurringTransactionsForUserResponseValidationError{
 					field:  fmt.Sprintf("Transactions[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
@@ -17429,20 +17450,20 @@ func (m *GetRecurringTransactionsResponse) validate(all bool) error {
 	// no validation rules for NextPageNumber
 
 	if len(errors) > 0 {
-		return GetRecurringTransactionsResponseMultiError(errors)
+		return GetRecurringTransactionsForUserResponseMultiError(errors)
 	}
 
 	return nil
 }
 
-// GetRecurringTransactionsResponseMultiError is an error wrapping multiple
-// validation errors returned by
-// GetRecurringTransactionsResponse.ValidateAll() if the designated
+// GetRecurringTransactionsForUserResponseMultiError is an error wrapping
+// multiple validation errors returned by
+// GetRecurringTransactionsForUserResponse.ValidateAll() if the designated
 // constraints aren't met.
-type GetRecurringTransactionsResponseMultiError []error
+type GetRecurringTransactionsForUserResponseMultiError []error
 
 // Error returns a concatenation of all the error messages it wraps.
-func (m GetRecurringTransactionsResponseMultiError) Error() string {
+func (m GetRecurringTransactionsForUserResponseMultiError) Error() string {
 	var msgs []string
 	for _, err := range m {
 		msgs = append(msgs, err.Error())
@@ -17451,12 +17472,12 @@ func (m GetRecurringTransactionsResponseMultiError) Error() string {
 }
 
 // AllErrors returns a list of validation violation errors.
-func (m GetRecurringTransactionsResponseMultiError) AllErrors() []error { return m }
+func (m GetRecurringTransactionsForUserResponseMultiError) AllErrors() []error { return m }
 
-// GetRecurringTransactionsResponseValidationError is the validation error
-// returned by GetRecurringTransactionsResponse.Validate if the designated
-// constraints aren't met.
-type GetRecurringTransactionsResponseValidationError struct {
+// GetRecurringTransactionsForUserResponseValidationError is the validation
+// error returned by GetRecurringTransactionsForUserResponse.Validate if the
+// designated constraints aren't met.
+type GetRecurringTransactionsForUserResponseValidationError struct {
 	field  string
 	reason string
 	cause  error
@@ -17464,24 +17485,24 @@ type GetRecurringTransactionsResponseValidationError struct {
 }
 
 // Field function returns field value.
-func (e GetRecurringTransactionsResponseValidationError) Field() string { return e.field }
+func (e GetRecurringTransactionsForUserResponseValidationError) Field() string { return e.field }
 
 // Reason function returns reason value.
-func (e GetRecurringTransactionsResponseValidationError) Reason() string { return e.reason }
+func (e GetRecurringTransactionsForUserResponseValidationError) Reason() string { return e.reason }
 
 // Cause function returns cause value.
-func (e GetRecurringTransactionsResponseValidationError) Cause() error { return e.cause }
+func (e GetRecurringTransactionsForUserResponseValidationError) Cause() error { return e.cause }
 
 // Key function returns key value.
-func (e GetRecurringTransactionsResponseValidationError) Key() bool { return e.key }
+func (e GetRecurringTransactionsForUserResponseValidationError) Key() bool { return e.key }
 
 // ErrorName returns error name.
-func (e GetRecurringTransactionsResponseValidationError) ErrorName() string {
-	return "GetRecurringTransactionsResponseValidationError"
+func (e GetRecurringTransactionsForUserResponseValidationError) ErrorName() string {
+	return "GetRecurringTransactionsForUserResponseValidationError"
 }
 
 // Error satisfies the builtin error interface
-func (e GetRecurringTransactionsResponseValidationError) Error() string {
+func (e GetRecurringTransactionsForUserResponseValidationError) Error() string {
 	cause := ""
 	if e.cause != nil {
 		cause = fmt.Sprintf(" | caused by: %v", e.cause)
@@ -17493,14 +17514,14 @@ func (e GetRecurringTransactionsResponseValidationError) Error() string {
 	}
 
 	return fmt.Sprintf(
-		"invalid %sGetRecurringTransactionsResponse.%s: %s%s",
+		"invalid %sGetRecurringTransactionsForUserResponse.%s: %s%s",
 		key,
 		e.field,
 		e.reason,
 		cause)
 }
 
-var _ error = GetRecurringTransactionsResponseValidationError{}
+var _ error = GetRecurringTransactionsForUserResponseValidationError{}
 
 var _ interface {
 	Field() string
@@ -17508,7 +17529,7 @@ var _ interface {
 	Key() bool
 	Cause() error
 	ErrorName() string
-} = GetRecurringTransactionsResponseValidationError{}
+} = GetRecurringTransactionsForUserResponseValidationError{}
 
 // Validate checks the field values on UpdateRecurringTransactionRequest with
 // the rules defined in the proto definition for this message. If any rules

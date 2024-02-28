@@ -86,7 +86,7 @@ import type {
   GetNotesFromSmartGoalResponse,
   GetPaymentChannelMonthlyExpenditureResponse,
   GetPocketResponse,
-  GetRecurringTransactionsResponse,
+  GetRecurringTransactionsForUserResponse,
   GetSingleRecurringTransactionResponse,
   GetSmartGoalsByPocketIdResponse,
   GetSplitTransactionResponse,
@@ -106,7 +106,7 @@ import type {
   HealthCheckResponse,
   InternalErrorMessageResponse,
   ListRecurringTransactionNotesResponse,
-  ListRecurringTransactionsResponse,
+  ListRecurringTransactionsForUserAndAccountResponse,
   ListTransactionNotesResponse,
   ListTransactionsAcrossAllAccountsResponse,
   ListTransactionsResponse,
@@ -297,8 +297,8 @@ import {
     GetPaymentChannelMonthlyExpenditureResponseToJSON,
     GetPocketResponseFromJSON,
     GetPocketResponseToJSON,
-    GetRecurringTransactionsResponseFromJSON,
-    GetRecurringTransactionsResponseToJSON,
+    GetRecurringTransactionsForUserResponseFromJSON,
+    GetRecurringTransactionsForUserResponseToJSON,
     GetSingleRecurringTransactionResponseFromJSON,
     GetSingleRecurringTransactionResponseToJSON,
     GetSmartGoalsByPocketIdResponseFromJSON,
@@ -337,8 +337,8 @@ import {
     InternalErrorMessageResponseToJSON,
     ListRecurringTransactionNotesResponseFromJSON,
     ListRecurringTransactionNotesResponseToJSON,
-    ListRecurringTransactionsResponseFromJSON,
-    ListRecurringTransactionsResponseToJSON,
+    ListRecurringTransactionsForUserAndAccountResponseFromJSON,
+    ListRecurringTransactionsForUserAndAccountResponseToJSON,
     ListTransactionNotesResponseFromJSON,
     ListTransactionNotesResponseToJSON,
     ListTransactionsAcrossAllAccountsResponseFromJSON,
@@ -765,9 +765,9 @@ export interface GetRecurringTransactionRequest {
     transactionId: string;
 }
 
-export interface GetRecurringTransactionsRequest {
+export interface GetRecurringTransactionsForUserRequest {
     userId: string;
-    profileType: GetRecurringTransactionsProfileTypeEnum;
+    profileType: GetRecurringTransactionsForUserProfileTypeEnum;
     pageNumber?: string;
     pageSize?: string;
 }
@@ -884,13 +884,13 @@ export interface ListRecurringTransactionNotesRequest {
     transactionId: string;
 }
 
-export interface ListRecurringTransactionsRequest {
+export interface ListRecurringTransactionsForUserAndAccountRequest {
     accountId: string;
     userId: string;
-    profileType: ListRecurringTransactionsProfileTypeEnum;
+    profileType: ListRecurringTransactionsForUserAndAccountProfileTypeEnum;
     pageNumber?: string;
     pageSize?: string;
-    financialAccountType?: ListRecurringTransactionsFinancialAccountTypeEnum;
+    financialAccountType?: ListRecurringTransactionsForUserAndAccountFinancialAccountTypeEnum;
 }
 
 export interface ListTransactionNotesRequest {
@@ -3378,13 +3378,13 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * This endpoint returns the recurring transactions for a given user id
      * get recurring transactions
      */
-    async getRecurringTransactionsRaw(requestParameters: GetRecurringTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetRecurringTransactionsResponse>> {
+    async getRecurringTransactionsForUserRaw(requestParameters: GetRecurringTransactionsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetRecurringTransactionsForUserResponse>> {
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getRecurringTransactions.');
+            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getRecurringTransactionsForUser.');
         }
 
         if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getRecurringTransactions.');
+            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getRecurringTransactionsForUser.');
         }
 
         const queryParameters: any = {};
@@ -3410,15 +3410,15 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetRecurringTransactionsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetRecurringTransactionsForUserResponseFromJSON(jsonValue));
     }
 
     /**
      * This endpoint returns the recurring transactions for a given user id
      * get recurring transactions
      */
-    async getRecurringTransactions(requestParameters: GetRecurringTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetRecurringTransactionsResponse> {
-        const response = await this.getRecurringTransactionsRaw(requestParameters, initOverrides);
+    async getRecurringTransactionsForUser(requestParameters: GetRecurringTransactionsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetRecurringTransactionsForUserResponse> {
+        const response = await this.getRecurringTransactionsForUserRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -4204,17 +4204,17 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * This endpoint gets a list of transactions against a given account of interest
      * lists a set of transactions against a given account of interest
      */
-    async listRecurringTransactionsRaw(requestParameters: ListRecurringTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListRecurringTransactionsResponse>> {
+    async listRecurringTransactionsForUserAndAccountRaw(requestParameters: ListRecurringTransactionsForUserAndAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListRecurringTransactionsForUserAndAccountResponse>> {
         if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
-            throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling listRecurringTransactions.');
+            throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling listRecurringTransactionsForUserAndAccount.');
         }
 
         if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling listRecurringTransactions.');
+            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling listRecurringTransactionsForUserAndAccount.');
         }
 
         if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling listRecurringTransactions.');
+            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling listRecurringTransactionsForUserAndAccount.');
         }
 
         const queryParameters: any = {};
@@ -4252,15 +4252,15 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => ListRecurringTransactionsResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => ListRecurringTransactionsForUserAndAccountResponseFromJSON(jsonValue));
     }
 
     /**
      * This endpoint gets a list of transactions against a given account of interest
      * lists a set of transactions against a given account of interest
      */
-    async listRecurringTransactions(requestParameters: ListRecurringTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListRecurringTransactionsResponse> {
-        const response = await this.listRecurringTransactionsRaw(requestParameters, initOverrides);
+    async listRecurringTransactionsForUserAndAccount(requestParameters: ListRecurringTransactionsForUserAndAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ListRecurringTransactionsForUserAndAccountResponse> {
+        const response = await this.listRecurringTransactionsForUserAndAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -5295,12 +5295,12 @@ export type GetPaymentChannelMonthlyExpenditureProfileTypeEnum = typeof GetPayme
 /**
  * @export
  */
-export const GetRecurringTransactionsProfileTypeEnum = {
+export const GetRecurringTransactionsForUserProfileTypeEnum = {
     Unspecified: 'FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED',
     User: 'FINANCIAL_USER_PROFILE_TYPE_USER',
     Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
 } as const;
-export type GetRecurringTransactionsProfileTypeEnum = typeof GetRecurringTransactionsProfileTypeEnum[keyof typeof GetRecurringTransactionsProfileTypeEnum];
+export type GetRecurringTransactionsForUserProfileTypeEnum = typeof GetRecurringTransactionsForUserProfileTypeEnum[keyof typeof GetRecurringTransactionsForUserProfileTypeEnum];
 /**
  * @export
  */
@@ -5439,16 +5439,16 @@ export type GetUserProfile1ProfileTypeEnum = typeof GetUserProfile1ProfileTypeEn
 /**
  * @export
  */
-export const ListRecurringTransactionsProfileTypeEnum = {
+export const ListRecurringTransactionsForUserAndAccountProfileTypeEnum = {
     Unspecified: 'FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED',
     User: 'FINANCIAL_USER_PROFILE_TYPE_USER',
     Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
 } as const;
-export type ListRecurringTransactionsProfileTypeEnum = typeof ListRecurringTransactionsProfileTypeEnum[keyof typeof ListRecurringTransactionsProfileTypeEnum];
+export type ListRecurringTransactionsForUserAndAccountProfileTypeEnum = typeof ListRecurringTransactionsForUserAndAccountProfileTypeEnum[keyof typeof ListRecurringTransactionsForUserAndAccountProfileTypeEnum];
 /**
  * @export
  */
-export const ListRecurringTransactionsFinancialAccountTypeEnum = {
+export const ListRecurringTransactionsForUserAndAccountFinancialAccountTypeEnum = {
     Unspecified: 'FINANCIAL_ACCOUNT_TYPE_UNSPECIFIED',
     Bank: 'FINANCIAL_ACCOUNT_TYPE_BANK',
     Investment: 'FINANCIAL_ACCOUNT_TYPE_INVESTMENT',
@@ -5456,7 +5456,7 @@ export const ListRecurringTransactionsFinancialAccountTypeEnum = {
     Mortgage: 'FINANCIAL_ACCOUNT_TYPE_MORTGAGE',
     StudentLoan: 'FINANCIAL_ACCOUNT_TYPE_STUDENT_LOAN'
 } as const;
-export type ListRecurringTransactionsFinancialAccountTypeEnum = typeof ListRecurringTransactionsFinancialAccountTypeEnum[keyof typeof ListRecurringTransactionsFinancialAccountTypeEnum];
+export type ListRecurringTransactionsForUserAndAccountFinancialAccountTypeEnum = typeof ListRecurringTransactionsForUserAndAccountFinancialAccountTypeEnum[keyof typeof ListRecurringTransactionsForUserAndAccountFinancialAccountTypeEnum];
 /**
  * @export
  */

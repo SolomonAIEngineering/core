@@ -80,7 +80,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *FinancialServiceApi* | [**getPaymentChannelMonthlyExpenditure**](Apis/FinancialServiceApi.md#getpaymentchannelmonthlyexpenditure) | **GET** /financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{userId} | Get Payment Channel Monthly Expenditure by user, month, and payment channel |
 *FinancialServiceApi* | [**getPocket**](Apis/FinancialServiceApi.md#getpocket) | **GET** /financial-microservice/api/v1/pocket/{pocketId} | get a pocket |
 *FinancialServiceApi* | [**getRecurringTransaction**](Apis/FinancialServiceApi.md#getrecurringtransaction) | **GET** /financial-microservice/api/v1/transactions/recurring/{transactionId} | lists a set of transactions against a given account of interest |
-*FinancialServiceApi* | [**getRecurringTransactions**](Apis/FinancialServiceApi.md#getrecurringtransactions) | **GET** /financial-microservice/api/v1/transactions/recurring-transactions/{userId} | get recurring transactions |
+*FinancialServiceApi* | [**getRecurringTransactionsForUser**](Apis/FinancialServiceApi.md#getrecurringtransactionsforuser) | **GET** /financial-microservice/api/v1/transactions/recurring-transactions/{userId} | get recurring transactions |
 *FinancialServiceApi* | [**getSmartGoalsByPocketId**](Apis/FinancialServiceApi.md#getsmartgoalsbypocketid) | **GET** /financial-microservice/api/v1/smart-goal/pocket/{pocketId} | get smart goals by pocket id |
 *FinancialServiceApi* | [**getSplitTransaction**](Apis/FinancialServiceApi.md#getsplittransaction) | **GET** /financial-microservice/api/v1/transactions/transaction/{transactionId}/split | gets a split transaction |
 *FinancialServiceApi* | [**getStudentLoanAccount**](Apis/FinancialServiceApi.md#getstudentloanaccount) | **GET** /financial-microservice/api/v1/account/{userId}/student-loan/{studentLoanAccountId} | get student loan account by id |
@@ -99,7 +99,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *FinancialServiceApi* | [**initiatePlaidSetup**](Apis/FinancialServiceApi.md#initiateplaidsetup) | **POST** /financial-microservice/api/v1/plaid/initiate-token-exchange | initiate plaid setup |
 *FinancialServiceApi* | [**initiatePlaidTokenUpdate**](Apis/FinancialServiceApi.md#initiateplaidtokenupdate) | **POST** /financial-microservice/api/v1/plaid/initiate-token-update | initiate plaid link token update |
 *FinancialServiceApi* | [**listRecurringTransactionNotes**](Apis/FinancialServiceApi.md#listrecurringtransactionnotes) | **GET** /financial-microservice/api/v1/transactions/recurring/{transactionId}/notes | lists notes from a transaction |
-*FinancialServiceApi* | [**listRecurringTransactions**](Apis/FinancialServiceApi.md#listrecurringtransactions) | **GET** /financial-microservice/api/v1/transactions/recurrings | lists a set of transactions against a given account of interest |
+*FinancialServiceApi* | [**listRecurringTransactionsForUserAndAccount**](Apis/FinancialServiceApi.md#listrecurringtransactionsforuserandaccount) | **GET** /financial-microservice/api/v1/transactions/recurrings | lists a set of transactions against a given account of interest |
 *FinancialServiceApi* | [**listTransactionNotes**](Apis/FinancialServiceApi.md#listtransactionnotes) | **GET** /financial-microservice/api/v1/transactions/transaction/{transactionId}/notes | lists notes from a transaction |
 *FinancialServiceApi* | [**listTransactions**](Apis/FinancialServiceApi.md#listtransactions) | **GET** /financial-microservice/api/v1/transactions | lists a set of transactions against a given account of interest |
 *FinancialServiceApi* | [**listTransactions1**](Apis/FinancialServiceApi.md#listtransactions1) | **GET** /financial-microservice/api/v1/transactions/all_accounts | lists a set of transactions across all connected accounts |
@@ -492,7 +492,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [GetPostsByTopicResponse](./Models/GetPostsByTopicResponse.md)
  - [GetPostsResponse](./Models/GetPostsResponse.md)
  - [GetPublicationResponse](./Models/GetPublicationResponse.md)
- - [GetRecurringTransactionsResponse](./Models/GetRecurringTransactionsResponse.md)
+ - [GetRecurringTransactionsForUserResponse](./Models/GetRecurringTransactionsForUserResponse.md)
  - [GetRoleResponse](./Models/GetRoleResponse.md)
  - [GetSingleRecurringTransactionResponse](./Models/GetSingleRecurringTransactionResponse.md)
  - [GetSmartGoalsByPocketIdResponse](./Models/GetSmartGoalsByPocketIdResponse.md)
@@ -554,7 +554,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [LinkedAccountingAccount](./Models/LinkedAccountingAccount.md)
  - [ListFolderResponse](./Models/ListFolderResponse.md)
  - [ListRecurringTransactionNotesResponse](./Models/ListRecurringTransactionNotesResponse.md)
- - [ListRecurringTransactionsResponse](./Models/ListRecurringTransactionsResponse.md)
+ - [ListRecurringTransactionsForUserAndAccountResponse](./Models/ListRecurringTransactionsForUserAndAccountResponse.md)
  - [ListRolesResponse](./Models/ListRolesResponse.md)
  - [ListTransactionNotesResponse](./Models/ListTransactionNotesResponse.md)
  - [ListTransactionsAcrossAllAccountsResponse](./Models/ListTransactionsAcrossAllAccountsResponse.md)

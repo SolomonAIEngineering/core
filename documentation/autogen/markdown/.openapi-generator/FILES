@@ -248,7 +248,7 @@ Models/GetPostsByCategoryResponse.md
 Models/GetPostsByTopicResponse.md
 Models/GetPostsResponse.md
 Models/GetPublicationResponse.md
-Models/GetRecurringTransactionsResponse.md
+Models/GetRecurringTransactionsForUserResponse.md
 Models/GetRoleResponse.md
 Models/GetSingleRecurringTransactionResponse.md
 Models/GetSmartGoalsByPocketIdResponse.md
@@ -310,7 +310,7 @@ Models/LinkType.md
 Models/LinkedAccountingAccount.md
 Models/ListFolderResponse.md
 Models/ListRecurringTransactionNotesResponse.md
-Models/ListRecurringTransactionsResponse.md
+Models/ListRecurringTransactionsForUserAndAccountResponse.md
 Models/ListRolesResponse.md
 Models/ListTransactionNotesResponse.md
 Models/ListTransactionsAcrossAllAccountsResponse.md

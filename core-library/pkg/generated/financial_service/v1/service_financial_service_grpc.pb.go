@@ -19,108 +19,108 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	FinancialService_PlaidInitiateTokenExchange_FullMethodName               = "/financial_service.v1.FinancialService/PlaidInitiateTokenExchange"
-	FinancialService_PlaidInitiateTokenUpdate_FullMethodName                 = "/financial_service.v1.FinancialService/PlaidInitiateTokenUpdate"
-	FinancialService_PlaidExchangeToken_FullMethodName                       = "/financial_service.v1.FinancialService/PlaidExchangeToken"
-	FinancialService_CreateUserProfile_FullMethodName                        = "/financial_service.v1.FinancialService/CreateUserProfile"
-	FinancialService_GetUserProfile_FullMethodName                           = "/financial_service.v1.FinancialService/GetUserProfile"
-	FinancialService_DeleteUserProfile_FullMethodName                        = "/financial_service.v1.FinancialService/DeleteUserProfile"
-	FinancialService_UpdateUserProfile_FullMethodName                        = "/financial_service.v1.FinancialService/UpdateUserProfile"
-	FinancialService_CreateBankAccount_FullMethodName                        = "/financial_service.v1.FinancialService/CreateBankAccount"
-	FinancialService_GetBankAccount_FullMethodName                           = "/financial_service.v1.FinancialService/GetBankAccount"
-	FinancialService_UpdateBankAccount_FullMethodName                        = "/financial_service.v1.FinancialService/UpdateBankAccount"
-	FinancialService_DeleteBankAccount_FullMethodName                        = "/financial_service.v1.FinancialService/DeleteBankAccount"
-	FinancialService_GetPocket_FullMethodName                                = "/financial_service.v1.FinancialService/GetPocket"
-	FinancialService_GetSmartGoalsByPocketId_FullMethodName                  = "/financial_service.v1.FinancialService/GetSmartGoalsByPocketId"
-	FinancialService_CreateSmartGoal_FullMethodName                          = "/financial_service.v1.FinancialService/CreateSmartGoal"
-	FinancialService_UpdateSmartGoal_FullMethodName                          = "/financial_service.v1.FinancialService/UpdateSmartGoal"
-	FinancialService_DeleteSmartGoal_FullMethodName                          = "/financial_service.v1.FinancialService/DeleteSmartGoal"
-	FinancialService_CreateMilestone_FullMethodName                          = "/financial_service.v1.FinancialService/CreateMilestone"
-	FinancialService_DeleteMilestone_FullMethodName                          = "/financial_service.v1.FinancialService/DeleteMilestone"
-	FinancialService_UpdateMilestone_FullMethodName                          = "/financial_service.v1.FinancialService/UpdateMilestone"
-	FinancialService_GetMilestone_FullMethodName                             = "/financial_service.v1.FinancialService/GetMilestone"
-	FinancialService_GetMilestonesBySmartGoalId_FullMethodName               = "/financial_service.v1.FinancialService/GetMilestonesBySmartGoalId"
-	FinancialService_GetForecast_FullMethodName                              = "/financial_service.v1.FinancialService/GetForecast"
-	FinancialService_CreateBudget_FullMethodName                             = "/financial_service.v1.FinancialService/CreateBudget"
-	FinancialService_UpdateBudget_FullMethodName                             = "/financial_service.v1.FinancialService/UpdateBudget"
-	FinancialService_DeleteBudget_FullMethodName                             = "/financial_service.v1.FinancialService/DeleteBudget"
-	FinancialService_GetBudget_FullMethodName                                = "/financial_service.v1.FinancialService/GetBudget"
-	FinancialService_GetAllBudgets_FullMethodName                            = "/financial_service.v1.FinancialService/GetAllBudgets"
-	FinancialService_HealthCheck_FullMethodName                              = "/financial_service.v1.FinancialService/HealthCheck"
-	FinancialService_ReadynessCheck_FullMethodName                           = "/financial_service.v1.FinancialService/ReadynessCheck"
-	FinancialService_GetInvestmentAcccount_FullMethodName                    = "/financial_service.v1.FinancialService/GetInvestmentAcccount"
-	FinancialService_GetMortgageAccount_FullMethodName                       = "/financial_service.v1.FinancialService/GetMortgageAccount"
-	FinancialService_GetLiabilityAccount_FullMethodName                      = "/financial_service.v1.FinancialService/GetLiabilityAccount"
-	FinancialService_GetStudentLoanAccount_FullMethodName                    = "/financial_service.v1.FinancialService/GetStudentLoanAccount"
-	FinancialService_CreateManualLink_FullMethodName                         = "/financial_service.v1.FinancialService/CreateManualLink"
-	FinancialService_GetLink_FullMethodName                                  = "/financial_service.v1.FinancialService/GetLink"
-	FinancialService_GetLinks_FullMethodName                                 = "/financial_service.v1.FinancialService/GetLinks"
-	FinancialService_DeleteLink_FullMethodName                               = "/financial_service.v1.FinancialService/DeleteLink"
-	FinancialService_GetRecurringTransactions_FullMethodName                 = "/financial_service.v1.FinancialService/GetRecurringTransactions"
-	FinancialService_GetTransactions_FullMethodName                          = "/financial_service.v1.FinancialService/GetTransactions"
-	FinancialService_CreateSubscription_FullMethodName                       = "/financial_service.v1.FinancialService/CreateSubscription"
-	FinancialService_GetTransactionAggregates_FullMethodName                 = "/financial_service.v1.FinancialService/GetTransactionAggregates"
-	FinancialService_GetUserAccountBalanceHistory_FullMethodName             = "/financial_service.v1.FinancialService/GetUserAccountBalanceHistory"
-	FinancialService_GetAccountBalanceHistory_FullMethodName                 = "/financial_service.v1.FinancialService/GetAccountBalanceHistory"
-	FinancialService_GetUserCategoryMonthlyExpenditure_FullMethodName        = "/financial_service.v1.FinancialService/GetUserCategoryMonthlyExpenditure"
-	FinancialService_GetUserCategoryMonthlyIncome_FullMethodName             = "/financial_service.v1.FinancialService/GetUserCategoryMonthlyIncome"
-	FinancialService_GetCategoryMonthlyTransactionCount_FullMethodName       = "/financial_service.v1.FinancialService/GetCategoryMonthlyTransactionCount"
-	FinancialService_GetDebtToIncomeRatio_FullMethodName                     = "/financial_service.v1.FinancialService/GetDebtToIncomeRatio"
-	FinancialService_GetExpenseMetrics_FullMethodName                        = "/financial_service.v1.FinancialService/GetExpenseMetrics"
-	FinancialService_GetFinancialProfile_FullMethodName                      = "/financial_service.v1.FinancialService/GetFinancialProfile"
-	FinancialService_GetIncomeExpenseRatio_FullMethodName                    = "/financial_service.v1.FinancialService/GetIncomeExpenseRatio"
-	FinancialService_GetIncomeMetrics_FullMethodName                         = "/financial_service.v1.FinancialService/GetIncomeMetrics"
-	FinancialService_GetMerchantMonthlyExpenditure_FullMethodName            = "/financial_service.v1.FinancialService/GetMerchantMonthlyExpenditure"
-	FinancialService_GetMonthlyBalance_FullMethodName                        = "/financial_service.v1.FinancialService/GetMonthlyBalance"
-	FinancialService_GetMonthlyExpenditure_FullMethodName                    = "/financial_service.v1.FinancialService/GetMonthlyExpenditure"
-	FinancialService_GetMonthlyIncome_FullMethodName                         = "/financial_service.v1.FinancialService/GetMonthlyIncome"
-	FinancialService_GetMonthlySavings_FullMethodName                        = "/financial_service.v1.FinancialService/GetMonthlySavings"
-	FinancialService_GetMonthlyTotalQuantityBySecurityAndUser_FullMethodName = "/financial_service.v1.FinancialService/GetMonthlyTotalQuantityBySecurityAndUser"
-	FinancialService_GetMonthlyTransactionCount_FullMethodName               = "/financial_service.v1.FinancialService/GetMonthlyTransactionCount"
-	FinancialService_GetPaymentChannelMonthlyExpenditure_FullMethodName      = "/financial_service.v1.FinancialService/GetPaymentChannelMonthlyExpenditure"
-	FinancialService_GetTotalInvestmentBySecurity_FullMethodName             = "/financial_service.v1.FinancialService/GetTotalInvestmentBySecurity"
-	FinancialService_GetMelodyFinancialContext_FullMethodName                = "/financial_service.v1.FinancialService/GetMelodyFinancialContext"
-	FinancialService_GetTransactionsForBankAccount_FullMethodName            = "/financial_service.v1.FinancialService/GetTransactionsForBankAccount"
-	FinancialService_GetHistoricalAccountBalance_FullMethodName              = "/financial_service.v1.FinancialService/GetHistoricalAccountBalance"
-	FinancialService_AddDefaultPocketsToBankAccount_FullMethodName           = "/financial_service.v1.FinancialService/AddDefaultPocketsToBankAccount"
-	FinancialService_UpdatePocket_FullMethodName                             = "/financial_service.v1.FinancialService/UpdatePocket"
-	FinancialService_DeletePocket_FullMethodName                             = "/financial_service.v1.FinancialService/DeletePocket"
-	FinancialService_GetTransactionsBetweenTimeRanges_FullMethodName         = "/financial_service.v1.FinancialService/GetTransactionsBetweenTimeRanges"
-	FinancialService_GetTransactionsForPastWeek_FullMethodName               = "/financial_service.v1.FinancialService/GetTransactionsForPastWeek"
-	FinancialService_GetTransactionsForPastMonth_FullMethodName              = "/financial_service.v1.FinancialService/GetTransactionsForPastMonth"
-	FinancialService_AddNoteToSmartGoal_FullMethodName                       = "/financial_service.v1.FinancialService/AddNoteToSmartGoal"
-	FinancialService_UpdateNoteToSmartGoal_FullMethodName                    = "/financial_service.v1.FinancialService/UpdateNoteToSmartGoal"
-	FinancialService_DeleteNoteFromSmartGoal_FullMethodName                  = "/financial_service.v1.FinancialService/DeleteNoteFromSmartGoal"
-	FinancialService_GetNotesFromSmartGoal_FullMethodName                    = "/financial_service.v1.FinancialService/GetNotesFromSmartGoal"
-	FinancialService_GetNoteFromSmartGoal_FullMethodName                     = "/financial_service.v1.FinancialService/GetNoteFromSmartGoal"
-	FinancialService_ListTransactions_FullMethodName                         = "/financial_service.v1.FinancialService/ListTransactions"
-	FinancialService_ListTransactionsAcrossAllAccounts_FullMethodName        = "/financial_service.v1.FinancialService/ListTransactionsAcrossAllAccounts"
-	FinancialService_GetTransaction_FullMethodName                           = "/financial_service.v1.FinancialService/GetTransaction"
-	FinancialService_UpdateSingleTransaction_FullMethodName                  = "/financial_service.v1.FinancialService/UpdateSingleTransaction"
-	FinancialService_BulkUpdateTransaction_FullMethodName                    = "/financial_service.v1.FinancialService/BulkUpdateTransaction"
-	FinancialService_DeleteTransaction_FullMethodName                        = "/financial_service.v1.FinancialService/DeleteTransaction"
-	FinancialService_AddNoteToTransaction_FullMethodName                     = "/financial_service.v1.FinancialService/AddNoteToTransaction"
-	FinancialService_UpdateNoteToTransaction_FullMethodName                  = "/financial_service.v1.FinancialService/UpdateNoteToTransaction"
-	FinancialService_DeleteNoteFromTransaction_FullMethodName                = "/financial_service.v1.FinancialService/DeleteNoteFromTransaction"
-	FinancialService_ListTransactionNotes_FullMethodName                     = "/financial_service.v1.FinancialService/ListTransactionNotes"
-	FinancialService_GetNoteFromTransaction_FullMethodName                   = "/financial_service.v1.FinancialService/GetNoteFromTransaction"
-	FinancialService_SplitTransaction_FullMethodName                         = "/financial_service.v1.FinancialService/SplitTransaction"
-	FinancialService_UnSplitTransactions_FullMethodName                      = "/financial_service.v1.FinancialService/UnSplitTransactions"
-	FinancialService_GetSplitTransaction_FullMethodName                      = "/financial_service.v1.FinancialService/GetSplitTransaction"
-	FinancialService_SearchTransactions_FullMethodName                       = "/financial_service.v1.FinancialService/SearchTransactions"
-	FinancialService_ListRecurringTransactions_FullMethodName                = "/financial_service.v1.FinancialService/ListRecurringTransactions"
-	FinancialService_GetSingleRecurringTransaction_FullMethodName            = "/financial_service.v1.FinancialService/GetSingleRecurringTransaction"
-	FinancialService_UpdateRecurringTransaction_FullMethodName               = "/financial_service.v1.FinancialService/UpdateRecurringTransaction"
-	FinancialService_BulkUpdateRecurringTransaction_FullMethodName           = "/financial_service.v1.FinancialService/BulkUpdateRecurringTransaction"
-	FinancialService_DeleteRecurringTransaction_FullMethodName               = "/financial_service.v1.FinancialService/DeleteRecurringTransaction"
-	FinancialService_AddNoteToRecurringTransaction_FullMethodName            = "/financial_service.v1.FinancialService/AddNoteToRecurringTransaction"
-	FinancialService_UpdateNoteToRecurringTransaction_FullMethodName         = "/financial_service.v1.FinancialService/UpdateNoteToRecurringTransaction"
-	FinancialService_DeleteNoteFromRecurringTransaction_FullMethodName       = "/financial_service.v1.FinancialService/DeleteNoteFromRecurringTransaction"
-	FinancialService_ListRecurringTransactionNotes_FullMethodName            = "/financial_service.v1.FinancialService/ListRecurringTransactionNotes"
-	FinancialService_PollAsyncTaskExecutionStatus_FullMethodName             = "/financial_service.v1.FinancialService/PollAsyncTaskExecutionStatus"
-	FinancialService_RecordAskCopilotQuestion_FullMethodName                 = "/financial_service.v1.FinancialService/RecordAskCopilotQuestion"
-	FinancialService_CheckIfQuotaExceeded_FullMethodName                     = "/financial_service.v1.FinancialService/CheckIfQuotaExceeded"
-	FinancialService_TriggerSync_FullMethodName                              = "/financial_service.v1.FinancialService/TriggerSync"
+	FinancialService_PlaidInitiateTokenExchange_FullMethodName                 = "/financial_service.v1.FinancialService/PlaidInitiateTokenExchange"
+	FinancialService_PlaidInitiateTokenUpdate_FullMethodName                   = "/financial_service.v1.FinancialService/PlaidInitiateTokenUpdate"
+	FinancialService_PlaidExchangeToken_FullMethodName                         = "/financial_service.v1.FinancialService/PlaidExchangeToken"
+	FinancialService_CreateUserProfile_FullMethodName                          = "/financial_service.v1.FinancialService/CreateUserProfile"
+	FinancialService_GetUserProfile_FullMethodName                             = "/financial_service.v1.FinancialService/GetUserProfile"
+	FinancialService_DeleteUserProfile_FullMethodName                          = "/financial_service.v1.FinancialService/DeleteUserProfile"
+	FinancialService_UpdateUserProfile_FullMethodName                          = "/financial_service.v1.FinancialService/UpdateUserProfile"
+	FinancialService_CreateBankAccount_FullMethodName                          = "/financial_service.v1.FinancialService/CreateBankAccount"
+	FinancialService_GetBankAccount_FullMethodName                             = "/financial_service.v1.FinancialService/GetBankAccount"
+	FinancialService_UpdateBankAccount_FullMethodName                          = "/financial_service.v1.FinancialService/UpdateBankAccount"
+	FinancialService_DeleteBankAccount_FullMethodName                          = "/financial_service.v1.FinancialService/DeleteBankAccount"
+	FinancialService_GetPocket_FullMethodName                                  = "/financial_service.v1.FinancialService/GetPocket"
+	FinancialService_GetSmartGoalsByPocketId_FullMethodName                    = "/financial_service.v1.FinancialService/GetSmartGoalsByPocketId"
+	FinancialService_CreateSmartGoal_FullMethodName                            = "/financial_service.v1.FinancialService/CreateSmartGoal"
+	FinancialService_UpdateSmartGoal_FullMethodName                            = "/financial_service.v1.FinancialService/UpdateSmartGoal"
+	FinancialService_DeleteSmartGoal_FullMethodName                            = "/financial_service.v1.FinancialService/DeleteSmartGoal"
+	FinancialService_CreateMilestone_FullMethodName                            = "/financial_service.v1.FinancialService/CreateMilestone"
+	FinancialService_DeleteMilestone_FullMethodName                            = "/financial_service.v1.FinancialService/DeleteMilestone"
+	FinancialService_UpdateMilestone_FullMethodName                            = "/financial_service.v1.FinancialService/UpdateMilestone"
+	FinancialService_GetMilestone_FullMethodName                               = "/financial_service.v1.FinancialService/GetMilestone"
+	FinancialService_GetMilestonesBySmartGoalId_FullMethodName                 = "/financial_service.v1.FinancialService/GetMilestonesBySmartGoalId"
+	FinancialService_GetForecast_FullMethodName                                = "/financial_service.v1.FinancialService/GetForecast"
+	FinancialService_CreateBudget_FullMethodName                               = "/financial_service.v1.FinancialService/CreateBudget"
+	FinancialService_UpdateBudget_FullMethodName                               = "/financial_service.v1.FinancialService/UpdateBudget"
+	FinancialService_DeleteBudget_FullMethodName                               = "/financial_service.v1.FinancialService/DeleteBudget"
+	FinancialService_GetBudget_FullMethodName                                  = "/financial_service.v1.FinancialService/GetBudget"
+	FinancialService_GetAllBudgets_FullMethodName                              = "/financial_service.v1.FinancialService/GetAllBudgets"
+	FinancialService_HealthCheck_FullMethodName                                = "/financial_service.v1.FinancialService/HealthCheck"
+	FinancialService_ReadynessCheck_FullMethodName                             = "/financial_service.v1.FinancialService/ReadynessCheck"
+	FinancialService_GetInvestmentAcccount_FullMethodName                      = "/financial_service.v1.FinancialService/GetInvestmentAcccount"
+	FinancialService_GetMortgageAccount_FullMethodName                         = "/financial_service.v1.FinancialService/GetMortgageAccount"
+	FinancialService_GetLiabilityAccount_FullMethodName                        = "/financial_service.v1.FinancialService/GetLiabilityAccount"
+	FinancialService_GetStudentLoanAccount_FullMethodName                      = "/financial_service.v1.FinancialService/GetStudentLoanAccount"
+	FinancialService_CreateManualLink_FullMethodName                           = "/financial_service.v1.FinancialService/CreateManualLink"
+	FinancialService_GetLink_FullMethodName                                    = "/financial_service.v1.FinancialService/GetLink"
+	FinancialService_GetLinks_FullMethodName                                   = "/financial_service.v1.FinancialService/GetLinks"
+	FinancialService_DeleteLink_FullMethodName                                 = "/financial_service.v1.FinancialService/DeleteLink"
+	FinancialService_GetRecurringTransactionsForUser_FullMethodName            = "/financial_service.v1.FinancialService/GetRecurringTransactionsForUser"
+	FinancialService_GetTransactions_FullMethodName                            = "/financial_service.v1.FinancialService/GetTransactions"
+	FinancialService_CreateSubscription_FullMethodName                         = "/financial_service.v1.FinancialService/CreateSubscription"
+	FinancialService_GetTransactionAggregates_FullMethodName                   = "/financial_service.v1.FinancialService/GetTransactionAggregates"
+	FinancialService_GetUserAccountBalanceHistory_FullMethodName               = "/financial_service.v1.FinancialService/GetUserAccountBalanceHistory"
+	FinancialService_GetAccountBalanceHistory_FullMethodName                   = "/financial_service.v1.FinancialService/GetAccountBalanceHistory"
+	FinancialService_GetUserCategoryMonthlyExpenditure_FullMethodName          = "/financial_service.v1.FinancialService/GetUserCategoryMonthlyExpenditure"
+	FinancialService_GetUserCategoryMonthlyIncome_FullMethodName               = "/financial_service.v1.FinancialService/GetUserCategoryMonthlyIncome"
+	FinancialService_GetCategoryMonthlyTransactionCount_FullMethodName         = "/financial_service.v1.FinancialService/GetCategoryMonthlyTransactionCount"
+	FinancialService_GetDebtToIncomeRatio_FullMethodName                       = "/financial_service.v1.FinancialService/GetDebtToIncomeRatio"
+	FinancialService_GetExpenseMetrics_FullMethodName                          = "/financial_service.v1.FinancialService/GetExpenseMetrics"
+	FinancialService_GetFinancialProfile_FullMethodName                        = "/financial_service.v1.FinancialService/GetFinancialProfile"
+	FinancialService_GetIncomeExpenseRatio_FullMethodName                      = "/financial_service.v1.FinancialService/GetIncomeExpenseRatio"
+	FinancialService_GetIncomeMetrics_FullMethodName                           = "/financial_service.v1.FinancialService/GetIncomeMetrics"
+	FinancialService_GetMerchantMonthlyExpenditure_FullMethodName              = "/financial_service.v1.FinancialService/GetMerchantMonthlyExpenditure"
+	FinancialService_GetMonthlyBalance_FullMethodName                          = "/financial_service.v1.FinancialService/GetMonthlyBalance"
+	FinancialService_GetMonthlyExpenditure_FullMethodName                      = "/financial_service.v1.FinancialService/GetMonthlyExpenditure"
+	FinancialService_GetMonthlyIncome_FullMethodName                           = "/financial_service.v1.FinancialService/GetMonthlyIncome"
+	FinancialService_GetMonthlySavings_FullMethodName                          = "/financial_service.v1.FinancialService/GetMonthlySavings"
+	FinancialService_GetMonthlyTotalQuantityBySecurityAndUser_FullMethodName   = "/financial_service.v1.FinancialService/GetMonthlyTotalQuantityBySecurityAndUser"
+	FinancialService_GetMonthlyTransactionCount_FullMethodName                 = "/financial_service.v1.FinancialService/GetMonthlyTransactionCount"
+	FinancialService_GetPaymentChannelMonthlyExpenditure_FullMethodName        = "/financial_service.v1.FinancialService/GetPaymentChannelMonthlyExpenditure"
+	FinancialService_GetTotalInvestmentBySecurity_FullMethodName               = "/financial_service.v1.FinancialService/GetTotalInvestmentBySecurity"
+	FinancialService_GetMelodyFinancialContext_FullMethodName                  = "/financial_service.v1.FinancialService/GetMelodyFinancialContext"
+	FinancialService_GetTransactionsForBankAccount_FullMethodName              = "/financial_service.v1.FinancialService/GetTransactionsForBankAccount"
+	FinancialService_GetHistoricalAccountBalance_FullMethodName                = "/financial_service.v1.FinancialService/GetHistoricalAccountBalance"
+	FinancialService_AddDefaultPocketsToBankAccount_FullMethodName             = "/financial_service.v1.FinancialService/AddDefaultPocketsToBankAccount"
+	FinancialService_UpdatePocket_FullMethodName                               = "/financial_service.v1.FinancialService/UpdatePocket"
+	FinancialService_DeletePocket_FullMethodName                               = "/financial_service.v1.FinancialService/DeletePocket"
+	FinancialService_GetTransactionsBetweenTimeRanges_FullMethodName           = "/financial_service.v1.FinancialService/GetTransactionsBetweenTimeRanges"
+	FinancialService_GetTransactionsForPastWeek_FullMethodName                 = "/financial_service.v1.FinancialService/GetTransactionsForPastWeek"
+	FinancialService_GetTransactionsForPastMonth_FullMethodName                = "/financial_service.v1.FinancialService/GetTransactionsForPastMonth"
+	FinancialService_AddNoteToSmartGoal_FullMethodName                         = "/financial_service.v1.FinancialService/AddNoteToSmartGoal"
+	FinancialService_UpdateNoteToSmartGoal_FullMethodName                      = "/financial_service.v1.FinancialService/UpdateNoteToSmartGoal"
+	FinancialService_DeleteNoteFromSmartGoal_FullMethodName                    = "/financial_service.v1.FinancialService/DeleteNoteFromSmartGoal"
+	FinancialService_GetNotesFromSmartGoal_FullMethodName                      = "/financial_service.v1.FinancialService/GetNotesFromSmartGoal"
+	FinancialService_GetNoteFromSmartGoal_FullMethodName                       = "/financial_service.v1.FinancialService/GetNoteFromSmartGoal"
+	FinancialService_ListTransactions_FullMethodName                           = "/financial_service.v1.FinancialService/ListTransactions"
+	FinancialService_ListTransactionsAcrossAllAccounts_FullMethodName          = "/financial_service.v1.FinancialService/ListTransactionsAcrossAllAccounts"
+	FinancialService_GetTransaction_FullMethodName                             = "/financial_service.v1.FinancialService/GetTransaction"
+	FinancialService_UpdateSingleTransaction_FullMethodName                    = "/financial_service.v1.FinancialService/UpdateSingleTransaction"
+	FinancialService_BulkUpdateTransaction_FullMethodName                      = "/financial_service.v1.FinancialService/BulkUpdateTransaction"
+	FinancialService_DeleteTransaction_FullMethodName                          = "/financial_service.v1.FinancialService/DeleteTransaction"
+	FinancialService_AddNoteToTransaction_FullMethodName                       = "/financial_service.v1.FinancialService/AddNoteToTransaction"
+	FinancialService_UpdateNoteToTransaction_FullMethodName                    = "/financial_service.v1.FinancialService/UpdateNoteToTransaction"
+	FinancialService_DeleteNoteFromTransaction_FullMethodName                  = "/financial_service.v1.FinancialService/DeleteNoteFromTransaction"
+	FinancialService_ListTransactionNotes_FullMethodName                       = "/financial_service.v1.FinancialService/ListTransactionNotes"
+	FinancialService_GetNoteFromTransaction_FullMethodName                     = "/financial_service.v1.FinancialService/GetNoteFromTransaction"
+	FinancialService_SplitTransaction_FullMethodName                           = "/financial_service.v1.FinancialService/SplitTransaction"
+	FinancialService_UnSplitTransactions_FullMethodName                        = "/financial_service.v1.FinancialService/UnSplitTransactions"
+	FinancialService_GetSplitTransaction_FullMethodName                        = "/financial_service.v1.FinancialService/GetSplitTransaction"
+	FinancialService_SearchTransactions_FullMethodName                         = "/financial_service.v1.FinancialService/SearchTransactions"
+	FinancialService_ListRecurringTransactionsForUserAndAccount_FullMethodName = "/financial_service.v1.FinancialService/ListRecurringTransactionsForUserAndAccount"
+	FinancialService_GetSingleRecurringTransaction_FullMethodName              = "/financial_service.v1.FinancialService/GetSingleRecurringTransaction"
+	FinancialService_UpdateRecurringTransaction_FullMethodName                 = "/financial_service.v1.FinancialService/UpdateRecurringTransaction"
+	FinancialService_BulkUpdateRecurringTransaction_FullMethodName             = "/financial_service.v1.FinancialService/BulkUpdateRecurringTransaction"
+	FinancialService_DeleteRecurringTransaction_FullMethodName                 = "/financial_service.v1.FinancialService/DeleteRecurringTransaction"
+	FinancialService_AddNoteToRecurringTransaction_FullMethodName              = "/financial_service.v1.FinancialService/AddNoteToRecurringTransaction"
+	FinancialService_UpdateNoteToRecurringTransaction_FullMethodName           = "/financial_service.v1.FinancialService/UpdateNoteToRecurringTransaction"
+	FinancialService_DeleteNoteFromRecurringTransaction_FullMethodName         = "/financial_service.v1.FinancialService/DeleteNoteFromRecurringTransaction"
+	FinancialService_ListRecurringTransactionNotes_FullMethodName              = "/financial_service.v1.FinancialService/ListRecurringTransactionNotes"
+	FinancialService_PollAsyncTaskExecutionStatus_FullMethodName               = "/financial_service.v1.FinancialService/PollAsyncTaskExecutionStatus"
+	FinancialService_RecordAskCopilotQuestion_FullMethodName                   = "/financial_service.v1.FinancialService/RecordAskCopilotQuestion"
+	FinancialService_CheckIfQuotaExceeded_FullMethodName                       = "/financial_service.v1.FinancialService/CheckIfQuotaExceeded"
+	FinancialService_TriggerSync_FullMethodName                                = "/financial_service.v1.FinancialService/TriggerSync"
 )
 
 // FinancialServiceClient is the client API for FinancialService service.
@@ -201,7 +201,7 @@ type FinancialServiceClient interface {
 	// Deletes a linked account
 	DeleteLink(ctx context.Context, in *DeleteLinkRequest, opts ...grpc.CallOption) (*DeleteLinkResponse, error)
 	// This endpoint enables end users to get recurring transactions
-	GetRecurringTransactions(ctx context.Context, in *GetRecurringTransactionsRequest, opts ...grpc.CallOption) (*GetRecurringTransactionsResponse, error)
+	GetRecurringTransactionsForUser(ctx context.Context, in *GetRecurringTransactionsForUserRequest, opts ...grpc.CallOption) (*GetRecurringTransactionsForUserResponse, error)
 	// This endpoint enables end users to get transactions in a paginated manner
 	GetTransactions(ctx context.Context, in *GetTransactionsRequest, opts ...grpc.CallOption) (*GetTransactionsResponse, error)
 	// This endpoint enables end users to get transactions in a paginated manner
@@ -304,7 +304,7 @@ type FinancialServiceClient interface {
 	// searchs for a set of transactions that fit a given filter
 	SearchTransactions(ctx context.Context, in *SearchTransactionsRequest, opts ...grpc.CallOption) (*SearchTransactionsResponse, error)
 	// ListRecurringTransactions lists a set of transactions against an account of interest
-	ListRecurringTransactions(ctx context.Context, in *ListRecurringTransactionsRequest, opts ...grpc.CallOption) (*ListRecurringTransactionsResponse, error)
+	ListRecurringTransactionsForUserAndAccount(ctx context.Context, in *ListRecurringTransactionsForUserAndAccountRequest, opts ...grpc.CallOption) (*ListRecurringTransactionsForUserAndAccountResponse, error)
 	// GetRecurringTransaction lists a set of transactions against an account of interest
 	GetSingleRecurringTransaction(ctx context.Context, in *GetSingleRecurringTransactionRequest, opts ...grpc.CallOption) (*GetSingleRecurringTransactionResponse, error)
 	// updates a transaction
@@ -670,9 +670,9 @@ func (c *financialServiceClient) DeleteLink(ctx context.Context, in *DeleteLinkR
 	return out, nil
 }
 
-func (c *financialServiceClient) GetRecurringTransactions(ctx context.Context, in *GetRecurringTransactionsRequest, opts ...grpc.CallOption) (*GetRecurringTransactionsResponse, error) {
-	out := new(GetRecurringTransactionsResponse)
-	err := c.cc.Invoke(ctx, FinancialService_GetRecurringTransactions_FullMethodName, in, out, opts...)
+func (c *financialServiceClient) GetRecurringTransactionsForUser(ctx context.Context, in *GetRecurringTransactionsForUserRequest, opts ...grpc.CallOption) (*GetRecurringTransactionsForUserResponse, error) {
+	out := new(GetRecurringTransactionsForUserResponse)
+	err := c.cc.Invoke(ctx, FinancialService_GetRecurringTransactionsForUser_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1138,9 +1138,9 @@ func (c *financialServiceClient) SearchTransactions(ctx context.Context, in *Sea
 	return out, nil
 }
 
-func (c *financialServiceClient) ListRecurringTransactions(ctx context.Context, in *ListRecurringTransactionsRequest, opts ...grpc.CallOption) (*ListRecurringTransactionsResponse, error) {
-	out := new(ListRecurringTransactionsResponse)
-	err := c.cc.Invoke(ctx, FinancialService_ListRecurringTransactions_FullMethodName, in, out, opts...)
+func (c *financialServiceClient) ListRecurringTransactionsForUserAndAccount(ctx context.Context, in *ListRecurringTransactionsForUserAndAccountRequest, opts ...grpc.CallOption) (*ListRecurringTransactionsForUserAndAccountResponse, error) {
+	out := new(ListRecurringTransactionsForUserAndAccountResponse)
+	err := c.cc.Invoke(ctx, FinancialService_ListRecurringTransactionsForUserAndAccount_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1333,7 +1333,7 @@ type FinancialServiceServer interface {
 	// Deletes a linked account
 	DeleteLink(context.Context, *DeleteLinkRequest) (*DeleteLinkResponse, error)
 	// This endpoint enables end users to get recurring transactions
-	GetRecurringTransactions(context.Context, *GetRecurringTransactionsRequest) (*GetRecurringTransactionsResponse, error)
+	GetRecurringTransactionsForUser(context.Context, *GetRecurringTransactionsForUserRequest) (*GetRecurringTransactionsForUserResponse, error)
 	// This endpoint enables end users to get transactions in a paginated manner
 	GetTransactions(context.Context, *GetTransactionsRequest) (*GetTransactionsResponse, error)
 	// This endpoint enables end users to get transactions in a paginated manner
@@ -1436,7 +1436,7 @@ type FinancialServiceServer interface {
 	// searchs for a set of transactions that fit a given filter
 	SearchTransactions(context.Context, *SearchTransactionsRequest) (*SearchTransactionsResponse, error)
 	// ListRecurringTransactions lists a set of transactions against an account of interest
-	ListRecurringTransactions(context.Context, *ListRecurringTransactionsRequest) (*ListRecurringTransactionsResponse, error)
+	ListRecurringTransactionsForUserAndAccount(context.Context, *ListRecurringTransactionsForUserAndAccountRequest) (*ListRecurringTransactionsForUserAndAccountResponse, error)
 	// GetRecurringTransaction lists a set of transactions against an account of interest
 	GetSingleRecurringTransaction(context.Context, *GetSingleRecurringTransactionRequest) (*GetSingleRecurringTransactionResponse, error)
 	// updates a transaction
@@ -1577,8 +1577,8 @@ func (UnimplementedFinancialServiceServer) GetLinks(context.Context, *GetLinksRe
 func (UnimplementedFinancialServiceServer) DeleteLink(context.Context, *DeleteLinkRequest) (*DeleteLinkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteLink not implemented")
 }
-func (UnimplementedFinancialServiceServer) GetRecurringTransactions(context.Context, *GetRecurringTransactionsRequest) (*GetRecurringTransactionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRecurringTransactions not implemented")
+func (UnimplementedFinancialServiceServer) GetRecurringTransactionsForUser(context.Context, *GetRecurringTransactionsForUserRequest) (*GetRecurringTransactionsForUserResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRecurringTransactionsForUser not implemented")
 }
 func (UnimplementedFinancialServiceServer) GetTransactions(context.Context, *GetTransactionsRequest) (*GetTransactionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTransactions not implemented")
@@ -1733,8 +1733,8 @@ func (UnimplementedFinancialServiceServer) GetSplitTransaction(context.Context, 
 func (UnimplementedFinancialServiceServer) SearchTransactions(context.Context, *SearchTransactionsRequest) (*SearchTransactionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method SearchTransactions not implemented")
 }
-func (UnimplementedFinancialServiceServer) ListRecurringTransactions(context.Context, *ListRecurringTransactionsRequest) (*ListRecurringTransactionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ListRecurringTransactions not implemented")
+func (UnimplementedFinancialServiceServer) ListRecurringTransactionsForUserAndAccount(context.Context, *ListRecurringTransactionsForUserAndAccountRequest) (*ListRecurringTransactionsForUserAndAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ListRecurringTransactionsForUserAndAccount not implemented")
 }
 func (UnimplementedFinancialServiceServer) GetSingleRecurringTransaction(context.Context, *GetSingleRecurringTransactionRequest) (*GetSingleRecurringTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetSingleRecurringTransaction not implemented")
@@ -2451,20 +2451,20 @@ func _FinancialService_DeleteLink_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FinancialService_GetRecurringTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRecurringTransactionsRequest)
+func _FinancialService_GetRecurringTransactionsForUser_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRecurringTransactionsForUserRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FinancialServiceServer).GetRecurringTransactions(ctx, in)
+		return srv.(FinancialServiceServer).GetRecurringTransactionsForUser(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FinancialService_GetRecurringTransactions_FullMethodName,
+		FullMethod: FinancialService_GetRecurringTransactionsForUser_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FinancialServiceServer).GetRecurringTransactions(ctx, req.(*GetRecurringTransactionsRequest))
+		return srv.(FinancialServiceServer).GetRecurringTransactionsForUser(ctx, req.(*GetRecurringTransactionsForUserRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3387,20 +3387,20 @@ func _FinancialService_SearchTransactions_Handler(srv interface{}, ctx context.C
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FinancialService_ListRecurringTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ListRecurringTransactionsRequest)
+func _FinancialService_ListRecurringTransactionsForUserAndAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ListRecurringTransactionsForUserAndAccountRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FinancialServiceServer).ListRecurringTransactions(ctx, in)
+		return srv.(FinancialServiceServer).ListRecurringTransactionsForUserAndAccount(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FinancialService_ListRecurringTransactions_FullMethodName,
+		FullMethod: FinancialService_ListRecurringTransactionsForUserAndAccount_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FinancialServiceServer).ListRecurringTransactions(ctx, req.(*ListRecurringTransactionsRequest))
+		return srv.(FinancialServiceServer).ListRecurringTransactionsForUserAndAccount(ctx, req.(*ListRecurringTransactionsForUserAndAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3777,8 +3777,8 @@ var FinancialService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FinancialService_DeleteLink_Handler,
 		},
 		{
-			MethodName: "GetRecurringTransactions",
-			Handler:    _FinancialService_GetRecurringTransactions_Handler,
+			MethodName: "GetRecurringTransactionsForUser",
+			Handler:    _FinancialService_GetRecurringTransactionsForUser_Handler,
 		},
 		{
 			MethodName: "GetTransactions",
@@ -3985,8 +3985,8 @@ var FinancialService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FinancialService_SearchTransactions_Handler,
 		},
 		{
-			MethodName: "ListRecurringTransactions",
-			Handler:    _FinancialService_ListRecurringTransactions_Handler,
+			MethodName: "ListRecurringTransactionsForUserAndAccount",
+			Handler:    _FinancialService_ListRecurringTransactionsForUserAndAccount_Handler,
 		},
 		{
 			MethodName: "GetSingleRecurringTransaction",
