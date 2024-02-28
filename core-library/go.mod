@@ -10,6 +10,7 @@ require (
 	github.com/infobloxopen/protoc-gen-gorm v1.1.2
 	github.com/jinzhu/gorm v1.9.16
 	github.com/lib/pq v1.10.9
+	github.com/uptrace/go-clickhouse v0.3.1
 	google.golang.org/genproto v0.0.0-20240221002015-b0ce06bbee7c
 	google.golang.org/genproto/googleapis/api v0.0.0-20240221002015-b0ce06bbee7c
 	google.golang.org/grpc v1.62.0
@@ -30,8 +31,6 @@ require (
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/mattn/go-sqlite3 v1.14.17 // indirect
 	github.com/pierrec/lz4/v4 v4.1.18 // indirect
-	github.com/stretchr/testify v1.8.4 // indirect
-	github.com/uptrace/go-clickhouse v0.3.1 // indirect
 	go.opentelemetry.io/otel v1.19.0 // indirect
 	go.opentelemetry.io/otel/trace v1.19.0 // indirect
 	golang.org/x/exp v0.0.0-20230811145659-89c5cff77bcb // indirect
