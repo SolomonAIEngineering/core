@@ -18,7 +18,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/PlaybookMediaEngineering/core.git"
+    "url": "git+https://github.com/SolomonAIEngineering/core.git"
   },
   "license": "MIT",
   "author": {
@@ -41,9 +41,9 @@
     "codecov"
   ],
   "bugs": {
-    "url": "https://github.com/PlaybookMediaEngineering/core/issues"
+    "url": "https://github.com/SolomonAIEngineering/core/issues"
   },
-  "homepage": "https://github.com/PlaybookMediaEngineering/core#readme",
+  "homepage": "https://github.com/SolomonAIEngineering/core#readme",
   "devDependencies": {
     "@ryansonshine/commitizen": "^4.2.8",
     "@ryansonshine/cz-conventional-changelog": "^3.3.4",
