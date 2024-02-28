@@ -20779,6 +20779,10 @@
                     },
                     "role": {
                         "$ref": "#/components/schemas/Role"
+                    },
+                    "algoliaUserId": {
+                        "type": "string",
+                        "title": "Algolia user id"
                     }
                 },
                 "description": "BusinessAccount represents a business account within the context of solomon-ai."
@@ -21691,6 +21695,10 @@
                     },
                     "role": {
                         "$ref": "#/components/schemas/Role"
+                    },
+                    "algoliaUserId": {
+                        "type": "string",
+                        "title": "Algolia user id"
                     }
                 },
                 "description": "@brief Represents a user account in the context of simfinni."

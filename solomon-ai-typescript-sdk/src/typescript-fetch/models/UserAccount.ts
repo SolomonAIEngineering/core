@@ -176,6 +176,12 @@ export interface UserAccount {
      * @memberof UserAccount
      */
     role?: Role;
+    /**
+     * 
+     * @type {string}
+     * @memberof UserAccount
+     */
+    algoliaUserId?: string;
 }
 
 /**
@@ -218,6 +224,7 @@ export function UserAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean
         'profileImageUrl': !exists(json, 'profileImageUrl') ? undefined : json['profileImageUrl'],
         'auth0UserId': !exists(json, 'auth0UserId') ? undefined : json['auth0UserId'],
         'role': !exists(json, 'role') ? undefined : RoleFromJSON(json['role']),
+        'algoliaUserId': !exists(json, 'algoliaUserId') ? undefined : json['algoliaUserId'],
     };
 }
 
@@ -251,6 +258,7 @@ export function UserAccountToJSON(value?: UserAccount | null): any {
         'profileImageUrl': value.profileImageUrl,
         'auth0UserId': value.auth0UserId,
         'role': RoleToJSON(value.role),
+        'algoliaUserId': value.algoliaUserId,
     };
 }
 

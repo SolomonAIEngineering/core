@@ -194,6 +194,12 @@ export interface BusinessAccount {
      * @memberof BusinessAccount
      */
     role?: Role;
+    /**
+     * 
+     * @type {string}
+     * @memberof BusinessAccount
+     */
+    algoliaUserId?: string;
 }
 
 /**
@@ -239,6 +245,7 @@ export function BusinessAccountFromJSONTyped(json: any, ignoreDiscriminator: boo
         'profileImageUrl': !exists(json, 'profileImageUrl') ? undefined : json['profileImageUrl'],
         'auth0UserId': !exists(json, 'auth0UserId') ? undefined : json['auth0UserId'],
         'role': !exists(json, 'role') ? undefined : RoleFromJSON(json['role']),
+        'algoliaUserId': !exists(json, 'algoliaUserId') ? undefined : json['algoliaUserId'],
     };
 }
 
@@ -275,6 +282,7 @@ export function BusinessAccountToJSON(value?: BusinessAccount | null): any {
         'profileImageUrl': value.profileImageUrl,
         'auth0UserId': value.auth0UserId,
         'role': RoleToJSON(value.role),
+        'algoliaUserId': value.algoliaUserId,
     };
 }
 
