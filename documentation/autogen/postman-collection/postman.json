@@ -10515,6 +10515,14 @@
                                         ],
                                         "query": [
                                             {
+                                                "key": "pageNumber",
+                                                "value": "pageNumber_example"
+                                            },
+                                            {
+                                                "key": "pageSize",
+                                                "value": "pageSize_example"
+                                            },
+                                            {
                                                 "key": "profileType",
                                                 "value": "profileType_example"
                                             }
@@ -10968,7 +10976,7 @@
                             ]
                         },
 	                        {
-    "name": "/financial-microservice/api/v1/transactions/transaction",
+    "name": "/financial-microservice/api/v1/transactions/single-transaction",
                 "description": "This endpoint updates a transaction",
                  "item": [
                             {
@@ -10997,7 +11005,7 @@
                                         }
                                     },
                                     "url": {
-                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/transactions/transaction",
+                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/transactions/single-transaction",
                                         "host": [
                                             "{{baseUrl}}"
                                         ],
@@ -11006,7 +11014,7 @@
                                             "api",
                                             "v1",
                                             "transactions",
-                                            "transaction"
+                                            "single-transaction"
                                         ],
                                         "variable": [
                                         ],

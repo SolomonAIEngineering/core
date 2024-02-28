@@ -248,10 +248,9 @@ Models/GetPostsByCategoryResponse.md
 Models/GetPostsByTopicResponse.md
 Models/GetPostsResponse.md
 Models/GetPublicationResponse.md
-Models/GetReCurringTransactionsResponse.md
-Models/GetRecurringTransactionResponse.md
 Models/GetRecurringTransactionsResponse.md
 Models/GetRoleResponse.md
+Models/GetSingleRecurringTransactionResponse.md
 Models/GetSmartGoalsByPocketIdResponse.md
 Models/GetSplitTransactionResponse.md
 Models/GetStudentLoanAccountResponse.md
@@ -384,10 +383,6 @@ Models/Publication.md
 Models/PublicationType.md
 Models/PurchaseOrder.md
 Models/PurchaseOrderLineItem.md
-Models/ReCurringFlow.md
-Models/ReOccuringTransaction.md
-Models/ReOccuringTransactionsFrequency.md
-Models/ReOccuringTransactionsStatus.md
 Models/ReactToCommentReplyResponse.md
 Models/ReactToCommentResponse.md
 Models/ReactToPostResponse.md
@@ -478,10 +473,10 @@ Models/UpdatePocketResponse.md
 Models/UpdateRecurringTransactionRequest.md
 Models/UpdateRecurringTransactionResponse.md
 Models/UpdateRoleResponse.md
+Models/UpdateSingleTransactionRequest.md
+Models/UpdateSingleTransactionResponse.md
 Models/UpdateSmartGoalRequest.md
 Models/UpdateSmartGoalResponse.md
-Models/UpdateTransactionRequest.md
-Models/UpdateTransactionResponse.md
 Models/UpdateUserProfileRequest.md
 Models/UpdateUserProfileResponse.md
 Models/UpdateUserRequest.md

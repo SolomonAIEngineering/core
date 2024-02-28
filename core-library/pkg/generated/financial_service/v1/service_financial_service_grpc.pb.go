@@ -56,7 +56,7 @@ const (
 	FinancialService_GetLink_FullMethodName                                  = "/financial_service.v1.FinancialService/GetLink"
 	FinancialService_GetLinks_FullMethodName                                 = "/financial_service.v1.FinancialService/GetLinks"
 	FinancialService_DeleteLink_FullMethodName                               = "/financial_service.v1.FinancialService/DeleteLink"
-	FinancialService_GetReCurringTransactions_FullMethodName                 = "/financial_service.v1.FinancialService/GetReCurringTransactions"
+	FinancialService_GetRecurringTransactions_FullMethodName                 = "/financial_service.v1.FinancialService/GetRecurringTransactions"
 	FinancialService_GetTransactions_FullMethodName                          = "/financial_service.v1.FinancialService/GetTransactions"
 	FinancialService_CreateSubscription_FullMethodName                       = "/financial_service.v1.FinancialService/CreateSubscription"
 	FinancialService_GetTransactionAggregates_FullMethodName                 = "/financial_service.v1.FinancialService/GetTransactionAggregates"
@@ -96,7 +96,7 @@ const (
 	FinancialService_ListTransactions_FullMethodName                         = "/financial_service.v1.FinancialService/ListTransactions"
 	FinancialService_ListTransactionsAcrossAllAccounts_FullMethodName        = "/financial_service.v1.FinancialService/ListTransactionsAcrossAllAccounts"
 	FinancialService_GetTransaction_FullMethodName                           = "/financial_service.v1.FinancialService/GetTransaction"
-	FinancialService_UpdateTransaction_FullMethodName                        = "/financial_service.v1.FinancialService/UpdateTransaction"
+	FinancialService_UpdateSingleTransaction_FullMethodName                  = "/financial_service.v1.FinancialService/UpdateSingleTransaction"
 	FinancialService_BulkUpdateTransaction_FullMethodName                    = "/financial_service.v1.FinancialService/BulkUpdateTransaction"
 	FinancialService_DeleteTransaction_FullMethodName                        = "/financial_service.v1.FinancialService/DeleteTransaction"
 	FinancialService_AddNoteToTransaction_FullMethodName                     = "/financial_service.v1.FinancialService/AddNoteToTransaction"
@@ -109,7 +109,7 @@ const (
 	FinancialService_GetSplitTransaction_FullMethodName                      = "/financial_service.v1.FinancialService/GetSplitTransaction"
 	FinancialService_SearchTransactions_FullMethodName                       = "/financial_service.v1.FinancialService/SearchTransactions"
 	FinancialService_ListRecurringTransactions_FullMethodName                = "/financial_service.v1.FinancialService/ListRecurringTransactions"
-	FinancialService_GetRecurringTransaction_FullMethodName                  = "/financial_service.v1.FinancialService/GetRecurringTransaction"
+	FinancialService_GetSingleRecurringTransaction_FullMethodName            = "/financial_service.v1.FinancialService/GetSingleRecurringTransaction"
 	FinancialService_UpdateRecurringTransaction_FullMethodName               = "/financial_service.v1.FinancialService/UpdateRecurringTransaction"
 	FinancialService_BulkUpdateRecurringTransaction_FullMethodName           = "/financial_service.v1.FinancialService/BulkUpdateRecurringTransaction"
 	FinancialService_DeleteRecurringTransaction_FullMethodName               = "/financial_service.v1.FinancialService/DeleteRecurringTransaction"
@@ -201,7 +201,7 @@ type FinancialServiceClient interface {
 	// Deletes a linked account
 	DeleteLink(ctx context.Context, in *DeleteLinkRequest, opts ...grpc.CallOption) (*DeleteLinkResponse, error)
 	// This endpoint enables end users to get recurring transactions
-	GetReCurringTransactions(ctx context.Context, in *GetReCurringTransactionsRequest, opts ...grpc.CallOption) (*GetReCurringTransactionsResponse, error)
+	GetRecurringTransactions(ctx context.Context, in *GetRecurringTransactionsRequest, opts ...grpc.CallOption) (*GetRecurringTransactionsResponse, error)
 	// This endpoint enables end users to get transactions in a paginated manner
 	GetTransactions(ctx context.Context, in *GetTransactionsRequest, opts ...grpc.CallOption) (*GetTransactionsResponse, error)
 	// This endpoint enables end users to get transactions in a paginated manner
@@ -280,7 +280,7 @@ type FinancialServiceClient interface {
 	// GetTransaction lists a set of transactions against an account of interest
 	GetTransaction(ctx context.Context, in *GetTransactionRequest, opts ...grpc.CallOption) (*GetTransactionResponse, error)
 	// updates a transaction
-	UpdateTransaction(ctx context.Context, in *UpdateTransactionRequest, opts ...grpc.CallOption) (*UpdateTransactionResponse, error)
+	UpdateSingleTransaction(ctx context.Context, in *UpdateSingleTransactionRequest, opts ...grpc.CallOption) (*UpdateSingleTransactionResponse, error)
 	// performs a bulk update of transactions
 	BulkUpdateTransaction(ctx context.Context, in *BulkUpdateTransactionRequest, opts ...grpc.CallOption) (*BulkUpdateTransactionResponse, error)
 	// deletes a transaction by id
@@ -306,7 +306,7 @@ type FinancialServiceClient interface {
 	// ListRecurringTransactions lists a set of transactions against an account of interest
 	ListRecurringTransactions(ctx context.Context, in *ListRecurringTransactionsRequest, opts ...grpc.CallOption) (*ListRecurringTransactionsResponse, error)
 	// GetRecurringTransaction lists a set of transactions against an account of interest
-	GetRecurringTransaction(ctx context.Context, in *GetRecurringTransactionRequest, opts ...grpc.CallOption) (*GetRecurringTransactionResponse, error)
+	GetSingleRecurringTransaction(ctx context.Context, in *GetSingleRecurringTransactionRequest, opts ...grpc.CallOption) (*GetSingleRecurringTransactionResponse, error)
 	// updates a transaction
 	UpdateRecurringTransaction(ctx context.Context, in *UpdateRecurringTransactionRequest, opts ...grpc.CallOption) (*UpdateRecurringTransactionResponse, error)
 	// performs a bulk update of transactions
@@ -670,9 +670,9 @@ func (c *financialServiceClient) DeleteLink(ctx context.Context, in *DeleteLinkR
 	return out, nil
 }
 
-func (c *financialServiceClient) GetReCurringTransactions(ctx context.Context, in *GetReCurringTransactionsRequest, opts ...grpc.CallOption) (*GetReCurringTransactionsResponse, error) {
-	out := new(GetReCurringTransactionsResponse)
-	err := c.cc.Invoke(ctx, FinancialService_GetReCurringTransactions_FullMethodName, in, out, opts...)
+func (c *financialServiceClient) GetRecurringTransactions(ctx context.Context, in *GetRecurringTransactionsRequest, opts ...grpc.CallOption) (*GetRecurringTransactionsResponse, error) {
+	out := new(GetRecurringTransactionsResponse)
+	err := c.cc.Invoke(ctx, FinancialService_GetRecurringTransactions_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1030,9 +1030,9 @@ func (c *financialServiceClient) GetTransaction(ctx context.Context, in *GetTran
 	return out, nil
 }
 
-func (c *financialServiceClient) UpdateTransaction(ctx context.Context, in *UpdateTransactionRequest, opts ...grpc.CallOption) (*UpdateTransactionResponse, error) {
-	out := new(UpdateTransactionResponse)
-	err := c.cc.Invoke(ctx, FinancialService_UpdateTransaction_FullMethodName, in, out, opts...)
+func (c *financialServiceClient) UpdateSingleTransaction(ctx context.Context, in *UpdateSingleTransactionRequest, opts ...grpc.CallOption) (*UpdateSingleTransactionResponse, error) {
+	out := new(UpdateSingleTransactionResponse)
+	err := c.cc.Invoke(ctx, FinancialService_UpdateSingleTransaction_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1147,9 +1147,9 @@ func (c *financialServiceClient) ListRecurringTransactions(ctx context.Context, 
 	return out, nil
 }
 
-func (c *financialServiceClient) GetRecurringTransaction(ctx context.Context, in *GetRecurringTransactionRequest, opts ...grpc.CallOption) (*GetRecurringTransactionResponse, error) {
-	out := new(GetRecurringTransactionResponse)
-	err := c.cc.Invoke(ctx, FinancialService_GetRecurringTransaction_FullMethodName, in, out, opts...)
+func (c *financialServiceClient) GetSingleRecurringTransaction(ctx context.Context, in *GetSingleRecurringTransactionRequest, opts ...grpc.CallOption) (*GetSingleRecurringTransactionResponse, error) {
+	out := new(GetSingleRecurringTransactionResponse)
+	err := c.cc.Invoke(ctx, FinancialService_GetSingleRecurringTransaction_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1333,7 +1333,7 @@ type FinancialServiceServer interface {
 	// Deletes a linked account
 	DeleteLink(context.Context, *DeleteLinkRequest) (*DeleteLinkResponse, error)
 	// This endpoint enables end users to get recurring transactions
-	GetReCurringTransactions(context.Context, *GetReCurringTransactionsRequest) (*GetReCurringTransactionsResponse, error)
+	GetRecurringTransactions(context.Context, *GetRecurringTransactionsRequest) (*GetRecurringTransactionsResponse, error)
 	// This endpoint enables end users to get transactions in a paginated manner
 	GetTransactions(context.Context, *GetTransactionsRequest) (*GetTransactionsResponse, error)
 	// This endpoint enables end users to get transactions in a paginated manner
@@ -1412,7 +1412,7 @@ type FinancialServiceServer interface {
 	// GetTransaction lists a set of transactions against an account of interest
 	GetTransaction(context.Context, *GetTransactionRequest) (*GetTransactionResponse, error)
 	// updates a transaction
-	UpdateTransaction(context.Context, *UpdateTransactionRequest) (*UpdateTransactionResponse, error)
+	UpdateSingleTransaction(context.Context, *UpdateSingleTransactionRequest) (*UpdateSingleTransactionResponse, error)
 	// performs a bulk update of transactions
 	BulkUpdateTransaction(context.Context, *BulkUpdateTransactionRequest) (*BulkUpdateTransactionResponse, error)
 	// deletes a transaction by id
@@ -1438,7 +1438,7 @@ type FinancialServiceServer interface {
 	// ListRecurringTransactions lists a set of transactions against an account of interest
 	ListRecurringTransactions(context.Context, *ListRecurringTransactionsRequest) (*ListRecurringTransactionsResponse, error)
 	// GetRecurringTransaction lists a set of transactions against an account of interest
-	GetRecurringTransaction(context.Context, *GetRecurringTransactionRequest) (*GetRecurringTransactionResponse, error)
+	GetSingleRecurringTransaction(context.Context, *GetSingleRecurringTransactionRequest) (*GetSingleRecurringTransactionResponse, error)
 	// updates a transaction
 	UpdateRecurringTransaction(context.Context, *UpdateRecurringTransactionRequest) (*UpdateRecurringTransactionResponse, error)
 	// performs a bulk update of transactions
@@ -1577,8 +1577,8 @@ func (UnimplementedFinancialServiceServer) GetLinks(context.Context, *GetLinksRe
 func (UnimplementedFinancialServiceServer) DeleteLink(context.Context, *DeleteLinkRequest) (*DeleteLinkResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteLink not implemented")
 }
-func (UnimplementedFinancialServiceServer) GetReCurringTransactions(context.Context, *GetReCurringTransactionsRequest) (*GetReCurringTransactionsResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetReCurringTransactions not implemented")
+func (UnimplementedFinancialServiceServer) GetRecurringTransactions(context.Context, *GetRecurringTransactionsRequest) (*GetRecurringTransactionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetRecurringTransactions not implemented")
 }
 func (UnimplementedFinancialServiceServer) GetTransactions(context.Context, *GetTransactionsRequest) (*GetTransactionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTransactions not implemented")
@@ -1697,8 +1697,8 @@ func (UnimplementedFinancialServiceServer) ListTransactionsAcrossAllAccounts(con
 func (UnimplementedFinancialServiceServer) GetTransaction(context.Context, *GetTransactionRequest) (*GetTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetTransaction not implemented")
 }
-func (UnimplementedFinancialServiceServer) UpdateTransaction(context.Context, *UpdateTransactionRequest) (*UpdateTransactionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method UpdateTransaction not implemented")
+func (UnimplementedFinancialServiceServer) UpdateSingleTransaction(context.Context, *UpdateSingleTransactionRequest) (*UpdateSingleTransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method UpdateSingleTransaction not implemented")
 }
 func (UnimplementedFinancialServiceServer) BulkUpdateTransaction(context.Context, *BulkUpdateTransactionRequest) (*BulkUpdateTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method BulkUpdateTransaction not implemented")
@@ -1736,8 +1736,8 @@ func (UnimplementedFinancialServiceServer) SearchTransactions(context.Context, *
 func (UnimplementedFinancialServiceServer) ListRecurringTransactions(context.Context, *ListRecurringTransactionsRequest) (*ListRecurringTransactionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ListRecurringTransactions not implemented")
 }
-func (UnimplementedFinancialServiceServer) GetRecurringTransaction(context.Context, *GetRecurringTransactionRequest) (*GetRecurringTransactionResponse, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method GetRecurringTransaction not implemented")
+func (UnimplementedFinancialServiceServer) GetSingleRecurringTransaction(context.Context, *GetSingleRecurringTransactionRequest) (*GetSingleRecurringTransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetSingleRecurringTransaction not implemented")
 }
 func (UnimplementedFinancialServiceServer) UpdateRecurringTransaction(context.Context, *UpdateRecurringTransactionRequest) (*UpdateRecurringTransactionResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method UpdateRecurringTransaction not implemented")
@@ -2451,20 +2451,20 @@ func _FinancialService_DeleteLink_Handler(srv interface{}, ctx context.Context, 
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FinancialService_GetReCurringTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetReCurringTransactionsRequest)
+func _FinancialService_GetRecurringTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetRecurringTransactionsRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FinancialServiceServer).GetReCurringTransactions(ctx, in)
+		return srv.(FinancialServiceServer).GetRecurringTransactions(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FinancialService_GetReCurringTransactions_FullMethodName,
+		FullMethod: FinancialService_GetRecurringTransactions_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FinancialServiceServer).GetReCurringTransactions(ctx, req.(*GetReCurringTransactionsRequest))
+		return srv.(FinancialServiceServer).GetRecurringTransactions(ctx, req.(*GetRecurringTransactionsRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3171,20 +3171,20 @@ func _FinancialService_GetTransaction_Handler(srv interface{}, ctx context.Conte
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FinancialService_UpdateTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(UpdateTransactionRequest)
+func _FinancialService_UpdateSingleTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(UpdateSingleTransactionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FinancialServiceServer).UpdateTransaction(ctx, in)
+		return srv.(FinancialServiceServer).UpdateSingleTransaction(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FinancialService_UpdateTransaction_FullMethodName,
+		FullMethod: FinancialService_UpdateSingleTransaction_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FinancialServiceServer).UpdateTransaction(ctx, req.(*UpdateTransactionRequest))
+		return srv.(FinancialServiceServer).UpdateSingleTransaction(ctx, req.(*UpdateSingleTransactionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3405,20 +3405,20 @@ func _FinancialService_ListRecurringTransactions_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
-func _FinancialService_GetRecurringTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(GetRecurringTransactionRequest)
+func _FinancialService_GetSingleRecurringTransaction_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetSingleRecurringTransactionRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(FinancialServiceServer).GetRecurringTransaction(ctx, in)
+		return srv.(FinancialServiceServer).GetSingleRecurringTransaction(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: FinancialService_GetRecurringTransaction_FullMethodName,
+		FullMethod: FinancialService_GetSingleRecurringTransaction_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(FinancialServiceServer).GetRecurringTransaction(ctx, req.(*GetRecurringTransactionRequest))
+		return srv.(FinancialServiceServer).GetSingleRecurringTransaction(ctx, req.(*GetSingleRecurringTransactionRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3777,8 +3777,8 @@ var FinancialService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FinancialService_DeleteLink_Handler,
 		},
 		{
-			MethodName: "GetReCurringTransactions",
-			Handler:    _FinancialService_GetReCurringTransactions_Handler,
+			MethodName: "GetRecurringTransactions",
+			Handler:    _FinancialService_GetRecurringTransactions_Handler,
 		},
 		{
 			MethodName: "GetTransactions",
@@ -3937,8 +3937,8 @@ var FinancialService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FinancialService_GetTransaction_Handler,
 		},
 		{
-			MethodName: "UpdateTransaction",
-			Handler:    _FinancialService_UpdateTransaction_Handler,
+			MethodName: "UpdateSingleTransaction",
+			Handler:    _FinancialService_UpdateSingleTransaction_Handler,
 		},
 		{
 			MethodName: "BulkUpdateTransaction",
@@ -3989,8 +3989,8 @@ var FinancialService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _FinancialService_ListRecurringTransactions_Handler,
 		},
 		{
-			MethodName: "GetRecurringTransaction",
-			Handler:    _FinancialService_GetRecurringTransaction_Handler,
+			MethodName: "GetSingleRecurringTransaction",
+			Handler:    _FinancialService_GetSingleRecurringTransaction_Handler,
 		},
 		{
 			MethodName: "UpdateRecurringTransaction",

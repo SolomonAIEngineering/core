@@ -86,8 +86,8 @@ import type {
   GetNotesFromSmartGoalResponse,
   GetPaymentChannelMonthlyExpenditureResponse,
   GetPocketResponse,
-  GetRecurringTransactionResponse,
   GetRecurringTransactionsResponse,
+  GetSingleRecurringTransactionResponse,
   GetSmartGoalsByPocketIdResponse,
   GetSplitTransactionResponse,
   GetStudentLoanAccountResponse,
@@ -146,10 +146,10 @@ import type {
   UpdatePocketResponse,
   UpdateRecurringTransactionRequest,
   UpdateRecurringTransactionResponse,
+  UpdateSingleTransactionRequest,
+  UpdateSingleTransactionResponse,
   UpdateSmartGoalRequest,
   UpdateSmartGoalResponse,
-  UpdateTransactionRequest,
-  UpdateTransactionResponse,
   UpdateUserProfileRequest,
   UpdateUserProfileResponse,
   ValidationErrorMessageResponse,
@@ -297,10 +297,10 @@ import {
     GetPaymentChannelMonthlyExpenditureResponseToJSON,
     GetPocketResponseFromJSON,
     GetPocketResponseToJSON,
-    GetRecurringTransactionResponseFromJSON,
-    GetRecurringTransactionResponseToJSON,
     GetRecurringTransactionsResponseFromJSON,
     GetRecurringTransactionsResponseToJSON,
+    GetSingleRecurringTransactionResponseFromJSON,
+    GetSingleRecurringTransactionResponseToJSON,
     GetSmartGoalsByPocketIdResponseFromJSON,
     GetSmartGoalsByPocketIdResponseToJSON,
     GetSplitTransactionResponseFromJSON,
@@ -417,14 +417,14 @@ import {
     UpdateRecurringTransactionRequestToJSON,
     UpdateRecurringTransactionResponseFromJSON,
     UpdateRecurringTransactionResponseToJSON,
+    UpdateSingleTransactionRequestFromJSON,
+    UpdateSingleTransactionRequestToJSON,
+    UpdateSingleTransactionResponseFromJSON,
+    UpdateSingleTransactionResponseToJSON,
     UpdateSmartGoalRequestFromJSON,
     UpdateSmartGoalRequestToJSON,
     UpdateSmartGoalResponseFromJSON,
     UpdateSmartGoalResponseToJSON,
-    UpdateTransactionRequestFromJSON,
-    UpdateTransactionRequestToJSON,
-    UpdateTransactionResponseFromJSON,
-    UpdateTransactionResponseToJSON,
     UpdateUserProfileRequestFromJSON,
     UpdateUserProfileRequestToJSON,
     UpdateUserProfileResponseFromJSON,
@@ -768,6 +768,8 @@ export interface GetRecurringTransactionRequest {
 export interface GetRecurringTransactionsRequest {
     userId: string;
     profileType: GetRecurringTransactionsProfileTypeEnum;
+    pageNumber?: string;
+    pageSize?: string;
 }
 
 export interface GetSmartGoalsByPocketIdRequest {
@@ -964,16 +966,16 @@ export interface UpdatePocketOperationRequest {
     updatePocketRequest: UpdatePocketRequest;
 }
 
+export interface UpdateSingleTransactionOperationRequest {
+    updateSingleTransactionRequest: UpdateSingleTransactionRequest;
+}
+
 export interface UpdateSmartGoalOperationRequest {
     updateSmartGoalRequest: UpdateSmartGoalRequest;
 }
 
 export interface UpdateTransactionRequest {
     updateRecurringTransactionRequest: UpdateRecurringTransactionRequest;
-}
-
-export interface UpdateTransaction1Request {
-    updateTransactionRequest: UpdateTransactionRequest;
 }
 
 export interface UpdateUserProfileOperationRequest {
@@ -3344,7 +3346,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * This endpoint gets a specific transaction based on the transaction id
      * lists a set of transactions against a given account of interest
      */
-    async getRecurringTransactionRaw(requestParameters: GetRecurringTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetRecurringTransactionResponse>> {
+    async getRecurringTransactionRaw(requestParameters: GetRecurringTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSingleRecurringTransactionResponse>> {
         if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
             throw new runtime.RequiredError('transactionId','Required parameter requestParameters.transactionId was null or undefined when calling getRecurringTransaction.');
         }
@@ -3360,14 +3362,14 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             query: queryParameters,
         }, initOverrides);
 
-        return new runtime.JSONApiResponse(response, (jsonValue) => GetRecurringTransactionResponseFromJSON(jsonValue));
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetSingleRecurringTransactionResponseFromJSON(jsonValue));
     }
 
     /**
      * This endpoint gets a specific transaction based on the transaction id
      * lists a set of transactions against a given account of interest
      */
-    async getRecurringTransaction(requestParameters: GetRecurringTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetRecurringTransactionResponse> {
+    async getRecurringTransaction(requestParameters: GetRecurringTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetSingleRecurringTransactionResponse> {
         const response = await this.getRecurringTransactionRaw(requestParameters, initOverrides);
         return await response.value();
     }
@@ -3386,6 +3388,14 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.pageNumber !== undefined) {
+            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        }
+
+        if (requestParameters.pageSize !== undefined) {
+            queryParameters['pageSize'] = requestParameters.pageSize;
+        }
 
         if (requestParameters.profileType !== undefined) {
             queryParameters['profileType'] = requestParameters.profileType;
@@ -4846,6 +4856,41 @@ export class FinancialServiceApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint updates a transaction
+     * update a transaction
+     */
+    async updateSingleTransactionRaw(requestParameters: UpdateSingleTransactionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateSingleTransactionResponse>> {
+        if (requestParameters.updateSingleTransactionRequest === null || requestParameters.updateSingleTransactionRequest === undefined) {
+            throw new runtime.RequiredError('updateSingleTransactionRequest','Required parameter requestParameters.updateSingleTransactionRequest was null or undefined when calling updateSingleTransaction.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/financial-microservice/api/v1/transactions/single-transaction`,
+            method: 'PUT',
+            headers: headerParameters,
+            query: queryParameters,
+            body: UpdateSingleTransactionRequestToJSON(requestParameters.updateSingleTransactionRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateSingleTransactionResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint updates a transaction
+     * update a transaction
+     */
+    async updateSingleTransaction(requestParameters: UpdateSingleTransactionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateSingleTransactionResponse> {
+        const response = await this.updateSingleTransactionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * This endpoint updates a smart goal
      * update a smart goal
      */
@@ -4912,41 +4957,6 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      */
     async updateTransaction(requestParameters: UpdateTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateRecurringTransactionResponse> {
         const response = await this.updateTransactionRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * This endpoint updates a transaction
-     * update a transaction
-     */
-    async updateTransaction1Raw(requestParameters: UpdateTransaction1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateTransactionResponse>> {
-        if (requestParameters.updateTransactionRequest === null || requestParameters.updateTransactionRequest === undefined) {
-            throw new runtime.RequiredError('updateTransactionRequest','Required parameter requestParameters.updateTransactionRequest was null or undefined when calling updateTransaction1.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/transaction`,
-            method: 'PUT',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UpdateTransactionRequestToJSON(requestParameters.updateTransactionRequest),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateTransactionResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * This endpoint updates a transaction
-     * update a transaction
-     */
-    async updateTransaction1(requestParameters: UpdateTransaction1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateTransactionResponse> {
-        const response = await this.updateTransaction1Raw(requestParameters, initOverrides);
         return await response.value();
     }
 

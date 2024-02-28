@@ -100,9 +100,9 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**updateNoteToSmartGoal**](FinancialServiceApi.md#updateNoteToSmartGoal) | **PUT** /financial-microservice/api/v1/smart-goal/note | updates a note to a smart goal |
 | [**updateNoteToTransaction**](FinancialServiceApi.md#updateNoteToTransaction) | **PUT** /financial-microservice/api/v1/transactions/transaction/note | Updates a note to a transaction |
 | [**updatePocket**](FinancialServiceApi.md#updatePocket) | **PUT** /financial-microservice/api/v1/pocket | updates a pocket |
+| [**updateSingleTransaction**](FinancialServiceApi.md#updateSingleTransaction) | **PUT** /financial-microservice/api/v1/transactions/single-transaction | update a transaction |
 | [**updateSmartGoal**](FinancialServiceApi.md#updateSmartGoal) | **PUT** /financial-microservice/api/v1/smart-goal | update a smart goal |
 | [**updateTransaction**](FinancialServiceApi.md#updateTransaction) | **PUT** /financial-microservice/api/v1/transactions/recurring | update a transaction |
-| [**updateTransaction1**](FinancialServiceApi.md#updateTransaction1) | **PUT** /financial-microservice/api/v1/transactions/transaction | update a transaction |
 | [**updateUserProfile**](FinancialServiceApi.md#updateUserProfile) | **PUT** /financial-microservice/api/v1/profile | update a user profile |
 | [**updatesBudget**](FinancialServiceApi.md#updatesBudget) | **PUT** /financial-microservice/api/v1/budget | updates a budget |
 | [**updatesMilestone**](FinancialServiceApi.md#updatesMilestone) | **PUT** /financial-microservice/api/v1/milestone | updates a milestone |
@@ -1788,7 +1788,7 @@ No authorization required
 
 <a name="getRecurringTransaction"></a>
 # **getRecurringTransaction**
-> GetRecurringTransactionResponse getRecurringTransaction(transactionId)
+> GetSingleRecurringTransactionResponse getRecurringTransaction(transactionId)
 
 lists a set of transactions against a given account of interest
 
@@ -1802,7 +1802,7 @@ lists a set of transactions against a given account of interest
 
 ### Return type
 
-[**GetRecurringTransactionResponse**](../Models/GetRecurringTransactionResponse.md)
+[**GetSingleRecurringTransactionResponse**](../Models/GetSingleRecurringTransactionResponse.md)
 
 ### Authorization
 
@@ -1815,7 +1815,7 @@ No authorization required
 
 <a name="getRecurringTransactions"></a>
 # **getRecurringTransactions**
-> GetRecurringTransactionsResponse getRecurringTransactions(userId, profileType)
+> GetRecurringTransactionsResponse getRecurringTransactions(userId, profileType, pageNumber, pageSize)
 
 get recurring transactions
 
@@ -1827,6 +1827,8 @@ get recurring transactions
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| The user id Validations: - user_id must be greater than 0 | [default to null] |
 | **profileType** | **String**|  | [default to FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED] [enum: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED, FINANCIAL_USER_PROFILE_TYPE_USER, FINANCIAL_USER_PROFILE_TYPE_BUSINESS] |
+| **pageNumber** | **String**|  | [optional] [default to null] |
+| **pageSize** | **String**|  | [optional] [default to null] |
 
 ### Return type
 
@@ -2815,6 +2817,33 @@ No authorization required
 - **Content-Type**: application/json
 - **Accept**: application/json
 
+<a name="updateSingleTransaction"></a>
+# **updateSingleTransaction**
+> UpdateSingleTransactionResponse updateSingleTransaction(UpdateSingleTransactionRequest)
+
+update a transaction
+
+    This endpoint updates a transaction
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **UpdateSingleTransactionRequest** | [**UpdateSingleTransactionRequest**](../Models/UpdateSingleTransactionRequest.md)|  | |
+
+### Return type
+
+[**UpdateSingleTransactionResponse**](../Models/UpdateSingleTransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
 <a name="updateSmartGoal"></a>
 # **updateSmartGoal**
 > UpdateSmartGoalResponse updateSmartGoal(UpdateSmartGoalRequest)
@@ -2859,33 +2888,6 @@ update a transaction
 ### Return type
 
 [**UpdateRecurringTransactionResponse**](../Models/UpdateRecurringTransactionResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-<a name="updateTransaction1"></a>
-# **updateTransaction1**
-> UpdateTransactionResponse updateTransaction1(UpdateTransactionRequest)
-
-update a transaction
-
-    This endpoint updates a transaction
-
-### Parameters
-
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **UpdateTransactionRequest** | [**UpdateTransactionRequest**](../Models/UpdateTransactionRequest.md)|  | |
-
-### Return type
-
-[**UpdateTransactionResponse**](../Models/UpdateTransactionResponse.md)
 
 ### Authorization
 

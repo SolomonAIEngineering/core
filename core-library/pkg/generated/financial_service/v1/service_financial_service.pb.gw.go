@@ -1900,11 +1900,11 @@ func local_request_FinancialService_DeleteLink_0(ctx context.Context, marshaler 
 }
 
 var (
-	filter_FinancialService_GetReCurringTransactions_0 = &utilities.DoubleArray{Encoding: map[string]int{"user_id": 0, "userId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
+	filter_FinancialService_GetRecurringTransactions_0 = &utilities.DoubleArray{Encoding: map[string]int{"user_id": 0, "userId": 1}, Base: []int{1, 1, 2, 0, 0}, Check: []int{0, 1, 1, 2, 3}}
 )
 
-func request_FinancialService_GetReCurringTransactions_0(ctx context.Context, marshaler runtime.Marshaler, client FinancialServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetReCurringTransactionsRequest
+func request_FinancialService_GetRecurringTransactions_0(ctx context.Context, marshaler runtime.Marshaler, client FinancialServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetRecurringTransactionsRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -1927,17 +1927,17 @@ func request_FinancialService_GetReCurringTransactions_0(ctx context.Context, ma
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FinancialService_GetReCurringTransactions_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FinancialService_GetRecurringTransactions_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.GetReCurringTransactions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetRecurringTransactions(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_FinancialService_GetReCurringTransactions_0(ctx context.Context, marshaler runtime.Marshaler, server FinancialServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetReCurringTransactionsRequest
+func local_request_FinancialService_GetRecurringTransactions_0(ctx context.Context, marshaler runtime.Marshaler, server FinancialServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetRecurringTransactionsRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -1960,11 +1960,11 @@ func local_request_FinancialService_GetReCurringTransactions_0(ctx context.Conte
 	if err := req.ParseForm(); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
-	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FinancialService_GetReCurringTransactions_0); err != nil {
+	if err := runtime.PopulateQueryParameters(&protoReq, req.Form, filter_FinancialService_GetRecurringTransactions_0); err != nil {
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.GetReCurringTransactions(ctx, &protoReq)
+	msg, err := server.GetRecurringTransactions(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -4621,8 +4621,8 @@ func local_request_FinancialService_GetTransaction_0(ctx context.Context, marsha
 
 }
 
-func request_FinancialService_UpdateTransaction_0(ctx context.Context, marshaler runtime.Marshaler, client FinancialServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateTransactionRequest
+func request_FinancialService_UpdateSingleTransaction_0(ctx context.Context, marshaler runtime.Marshaler, client FinancialServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateSingleTransactionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -4633,13 +4633,13 @@ func request_FinancialService_UpdateTransaction_0(ctx context.Context, marshaler
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := client.UpdateTransaction(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.UpdateSingleTransaction(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_FinancialService_UpdateTransaction_0(ctx context.Context, marshaler runtime.Marshaler, server FinancialServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq UpdateTransactionRequest
+func local_request_FinancialService_UpdateSingleTransaction_0(ctx context.Context, marshaler runtime.Marshaler, server FinancialServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq UpdateSingleTransactionRequest
 	var metadata runtime.ServerMetadata
 
 	newReader, berr := utilities.IOReaderFactory(req.Body)
@@ -4650,7 +4650,7 @@ func local_request_FinancialService_UpdateTransaction_0(ctx context.Context, mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "%v", err)
 	}
 
-	msg, err := server.UpdateTransaction(ctx, &protoReq)
+	msg, err := server.UpdateSingleTransaction(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -5195,8 +5195,8 @@ func local_request_FinancialService_ListRecurringTransactions_0(ctx context.Cont
 
 }
 
-func request_FinancialService_GetRecurringTransaction_0(ctx context.Context, marshaler runtime.Marshaler, client FinancialServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRecurringTransactionRequest
+func request_FinancialService_GetSingleRecurringTransaction_0(ctx context.Context, marshaler runtime.Marshaler, client FinancialServiceClient, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetSingleRecurringTransactionRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -5216,13 +5216,13 @@ func request_FinancialService_GetRecurringTransaction_0(ctx context.Context, mar
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "transaction_id", err)
 	}
 
-	msg, err := client.GetRecurringTransaction(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
+	msg, err := client.GetSingleRecurringTransaction(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
 
 }
 
-func local_request_FinancialService_GetRecurringTransaction_0(ctx context.Context, marshaler runtime.Marshaler, server FinancialServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
-	var protoReq GetRecurringTransactionRequest
+func local_request_FinancialService_GetSingleRecurringTransaction_0(ctx context.Context, marshaler runtime.Marshaler, server FinancialServiceServer, req *http.Request, pathParams map[string]string) (proto.Message, runtime.ServerMetadata, error) {
+	var protoReq GetSingleRecurringTransactionRequest
 	var metadata runtime.ServerMetadata
 
 	var (
@@ -5242,7 +5242,7 @@ func local_request_FinancialService_GetRecurringTransaction_0(ctx context.Contex
 		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "transaction_id", err)
 	}
 
-	msg, err := server.GetRecurringTransaction(ctx, &protoReq)
+	msg, err := server.GetSingleRecurringTransaction(ctx, &protoReq)
 	return msg, metadata, err
 
 }
@@ -6700,7 +6700,7 @@ func RegisterFinancialServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 
 	})
 
-	mux.Handle("GET", pattern_FinancialService_GetReCurringTransactions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_FinancialService_GetRecurringTransactions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -6708,12 +6708,12 @@ func RegisterFinancialServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/financial_service.v1.FinancialService/GetReCurringTransactions", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/transactions/recurring-transactions/{user_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/financial_service.v1.FinancialService/GetRecurringTransactions", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/transactions/recurring-transactions/{user_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_FinancialService_GetReCurringTransactions_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_FinancialService_GetRecurringTransactions_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -6721,7 +6721,7 @@ func RegisterFinancialServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_FinancialService_GetReCurringTransactions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_FinancialService_GetRecurringTransactions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -7700,7 +7700,7 @@ func RegisterFinancialServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 
 	})
 
-	mux.Handle("PUT", pattern_FinancialService_UpdateTransaction_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_FinancialService_UpdateSingleTransaction_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -7708,12 +7708,12 @@ func RegisterFinancialServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/financial_service.v1.FinancialService/UpdateTransaction", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/transactions/transaction"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/financial_service.v1.FinancialService/UpdateSingleTransaction", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/transactions/single-transaction"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_FinancialService_UpdateTransaction_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_FinancialService_UpdateSingleTransaction_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -7721,7 +7721,7 @@ func RegisterFinancialServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_FinancialService_UpdateTransaction_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_FinancialService_UpdateSingleTransaction_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -8025,7 +8025,7 @@ func RegisterFinancialServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 
 	})
 
-	mux.Handle("GET", pattern_FinancialService_GetRecurringTransaction_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_FinancialService_GetSingleRecurringTransaction_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		var stream runtime.ServerTransportStream
@@ -8033,12 +8033,12 @@ func RegisterFinancialServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/financial_service.v1.FinancialService/GetRecurringTransaction", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/transactions/recurring/{transaction_id}"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/financial_service.v1.FinancialService/GetSingleRecurringTransaction", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/transactions/recurring/{transaction_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := local_request_FinancialService_GetRecurringTransaction_0(annotatedContext, inboundMarshaler, server, req, pathParams)
+		resp, md, err := local_request_FinancialService_GetSingleRecurringTransaction_0(annotatedContext, inboundMarshaler, server, req, pathParams)
 		md.HeaderMD, md.TrailerMD = metadata.Join(md.HeaderMD, stream.Header()), metadata.Join(md.TrailerMD, stream.Trailer())
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
@@ -8046,7 +8046,7 @@ func RegisterFinancialServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 			return
 		}
 
-		forward_FinancialService_GetRecurringTransaction_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_FinancialService_GetSingleRecurringTransaction_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -9180,25 +9180,25 @@ func RegisterFinancialServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 
 	})
 
-	mux.Handle("GET", pattern_FinancialService_GetReCurringTransactions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_FinancialService_GetRecurringTransactions_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/financial_service.v1.FinancialService/GetReCurringTransactions", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/transactions/recurring-transactions/{user_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/financial_service.v1.FinancialService/GetRecurringTransactions", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/transactions/recurring-transactions/{user_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_FinancialService_GetReCurringTransactions_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_FinancialService_GetRecurringTransactions_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_FinancialService_GetReCurringTransactions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_FinancialService_GetRecurringTransactions_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -10060,25 +10060,25 @@ func RegisterFinancialServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 
 	})
 
-	mux.Handle("PUT", pattern_FinancialService_UpdateTransaction_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("PUT", pattern_FinancialService_UpdateSingleTransaction_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/financial_service.v1.FinancialService/UpdateTransaction", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/transactions/transaction"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/financial_service.v1.FinancialService/UpdateSingleTransaction", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/transactions/single-transaction"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_FinancialService_UpdateTransaction_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_FinancialService_UpdateSingleTransaction_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_FinancialService_UpdateTransaction_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_FinancialService_UpdateSingleTransaction_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -10346,25 +10346,25 @@ func RegisterFinancialServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 
 	})
 
-	mux.Handle("GET", pattern_FinancialService_GetRecurringTransaction_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
+	mux.Handle("GET", pattern_FinancialService_GetSingleRecurringTransaction_0, func(w http.ResponseWriter, req *http.Request, pathParams map[string]string) {
 		ctx, cancel := context.WithCancel(req.Context())
 		defer cancel()
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/financial_service.v1.FinancialService/GetRecurringTransaction", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/transactions/recurring/{transaction_id}"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/financial_service.v1.FinancialService/GetSingleRecurringTransaction", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/transactions/recurring/{transaction_id}"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
 		}
-		resp, md, err := request_FinancialService_GetRecurringTransaction_0(annotatedContext, inboundMarshaler, client, req, pathParams)
+		resp, md, err := request_FinancialService_GetSingleRecurringTransaction_0(annotatedContext, inboundMarshaler, client, req, pathParams)
 		annotatedContext = runtime.NewServerMetadataContext(annotatedContext, md)
 		if err != nil {
 			runtime.HTTPError(annotatedContext, mux, outboundMarshaler, w, req, err)
 			return
 		}
 
-		forward_FinancialService_GetRecurringTransaction_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
+		forward_FinancialService_GetSingleRecurringTransaction_0(annotatedContext, mux, outboundMarshaler, w, req, resp, mux.GetForwardResponseOptions()...)
 
 	})
 
@@ -10688,7 +10688,7 @@ var (
 
 	pattern_FinancialService_DeleteLink_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6}, []string{"financial-microservice", "api", "v1", "link", "link_id", "user", "user_id"}, ""))
 
-	pattern_FinancialService_GetReCurringTransactions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"financial-microservice", "api", "v1", "transactions", "recurring-transactions", "user_id"}, ""))
+	pattern_FinancialService_GetRecurringTransactions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"financial-microservice", "api", "v1", "transactions", "recurring-transactions", "user_id"}, ""))
 
 	pattern_FinancialService_GetTransactions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 1, 0, 4, 1, 5, 4, 2, 5, 1, 0, 4, 1, 5, 6, 2, 7, 1, 0, 4, 1, 5, 8}, []string{"financial-microservice", "api", "v1", "transactions", "user_id", "pageNumber", "page_number", "pageSize", "page_size"}, ""))
 
@@ -10768,7 +10768,7 @@ var (
 
 	pattern_FinancialService_GetTransaction_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"financial-microservice", "api", "v1", "transactions", "transaction", "transaction_id"}, ""))
 
-	pattern_FinancialService_UpdateTransaction_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"financial-microservice", "api", "v1", "transactions", "transaction"}, ""))
+	pattern_FinancialService_UpdateSingleTransaction_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"financial-microservice", "api", "v1", "transactions", "single-transaction"}, ""))
 
 	pattern_FinancialService_BulkUpdateTransaction_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"financial-microservice", "api", "v1", "transactions", "transaction", "bulk"}, ""))
 
@@ -10794,7 +10794,7 @@ var (
 
 	pattern_FinancialService_ListRecurringTransactions_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"financial-microservice", "api", "v1", "transactions", "recurrings"}, ""))
 
-	pattern_FinancialService_GetRecurringTransaction_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"financial-microservice", "api", "v1", "transactions", "recurring", "transaction_id"}, ""))
+	pattern_FinancialService_GetSingleRecurringTransaction_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5}, []string{"financial-microservice", "api", "v1", "transactions", "recurring", "transaction_id"}, ""))
 
 	pattern_FinancialService_UpdateRecurringTransaction_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4}, []string{"financial-microservice", "api", "v1", "transactions", "recurring"}, ""))
 
@@ -10894,7 +10894,7 @@ var (
 
 	forward_FinancialService_DeleteLink_0 = runtime.ForwardResponseMessage
 
-	forward_FinancialService_GetReCurringTransactions_0 = runtime.ForwardResponseMessage
+	forward_FinancialService_GetRecurringTransactions_0 = runtime.ForwardResponseMessage
 
 	forward_FinancialService_GetTransactions_0 = runtime.ForwardResponseMessage
 
@@ -10974,7 +10974,7 @@ var (
 
 	forward_FinancialService_GetTransaction_0 = runtime.ForwardResponseMessage
 
-	forward_FinancialService_UpdateTransaction_0 = runtime.ForwardResponseMessage
+	forward_FinancialService_UpdateSingleTransaction_0 = runtime.ForwardResponseMessage
 
 	forward_FinancialService_BulkUpdateTransaction_0 = runtime.ForwardResponseMessage
 
@@ -11000,7 +11000,7 @@ var (
 
 	forward_FinancialService_ListRecurringTransactions_0 = runtime.ForwardResponseMessage
 
-	forward_FinancialService_GetRecurringTransaction_0 = runtime.ForwardResponseMessage
+	forward_FinancialService_GetSingleRecurringTransaction_0 = runtime.ForwardResponseMessage
 
 	forward_FinancialService_UpdateRecurringTransaction_0 = runtime.ForwardResponseMessage
 

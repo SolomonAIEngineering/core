@@ -78,7 +78,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            docker.io/feelguuds/api-gateway
+            docker.io/solomon-ai/api-gateway
           tags: |
             type=raw,value=${{ steps.prep.outputs.VERSION }}
             type=raw,value=latest

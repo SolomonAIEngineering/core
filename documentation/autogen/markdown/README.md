@@ -115,9 +115,9 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *FinancialServiceApi* | [**updateNoteToSmartGoal**](Apis/FinancialServiceApi.md#updatenotetosmartgoal) | **PUT** /financial-microservice/api/v1/smart-goal/note | updates a note to a smart goal |
 *FinancialServiceApi* | [**updateNoteToTransaction**](Apis/FinancialServiceApi.md#updatenotetotransaction) | **PUT** /financial-microservice/api/v1/transactions/transaction/note | Updates a note to a transaction |
 *FinancialServiceApi* | [**updatePocket**](Apis/FinancialServiceApi.md#updatepocket) | **PUT** /financial-microservice/api/v1/pocket | updates a pocket |
+*FinancialServiceApi* | [**updateSingleTransaction**](Apis/FinancialServiceApi.md#updatesingletransaction) | **PUT** /financial-microservice/api/v1/transactions/single-transaction | update a transaction |
 *FinancialServiceApi* | [**updateSmartGoal**](Apis/FinancialServiceApi.md#updatesmartgoal) | **PUT** /financial-microservice/api/v1/smart-goal | update a smart goal |
 *FinancialServiceApi* | [**updateTransaction**](Apis/FinancialServiceApi.md#updatetransaction) | **PUT** /financial-microservice/api/v1/transactions/recurring | update a transaction |
-*FinancialServiceApi* | [**updateTransaction1**](Apis/FinancialServiceApi.md#updatetransaction1) | **PUT** /financial-microservice/api/v1/transactions/transaction | update a transaction |
 *FinancialServiceApi* | [**updateUserProfile**](Apis/FinancialServiceApi.md#updateuserprofile) | **PUT** /financial-microservice/api/v1/profile | update a user profile |
 *FinancialServiceApi* | [**updatesBudget**](Apis/FinancialServiceApi.md#updatesbudget) | **PUT** /financial-microservice/api/v1/budget | updates a budget |
 *FinancialServiceApi* | [**updatesMilestone**](Apis/FinancialServiceApi.md#updatesmilestone) | **PUT** /financial-microservice/api/v1/milestone | updates a milestone |
@@ -492,10 +492,9 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [GetPostsByTopicResponse](./Models/GetPostsByTopicResponse.md)
  - [GetPostsResponse](./Models/GetPostsResponse.md)
  - [GetPublicationResponse](./Models/GetPublicationResponse.md)
- - [GetReCurringTransactionsResponse](./Models/GetReCurringTransactionsResponse.md)
- - [GetRecurringTransactionResponse](./Models/GetRecurringTransactionResponse.md)
  - [GetRecurringTransactionsResponse](./Models/GetRecurringTransactionsResponse.md)
  - [GetRoleResponse](./Models/GetRoleResponse.md)
+ - [GetSingleRecurringTransactionResponse](./Models/GetSingleRecurringTransactionResponse.md)
  - [GetSmartGoalsByPocketIdResponse](./Models/GetSmartGoalsByPocketIdResponse.md)
  - [GetSplitTransactionResponse](./Models/GetSplitTransactionResponse.md)
  - [GetStudentLoanAccountResponse](./Models/GetStudentLoanAccountResponse.md)
@@ -628,10 +627,6 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [PublicationType](./Models/PublicationType.md)
  - [PurchaseOrder](./Models/PurchaseOrder.md)
  - [PurchaseOrderLineItem](./Models/PurchaseOrderLineItem.md)
- - [ReCurringFlow](./Models/ReCurringFlow.md)
- - [ReOccuringTransaction](./Models/ReOccuringTransaction.md)
- - [ReOccuringTransactionsFrequency](./Models/ReOccuringTransactionsFrequency.md)
- - [ReOccuringTransactionsStatus](./Models/ReOccuringTransactionsStatus.md)
  - [ReactToCommentReplyResponse](./Models/ReactToCommentReplyResponse.md)
  - [ReactToCommentResponse](./Models/ReactToCommentResponse.md)
  - [ReactToPostResponse](./Models/ReactToPostResponse.md)
@@ -722,10 +717,10 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [UpdateRecurringTransactionRequest](./Models/UpdateRecurringTransactionRequest.md)
  - [UpdateRecurringTransactionResponse](./Models/UpdateRecurringTransactionResponse.md)
  - [UpdateRoleResponse](./Models/UpdateRoleResponse.md)
+ - [UpdateSingleTransactionRequest](./Models/UpdateSingleTransactionRequest.md)
+ - [UpdateSingleTransactionResponse](./Models/UpdateSingleTransactionResponse.md)
  - [UpdateSmartGoalRequest](./Models/UpdateSmartGoalRequest.md)
  - [UpdateSmartGoalResponse](./Models/UpdateSmartGoalResponse.md)
- - [UpdateTransactionRequest](./Models/UpdateTransactionRequest.md)
- - [UpdateTransactionResponse](./Models/UpdateTransactionResponse.md)
  - [UpdateUserProfileRequest](./Models/UpdateUserProfileRequest.md)
  - [UpdateUserProfileResponse](./Models/UpdateUserProfileResponse.md)
  - [UpdateUserRequest](./Models/UpdateUserRequest.md)

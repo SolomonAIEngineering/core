@@ -250,10 +250,9 @@ models/GetPostsByCategoryResponse.ts
 models/GetPostsByTopicResponse.ts
 models/GetPostsResponse.ts
 models/GetPublicationResponse.ts
-models/GetReCurringTransactionsResponse.ts
-models/GetRecurringTransactionResponse.ts
 models/GetRecurringTransactionsResponse.ts
 models/GetRoleResponse.ts
+models/GetSingleRecurringTransactionResponse.ts
 models/GetSmartGoalsByPocketIdResponse.ts
 models/GetSplitTransactionResponse.ts
 models/GetStudentLoanAccountResponse.ts
@@ -386,10 +385,6 @@ models/Publication.ts
 models/PublicationType.ts
 models/PurchaseOrder.ts
 models/PurchaseOrderLineItem.ts
-models/ReCurringFlow.ts
-models/ReOccuringTransaction.ts
-models/ReOccuringTransactionsFrequency.ts
-models/ReOccuringTransactionsStatus.ts
 models/ReactToCommentReplyResponse.ts
 models/ReactToCommentResponse.ts
 models/ReactToPostResponse.ts
@@ -480,10 +475,10 @@ models/UpdatePocketResponse.ts
 models/UpdateRecurringTransactionRequest.ts
 models/UpdateRecurringTransactionResponse.ts
 models/UpdateRoleResponse.ts
+models/UpdateSingleTransactionRequest.ts
+models/UpdateSingleTransactionResponse.ts
 models/UpdateSmartGoalRequest.ts
 models/UpdateSmartGoalResponse.ts
-models/UpdateTransactionRequest.ts
-models/UpdateTransactionResponse.ts
 models/UpdateUserProfileRequest.ts
 models/UpdateUserProfileResponse.ts
 models/UpdateUserRequest.ts

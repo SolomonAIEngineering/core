@@ -10798,6 +10798,18 @@ paths:
           required: true
           schema:
             type: string
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uint64
+        - name: pageSize
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uint64
         - name: profileType
           in: query
           required: true
@@ -10952,7 +10964,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/GetRecurringTransactionResponse'
+                $ref: '#/components/schemas/GetSingleRecurringTransactionResponse'
         '400':
           description: Request failed due to invalid input.
           content:
@@ -11228,18 +11240,18 @@ paths:
             default: FINANCIAL_ACCOUNT_TYPE_UNSPECIFIED
       tags:
         - financial-service
-  /financial-microservice/api/v1/transactions/transaction:
+  /financial-microservice/api/v1/transactions/single-transaction:
     put:
       summary: update a transaction
       description: This endpoint updates a transaction
-      operationId: UpdateTransaction1
+      operationId: UpdateSingleTransaction
       responses:
         '200':
           description: A successful response.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/UpdateTransactionResponse'
+                $ref: '#/components/schemas/UpdateSingleTransactionResponse'
         '400':
           description: Request failed due to invalid input.
           content:
@@ -11268,7 +11280,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/UpdateTransactionRequest'
+              $ref: '#/components/schemas/UpdateSingleTransactionRequest'
         required: true
       tags:
         - financial-service
@@ -18159,20 +18171,6 @@ components:
       properties:
         pocket:
           $ref: '#/components/schemas/Pocket'
-    GetReCurringTransactionsResponse:
-      type: object
-      properties:
-        reCcuringTransactions:
-          type: array
-          items:
-            $ref: '#/components/schemas/ReOccuringTransaction'
-          title: The re-occuring transactions
-    GetRecurringTransactionResponse:
-      type: object
-      properties:
-        transaction:
-          $ref: '#/components/schemas/PlaidAccountRecurringTransaction'
-      title: GetRecurringTransactionResponse is the get transaction response
     GetRecurringTransactionsResponse:
       type: object
       properties:
@@ -18184,6 +18182,12 @@ components:
         nextPageNumber:
           type: string
           format: uint64
+    GetSingleRecurringTransactionResponse:
+      type: object
+      properties:
+        transaction:
+          $ref: '#/components/schemas/PlaidAccountRecurringTransaction'
+      title: GetRecurringTransactionResponse is the get transaction response
     GetSmartGoalsByPocketIdResponse:
       type: object
       properties:
@@ -19935,116 +19939,6 @@ components:
         runId:
           type: string
           title: The run id
-    ReCurringFlow:
-      type: string
-      enum:
-        - RE_CURRING_FLOW_UNSPECIFIED
-        - RE_CURRING_FLOW_INFLOW
-        - RE_CURRING_FLOW_OUTFLOW
-      default: RE_CURRING_FLOW_UNSPECIFIED
-    ReOccuringTransaction:
-      type: object
-      properties:
-        accountId:
-          type: string
-          title: '@gotag: ch:"account_id"'
-        streamId:
-          type: string
-          title: '@gotag: ch:"stream_id"'
-        categoryId:
-          type: string
-          title: '@gotag: ch:"category_id"'
-        description:
-          type: string
-          title: '@gotag: ch:"description"'
-        merchantName:
-          type: string
-          title: '@gotag: ch:"merchant_name"'
-        personalFinanceCategoryPrimary:
-          type: string
-          title: '@gotag: ch:"personal_finance_category_primary"'
-        personalFinanceCategoryDetailed:
-          type: string
-          title: '@gotag: ch:"personal_finance_category_detailed"'
-        firstDate:
-          type: string
-          title: '@gotag: ch:"first_date"'
-        lastDate:
-          type: string
-          title: '@gotag: ch:"last_date"'
-        frequency:
-          $ref: '#/components/schemas/ReOccuringTransactionsFrequency'
-        transactionIds:
-          type: string
-          title: '@gotag: ch:"transaction_ids,array"'
-        averageAmount:
-          type: string
-          title: '@gotag: ch:"average_amount"'
-        averageAmountIsoCurrencyCode:
-          type: string
-          title: '@gotag: ch:"average_amount_iso_currency_code"'
-        lastAmount:
-          type: string
-          title: '@gotag: ch:"last_amount"'
-        lastAmountIsoCurrencyCode:
-          type: string
-          title: '@gotag: ch:"last_amount_iso_currency_code"'
-        isActive:
-          type: boolean
-          title: '@gotag: ch:"is_active"'
-        status:
-          $ref: '#/components/schemas/ReOccuringTransactionsStatus'
-        updatedTime:
-          type: string
-          title: '@gotag: ch:"updated_time"'
-        userId:
-          type: string
-          title: '@gotag: ch:"user_id"'
-        linkId:
-          type: string
-          format: uint64
-          title: '@gotag: ch:"link_id"'
-        id:
-          type: string
-          title: '@gotag: ch:"id"'
-        flow:
-          $ref: '#/components/schemas/ReCurringFlow'
-        sign:
-          type: integer
-          format: int32
-        time:
-          type: string
-          format: date-time
-        additionalProperties:
-          $ref: '#/components/schemas/Any1'
-        profileType:
-          $ref: '#/components/schemas/FinancialUserProfileType'
-    ReOccuringTransactionsFrequency:
-      type: string
-      enum:
-        - RE_OCCURING_TRANSACTIONS_FREQUENCY_UNSPECIFIED
-        - RE_OCCURING_TRANSACTIONS_FREQUENCY_WEEKLY
-        - RE_OCCURING_TRANSACTIONS_FREQUENCY_BIWEEKLY
-        - RE_OCCURING_TRANSACTIONS_FREQUENCY_SEMI_MONTHLY
-        - RE_OCCURING_TRANSACTIONS_FREQUENCY_MONTHLY
-        - RE_OCCURING_TRANSACTIONS_FREQUENCY_ANNUALLY
-      default: RE_OCCURING_TRANSACTIONS_FREQUENCY_UNSPECIFIED
-    ReOccuringTransactionsStatus:
-      type: string
-      enum:
-        - RE_OCCURING_TRANSACTIONS_STATUS_UNSPECIFIED
-        - RE_OCCURING_TRANSACTIONS_STATUS_MATURE
-        - RE_OCCURING_TRANSACTIONS_STATUS_EARLY_DETECTION
-        - RE_OCCURING_TRANSACTIONS_STATUS_TOMBSTONED
-      default: RE_OCCURING_TRANSACTIONS_STATUS_UNSPECIFIED
-      description: >2-
-         - RE_OCCURING_TRANSACTIONS_STATUS_MATURE: A MATURE recurring stream should have at least 3 transactions and happen
-         on a regular cadence (For Annual recurring stream, we will mark it MATURE after 2 instances).
-         - RE_OCCURING_TRANSACTIONS_STATUS_EARLY_DETECTION: When a recurring transaction first appears in the transaction history and before it fulfills
-        the requirement of a mature stream, the status will be EARLY_DETECTION.
-         - RE_OCCURING_TRANSACTIONS_STATUS_TOMBSTONED: A stream that was previously in the EARLY_DETECTION status will move to the TOMBSTONED
-        status when no further transactions were found at the next expected
-        date.
     RecordAskCopilotQuestionRequest:
       type: object
       properties:
@@ -20808,6 +20702,20 @@ components:
         transaction:
           $ref: '#/components/schemas/PlaidAccountRecurringTransaction'
       title: UpdateRecurringTransactionResponse is the update transaction response
+    UpdateSingleTransactionRequest:
+      type: object
+      properties:
+        transaction:
+          $ref: '#/components/schemas/PlaidAccountTransaction'
+      title: UpdateSingleTransactionRequest is the update transaction request
+      required:
+        - transaction
+    UpdateSingleTransactionResponse:
+      type: object
+      properties:
+        transaction:
+          $ref: '#/components/schemas/PlaidAccountTransaction'
+      title: UpdateSingleTransactionResponse is the update transaction response
     UpdateSmartGoalRequest:
       type: object
       properties:
@@ -20822,20 +20730,6 @@ components:
           type: string
           format: uint64
           title: The smart goal id
-    UpdateTransactionRequest:
-      type: object
-      properties:
-        transaction:
-          $ref: '#/components/schemas/PlaidAccountTransaction'
-      title: UpdateTransactionRequest is the update transaction request
-      required:
-        - transaction
-    UpdateTransactionResponse:
-      type: object
-      properties:
-        transaction:
-          $ref: '#/components/schemas/PlaidAccountTransaction'
-      title: UpdateTransactionResponse is the update transaction response
     UpdateUserProfileRequest:
       type: object
       properties:

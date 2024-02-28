@@ -801,29 +801,6 @@ message DeleteLinkResponse {
   uint64 link_id = 1;
 }
 
-message GetReCurringTransactionsRequest {
-  // The user id
-  // Validations:
-  // - user_id must be greater than 0
-  string user_id = 2 [
-    (validate.rules).string.min_len = 0,
-    (google.api.field_behavior) = REQUIRED
-  ];
-  FinancialUserProfileType profile_type = 9 [
-    (google.api.field_behavior) = REQUIRED
-  ];
-}
-
-message GetReCurringTransactionsResponse {
-  message ParticipantReCurringTransactions {
-  // The participant id
-  string reocurring_transaction_id = 1;
-  // The transactions
-  repeated Transaction transactions = 2;
-}
-  // The re-occuring transactions
-  repeated ReOccuringTransaction re_ccuring_transactions = 1;
-}
 
 message GetTransactionsRequest {
   // The user id
@@ -1189,8 +1166,8 @@ message GetTransactionResponse {
   PlaidAccountTransaction transaction = 1;
 }
 
-// UpdateTransactionRequest is the update transaction request
-message UpdateTransactionRequest {
+// UpdateSingleTransactionRequest is the update transaction request
+message UpdateSingleTransactionRequest {
   // The transaction to update
   // Validations:
   // - cannot be nil hence required
@@ -1200,8 +1177,8 @@ message UpdateTransactionRequest {
   ];
 }
 
-// UpdateTransactionResponse is the update transaction response
-message UpdateTransactionResponse {
+// UpdateSingleTransactionResponse is the update transaction response
+message UpdateSingleTransactionResponse {
   // The transaction that was successfully updated
   PlaidAccountTransaction transaction = 1;
 }
@@ -1619,7 +1596,7 @@ message ListRecurringTransactionNotesResponse {
 }
 
 // GetRecurringTransactionRequest is the get transaction request
-message GetRecurringTransactionRequest {
+message GetSingleRecurringTransactionRequest {
   // the transaction of interest we aim to obtain
   uint64 transaction_id = 1 [
     (validate.rules).uint64.gt = 0,
@@ -1628,7 +1605,7 @@ message GetRecurringTransactionRequest {
 }
 
 // GetRecurringTransactionResponse is the get transaction response
-message GetRecurringTransactionResponse {
+message GetSingleRecurringTransactionResponse {
   // the transaction queried
   PlaidAccountRecurringTransaction transaction = 1;
 }

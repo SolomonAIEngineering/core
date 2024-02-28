@@ -812,7 +812,7 @@ service FinancialService {
   }
 
   // This endpoint enables end users to get recurring transactions
-  rpc GetReCurringTransactions(GetReCurringTransactionsRequest) returns (GetReCurringTransactionsResponse) {
+  rpc GetRecurringTransactions(GetRecurringTransactionsRequest) returns (GetRecurringTransactionsResponse) {
     option (google.api.http) = {get: "/financial-microservice/api/v1/transactions/recurring-transactions/{user_id}"};
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "get recurring transactions"
@@ -1682,15 +1682,15 @@ service FinancialService {
   }
   
   // updates a transaction
-  rpc UpdateTransaction(UpdateTransactionRequest) returns (UpdateTransactionResponse) {
+  rpc UpdateSingleTransaction(UpdateSingleTransactionRequest) returns (UpdateSingleTransactionResponse) {
     option (google.api.http) = {
-      put: "/financial-microservice/api/v1/transactions/transaction"
+      put: "/financial-microservice/api/v1/transactions/single-transaction"
       body: "*"
     };
     option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
       summary: "update a transaction"
       tags: ["financial-service"]
-      operation_id: "UpdateTransaction"
+      operation_id: "UpdateSingleTransaction"
       description:
         "This endpoint updates a transaction"
       responses: {
@@ -1698,7 +1698,7 @@ service FinancialService {
         value: {
           description: "A successful response."
           schema: {
-            json_schema: {ref: ".financial_service.v1.UpdateTransactionResponse"}
+            json_schema: {ref: ".financial_service.v1.UpdateSingleTransactionResponse"}
           }
         }
       }
@@ -1993,7 +1993,7 @@ service FinancialService {
   }
 
   // GetRecurringTransaction lists a set of transactions against an account of interest
-  rpc GetRecurringTransaction(GetRecurringTransactionRequest) returns (GetRecurringTransactionResponse) {
+  rpc GetSingleRecurringTransaction(GetSingleRecurringTransactionRequest) returns (GetSingleRecurringTransactionResponse) {
     option (google.api.http) = {
       get: "/financial-microservice/api/v1/transactions/recurring/{transaction_id}"
     };
@@ -2007,7 +2007,7 @@ service FinancialService {
         value: {
           description: "A successful response."
           schema: {
-            json_schema: {ref: ".financial_service.v1.GetRecurringTransactionResponse"}
+            json_schema: {ref: ".financial_service.v1.GetSingleRecurringTransactionResponse"}
           }
         }
       }

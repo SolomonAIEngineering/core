@@ -9,13 +9,13 @@ permissions:
 
 env:
   HELM_CHART_PATH: charts/api-gateway
-  DOCKER_IMAGE: docker.io/playbookmedia/api-gateway
-  GHCR_REGISTRY: ghcr.io/playbookmediaengineering
+  DOCKER_IMAGE: docker.io/solomon-ai/api-gateway
+  GHCR_REGISTRY: ghcr.io/solomonaiengineering
   K8S_VERSION: "1.29.0"
   HELM_VERSION: "3.8.1"
   GO_VERSION: "1.21.x"
   REPOSITORY: "backend-api-gateway"
-  OWNER: "PlaybookMediaEngineering"
+  OWNER: "SolomonaiEngineering"
   CHARTS_DIRECTORY: "charts"
   CHARTS_URL: "https://charts.melodiy.io"
   HELM_PUBLISH_BRANCH: "gh-pages"
