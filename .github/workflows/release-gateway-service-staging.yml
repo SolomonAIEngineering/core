@@ -75,13 +75,12 @@ jobs:
           helm template api-gateway ./charts/api-gateway --values ./charts/api-gateway/values.staging.yaml
       - name: Generate images meta
         id: meta
-        uses: docker/metadata-action@v5
+        uses: docker/metadata-action@v4
         with:
           images: |
-            docker.io/solomonai/api-gateway
+            docker.io/feelguuds/api-gateway
           tags: |
-            type=raw,value=${{ steps.prep.outputs.VERSION }}
-            type=raw,value=latest
+            type=raw,value=staging
       - name: Publish Multi-Arch Image Backend Api Gateway Service
         uses: docker/build-push-action@v5
         with:
