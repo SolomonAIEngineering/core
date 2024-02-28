@@ -53,3 +53,4 @@ jobs:
           force-bump-patch-version: true
           dry: false
           changelog-generator-opt: "emojis=true"
+        continue-on-error: true
