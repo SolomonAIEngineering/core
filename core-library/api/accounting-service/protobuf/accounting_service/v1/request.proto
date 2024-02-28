@@ -8,7 +8,7 @@ import "gogoproto/gogo.proto";
 import "accounting_service/v1/business_profile_database_schema.proto";
 import "google/protobuf/timestamp.proto";
 
-option go_package = "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/accounting_service/v1";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/accounting_service/v1";
 
 option (gogoproto.gostring_all) = true;
 option (gogoproto.equal_all) = true;

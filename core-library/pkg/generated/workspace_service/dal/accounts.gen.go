@@ -18,7 +18,7 @@ import (
 
 	"gorm.io/plugin/dbresolver"
 
-	workspace_servicev1 "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/workspace_service/v1"
+	workspace_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/workspace_service/v1"
 )
 
 func newAccountORM(db *gorm.DB, opts ...gen.DOOption) accountORM {

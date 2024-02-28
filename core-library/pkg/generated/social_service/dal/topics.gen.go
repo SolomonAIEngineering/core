@@ -8,7 +8,7 @@ import (
 	"context"
 	"strings"
 
-	social_servicev2 "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/social_service/v2"
+	social_servicev2 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/social_service/v2"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"gorm.io/gorm/schema"

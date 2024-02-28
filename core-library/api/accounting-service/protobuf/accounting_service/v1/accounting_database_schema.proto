@@ -8,7 +8,7 @@ import "google/api/field_behavior.proto";
 import "google/protobuf/timestamp.proto";
 import "accounting_service/v1/link_token_database_schema.proto";
 
-option go_package = "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/accounting_service/v1";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/accounting_service/v1";
 
 message AccountingIntegrationMergeLink {
     option (gorm.opts) = {ormable: true};

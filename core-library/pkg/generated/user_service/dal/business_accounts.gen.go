@@ -18,7 +18,7 @@ import (
 
 	"gorm.io/plugin/dbresolver"
 
-	user_servicev1 "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/user_service/v1"
+	user_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1"
 )
 
 func newBusinessAccountORM(db *gorm.DB, opts ...gen.DOOption) businessAccountORM {

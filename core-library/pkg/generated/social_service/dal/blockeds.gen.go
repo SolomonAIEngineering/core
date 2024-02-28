@@ -18,7 +18,7 @@ import (
 
 	"gorm.io/plugin/dbresolver"
 
-	social_servicev2 "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/social_service/v2"
+	social_servicev2 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/social_service/v2"
 )
 
 func newBlockedORM(db *gorm.DB, opts ...gen.DOOption) blockedORM {

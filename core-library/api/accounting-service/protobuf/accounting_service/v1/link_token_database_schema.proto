@@ -5,7 +5,7 @@ package accounting_service.v1;
 import "protoc-gen-gorm/options/gorm.proto";
 import "protoc-gen-openapiv2/options/annotations.proto";
 
-option go_package = "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/accounting_service/v1";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/accounting_service/v1";
 
 message MergeLinkedAccountToken {
   option (gorm.opts) = {ormable: true};

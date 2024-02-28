@@ -4,7 +4,7 @@ package social_service.v2;
 
 import "protoc-gen-openapiv2/options/annotations.proto";
 
-option go_package = "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/social_service/v2";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/social_service/v2";
 
 enum AuthErrorCode {
   no_auth_error = 0;

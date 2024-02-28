@@ -1,4 +1,4 @@
-module github.com/PlaybookMediaEngineering/core/core-library
+module github.com/SolomonAIEngineering/core/core-library
 
 go 1.21.6
 

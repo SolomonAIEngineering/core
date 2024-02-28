@@ -18,7 +18,7 @@ import (
 
 	"gorm.io/plugin/dbresolver"
 
-	financial_servicev1 "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/financial_service/v1"
+	financial_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/financial_service/v1"
 )
 
 func newFinancialUserProfileORM(db *gorm.DB, opts ...gen.DOOption) financialUserProfileORM {

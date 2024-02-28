@@ -8,7 +8,7 @@ import "social_service/v2/mongo.proto";
 import "google/api/field_behavior.proto";
 import "validate/validate.proto";
 
-option go_package = "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/social_service/v2";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/social_service/v2";
 
 // EmptyRequest: Represents a request object invoked against the social service
 // that is empty

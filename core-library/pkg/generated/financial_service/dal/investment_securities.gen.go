@@ -8,7 +8,7 @@ import (
 	"context"
 	"strings"
 
-	financial_servicev1 "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/financial_service/v1"
+	financial_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/financial_service/v1"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"gorm.io/gorm/schema"

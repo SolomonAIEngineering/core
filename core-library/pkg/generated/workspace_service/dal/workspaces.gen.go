@@ -8,7 +8,7 @@ import (
 	"context"
 	"strings"
 
-	workspace_servicev1 "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/workspace_service/v1"
+	workspace_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/workspace_service/v1"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"gorm.io/gorm/schema"

@@ -10,7 +10,7 @@ import "accounting_service/v1/payroll_database_schema.proto";
 import "accounting_service/v1/accounting_database_schema.proto";
 import "google/api/field_behavior.proto";
 
-option go_package = "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/accounting_service/v1";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/accounting_service/v1";
 
 // MergeBusinessProfile stores high level user profile details
 // such as the id, user_id tied to the profile, and many more

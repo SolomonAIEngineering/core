@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package accounting_service.v1;
 
-option go_package = "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/accounting_service/v1";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/accounting_service/v1";
 
 // The time period this pay rate encompasses. Possible values include: 
 // HOUR, DAY, WEEK, EVERY_TWO_WEEKS, SEMIMONTHLY, MONTH, QUARTER, 

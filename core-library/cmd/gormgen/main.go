@@ -1,11 +1,11 @@
 package main
 
 import (
-	accountingServiceProto "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/accounting_service/v1"
-	financialServiceProto "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/financial_service/v1"
-	socialServiceProto "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/social_service/v2"
-	userServiceProto "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/user_service/v1"
-	workspaceServiceProto "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/workspace_service/v1"
+	accountingServiceProto "github.com/SolomonAIEngineering/core/core-library/pkg/generated/accounting_service/v1"
+	financialServiceProto "github.com/SolomonAIEngineering/core/core-library/pkg/generated/financial_service/v1"
+	socialServiceProto "github.com/SolomonAIEngineering/core/core-library/pkg/generated/social_service/v2"
+	userServiceProto "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1"
+	workspaceServiceProto "github.com/SolomonAIEngineering/core/core-library/pkg/generated/workspace_service/v1"
 
 	"gorm.io/gen"
 )

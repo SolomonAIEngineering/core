@@ -5,7 +5,7 @@ managed:
   java_package_prefix: com
   java_string_check_utf8: false
   go_package_prefix:
-    default: github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/social-service/v2
+    default: github.com/SolomonAIEngineering/core/core-library/pkg/generated/social-service/v2
     except:
       - buf.build/types/dependencies
       - buf.build/googleapis/googleapis

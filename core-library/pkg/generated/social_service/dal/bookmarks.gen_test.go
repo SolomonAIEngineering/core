@@ -10,7 +10,7 @@ import (
 	"strconv"
 	"testing"
 
-	social_servicev2 "github.com/PlaybookMediaEngineering/core/core-library/pkg/generated/social_service/v2"
+	social_servicev2 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/social_service/v2"
 	"gorm.io/gen"
 	"gorm.io/gen/field"
 	"gorm.io/gorm/clause"
