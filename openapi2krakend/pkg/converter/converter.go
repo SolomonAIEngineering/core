@@ -11,7 +11,7 @@ import (
 	"github.com/okhuz/openapi2krakend/pkg/utility"
 )
 
-func Convert(swaggerDirectory string, encoding string, globalTimeout string) models.Configuration {
+func Convert(swaggerDirectory string, encoding string, globalTimeout, environment string) models.Configuration {
 	var swaggerFiles []fs.FileInfo
 	if files, err := ioutil.ReadDir(swaggerDirectory); err == nil {
 		swaggerFiles = filterFiles(files)
@@ -49,7 +49,7 @@ func Convert(swaggerDirectory string, encoding string, globalTimeout string) mod
 					methodTimeout = extensionValue
 				}
 
-				krakendEndpoint := models.NewEndpoint(host, krakendEndpointUrl, pathUrl, methodName, encoding, methodTimeout)
+				krakendEndpoint := models.NewEndpointWithDefaults(host, krakendEndpointUrl, pathUrl, methodName, encoding, methodTimeout, environment)
 				if methodObject.Security != nil {
 					lengthOfSecurity := len(*methodObject.Security)
 					if lengthOfSecurity > 0 {
@@ -84,7 +84,7 @@ func Convert(swaggerDirectory string, encoding string, globalTimeout string) mod
 		if additionalPaths != "" {
 			additionalPathArray := strings.Split(additionalPaths, ",")
 			for _, v := range additionalPathArray {
-				additionalEndpoint := models.NewEndpoint(host, fmt.Sprintf("/%s%s", path, v), v, "get", encoding, apiTimeout)
+				additionalEndpoint := models.NewEndpointWithDefaults(host, fmt.Sprintf("/%s%s", path, v), v, "get", encoding, apiTimeout, environment)
 				additionalEndpoint.InsertHeadersToPass("Authorization")
 				configuration.InsertEndpoint(additionalEndpoint)
 			}

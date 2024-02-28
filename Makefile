@@ -5,7 +5,8 @@ SWAGGER_ACCOUNTING_SERVICE_CODEGEN_PATH:=./core-library/pkg/generated/accounting
 SWAGGER_WORKSPACE_SERVICE_CODEGEN_PATH:=./core-library/pkg/generated/workspace_service/v1/apidocs.swagger.json
 
 VERSION = 3
-FILE = ./krakend-config/final-krakend.json
+FILE_PROD = ./krakend-config/final-krakend.prod.json
+FILE_STAGING = ./krakend-config/final-krakend.staging.json
 
 gen: 
 	cd core-library && make gen && cd ../
@@ -55,7 +56,8 @@ update-docs:
 
 generate-krakend-config:
 	mkdir temp-swagger && cp ./swagger/user-service-backend-api.json ./temp-swagger/user-service-backend-api.json && cp ./swagger/social-service-backend-api.json ./temp-swagger/social-service-backend-api.json && cp ./swagger/financial-service-backend-api.json ./temp-swagger/financial-service-backend-api.json && cp ./swagger/accounting-service-backend-api.json ./temp-swagger/accounting-service-backend-api.json && cp ./swagger/workspace-service-backend-api.json ./temp-swagger/workspace-service-backend-api.json
-	go run ./openapi2krakend/pkg/main.go -directory ./temp-swagger -output ./krakend-config/krakend.json
+	go run ./openapi2krakend/pkg/main.go -directory ./temp-swagger -output ./krakend-config/krakend.prod.json -environment production
+	go run ./openapi2krakend/pkg/main.go -directory ./temp-swagger -output ./krakend-config/krakend.staging.json -environment staging
 	rm -rf temp-swagger
 
 prettify-krakend:
@@ -63,16 +65,20 @@ prettify-krakend:
 	mv ./krakend-config/krakend.compiled.json ./krakend-config/krakend.json
 
 merge-configs: 
-	jq -s '.[0] * .[1]' ./krakend-config/gateway-configurations.json ./krakend-config/krakend.json > ./krakend-config/final-krakend.json
-	@sed -i '' 's/"version": "3"/"version": $(VERSION)/' $(FILE)
-
+	jq -s '.[0] * .[1]' ./krakend-config/gateway-configurations.json ./krakend-config/krakend.prod.json > ./krakend-config/final-krakend.prod.json
+	@sed -i '' 's/"version": "3"/"version": $(VERSION)/' $(FILE_PROD)
+	jq -s '.[0] * .[1]' ./krakend-config/gateway-configurations.json ./krakend-config/krakend.staging.json > ./krakend-config/final-krakend.staging.json
+	@sed -i '' 's/"version": "3"/"version": $(VERSION)/' $(FILE_STAGING)
 
 validate:
-	krakend check --config ./krakend-config/final-krakend.json -ddd
-	krakend check -tlc ./krakend-config/final-krakend.json
+	krakend check --config ./krakend-config/final-krakend.prod.json -ddd
+	krakend check -tlc ./krakend-config/final-krakend.prod.json
+	krakend check --config ./krakend-config/final-krakend.staging.json -ddd
+	krakend check -tlc ./krakend-config/final-krakend.staging.json
 
 copy-configs-to-gateway:
-	cp ./krakend-config/final-krakend.json ./backend-api-gateway/krakend.json
+	cp ./krakend-config/final-krakend.prod.json ./backend-api-gateway/krakend.prod.json
+	cp ./krakend-config/final-krakend.staging.json ./backend-api-gateway/krakend.staging.json
 
 autogen: gen copy-swagger convert-swagger-to-openapiv3 update-typescript-sdk update-docs generate-krakend-config prettify-krakend merge-configs validate copy-configs-to-gateway
 

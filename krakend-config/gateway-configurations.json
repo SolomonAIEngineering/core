@@ -107,5 +107,9 @@
         }
       }
     }
-  }
+  },
+  "host": [
+    "http://api-gateway-1.platform.svc.cluster.local:8080",
+    "http://api-gateway-2.platform.svc.cluster.local:8080"
+  ]
 }
