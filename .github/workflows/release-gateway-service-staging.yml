@@ -72,7 +72,7 @@ jobs:
       - name: Validate Service Helm Chart
         run: |
           helm lint ./charts/api-gateway
-          helm template api-gateway ./charts/api-gateway --values ./charts/api-gateway/values.production.yaml
+          helm template api-gateway ./charts/api-gateway --values ./charts/api-gateway/values.staging.yaml
       - name: Generate images meta
         id: meta
         uses: docker/metadata-action@v4
@@ -90,7 +90,7 @@ jobs:
           push: ${{ github.event_name != 'pull_request' }}
           builder: ${{ steps.buildx.outputs.name }}
           context: ./backend-api-gateway
-          file: ./backend-api-gateway/Dockerfile.prod
+          file: ./backend-api-gateway/Dockerfile.staging
           platforms: ${{matrix.operating-system}}
           build-args: |
             REVISION=${{ steps.prep.outputs.REVISION }}
@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       working-directory: ./backend-api-gateway
-      cluster: a176c72f-9962-4b7a-92ee-7a69fa260c53
+      cluster: ${{ secrets.STAGING_CLUSTER_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
@@ -116,7 +116,7 @@ jobs:
         uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_TOKEN }}
-      - name: Deploy To Production Environment
+      - name: Deploy To Staging Environment
         working-directory: ${{env.working-directory}}
         run: |
           doctl kubernetes cluster kubeconfig save --expiry-seconds 600 ${{env.cluster}}

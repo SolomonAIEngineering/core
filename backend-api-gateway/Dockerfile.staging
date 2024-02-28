@@ -1,8 +1,8 @@
-FROM devopsfaith/krakend:latest 
+FROM devopsfaith/krakend
 
 USER root
 
-COPY krakend.prod.json /etc/krakend/krakend.json
+COPY krakend.staging.json /etc/krakend/krakend.json
 
 RUN apk update && apk add bash && apk add curl
 RUN set -ex && apk --no-cache add sudo

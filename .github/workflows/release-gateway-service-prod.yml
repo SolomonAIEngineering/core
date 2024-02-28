@@ -106,7 +106,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       working-directory: ./backend-api-gateway
-      cluster: 8f6d9b0a-c838-442b-b6ef-bf710718930e
+      cluster: ${{ secrets.PROD_CLUSTER_ID }}
     steps:
       - name: Checkout
         uses: actions/checkout@v4
