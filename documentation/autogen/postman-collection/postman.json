@@ -613,6 +613,810 @@
 	                    ]
 	        },
 	        {
+	            "name": "workspace-service",
+	            "item": [
+	                        {
+    "name": "/workspace-microservice/api/v1/accounts",
+                "description": "This endpoint creates a new user account",
+                 "item": [
+                            {
+                                "name": "Create a new account",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/accounts",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "accounts"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint creates a new user account"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/accounts/:authZeroUserId",
+                "description": "This endpoint deletes an account by ID",
+                 "item": [
+                            {
+                                "name": "Delete an account",
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/accounts/:authZeroUserId",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "accounts",
+                                            ":authZeroUserId"
+                                        ],
+                                        "variable": [
+                                            {
+                                                "key": "authZeroUserId",
+                                                "value": "",
+                                                "description": ""
+                                            }
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint deletes an account by ID"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/accounts/:authZeroUserId",
+                "description": "This endpoint retrieves account details by ID",
+                 "item": [
+                            {
+                                "name": "Get account by ID",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/accounts/:authZeroUserId",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "accounts",
+                                            ":authZeroUserId"
+                                        ],
+                                        "variable": [
+                                            {
+                                                "key": "authZeroUserId",
+                                                "value": "",
+                                                "description": ""
+                                            }
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint retrieves account details by ID"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/files",
+                "description": "This endpoint updates a file by ID",
+                 "item": [
+                            {
+                                "name": "Update a file",
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"metadata\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/files",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "files"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint updates a file by ID"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/files/:fileId",
+                "description": "This endpoint deletes a file by ID",
+                 "item": [
+                            {
+                                "name": "Delete a file",
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/files/:fileId",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "files",
+                                            ":fileId"
+                                        ],
+                                        "variable": [
+                                            {
+                                                "key": "fileId",
+                                                "value": "",
+                                                "description": ""
+                                            }
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "authZeroUserId",
+                                                "value": "authZeroUserId_example"
+                                            },
+                                            {
+                                                "key": "folderId",
+                                                "value": "folderId_example"
+                                            },
+                                            {
+                                                "key": "workspaceId",
+                                                "value": "workspaceId_example"
+                                            }
+                                        ]
+                                    },
+                                    "description": "This endpoint deletes a file by ID"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/files/:fileId",
+                "description": "This endpoint downloads a file by ID",
+                 "item": [
+                            {
+                                "name": "Download a file",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/files/:fileId",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "files",
+                                            ":fileId"
+                                        ],
+                                        "variable": [
+                                            {
+                                                "key": "fileId",
+                                                "value": "",
+                                                "description": ""
+                                            }
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "authZeroUserId",
+                                                "value": "authZeroUserId_example"
+                                            },
+                                            {
+                                                "key": "folderId",
+                                                "value": "folderId_example"
+                                            },
+                                            {
+                                                "key": "workspaceId",
+                                                "value": "workspaceId_example"
+                                            }
+                                        ]
+                                    },
+                                    "description": "This endpoint downloads a file by ID"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/files/upload",
+                "description": "This endpoint uploads a file",
+                 "item": [
+                            {
+                                "name": "Upload a file",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"folderId\": \"<string>\",\n \"data\": \"<string>\",\n \"name\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/files/upload",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "files",
+                                            "upload"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint uploads a file"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/folders",
+                "description": "This endpoint creates a new folder",
+                 "item": [
+                            {
+                                "name": "Create a folder",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"workspaceId\": \"<string>\",\n \"name\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/folders",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "folders"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint creates a new folder"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/folders",
+                "description": "This endpoint lists all folders",
+                 "item": [
+                            {
+                                "name": "List folders",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/folders",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "folders"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "authZeroUserId",
+                                                "value": "authZeroUserId_example"
+                                            },
+                                            {
+                                                "key": "folderId",
+                                                "value": "folderId_example"
+                                            },
+                                            {
+                                                "key": "workspaceId",
+                                                "value": "workspaceId_example"
+                                            }
+                                        ]
+                                    },
+                                    "description": "This endpoint lists all folders"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/folders",
+                "description": "This endpoint updates a folder by ID",
+                 "item": [
+                            {
+                                "name": "Update a folder",
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"folder\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/folders",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "folders"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint updates a folder by ID"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/folders/:folderId",
+                "description": "This endpoint deletes a folder by ID",
+                 "item": [
+                            {
+                                "name": "Delete a folder",
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/folders/:folderId",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "folders",
+                                            ":folderId"
+                                        ],
+                                        "variable": [
+                                            {
+                                                "key": "folderId",
+                                                "value": "",
+                                                "description": ""
+                                            }
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "authZeroUserId",
+                                                "value": "authZeroUserId_example"
+                                            },
+                                            {
+                                                "key": "workspaceId",
+                                                "value": "workspaceId_example"
+                                            }
+                                        ]
+                                    },
+                                    "description": "This endpoint deletes a folder by ID"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/workspaces",
+                "description": "This endpoint creates a new workspace",
+                 "item": [
+                            {
+                                "name": "Create a workspace",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"name\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/workspaces",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "workspaces"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint creates a new workspace"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/workspaces",
+                "description": "This endpoint lists all workspaces",
+                 "item": [
+                            {
+                                "name": "List workspaces",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/workspaces",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "workspaces"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "authZeroUserId",
+                                                "value": "authZeroUserId_example"
+                                            }
+                                        ]
+                                    },
+                                    "description": "This endpoint lists all workspaces"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/workspaces",
+                "description": "This endpoint updates a workspace by ID",
+                 "item": [
+                            {
+                                "name": "Update a workspace",
+                                "request": {
+                                    "method": "PUT",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"workspace\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/workspaces",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "workspaces"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint updates a workspace by ID"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/workspace-microservice/api/v1/workspaces/:workspaceId",
+                "description": "This endpoint deletes a workspace by ID",
+                 "item": [
+                            {
+                                "name": "Delete a workspace",
+                                "request": {
+                                    "method": "DELETE",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/workspaces/:workspaceId",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "api",
+                                            "v1",
+                                            "workspaces",
+                                            ":workspaceId"
+                                        ],
+                                        "variable": [
+                                            {
+                                                "key": "workspaceId",
+                                                "value": "",
+                                                "description": ""
+                                            }
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "authZeroUserId",
+                                                "value": "authZeroUserId_example"
+                                            }
+                                        ]
+                                    },
+                                    "description": "This endpoint deletes a workspace by ID"
+                                }
+                            }
+                            ]
+                        }
+	                    ]
+	        },
+	        {
 	            "name": "social-service",
 	            "item": [
 	                        {

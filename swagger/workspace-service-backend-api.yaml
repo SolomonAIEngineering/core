@@ -1,0 +1,1208 @@
+openapi: 3.0.0
+info:
+  title: Workspace Service
+  description: Workspace service for the solomon-ai platform.
+  version: "0.1"
+  contact:
+    name: YoanYomba
+    url: https://solomon-ai.io
+    email: yoanyomba@solomon-ai.co
+  license:
+    name: Apache-2.0
+    url: https://github.com/openfga/openfga/blob/main/LICENSE
+tags:
+  - name: WorkspaceService
+paths:
+  /workspace-microservice/api/v1/accounts:
+    post:
+      summary: Create a new account
+      description: This endpoint creates a new user account
+      operationId: CreateAccount
+      responses:
+        "200":
+          description: Account creation successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateAccountResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateAccountRequest"
+        required: true
+      tags:
+        - workspace-service
+  "/workspace-microservice/api/v1/accounts/{authZeroUserId}":
+    get:
+      summary: Get account by ID
+      description: This endpoint retrieves account details by ID
+      operationId: GetAccount
+      responses:
+        "200":
+          description: Account retrieval successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetAccountResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: authZeroUserId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - workspace-service
+    delete:
+      summary: Delete an account
+      description: This endpoint deletes an account by ID
+      operationId: DeleteAccount
+      responses:
+        "200":
+          description: Account deletion successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteAccountResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: authZeroUserId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - workspace-service
+  /workspace-microservice/api/v1/files:
+    put:
+      summary: Update a file
+      description: This endpoint updates a file by ID
+      operationId: UpdateFile
+      responses:
+        "200":
+          description: File update successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateFileResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateFileRequest"
+        required: true
+      tags:
+        - workspace-service
+  /workspace-microservice/api/v1/files/upload:
+    post:
+      summary: Upload a file
+      description: This endpoint uploads a file
+      operationId: UploadFile
+      responses:
+        "200":
+          description: File upload successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UploadFileResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UploadFileRequest"
+        description: " (streaming inputs)"
+        required: true
+      tags:
+        - workspace-service
+  "/workspace-microservice/api/v1/files/{fileId}":
+    get:
+      summary: Download a file
+      description: This endpoint downloads a file by ID
+      operationId: DownloadFile
+      responses:
+        "200":
+          description: File download successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DownloadFileResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: fileId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uint64
+        - name: authZeroUserId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: folderId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uint64
+        - name: workspaceId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uint64
+      tags:
+        - workspace-service
+    delete:
+      summary: Delete a file
+      description: This endpoint deletes a file by ID
+      operationId: DeleteFile
+      responses:
+        "200":
+          description: File deletion successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteFileResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: fileId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uint64
+        - name: authZeroUserId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: folderId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uint64
+        - name: workspaceId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uint64
+      tags:
+        - workspace-service
+  /workspace-microservice/api/v1/folders:
+    get:
+      summary: List folders
+      description: This endpoint lists all folders
+      operationId: ListFolder
+      responses:
+        "200":
+          description: Folder list retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListFolderResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: authZeroUserId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: folderId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uint64
+        - name: workspaceId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uint64
+      tags:
+        - workspace-service
+    post:
+      summary: Create a folder
+      description: This endpoint creates a new folder
+      operationId: CreateFolder
+      responses:
+        "200":
+          description: Folder creation successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateFolderResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateFolderRequest"
+        required: true
+      tags:
+        - workspace-service
+    put:
+      summary: Update a folder
+      description: This endpoint updates a folder by ID
+      operationId: UpdateFolder
+      responses:
+        "200":
+          description: Folder update successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateFolderResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateFolderRequest"
+        required: true
+      tags:
+        - workspace-service
+  "/workspace-microservice/api/v1/folders/{folderId}":
+    delete:
+      summary: Delete a folder
+      description: This endpoint deletes a folder by ID
+      operationId: DeleteFolder
+      responses:
+        "200":
+          description: Folder deletion successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteFolderResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: folderId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uint64
+        - name: authZeroUserId
+          in: query
+          required: true
+          schema:
+            type: string
+        - name: workspaceId
+          in: query
+          required: false
+          schema:
+            type: string
+            format: uint64
+      tags:
+        - workspace-service
+  /workspace-microservice/api/v1/workspaces:
+    get:
+      summary: List workspaces
+      description: This endpoint lists all workspaces
+      operationId: ListWorkspace
+      responses:
+        "200":
+          description: Workspace list retrieved successfully
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ListWorkspaceResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: authZeroUserId
+          in: query
+          required: true
+          schema:
+            type: string
+      tags:
+        - workspace-service
+    post:
+      summary: Create a workspace
+      description: This endpoint creates a new workspace
+      operationId: CreateWorkspace
+      responses:
+        "200":
+          description: Workspace creation successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateWorkspaceResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateWorkspaceRequest"
+        required: true
+      tags:
+        - workspace-service
+    put:
+      summary: Update a workspace
+      description: This endpoint updates a workspace by ID
+      operationId: UpdateWorkspace
+      responses:
+        "200":
+          description: Workspace update successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateWorkspaceResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/UpdateWorkspaceRequest"
+        required: true
+      tags:
+        - workspace-service
+  "/workspace-microservice/api/v1/workspaces/{workspaceId}":
+    delete:
+      summary: Delete a workspace
+      description: This endpoint deletes a workspace by ID
+      operationId: DeleteWorkspace
+      responses:
+        "200":
+          description: Workspace deletion successful
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteWorkspaceResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: workspaceId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: uint64
+        - name: authZeroUserId
+          in: query
+          required: true
+          schema:
+            type: string
+      tags:
+        - workspace-service
+servers:
+  - url: http://workspace-service.platform.svc.cluster.local:9896
+components:
+  schemas:
+    Account:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uint64
+          description: Unique identifier for the account.
+        auth0UserId:
+          type: string
+          title: Auth0 user id
+        workspace:
+          type: array
+          items:
+            $ref: "#/components/schemas/Workspace"
+          title: user account of interest can have many workspaces
+      description: "@brief Represents an account in the context of the service."
+    Any:
+      type: object
+      properties:
+        "@type":
+          type: string
+      additionalProperties: {}
+    CreateAccountRequest:
+      type: object
+      properties:
+        authZeroUserId:
+          type: string
+      required:
+        - authZeroUserId
+    CreateAccountResponse:
+      type: object
+      properties:
+        account:
+          $ref: "#/components/schemas/Account"
+    CreateFolderRequest:
+      type: object
+      properties:
+        authZeroUserId:
+          type: string
+        workspaceId:
+          type: string
+          format: uint64
+        name:
+          type: string
+      required:
+        - authZeroUserId
+        - name
+    CreateFolderResponse:
+      type: object
+      properties:
+        folder:
+          $ref: "#/components/schemas/FolderMetadata"
+    CreateWorkspaceRequest:
+      type: object
+      properties:
+        authZeroUserId:
+          type: string
+        name:
+          type: string
+      required:
+        - authZeroUserId
+        - name
+    CreateWorkspaceResponse:
+      type: object
+      properties:
+        workspace:
+          $ref: "#/components/schemas/Workspace"
+    DeleteAccountResponse:
+      type: object
+      properties:
+        isDeleted:
+          type: boolean
+    DeleteFileResponse:
+      type: object
+      properties:
+        isDeleted:
+          type: boolean
+    DeleteFolderResponse:
+      type: object
+      properties:
+        isDeleted:
+          type: boolean
+    DeleteWorkspaceResponse:
+      type: object
+      properties:
+        isDeleted:
+          type: boolean
+    DownloadFileResponse:
+      type: object
+      properties:
+        data:
+          type: string
+          format: byte
+    ErrorCode:
+      type: string
+      enum:
+        - no_error
+        - validation_error
+        - authorization_model_not_found
+        - authorization_model_resolution_too_complex
+        - invalid_write_input
+        - cannot_allow_duplicate_tuples_in_one_request
+        - cannot_allow_duplicate_types_in_one_request
+        - cannot_allow_multiple_references_to_one_relation
+        - invalid_continuation_token
+        - invalid_tuple_set
+        - invalid_check_input
+        - invalid_expand_input
+        - unsupported_user_set
+        - invalid_object_format
+        - write_failed_due_to_invalid_input
+        - authorization_model_assertions_not_found
+        - latest_authorization_model_not_found
+        - type_not_found
+        - relation_not_found
+        - empty_relation_definition
+        - invalid_user
+        - invalid_tuple
+        - unknown_relation
+        - store_id_invalid_length
+        - assertions_too_many_items
+        - id_too_long
+        - authorization_model_id_too_long
+        - tuple_key_value_not_specified
+        - tuple_keys_too_many_or_too_few_items
+        - page_size_invalid
+        - param_missing_value
+        - difference_base_missing_value
+        - subtract_base_missing_value
+        - object_too_long
+        - relation_too_long
+        - type_definitions_too_few_items
+        - type_invalid_length
+        - type_invalid_pattern
+        - relations_too_few_items
+        - relations_too_long
+        - relations_invalid_pattern
+        - object_invalid_pattern
+        - query_string_type_continuation_token_mismatch
+        - exceeded_entity_limit
+        - invalid_contextual_tuple
+        - duplicate_contextual_tuple
+        - invalid_authorization_model
+        - unsupported_schema_version
+      default: no_error
+    FileMetadata:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uint64
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp when the file was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp when the file was last updated.
+        size:
+          type: string
+          format: int64
+          description: Size of the file in bytes.
+        fileType:
+          type: string
+          description: Type of the file (e.g., 'text', 'image', 'video').
+        tags:
+          type: array
+          items:
+            type: string
+          description: Tags associated with the file.
+        isDeleted:
+          type: boolean
+          description: Flag indicating if the file is marked as deleted.
+        version:
+          type: integer
+          format: int32
+          description: Version of the file metadata format.
+        s3Key:
+          type: string
+          description: |-
+            s3 key path
+            S3 key (path within the S3 bucket) for the file.
+        s3BucketName:
+          type: string
+          description: Name of the S3 bucket where the file is stored.
+        s3Region:
+          type: string
+          description: AWS region where the S3 bucket is located.
+        s3VersionId:
+          type: string
+          description: Version ID of the file, used when versioning is enabled in the S3
+            bucket.
+        s3Etag:
+          type: string
+          description: Entity tag (ETag) of the file, a hash of the file used for change
+            detection.
+        s3ContentType:
+          type: string
+          description: MIME type of the file.
+        s3ContentLength:
+          type: string
+          format: int64
+          description: Size of the file in bytes.
+        s3ContentEncoding:
+          type: string
+          description: Encoding format used on the file, if any (e.g., gzip).
+        s3ContentDisposition:
+          type: string
+          description: How the file is to be presented in a web browser (attachment,
+            inline).
+        s3LastModified:
+          type: string
+          format: date-time
+          description: The date and time when the file was last modified in S3.
+        s3StorageClass:
+          type: string
+          description: S3 storage class of the file (e.g., STANDARD, INTELLIGENT_TIERING,
+            GLACIER).
+        s3ServerSideEncryption:
+          type: string
+          description: Details of server-side encryption used on the file, if any (e.g.,
+            AES256, aws:kms).
+        s3Acl:
+          type: string
+          description: Access control list (ACL) permissions for the file in S3.
+        s3Metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Custom metadata added to the file in S3 as key-value pairs.
+      title: File Metadata
+    FolderMetadata:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uint64
+        name:
+          type: string
+        childFolder:
+          type: array
+          items:
+            $ref: "#/components/schemas/FolderMetadata"
+          title: folders can have many children folders
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        files:
+          type: array
+          items:
+            $ref: "#/components/schemas/FileMetadata"
+          title: files present in the folder of the workspace
+        isDeleted:
+          type: boolean
+        s3BucketName:
+          type: string
+          description: The S3 bucket name where the folder is located.
+        s3FolderPath:
+          type: string
+          description: The prefix path representing the folder in the S3 bucket.
+        s3Region:
+          type: string
+          description: AWS region where the S3 bucket containing the folder is located.
+        s3Metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Custom metadata for the folder, represented as key-value pairs.
+        s3Acl:
+          type: string
+          description: Access control list (ACL) permissions for the folder in S3.
+        s3LastModified:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the folder was last modified in S3.
+
+            This might represent the last time a file was added, removed, or changed in the folder.
+      title: Folder Metadata
+    GetAccountResponse:
+      type: object
+      properties:
+        account:
+          $ref: "#/components/schemas/Account"
+    InternalErrorCode:
+      type: string
+      enum:
+        - no_internal_error
+        - internal_error
+        - cancelled
+        - deadline_exceeded
+        - already_exists
+        - resource_exhausted
+        - failed_precondition
+        - aborted
+        - out_of_range
+        - unavailable
+        - data_loss
+      default: no_internal_error
+    InternalErrorMessageResponse:
+      type: object
+      example:
+        code: internal_error
+        message: Internal Server Error
+      properties:
+        code:
+          $ref: "#/components/schemas/InternalErrorCode"
+        message:
+          type: string
+    ListFolderResponse:
+      type: object
+      properties:
+        folder:
+          $ref: "#/components/schemas/FolderMetadata"
+    ListWorkspaceResponse:
+      type: object
+      properties:
+        workspace:
+          $ref: "#/components/schemas/Workspace"
+    NotFoundErrorCode:
+      type: string
+      enum:
+        - no_not_found_error
+        - undefined_endpoint
+        - store_id_not_found
+        - unimplemented
+      default: no_not_found_error
+    PathUnknownErrorMessageResponse:
+      type: object
+      example:
+        code: undefined_endpoint
+        message: Endpoint not enabled
+      properties:
+        code:
+          $ref: "#/components/schemas/NotFoundErrorCode"
+        message:
+          type: string
+    Status:
+      type: object
+      properties:
+        code:
+          type: integer
+          format: int32
+        message:
+          type: string
+        details:
+          type: array
+          items:
+            $ref: "#/components/schemas/Any"
+    UpdateFileRequest:
+      type: object
+      properties:
+        metadata:
+          $ref: "#/components/schemas/FileMetadata"
+    UpdateFileResponse:
+      type: object
+      properties:
+        metadata:
+          $ref: "#/components/schemas/FileMetadata"
+    UpdateFolderRequest:
+      type: object
+      properties:
+        folder:
+          $ref: "#/components/schemas/FolderMetadata"
+    UpdateFolderResponse:
+      type: object
+      properties:
+        folder:
+          $ref: "#/components/schemas/FolderMetadata"
+    UpdateWorkspaceRequest:
+      type: object
+      properties:
+        workspace:
+          $ref: "#/components/schemas/Workspace"
+    UpdateWorkspaceResponse:
+      type: object
+      properties:
+        workspace:
+          $ref: "#/components/schemas/Workspace"
+    UploadFileRequest:
+      type: object
+      properties:
+        authZeroUserId:
+          type: string
+        folderId:
+          type: string
+          format: uint64
+        data:
+          type: string
+          format: byte
+        name:
+          type: string
+      required:
+        - authZeroUserId
+        - name
+    UploadFileResponse:
+      type: object
+      properties:
+        metadata:
+          $ref: "#/components/schemas/FileMetadata"
+    ValidationErrorMessageResponse:
+      type: object
+      example:
+        code: validation_error
+        message: Generic validation error
+      properties:
+        code:
+          $ref: "#/components/schemas/ErrorCode"
+        message:
+          type: string
+    Workspace:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uint64
+        name:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        tags:
+          type: array
+          items:
+            type: string
+        folders:
+          type: array
+          items:
+            $ref: "#/components/schemas/FolderMetadata"
+        version:
+          type: integer
+          format: int32
+        isDeleted:
+          type: boolean
+        s3BucketName:
+          type: string
+          description: The S3 bucket name where the folder is located.
+        s3FolderPath:
+          type: string
+          description: The prefix path representing the folder in the S3 bucket.
+        s3Region:
+          type: string
+          description: AWS region where the S3 bucket containing the folder is located.
+        s3Metadata:
+          type: object
+          additionalProperties:
+            type: string
+          description: Custom metadata for the folder, represented as key-value pairs.
+        s3Acl:
+          type: string
+          description: Access control list (ACL) permissions for the folder in S3.
+        s3LastModified:
+          type: string
+          format: date-time
+          description: >-
+            The date and time when the folder was last modified in S3.
+
+            This might represent the last time a file was added, removed, or changed in the folder.
+      title: Workspace

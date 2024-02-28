@@ -15,7 +15,7 @@ test:
 
 # New gen target to incorporate the build process of different services
 gen:
-	for service in social-service user-service financial-service accounting-service; do \
+	for service in social-service user-service financial-service accounting-service workspace-service; do \
 		cd api/$$service && make && cd ../..; \
 	done
 	make all

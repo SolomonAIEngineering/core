@@ -228,12 +228,28 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *UserServiceV2Api* | [**updateRole**](Apis/UserServiceV2Api.md#updaterole) | **PATCH** /user-microservice/api/v2/user/role | Updates an existing role |
 *UserServiceV2Api* | [**updateUserV2**](Apis/UserServiceV2Api.md#updateuserv2) | **PUT** /user-microservice/api/v2/user-service/user | update a user account |
 *UserServiceV2Api* | [**verifyUserV2**](Apis/UserServiceV2Api.md#verifyuserv2) | **POST** /user-microservice/api/v2/user-service/user/verification/{userId}/profile-type/{profileType} | User Email Verification |
+| *WorkspaceServiceApi* | [**createAccount**](Apis/WorkspaceServiceApi.md#createaccount) | **POST** /workspace-microservice/api/v1/accounts | Create a new account |
+*WorkspaceServiceApi* | [**createFolder**](Apis/WorkspaceServiceApi.md#createfolder) | **POST** /workspace-microservice/api/v1/folders | Create a folder |
+*WorkspaceServiceApi* | [**createWorkspace**](Apis/WorkspaceServiceApi.md#createworkspace) | **POST** /workspace-microservice/api/v1/workspaces | Create a workspace |
+*WorkspaceServiceApi* | [**deleteAccount**](Apis/WorkspaceServiceApi.md#deleteaccount) | **DELETE** /workspace-microservice/api/v1/accounts/{authZeroUserId} | Delete an account |
+*WorkspaceServiceApi* | [**deleteFile**](Apis/WorkspaceServiceApi.md#deletefile) | **DELETE** /workspace-microservice/api/v1/files/{fileId} | Delete a file |
+*WorkspaceServiceApi* | [**deleteFolder**](Apis/WorkspaceServiceApi.md#deletefolder) | **DELETE** /workspace-microservice/api/v1/folders/{folderId} | Delete a folder |
+*WorkspaceServiceApi* | [**deleteWorkspace**](Apis/WorkspaceServiceApi.md#deleteworkspace) | **DELETE** /workspace-microservice/api/v1/workspaces/{workspaceId} | Delete a workspace |
+*WorkspaceServiceApi* | [**downloadFile**](Apis/WorkspaceServiceApi.md#downloadfile) | **GET** /workspace-microservice/api/v1/files/{fileId} | Download a file |
+*WorkspaceServiceApi* | [**getAccount**](Apis/WorkspaceServiceApi.md#getaccount) | **GET** /workspace-microservice/api/v1/accounts/{authZeroUserId} | Get account by ID |
+*WorkspaceServiceApi* | [**listFolder**](Apis/WorkspaceServiceApi.md#listfolder) | **GET** /workspace-microservice/api/v1/folders | List folders |
+*WorkspaceServiceApi* | [**listWorkspace**](Apis/WorkspaceServiceApi.md#listworkspace) | **GET** /workspace-microservice/api/v1/workspaces | List workspaces |
+*WorkspaceServiceApi* | [**updateFile**](Apis/WorkspaceServiceApi.md#updatefile) | **PUT** /workspace-microservice/api/v1/files | Update a file |
+*WorkspaceServiceApi* | [**updateFolder**](Apis/WorkspaceServiceApi.md#updatefolder) | **PUT** /workspace-microservice/api/v1/folders | Update a folder |
+*WorkspaceServiceApi* | [**updateWorkspace**](Apis/WorkspaceServiceApi.md#updateworkspace) | **PUT** /workspace-microservice/api/v1/workspaces | Update a workspace |
+*WorkspaceServiceApi* | [**uploadFile**](Apis/WorkspaceServiceApi.md#uploadfile) | **POST** /workspace-microservice/api/v1/files/upload | Upload a file |
 
 
 <a name="documentation-for-models"></a>
 ## Documentation for Models
 
  - [AcceptFollowProfileResponse](./Models/AcceptFollowProfileResponse.md)
+ - [Account](./Models/Account.md)
  - [AccountBalanceHistory](./Models/AccountBalanceHistory.md)
  - [AccountType](./Models/AccountType.md)
  - [AccountingAttachment](./Models/AccountingAttachment.md)
@@ -301,6 +317,8 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [CompanyProfile](./Models/CompanyProfile.md)
  - [Contacts](./Models/Contacts.md)
  - [ContentInsights](./Models/ContentInsights.md)
+ - [CreateAccountRequest](./Models/CreateAccountRequest.md)
+ - [CreateAccountResponse](./Models/CreateAccountResponse.md)
  - [CreateAccountingProfileRequest](./Models/CreateAccountingProfileRequest.md)
  - [CreateAccountingProfileResponse](./Models/CreateAccountingProfileResponse.md)
  - [CreateBankAccountRequest](./Models/CreateBankAccountRequest.md)
@@ -312,6 +330,8 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [CreateCommentResponse](./Models/CreateCommentResponse.md)
  - [CreateCommunityProfileBody](./Models/CreateCommunityProfileBody.md)
  - [CreateCommunityProfileResponse](./Models/CreateCommunityProfileResponse.md)
+ - [CreateFolderRequest](./Models/CreateFolderRequest.md)
+ - [CreateFolderResponse](./Models/CreateFolderResponse.md)
  - [CreateManualLinkRequest](./Models/CreateManualLinkRequest.md)
  - [CreateManualLinkResponse](./Models/CreateManualLinkResponse.md)
  - [CreateMilestoneRequest](./Models/CreateMilestoneRequest.md)
@@ -333,17 +353,22 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [CreateUserProfileResponse1](./Models/CreateUserProfileResponse1.md)
  - [CreateUserV2Request](./Models/CreateUserV2Request.md)
  - [CreateUserV2Response](./Models/CreateUserV2Response.md)
+ - [CreateWorkspaceRequest](./Models/CreateWorkspaceRequest.md)
+ - [CreateWorkspaceResponse](./Models/CreateWorkspaceResponse.md)
  - [CreditAccount](./Models/CreditAccount.md)
  - [CreditNote](./Models/CreditNote.md)
  - [CreditNoteLineItem](./Models/CreditNoteLineItem.md)
  - [DebtToIncomeRatio](./Models/DebtToIncomeRatio.md)
  - [Deduction](./Models/Deduction.md)
+ - [DeleteAccountResponse](./Models/DeleteAccountResponse.md)
  - [DeleteAccountingProfileResponse](./Models/DeleteAccountingProfileResponse.md)
  - [DeleteBankAccountResponse](./Models/DeleteBankAccountResponse.md)
  - [DeleteBudgetResponse](./Models/DeleteBudgetResponse.md)
  - [DeleteCommentReplyResponse](./Models/DeleteCommentReplyResponse.md)
  - [DeleteCommentResponse](./Models/DeleteCommentResponse.md)
  - [DeleteCommunityProfileResponse](./Models/DeleteCommunityProfileResponse.md)
+ - [DeleteFileResponse](./Models/DeleteFileResponse.md)
+ - [DeleteFolderResponse](./Models/DeleteFolderResponse.md)
  - [DeleteLinkResponse](./Models/DeleteLinkResponse.md)
  - [DeleteMilestoneResponse](./Models/DeleteMilestoneResponse.md)
  - [DeleteNoteFromRecurringTransactionResponse](./Models/DeleteNoteFromRecurringTransactionResponse.md)
@@ -364,10 +389,12 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [DeleteUserProfileResponse1](./Models/DeleteUserProfileResponse1.md)
  - [DeleteUserResponse](./Models/DeleteUserResponse.md)
  - [DeleteUserV2Response](./Models/DeleteUserV2Response.md)
+ - [DeleteWorkspaceResponse](./Models/DeleteWorkspaceResponse.md)
  - [DependentRelationship](./Models/DependentRelationship.md)
  - [Dependents](./Models/Dependents.md)
  - [DigitalWorkerSettings](./Models/DigitalWorkerSettings.md)
  - [DiscoverProfilesResponse](./Models/DiscoverProfilesResponse.md)
+ - [DownloadFileResponse](./Models/DownloadFileResponse.md)
  - [Earning](./Models/Earning.md)
  - [EarningType](./Models/EarningType.md)
  - [EditCommentReplyBody](./Models/EditCommentReplyBody.md)
@@ -397,17 +424,20 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [ExpenseMetricsFinancialSubProfileMetrics](./Models/ExpenseMetricsFinancialSubProfileMetrics.md)
  - [FeedActivity](./Models/FeedActivity.md)
  - [FeedType](./Models/FeedType.md)
+ - [FileMetadata](./Models/FileMetadata.md)
  - [FinancialAccountType](./Models/FinancialAccountType.md)
  - [FinancialPreferences](./Models/FinancialPreferences.md)
  - [FinancialProfile](./Models/FinancialProfile.md)
  - [FinancialUserProfile](./Models/FinancialUserProfile.md)
  - [FinancialUserProfileType](./Models/FinancialUserProfileType.md)
  - [FlsaStatus](./Models/FlsaStatus.md)
+ - [FolderMetadata](./Models/FolderMetadata.md)
  - [FollowCommunityProfileResponse](./Models/FollowCommunityProfileResponse.md)
  - [FollowProfileResponse](./Models/FollowProfileResponse.md)
  - [Forecast](./Models/Forecast.md)
  - [Gender](./Models/Gender.md)
  - [GetAccountBalanceHistoryResponse](./Models/GetAccountBalanceHistoryResponse.md)
+ - [GetAccountResponse](./Models/GetAccountResponse.md)
  - [GetAccountsFollowingResponse](./Models/GetAccountsFollowingResponse.md)
  - [GetAllBudgetsResponse](./Models/GetAllBudgetsResponse.md)
  - [GetBankAccountResponse](./Models/GetBankAccountResponse.md)
@@ -523,12 +553,14 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [LinkStatus](./Models/LinkStatus.md)
  - [LinkType](./Models/LinkType.md)
  - [LinkedAccountingAccount](./Models/LinkedAccountingAccount.md)
+ - [ListFolderResponse](./Models/ListFolderResponse.md)
  - [ListRecurringTransactionNotesResponse](./Models/ListRecurringTransactionNotesResponse.md)
  - [ListRecurringTransactionsResponse](./Models/ListRecurringTransactionsResponse.md)
  - [ListRolesResponse](./Models/ListRolesResponse.md)
  - [ListTransactionNotesResponse](./Models/ListTransactionNotesResponse.md)
  - [ListTransactionsAcrossAllAccountsResponse](./Models/ListTransactionsAcrossAllAccountsResponse.md)
  - [ListTransactionsResponse](./Models/ListTransactionsResponse.md)
+ - [ListWorkspaceResponse](./Models/ListWorkspaceResponse.md)
  - [LocationAddress](./Models/LocationAddress.md)
  - [LocationFinancialSubProfile](./Models/LocationFinancialSubProfile.md)
  - [LocationType](./Models/LocationType.md)
@@ -673,6 +705,10 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [UpdateBankAccountResponse](./Models/UpdateBankAccountResponse.md)
  - [UpdateBudgetRequest](./Models/UpdateBudgetRequest.md)
  - [UpdateBudgetResponse](./Models/UpdateBudgetResponse.md)
+ - [UpdateFileRequest](./Models/UpdateFileRequest.md)
+ - [UpdateFileResponse](./Models/UpdateFileResponse.md)
+ - [UpdateFolderRequest](./Models/UpdateFolderRequest.md)
+ - [UpdateFolderResponse](./Models/UpdateFolderResponse.md)
  - [UpdateMilestoneRequest](./Models/UpdateMilestoneRequest.md)
  - [UpdateMilestoneResponse](./Models/UpdateMilestoneResponse.md)
  - [UpdateNoteToRecurringTransactionRequest](./Models/UpdateNoteToRecurringTransactionRequest.md)
@@ -696,6 +732,10 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [UpdateUserResponse](./Models/UpdateUserResponse.md)
  - [UpdateUserV2Request](./Models/UpdateUserV2Request.md)
  - [UpdateUserV2Response](./Models/UpdateUserV2Response.md)
+ - [UpdateWorkspaceRequest](./Models/UpdateWorkspaceRequest.md)
+ - [UpdateWorkspaceResponse](./Models/UpdateWorkspaceResponse.md)
+ - [UploadFileRequest](./Models/UploadFileRequest.md)
+ - [UploadFileResponse](./Models/UploadFileResponse.md)
  - [UserAccount](./Models/UserAccount.md)
  - [UserProfile](./Models/UserProfile.md)
  - [UserTags](./Models/UserTags.md)
@@ -705,6 +745,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [VendorCreditLine](./Models/VendorCreditLine.md)
  - [VerifyUserResponse](./Models/VerifyUserResponse.md)
  - [VerifyUserV2Response](./Models/VerifyUserV2Response.md)
+ - [Workspace](./Models/Workspace.md)
 
 
 <a name="documentation-for-authorization"></a>

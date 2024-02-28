@@ -23,6 +23,12 @@
       "operationSelection": {
         "includeTags": ["accounting-service"]
       }
+    },
+    {
+      "inputFile": "./workspace-service-backend-api.yaml",
+      "operationSelection": {
+        "includeTags": ["workspace-service"]
+      }
     }
   ],
   "output": "./backend-api.yaml"

@@ -1,0 +1,354 @@
+syntax = "proto3";
+
+package workspace_service.v1;
+
+import "workspace_service/v1/request_response.proto";
+
+import "google/api/annotations.proto";
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+// import "google/api/field_behavior.proto";
+// import "google/protobuf/timestamp.proto";
+// import "google/protobuf/wrappers.proto";
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/workspace_service/v1";
+
+// WorkspaceService API.
+service WorkspaceService {
+    rpc CreateAccount(CreateAccountRequest) returns (CreateAccountResponse) {
+        option (google.api.http) = {
+            post: "/workspace-microservice/api/v1/accounts"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Create a new account"
+            tags: ["workspace-service"]
+            operation_id: "CreateAccount"
+            description: "This endpoint creates a new user account"
+            responses: {
+                key: "200"
+                value: {
+                    description: "Account creation successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.CreateAccountResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+    rpc GetAccount(GetAccountRequest) returns (GetAccountResponse) {
+        option (google.api.http) = {
+            get: "/workspace-microservice/api/v1/accounts/{auth_zero_user_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Get account by ID"
+            tags: ["workspace-service"]
+            operation_id: "GetAccount"
+            description: "This endpoint retrieves account details by ID"
+            responses: {
+                key: "200"
+                value: {
+                    description: "Account retrieval successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.GetAccountResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+
+    // Delete an Account
+    rpc DeleteAccount(DeleteAccountRequest) returns (DeleteAccountResponse) {
+        option (google.api.http) = {
+            delete: "/workspace-microservice/api/v1/accounts/{auth_zero_user_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Delete an account"
+            tags: ["workspace-service"]
+            operation_id: "DeleteAccount"
+            description: "This endpoint deletes an account by ID"
+            responses: {
+                key: "200"
+                value: {
+                    description: "Account deletion successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.DeleteAccountResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+    // Create a File Metadata
+    rpc UploadFile(stream UploadFileRequest) returns (UploadFileResponse) {
+        option (google.api.http) = {
+            post: "/workspace-microservice/api/v1/files/upload"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Upload a file"
+            tags: ["workspace-service"]
+            operation_id: "UploadFile"
+            description: "This endpoint uploads a file"
+            responses: {
+                key: "200"
+                value: {
+                    description: "File upload successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.UploadFileResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+    // Read a File Metadata
+    rpc DownloadFile(DownloadFileRequest) returns (stream DownloadFileResponse) {
+        option (google.api.http) = {
+            get: "/workspace-microservice/api/v1/files/{file_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Download a file"
+            tags: ["workspace-service"]
+            operation_id: "DownloadFile"
+            description: "This endpoint downloads a file by ID"
+            responses: {
+                key: "200"
+                value: {
+                    description: "File download successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.DownloadFileResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+
+    // Delete a File
+    rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse) {
+        option (google.api.http) = {
+            delete: "/workspace-microservice/api/v1/files/{file_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Delete a file"
+            tags: ["workspace-service"]
+            operation_id: "DeleteFile"
+            description: "This endpoint deletes a file by ID"
+            responses: {
+                key: "200"
+                value: {
+                    description: "File deletion successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.DeleteFileResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+// Update a File
+    rpc UpdateFile(UpdateFileRequest) returns (UpdateFileResponse) {
+        option (google.api.http) = {
+            put: "/workspace-microservice/api/v1/files"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Update a file"
+            tags: ["workspace-service"]
+            operation_id: "UpdateFile"
+            description: "This endpoint updates a file by ID"
+            responses: {
+                key: "200"
+                value: {
+                    description: "File update successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.UpdateFileResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+    // Create a Folder Metadata
+    rpc CreateFolder(CreateFolderRequest) returns (CreateFolderResponse) {
+        option (google.api.http) = {
+            post: "/workspace-microservice/api/v1/folders"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Create a folder"
+            tags: ["workspace-service"]
+            operation_id: "CreateFolder"
+            description: "This endpoint creates a new folder"
+            responses: {
+                key: "200"
+                value: {
+                    description: "Folder creation successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.CreateFolderResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+    // Read a Folder Metadata
+    rpc ListFolder(ListFolderRequest) returns (ListFolderResponse) {
+        option (google.api.http) = {
+            get: "/workspace-microservice/api/v1/folders"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "List folders"
+            tags: ["workspace-service"]
+            operation_id: "ListFolder"
+            description: "This endpoint lists all folders"
+            responses: {
+                key: "200"
+                value: {
+                    description: "Folder list retrieved successfully"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.ListFolderResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+    // Update a Folder Metadata
+    rpc UpdateFolder(UpdateFolderRequest) returns (UpdateFolderResponse) {
+        option (google.api.http) = {
+            put: "/workspace-microservice/api/v1/folders"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Update a folder"
+            tags: ["workspace-service"]
+            operation_id: "UpdateFolder"
+            description: "This endpoint updates a folder by ID"
+            responses: {
+                key: "200"
+                value: {
+                    description: "Folder update successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.UpdateFolderResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+
+    // Delete a Folder Metadata
+    rpc DeleteFolder(DeleteFolderRequest) returns (DeleteFolderResponse) {
+        option (google.api.http) = {
+            delete: "/workspace-microservice/api/v1/folders/{folder_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Delete a folder"
+            tags: ["workspace-service"]
+            operation_id: "DeleteFolder"
+            description: "This endpoint deletes a folder by ID"
+            responses: {
+                key: "200"
+                value: {
+                    description: "Folder deletion successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.DeleteFolderResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+    // Create a Workspace
+    rpc CreateWorkspace(CreateWorkspaceRequest) returns (CreateWorkspaceResponse) {
+        option (google.api.http) = {
+            post: "/workspace-microservice/api/v1/workspaces"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Create a workspace"
+            tags: ["workspace-service"]
+            operation_id: "CreateWorkspace"
+            description: "This endpoint creates a new workspace"
+            responses: {
+                key: "200"
+                value: {
+                    description: "Workspace creation successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.CreateWorkspaceResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+    // Read a Workspace
+    rpc ListWorkspace(ListWorkspaceRequest) returns (ListWorkspaceResponse) {
+        option (google.api.http) = {
+            get: "/workspace-microservice/api/v1/workspaces"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "List workspaces"
+            tags: ["workspace-service"]
+            operation_id: "ListWorkspace"
+            description: "This endpoint lists all workspaces"
+            responses: {
+                key: "200"
+                value: {
+                    description: "Workspace list retrieved successfully"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.ListWorkspaceResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+    // Delete a Workspace
+    rpc DeleteWorkspace(DeleteWorkspaceRequest) returns (DeleteWorkspaceResponse) {
+        option (google.api.http) = {
+            delete: "/workspace-microservice/api/v1/workspaces/{workspace_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Delete a workspace"
+            tags: ["workspace-service"]
+            operation_id: "DeleteWorkspace"
+            description: "This endpoint deletes a workspace by ID"
+            responses: {
+                key: "200"
+                value: {
+                    description: "Workspace deletion successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.DeleteWorkspaceResponse" }
+                    }
+                }
+            }
+        };
+    }
+
+    // Update a Workspace
+    rpc UpdateWorkspace(UpdateWorkspaceRequest) returns (UpdateWorkspaceResponse) {
+        option (google.api.http) = {
+            put: "/workspace-microservice/api/v1/workspaces"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Update a workspace"
+            tags: ["workspace-service"]
+            operation_id: "UpdateWorkspace"
+            description: "This endpoint updates a workspace by ID"
+            responses: {
+                key: "200"
+                value: {
+                    description: "Workspace update successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.UpdateWorkspaceResponse" }
+                    }
+                }
+            }
+        };
+    }
+}

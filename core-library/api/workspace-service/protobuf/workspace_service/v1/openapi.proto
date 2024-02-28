@@ -1,0 +1,55 @@
+syntax = "proto3";
+
+package workspace_service.v1;
+
+import "protoc-gen-openapiv2/options/annotations.proto";
+
+option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/workspace_service/v1";
+
+option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_swagger) = {
+  info: {
+    title: "Workspace Service";
+    description: "Workspace service for the solomon-ai platform.";
+    version: "0.1";
+    contact: {
+      name: "YoanYomba";
+      email: "yoanyomba@solomon-ai.co";
+      url: "https://solomon-ai.io";
+    };
+    license: {
+      name: "Apache-2.0";
+      url: "https://github.com/openfga/openfga/blob/main/LICENSE";
+    };
+  };
+  consumes: "application/json";
+  produces: "application/json";
+  host: "workspace-service.platform.svc.cluster.local:9896";
+  schemes: [HTTP];
+  responses: {
+    key: "400"
+    value: {
+      description: "Request failed due to invalid input."
+      schema: {
+        json_schema: {ref: ".workspace_service.v1.ValidationErrorMessageResponse"}
+      }
+    }
+  }
+  responses: {
+    key: "404"
+    value: {
+      description: "Request failed due to incorrect path."
+      schema: {
+        json_schema: {ref: ".workspace_service.v1.PathUnknownErrorMessageResponse"}
+      }
+    }
+  }
+  responses: {
+    key: "500"
+    value: {
+      description: "Request failed due to internal server error."
+      schema: {
+        json_schema: {ref: ".workspace_service.v1.InternalErrorMessageResponse"}
+      }
+    }
+  }
+};

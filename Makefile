@@ -2,6 +2,7 @@ SWAGGER_SOCIAL_SERVICE_CODEGEN_PATH:=./core-library/pkg/generated/social_service
 SWAGGER_USER_SERVICE_CODEGEN_PATH:=./core-library/pkg/generated/user_service/v1/apidocs.swagger.json
 SWAGGER_FINANCIAL_SERVICE_CODEGEN_PATH:=./core-library/pkg/generated/financial_service/v1/apidocs.swagger.json
 SWAGGER_ACCOUNTING_SERVICE_CODEGEN_PATH:=./core-library/pkg/generated/accounting_service/v1/apidocs.swagger.json
+SWAGGER_WORKSPACE_SERVICE_CODEGEN_PATH:=./core-library/pkg/generated/workspace_service/v1/apidocs.swagger.json
 
 VERSION = 3
 FILE = ./krakend-config/final-krakend.json
@@ -14,6 +15,7 @@ copy-swagger:
 	cp -rf $(SWAGGER_USER_SERVICE_CODEGEN_PATH) ./swagger/user-service.json
 	cp -rf $(SWAGGER_FINANCIAL_SERVICE_CODEGEN_PATH) ./swagger/financial-service.json
 	cp -rf $(SWAGGER_ACCOUNTING_SERVICE_CODEGEN_PATH) ./swagger/accounting-service.json
+	cp -rf $(SWAGGER_WORKSPACE_SERVICE_CODEGEN_PATH) ./swagger/workspace-service.json 
 
 
 convert-swagger-to-openapiv3:
@@ -21,11 +23,13 @@ convert-swagger-to-openapiv3:
 	swagger2openapi --yaml --outfile ./swagger/user-service-backend-api.yaml ./swagger/user-service.json
 	swagger2openapi --yaml --outfile ./swagger/financial-service-backend-api.yaml ./swagger/financial-service.json
 	swagger2openapi --yaml --outfile ./swagger/accounting-service-backend-api.yaml ./swagger/accounting-service.json
+	swagger2openapi --yaml --outfile ./swagger/workspace-service-backend-api.yaml ./swagger/workspace-service.json
 
 	swagger2openapi --outfile ./swagger/social-service-backend-api.json ./swagger/social-service.json
 	swagger2openapi --outfile ./swagger/user-service-backend-api.json ./swagger/user-service.json
 	swagger2openapi --outfile ./swagger/financial-service-backend-api.json ./swagger/financial-service.json
 	swagger2openapi --outfile ./swagger/accounting-service-backend-api.json ./swagger/accounting-service.json
+	swagger2openapi --outfile ./swagger/workspace-service-backend-api.json ./swagger/workspace-service.json
 
 	npx openapi-merge-cli --config ./swagger/merge-config.json
 	swagger2openapi --outfile ./swagger/backend-api.json ./swagger/backend-api.yaml
@@ -50,7 +54,7 @@ update-docs:
 		-g postman-collection -o ./documentation/autogen/postman-collection
 
 generate-krakend-config:
-	mkdir temp-swagger && cp ./swagger/user-service-backend-api.json ./temp-swagger/user-service-backend-api.json && cp ./swagger/social-service-backend-api.json ./temp-swagger/social-service-backend-api.json && cp ./swagger/financial-service-backend-api.json ./temp-swagger/financial-service-backend-api.json && cp ./swagger/accounting-service-backend-api.json ./temp-swagger/accounting-service-backend-api.json
+	mkdir temp-swagger && cp ./swagger/user-service-backend-api.json ./temp-swagger/user-service-backend-api.json && cp ./swagger/social-service-backend-api.json ./temp-swagger/social-service-backend-api.json && cp ./swagger/financial-service-backend-api.json ./temp-swagger/financial-service-backend-api.json && cp ./swagger/accounting-service-backend-api.json ./temp-swagger/accounting-service-backend-api.json && cp ./swagger/workspace-service-backend-api.json ./temp-swagger/workspace-service-backend-api.json
 	go run ./openapi2krakend/pkg/main.go -directory ./temp-swagger -output ./krakend-config/krakend.json
 	rm -rf temp-swagger
 
