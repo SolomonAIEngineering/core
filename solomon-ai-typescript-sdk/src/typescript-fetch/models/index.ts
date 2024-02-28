@@ -56,6 +56,7 @@ export * from './CategoryMetricsFinancialSubProfile';
 export * from './CategoryMonthlyExpenditure';
 export * from './CategoryMonthlyIncome';
 export * from './CategoryMonthlyTransactionCount';
+export * from './CheckEmailAndAuth0UserIdExistsResponse';
 export * from './CheckEmailExistsResponse';
 export * from './CheckEmailExistsV2Response';
 export * from './CheckIfQuotaExceededResponse';

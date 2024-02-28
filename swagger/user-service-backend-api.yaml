@@ -1712,6 +1712,58 @@ paths:
             default: PROFILE_TYPE_UNSPECIFIED
       tags:
         - user-service-v2
+  "/user-microservice/api/v2/user/email/{email}/auth0/{auth0UserId}/exists":
+    get:
+      summary: Checks that an email and auth0 user id exists or not
+      description: Checks if an email and auth0 user id exists or not
+      operationId: CheckEmailAndAuth0UserIdExists
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CheckEmailAndAuth0UserIdExistsResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: email
+          description: The email of the user of interest
+          in: path
+          required: true
+          schema:
+            type: string
+        - name: auth0UserId
+          description: The auth0 user id of the user
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - account
+        - v2
   /user-microservice/api/v2/user/role:
     patch:
       summary: Updates an existing role
@@ -1940,6 +1992,15 @@ components:
           $ref: "#/components/schemas/Role"
       description: BusinessAccount represents a business account within the context of
         solomon-ai.
+    CheckEmailAndAuth0UserIdExistsResponse:
+      type: object
+      properties:
+        userAccount:
+          $ref: "#/components/schemas/UserAccount"
+        businessAccount:
+          $ref: "#/components/schemas/BusinessAccount"
+        exists:
+          type: boolean
     CheckEmailExistsResponse:
       type: object
       properties:

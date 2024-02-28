@@ -62,6 +62,7 @@ models/CategoryMetricsFinancialSubProfile.ts
 models/CategoryMonthlyExpenditure.ts
 models/CategoryMonthlyIncome.ts
 models/CategoryMonthlyTransactionCount.ts
+models/CheckEmailAndAuth0UserIdExistsResponse.ts
 models/CheckEmailExistsResponse.ts
 models/CheckEmailExistsV2Response.ts
 models/CheckIfQuotaExceededResponse.ts

@@ -304,6 +304,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [CategoryMonthlyExpenditure](./Models/CategoryMonthlyExpenditure.md)
  - [CategoryMonthlyIncome](./Models/CategoryMonthlyIncome.md)
  - [CategoryMonthlyTransactionCount](./Models/CategoryMonthlyTransactionCount.md)
+ - [CheckEmailAndAuth0UserIdExistsResponse](./Models/CheckEmailAndAuth0UserIdExistsResponse.md)
  - [CheckEmailExistsResponse](./Models/CheckEmailExistsResponse.md)
  - [CheckEmailExistsV2Response](./Models/CheckEmailExistsV2Response.md)
  - [CheckIfQuotaExceededResponse](./Models/CheckIfQuotaExceededResponse.md)

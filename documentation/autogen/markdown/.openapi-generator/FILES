@@ -60,6 +60,7 @@ Models/CategoryMetricsFinancialSubProfile.md
 Models/CategoryMonthlyExpenditure.md
 Models/CategoryMonthlyIncome.md
 Models/CategoryMonthlyTransactionCount.md
+Models/CheckEmailAndAuth0UserIdExistsResponse.md
 Models/CheckEmailExistsResponse.md
 Models/CheckEmailExistsV2Response.md
 Models/CheckIfQuotaExceededResponse.md
