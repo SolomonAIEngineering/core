@@ -56,8 +56,8 @@ update-docs:
 
 generate-krakend-config:
 	mkdir temp-swagger && cp ./swagger/user-service-backend-api.json ./temp-swagger/user-service-backend-api.json && cp ./swagger/social-service-backend-api.json ./temp-swagger/social-service-backend-api.json && cp ./swagger/financial-service-backend-api.json ./temp-swagger/financial-service-backend-api.json && cp ./swagger/accounting-service-backend-api.json ./temp-swagger/accounting-service-backend-api.json && cp ./swagger/workspace-service-backend-api.json ./temp-swagger/workspace-service-backend-api.json
-	go run ./openapi2krakend/pkg/main.go -directory ./temp-swagger -output ./krakend-config/krakend.prod.json -environment production
-	go run ./openapi2krakend/pkg/main.go -directory ./temp-swagger -output ./krakend-config/krakend.staging.json -environment staging
+	go run ./openapi2krakend/pkg/main.go -directory ./temp-swagger -output ./krakend-config/krakend.prod.json -environment production -webhook-config-path ./webhooks.yaml
+	go run ./openapi2krakend/pkg/main.go -directory ./temp-swagger -output ./krakend-config/krakend.staging.json -environment staging -webhook-config-path ./webhooks.yaml
 	rm -rf temp-swagger
 
 prettify-krakend:
