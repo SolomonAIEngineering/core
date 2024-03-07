@@ -2267,6 +2267,7 @@ service FinancialService {
       };
     }
     
+    // this is useful for the admin to add notes to customer profiles for business accounts
     rpc AddNoteToFinancialUserProfile(AddNoteToFinancialUserProfileRequest) returns (AddNoteToFinancialUserProfileResponse) {
       option (google.api.http) = {
           post: "/financial-microservice/api/v1/financial-profile/business/note" 
@@ -2290,6 +2291,7 @@ service FinancialService {
       };
     }
 
+    // this is useful for the admin to update notes to customer profiles for business accounts
     rpc GetNotesFromFinancialUserProfile(GetNotesFromFinancialUserProfileRequest) returns (GetNotesFromFinancialUserProfileResponse) {
       option (google.api.http) = {
           get: "/financial-microservice/api/v1/financial-profile/business/{business_account_user_id}/{profile_type}/note" 

@@ -329,7 +329,9 @@ type FinancialServiceClient interface {
 	// This checks if a user can ask the copilot a question
 	CheckIfQuotaExceeded(ctx context.Context, in *CheckIfQuotaExceededRequest, opts ...grpc.CallOption) (*CheckIfQuotaExceededResponse, error)
 	TriggerSync(ctx context.Context, in *TriggerSyncRequest, opts ...grpc.CallOption) (*TriggerSyncResponse, error)
+	// this is useful for the admin to add notes to customer profiles for business accounts
 	AddNoteToFinancialUserProfile(ctx context.Context, in *AddNoteToFinancialUserProfileRequest, opts ...grpc.CallOption) (*AddNoteToFinancialUserProfileResponse, error)
+	// this is useful for the admin to update notes to customer profiles for business accounts
 	GetNotesFromFinancialUserProfile(ctx context.Context, in *GetNotesFromFinancialUserProfileRequest, opts ...grpc.CallOption) (*GetNotesFromFinancialUserProfileResponse, error)
 }
 
@@ -1481,7 +1483,9 @@ type FinancialServiceServer interface {
 	// This checks if a user can ask the copilot a question
 	CheckIfQuotaExceeded(context.Context, *CheckIfQuotaExceededRequest) (*CheckIfQuotaExceededResponse, error)
 	TriggerSync(context.Context, *TriggerSyncRequest) (*TriggerSyncResponse, error)
+	// this is useful for the admin to add notes to customer profiles for business accounts
 	AddNoteToFinancialUserProfile(context.Context, *AddNoteToFinancialUserProfileRequest) (*AddNoteToFinancialUserProfileResponse, error)
+	// this is useful for the admin to update notes to customer profiles for business accounts
 	GetNotesFromFinancialUserProfile(context.Context, *GetNotesFromFinancialUserProfileRequest) (*GetNotesFromFinancialUserProfileResponse, error)
 	mustEmbedUnimplementedFinancialServiceServer()
 }
