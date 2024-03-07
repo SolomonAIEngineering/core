@@ -121,6 +121,8 @@ const (
 	FinancialService_RecordAskCopilotQuestion_FullMethodName                   = "/financial_service.v1.FinancialService/RecordAskCopilotQuestion"
 	FinancialService_CheckIfQuotaExceeded_FullMethodName                       = "/financial_service.v1.FinancialService/CheckIfQuotaExceeded"
 	FinancialService_TriggerSync_FullMethodName                                = "/financial_service.v1.FinancialService/TriggerSync"
+	FinancialService_AddNoteToFinancialUserProfile_FullMethodName              = "/financial_service.v1.FinancialService/AddNoteToFinancialUserProfile"
+	FinancialService_GetNotesFromFinancialUserProfile_FullMethodName           = "/financial_service.v1.FinancialService/GetNotesFromFinancialUserProfile"
 )
 
 // FinancialServiceClient is the client API for FinancialService service.
@@ -327,6 +329,8 @@ type FinancialServiceClient interface {
 	// This checks if a user can ask the copilot a question
 	CheckIfQuotaExceeded(ctx context.Context, in *CheckIfQuotaExceededRequest, opts ...grpc.CallOption) (*CheckIfQuotaExceededResponse, error)
 	TriggerSync(ctx context.Context, in *TriggerSyncRequest, opts ...grpc.CallOption) (*TriggerSyncResponse, error)
+	AddNoteToFinancialUserProfile(ctx context.Context, in *AddNoteToFinancialUserProfileRequest, opts ...grpc.CallOption) (*AddNoteToFinancialUserProfileResponse, error)
+	GetNotesFromFinancialUserProfile(ctx context.Context, in *GetNotesFromFinancialUserProfileRequest, opts ...grpc.CallOption) (*GetNotesFromFinancialUserProfileResponse, error)
 }
 
 type financialServiceClient struct {
@@ -1255,6 +1259,24 @@ func (c *financialServiceClient) TriggerSync(ctx context.Context, in *TriggerSyn
 	return out, nil
 }
 
+func (c *financialServiceClient) AddNoteToFinancialUserProfile(ctx context.Context, in *AddNoteToFinancialUserProfileRequest, opts ...grpc.CallOption) (*AddNoteToFinancialUserProfileResponse, error) {
+	out := new(AddNoteToFinancialUserProfileResponse)
+	err := c.cc.Invoke(ctx, FinancialService_AddNoteToFinancialUserProfile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *financialServiceClient) GetNotesFromFinancialUserProfile(ctx context.Context, in *GetNotesFromFinancialUserProfileRequest, opts ...grpc.CallOption) (*GetNotesFromFinancialUserProfileResponse, error) {
+	out := new(GetNotesFromFinancialUserProfileResponse)
+	err := c.cc.Invoke(ctx, FinancialService_GetNotesFromFinancialUserProfile_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FinancialServiceServer is the server API for FinancialService service.
 // All implementations must embed UnimplementedFinancialServiceServer
 // for forward compatibility
@@ -1459,6 +1481,8 @@ type FinancialServiceServer interface {
 	// This checks if a user can ask the copilot a question
 	CheckIfQuotaExceeded(context.Context, *CheckIfQuotaExceededRequest) (*CheckIfQuotaExceededResponse, error)
 	TriggerSync(context.Context, *TriggerSyncRequest) (*TriggerSyncResponse, error)
+	AddNoteToFinancialUserProfile(context.Context, *AddNoteToFinancialUserProfileRequest) (*AddNoteToFinancialUserProfileResponse, error)
+	GetNotesFromFinancialUserProfile(context.Context, *GetNotesFromFinancialUserProfileRequest) (*GetNotesFromFinancialUserProfileResponse, error)
 	mustEmbedUnimplementedFinancialServiceServer()
 }
 
@@ -1771,6 +1795,12 @@ func (UnimplementedFinancialServiceServer) CheckIfQuotaExceeded(context.Context,
 }
 func (UnimplementedFinancialServiceServer) TriggerSync(context.Context, *TriggerSyncRequest) (*TriggerSyncResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method TriggerSync not implemented")
+}
+func (UnimplementedFinancialServiceServer) AddNoteToFinancialUserProfile(context.Context, *AddNoteToFinancialUserProfileRequest) (*AddNoteToFinancialUserProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddNoteToFinancialUserProfile not implemented")
+}
+func (UnimplementedFinancialServiceServer) GetNotesFromFinancialUserProfile(context.Context, *GetNotesFromFinancialUserProfileRequest) (*GetNotesFromFinancialUserProfileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetNotesFromFinancialUserProfile not implemented")
 }
 func (UnimplementedFinancialServiceServer) mustEmbedUnimplementedFinancialServiceServer() {}
 
@@ -3621,6 +3651,42 @@ func _FinancialService_TriggerSync_Handler(srv interface{}, ctx context.Context,
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FinancialService_AddNoteToFinancialUserProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddNoteToFinancialUserProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FinancialServiceServer).AddNoteToFinancialUserProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FinancialService_AddNoteToFinancialUserProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FinancialServiceServer).AddNoteToFinancialUserProfile(ctx, req.(*AddNoteToFinancialUserProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FinancialService_GetNotesFromFinancialUserProfile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetNotesFromFinancialUserProfileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FinancialServiceServer).GetNotesFromFinancialUserProfile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FinancialService_GetNotesFromFinancialUserProfile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FinancialServiceServer).GetNotesFromFinancialUserProfile(ctx, req.(*GetNotesFromFinancialUserProfileRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FinancialService_ServiceDesc is the grpc.ServiceDesc for FinancialService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -4035,6 +4101,14 @@ var FinancialService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "TriggerSync",
 			Handler:    _FinancialService_TriggerSync_Handler,
+		},
+		{
+			MethodName: "AddNoteToFinancialUserProfile",
+			Handler:    _FinancialService_AddNoteToFinancialUserProfile_Handler,
+		},
+		{
+			MethodName: "GetNotesFromFinancialUserProfile",
+			Handler:    _FinancialService_GetNotesFromFinancialUserProfile_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

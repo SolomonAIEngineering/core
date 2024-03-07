@@ -103,6 +103,7 @@ type FinancialUserProfileORM struct {
 	Email                      string                          `gorm:"index:idx_financial_user_profile_email"`
 	Id                         uint64                          `gorm:"unique_index:idx_financial_user_profile_id"`
 	Link                       []*LinkORM                      `gorm:"foreignkey:FinancialUserProfileId;association_foreignkey:Id;preload:true"`
+	Notes                      []*SmartNoteORM                 `gorm:"foreignkey:FinancialUserProfileId;association_foreignkey:Id;preload:true"`
 	ProfileType                string                          `gorm:"index:idx_financial_user_profile_type"`
 	StripeCustomerId           string                          `gorm:"index:idx_financial_user_profile_stripe_customer_id"`
 	StripeSubscriptions        *StripeSubscriptionORM          `gorm:"foreignkey:FinancialUserProfileId;association_foreignkey:Id"`
@@ -169,6 +170,17 @@ func (m *FinancialUserProfile) ToORM(ctx context.Context) (FinancialUserProfileO
 		}
 	}
 	to.ProfileType = FinancialUserProfileType_name[int32(m.ProfileType)]
+	for _, v := range m.Notes {
+		if v != nil {
+			if tempNotes, cErr := v.ToORM(ctx); cErr == nil {
+				to.Notes = append(to.Notes, &tempNotes)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Notes = append(to.Notes, nil)
+		}
+	}
 	if posthook, ok := interface{}(m).(FinancialUserProfileWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -230,6 +242,17 @@ func (m *FinancialUserProfileORM) ToPB(ctx context.Context) (FinancialUserProfil
 		}
 	}
 	to.ProfileType = FinancialUserProfileType(FinancialUserProfileType_value[m.ProfileType])
+	for _, v := range m.Notes {
+		if v != nil {
+			if tempNotes, cErr := v.ToPB(ctx); cErr == nil {
+				to.Notes = append(to.Notes, &tempNotes)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Notes = append(to.Notes, nil)
+		}
+	}
 	if posthook, ok := interface{}(m).(FinancialUserProfileWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -2151,6 +2174,7 @@ type SmartGoalWithAfterToPB interface {
 type SmartNoteORM struct {
 	Content                             string
 	CreatedAt                           *time.Time
+	FinancialUserProfileId              *uint64
 	Id                                  uint64
 	PlaidAccountInvestmentTransactionId *uint64
 	PlaidAccountRecurringTransactionId  *uint64
@@ -4277,6 +4301,15 @@ func DefaultStrictUpdateFinancialUserProfile(ctx context.Context, in *FinancialU
 	if err = db.Where(filterLink).Delete(LinkORM{}).Error; err != nil {
 		return nil, err
 	}
+	filterNotes := SmartNoteORM{}
+	if ormObj.Id == 0 {
+		return nil, errors.EmptyIdError
+	}
+	filterNotes.FinancialUserProfileId = new(uint64)
+	*filterNotes.FinancialUserProfileId = ormObj.Id
+	if err = db.Where(filterNotes).Delete(SmartNoteORM{}).Error; err != nil {
+		return nil, err
+	}
 	filterStripeSubscriptions := StripeSubscriptionORM{}
 	if ormObj.Id == 0 {
 		return nil, errors.EmptyIdError
@@ -4451,6 +4484,10 @@ func DefaultApplyFieldMaskFinancialUserProfile(ctx context.Context, patchee *Fin
 		}
 		if f == prefix+"ProfileType" {
 			patchee.ProfileType = patcher.ProfileType
+			continue
+		}
+		if f == prefix+"Notes" {
+			patchee.Notes = patcher.Notes
 			continue
 		}
 	}

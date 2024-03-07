@@ -1699,3 +1699,80 @@ message TriggerSyncResponse {
   string workflow_id = 1;
   string run_id = 2;
 }
+
+message AddNoteToFinancialUserProfileRequest {
+  // The business account id
+  // Validations:
+  // - business_account_id must be greater than 0
+  uint64 business_account_id = 1 [
+    (validate.rules).uint64.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The note to add
+  // Validations:
+  // - cannot be nil hence required
+  SmartNote note = 2 [
+    (validate.rules).message.required = true,
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The user id of the user adding the note
+  // Validations:
+  // - user_id must be greater than 0
+  string user_id = 3 [
+    (validate.rules).string.min_len = 1,
+    (google.api.field_behavior) = REQUIRED
+  ];
+}
+
+message AddNoteToFinancialUserProfileResponse {
+  // The business account id
+  FinancialUserProfile business_account = 1;
+}
+
+message DeleteNoteFromFinancialUserProfileRequest {
+  // The business account id
+  // Validations:
+  // - business_account_id must be greater than 0
+  uint64 business_account_id = 1 [
+    (validate.rules).uint64.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The note id
+  // Validations:
+  // - note_id must be greater than 0
+  uint64 note_id = 2 [
+    (validate.rules).uint64.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The user id of the user adding the note
+  // Validations:
+  // - user_id must be greater than 0
+  string user_id = 3 [
+    (validate.rules).string.min_len = 1,
+    (google.api.field_behavior) = REQUIRED
+  ];
+}
+
+message DeleteNoteFromFinancialUserProfileResponse {
+  // The business account id
+  bool deleted = 1;
+}
+
+message GetNotesFromFinancialUserProfileRequest {
+  // The business account id
+  // Validations:
+  // - business_account_id must be greater than 0
+  uint64 business_account_id = 1 [
+    (validate.rules).uint64.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+}
+
+message GetNotesFromFinancialUserProfileResponse {
+  // The notes
+  repeated SmartNote notes = 1;
+}

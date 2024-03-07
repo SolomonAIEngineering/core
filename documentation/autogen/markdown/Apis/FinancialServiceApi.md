@@ -5,6 +5,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
 | [**addDefaultPocketsToBankAccount**](FinancialServiceApi.md#addDefaultPocketsToBankAccount) | **POST** /financial-microservice/api/v1/pocket/bank-account | adds a default set of pockets to a specific bank account of interest |
+| [**addNoteToFinancialUserProfile**](FinancialServiceApi.md#addNoteToFinancialUserProfile) | **POST** /financial-microservice/api/v1/financial-profile/business/note | Adds a note to a business account |
 | [**addNoteToRecurringTransaction**](FinancialServiceApi.md#addNoteToRecurringTransaction) | **POST** /financial-microservice/api/v1/transactions/recurring/note | adds a note to a transaction |
 | [**addNoteToSmartGoal**](FinancialServiceApi.md#addNoteToSmartGoal) | **POST** /financial-microservice/api/v1/smart-goal/note | adds a note to a smart goal |
 | [**addNoteToTransaction**](FinancialServiceApi.md#addNoteToTransaction) | **POST** /financial-microservice/api/v1/transactions/transaction/note | adds a note to a transaction |
@@ -61,6 +62,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**getMortageAccount**](FinancialServiceApi.md#getMortageAccount) | **GET** /financial-microservice/api/v1/account/{userId}/mortgage/{mortgageAccountId} | get mortgage account by id |
 | [**getNoteFromSmartGoal**](FinancialServiceApi.md#getNoteFromSmartGoal) | **GET** /financial-microservice/api/v1/smart-goal/note/{noteId} | gets a note from a smart goal |
 | [**getNoteFromTransaction**](FinancialServiceApi.md#getNoteFromTransaction) | **GET** /financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId} | gets a note from a transaction |
+| [**getNotesFromFinancialUserProfile**](FinancialServiceApi.md#getNotesFromFinancialUserProfile) | **GET** /financial-microservice/api/v1/financial-profile/business/{businessAccountId}/note | Gets notes from a business account |
 | [**getNotesFromSmartGoal**](FinancialServiceApi.md#getNotesFromSmartGoal) | **GET** /financial-microservice/api/v1/smart-goal/{smartGoalId}/note | gets notes from a smart goal |
 | [**getPaymentChannelMonthlyExpenditure**](FinancialServiceApi.md#getPaymentChannelMonthlyExpenditure) | **GET** /financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{userId} | Get Payment Channel Monthly Expenditure by user, month, and payment channel |
 | [**getPocket**](FinancialServiceApi.md#getPocket) | **GET** /financial-microservice/api/v1/pocket/{pocketId} | get a pocket |
@@ -125,6 +127,33 @@ adds a default set of pockets to a specific bank account of interest
 ### Return type
 
 [**AddDefaultPocketsToBankAccountResponse**](../Models/AddDefaultPocketsToBankAccountResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="addNoteToFinancialUserProfile"></a>
+# **addNoteToFinancialUserProfile**
+> AddNoteToFinancialUserProfileResponse addNoteToFinancialUserProfile(AddNoteToFinancialUserProfileRequest)
+
+Adds a note to a business account
+
+    This endpoint adds a note to a business account
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **AddNoteToFinancialUserProfileRequest** | [**AddNoteToFinancialUserProfileRequest**](../Models/AddNoteToFinancialUserProfileRequest.md)|  | |
+
+### Return type
+
+[**AddNoteToFinancialUserProfileResponse**](../Models/AddNoteToFinancialUserProfileResponse.md)
 
 ### Authorization
 
@@ -1692,6 +1721,33 @@ gets a note from a transaction
 ### Return type
 
 [**GetNoteFromTransactionResponse**](../Models/GetNoteFromTransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getNotesFromFinancialUserProfile"></a>
+# **getNotesFromFinancialUserProfile**
+> GetNotesFromFinancialUserProfileResponse getNotesFromFinancialUserProfile(businessAccountId)
+
+Gets notes from a business account
+
+    This endpoint gets notes from a business account
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **businessAccountId** | **String**| The business account id Validations: - business_account_id must be greater than 0 | [default to null] |
+
+### Return type
+
+[**GetNotesFromFinancialUserProfileResponse**](../Models/GetNotesFromFinancialUserProfileResponse.md)
 
 ### Authorization
 

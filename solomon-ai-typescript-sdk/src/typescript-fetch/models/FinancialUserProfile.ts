@@ -37,6 +37,12 @@ import {
     PersonalActionableInsightFromJSONTyped,
     PersonalActionableInsightToJSON,
 } from './PersonalActionableInsight';
+import type { SmartNote } from './SmartNote';
+import {
+    SmartNoteFromJSON,
+    SmartNoteFromJSONTyped,
+    SmartNoteToJSON,
+} from './SmartNote';
 import type { StripeSubscription } from './StripeSubscription';
 import {
     StripeSubscriptionFromJSON,
@@ -104,6 +110,12 @@ export interface FinancialUserProfile {
      * @memberof FinancialUserProfile
      */
     profileType?: FinancialUserProfileType;
+    /**
+     * 
+     * @type {Array<SmartNote>}
+     * @memberof FinancialUserProfile
+     */
+    notes?: Array<SmartNote>;
 }
 
 /**
@@ -134,6 +146,7 @@ export function FinancialUserProfileFromJSONTyped(json: any, ignoreDiscriminator
         'email': !exists(json, 'email') ? undefined : json['email'],
         'actionablePersonalInsights': !exists(json, 'actionablePersonalInsights') ? undefined : ((json['actionablePersonalInsights'] as Array<any>).map(PersonalActionableInsightFromJSON)),
         'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'notes': !exists(json, 'notes') ? undefined : ((json['notes'] as Array<any>).map(SmartNoteFromJSON)),
     };
 }
 
@@ -155,6 +168,7 @@ export function FinancialUserProfileToJSON(value?: FinancialUserProfile | null):
         'email': value.email,
         'actionablePersonalInsights': value.actionablePersonalInsights === undefined ? undefined : ((value.actionablePersonalInsights as Array<any>).map(PersonalActionableInsightToJSON)),
         'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'notes': value.notes === undefined ? undefined : ((value.notes as Array<any>).map(SmartNoteToJSON)),
     };
 }
 

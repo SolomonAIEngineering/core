@@ -2265,5 +2265,50 @@ service FinancialService {
               }
           }
       };
-    } 
+    }
+    
+    rpc AddNoteToFinancialUserProfile(AddNoteToFinancialUserProfileRequest) returns (AddNoteToFinancialUserProfileResponse) {
+      option (google.api.http) = {
+          post: "/financial-microservice/api/v1/financial-profile/business/note" 
+          body: "*"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          summary: "Adds a note to a business account"
+          tags: ["financial-service"]
+          operation_id: "AddNoteToFinancialUserProfile"
+          description: 
+              "This endpoint adds a note to a business account"
+          responses: {
+              key: "200"
+              value: {
+                  description: "A successful response."
+                  schema: {
+                      json_schema: {ref: ".financial_service.v1.AddNoteToFinancialUserProfileResponse"}
+                  }
+              }
+          }
+      };
+    }
+    
+    rpc GetNotesFromFinancialUserProfile(GetNotesFromFinancialUserProfileRequest) returns (GetNotesFromFinancialUserProfileResponse) {
+      option (google.api.http) = {
+          get: "/financial-microservice/api/v1/financial-profile/business/{business_account_id}/note" 
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          summary: "Gets notes from a business account"
+          tags: ["financial-service"]
+          operation_id: "GetNotesFromFinancialUserProfile"
+          description: 
+              "This endpoint gets notes from a business account"
+          responses: {
+              key: "200"
+              value: {
+                  description: "A successful response."
+                  schema: {
+                      json_schema: {ref: ".financial_service.v1.GetNotesFromFinancialUserProfileResponse"}
+                  }
+              }
+          }
+      };
+    }
 }

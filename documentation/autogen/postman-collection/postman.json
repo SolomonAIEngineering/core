@@ -8402,6 +8402,111 @@
                             ]
                         },
 	                        {
+    "name": "/financial-microservice/api/v1/financial-profile/business/:businessAccountId/note",
+                "description": "This endpoint gets notes from a business account",
+                 "item": [
+                            {
+                                "name": "Gets notes from a business account",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/financial-profile/business/:businessAccountId/note",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "financial-microservice",
+                                            "api",
+                                            "v1",
+                                            "financial-profile",
+                                            "business",
+                                            ":businessAccountId",
+                                            "note"
+                                        ],
+                                        "variable": [
+                                            {
+                                                "key": "businessAccountId",
+                                                "value": "",
+                                                "description": "The business account id Validations: - business_account_id must be greater than 0"
+                                            }
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint gets notes from a business account"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/financial-microservice/api/v1/financial-profile/business/note",
+                "description": "This endpoint adds a note to a business account",
+                 "item": [
+                            {
+                                "name": "Adds a note to a business account",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"businessAccountId\": \"<string>\",\n \"note\": \"<string>\",\n \"userId\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/financial-profile/business/note",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "financial-microservice",
+                                            "api",
+                                            "v1",
+                                            "financial-profile",
+                                            "business",
+                                            "note"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint adds a note to a business account"
+                                }
+                            }
+                            ]
+                        },
+	                        {
     "name": "/financial-microservice/api/v1/forecast/:smartGoalId",
                 "description": "This endpoint returns the forecast if the forecast exists",
                  "item": [

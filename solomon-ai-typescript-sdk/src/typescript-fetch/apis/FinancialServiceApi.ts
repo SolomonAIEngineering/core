@@ -17,6 +17,8 @@ import * as runtime from '../runtime';
 import type {
   AddDefaultPocketsToBankAccountRequest,
   AddDefaultPocketsToBankAccountResponse,
+  AddNoteToFinancialUserProfileRequest,
+  AddNoteToFinancialUserProfileResponse,
   AddNoteToRecurringTransactionRequest,
   AddNoteToRecurringTransactionResponse,
   AddNoteToSmartGoalRequest,
@@ -83,6 +85,7 @@ import type {
   GetMortgageAccountResponse,
   GetNoteFromSmartGoalResponse,
   GetNoteFromTransactionResponse,
+  GetNotesFromFinancialUserProfileResponse,
   GetNotesFromSmartGoalResponse,
   GetPaymentChannelMonthlyExpenditureResponse,
   GetPocketResponse,
@@ -159,6 +162,10 @@ import {
     AddDefaultPocketsToBankAccountRequestToJSON,
     AddDefaultPocketsToBankAccountResponseFromJSON,
     AddDefaultPocketsToBankAccountResponseToJSON,
+    AddNoteToFinancialUserProfileRequestFromJSON,
+    AddNoteToFinancialUserProfileRequestToJSON,
+    AddNoteToFinancialUserProfileResponseFromJSON,
+    AddNoteToFinancialUserProfileResponseToJSON,
     AddNoteToRecurringTransactionRequestFromJSON,
     AddNoteToRecurringTransactionRequestToJSON,
     AddNoteToRecurringTransactionResponseFromJSON,
@@ -291,6 +298,8 @@ import {
     GetNoteFromSmartGoalResponseToJSON,
     GetNoteFromTransactionResponseFromJSON,
     GetNoteFromTransactionResponseToJSON,
+    GetNotesFromFinancialUserProfileResponseFromJSON,
+    GetNotesFromFinancialUserProfileResponseToJSON,
     GetNotesFromSmartGoalResponseFromJSON,
     GetNotesFromSmartGoalResponseToJSON,
     GetPaymentChannelMonthlyExpenditureResponseFromJSON,
@@ -435,6 +444,10 @@ import {
 
 export interface AddDefaultPocketsToBankAccountOperationRequest {
     addDefaultPocketsToBankAccountRequest: AddDefaultPocketsToBankAccountRequest;
+}
+
+export interface AddNoteToFinancialUserProfileOperationRequest {
+    addNoteToFinancialUserProfileRequest: AddNoteToFinancialUserProfileRequest;
 }
 
 export interface AddNoteToRecurringTransactionOperationRequest {
@@ -744,6 +757,10 @@ export interface GetNoteFromTransactionRequest {
     noteId: string;
 }
 
+export interface GetNotesFromFinancialUserProfileRequest {
+    businessAccountId: string;
+}
+
 export interface GetNotesFromSmartGoalRequest {
     smartGoalId: string;
 }
@@ -1027,6 +1044,41 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      */
     async addDefaultPocketsToBankAccount(requestParameters: AddDefaultPocketsToBankAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddDefaultPocketsToBankAccountResponse> {
         const response = await this.addDefaultPocketsToBankAccountRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This endpoint adds a note to a business account
+     * Adds a note to a business account
+     */
+    async addNoteToFinancialUserProfileRaw(requestParameters: AddNoteToFinancialUserProfileOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddNoteToFinancialUserProfileResponse>> {
+        if (requestParameters.addNoteToFinancialUserProfileRequest === null || requestParameters.addNoteToFinancialUserProfileRequest === undefined) {
+            throw new runtime.RequiredError('addNoteToFinancialUserProfileRequest','Required parameter requestParameters.addNoteToFinancialUserProfileRequest was null or undefined when calling addNoteToFinancialUserProfile.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/financial-microservice/api/v1/financial-profile/business/note`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AddNoteToFinancialUserProfileRequestToJSON(requestParameters.addNoteToFinancialUserProfileRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddNoteToFinancialUserProfileResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint adds a note to a business account
+     * Adds a note to a business account
+     */
+    async addNoteToFinancialUserProfile(requestParameters: AddNoteToFinancialUserProfileOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddNoteToFinancialUserProfileResponse> {
+        const response = await this.addNoteToFinancialUserProfileRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3225,6 +3277,38 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      */
     async getNoteFromTransaction(requestParameters: GetNoteFromTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetNoteFromTransactionResponse> {
         const response = await this.getNoteFromTransactionRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This endpoint gets notes from a business account
+     * Gets notes from a business account
+     */
+    async getNotesFromFinancialUserProfileRaw(requestParameters: GetNotesFromFinancialUserProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNotesFromFinancialUserProfileResponse>> {
+        if (requestParameters.businessAccountId === null || requestParameters.businessAccountId === undefined) {
+            throw new runtime.RequiredError('businessAccountId','Required parameter requestParameters.businessAccountId was null or undefined when calling getNotesFromFinancialUserProfile.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/financial-microservice/api/v1/financial-profile/business/{businessAccountId}/note`.replace(`{${"businessAccountId"}}`, encodeURIComponent(String(requestParameters.businessAccountId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetNotesFromFinancialUserProfileResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint gets notes from a business account
+     * Gets notes from a business account
+     */
+    async getNotesFromFinancialUserProfile(requestParameters: GetNotesFromFinancialUserProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetNotesFromFinancialUserProfileResponse> {
+        const response = await this.getNotesFromFinancialUserProfileRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

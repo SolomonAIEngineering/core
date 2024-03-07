@@ -20,6 +20,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *AccountingServiceApi* | [**readinessCheck**](Apis/AccountingServiceApi.md#readinesscheck) | **GET** /accounting-microservice/api/v1/ready | Readiness Check |
 *AccountingServiceApi* | [**updatePayrollProfile**](Apis/AccountingServiceApi.md#updatepayrollprofile) | **PUT** /accounting-microservice/api/v1/profile | Update Payroll Profile |
 | *FinancialServiceApi* | [**addDefaultPocketsToBankAccount**](Apis/FinancialServiceApi.md#adddefaultpocketstobankaccount) | **POST** /financial-microservice/api/v1/pocket/bank-account | adds a default set of pockets to a specific bank account of interest |
+*FinancialServiceApi* | [**addNoteToFinancialUserProfile**](Apis/FinancialServiceApi.md#addnotetofinancialuserprofile) | **POST** /financial-microservice/api/v1/financial-profile/business/note | Adds a note to a business account |
 *FinancialServiceApi* | [**addNoteToRecurringTransaction**](Apis/FinancialServiceApi.md#addnotetorecurringtransaction) | **POST** /financial-microservice/api/v1/transactions/recurring/note | adds a note to a transaction |
 *FinancialServiceApi* | [**addNoteToSmartGoal**](Apis/FinancialServiceApi.md#addnotetosmartgoal) | **POST** /financial-microservice/api/v1/smart-goal/note | adds a note to a smart goal |
 *FinancialServiceApi* | [**addNoteToTransaction**](Apis/FinancialServiceApi.md#addnotetotransaction) | **POST** /financial-microservice/api/v1/transactions/transaction/note | adds a note to a transaction |
@@ -76,6 +77,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *FinancialServiceApi* | [**getMortageAccount**](Apis/FinancialServiceApi.md#getmortageaccount) | **GET** /financial-microservice/api/v1/account/{userId}/mortgage/{mortgageAccountId} | get mortgage account by id |
 *FinancialServiceApi* | [**getNoteFromSmartGoal**](Apis/FinancialServiceApi.md#getnotefromsmartgoal) | **GET** /financial-microservice/api/v1/smart-goal/note/{noteId} | gets a note from a smart goal |
 *FinancialServiceApi* | [**getNoteFromTransaction**](Apis/FinancialServiceApi.md#getnotefromtransaction) | **GET** /financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId} | gets a note from a transaction |
+*FinancialServiceApi* | [**getNotesFromFinancialUserProfile**](Apis/FinancialServiceApi.md#getnotesfromfinancialuserprofile) | **GET** /financial-microservice/api/v1/financial-profile/business/{businessAccountId}/note | Gets notes from a business account |
 *FinancialServiceApi* | [**getNotesFromSmartGoal**](Apis/FinancialServiceApi.md#getnotesfromsmartgoal) | **GET** /financial-microservice/api/v1/smart-goal/{smartGoalId}/note | gets notes from a smart goal |
 *FinancialServiceApi* | [**getPaymentChannelMonthlyExpenditure**](Apis/FinancialServiceApi.md#getpaymentchannelmonthlyexpenditure) | **GET** /financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{userId} | Get Payment Channel Monthly Expenditure by user, month, and payment channel |
 *FinancialServiceApi* | [**getPocket**](Apis/FinancialServiceApi.md#getpocket) | **GET** /financial-microservice/api/v1/pocket/{pocketId} | get a pocket |
@@ -259,6 +261,8 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [AddCommentQualityScoreResponse](./Models/AddCommentQualityScoreResponse.md)
  - [AddDefaultPocketsToBankAccountRequest](./Models/AddDefaultPocketsToBankAccountRequest.md)
  - [AddDefaultPocketsToBankAccountResponse](./Models/AddDefaultPocketsToBankAccountResponse.md)
+ - [AddNoteToFinancialUserProfileRequest](./Models/AddNoteToFinancialUserProfileRequest.md)
+ - [AddNoteToFinancialUserProfileResponse](./Models/AddNoteToFinancialUserProfileResponse.md)
  - [AddNoteToRecurringTransactionRequest](./Models/AddNoteToRecurringTransactionRequest.md)
  - [AddNoteToRecurringTransactionResponse](./Models/AddNoteToRecurringTransactionResponse.md)
  - [AddNoteToSmartGoalRequest](./Models/AddNoteToSmartGoalRequest.md)
@@ -481,6 +485,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [GetMortgageAccountResponse](./Models/GetMortgageAccountResponse.md)
  - [GetNoteFromSmartGoalResponse](./Models/GetNoteFromSmartGoalResponse.md)
  - [GetNoteFromTransactionResponse](./Models/GetNoteFromTransactionResponse.md)
+ - [GetNotesFromFinancialUserProfileResponse](./Models/GetNotesFromFinancialUserProfileResponse.md)
  - [GetNotesFromSmartGoalResponse](./Models/GetNotesFromSmartGoalResponse.md)
  - [GetPaymentChannelMonthlyExpenditureResponse](./Models/GetPaymentChannelMonthlyExpenditureResponse.md)
  - [GetPendingFollowsResponse](./Models/GetPendingFollowsResponse.md)

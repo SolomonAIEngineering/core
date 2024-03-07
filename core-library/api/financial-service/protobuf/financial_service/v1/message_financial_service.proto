@@ -167,6 +167,7 @@ message FinancialUserProfile {
   FinancialUserProfileType profile_type = 11 [
     (gorm.field).tag = {index: "idx_financial_user_profile_type"}
   ];
+  repeated SmartNote notes = 12 [(gorm.field).has_many = {disable_association_autocreate: false disable_association_autoupdate: false preload: true}];
 }
 
 

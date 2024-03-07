@@ -312,6 +312,12 @@ func newFinancialUserProfileORM(db *gorm.DB, opts ...gen.DOOption) financialUser
 		},
 	}
 
+	_financialUserProfileORM.Notes = financialUserProfileORMHasManyNotes{
+		db: db.Session(&gorm.Session{}),
+
+		RelationField: field.NewRelation("Notes", "financial_servicev1.SmartNoteORM"),
+	}
+
 	_financialUserProfileORM.fillFieldMap()
 
 	return _financialUserProfileORM
@@ -333,6 +339,8 @@ type financialUserProfileORM struct {
 	ActionablePersonalInsights financialUserProfileORMHasManyActionablePersonalInsights
 
 	Link financialUserProfileORMHasManyLink
+
+	Notes financialUserProfileORMHasManyNotes
 
 	fieldMap map[string]field.Expr
 }
@@ -370,7 +378,7 @@ func (f *financialUserProfileORM) GetFieldByName(fieldName string) (field.OrderE
 }
 
 func (f *financialUserProfileORM) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 9)
+	f.fieldMap = make(map[string]field.Expr, 10)
 	f.fieldMap["email"] = f.Email
 	f.fieldMap["id"] = f.Id
 	f.fieldMap["profile_type"] = f.ProfileType
@@ -755,6 +763,77 @@ func (a financialUserProfileORMHasManyLinkTx) Clear() error {
 }
 
 func (a financialUserProfileORMHasManyLinkTx) Count() int64 {
+	return a.tx.Count()
+}
+
+type financialUserProfileORMHasManyNotes struct {
+	db *gorm.DB
+
+	field.RelationField
+}
+
+func (a financialUserProfileORMHasManyNotes) Where(conds ...field.Expr) *financialUserProfileORMHasManyNotes {
+	if len(conds) == 0 {
+		return &a
+	}
+
+	exprs := make([]clause.Expression, 0, len(conds))
+	for _, cond := range conds {
+		exprs = append(exprs, cond.BeCond().(clause.Expression))
+	}
+	a.db = a.db.Clauses(clause.Where{Exprs: exprs})
+	return &a
+}
+
+func (a financialUserProfileORMHasManyNotes) WithContext(ctx context.Context) *financialUserProfileORMHasManyNotes {
+	a.db = a.db.WithContext(ctx)
+	return &a
+}
+
+func (a financialUserProfileORMHasManyNotes) Session(session *gorm.Session) *financialUserProfileORMHasManyNotes {
+	a.db = a.db.Session(session)
+	return &a
+}
+
+func (a financialUserProfileORMHasManyNotes) Model(m *financial_servicev1.FinancialUserProfileORM) *financialUserProfileORMHasManyNotesTx {
+	return &financialUserProfileORMHasManyNotesTx{a.db.Model(m).Association(a.Name())}
+}
+
+type financialUserProfileORMHasManyNotesTx struct{ tx *gorm.Association }
+
+func (a financialUserProfileORMHasManyNotesTx) Find() (result []*financial_servicev1.SmartNoteORM, err error) {
+	return result, a.tx.Find(&result)
+}
+
+func (a financialUserProfileORMHasManyNotesTx) Append(values ...*financial_servicev1.SmartNoteORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Append(targetValues...)
+}
+
+func (a financialUserProfileORMHasManyNotesTx) Replace(values ...*financial_servicev1.SmartNoteORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Replace(targetValues...)
+}
+
+func (a financialUserProfileORMHasManyNotesTx) Delete(values ...*financial_servicev1.SmartNoteORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Delete(targetValues...)
+}
+
+func (a financialUserProfileORMHasManyNotesTx) Clear() error {
+	return a.tx.Clear()
+}
+
+func (a financialUserProfileORMHasManyNotesTx) Count() int64 {
 	return a.tx.Count()
 }
 

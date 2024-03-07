@@ -17,6 +17,8 @@ models/Actor.ts
 models/AddCommentQualityScoreResponse.ts
 models/AddDefaultPocketsToBankAccountRequest.ts
 models/AddDefaultPocketsToBankAccountResponse.ts
+models/AddNoteToFinancialUserProfileRequest.ts
+models/AddNoteToFinancialUserProfileResponse.ts
 models/AddNoteToRecurringTransactionRequest.ts
 models/AddNoteToRecurringTransactionResponse.ts
 models/AddNoteToSmartGoalRequest.ts
@@ -239,6 +241,7 @@ models/GetMonthlyTransactionCountResponse.ts
 models/GetMortgageAccountResponse.ts
 models/GetNoteFromSmartGoalResponse.ts
 models/GetNoteFromTransactionResponse.ts
+models/GetNotesFromFinancialUserProfileResponse.ts
 models/GetNotesFromSmartGoalResponse.ts
 models/GetPaymentChannelMonthlyExpenditureResponse.ts
 models/GetPendingFollowsResponse.ts

@@ -12,6 +12,7 @@
 | **email** | **String** |  | [optional] [default to null] |
 | **actionablePersonalInsights** | [**List**](PersonalActionableInsight.md) |  | [optional] [default to null] |
 | **profileType** | [**FinancialUserProfileType**](FinancialUserProfileType.md) |  | [optional] [default to null] |
+| **notes** | [**List**](SmartNote.md) |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -13282,6 +13282,152 @@
                 ]
             }
         },
+        "/financial-microservice/api/v1/financial-profile/business/note": {
+            "post": {
+                "summary": "Adds a note to a business account",
+                "description": "This endpoint adds a note to a business account",
+                "operationId": "AddNoteToFinancialUserProfile",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/AddNoteToFinancialUserProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status1"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/AddNoteToFinancialUserProfileRequest"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "tags": [
+                    "financial-service"
+                ]
+            }
+        },
+        "/financial-microservice/api/v1/financial-profile/business/{businessAccountId}/note": {
+            "get": {
+                "summary": "Gets notes from a business account",
+                "description": "This endpoint gets notes from a business account",
+                "operationId": "GetNotesFromFinancialUserProfile",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/GetNotesFromFinancialUserProfileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status1"
+                                }
+                            }
+                        }
+                    }
+                },
+                "parameters": [
+                    {
+                        "name": "businessAccountId",
+                        "description": "The business account id\nValidations:\n- business_account_id must be greater than 0",
+                        "in": "path",
+                        "required": true,
+                        "schema": {
+                            "type": "string",
+                            "format": "uint64"
+                        }
+                    }
+                ],
+                "tags": [
+                    "financial-service"
+                ]
+            }
+        },
         "/financial-microservice/api/v1/forecast/{smartGoalId}": {
             "get": {
                 "summary": "get forecast by id",
@@ -24292,6 +24438,36 @@
                     }
                 }
             },
+            "AddNoteToFinancialUserProfileRequest": {
+                "type": "object",
+                "properties": {
+                    "businessAccountId": {
+                        "type": "string",
+                        "format": "uint64",
+                        "title": "The business account id\nValidations:\n- business_account_id must be greater than 0"
+                    },
+                    "note": {
+                        "$ref": "#/components/schemas/SmartNote"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "title": "The user id of the user adding the note\nValidations:\n- user_id must be greater than 0"
+                    }
+                },
+                "required": [
+                    "businessAccountId",
+                    "note",
+                    "userId"
+                ]
+            },
+            "AddNoteToFinancialUserProfileResponse": {
+                "type": "object",
+                "properties": {
+                    "businessAccount": {
+                        "$ref": "#/components/schemas/FinancialUserProfile"
+                    }
+                }
+            },
             "AddNoteToRecurringTransactionRequest": {
                 "type": "object",
                 "properties": {
@@ -25342,6 +25518,12 @@
                     },
                     "profileType": {
                         "$ref": "#/components/schemas/FinancialUserProfileType"
+                    },
+                    "notes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SmartNote"
+                        }
                     }
                 },
                 "title": "FinancialUserProfile stores high level user profile details\nsuch as the id, user_id tied to the profile, and many more"
@@ -25721,6 +25903,18 @@
                 "properties": {
                     "note": {
                         "$ref": "#/components/schemas/SmartNote"
+                    }
+                }
+            },
+            "GetNotesFromFinancialUserProfileResponse": {
+                "type": "object",
+                "properties": {
+                    "notes": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/SmartNote"
+                        },
+                        "title": "The notes"
                     }
                 }
             },

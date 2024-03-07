@@ -30,6 +30,7 @@ func newSmartNoteORM(db *gorm.DB, opts ...gen.DOOption) smartNoteORM {
 	_smartNoteORM.ALL = field.NewAsterisk(tableName)
 	_smartNoteORM.Content = field.NewString(tableName, "content")
 	_smartNoteORM.CreatedAt = field.NewTime(tableName, "created_at")
+	_smartNoteORM.FinancialUserProfileId = field.NewUint64(tableName, "financial_user_profile_id")
 	_smartNoteORM.Id = field.NewUint64(tableName, "id")
 	_smartNoteORM.PlaidAccountInvestmentTransactionId = field.NewUint64(tableName, "plaid_account_investment_transaction_id")
 	_smartNoteORM.PlaidAccountRecurringTransactionId = field.NewUint64(tableName, "plaid_account_recurring_transaction_id")
@@ -49,6 +50,7 @@ type smartNoteORM struct {
 	ALL                                 field.Asterisk
 	Content                             field.String
 	CreatedAt                           field.Time
+	FinancialUserProfileId              field.Uint64
 	Id                                  field.Uint64
 	PlaidAccountInvestmentTransactionId field.Uint64
 	PlaidAccountRecurringTransactionId  field.Uint64
@@ -74,6 +76,7 @@ func (s *smartNoteORM) updateTableName(table string) *smartNoteORM {
 	s.ALL = field.NewAsterisk(table)
 	s.Content = field.NewString(table, "content")
 	s.CreatedAt = field.NewTime(table, "created_at")
+	s.FinancialUserProfileId = field.NewUint64(table, "financial_user_profile_id")
 	s.Id = field.NewUint64(table, "id")
 	s.PlaidAccountInvestmentTransactionId = field.NewUint64(table, "plaid_account_investment_transaction_id")
 	s.PlaidAccountRecurringTransactionId = field.NewUint64(table, "plaid_account_recurring_transaction_id")
@@ -97,9 +100,10 @@ func (s *smartNoteORM) GetFieldByName(fieldName string) (field.OrderExpr, bool) 
 }
 
 func (s *smartNoteORM) fillFieldMap() {
-	s.fieldMap = make(map[string]field.Expr, 9)
+	s.fieldMap = make(map[string]field.Expr, 10)
 	s.fieldMap["content"] = s.Content
 	s.fieldMap["created_at"] = s.CreatedAt
+	s.fieldMap["financial_user_profile_id"] = s.FinancialUserProfileId
 	s.fieldMap["id"] = s.Id
 	s.fieldMap["plaid_account_investment_transaction_id"] = s.PlaidAccountInvestmentTransactionId
 	s.fieldMap["plaid_account_recurring_transaction_id"] = s.PlaidAccountRecurringTransactionId

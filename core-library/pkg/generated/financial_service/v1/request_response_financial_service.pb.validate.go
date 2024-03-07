@@ -20534,3 +20534,808 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = TriggerSyncResponseValidationError{}
+
+// Validate checks the field values on AddNoteToFinancialUserProfileRequest
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *AddNoteToFinancialUserProfileRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AddNoteToFinancialUserProfileRequest
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// AddNoteToFinancialUserProfileRequestMultiError, or nil if none found.
+func (m *AddNoteToFinancialUserProfileRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AddNoteToFinancialUserProfileRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if m.GetBusinessAccountId() <= 0 {
+		err := AddNoteToFinancialUserProfileRequestValidationError{
+			field:  "BusinessAccountId",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if m.GetNote() == nil {
+		err := AddNoteToFinancialUserProfileRequestValidationError{
+			field:  "Note",
+			reason: "value is required",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if all {
+		switch v := interface{}(m.GetNote()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, AddNoteToFinancialUserProfileRequestValidationError{
+					field:  "Note",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, AddNoteToFinancialUserProfileRequestValidationError{
+					field:  "Note",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetNote()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return AddNoteToFinancialUserProfileRequestValidationError{
+				field:  "Note",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if utf8.RuneCountInString(m.GetUserId()) < 1 {
+		err := AddNoteToFinancialUserProfileRequestValidationError{
+			field:  "UserId",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return AddNoteToFinancialUserProfileRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// AddNoteToFinancialUserProfileRequestMultiError is an error wrapping multiple
+// validation errors returned by
+// AddNoteToFinancialUserProfileRequest.ValidateAll() if the designated
+// constraints aren't met.
+type AddNoteToFinancialUserProfileRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AddNoteToFinancialUserProfileRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AddNoteToFinancialUserProfileRequestMultiError) AllErrors() []error { return m }
+
+// AddNoteToFinancialUserProfileRequestValidationError is the validation error
+// returned by AddNoteToFinancialUserProfileRequest.Validate if the designated
+// constraints aren't met.
+type AddNoteToFinancialUserProfileRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AddNoteToFinancialUserProfileRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AddNoteToFinancialUserProfileRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AddNoteToFinancialUserProfileRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AddNoteToFinancialUserProfileRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AddNoteToFinancialUserProfileRequestValidationError) ErrorName() string {
+	return "AddNoteToFinancialUserProfileRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AddNoteToFinancialUserProfileRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAddNoteToFinancialUserProfileRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AddNoteToFinancialUserProfileRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AddNoteToFinancialUserProfileRequestValidationError{}
+
+// Validate checks the field values on AddNoteToFinancialUserProfileResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *AddNoteToFinancialUserProfileResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AddNoteToFinancialUserProfileResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the result is a list of violation errors wrapped in
+// AddNoteToFinancialUserProfileResponseMultiError, or nil if none found.
+func (m *AddNoteToFinancialUserProfileResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AddNoteToFinancialUserProfileResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if all {
+		switch v := interface{}(m.GetBusinessAccount()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, AddNoteToFinancialUserProfileResponseValidationError{
+					field:  "BusinessAccount",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, AddNoteToFinancialUserProfileResponseValidationError{
+					field:  "BusinessAccount",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetBusinessAccount()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return AddNoteToFinancialUserProfileResponseValidationError{
+				field:  "BusinessAccount",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return AddNoteToFinancialUserProfileResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// AddNoteToFinancialUserProfileResponseMultiError is an error wrapping
+// multiple validation errors returned by
+// AddNoteToFinancialUserProfileResponse.ValidateAll() if the designated
+// constraints aren't met.
+type AddNoteToFinancialUserProfileResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AddNoteToFinancialUserProfileResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AddNoteToFinancialUserProfileResponseMultiError) AllErrors() []error { return m }
+
+// AddNoteToFinancialUserProfileResponseValidationError is the validation error
+// returned by AddNoteToFinancialUserProfileResponse.Validate if the
+// designated constraints aren't met.
+type AddNoteToFinancialUserProfileResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AddNoteToFinancialUserProfileResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AddNoteToFinancialUserProfileResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AddNoteToFinancialUserProfileResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AddNoteToFinancialUserProfileResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AddNoteToFinancialUserProfileResponseValidationError) ErrorName() string {
+	return "AddNoteToFinancialUserProfileResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AddNoteToFinancialUserProfileResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAddNoteToFinancialUserProfileResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AddNoteToFinancialUserProfileResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AddNoteToFinancialUserProfileResponseValidationError{}
+
+// Validate checks the field values on
+// DeleteNoteFromFinancialUserProfileRequest with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *DeleteNoteFromFinancialUserProfileRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// DeleteNoteFromFinancialUserProfileRequest with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in
+// DeleteNoteFromFinancialUserProfileRequestMultiError, or nil if none found.
+func (m *DeleteNoteFromFinancialUserProfileRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DeleteNoteFromFinancialUserProfileRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if m.GetBusinessAccountId() <= 0 {
+		err := DeleteNoteFromFinancialUserProfileRequestValidationError{
+			field:  "BusinessAccountId",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if m.GetNoteId() <= 0 {
+		err := DeleteNoteFromFinancialUserProfileRequestValidationError{
+			field:  "NoteId",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if utf8.RuneCountInString(m.GetUserId()) < 1 {
+		err := DeleteNoteFromFinancialUserProfileRequestValidationError{
+			field:  "UserId",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return DeleteNoteFromFinancialUserProfileRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// DeleteNoteFromFinancialUserProfileRequestMultiError is an error wrapping
+// multiple validation errors returned by
+// DeleteNoteFromFinancialUserProfileRequest.ValidateAll() if the designated
+// constraints aren't met.
+type DeleteNoteFromFinancialUserProfileRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DeleteNoteFromFinancialUserProfileRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DeleteNoteFromFinancialUserProfileRequestMultiError) AllErrors() []error { return m }
+
+// DeleteNoteFromFinancialUserProfileRequestValidationError is the validation
+// error returned by DeleteNoteFromFinancialUserProfileRequest.Validate if the
+// designated constraints aren't met.
+type DeleteNoteFromFinancialUserProfileRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteNoteFromFinancialUserProfileRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteNoteFromFinancialUserProfileRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteNoteFromFinancialUserProfileRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteNoteFromFinancialUserProfileRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteNoteFromFinancialUserProfileRequestValidationError) ErrorName() string {
+	return "DeleteNoteFromFinancialUserProfileRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteNoteFromFinancialUserProfileRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteNoteFromFinancialUserProfileRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteNoteFromFinancialUserProfileRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteNoteFromFinancialUserProfileRequestValidationError{}
+
+// Validate checks the field values on
+// DeleteNoteFromFinancialUserProfileResponse with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *DeleteNoteFromFinancialUserProfileResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// DeleteNoteFromFinancialUserProfileResponse with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in
+// DeleteNoteFromFinancialUserProfileResponseMultiError, or nil if none found.
+func (m *DeleteNoteFromFinancialUserProfileResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *DeleteNoteFromFinancialUserProfileResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Deleted
+
+	if len(errors) > 0 {
+		return DeleteNoteFromFinancialUserProfileResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// DeleteNoteFromFinancialUserProfileResponseMultiError is an error wrapping
+// multiple validation errors returned by
+// DeleteNoteFromFinancialUserProfileResponse.ValidateAll() if the designated
+// constraints aren't met.
+type DeleteNoteFromFinancialUserProfileResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m DeleteNoteFromFinancialUserProfileResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m DeleteNoteFromFinancialUserProfileResponseMultiError) AllErrors() []error { return m }
+
+// DeleteNoteFromFinancialUserProfileResponseValidationError is the validation
+// error returned by DeleteNoteFromFinancialUserProfileResponse.Validate if
+// the designated constraints aren't met.
+type DeleteNoteFromFinancialUserProfileResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e DeleteNoteFromFinancialUserProfileResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e DeleteNoteFromFinancialUserProfileResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e DeleteNoteFromFinancialUserProfileResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e DeleteNoteFromFinancialUserProfileResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e DeleteNoteFromFinancialUserProfileResponseValidationError) ErrorName() string {
+	return "DeleteNoteFromFinancialUserProfileResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e DeleteNoteFromFinancialUserProfileResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sDeleteNoteFromFinancialUserProfileResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = DeleteNoteFromFinancialUserProfileResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = DeleteNoteFromFinancialUserProfileResponseValidationError{}
+
+// Validate checks the field values on GetNotesFromFinancialUserProfileRequest
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *GetNotesFromFinancialUserProfileRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetNotesFromFinancialUserProfileRequest with the rules defined in the proto
+// definition for this message. If any rules are violated, the result is a
+// list of violation errors wrapped in
+// GetNotesFromFinancialUserProfileRequestMultiError, or nil if none found.
+func (m *GetNotesFromFinancialUserProfileRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetNotesFromFinancialUserProfileRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if m.GetBusinessAccountId() <= 0 {
+		err := GetNotesFromFinancialUserProfileRequestValidationError{
+			field:  "BusinessAccountId",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return GetNotesFromFinancialUserProfileRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetNotesFromFinancialUserProfileRequestMultiError is an error wrapping
+// multiple validation errors returned by
+// GetNotesFromFinancialUserProfileRequest.ValidateAll() if the designated
+// constraints aren't met.
+type GetNotesFromFinancialUserProfileRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetNotesFromFinancialUserProfileRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetNotesFromFinancialUserProfileRequestMultiError) AllErrors() []error { return m }
+
+// GetNotesFromFinancialUserProfileRequestValidationError is the validation
+// error returned by GetNotesFromFinancialUserProfileRequest.Validate if the
+// designated constraints aren't met.
+type GetNotesFromFinancialUserProfileRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetNotesFromFinancialUserProfileRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetNotesFromFinancialUserProfileRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetNotesFromFinancialUserProfileRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetNotesFromFinancialUserProfileRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetNotesFromFinancialUserProfileRequestValidationError) ErrorName() string {
+	return "GetNotesFromFinancialUserProfileRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetNotesFromFinancialUserProfileRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetNotesFromFinancialUserProfileRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetNotesFromFinancialUserProfileRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetNotesFromFinancialUserProfileRequestValidationError{}
+
+// Validate checks the field values on GetNotesFromFinancialUserProfileResponse
+// with the rules defined in the proto definition for this message. If any
+// rules are violated, the first error encountered is returned, or nil if
+// there are no violations.
+func (m *GetNotesFromFinancialUserProfileResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetNotesFromFinancialUserProfileResponse with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in
+// GetNotesFromFinancialUserProfileResponseMultiError, or nil if none found.
+func (m *GetNotesFromFinancialUserProfileResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetNotesFromFinancialUserProfileResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetNotes() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetNotesFromFinancialUserProfileResponseValidationError{
+						field:  fmt.Sprintf("Notes[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetNotesFromFinancialUserProfileResponseValidationError{
+						field:  fmt.Sprintf("Notes[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetNotesFromFinancialUserProfileResponseValidationError{
+					field:  fmt.Sprintf("Notes[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetNotesFromFinancialUserProfileResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetNotesFromFinancialUserProfileResponseMultiError is an error wrapping
+// multiple validation errors returned by
+// GetNotesFromFinancialUserProfileResponse.ValidateAll() if the designated
+// constraints aren't met.
+type GetNotesFromFinancialUserProfileResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetNotesFromFinancialUserProfileResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetNotesFromFinancialUserProfileResponseMultiError) AllErrors() []error { return m }
+
+// GetNotesFromFinancialUserProfileResponseValidationError is the validation
+// error returned by GetNotesFromFinancialUserProfileResponse.Validate if the
+// designated constraints aren't met.
+type GetNotesFromFinancialUserProfileResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetNotesFromFinancialUserProfileResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e GetNotesFromFinancialUserProfileResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e GetNotesFromFinancialUserProfileResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e GetNotesFromFinancialUserProfileResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetNotesFromFinancialUserProfileResponseValidationError) ErrorName() string {
+	return "GetNotesFromFinancialUserProfileResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetNotesFromFinancialUserProfileResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetNotesFromFinancialUserProfileResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetNotesFromFinancialUserProfileResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetNotesFromFinancialUserProfileResponseValidationError{}
