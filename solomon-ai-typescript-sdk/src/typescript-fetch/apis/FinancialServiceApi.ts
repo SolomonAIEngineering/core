@@ -758,7 +758,8 @@ export interface GetNoteFromTransactionRequest {
 }
 
 export interface GetNotesFromFinancialUserProfileRequest {
-    businessAccountId: string;
+    businessAccountUserId: string;
+    profileType: GetNotesFromFinancialUserProfileProfileTypeEnum;
 }
 
 export interface GetNotesFromSmartGoalRequest {
@@ -3285,8 +3286,12 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Gets notes from a business account
      */
     async getNotesFromFinancialUserProfileRaw(requestParameters: GetNotesFromFinancialUserProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNotesFromFinancialUserProfileResponse>> {
-        if (requestParameters.businessAccountId === null || requestParameters.businessAccountId === undefined) {
-            throw new runtime.RequiredError('businessAccountId','Required parameter requestParameters.businessAccountId was null or undefined when calling getNotesFromFinancialUserProfile.');
+        if (requestParameters.businessAccountUserId === null || requestParameters.businessAccountUserId === undefined) {
+            throw new runtime.RequiredError('businessAccountUserId','Required parameter requestParameters.businessAccountUserId was null or undefined when calling getNotesFromFinancialUserProfile.');
+        }
+
+        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
+            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getNotesFromFinancialUserProfile.');
         }
 
         const queryParameters: any = {};
@@ -3294,7 +3299,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/financial-profile/business/{businessAccountId}/note`.replace(`{${"businessAccountId"}}`, encodeURIComponent(String(requestParameters.businessAccountId))),
+            path: `/financial-microservice/api/v1/financial-profile/business/{businessAccountUserId}/{profileType}/note`.replace(`{${"businessAccountUserId"}}`, encodeURIComponent(String(requestParameters.businessAccountUserId))).replace(`{${"profileType"}}`, encodeURIComponent(String(requestParameters.profileType))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -5367,6 +5372,15 @@ export const GetMortageAccountProfileTypeEnum = {
     Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
 } as const;
 export type GetMortageAccountProfileTypeEnum = typeof GetMortageAccountProfileTypeEnum[keyof typeof GetMortageAccountProfileTypeEnum];
+/**
+ * @export
+ */
+export const GetNotesFromFinancialUserProfileProfileTypeEnum = {
+    Unspecified: 'FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED',
+    User: 'FINANCIAL_USER_PROFILE_TYPE_USER',
+    Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
+} as const;
+export type GetNotesFromFinancialUserProfileProfileTypeEnum = typeof GetNotesFromFinancialUserProfileProfileTypeEnum[keyof typeof GetNotesFromFinancialUserProfileProfileTypeEnum];
 /**
  * @export
  */

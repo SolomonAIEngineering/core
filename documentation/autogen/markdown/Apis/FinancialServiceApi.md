@@ -62,7 +62,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**getMortageAccount**](FinancialServiceApi.md#getMortageAccount) | **GET** /financial-microservice/api/v1/account/{userId}/mortgage/{mortgageAccountId} | get mortgage account by id |
 | [**getNoteFromSmartGoal**](FinancialServiceApi.md#getNoteFromSmartGoal) | **GET** /financial-microservice/api/v1/smart-goal/note/{noteId} | gets a note from a smart goal |
 | [**getNoteFromTransaction**](FinancialServiceApi.md#getNoteFromTransaction) | **GET** /financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId} | gets a note from a transaction |
-| [**getNotesFromFinancialUserProfile**](FinancialServiceApi.md#getNotesFromFinancialUserProfile) | **GET** /financial-microservice/api/v1/financial-profile/business/{businessAccountId}/note | Gets notes from a business account |
+| [**getNotesFromFinancialUserProfile**](FinancialServiceApi.md#getNotesFromFinancialUserProfile) | **GET** /financial-microservice/api/v1/financial-profile/business/{businessAccountUserId}/{profileType}/note | Gets notes from a business account |
 | [**getNotesFromSmartGoal**](FinancialServiceApi.md#getNotesFromSmartGoal) | **GET** /financial-microservice/api/v1/smart-goal/{smartGoalId}/note | gets notes from a smart goal |
 | [**getPaymentChannelMonthlyExpenditure**](FinancialServiceApi.md#getPaymentChannelMonthlyExpenditure) | **GET** /financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{userId} | Get Payment Channel Monthly Expenditure by user, month, and payment channel |
 | [**getPocket**](FinancialServiceApi.md#getPocket) | **GET** /financial-microservice/api/v1/pocket/{pocketId} | get a pocket |
@@ -1733,7 +1733,7 @@ No authorization required
 
 <a name="getNotesFromFinancialUserProfile"></a>
 # **getNotesFromFinancialUserProfile**
-> GetNotesFromFinancialUserProfileResponse getNotesFromFinancialUserProfile(businessAccountId)
+> GetNotesFromFinancialUserProfileResponse getNotesFromFinancialUserProfile(businessAccountUserId, profileType)
 
 Gets notes from a business account
 
@@ -1743,7 +1743,8 @@ Gets notes from a business account
 
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
-| **businessAccountId** | **String**| The business account id Validations: - business_account_id must be greater than 0 | [default to null] |
+| **businessAccountUserId** | **String**| The business account id Validations: - business_account_id must be greater than 0 | [default to null] |
+| **profileType** | **String**|  | [default to null] [enum: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED, FINANCIAL_USER_PROFILE_TYPE_USER, FINANCIAL_USER_PROFILE_TYPE_BUSINESS] |
 
 ### Return type
 

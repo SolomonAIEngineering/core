@@ -8402,7 +8402,7 @@
                             ]
                         },
 	                        {
-    "name": "/financial-microservice/api/v1/financial-profile/business/:businessAccountId/note",
+    "name": "/financial-microservice/api/v1/financial-profile/business/:businessAccountUserId/:profileType/note",
                 "description": "This endpoint gets notes from a business account",
                  "item": [
                             {
@@ -8426,7 +8426,7 @@
                                         }
                                     },
                                     "url": {
-                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/financial-profile/business/:businessAccountId/note",
+                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/financial-profile/business/:businessAccountUserId/:profileType/note",
                                         "host": [
                                             "{{baseUrl}}"
                                         ],
@@ -8436,14 +8436,20 @@
                                             "v1",
                                             "financial-profile",
                                             "business",
-                                            ":businessAccountId",
+                                            ":businessAccountUserId",
+                                            ":profileType",
                                             "note"
                                         ],
                                         "variable": [
                                             {
-                                                "key": "businessAccountId",
+                                                "key": "businessAccountUserId",
                                                 "value": "",
                                                 "description": "The business account id Validations: - business_account_id must be greater than 0"
+                                            },
+                                            {
+                                                "key": "profileType",
+                                                "value": "",
+                                                "description": ""
                                             }
                                         ],
                                         "query": [
@@ -8476,7 +8482,7 @@
                                     ],
                                     "body": {
                                         "mode": "raw",
-                                        "raw": "{\n \"businessAccountId\": \"<string>\",\n \"note\": \"<string>\",\n \"userId\": \"<string>\"\n}",
+                                        "raw": "{\n \"businessAccountId\": \"<string>\",\n \"note\": \"<string>\",\n \"userId\": \"<string>\",\n \"profileType\": \"<string>\"\n}",
                                         "options": {
                                             "raw": {
                                                 "language": "json"

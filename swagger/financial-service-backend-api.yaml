@@ -2513,7 +2513,7 @@ paths:
         required: true
       tags:
         - financial-service
-  "/financial-microservice/api/v1/financial-profile/business/{businessAccountId}/note":
+  "/financial-microservice/api/v1/financial-profile/business/{businessAccountUserId}/{profileType}/note":
     get:
       summary: Gets notes from a business account
       description: This endpoint gets notes from a business account
@@ -2550,7 +2550,7 @@ paths:
               schema:
                 $ref: "#/components/schemas/Status"
       parameters:
-        - name: businessAccountId
+        - name: businessAccountUserId
           description: |-
             The business account id
             Validations:
@@ -2559,7 +2559,15 @@ paths:
           required: true
           schema:
             type: string
-            format: uint64
+        - name: profileType
+          in: path
+          required: true
+          schema:
+            type: string
+            enum:
+              - FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+              - FINANCIAL_USER_PROFILE_TYPE_USER
+              - FINANCIAL_USER_PROFILE_TYPE_BUSINESS
       tags:
         - financial-service
   "/financial-microservice/api/v1/forecast/{smartGoalId}":
@@ -6095,10 +6103,13 @@ components:
             The user id of the user adding the note
             Validations:
             - user_id must be greater than 0
+        profileType:
+          $ref: "#/components/schemas/FinancialUserProfileType"
       required:
         - businessAccountId
         - note
         - userId
+        - profileType
     AddNoteToFinancialUserProfileResponse:
       type: object
       properties:

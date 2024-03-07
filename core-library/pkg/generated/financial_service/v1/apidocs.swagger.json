@@ -2822,7 +2822,7 @@
         ]
       }
     },
-    "/financial-microservice/api/v1/financial-profile/business/{businessAccountId}/note": {
+    "/financial-microservice/api/v1/financial-profile/business/{businessAccountUserId}/{profileType}/note": {
       "get": {
         "summary": "Gets notes from a business account",
         "description": "This endpoint gets notes from a business account",
@@ -2861,12 +2861,22 @@
         },
         "parameters": [
           {
-            "name": "businessAccountId",
+            "name": "businessAccountUserId",
             "description": "The business account id\nValidations:\n- business_account_id must be greater than 0",
             "in": "path",
             "required": true,
+            "type": "string"
+          },
+          {
+            "name": "profileType",
+            "in": "path",
+            "required": true,
             "type": "string",
-            "format": "uint64"
+            "enum": [
+              "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED",
+              "FINANCIAL_USER_PROFILE_TYPE_USER",
+              "FINANCIAL_USER_PROFILE_TYPE_BUSINESS"
+            ]
           }
         ],
         "tags": [
@@ -6799,12 +6809,17 @@
         "userId": {
           "type": "string",
           "title": "The user id of the user adding the note\nValidations:\n- user_id must be greater than 0"
+        },
+        "profileType": {
+          "$ref": "#/definitions/FinancialUserProfileType",
+          "example": "username:testuser"
         }
       },
       "required": [
         "businessAccountId",
         "note",
-        "userId"
+        "userId",
+        "profileType"
       ]
     },
     "AddNoteToFinancialUserProfileResponse": {

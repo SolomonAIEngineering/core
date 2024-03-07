@@ -5809,20 +5809,33 @@ func request_FinancialService_GetNotesFromFinancialUserProfile_0(ctx context.Con
 
 	var (
 		val string
+		e   int32
 		ok  bool
 		err error
 		_   = err
 	)
 
-	val, ok = pathParams["business_account_id"]
+	val, ok = pathParams["business_account_user_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "business_account_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "business_account_user_id")
 	}
 
-	protoReq.BusinessAccountId, err = runtime.Uint64(val)
+	protoReq.BusinessAccountUserId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "business_account_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "business_account_user_id", err)
 	}
+
+	val, ok = pathParams["profile_type"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "profile_type")
+	}
+
+	e, err = runtime.Enum(val, FinancialUserProfileType_value)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "profile_type", err)
+	}
+
+	protoReq.ProfileType = FinancialUserProfileType(e)
 
 	msg, err := client.GetNotesFromFinancialUserProfile(ctx, &protoReq, grpc.Header(&metadata.HeaderMD), grpc.Trailer(&metadata.TrailerMD))
 	return msg, metadata, err
@@ -5835,20 +5848,33 @@ func local_request_FinancialService_GetNotesFromFinancialUserProfile_0(ctx conte
 
 	var (
 		val string
+		e   int32
 		ok  bool
 		err error
 		_   = err
 	)
 
-	val, ok = pathParams["business_account_id"]
+	val, ok = pathParams["business_account_user_id"]
 	if !ok {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "business_account_id")
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "business_account_user_id")
 	}
 
-	protoReq.BusinessAccountId, err = runtime.Uint64(val)
+	protoReq.BusinessAccountUserId, err = runtime.String(val)
 	if err != nil {
-		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "business_account_id", err)
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "business_account_user_id", err)
 	}
+
+	val, ok = pathParams["profile_type"]
+	if !ok {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "missing parameter %s", "profile_type")
+	}
+
+	e, err = runtime.Enum(val, FinancialUserProfileType_value)
+	if err != nil {
+		return nil, metadata, status.Errorf(codes.InvalidArgument, "type mismatch, parameter: %s, error: %v", "profile_type", err)
+	}
+
+	protoReq.ProfileType = FinancialUserProfileType(e)
 
 	msg, err := server.GetNotesFromFinancialUserProfile(ctx, &protoReq)
 	return msg, metadata, err
@@ -8444,7 +8470,7 @@ func RegisterFinancialServiceHandlerServer(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/financial_service.v1.FinancialService/GetNotesFromFinancialUserProfile", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/financial-profile/business/{business_account_id}/note"))
+		annotatedContext, err = runtime.AnnotateIncomingContext(ctx, mux, req, "/financial_service.v1.FinancialService/GetNotesFromFinancialUserProfile", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/financial-profile/business/{business_account_user_id}/{profile_type}/note"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -10774,7 +10800,7 @@ func RegisterFinancialServiceHandlerClient(ctx context.Context, mux *runtime.Ser
 		inboundMarshaler, outboundMarshaler := runtime.MarshalerForRequest(mux, req)
 		var err error
 		var annotatedContext context.Context
-		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/financial_service.v1.FinancialService/GetNotesFromFinancialUserProfile", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/financial-profile/business/{business_account_id}/note"))
+		annotatedContext, err = runtime.AnnotateContext(ctx, mux, req, "/financial_service.v1.FinancialService/GetNotesFromFinancialUserProfile", runtime.WithHTTPPathPattern("/financial-microservice/api/v1/financial-profile/business/{business_account_user_id}/{profile_type}/note"))
 		if err != nil {
 			runtime.HTTPError(ctx, mux, outboundMarshaler, w, req, err)
 			return
@@ -11000,7 +11026,7 @@ var (
 
 	pattern_FinancialService_AddNoteToFinancialUserProfile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 2, 5}, []string{"financial-microservice", "api", "v1", "financial-profile", "business", "note"}, ""))
 
-	pattern_FinancialService_GetNotesFromFinancialUserProfile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 2, 6}, []string{"financial-microservice", "api", "v1", "financial-profile", "business", "business_account_id", "note"}, ""))
+	pattern_FinancialService_GetNotesFromFinancialUserProfile_0 = runtime.MustPattern(runtime.NewPattern(1, []int{2, 0, 2, 1, 2, 2, 2, 3, 2, 4, 1, 0, 4, 1, 5, 5, 1, 0, 4, 1, 5, 6, 2, 7}, []string{"financial-microservice", "api", "v1", "financial-profile", "business", "business_account_user_id", "profile_type", "note"}, ""))
 )
 
 var (

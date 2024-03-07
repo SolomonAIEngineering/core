@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { FinancialUserProfileType } from './FinancialUserProfileType';
+import {
+    FinancialUserProfileTypeFromJSON,
+    FinancialUserProfileTypeFromJSONTyped,
+    FinancialUserProfileTypeToJSON,
+} from './FinancialUserProfileType';
 import type { SmartNote } from './SmartNote';
 import {
     SmartNoteFromJSON,
@@ -44,6 +50,12 @@ export interface AddNoteToFinancialUserProfileRequest {
      * @memberof AddNoteToFinancialUserProfileRequest
      */
     userId: string;
+    /**
+     * 
+     * @type {FinancialUserProfileType}
+     * @memberof AddNoteToFinancialUserProfileRequest
+     */
+    profileType: FinancialUserProfileType;
 }
 
 /**
@@ -54,6 +66,7 @@ export function instanceOfAddNoteToFinancialUserProfileRequest(value: object): b
     isInstance = isInstance && "businessAccountId" in value;
     isInstance = isInstance && "note" in value;
     isInstance = isInstance && "userId" in value;
+    isInstance = isInstance && "profileType" in value;
 
     return isInstance;
 }
@@ -71,6 +84,7 @@ export function AddNoteToFinancialUserProfileRequestFromJSONTyped(json: any, ign
         'businessAccountId': json['businessAccountId'],
         'note': SmartNoteFromJSON(json['note']),
         'userId': json['userId'],
+        'profileType': FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
@@ -86,6 +100,7 @@ export function AddNoteToFinancialUserProfileRequestToJSON(value?: AddNoteToFina
         'businessAccountId': value.businessAccountId,
         'note': SmartNoteToJSON(value.note),
         'userId': value.userId,
+        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
     };
 }
 

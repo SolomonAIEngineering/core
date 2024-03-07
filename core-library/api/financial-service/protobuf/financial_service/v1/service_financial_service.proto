@@ -2289,10 +2289,10 @@ service FinancialService {
           }
       };
     }
-    
+
     rpc GetNotesFromFinancialUserProfile(GetNotesFromFinancialUserProfileRequest) returns (GetNotesFromFinancialUserProfileResponse) {
       option (google.api.http) = {
-          get: "/financial-microservice/api/v1/financial-profile/business/{business_account_id}/note" 
+          get: "/financial-microservice/api/v1/financial-profile/business/{business_account_user_id}/{profile_type}/note" 
       };
       option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
           summary: "Gets notes from a business account"
