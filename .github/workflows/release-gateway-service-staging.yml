@@ -78,7 +78,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            docker.io/feelguuds/api-gateway
+            docker.io/solomonai/api-gateway
           tags: |
             type=raw,value=staging
       - name: Publish Multi-Arch Image Backend Api Gateway Service
