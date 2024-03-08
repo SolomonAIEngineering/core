@@ -15,6 +15,7 @@
 
 import * as runtime from '../runtime';
 import type {
+  CheckEmailAndAuth0UserIdExistsResponse,
   CheckEmailExistsV2Response,
   CheckUsernameExistsV2Response,
   CreateRoleResponse,
@@ -45,6 +46,8 @@ import type {
   VerifyUserV2Response,
 } from '../models/index';
 import {
+    CheckEmailAndAuth0UserIdExistsResponseFromJSON,
+    CheckEmailAndAuth0UserIdExistsResponseToJSON,
     CheckEmailExistsV2ResponseFromJSON,
     CheckEmailExistsV2ResponseToJSON,
     CheckUsernameExistsV2ResponseFromJSON,
@@ -102,6 +105,11 @@ import {
     VerifyUserV2ResponseFromJSON,
     VerifyUserV2ResponseToJSON,
 } from '../models/index';
+
+export interface CheckEmailAndAuth0UserIdExistsRequest {
+    email: string;
+    auth0UserId: string;
+}
 
 export interface CheckEmailExistsV2Request {
     email: string;
@@ -207,6 +215,42 @@ export interface VerifyUserV2Request {
  * 
  */
 export class UserServiceV2Api extends runtime.BaseAPI {
+
+    /**
+     * Checks if an email and auth0 user id exists or not
+     * Checks that an email and auth0 user id exists or not
+     */
+    async checkEmailAndAuth0UserIdExistsRaw(requestParameters: CheckEmailAndAuth0UserIdExistsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckEmailAndAuth0UserIdExistsResponse>> {
+        if (requestParameters.email === null || requestParameters.email === undefined) {
+            throw new runtime.RequiredError('email','Required parameter requestParameters.email was null or undefined when calling checkEmailAndAuth0UserIdExists.');
+        }
+
+        if (requestParameters.auth0UserId === null || requestParameters.auth0UserId === undefined) {
+            throw new runtime.RequiredError('auth0UserId','Required parameter requestParameters.auth0UserId was null or undefined when calling checkEmailAndAuth0UserIdExists.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/user-microservice/api/v2/user/email/{email}/auth0/{auth0UserId}/exists`.replace(`{${"email"}}`, encodeURIComponent(String(requestParameters.email))).replace(`{${"auth0UserId"}}`, encodeURIComponent(String(requestParameters.auth0UserId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CheckEmailAndAuth0UserIdExistsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Checks if an email and auth0 user id exists or not
+     * Checks that an email and auth0 user id exists or not
+     */
+    async checkEmailAndAuth0UserIdExists(requestParameters: CheckEmailAndAuth0UserIdExistsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CheckEmailAndAuth0UserIdExistsResponse> {
+        const response = await this.checkEmailAndAuth0UserIdExistsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Checks if an email exists or not

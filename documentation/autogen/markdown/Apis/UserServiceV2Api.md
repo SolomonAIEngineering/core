@@ -4,6 +4,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**checkEmailAndAuth0UserIdExists**](UserServiceV2Api.md#checkEmailAndAuth0UserIdExists) | **GET** /user-microservice/api/v2/user/email/{email}/auth0/{auth0UserId}/exists | Checks that an email and auth0 user id exists or not |
 | [**checkEmailExistsV2**](UserServiceV2Api.md#checkEmailExistsV2) | **GET** /user-microservice/api/v2/user-service/user/email/{email}/exists | Checks that an email exists or not |
 | [**checkUsernameExistsV2**](UserServiceV2Api.md#checkUsernameExistsV2) | **GET** /user-microservice/api/v2/user-service/user/username/{username}/exists | Checks that a username exists or not |
 | [**createRole**](UserServiceV2Api.md#createRole) | **POST** /user-microservice/api/v2/user-service/user/role | Creates a new role |
@@ -26,6 +27,34 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**updateUserV2**](UserServiceV2Api.md#updateUserV2) | **PUT** /user-microservice/api/v2/user-service/user | update a user account |
 | [**verifyUserV2**](UserServiceV2Api.md#verifyUserV2) | **POST** /user-microservice/api/v2/user-service/user/verification/{userId}/profile-type/{profileType} | User Email Verification |
 
+
+<a name="checkEmailAndAuth0UserIdExists"></a>
+# **checkEmailAndAuth0UserIdExists**
+> CheckEmailAndAuth0UserIdExistsResponse checkEmailAndAuth0UserIdExists(email, auth0UserId)
+
+Checks that an email and auth0 user id exists or not
+
+    Checks if an email and auth0 user id exists or not
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **email** | **String**| The email of the user of interest | [default to null] |
+| **auth0UserId** | **String**| The auth0 user id of the user | [default to null] |
+
+### Return type
+
+[**CheckEmailAndAuth0UserIdExistsResponse**](../Models/CheckEmailAndAuth0UserIdExistsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
 
 <a name="checkEmailExistsV2"></a>
 # **checkEmailExistsV2**

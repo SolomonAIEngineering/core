@@ -2710,8 +2710,7 @@
                     }
                 ],
                 "tags": [
-                    "account",
-                    "v2"
+                    "user-service-v2"
                 ]
             }
         },

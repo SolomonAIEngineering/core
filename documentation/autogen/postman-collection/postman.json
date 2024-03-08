@@ -13213,6 +13213,66 @@
                             ]
                         },
 	                        {
+    "name": "/user-microservice/api/v2/user/email/:email/auth0/:auth0UserId/exists",
+                "description": "Checks if an email and auth0 user id exists or not",
+                 "item": [
+                            {
+                                "name": "Checks that an email and auth0 user id exists or not",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/user-microservice/api/v2/user/email/:email/auth0/:auth0UserId/exists",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "user-microservice",
+                                            "api",
+                                            "v2",
+                                            "user",
+                                            "email",
+                                            ":email",
+                                            "auth0",
+                                            ":auth0UserId",
+                                            "exists"
+                                        ],
+                                        "variable": [
+                                            {
+                                                "key": "email",
+                                                "value": "",
+                                                "description": "The email of the user of interest"
+                                            },
+                                            {
+                                                "key": "auth0UserId",
+                                                "value": "",
+                                                "description": "The auth0 user id of the user"
+                                            }
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Checks if an email and auth0 user id exists or not"
+                                }
+                            }
+                            ]
+                        },
+	                        {
     "name": "/user-microservice/api/v2/user/role",
                 "description": "This endpoint updates the details of an existing role. The role ID is used to identify the role to be updated.The update operation can modify the role's name, type, and permissions.",
                  "item": [

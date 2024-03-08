@@ -209,7 +209,8 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *UserServiceV1Api* | [**readynessCheck**](Apis/UserServiceV1Api.md#readynesscheck) | **GET** /user-microservice/api/v1/user-service/user/ready | readyness check |
 *UserServiceV1Api* | [**updateUser**](Apis/UserServiceV1Api.md#updateuser) | **PUT** /user-microservice/api/v1/user-service/user | update a user account |
 *UserServiceV1Api* | [**verification**](Apis/UserServiceV1Api.md#verification) | **POST** /user-microservice/api/v1/user-service/user/verification/{userId} | user verification |
-| *UserServiceV2Api* | [**checkEmailExistsV2**](Apis/UserServiceV2Api.md#checkemailexistsv2) | **GET** /user-microservice/api/v2/user-service/user/email/{email}/exists | Checks that an email exists or not |
+| *UserServiceV2Api* | [**checkEmailAndAuth0UserIdExists**](Apis/UserServiceV2Api.md#checkemailandauth0useridexists) | **GET** /user-microservice/api/v2/user/email/{email}/auth0/{auth0UserId}/exists | Checks that an email and auth0 user id exists or not |
+*UserServiceV2Api* | [**checkEmailExistsV2**](Apis/UserServiceV2Api.md#checkemailexistsv2) | **GET** /user-microservice/api/v2/user-service/user/email/{email}/exists | Checks that an email exists or not |
 *UserServiceV2Api* | [**checkUsernameExistsV2**](Apis/UserServiceV2Api.md#checkusernameexistsv2) | **GET** /user-microservice/api/v2/user-service/user/username/{username}/exists | Checks that a username exists or not |
 *UserServiceV2Api* | [**createRole**](Apis/UserServiceV2Api.md#createrole) | **POST** /user-microservice/api/v2/user-service/user/role | Creates a new role |
 *UserServiceV2Api* | [**createUserV2**](Apis/UserServiceV2Api.md#createuserv2) | **POST** /user-microservice/api/v2/user-service/user | create a user account |

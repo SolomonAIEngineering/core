@@ -1762,8 +1762,7 @@ paths:
           schema:
             type: string
       tags:
-        - account
-        - v2
+        - user-service-v2
   /user-microservice/api/v2/user/role:
     patch:
       summary: Updates an existing role
