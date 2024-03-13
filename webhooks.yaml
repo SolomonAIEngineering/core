@@ -9,3 +9,8 @@ endpoints:
     serviceApiPath: "/stripe/webhooks"
     method: "post"
     host: "http://financial-integration-service.platform.svc.cluster.local:9898"
+  - name: "workspace service file upload"
+    krakendApiPath: "/v1/gateway/service/workspace/file/upload"
+    serviceApiPath: "/file/upload"
+    method: "post"
+    host: "http://workspace-service.platform.svc.cluster.local:9898"
