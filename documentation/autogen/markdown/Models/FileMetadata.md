@@ -27,6 +27,8 @@
 | **s3Acl** | **String** | Access control list (ACL) permissions for the file in S3. | [optional] [default to null] |
 | **s3Metadata** | **Map** | Custom metadata added to the file in S3 as key-value pairs. | [optional] [default to null] |
 | **versionId** | **String** |  | [optional] [default to null] |
+| **uploadId** | **String** |  | [optional] [default to null] |
+| **location** | **String** |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

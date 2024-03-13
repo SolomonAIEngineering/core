@@ -977,6 +977,12 @@ components:
         versionId:
           type: string
           title: version id of the file
+        uploadId:
+          type: string
+          title: upload id of the file
+        location:
+          type: string
+          title: location of the file
       title: File Metadata
     FolderMetadata:
       type: object

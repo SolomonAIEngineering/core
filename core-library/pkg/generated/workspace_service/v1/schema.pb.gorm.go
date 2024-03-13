@@ -115,6 +115,7 @@ type FileMetadataORM struct {
 	FolderMetadataId       *uint64
 	Id                     uint64 `gorm:"unique_index:idx_file_id"`
 	IsDeleted              bool
+	Location               string
 	Name                   string
 	S3Acl                  string
 	S3BucketName           string
@@ -132,6 +133,7 @@ type FileMetadataORM struct {
 	Size                   int64
 	Tags                   pq.StringArray `gorm:"type:text[]"`
 	UpdatedAt              *time.Time
+	UploadId               string
 	Version                int32
 	VersionId              string
 }
@@ -187,6 +189,8 @@ func (m *FileMetadata) ToORM(ctx context.Context) (FileMetadataORM, error) {
 	to.S3Acl = m.S3Acl
 	// Repeated type S3MetadataEntry is not an ORMable message type
 	to.VersionId = m.VersionId
+	to.UploadId = m.UploadId
+	to.Location = m.Location
 	if posthook, ok := interface{}(m).(FileMetadataWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -236,6 +240,8 @@ func (m *FileMetadataORM) ToPB(ctx context.Context) (FileMetadata, error) {
 	to.S3Acl = m.S3Acl
 	// Repeated type S3MetadataEntry is not an ORMable message type
 	to.VersionId = m.VersionId
+	to.UploadId = m.UploadId
+	to.Location = m.Location
 	if posthook, ok := interface{}(m).(FileMetadataWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -1377,6 +1383,14 @@ func DefaultApplyFieldMaskFileMetadata(ctx context.Context, patchee *FileMetadat
 		}
 		if f == prefix+"VersionId" {
 			patchee.VersionId = patcher.VersionId
+			continue
+		}
+		if f == prefix+"UploadId" {
+			patchee.UploadId = patcher.UploadId
+			continue
+		}
+		if f == prefix+"Location" {
+			patchee.Location = patcher.Location
 			continue
 		}
 	}

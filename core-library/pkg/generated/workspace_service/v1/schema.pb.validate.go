@@ -322,6 +322,10 @@ func (m *FileMetadata) validate(all bool) error {
 
 	// no validation rules for VersionId
 
+	// no validation rules for UploadId
+
+	// no validation rules for Location
+
 	if len(errors) > 0 {
 		return FileMetadataMultiError(errors)
 	}

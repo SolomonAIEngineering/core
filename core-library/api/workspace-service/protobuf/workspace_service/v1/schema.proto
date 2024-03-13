@@ -107,6 +107,12 @@ message FileMetadata {
 
     // version id of the file
     string version_id = 26;
+
+    // upload id of the file
+    string upload_id = 27;
+
+    // location of the file
+    string location = 28;
 }
 
 // Folder Metadata

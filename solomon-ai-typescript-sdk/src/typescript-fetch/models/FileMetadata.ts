@@ -164,6 +164,18 @@ export interface FileMetadata {
      * @memberof FileMetadata
      */
     versionId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FileMetadata
+     */
+    uploadId?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FileMetadata
+     */
+    location?: string;
 }
 
 /**
@@ -209,6 +221,8 @@ export function FileMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolea
         's3Acl': !exists(json, 's3Acl') ? undefined : json['s3Acl'],
         's3Metadata': !exists(json, 's3Metadata') ? undefined : json['s3Metadata'],
         'versionId': !exists(json, 'versionId') ? undefined : json['versionId'],
+        'uploadId': !exists(json, 'uploadId') ? undefined : json['uploadId'],
+        'location': !exists(json, 'location') ? undefined : json['location'],
     };
 }
 
@@ -245,6 +259,8 @@ export function FileMetadataToJSON(value?: FileMetadata | null): any {
         's3Acl': value.s3Acl,
         's3Metadata': value.s3Metadata,
         'versionId': value.versionId,
+        'uploadId': value.uploadId,
+        'location': value.location,
     };
 }
 
