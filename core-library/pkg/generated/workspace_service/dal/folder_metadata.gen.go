@@ -39,6 +39,7 @@ func newFolderMetadataORM(db *gorm.DB, opts ...gen.DOOption) folderMetadataORM {
 	_folderMetadataORM.S3LastModified = field.NewTime(tableName, "s3_last_modified")
 	_folderMetadataORM.S3Region = field.NewString(tableName, "s3_region")
 	_folderMetadataORM.UpdatedAt = field.NewTime(tableName, "updated_at")
+	_folderMetadataORM.VersionId = field.NewString(tableName, "version_id")
 	_folderMetadataORM.WorkspaceId = field.NewUint64(tableName, "workspace_id")
 	_folderMetadataORM.ChildFolder = folderMetadataORMHasManyChildFolder{
 		db: db.Session(&gorm.Session{}),
@@ -82,6 +83,7 @@ type folderMetadataORM struct {
 	S3LastModified   field.Time
 	S3Region         field.String
 	UpdatedAt        field.Time
+	VersionId        field.String
 	WorkspaceId      field.Uint64
 	ChildFolder      folderMetadataORMHasManyChildFolder
 
@@ -113,6 +115,7 @@ func (f *folderMetadataORM) updateTableName(table string) *folderMetadataORM {
 	f.S3LastModified = field.NewTime(table, "s3_last_modified")
 	f.S3Region = field.NewString(table, "s3_region")
 	f.UpdatedAt = field.NewTime(table, "updated_at")
+	f.VersionId = field.NewString(table, "version_id")
 	f.WorkspaceId = field.NewUint64(table, "workspace_id")
 
 	f.fillFieldMap()
@@ -130,7 +133,7 @@ func (f *folderMetadataORM) GetFieldByName(fieldName string) (field.OrderExpr, b
 }
 
 func (f *folderMetadataORM) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 14)
+	f.fieldMap = make(map[string]field.Expr, 15)
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["folder_metadata_id"] = f.FolderMetadataId
 	f.fieldMap["id"] = f.Id
@@ -142,6 +145,7 @@ func (f *folderMetadataORM) fillFieldMap() {
 	f.fieldMap["s3_last_modified"] = f.S3LastModified
 	f.fieldMap["s3_region"] = f.S3Region
 	f.fieldMap["updated_at"] = f.UpdatedAt
+	f.fieldMap["version_id"] = f.VersionId
 	f.fieldMap["workspace_id"] = f.WorkspaceId
 
 }

@@ -158,6 +158,12 @@ export interface FileMetadata {
      * @memberof FileMetadata
      */
     s3Metadata?: { [key: string]: string; };
+    /**
+     * 
+     * @type {string}
+     * @memberof FileMetadata
+     */
+    versionId?: string;
 }
 
 /**
@@ -202,6 +208,7 @@ export function FileMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolea
         's3ServerSideEncryption': !exists(json, 's3ServerSideEncryption') ? undefined : json['s3ServerSideEncryption'],
         's3Acl': !exists(json, 's3Acl') ? undefined : json['s3Acl'],
         's3Metadata': !exists(json, 's3Metadata') ? undefined : json['s3Metadata'],
+        'versionId': !exists(json, 'versionId') ? undefined : json['versionId'],
     };
 }
 
@@ -237,6 +244,7 @@ export function FileMetadataToJSON(value?: FileMetadata | null): any {
         's3ServerSideEncryption': value.s3ServerSideEncryption,
         's3Acl': value.s3Acl,
         's3Metadata': value.s3Metadata,
+        'versionId': value.versionId,
     };
 }
 

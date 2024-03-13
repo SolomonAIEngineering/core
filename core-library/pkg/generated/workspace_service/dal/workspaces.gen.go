@@ -39,8 +39,10 @@ func newWorkspaceORM(db *gorm.DB, opts ...gen.DOOption) workspaceORM {
 	_workspaceORM.S3LastModified = field.NewTime(tableName, "s3_last_modified")
 	_workspaceORM.S3Region = field.NewString(tableName, "s3_region")
 	_workspaceORM.Tags = field.NewField(tableName, "tags")
+	_workspaceORM.UniqueIdentifier = field.NewString(tableName, "unique_identifier")
 	_workspaceORM.UpdatedAt = field.NewTime(tableName, "updated_at")
 	_workspaceORM.Version = field.NewInt32(tableName, "version")
+	_workspaceORM.VersionId = field.NewString(tableName, "version_id")
 	_workspaceORM.Folders = workspaceORMHasManyFolders{
 		db: db.Session(&gorm.Session{}),
 
@@ -65,21 +67,23 @@ func newWorkspaceORM(db *gorm.DB, opts ...gen.DOOption) workspaceORM {
 type workspaceORM struct {
 	workspaceORMDo
 
-	ALL            field.Asterisk
-	AccountId      field.Uint64
-	CreatedAt      field.Time
-	Id             field.Uint64
-	IsDeleted      field.Bool
-	Name           field.String
-	S3Acl          field.String
-	S3BucketName   field.String
-	S3FolderPath   field.String
-	S3LastModified field.Time
-	S3Region       field.String
-	Tags           field.Field
-	UpdatedAt      field.Time
-	Version        field.Int32
-	Folders        workspaceORMHasManyFolders
+	ALL              field.Asterisk
+	AccountId        field.Uint64
+	CreatedAt        field.Time
+	Id               field.Uint64
+	IsDeleted        field.Bool
+	Name             field.String
+	S3Acl            field.String
+	S3BucketName     field.String
+	S3FolderPath     field.String
+	S3LastModified   field.Time
+	S3Region         field.String
+	Tags             field.Field
+	UniqueIdentifier field.String
+	UpdatedAt        field.Time
+	Version          field.Int32
+	VersionId        field.String
+	Folders          workspaceORMHasManyFolders
 
 	fieldMap map[string]field.Expr
 }
@@ -107,8 +111,10 @@ func (w *workspaceORM) updateTableName(table string) *workspaceORM {
 	w.S3LastModified = field.NewTime(table, "s3_last_modified")
 	w.S3Region = field.NewString(table, "s3_region")
 	w.Tags = field.NewField(table, "tags")
+	w.UniqueIdentifier = field.NewString(table, "unique_identifier")
 	w.UpdatedAt = field.NewTime(table, "updated_at")
 	w.Version = field.NewInt32(table, "version")
+	w.VersionId = field.NewString(table, "version_id")
 
 	w.fillFieldMap()
 
@@ -125,7 +131,7 @@ func (w *workspaceORM) GetFieldByName(fieldName string) (field.OrderExpr, bool) 
 }
 
 func (w *workspaceORM) fillFieldMap() {
-	w.fieldMap = make(map[string]field.Expr, 14)
+	w.fieldMap = make(map[string]field.Expr, 16)
 	w.fieldMap["account_id"] = w.AccountId
 	w.fieldMap["created_at"] = w.CreatedAt
 	w.fieldMap["id"] = w.Id
@@ -137,8 +143,10 @@ func (w *workspaceORM) fillFieldMap() {
 	w.fieldMap["s3_last_modified"] = w.S3LastModified
 	w.fieldMap["s3_region"] = w.S3Region
 	w.fieldMap["tags"] = w.Tags
+	w.fieldMap["unique_identifier"] = w.UniqueIdentifier
 	w.fieldMap["updated_at"] = w.UpdatedAt
 	w.fieldMap["version"] = w.Version
+	w.fieldMap["version_id"] = w.VersionId
 
 }
 

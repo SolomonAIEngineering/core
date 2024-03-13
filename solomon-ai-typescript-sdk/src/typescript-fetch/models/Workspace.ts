@@ -111,6 +111,18 @@ export interface Workspace {
      * @memberof Workspace
      */
     s3LastModified?: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof Workspace
+     */
+    uniqueIdentifier?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Workspace
+     */
+    versionId?: string;
 }
 
 /**
@@ -146,6 +158,8 @@ export function WorkspaceFromJSONTyped(json: any, ignoreDiscriminator: boolean):
         's3Metadata': !exists(json, 's3Metadata') ? undefined : json['s3Metadata'],
         's3Acl': !exists(json, 's3Acl') ? undefined : json['s3Acl'],
         's3LastModified': !exists(json, 's3LastModified') ? undefined : (new Date(json['s3LastModified'])),
+        'uniqueIdentifier': !exists(json, 'uniqueIdentifier') ? undefined : json['uniqueIdentifier'],
+        'versionId': !exists(json, 'versionId') ? undefined : json['versionId'],
     };
 }
 
@@ -172,6 +186,8 @@ export function WorkspaceToJSON(value?: Workspace | null): any {
         's3Metadata': value.s3Metadata,
         's3Acl': value.s3Acl,
         's3LastModified': value.s3LastModified === undefined ? undefined : (value.s3LastModified.toISOString()),
+        'uniqueIdentifier': value.uniqueIdentifier,
+        'versionId': value.versionId,
     };
 }
 

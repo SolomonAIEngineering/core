@@ -105,6 +105,12 @@ export interface FolderMetadata {
      * @memberof FolderMetadata
      */
     s3LastModified?: Date;
+    /**
+     * 
+     * @type {string}
+     * @memberof FolderMetadata
+     */
+    versionId?: string;
 }
 
 /**
@@ -139,6 +145,7 @@ export function FolderMetadataFromJSONTyped(json: any, ignoreDiscriminator: bool
         's3Metadata': !exists(json, 's3Metadata') ? undefined : json['s3Metadata'],
         's3Acl': !exists(json, 's3Acl') ? undefined : json['s3Acl'],
         's3LastModified': !exists(json, 's3LastModified') ? undefined : (new Date(json['s3LastModified'])),
+        'versionId': !exists(json, 'versionId') ? undefined : json['versionId'],
     };
 }
 
@@ -164,6 +171,7 @@ export function FolderMetadataToJSON(value?: FolderMetadata | null): any {
         's3Metadata': value.s3Metadata,
         's3Acl': value.s3Acl,
         's3LastModified': value.s3LastModified === undefined ? undefined : (value.s3LastModified.toISOString()),
+        'versionId': value.versionId,
     };
 }
 

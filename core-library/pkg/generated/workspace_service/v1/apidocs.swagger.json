@@ -881,6 +881,10 @@
             "$ref": "#/definitions/Workspace"
           },
           "title": "user account of interest can have many workspaces"
+        },
+        "baseDirectory": {
+          "type": "string",
+          "title": "base directory for the user"
         }
       },
       "description": "@brief Represents an account in the context of the service."
@@ -1163,6 +1167,10 @@
             "type": "string"
           },
           "description": "Custom metadata added to the file in S3 as key-value pairs."
+        },
+        "versionId": {
+          "type": "string",
+          "title": "version id of the file"
         }
       },
       "title": "File Metadata"
@@ -1231,6 +1239,10 @@
           "type": "string",
           "format": "date-time",
           "description": "The date and time when the folder was last modified in S3.\nThis might represent the last time a file was added, removed, or changed in the folder."
+        },
+        "versionId": {
+          "type": "string",
+          "title": "version id of the folder"
         }
       },
       "title": "Folder Metadata"
@@ -1279,7 +1291,11 @@
       "type": "object",
       "properties": {
         "folder": {
-          "$ref": "#/definitions/FolderMetadata"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/FolderMetadata"
+          }
         }
       }
     },
@@ -1287,7 +1303,11 @@
       "type": "object",
       "properties": {
         "workspace": {
-          "$ref": "#/definitions/Workspace"
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Workspace"
+          }
         }
       }
     },
@@ -1494,6 +1514,14 @@
           "type": "string",
           "format": "date-time",
           "description": "The date and time when the folder was last modified in S3.\nThis might represent the last time a file was added, removed, or changed in the folder."
+        },
+        "uniqueIdentifier": {
+          "type": "string",
+          "title": "unique identifier for the workspace of interest"
+        },
+        "versionId": {
+          "type": "string",
+          "title": "version id of the workspace"
         }
       },
       "title": "Workspace"

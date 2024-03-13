@@ -51,6 +51,7 @@ func newFileMetadataORM(db *gorm.DB, opts ...gen.DOOption) fileMetadataORM {
 	_fileMetadataORM.Tags = field.NewField(tableName, "tags")
 	_fileMetadataORM.UpdatedAt = field.NewTime(tableName, "updated_at")
 	_fileMetadataORM.Version = field.NewInt32(tableName, "version")
+	_fileMetadataORM.VersionId = field.NewString(tableName, "version_id")
 
 	_fileMetadataORM.fillFieldMap()
 
@@ -84,6 +85,7 @@ type fileMetadataORM struct {
 	Tags                   field.Field
 	UpdatedAt              field.Time
 	Version                field.Int32
+	VersionId              field.String
 
 	fieldMap map[string]field.Expr
 }
@@ -123,6 +125,7 @@ func (f *fileMetadataORM) updateTableName(table string) *fileMetadataORM {
 	f.Tags = field.NewField(table, "tags")
 	f.UpdatedAt = field.NewTime(table, "updated_at")
 	f.Version = field.NewInt32(table, "version")
+	f.VersionId = field.NewString(table, "version_id")
 
 	f.fillFieldMap()
 
@@ -139,7 +142,7 @@ func (f *fileMetadataORM) GetFieldByName(fieldName string) (field.OrderExpr, boo
 }
 
 func (f *fileMetadataORM) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 23)
+	f.fieldMap = make(map[string]field.Expr, 24)
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["file_type"] = f.FileType
 	f.fieldMap["folder_metadata_id"] = f.FolderMetadataId
@@ -163,6 +166,7 @@ func (f *fileMetadataORM) fillFieldMap() {
 	f.fieldMap["tags"] = f.Tags
 	f.fieldMap["updated_at"] = f.UpdatedAt
 	f.fieldMap["version"] = f.Version
+	f.fieldMap["version_id"] = f.VersionId
 }
 
 func (f fileMetadataORM) clone(db *gorm.DB) fileMetadataORM {

@@ -2559,33 +2559,38 @@ func (m *ListFolderResponse) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetFolder()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ListFolderResponseValidationError{
-					field:  "Folder",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
+	for idx, item := range m.GetFolder() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ListFolderResponseValidationError{
+						field:  fmt.Sprintf("Folder[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ListFolderResponseValidationError{
+						field:  fmt.Sprintf("Folder[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
 			}
-		case interface{ Validate() error }:
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ListFolderResponseValidationError{
-					field:  "Folder",
+				return ListFolderResponseValidationError{
+					field:  fmt.Sprintf("Folder[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
-				})
+				}
 			}
 		}
-	} else if v, ok := interface{}(m.GetFolder()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListFolderResponseValidationError{
-				field:  "Folder",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
+
 	}
 
 	if len(errors) > 0 {
@@ -3541,33 +3546,38 @@ func (m *ListWorkspaceResponse) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetWorkspace()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, ListWorkspaceResponseValidationError{
-					field:  "Workspace",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
+	for idx, item := range m.GetWorkspace() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ListWorkspaceResponseValidationError{
+						field:  fmt.Sprintf("Workspace[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ListWorkspaceResponseValidationError{
+						field:  fmt.Sprintf("Workspace[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
 			}
-		case interface{ Validate() error }:
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
 			if err := v.Validate(); err != nil {
-				errors = append(errors, ListWorkspaceResponseValidationError{
-					field:  "Workspace",
+				return ListWorkspaceResponseValidationError{
+					field:  fmt.Sprintf("Workspace[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
-				})
+				}
 			}
 		}
-	} else if v, ok := interface{}(m.GetWorkspace()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return ListWorkspaceResponseValidationError{
-				field:  "Workspace",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
+
 	}
 
 	if len(errors) > 0 {

@@ -28,10 +28,10 @@ import {
 export interface ListFolderResponse {
     /**
      * 
-     * @type {FolderMetadata}
+     * @type {Array<FolderMetadata>}
      * @memberof ListFolderResponse
      */
-    folder?: FolderMetadata;
+    folder?: Array<FolderMetadata>;
 }
 
 /**
@@ -53,7 +53,7 @@ export function ListFolderResponseFromJSONTyped(json: any, ignoreDiscriminator: 
     }
     return {
         
-        'folder': !exists(json, 'folder') ? undefined : FolderMetadataFromJSON(json['folder']),
+        'folder': !exists(json, 'folder') ? undefined : ((json['folder'] as Array<any>).map(FolderMetadataFromJSON)),
     };
 }
 
@@ -66,7 +66,7 @@ export function ListFolderResponseToJSON(value?: ListFolderResponse | null): any
     }
     return {
         
-        'folder': FolderMetadataToJSON(value.folder),
+        'folder': value.folder === undefined ? undefined : ((value.folder as Array<any>).map(FolderMetadataToJSON)),
     };
 }
 

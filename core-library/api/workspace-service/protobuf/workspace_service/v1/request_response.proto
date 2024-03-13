@@ -143,7 +143,7 @@ message ListFolderRequest {
 }
 
 message ListFolderResponse {
-    FolderMetadata folder = 1;
+    repeated FolderMetadata folder = 1;
 }
 
 message UpdateFolderRequest {
@@ -190,7 +190,7 @@ message ListWorkspaceRequest {
 }
 
 message ListWorkspaceResponse {
-    Workspace workspace = 1;
+   repeated Workspace workspace = 1;
 }
 
 message UpdateWorkspaceRequest {

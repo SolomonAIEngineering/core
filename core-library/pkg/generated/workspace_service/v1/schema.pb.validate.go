@@ -94,6 +94,8 @@ func (m *Account) validate(all bool) error {
 
 	}
 
+	// no validation rules for BaseDirectory
+
 	if len(errors) > 0 {
 		return AccountMultiError(errors)
 	}
@@ -317,6 +319,8 @@ func (m *FileMetadata) validate(all bool) error {
 	// no validation rules for S3Acl
 
 	// no validation rules for S3Metadata
+
+	// no validation rules for VersionId
 
 	if len(errors) > 0 {
 		return FileMetadataMultiError(errors)
@@ -588,6 +592,8 @@ func (m *FolderMetadata) validate(all bool) error {
 		}
 	}
 
+	// no validation rules for VersionId
+
 	if len(errors) > 0 {
 		return FolderMetadataMultiError(errors)
 	}
@@ -826,6 +832,10 @@ func (m *Workspace) validate(all bool) error {
 			}
 		}
 	}
+
+	// no validation rules for UniqueIdentifier
+
+	// no validation rules for VersionId
 
 	if len(errors) > 0 {
 		return WorkspaceMultiError(errors)

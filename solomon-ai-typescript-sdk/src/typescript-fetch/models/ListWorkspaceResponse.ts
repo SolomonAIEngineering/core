@@ -28,10 +28,10 @@ import {
 export interface ListWorkspaceResponse {
     /**
      * 
-     * @type {Workspace}
+     * @type {Array<Workspace>}
      * @memberof ListWorkspaceResponse
      */
-    workspace?: Workspace;
+    workspace?: Array<Workspace>;
 }
 
 /**
@@ -53,7 +53,7 @@ export function ListWorkspaceResponseFromJSONTyped(json: any, ignoreDiscriminato
     }
     return {
         
-        'workspace': !exists(json, 'workspace') ? undefined : WorkspaceFromJSON(json['workspace']),
+        'workspace': !exists(json, 'workspace') ? undefined : ((json['workspace'] as Array<any>).map(WorkspaceFromJSON)),
     };
 }
 
@@ -66,7 +66,7 @@ export function ListWorkspaceResponseToJSON(value?: ListWorkspaceResponse | null
     }
     return {
         
-        'workspace': WorkspaceToJSON(value.workspace),
+        'workspace': value.workspace === undefined ? undefined : ((value.workspace as Array<any>).map(WorkspaceToJSON)),
     };
 }
 
