@@ -56,6 +56,18 @@ export interface Account {
      * @memberof Account
      */
     bucketName?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Account
+     */
+    bucketLocation?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Account
+     */
+    region?: string;
 }
 
 /**
@@ -82,6 +94,8 @@ export function AccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): A
         'workspace': !exists(json, 'workspace') ? undefined : ((json['workspace'] as Array<any>).map(WorkspaceFromJSON)),
         'baseDirectory': !exists(json, 'baseDirectory') ? undefined : json['baseDirectory'],
         'bucketName': !exists(json, 'bucketName') ? undefined : json['bucketName'],
+        'bucketLocation': !exists(json, 'bucketLocation') ? undefined : json['bucketLocation'],
+        'region': !exists(json, 'region') ? undefined : json['region'],
     };
 }
 
@@ -99,6 +113,8 @@ export function AccountToJSON(value?: Account | null): any {
         'workspace': value.workspace === undefined ? undefined : ((value.workspace as Array<any>).map(WorkspaceToJSON)),
         'baseDirectory': value.baseDirectory,
         'bucketName': value.bucketName,
+        'bucketLocation': value.bucketLocation,
+        'region': value.region,
     };
 }
 

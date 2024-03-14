@@ -98,6 +98,10 @@ func (m *Account) validate(all bool) error {
 
 	// no validation rules for BucketName
 
+	// no validation rules for BucketLocation
+
+	// no validation rules for Region
+
 	if len(errors) > 0 {
 		return AccountMultiError(errors)
 	}

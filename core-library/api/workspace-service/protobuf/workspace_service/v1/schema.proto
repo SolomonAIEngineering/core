@@ -31,6 +31,12 @@ message Account {
 
   // aws bucket name for the account
   string bucket_name = 5;
+
+  // aws bucket location for the account
+  string bucket_location = 6;
+
+  // aws region for the account
+  string region = 7;
 }
 
 

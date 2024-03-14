@@ -24528,6 +24528,12 @@ components:
         bucketName:
           type: string
           title: aws bucket name for the account
+        bucketLocation:
+          type: string
+          title: aws bucket location for the account
+        region:
+          type: string
+          title: aws region for the account
       description: '@brief Represents an account in the context of the service.'
     CreateAccountRequest:
       type: object
