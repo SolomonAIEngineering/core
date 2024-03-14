@@ -96,6 +96,8 @@ func (m *Account) validate(all bool) error {
 
 	// no validation rules for BaseDirectory
 
+	// no validation rules for BucketName
+
 	if len(errors) > 0 {
 		return AccountMultiError(errors)
 	}

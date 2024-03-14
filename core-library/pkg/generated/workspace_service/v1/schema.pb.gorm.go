@@ -17,6 +17,7 @@ import (
 type AccountORM struct {
 	Auth0UserId   string `gorm:"index:idx_user_auth0_user_id"`
 	BaseDirectory string
+	BucketName    string
 	Id            uint64          `gorm:"unique_index:idx_user_id"`
 	Workspace     []*WorkspaceORM `gorm:"foreignkey:AccountId;association_foreignkey:Id;preload:true"`
 }
@@ -50,6 +51,7 @@ func (m *Account) ToORM(ctx context.Context) (AccountORM, error) {
 		}
 	}
 	to.BaseDirectory = m.BaseDirectory
+	to.BucketName = m.BucketName
 	if posthook, ok := interface{}(m).(AccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -80,6 +82,7 @@ func (m *AccountORM) ToPB(ctx context.Context) (Account, error) {
 		}
 	}
 	to.BaseDirectory = m.BaseDirectory
+	to.BucketName = m.BucketName
 	if posthook, ok := interface{}(m).(AccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -887,6 +890,10 @@ func DefaultApplyFieldMaskAccount(ctx context.Context, patchee *Account, patcher
 		}
 		if f == prefix+"BaseDirectory" {
 			patchee.BaseDirectory = patcher.BaseDirectory
+			continue
+		}
+		if f == prefix+"BucketName" {
+			patchee.BucketName = patcher.BucketName
 			continue
 		}
 	}

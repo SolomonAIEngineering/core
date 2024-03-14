@@ -31,6 +31,7 @@ func newAccountORM(db *gorm.DB, opts ...gen.DOOption) accountORM {
 	_accountORM.ALL = field.NewAsterisk(tableName)
 	_accountORM.Auth0UserId = field.NewString(tableName, "auth0_user_id")
 	_accountORM.BaseDirectory = field.NewString(tableName, "base_directory")
+	_accountORM.BucketName = field.NewString(tableName, "bucket_name")
 	_accountORM.Id = field.NewUint64(tableName, "id")
 	_accountORM.Workspace = accountORMHasManyWorkspace{
 		db: db.Session(&gorm.Session{}),
@@ -70,6 +71,7 @@ type accountORM struct {
 	ALL           field.Asterisk
 	Auth0UserId   field.String
 	BaseDirectory field.String
+	BucketName    field.String
 	Id            field.Uint64
 	Workspace     accountORMHasManyWorkspace
 
@@ -90,6 +92,7 @@ func (a *accountORM) updateTableName(table string) *accountORM {
 	a.ALL = field.NewAsterisk(table)
 	a.Auth0UserId = field.NewString(table, "auth0_user_id")
 	a.BaseDirectory = field.NewString(table, "base_directory")
+	a.BucketName = field.NewString(table, "bucket_name")
 	a.Id = field.NewUint64(table, "id")
 
 	a.fillFieldMap()
@@ -107,9 +110,10 @@ func (a *accountORM) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (a *accountORM) fillFieldMap() {
-	a.fieldMap = make(map[string]field.Expr, 4)
+	a.fieldMap = make(map[string]field.Expr, 5)
 	a.fieldMap["auth0_user_id"] = a.Auth0UserId
 	a.fieldMap["base_directory"] = a.BaseDirectory
+	a.fieldMap["bucket_name"] = a.BucketName
 	a.fieldMap["id"] = a.Id
 
 }

@@ -756,6 +756,9 @@ components:
         baseDirectory:
           type: string
           title: base directory for the user
+        bucketName:
+          type: string
+          title: aws bucket name for the account
       description: "@brief Represents an account in the context of the service."
     Any:
       type: object

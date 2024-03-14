@@ -50,6 +50,12 @@ export interface Account {
      * @memberof Account
      */
     baseDirectory?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof Account
+     */
+    bucketName?: string;
 }
 
 /**
@@ -75,6 +81,7 @@ export function AccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): A
         'auth0UserId': !exists(json, 'auth0UserId') ? undefined : json['auth0UserId'],
         'workspace': !exists(json, 'workspace') ? undefined : ((json['workspace'] as Array<any>).map(WorkspaceFromJSON)),
         'baseDirectory': !exists(json, 'baseDirectory') ? undefined : json['baseDirectory'],
+        'bucketName': !exists(json, 'bucketName') ? undefined : json['bucketName'],
     };
 }
 
@@ -91,6 +98,7 @@ export function AccountToJSON(value?: Account | null): any {
         'auth0UserId': value.auth0UserId,
         'workspace': value.workspace === undefined ? undefined : ((value.workspace as Array<any>).map(WorkspaceToJSON)),
         'baseDirectory': value.baseDirectory,
+        'bucketName': value.bucketName,
     };
 }
 
