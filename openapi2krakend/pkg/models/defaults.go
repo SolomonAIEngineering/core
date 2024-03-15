@@ -14,7 +14,7 @@ func DefaultEndpointExtraConfig(environment string) map[string]interface{} {
 				"cache":                true,
 				"cache_duration":       3600,
 				"alg":                  "RS256",
-				"audience":             []string{"https://solomon-ai.us.auth0.com/api/v2/"},
+				"audience":             []string{"https://solomon-ai.us.auth0.com/api/v2/", "https://app-platform.solomon-ai.io"},
 				"jwk_url":              "https://solomon-ai.us.auth0.com/.well-known/jwks.json",
 			},
 		}
@@ -32,7 +32,7 @@ func DefaultEndpointExtraConfig(environment string) map[string]interface{} {
 			"cache":                true,
 			"cache_duration":       3600,
 			"alg":                  "RS256",
-			"audience":             []string{"https://dev-26i1fsf2m1n6hqk1.us.auth0.com/api/v2/"},
+			"audience":             []string{"https://dev-26i1fsf2m1n6hqk1.us.auth0.com/api/v2/", "https://app-release.solomon-ai.io", "http://localhost:3000"},
 			"jwk_url":              "https://dev-26i1fsf2m1n6hqk1.us.auth0.com/.well-known/jwks.json",
 		},
 	}
