@@ -5,7 +5,7 @@ endpoints:
     method: "post"
     host: "http://financial-integration-service.platform.svc.cluster.local:9898"
   - name: "financial service stripe webhook"
-    krakendApiPath: "/v1/gateway/service/financials/stripe/webhook"
+    krakendApiPath: "/v1/gateway/service/financials/stripe/webhooks"
     serviceApiPath: "/stripe/webhooks"
     method: "post"
     host: "http://financial-integration-service.platform.svc.cluster.local:9898"
