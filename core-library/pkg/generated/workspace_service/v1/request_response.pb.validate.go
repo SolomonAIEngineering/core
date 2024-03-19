@@ -57,20 +57,15 @@ func (m *FileUploadRequest) validate(all bool) error {
 
 	var errors []error
 
+	// no validation rules for WorkspaceId
+
 	// no validation rules for FolderId
 
-	// no validation rules for Content
+	// no validation rules for Filename
 
-	if utf8.RuneCountInString(m.GetName()) < 5 {
-		err := FileUploadRequestValidationError{
-			field:  "Name",
-			reason: "value length must be at least 5 runes",
-		}
-		if !all {
-			return err
-		}
-		errors = append(errors, err)
-	}
+	// no validation rules for UserId
+
+	// no validation rules for Attachment
 
 	if len(errors) > 0 {
 		return FileUploadRequestMultiError(errors)
@@ -174,34 +169,9 @@ func (m *FileUploadResponse) validate(all bool) error {
 
 	var errors []error
 
-	if all {
-		switch v := interface{}(m.GetMetadata()).(type) {
-		case interface{ ValidateAll() error }:
-			if err := v.ValidateAll(); err != nil {
-				errors = append(errors, FileUploadResponseValidationError{
-					field:  "Metadata",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		case interface{ Validate() error }:
-			if err := v.Validate(); err != nil {
-				errors = append(errors, FileUploadResponseValidationError{
-					field:  "Metadata",
-					reason: "embedded message failed validation",
-					cause:  err,
-				})
-			}
-		}
-	} else if v, ok := interface{}(m.GetMetadata()).(interface{ Validate() error }); ok {
-		if err := v.Validate(); err != nil {
-			return FileUploadResponseValidationError{
-				field:  "Metadata",
-				reason: "embedded message failed validation",
-				cause:  err,
-			}
-		}
-	}
+	// no validation rules for FileId
+
+	// no validation rules for FileUrl
 
 	if len(errors) > 0 {
 		return FileUploadResponseMultiError(errors)

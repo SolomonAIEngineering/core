@@ -80,7 +80,8 @@ service WorkspaceService {
         };
     }
 
-    // Create a File Metadata
+    // Allows for uploading a file using multipart form data.
+    // consumes: multipart/form-data
     rpc UploadFile(stream UploadFileRequest) returns (UploadFileResponse) {
         option (google.api.http) = {
             post: "/workspace-microservice/api/v1/files/upload"

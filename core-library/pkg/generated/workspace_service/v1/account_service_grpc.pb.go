@@ -44,7 +44,8 @@ type WorkspaceServiceClient interface {
 	GetAccount(ctx context.Context, in *GetAccountRequest, opts ...grpc.CallOption) (*GetAccountResponse, error)
 	// Delete an Account
 	DeleteAccount(ctx context.Context, in *DeleteAccountRequest, opts ...grpc.CallOption) (*DeleteAccountResponse, error)
-	// Create a File Metadata
+	// Allows for uploading a file using multipart form data.
+	// consumes: multipart/form-data
 	UploadFile(ctx context.Context, opts ...grpc.CallOption) (WorkspaceService_UploadFileClient, error)
 	// Read a File Metadata
 	DownloadFile(ctx context.Context, in *DownloadFileRequest, opts ...grpc.CallOption) (WorkspaceService_DownloadFileClient, error)
@@ -269,7 +270,8 @@ type WorkspaceServiceServer interface {
 	GetAccount(context.Context, *GetAccountRequest) (*GetAccountResponse, error)
 	// Delete an Account
 	DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error)
-	// Create a File Metadata
+	// Allows for uploading a file using multipart form data.
+	// consumes: multipart/form-data
 	UploadFile(WorkspaceService_UploadFileServer) error
 	// Read a File Metadata
 	DownloadFile(*DownloadFileRequest, WorkspaceService_DownloadFileServer) error

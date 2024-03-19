@@ -11,16 +11,16 @@ option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/gener
 
 // File Operations
 message FileUploadRequest {
-    string folder_id = 1;
-    bytes content = 2;
-    string name = 3  [
-    (validate.rules).string.min_len = 5,
-    (google.api.field_behavior) = REQUIRED  
-  ];
+    string workspace_id = 1; // Workspace ID
+    string folder_id = 2;    // Folder ID
+    string filename = 3;    // Filename, optional
+    string user_id = 4;     // User ID
+    bytes attachment = 5;  // File content
 }
 
 message FileUploadResponse {
-    FileMetadata metadata = 1;
+    string file_id = 1; // File ID
+    string file_url = 2; // File URL
 }
 
 message FileDownloadRequest {
