@@ -17,6 +17,7 @@ type Endpoint struct {
 	ServiceApiPath string `yaml:"serviceApiPath"`
 	Method         string `yaml:"method"`
 	Host           string `yaml:"host"`
+	Encoding       string `yaml:"encoding"`
 }
 
 func ReadAndUnmarshalYamlFile(filePath string) (*WebhookConfig, error) {

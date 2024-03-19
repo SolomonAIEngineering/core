@@ -94,8 +94,10 @@ func Convert(swaggerDirectory string, encoding string, globalTimeout, environmen
 	// Add webhook endpoints
 	if webhookCfg != nil {
 		for _, endpoint := range webhookCfg.Endpoints {
-			krakendEndpoint := models.NewEndpoint(endpoint.Host, endpoint.KrakendApiPath, endpoint.ServiceApiPath, endpoint.Method, encoding, globalTimeout)
+			krakendEndpoint := models.NewEndpoint(endpoint.Host, endpoint.KrakendApiPath, endpoint.ServiceApiPath, endpoint.Method, endpoint.Encoding, globalTimeout)
 			fmt.Println("Adding webhook endpoint", krakendEndpoint)
+			// make sure the content type is empty
+			krakendEndpoint.InputHeaders = []string{"*"}
 			configuration.InsertEndpoint(krakendEndpoint)
 		}
 	}
