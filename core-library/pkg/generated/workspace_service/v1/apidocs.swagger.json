@@ -232,129 +232,7 @@
         ]
       }
     },
-    "/workspace-microservice/api/v1/files/upload": {
-      "post": {
-        "summary": "Upload a file",
-        "description": "This endpoint uploads a file",
-        "operationId": "UploadFile",
-        "responses": {
-          "200": {
-            "description": "File upload successful",
-            "schema": {
-              "$ref": "#/definitions/UploadFileResponse"
-            }
-          },
-          "400": {
-            "description": "Request failed due to invalid input.",
-            "schema": {
-              "$ref": "#/definitions/ValidationErrorMessageResponse"
-            }
-          },
-          "404": {
-            "description": "Request failed due to incorrect path.",
-            "schema": {
-              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
-            }
-          },
-          "500": {
-            "description": "Request failed due to internal server error.",
-            "schema": {
-              "$ref": "#/definitions/InternalErrorMessageResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "body",
-            "description": " (streaming inputs)",
-            "in": "body",
-            "required": true,
-            "schema": {
-              "$ref": "#/definitions/UploadFileRequest"
-            }
-          }
-        ],
-        "tags": [
-          "workspace-service"
-        ]
-      }
-    },
     "/workspace-microservice/api/v1/files/{fileId}": {
-      "get": {
-        "summary": "Download a file",
-        "description": "This endpoint downloads a file by ID",
-        "operationId": "DownloadFile",
-        "responses": {
-          "200": {
-            "description": "File download successful",
-            "schema": {
-              "$ref": "#/definitions/DownloadFileResponse"
-            }
-          },
-          "400": {
-            "description": "Request failed due to invalid input.",
-            "schema": {
-              "$ref": "#/definitions/ValidationErrorMessageResponse"
-            }
-          },
-          "404": {
-            "description": "Request failed due to incorrect path.",
-            "schema": {
-              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
-            }
-          },
-          "500": {
-            "description": "Request failed due to internal server error.",
-            "schema": {
-              "$ref": "#/definitions/InternalErrorMessageResponse"
-            }
-          },
-          "default": {
-            "description": "An unexpected error response.",
-            "schema": {
-              "$ref": "#/definitions/Status"
-            }
-          }
-        },
-        "parameters": [
-          {
-            "name": "fileId",
-            "in": "path",
-            "required": true,
-            "type": "string",
-            "format": "uint64"
-          },
-          {
-            "name": "authZeroUserId",
-            "in": "query",
-            "required": true,
-            "type": "string"
-          },
-          {
-            "name": "folderId",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "uint64"
-          },
-          {
-            "name": "workspaceId",
-            "in": "query",
-            "required": false,
-            "type": "string",
-            "format": "uint64"
-          }
-        ],
-        "tags": [
-          "workspace-service"
-        ]
-      },
       "delete": {
         "summary": "Delete a file",
         "description": "This endpoint deletes a file by ID",
@@ -1011,15 +889,6 @@
         }
       }
     },
-    "DownloadFileResponse": {
-      "type": "object",
-      "properties": {
-        "data": {
-          "type": "string",
-          "format": "byte"
-        }
-      }
-    },
     "ErrorCode": {
       "type": "string",
       "enum": [
@@ -1420,37 +1289,6 @@
       "properties": {
         "workspace": {
           "$ref": "#/definitions/Workspace"
-        }
-      }
-    },
-    "UploadFileRequest": {
-      "type": "object",
-      "properties": {
-        "authZeroUserId": {
-          "type": "string"
-        },
-        "folderId": {
-          "type": "string",
-          "format": "uint64"
-        },
-        "data": {
-          "type": "string",
-          "format": "byte"
-        },
-        "name": {
-          "type": "string"
-        }
-      },
-      "required": [
-        "authZeroUserId",
-        "name"
-      ]
-    },
-    "UploadFileResponse": {
-      "type": "object",
-      "properties": {
-        "metadata": {
-          "$ref": "#/definitions/FileMetadata"
         }
       }
     },

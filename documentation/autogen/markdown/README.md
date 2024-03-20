@@ -238,14 +238,13 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *WorkspaceServiceApi* | [**deleteFile**](Apis/WorkspaceServiceApi.md#deletefile) | **DELETE** /workspace-microservice/api/v1/files/{fileId} | Delete a file |
 *WorkspaceServiceApi* | [**deleteFolder**](Apis/WorkspaceServiceApi.md#deletefolder) | **DELETE** /workspace-microservice/api/v1/folders/{folderId} | Delete a folder |
 *WorkspaceServiceApi* | [**deleteWorkspace**](Apis/WorkspaceServiceApi.md#deleteworkspace) | **DELETE** /workspace-microservice/api/v1/workspaces/{workspaceId} | Delete a workspace |
-*WorkspaceServiceApi* | [**downloadFile**](Apis/WorkspaceServiceApi.md#downloadfile) | **GET** /workspace-microservice/api/v1/files/{fileId} | Download a file |
 *WorkspaceServiceApi* | [**getAccount**](Apis/WorkspaceServiceApi.md#getaccount) | **GET** /workspace-microservice/api/v1/accounts/{authZeroUserId} | Get account by ID |
 *WorkspaceServiceApi* | [**listFolder**](Apis/WorkspaceServiceApi.md#listfolder) | **GET** /workspace-microservice/api/v1/folders | List folders |
 *WorkspaceServiceApi* | [**listWorkspace**](Apis/WorkspaceServiceApi.md#listworkspace) | **GET** /workspace-microservice/api/v1/workspaces | List workspaces |
 *WorkspaceServiceApi* | [**updateFile**](Apis/WorkspaceServiceApi.md#updatefile) | **PUT** /workspace-microservice/api/v1/files | Update a file |
 *WorkspaceServiceApi* | [**updateFolder**](Apis/WorkspaceServiceApi.md#updatefolder) | **PUT** /workspace-microservice/api/v1/folders | Update a folder |
 *WorkspaceServiceApi* | [**updateWorkspace**](Apis/WorkspaceServiceApi.md#updateworkspace) | **PUT** /workspace-microservice/api/v1/workspaces | Update a workspace |
-*WorkspaceServiceApi* | [**uploadFile**](Apis/WorkspaceServiceApi.md#uploadfile) | **POST** /workspace-microservice/api/v1/files/upload | Upload a file |
+| *WorkspaceServiceRestApi* | [**workspaceMicroserviceRestApiV1FileUploadPost**](Apis/WorkspaceServiceRestApi.md#workspacemicroservicerestapiv1fileuploadpost) | **POST** /workspace-microservice/rest-api/v1/file/upload | Uploads a file to the server |
 
 
 <a name="documentation-for-models"></a>
@@ -400,7 +399,6 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [Dependents](./Models/Dependents.md)
  - [DigitalWorkerSettings](./Models/DigitalWorkerSettings.md)
  - [DiscoverProfilesResponse](./Models/DiscoverProfilesResponse.md)
- - [DownloadFileResponse](./Models/DownloadFileResponse.md)
  - [Earning](./Models/Earning.md)
  - [EarningType](./Models/EarningType.md)
  - [EditCommentReplyBody](./Models/EditCommentReplyBody.md)
@@ -736,8 +734,6 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [UpdateUserV2Response](./Models/UpdateUserV2Response.md)
  - [UpdateWorkspaceRequest](./Models/UpdateWorkspaceRequest.md)
  - [UpdateWorkspaceResponse](./Models/UpdateWorkspaceResponse.md)
- - [UploadFileRequest](./Models/UploadFileRequest.md)
- - [UploadFileResponse](./Models/UploadFileResponse.md)
  - [UserAccount](./Models/UserAccount.md)
  - [UserProfile](./Models/UserProfile.md)
  - [UserTags](./Models/UserTags.md)
@@ -748,6 +744,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [VerifyUserResponse](./Models/VerifyUserResponse.md)
  - [VerifyUserV2Response](./Models/VerifyUserV2Response.md)
  - [Workspace](./Models/Workspace.md)
+ - [workspaceservicehttp.FileUploadResponse](./Models/workspaceservicehttp.FileUploadResponse.md)
 
 
 <a name="documentation-for-authorization"></a>

@@ -29,6 +29,12 @@
       "operationSelection": {
         "includeTags": ["workspace-service"]
       }
+    },
+    {
+      "inputFile": "./workspace-service-rest-api.yaml",
+      "operationSelection": {
+        "includeTags": ["workspace-service-rest"]
+      }
     }
   ],
   "output": "./backend-api.yaml"
