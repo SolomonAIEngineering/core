@@ -22,8 +22,6 @@ const (
 	WorkspaceService_CreateAccount_FullMethodName   = "/workspace_service.v1.WorkspaceService/CreateAccount"
 	WorkspaceService_GetAccount_FullMethodName      = "/workspace_service.v1.WorkspaceService/GetAccount"
 	WorkspaceService_DeleteAccount_FullMethodName   = "/workspace_service.v1.WorkspaceService/DeleteAccount"
-	WorkspaceService_UploadFile_FullMethodName      = "/workspace_service.v1.WorkspaceService/UploadFile"
-	WorkspaceService_DownloadFile_FullMethodName    = "/workspace_service.v1.WorkspaceService/DownloadFile"
 	WorkspaceService_DeleteFile_FullMethodName      = "/workspace_service.v1.WorkspaceService/DeleteFile"
 	WorkspaceService_UpdateFile_FullMethodName      = "/workspace_service.v1.WorkspaceService/UpdateFile"
 	WorkspaceService_CreateFolder_FullMethodName    = "/workspace_service.v1.WorkspaceService/CreateFolder"
@@ -44,11 +42,6 @@ type WorkspaceServiceClient interface {
 	GetAccount(ctx context.Context, in *GetAccountRequest, opts ...grpc.CallOption) (*GetAccountResponse, error)
 	// Delete an Account
 	DeleteAccount(ctx context.Context, in *DeleteAccountRequest, opts ...grpc.CallOption) (*DeleteAccountResponse, error)
-	// Allows for uploading a file using multipart form data.
-	// consumes: multipart/form-data
-	UploadFile(ctx context.Context, opts ...grpc.CallOption) (WorkspaceService_UploadFileClient, error)
-	// Read a File Metadata
-	DownloadFile(ctx context.Context, in *DownloadFileRequest, opts ...grpc.CallOption) (WorkspaceService_DownloadFileClient, error)
 	// Delete a File
 	DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error)
 	// Update a File
@@ -104,72 +97,6 @@ func (c *workspaceServiceClient) DeleteAccount(ctx context.Context, in *DeleteAc
 		return nil, err
 	}
 	return out, nil
-}
-
-func (c *workspaceServiceClient) UploadFile(ctx context.Context, opts ...grpc.CallOption) (WorkspaceService_UploadFileClient, error) {
-	stream, err := c.cc.NewStream(ctx, &WorkspaceService_ServiceDesc.Streams[0], WorkspaceService_UploadFile_FullMethodName, opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &workspaceServiceUploadFileClient{stream}
-	return x, nil
-}
-
-type WorkspaceService_UploadFileClient interface {
-	Send(*UploadFileRequest) error
-	CloseAndRecv() (*UploadFileResponse, error)
-	grpc.ClientStream
-}
-
-type workspaceServiceUploadFileClient struct {
-	grpc.ClientStream
-}
-
-func (x *workspaceServiceUploadFileClient) Send(m *UploadFileRequest) error {
-	return x.ClientStream.SendMsg(m)
-}
-
-func (x *workspaceServiceUploadFileClient) CloseAndRecv() (*UploadFileResponse, error) {
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	m := new(UploadFileResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func (c *workspaceServiceClient) DownloadFile(ctx context.Context, in *DownloadFileRequest, opts ...grpc.CallOption) (WorkspaceService_DownloadFileClient, error) {
-	stream, err := c.cc.NewStream(ctx, &WorkspaceService_ServiceDesc.Streams[1], WorkspaceService_DownloadFile_FullMethodName, opts...)
-	if err != nil {
-		return nil, err
-	}
-	x := &workspaceServiceDownloadFileClient{stream}
-	if err := x.ClientStream.SendMsg(in); err != nil {
-		return nil, err
-	}
-	if err := x.ClientStream.CloseSend(); err != nil {
-		return nil, err
-	}
-	return x, nil
-}
-
-type WorkspaceService_DownloadFileClient interface {
-	Recv() (*DownloadFileResponse, error)
-	grpc.ClientStream
-}
-
-type workspaceServiceDownloadFileClient struct {
-	grpc.ClientStream
-}
-
-func (x *workspaceServiceDownloadFileClient) Recv() (*DownloadFileResponse, error) {
-	m := new(DownloadFileResponse)
-	if err := x.ClientStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
 }
 
 func (c *workspaceServiceClient) DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error) {
@@ -270,11 +197,6 @@ type WorkspaceServiceServer interface {
 	GetAccount(context.Context, *GetAccountRequest) (*GetAccountResponse, error)
 	// Delete an Account
 	DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error)
-	// Allows for uploading a file using multipart form data.
-	// consumes: multipart/form-data
-	UploadFile(WorkspaceService_UploadFileServer) error
-	// Read a File Metadata
-	DownloadFile(*DownloadFileRequest, WorkspaceService_DownloadFileServer) error
 	// Delete a File
 	DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error)
 	// Update a File
@@ -310,12 +232,6 @@ func (UnimplementedWorkspaceServiceServer) GetAccount(context.Context, *GetAccou
 }
 func (UnimplementedWorkspaceServiceServer) DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAccount not implemented")
-}
-func (UnimplementedWorkspaceServiceServer) UploadFile(WorkspaceService_UploadFileServer) error {
-	return status.Errorf(codes.Unimplemented, "method UploadFile not implemented")
-}
-func (UnimplementedWorkspaceServiceServer) DownloadFile(*DownloadFileRequest, WorkspaceService_DownloadFileServer) error {
-	return status.Errorf(codes.Unimplemented, "method DownloadFile not implemented")
 }
 func (UnimplementedWorkspaceServiceServer) DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFile not implemented")
@@ -412,53 +328,6 @@ func _WorkspaceService_DeleteAccount_Handler(srv interface{}, ctx context.Contex
 		return srv.(WorkspaceServiceServer).DeleteAccount(ctx, req.(*DeleteAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
-}
-
-func _WorkspaceService_UploadFile_Handler(srv interface{}, stream grpc.ServerStream) error {
-	return srv.(WorkspaceServiceServer).UploadFile(&workspaceServiceUploadFileServer{stream})
-}
-
-type WorkspaceService_UploadFileServer interface {
-	SendAndClose(*UploadFileResponse) error
-	Recv() (*UploadFileRequest, error)
-	grpc.ServerStream
-}
-
-type workspaceServiceUploadFileServer struct {
-	grpc.ServerStream
-}
-
-func (x *workspaceServiceUploadFileServer) SendAndClose(m *UploadFileResponse) error {
-	return x.ServerStream.SendMsg(m)
-}
-
-func (x *workspaceServiceUploadFileServer) Recv() (*UploadFileRequest, error) {
-	m := new(UploadFileRequest)
-	if err := x.ServerStream.RecvMsg(m); err != nil {
-		return nil, err
-	}
-	return m, nil
-}
-
-func _WorkspaceService_DownloadFile_Handler(srv interface{}, stream grpc.ServerStream) error {
-	m := new(DownloadFileRequest)
-	if err := stream.RecvMsg(m); err != nil {
-		return err
-	}
-	return srv.(WorkspaceServiceServer).DownloadFile(m, &workspaceServiceDownloadFileServer{stream})
-}
-
-type WorkspaceService_DownloadFileServer interface {
-	Send(*DownloadFileResponse) error
-	grpc.ServerStream
-}
-
-type workspaceServiceDownloadFileServer struct {
-	grpc.ServerStream
-}
-
-func (x *workspaceServiceDownloadFileServer) Send(m *DownloadFileResponse) error {
-	return x.ServerStream.SendMsg(m)
 }
 
 func _WorkspaceService_DeleteFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
@@ -701,17 +570,6 @@ var WorkspaceService_ServiceDesc = grpc.ServiceDesc{
 			Handler:    _WorkspaceService_UpdateWorkspace_Handler,
 		},
 	},
-	Streams: []grpc.StreamDesc{
-		{
-			StreamName:    "UploadFile",
-			Handler:       _WorkspaceService_UploadFile_Handler,
-			ClientStreams: true,
-		},
-		{
-			StreamName:    "DownloadFile",
-			Handler:       _WorkspaceService_DownloadFile_Handler,
-			ServerStreams: true,
-		},
-	},
+	Streams:  []grpc.StreamDesc{},
 	Metadata: "workspace_service/v1/account_service.proto",
 }

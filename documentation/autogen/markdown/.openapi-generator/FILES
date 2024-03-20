@@ -4,6 +4,7 @@ Apis/SocialServiceApi.md
 Apis/UserServiceV1Api.md
 Apis/UserServiceV2Api.md
 Apis/WorkspaceServiceApi.md
+Apis/WorkspaceServiceRestApi.md
 Models/AcceptFollowProfileResponse.md
 Models/Account.md
 Models/AccountBalanceHistory.md
@@ -153,7 +154,6 @@ Models/DependentRelationship.md
 Models/Dependents.md
 Models/DigitalWorkerSettings.md
 Models/DiscoverProfilesResponse.md
-Models/DownloadFileResponse.md
 Models/Earning.md
 Models/EarningType.md
 Models/EditCommentReplyBody.md
@@ -489,8 +489,6 @@ Models/UpdateUserV2Request.md
 Models/UpdateUserV2Response.md
 Models/UpdateWorkspaceRequest.md
 Models/UpdateWorkspaceResponse.md
-Models/UploadFileRequest.md
-Models/UploadFileResponse.md
 Models/UserAccount.md
 Models/UserProfile.md
 Models/UserTags.md
@@ -501,4 +499,5 @@ Models/VendorCreditLine.md
 Models/VerifyUserResponse.md
 Models/VerifyUserV2Response.md
 Models/Workspace.md
+Models/workspaceservicehttp.FileUploadResponse.md
 README.md

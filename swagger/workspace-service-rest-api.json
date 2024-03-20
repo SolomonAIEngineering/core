@@ -1,0 +1,98 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "description": "REST API for managing workspaces and their resources on the Solomon AI platform.",
+        "title": "Workspace Service REST API",
+        "contact": {
+            "name": "Source Code",
+            "url": "https://github.com/SolomonAIEngineering/core"
+        },
+        "license": {
+            "name": "MIT License",
+            "url": "https://github.com/SolomonAIEngineering/core/blob/master/LICENSE"
+        },
+        "version": "2.0"
+    },
+    "paths": {
+        "/workspace-microservice/rest-api/v1/file/upload": {
+            "post": {
+                "description": "This endpoint allows for the uploading of a file to the server. Upon successful upload,",
+                "tags": [
+                    "workspace-service-rest"
+                ],
+                "summary": "Uploads a file to the server",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "workspaceId": {
+                                        "description": "Identifier of the workspace where the file will be uploaded",
+                                        "type": "string"
+                                    },
+                                    "folderId": {
+                                        "description": "Identifier of the folder within the workspace where the file will be stored",
+                                        "type": "string"
+                                    },
+                                    "filename": {
+                                        "description": "The name of the file to be saved (optional)",
+                                        "type": "string"
+                                    },
+                                    "userId": {
+                                        "description": "Identifier of the user uploading the file",
+                                        "type": "string"
+                                    },
+                                    "attachment": {
+                                        "description": "The file to be uploaded",
+                                        "type": "string",
+                                        "format": "binary"
+                                    }
+                                },
+                                "required": [
+                                    "workspaceId",
+                                    "folderId",
+                                    "userId",
+                                    "attachment"
+                                ]
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "200": {
+                        "description": "On successful upload, returns the URL to the saved file and its metadata, including file name, size, type, and the upload timestamp.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/workspaceservicehttp.FileUploadResponse"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "servers": [
+        {
+            "url": "http://workspace-service.platform.svc.cluster.local:9898"
+        }
+    ],
+    "components": {
+        "schemas": {
+            "workspaceservicehttp.FileUploadResponse": {
+                "type": "object",
+                "properties": {
+                    "fileUrl": {
+                        "type": "string"
+                    },
+                    "file_id": {
+                        "type": "integer"
+                    }
+                }
+            }
+        }
+    }
+}
