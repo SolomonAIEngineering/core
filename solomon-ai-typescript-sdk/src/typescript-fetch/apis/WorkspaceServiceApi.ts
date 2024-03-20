@@ -25,7 +25,6 @@ import type {
   DeleteFileResponse,
   DeleteFolderResponse,
   DeleteWorkspaceResponse,
-  DownloadFileResponse,
   GetAccountResponse,
   InternalErrorMessageResponse,
   ListFolderResponse,
@@ -38,8 +37,6 @@ import type {
   UpdateFolderResponse,
   UpdateWorkspaceRequest,
   UpdateWorkspaceResponse,
-  UploadFileRequest,
-  UploadFileResponse,
   ValidationErrorMessageResponse,
 } from '../models/index';
 import {
@@ -63,8 +60,6 @@ import {
     DeleteFolderResponseToJSON,
     DeleteWorkspaceResponseFromJSON,
     DeleteWorkspaceResponseToJSON,
-    DownloadFileResponseFromJSON,
-    DownloadFileResponseToJSON,
     GetAccountResponseFromJSON,
     GetAccountResponseToJSON,
     InternalErrorMessageResponseFromJSON,
@@ -89,10 +84,6 @@ import {
     UpdateWorkspaceRequestToJSON,
     UpdateWorkspaceResponseFromJSON,
     UpdateWorkspaceResponseToJSON,
-    UploadFileRequestFromJSON,
-    UploadFileRequestToJSON,
-    UploadFileResponseFromJSON,
-    UploadFileResponseToJSON,
     ValidationErrorMessageResponseFromJSON,
     ValidationErrorMessageResponseToJSON,
 } from '../models/index';
@@ -131,13 +122,6 @@ export interface DeleteWorkspaceRequest {
     authZeroUserId: string;
 }
 
-export interface DownloadFileRequest {
-    fileId: string;
-    authZeroUserId: string;
-    folderId?: string;
-    workspaceId?: string;
-}
-
 export interface GetAccountRequest {
     authZeroUserId: string;
 }
@@ -162,10 +146,6 @@ export interface UpdateFolderOperationRequest {
 
 export interface UpdateWorkspaceOperationRequest {
     updateWorkspaceRequest: UpdateWorkspaceRequest;
-}
-
-export interface UploadFileOperationRequest {
-    uploadFileRequest: UploadFileRequest;
 }
 
 /**
@@ -443,54 +423,6 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
     }
 
     /**
-     * This endpoint downloads a file by ID
-     * Download a file
-     */
-    async downloadFileRaw(requestParameters: DownloadFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DownloadFileResponse>> {
-        if (requestParameters.fileId === null || requestParameters.fileId === undefined) {
-            throw new runtime.RequiredError('fileId','Required parameter requestParameters.fileId was null or undefined when calling downloadFile.');
-        }
-
-        if (requestParameters.authZeroUserId === null || requestParameters.authZeroUserId === undefined) {
-            throw new runtime.RequiredError('authZeroUserId','Required parameter requestParameters.authZeroUserId was null or undefined when calling downloadFile.');
-        }
-
-        const queryParameters: any = {};
-
-        if (requestParameters.authZeroUserId !== undefined) {
-            queryParameters['authZeroUserId'] = requestParameters.authZeroUserId;
-        }
-
-        if (requestParameters.folderId !== undefined) {
-            queryParameters['folderId'] = requestParameters.folderId;
-        }
-
-        if (requestParameters.workspaceId !== undefined) {
-            queryParameters['workspaceId'] = requestParameters.workspaceId;
-        }
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        const response = await this.request({
-            path: `/workspace-microservice/api/v1/files/{fileId}`.replace(`{${"fileId"}}`, encodeURIComponent(String(requestParameters.fileId))),
-            method: 'GET',
-            headers: headerParameters,
-            query: queryParameters,
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => DownloadFileResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * This endpoint downloads a file by ID
-     * Download a file
-     */
-    async downloadFile(requestParameters: DownloadFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DownloadFileResponse> {
-        const response = await this.downloadFileRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
      * This endpoint retrieves account details by ID
      * Get account by ID
      */
@@ -704,41 +636,6 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      */
     async updateWorkspace(requestParameters: UpdateWorkspaceOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateWorkspaceResponse> {
         const response = await this.updateWorkspaceRaw(requestParameters, initOverrides);
-        return await response.value();
-    }
-
-    /**
-     * This endpoint uploads a file
-     * Upload a file
-     */
-    async uploadFileRaw(requestParameters: UploadFileOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UploadFileResponse>> {
-        if (requestParameters.uploadFileRequest === null || requestParameters.uploadFileRequest === undefined) {
-            throw new runtime.RequiredError('uploadFileRequest','Required parameter requestParameters.uploadFileRequest was null or undefined when calling uploadFile.');
-        }
-
-        const queryParameters: any = {};
-
-        const headerParameters: runtime.HTTPHeaders = {};
-
-        headerParameters['Content-Type'] = 'application/json';
-
-        const response = await this.request({
-            path: `/workspace-microservice/api/v1/files/upload`,
-            method: 'POST',
-            headers: headerParameters,
-            query: queryParameters,
-            body: UploadFileRequestToJSON(requestParameters.uploadFileRequest),
-        }, initOverrides);
-
-        return new runtime.JSONApiResponse(response, (jsonValue) => UploadFileResponseFromJSON(jsonValue));
-    }
-
-    /**
-     * This endpoint uploads a file
-     * Upload a file
-     */
-    async uploadFile(requestParameters: UploadFileOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UploadFileResponse> {
-        const response = await this.uploadFileRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

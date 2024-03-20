@@ -31,6 +31,9 @@ convert-swagger-to-openapiv3:
 	swagger2openapi --outfile ./swagger/financial-service-backend-api.json ./swagger/financial-service.json
 	swagger2openapi --outfile ./swagger/accounting-service-backend-api.json ./swagger/accounting-service.json
 	swagger2openapi --outfile ./swagger/workspace-service-backend-api.json ./swagger/workspace-service.json
+	
+	swagger2openapi --yaml --outfile ./swagger/workspace-service-rest-api.yaml ./api-packages/workspace-service-http/docs/swagger.json
+	swagger2openapi --outfile ./swagger/workspace-service-rest-api.json ./api-packages/workspace-service-http/docs/swagger.json
 
 	npx openapi-merge-cli --config ./swagger/merge-config.json
 	swagger2openapi --outfile ./swagger/backend-api.json ./swagger/backend-api.yaml
@@ -55,7 +58,7 @@ update-docs:
 		-g postman-collection -o ./documentation/autogen/postman-collection
 
 generate-krakend-config:
-	mkdir temp-swagger && cp ./swagger/user-service-backend-api.json ./temp-swagger/user-service-backend-api.json && cp ./swagger/social-service-backend-api.json ./temp-swagger/social-service-backend-api.json && cp ./swagger/financial-service-backend-api.json ./temp-swagger/financial-service-backend-api.json && cp ./swagger/accounting-service-backend-api.json ./temp-swagger/accounting-service-backend-api.json && cp ./swagger/workspace-service-backend-api.json ./temp-swagger/workspace-service-backend-api.json
+	mkdir temp-swagger && cp ./swagger/user-service-backend-api.json ./temp-swagger/user-service-backend-api.json && cp ./swagger/social-service-backend-api.json ./temp-swagger/social-service-backend-api.json && cp ./swagger/financial-service-backend-api.json ./temp-swagger/financial-service-backend-api.json && cp ./swagger/accounting-service-backend-api.json ./temp-swagger/accounting-service-backend-api.json && cp ./swagger/workspace-service-backend-api.json ./temp-swagger/workspace-service-backend-api.json && cp ./swagger/workspace-service-rest-api.json ./temp-swagger/workspace-service-rest-api.json
 	go run ./openapi2krakend/pkg/main.go -directory ./temp-swagger -output ./krakend-config/krakend.prod.json -environment production -webhook-config-path ./webhooks.yaml
 	go run ./openapi2krakend/pkg/main.go -directory ./temp-swagger -output ./krakend-config/krakend.staging.json -environment staging -webhook-config-path ./webhooks.yaml
 	rm -rf temp-swagger
@@ -80,6 +83,12 @@ copy-configs-to-gateway:
 	cp ./krakend-config/final-krakend.prod.json ./backend-api-gateway/krakend.prod.json
 	cp ./krakend-config/final-krakend.staging.json ./backend-api-gateway/krakend.staging.json
 
-autogen: gen copy-swagger convert-swagger-to-openapiv3 update-typescript-sdk update-docs generate-krakend-config prettify-krakend merge-configs validate copy-configs-to-gateway
+gen-workspace-service-api:
+	go install github.com/swaggo/swag/cmd/swag@latest
+	go get github.com/swaggo/swag/gen@latest
+	go get github.com/swaggo/swag/cmd/swag@latest
+	cd api-packages/workspace-service-http && $$(go env GOPATH)/bin/swag init -g api.go
 
-generate: gen copy-swagger convert-swagger-to-openapiv3 update-typescript-sdk update-docs generate-krakend-config prettify-krakend merge-configs validate copy-configs-to-gateway
+autogen: gen-workspace-service-api gen copy-swagger convert-swagger-to-openapiv3 update-typescript-sdk update-docs generate-krakend-config prettify-krakend merge-configs validate copy-configs-to-gateway
+
+generate: gen-workspace-service-api gen copy-swagger convert-swagger-to-openapiv3 update-typescript-sdk update-docs generate-krakend-config prettify-krakend merge-configs validate copy-configs-to-gateway

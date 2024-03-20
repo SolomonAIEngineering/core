@@ -11,14 +11,12 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**deleteFile**](WorkspaceServiceApi.md#deleteFile) | **DELETE** /workspace-microservice/api/v1/files/{fileId} | Delete a file |
 | [**deleteFolder**](WorkspaceServiceApi.md#deleteFolder) | **DELETE** /workspace-microservice/api/v1/folders/{folderId} | Delete a folder |
 | [**deleteWorkspace**](WorkspaceServiceApi.md#deleteWorkspace) | **DELETE** /workspace-microservice/api/v1/workspaces/{workspaceId} | Delete a workspace |
-| [**downloadFile**](WorkspaceServiceApi.md#downloadFile) | **GET** /workspace-microservice/api/v1/files/{fileId} | Download a file |
 | [**getAccount**](WorkspaceServiceApi.md#getAccount) | **GET** /workspace-microservice/api/v1/accounts/{authZeroUserId} | Get account by ID |
 | [**listFolder**](WorkspaceServiceApi.md#listFolder) | **GET** /workspace-microservice/api/v1/folders | List folders |
 | [**listWorkspace**](WorkspaceServiceApi.md#listWorkspace) | **GET** /workspace-microservice/api/v1/workspaces | List workspaces |
 | [**updateFile**](WorkspaceServiceApi.md#updateFile) | **PUT** /workspace-microservice/api/v1/files | Update a file |
 | [**updateFolder**](WorkspaceServiceApi.md#updateFolder) | **PUT** /workspace-microservice/api/v1/folders | Update a folder |
 | [**updateWorkspace**](WorkspaceServiceApi.md#updateWorkspace) | **PUT** /workspace-microservice/api/v1/workspaces | Update a workspace |
-| [**uploadFile**](WorkspaceServiceApi.md#uploadFile) | **POST** /workspace-microservice/api/v1/files/upload | Upload a file |
 
 
 <a name="createAccount"></a>
@@ -216,36 +214,6 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
-<a name="downloadFile"></a>
-# **downloadFile**
-> DownloadFileResponse downloadFile(fileId, authZeroUserId, folderId, workspaceId)
-
-Download a file
-
-    This endpoint downloads a file by ID
-
-### Parameters
-
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **fileId** | **String**|  | [default to null] |
-| **authZeroUserId** | **String**|  | [default to null] |
-| **folderId** | **String**|  | [optional] [default to null] |
-| **workspaceId** | **String**|  | [optional] [default to null] |
-
-### Return type
-
-[**DownloadFileResponse**](../Models/DownloadFileResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: Not defined
-- **Accept**: application/json
-
 <a name="getAccount"></a>
 # **getAccount**
 > GetAccountResponse getAccount(authZeroUserId)
@@ -400,33 +368,6 @@ Update a workspace
 ### Return type
 
 [**UpdateWorkspaceResponse**](../Models/UpdateWorkspaceResponse.md)
-
-### Authorization
-
-No authorization required
-
-### HTTP request headers
-
-- **Content-Type**: application/json
-- **Accept**: application/json
-
-<a name="uploadFile"></a>
-# **uploadFile**
-> UploadFileResponse uploadFile(UploadFileRequest)
-
-Upload a file
-
-    This endpoint uploads a file
-
-### Parameters
-
-|Name | Type | Description  | Notes |
-|------------- | ------------- | ------------- | -------------|
-| **UploadFileRequest** | [**UploadFileRequest**](../Models/UploadFileRequest.md)|  (streaming inputs) | |
-
-### Return type
-
-[**UploadFileResponse**](../Models/UploadFileResponse.md)
 
 ### Authorization
 

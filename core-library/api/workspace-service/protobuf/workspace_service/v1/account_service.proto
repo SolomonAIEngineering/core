@@ -80,52 +80,6 @@ service WorkspaceService {
         };
     }
 
-    // Allows for uploading a file using multipart form data.
-    // consumes: multipart/form-data
-    rpc UploadFile(stream UploadFileRequest) returns (UploadFileResponse) {
-        option (google.api.http) = {
-            post: "/workspace-microservice/api/v1/files/upload"
-            body: "*"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Upload a file"
-            tags: ["workspace-service"]
-            operation_id: "UploadFile"
-            description: "This endpoint uploads a file"
-            responses: {
-                key: "200"
-                value: {
-                    description: "File upload successful"
-                    schema: {
-                        json_schema: { ref: ".workspace_service.v1.UploadFileResponse" }
-                    }
-                }
-            }
-        };
-    }
-
-    // Read a File Metadata
-    rpc DownloadFile(DownloadFileRequest) returns (stream DownloadFileResponse) {
-        option (google.api.http) = {
-            get: "/workspace-microservice/api/v1/files/{file_id}"
-        };
-        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
-            summary: "Download a file"
-            tags: ["workspace-service"]
-            operation_id: "DownloadFile"
-            description: "This endpoint downloads a file by ID"
-            responses: {
-                key: "200"
-                value: {
-                    description: "File download successful"
-                    schema: {
-                        json_schema: { ref: ".workspace_service.v1.DownloadFileResponse" }
-                    }
-                }
-            }
-        };
-    }
-
 
     // Delete a File
     rpc DeleteFile(DeleteFileRequest) returns (DeleteFileResponse) {

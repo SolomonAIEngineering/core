@@ -881,120 +881,6 @@
                             ]
                         },
 	                        {
-    "name": "/workspace-microservice/api/v1/files/:fileId",
-                "description": "This endpoint downloads a file by ID",
-                 "item": [
-                            {
-                                "name": "Download a file",
-                                "request": {
-                                    "method": "GET",
-                                    "header": [
-                                        {
-                                            "key": "Accept",
-                                            "value": "application/json",
-                                            "disabled": false
-                                        }
-                                    ],
-                                    "body": {
-                                        "mode": "raw",
-                                        "raw": "",
-                                        "options": {
-                                            "raw": {
-                                                "language": "json"
-                                            }
-                                        }
-                                    },
-                                    "url": {
-                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/files/:fileId",
-                                        "host": [
-                                            "{{baseUrl}}"
-                                        ],
-                                        "path": [
-                                            "workspace-microservice",
-                                            "api",
-                                            "v1",
-                                            "files",
-                                            ":fileId"
-                                        ],
-                                        "variable": [
-                                            {
-                                                "key": "fileId",
-                                                "value": "",
-                                                "description": ""
-                                            }
-                                        ],
-                                        "query": [
-                                            {
-                                                "key": "authZeroUserId",
-                                                "value": "authZeroUserId_example"
-                                            },
-                                            {
-                                                "key": "folderId",
-                                                "value": "folderId_example"
-                                            },
-                                            {
-                                                "key": "workspaceId",
-                                                "value": "workspaceId_example"
-                                            }
-                                        ]
-                                    },
-                                    "description": "This endpoint downloads a file by ID"
-                                }
-                            }
-                            ]
-                        },
-	                        {
-    "name": "/workspace-microservice/api/v1/files/upload",
-                "description": "This endpoint uploads a file",
-                 "item": [
-                            {
-                                "name": "Upload a file",
-                                "request": {
-                                    "method": "POST",
-                                    "header": [
-                                        {
-                                            "key": "Content-Type",
-                                            "value": "application/json",
-                                            "disabled": false
-                                        },
-                                        {
-                                            "key": "Accept",
-                                            "value": "application/json",
-                                            "disabled": false
-                                        }
-                                    ],
-                                    "body": {
-                                        "mode": "raw",
-                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"folderId\": \"<string>\",\n \"data\": \"<string>\",\n \"name\": \"<string>\"\n}",
-                                        "options": {
-                                            "raw": {
-                                                "language": "json"
-                                            }
-                                        }
-                                    },
-                                    "url": {
-                                        "raw": "{{baseUrl}}/workspace-microservice/api/v1/files/upload",
-                                        "host": [
-                                            "{{baseUrl}}"
-                                        ],
-                                        "path": [
-                                            "workspace-microservice",
-                                            "api",
-                                            "v1",
-                                            "files",
-                                            "upload"
-                                        ],
-                                        "variable": [
-                                        ],
-                                        "query": [
-                                        ]
-                                    },
-                                    "description": "This endpoint uploads a file"
-                                }
-                            }
-                            ]
-                        },
-	                        {
     "name": "/workspace-microservice/api/v1/folders",
                 "description": "This endpoint creates a new folder",
                  "item": [
@@ -14006,6 +13892,62 @@
                                         ]
                                     },
                                     "description": "This endpoint performs password reset for a given user account"
+                                }
+                            }
+                            ]
+                        }
+	                    ]
+	        },
+	        {
+	            "name": "workspace-service-rest",
+	            "item": [
+	                        {
+    "name": "/workspace-microservice/rest-api/v1/file/upload",
+                "description": "This endpoint allows for the uploading of a file to the server. Upon successful upload,",
+                 "item": [
+                            {
+                                "name": "Uploads a file to the server",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "multipart/form-data",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/workspace-microservice/rest-api/v1/file/upload",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "workspace-microservice",
+                                            "rest-api",
+                                            "v1",
+                                            "file",
+                                            "upload"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint allows for the uploading of a file to the server. Upon successful upload,"
                                 }
                             }
                             ]

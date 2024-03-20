@@ -1,0 +1,68 @@
+basePath: /
+definitions:
+  workspaceservicehttp.FileUploadResponse:
+    properties:
+      file_id:
+        type: integer
+      fileUrl:
+        type: string
+    type: object
+host: workspace-service.platform.svc.cluster.local:9898
+info:
+  contact:
+    name: Source Code
+    url: https://github.com/SolomonAIEngineering/core
+  description: REST API for managing workspaces and their resources on the Solomon
+    AI platform.
+  license:
+    name: MIT License
+    url: https://github.com/SolomonAIEngineering/core/blob/master/LICENSE
+  title: Workspace Service REST API
+  version: "2.0"
+paths:
+  /workspace-microservice/rest-api/v1/file/upload:
+    post:
+      consumes:
+      - multipart/form-data
+      description: This endpoint allows for the uploading of a file to the server.
+        Upon successful upload,
+      parameters:
+      - description: Identifier of the workspace where the file will be uploaded
+        in: formData
+        name: workspaceId
+        required: true
+        type: string
+      - description: Identifier of the folder within the workspace where the file
+          will be stored
+        in: formData
+        name: folderId
+        required: true
+        type: string
+      - description: The name of the file to be saved (optional)
+        in: formData
+        name: filename
+        type: string
+      - description: Identifier of the user uploading the file
+        in: formData
+        name: userId
+        required: true
+        type: string
+      - description: The file to be uploaded
+        in: formData
+        name: attachment
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: On successful upload, returns the URL to the saved file and
+            its metadata, including file name, size, type, and the upload timestamp.
+          schema:
+            $ref: '#/definitions/workspaceservicehttp.FileUploadResponse'
+      summary: Uploads a file to the server
+      tags:
+      - workspace-service-rest
+schemes:
+- http
+swagger: "2.0"
