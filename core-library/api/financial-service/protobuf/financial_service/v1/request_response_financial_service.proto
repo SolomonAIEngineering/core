@@ -64,6 +64,9 @@ message GetUserProfileRequest {
   FinancialUserProfileType profile_type = 9 [
     (google.api.field_behavior) = REQUIRED
   ];
+  // bypass_cache is a flag to bypass the cache and fetch the data from the source
+  // this is very valuable when we want to get the latest data from the source
+  bool bypass_cache = 10;
 }
 
 // GetUserProfileResponse: Represents the response object returned as a response to

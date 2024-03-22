@@ -888,6 +888,7 @@ export interface GetUserCategoryMonthlyIncomeRequest {
 export interface GetUserProfile1Request {
     userId: string;
     profileType: GetUserProfile1ProfileTypeEnum;
+    bypassCache?: boolean;
 }
 
 export interface InitiatePlaidSetupRequest {
@@ -4136,6 +4137,10 @@ export class FinancialServiceApi extends runtime.BaseAPI {
 
         if (requestParameters.profileType !== undefined) {
             queryParameters['profileType'] = requestParameters.profileType;
+        }
+
+        if (requestParameters.bypassCache !== undefined) {
+            queryParameters['bypassCache'] = requestParameters.bypassCache;
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
