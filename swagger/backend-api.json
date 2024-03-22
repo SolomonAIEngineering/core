@@ -15195,6 +15195,15 @@
                             ],
                             "default": "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED"
                         }
+                    },
+                    {
+                        "name": "bypassCache",
+                        "description": "bypass_cache is a flag to bypass the cache and fetch the data from the source\nthis is very valuable when we want to get the latest data from the source",
+                        "in": "query",
+                        "required": false,
+                        "schema": {
+                            "type": "boolean"
+                        }
                     }
                 ],
                 "tags": [

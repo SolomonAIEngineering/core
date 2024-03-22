@@ -378,6 +378,8 @@ func (m *GetUserProfileRequest) validate(all bool) error {
 
 	// no validation rules for ProfileType
 
+	// no validation rules for BypassCache
+
 	if len(errors) > 0 {
 		return GetUserProfileRequestMultiError(errors)
 	}

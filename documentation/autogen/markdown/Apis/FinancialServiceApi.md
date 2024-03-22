@@ -2292,7 +2292,7 @@ No authorization required
 
 <a name="getUserProfile1"></a>
 # **getUserProfile1**
-> GetUserProfileResponse1 getUserProfile1(userId, profileType)
+> GetUserProfileResponse1 getUserProfile1(userId, profileType, bypassCache)
 
 Gets a user profile
 
@@ -2304,6 +2304,7 @@ Gets a user profile
 |------------- | ------------- | ------------- | -------------|
 | **userId** | **String**| The account ID associated with the user. NOTE: This user_id is the simfiny backend platform wide user id Validations: - user_id must be greater than 0 | [default to null] |
 | **profileType** | **String**|  | [default to FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED] [enum: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED, FINANCIAL_USER_PROFILE_TYPE_USER, FINANCIAL_USER_PROFILE_TYPE_BUSINESS] |
+| **bypassCache** | **Boolean**| bypass_cache is a flag to bypass the cache and fetch the data from the source this is very valuable when we want to get the latest data from the source | [optional] [default to null] |
 
 ### Return type
 
