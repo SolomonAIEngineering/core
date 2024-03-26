@@ -124,6 +124,7 @@ export interface DeleteWorkspaceRequest {
 
 export interface GetAccountRequest {
     authZeroUserId: string;
+    createIfNotExists?: boolean;
 }
 
 export interface ListFolderRequest {
@@ -432,6 +433,10 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
         }
 
         const queryParameters: any = {};
+
+        if (requestParameters.createIfNotExists !== undefined) {
+            queryParameters['createIfNotExists'] = requestParameters.createIfNotExists;
+        }
 
         const headerParameters: runtime.HTTPHeaders = {};
 

@@ -47,6 +47,7 @@ message GetAccountRequest{
     (validate.rules).string.min_len = 1,
     (google.api.field_behavior) = REQUIRED  
   ];
+  bool create_if_not_exists = 2;
 }
 
 message GetAccountResponse {
