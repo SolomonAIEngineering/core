@@ -216,7 +216,7 @@ No authorization required
 
 <a name="getAccount"></a>
 # **getAccount**
-> GetAccountResponse getAccount(authZeroUserId)
+> GetAccountResponse getAccount(authZeroUserId, createIfNotExists)
 
 Get account by ID
 
@@ -227,6 +227,7 @@ Get account by ID
 |Name | Type | Description  | Notes |
 |------------- | ------------- | ------------- | -------------|
 | **authZeroUserId** | **String**|  | [default to null] |
+| **createIfNotExists** | **Boolean**|  | [optional] [default to null] |
 
 ### Return type
 

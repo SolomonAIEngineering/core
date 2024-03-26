@@ -760,6 +760,10 @@
                                             }
                                         ],
                                         "query": [
+                                            {
+                                                "key": "createIfNotExists",
+                                                "value": "true"
+                                            }
                                         ]
                                     },
                                     "description": "This endpoint retrieves account details by ID"

@@ -13070,6 +13070,11 @@ paths:
           required: true
           schema:
             type: string
+        - name: createIfNotExists
+          in: query
+          required: false
+          schema:
+            type: boolean
       tags:
         - workspace-service
     delete:

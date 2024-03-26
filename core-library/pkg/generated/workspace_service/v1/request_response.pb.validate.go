@@ -738,6 +738,8 @@ func (m *GetAccountRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
+	// no validation rules for CreateIfNotExists
+
 	if len(errors) > 0 {
 		return GetAccountRequestMultiError(errors)
 	}
