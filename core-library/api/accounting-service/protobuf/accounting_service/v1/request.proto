@@ -261,16 +261,20 @@ message ReadBusinessTransactionsRequest {
     (validate.rules).string.min_len = 1, // Validation rule: auth0UserId must have a minimum length of 1.
     (google.api.field_behavior) = REQUIRED // Field behavior: user_id is required.
   ]; // The ID of the user whose transactions are to be fetched.
-  uint64 page_number = 2 [
+  uint64 linked_accounting_account_id = 2 [
+    (validate.rules).uint64.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ]; // The ID of the accounting account whose transactions are to be fetched.
+  uint64 page_number = 3 [
     (validate.rules).uint64.gt = 0,
     (google.api.field_behavior) = REQUIRED
   ]; // The page number of the paginated results.
-  uint64 page_size = 3[
+  uint64 page_size = 4 [
     (validate.rules).uint64.gt = 0,
     (google.api.field_behavior) = REQUIRED
   ]; // The number of items to be returned per page.
-  google.protobuf.Timestamp start_time = 4; // The start of the time range for the transactions (inclusive).
-  google.protobuf.Timestamp end_time = 5; // The end of the time range for the transactions (exclusive).
+  google.protobuf.Timestamp start_time = 5; // The start of the time range for the transactions (inclusive).
+  google.protobuf.Timestamp end_time = 6; // The end of the time range for the transactions (exclusive).
 }
 
 // Response for the request containing the paginated list of transactions.

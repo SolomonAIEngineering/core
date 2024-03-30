@@ -26,6 +26,12 @@ export interface ReadBusinessTransactionsRequest {
      */
     authZeroUserId: string;
     /**
+     * The ID of the accounting account whose transactions are to be fetched.
+     * @type {string}
+     * @memberof ReadBusinessTransactionsRequest
+     */
+    linkedAccountingAccountId: string;
+    /**
      * The page number of the paginated results.
      * @type {string}
      * @memberof ReadBusinessTransactionsRequest
@@ -57,6 +63,7 @@ export interface ReadBusinessTransactionsRequest {
 export function instanceOfReadBusinessTransactionsRequest(value: object): boolean {
     let isInstance = true;
     isInstance = isInstance && "authZeroUserId" in value;
+    isInstance = isInstance && "linkedAccountingAccountId" in value;
     isInstance = isInstance && "pageNumber" in value;
     isInstance = isInstance && "pageSize" in value;
 
@@ -74,6 +81,7 @@ export function ReadBusinessTransactionsRequestFromJSONTyped(json: any, ignoreDi
     return {
         
         'authZeroUserId': json['authZeroUserId'],
+        'linkedAccountingAccountId': json['linkedAccountingAccountId'],
         'pageNumber': json['pageNumber'],
         'pageSize': json['pageSize'],
         'startTime': !exists(json, 'startTime') ? undefined : (new Date(json['startTime'])),
@@ -91,6 +99,7 @@ export function ReadBusinessTransactionsRequestToJSON(value?: ReadBusinessTransa
     return {
         
         'authZeroUserId': value.authZeroUserId,
+        'linkedAccountingAccountId': value.linkedAccountingAccountId,
         'pageNumber': value.pageNumber,
         'pageSize': value.pageSize,
         'startTime': value.startTime === undefined ? undefined : (value.startTime.toISOString()),

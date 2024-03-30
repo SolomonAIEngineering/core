@@ -1832,6 +1832,17 @@ func (m *ReadBusinessTransactionsRequest) validate(all bool) error {
 		errors = append(errors, err)
 	}
 
+	if m.GetLinkedAccountingAccountId() <= 0 {
+		err := ReadBusinessTransactionsRequestValidationError{
+			field:  "LinkedAccountingAccountId",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
 	if m.GetPageNumber() <= 0 {
 		err := ReadBusinessTransactionsRequestValidationError{
 			field:  "PageNumber",
