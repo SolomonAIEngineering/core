@@ -1521,6 +1521,350 @@
         ]
       }
     },
+    "/user-microservice/api/v2/user-service/user/team": {
+      "post": {
+        "summary": "Creates a new team",
+        "description": "This endpoint adds a new team to the system. It requires team details such as name, description, and members.The creation process involves adding the team to the database and initializing its members.",
+        "operationId": "CreateTeam",
+        "responses": {
+          "200": {
+            "description": "Team created successfully.",
+            "schema": {
+              "$ref": "#/definitions/CreateTeamResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateTeamRequest"
+            }
+          }
+        ],
+        "tags": [
+          "user-service-v2"
+        ]
+      },
+      "patch": {
+        "summary": "Updates an existing team",
+        "description": "This endpoint updates the details of an existing team. The team ID is used to identify the team to be updated.The update operation can modify the team's name, description, and members.",
+        "operationId": "UpdateTeam",
+        "responses": {
+          "200": {
+            "description": "Team updated successfully.",
+            "schema": {
+              "$ref": "#/definitions/UpdateTeamResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "team",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/Team"
+            }
+          }
+        ],
+        "tags": [
+          "user-service-v2"
+        ]
+      }
+    },
+    "/user-microservice/api/v2/user-service/user/team/{teamId}": {
+      "get": {
+        "summary": "Retrieves a team",
+        "description": "This endpoint fetches details of a specific team using the team ID.It retrieves the team's name, description, members, and audit history.",
+        "operationId": "GetTeam",
+        "responses": {
+          "200": {
+            "description": "Team retrieval successful.",
+            "schema": {
+              "$ref": "#/definitions/GetTeamResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "user-service-v2"
+        ]
+      }
+    },
+    "/user-microservice/api/v2/user-service/user/team/{teamId}/add-new-user": {
+      "post": {
+        "summary": "Adds a user to a team",
+        "description": "This endpoint adds a user to a team based on the provided team ID and user ID.The addition process ensures that the user is properly associated with the team.",
+        "operationId": "AddUserToTeam",
+        "responses": {
+          "200": {
+            "description": "User added to team successfully.",
+            "schema": {
+              "$ref": "#/definitions/AddUserToTeamResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddUserToTeamBody"
+            }
+          }
+        ],
+        "tags": [
+          "user-service-v2"
+        ]
+      }
+    },
+    "/user-microservice/api/v2/user-service/user/team/{teamId}/admin/{adminAuth0UserId}": {
+      "delete": {
+        "summary": "Deletes a team",
+        "description": "This endpoint deletes a team from the system based on the provided team ID.The deletion process ensures that all related data and members are properly removed.",
+        "operationId": "DeleteTeam",
+        "responses": {
+          "200": {
+            "description": "Team deleted successfully.",
+            "schema": {
+              "$ref": "#/definitions/DeleteTeamResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "adminAuth0UserId",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "user-service-v2"
+        ]
+      }
+    },
+    "/user-microservice/api/v2/user-service/user/team/{teamId}/remove-user": {
+      "delete": {
+        "summary": "Removes a user from a team",
+        "description": "This endpoint removes a user from a team based on the provided team ID and user ID.The removal process ensures that the user is properly disassociated from the team.",
+        "operationId": "RemoveUserFromTeam",
+        "responses": {
+          "200": {
+            "description": "User removed from team successfully.",
+            "schema": {
+              "$ref": "#/definitions/RemoveUserFromTeamResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "teamId",
+            "in": "path",
+            "required": true,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "adminAuth0UserId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "userAuth0UserId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "profileType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "PROFILE_TYPE_UNSPECIFIED",
+              "PROFILE_TYPE_USER",
+              "PROFILE_TYPE_BUSINESS"
+            ],
+            "default": "PROFILE_TYPE_UNSPECIFIED"
+          }
+        ],
+        "tags": [
+          "user-service-v2"
+        ]
+      }
+    },
     "/user-microservice/api/v2/user-service/user/username/{username}": {
       "get": {
         "summary": "Retrieve user details by username",
@@ -2009,6 +2353,29 @@
     }
   },
   "definitions": {
+    "AddUserToTeamBody": {
+      "type": "object",
+      "properties": {
+        "adminAuth0UserId": {
+          "type": "string"
+        },
+        "userAuth0UserId": {
+          "type": "string"
+        },
+        "profileType": {
+          "$ref": "#/definitions/ProfileType"
+        }
+      },
+      "title": "Add User to Team Request and Response"
+    },
+    "AddUserToTeamResponse": {
+      "type": "object",
+      "properties": {
+        "team": {
+          "$ref": "#/definitions/Team"
+        }
+      }
+    },
     "Address": {
       "type": "object",
       "properties": {
@@ -2199,8 +2566,12 @@
           "type": "string",
           "title": "auth0 user id associated with the business account"
         },
-        "role": {
-          "$ref": "#/definitions/Role"
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Role"
+          }
         },
         "algoliaUserId": {
           "type": "string",
@@ -2263,6 +2634,31 @@
         }
       }
     },
+    "CreateTeamRequest": {
+      "type": "object",
+      "properties": {
+        "adminAuth0UserId": {
+          "type": "string"
+        },
+        "teamName": {
+          "type": "string",
+          "example": "team_name:team1"
+        },
+        "teamDescription": {
+          "type": "string",
+          "example": "team_description:team1"
+        }
+      },
+      "title": "Create Team Request and Response"
+    },
+    "CreateTeamResponse": {
+      "type": "object",
+      "properties": {
+        "team": {
+          "$ref": "#/definitions/Team"
+        }
+      }
+    },
     "CreateUserV2Request": {
       "type": "object",
       "properties": {
@@ -2308,6 +2704,14 @@
       "title": "CreateUserResponse: Represents the response object returned as a response to\nthe `create-user` request"
     },
     "DeleteRoleResponse": {
+      "type": "object",
+      "properties": {
+        "success": {
+          "type": "boolean"
+        }
+      }
+    },
+    "DeleteTeamResponse": {
       "type": "object",
       "properties": {
         "success": {
@@ -2451,6 +2855,14 @@
       "properties": {
         "role": {
           "$ref": "#/definitions/Role"
+        }
+      }
+    },
+    "GetTeamResponse": {
+      "type": "object",
+      "properties": {
+        "team": {
+          "$ref": "#/definitions/Team"
         }
       }
     },
@@ -2742,6 +3154,14 @@
         }
       }
     },
+    "RemoveUserFromTeamResponse": {
+      "type": "object",
+      "properties": {
+        "team": {
+          "$ref": "#/definitions/Team"
+        }
+      }
+    },
     "RiskToleranceSettings": {
       "type": "string",
       "enum": [
@@ -2981,11 +3401,76 @@
       },
       "title": "Tags: represents metadata tags associated to an account"
     },
+    "Team": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64",
+          "description": "Unique identifier for the team."
+        },
+        "name": {
+          "type": "string",
+          "description": "Name of the team."
+        },
+        "description": {
+          "type": "string",
+          "description": "Description of the team."
+        },
+        "tags": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Tags"
+          },
+          "description": "Tags associated with the team."
+        },
+        "teamAdmin": {
+          "$ref": "#/definitions/BusinessAccount",
+          "description": "Admin of the team.\nNOTE: only one admin is allowed per team and that admin must be a business account."
+        },
+        "memberUsersAccounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/UserAccount"
+          },
+          "description": "Members of the team."
+        },
+        "memberBusinessAccounts": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/BusinessAccount"
+          },
+          "description": "Member business accounts of the team."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp for when the team was created."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp for when the team was last updated."
+        }
+      },
+      "description": "Team: represents a team within the context of solomon-ai."
+    },
     "UpdateRoleResponse": {
       "type": "object",
       "properties": {
         "role": {
           "$ref": "#/definitions/Role"
+        }
+      }
+    },
+    "UpdateTeamResponse": {
+      "type": "object",
+      "properties": {
+        "team": {
+          "$ref": "#/definitions/Team"
         }
       }
     },
@@ -3132,8 +3617,12 @@
           "type": "string",
           "title": "Auth0 user id"
         },
-        "role": {
-          "$ref": "#/definitions/Role"
+        "roles": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/Role"
+          }
         },
         "algoliaUserId": {
           "type": "string",

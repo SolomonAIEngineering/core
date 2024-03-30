@@ -4122,6 +4122,648 @@ func (*CheckEmailAndAuth0UserIdExistsResponse_UserAccount) isCheckEmailAndAuth0U
 func (*CheckEmailAndAuth0UserIdExistsResponse_BusinessAccount) isCheckEmailAndAuth0UserIdExistsResponse_Account() {
 }
 
+// Create Team Request and Response
+type CreateTeamRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	AdminAuth0UserId string `protobuf:"bytes,1,opt,name=admin_auth0_user_id,json=adminAuth0UserId,proto3" json:"admin_auth0_user_id,omitempty"`
+	TeamName         string `protobuf:"bytes,2,opt,name=team_name,json=teamName,proto3" json:"team_name,omitempty"`
+	TeamDescription  string `protobuf:"bytes,3,opt,name=team_description,json=teamDescription,proto3" json:"team_description,omitempty"`
+}
+
+func (x *CreateTeamRequest) Reset() {
+	*x = CreateTeamRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_service_v1_request_response_proto_msgTypes[72]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateTeamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateTeamRequest) ProtoMessage() {}
+
+func (x *CreateTeamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_v1_request_response_proto_msgTypes[72]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateTeamRequest.ProtoReflect.Descriptor instead.
+func (*CreateTeamRequest) Descriptor() ([]byte, []int) {
+	return file_user_service_v1_request_response_proto_rawDescGZIP(), []int{72}
+}
+
+func (x *CreateTeamRequest) GetAdminAuth0UserId() string {
+	if x != nil {
+		return x.AdminAuth0UserId
+	}
+	return ""
+}
+
+func (x *CreateTeamRequest) GetTeamName() string {
+	if x != nil {
+		return x.TeamName
+	}
+	return ""
+}
+
+func (x *CreateTeamRequest) GetTeamDescription() string {
+	if x != nil {
+		return x.TeamDescription
+	}
+	return ""
+}
+
+type CreateTeamResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Team *Team `protobuf:"bytes,1,opt,name=team,proto3" json:"team,omitempty"`
+}
+
+func (x *CreateTeamResponse) Reset() {
+	*x = CreateTeamResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_service_v1_request_response_proto_msgTypes[73]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateTeamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateTeamResponse) ProtoMessage() {}
+
+func (x *CreateTeamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_v1_request_response_proto_msgTypes[73]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateTeamResponse.ProtoReflect.Descriptor instead.
+func (*CreateTeamResponse) Descriptor() ([]byte, []int) {
+	return file_user_service_v1_request_response_proto_rawDescGZIP(), []int{73}
+}
+
+func (x *CreateTeamResponse) GetTeam() *Team {
+	if x != nil {
+		return x.Team
+	}
+	return nil
+}
+
+// Get Team Request and Response
+type GetTeamRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TeamId int64 `protobuf:"varint,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+}
+
+func (x *GetTeamRequest) Reset() {
+	*x = GetTeamRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_service_v1_request_response_proto_msgTypes[74]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetTeamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTeamRequest) ProtoMessage() {}
+
+func (x *GetTeamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_v1_request_response_proto_msgTypes[74]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTeamRequest.ProtoReflect.Descriptor instead.
+func (*GetTeamRequest) Descriptor() ([]byte, []int) {
+	return file_user_service_v1_request_response_proto_rawDescGZIP(), []int{74}
+}
+
+func (x *GetTeamRequest) GetTeamId() int64 {
+	if x != nil {
+		return x.TeamId
+	}
+	return 0
+}
+
+type GetTeamResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Team *Team `protobuf:"bytes,1,opt,name=team,proto3" json:"team,omitempty"`
+}
+
+func (x *GetTeamResponse) Reset() {
+	*x = GetTeamResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_service_v1_request_response_proto_msgTypes[75]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetTeamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetTeamResponse) ProtoMessage() {}
+
+func (x *GetTeamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_v1_request_response_proto_msgTypes[75]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetTeamResponse.ProtoReflect.Descriptor instead.
+func (*GetTeamResponse) Descriptor() ([]byte, []int) {
+	return file_user_service_v1_request_response_proto_rawDescGZIP(), []int{75}
+}
+
+func (x *GetTeamResponse) GetTeam() *Team {
+	if x != nil {
+		return x.Team
+	}
+	return nil
+}
+
+// Update Team Request and Response
+type UpdateTeamRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Team *Team `protobuf:"bytes,2,opt,name=team,proto3" json:"team,omitempty"`
+}
+
+func (x *UpdateTeamRequest) Reset() {
+	*x = UpdateTeamRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_service_v1_request_response_proto_msgTypes[76]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateTeamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateTeamRequest) ProtoMessage() {}
+
+func (x *UpdateTeamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_v1_request_response_proto_msgTypes[76]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateTeamRequest.ProtoReflect.Descriptor instead.
+func (*UpdateTeamRequest) Descriptor() ([]byte, []int) {
+	return file_user_service_v1_request_response_proto_rawDescGZIP(), []int{76}
+}
+
+func (x *UpdateTeamRequest) GetTeam() *Team {
+	if x != nil {
+		return x.Team
+	}
+	return nil
+}
+
+type UpdateTeamResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Team *Team `protobuf:"bytes,1,opt,name=team,proto3" json:"team,omitempty"`
+}
+
+func (x *UpdateTeamResponse) Reset() {
+	*x = UpdateTeamResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_service_v1_request_response_proto_msgTypes[77]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *UpdateTeamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*UpdateTeamResponse) ProtoMessage() {}
+
+func (x *UpdateTeamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_v1_request_response_proto_msgTypes[77]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use UpdateTeamResponse.ProtoReflect.Descriptor instead.
+func (*UpdateTeamResponse) Descriptor() ([]byte, []int) {
+	return file_user_service_v1_request_response_proto_rawDescGZIP(), []int{77}
+}
+
+func (x *UpdateTeamResponse) GetTeam() *Team {
+	if x != nil {
+		return x.Team
+	}
+	return nil
+}
+
+// Delete Team Request and Response
+type DeleteTeamRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TeamId           int64  `protobuf:"varint,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	AdminAuth0UserId string `protobuf:"bytes,2,opt,name=admin_auth0_user_id,json=adminAuth0UserId,proto3" json:"admin_auth0_user_id,omitempty"`
+}
+
+func (x *DeleteTeamRequest) Reset() {
+	*x = DeleteTeamRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_service_v1_request_response_proto_msgTypes[78]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteTeamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteTeamRequest) ProtoMessage() {}
+
+func (x *DeleteTeamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_v1_request_response_proto_msgTypes[78]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteTeamRequest.ProtoReflect.Descriptor instead.
+func (*DeleteTeamRequest) Descriptor() ([]byte, []int) {
+	return file_user_service_v1_request_response_proto_rawDescGZIP(), []int{78}
+}
+
+func (x *DeleteTeamRequest) GetTeamId() int64 {
+	if x != nil {
+		return x.TeamId
+	}
+	return 0
+}
+
+func (x *DeleteTeamRequest) GetAdminAuth0UserId() string {
+	if x != nil {
+		return x.AdminAuth0UserId
+	}
+	return ""
+}
+
+type DeleteTeamResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Success bool `protobuf:"varint,1,opt,name=success,proto3" json:"success,omitempty"`
+}
+
+func (x *DeleteTeamResponse) Reset() {
+	*x = DeleteTeamResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_service_v1_request_response_proto_msgTypes[79]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *DeleteTeamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*DeleteTeamResponse) ProtoMessage() {}
+
+func (x *DeleteTeamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_v1_request_response_proto_msgTypes[79]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use DeleteTeamResponse.ProtoReflect.Descriptor instead.
+func (*DeleteTeamResponse) Descriptor() ([]byte, []int) {
+	return file_user_service_v1_request_response_proto_rawDescGZIP(), []int{79}
+}
+
+func (x *DeleteTeamResponse) GetSuccess() bool {
+	if x != nil {
+		return x.Success
+	}
+	return false
+}
+
+// Add User to Team Request and Response
+type AddUserToTeamRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TeamId           int64       `protobuf:"varint,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	AdminAuth0UserId string      `protobuf:"bytes,2,opt,name=admin_auth0_user_id,json=adminAuth0UserId,proto3" json:"admin_auth0_user_id,omitempty"`
+	UserAuth0UserId  string      `protobuf:"bytes,3,opt,name=user_auth0_user_id,json=userAuth0UserId,proto3" json:"user_auth0_user_id,omitempty"`
+	ProfileType      ProfileType `protobuf:"varint,4,opt,name=profile_type,json=profileType,proto3,enum=user_service.v1.ProfileType" json:"profile_type,omitempty"`
+}
+
+func (x *AddUserToTeamRequest) Reset() {
+	*x = AddUserToTeamRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_service_v1_request_response_proto_msgTypes[80]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddUserToTeamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddUserToTeamRequest) ProtoMessage() {}
+
+func (x *AddUserToTeamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_v1_request_response_proto_msgTypes[80]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddUserToTeamRequest.ProtoReflect.Descriptor instead.
+func (*AddUserToTeamRequest) Descriptor() ([]byte, []int) {
+	return file_user_service_v1_request_response_proto_rawDescGZIP(), []int{80}
+}
+
+func (x *AddUserToTeamRequest) GetTeamId() int64 {
+	if x != nil {
+		return x.TeamId
+	}
+	return 0
+}
+
+func (x *AddUserToTeamRequest) GetAdminAuth0UserId() string {
+	if x != nil {
+		return x.AdminAuth0UserId
+	}
+	return ""
+}
+
+func (x *AddUserToTeamRequest) GetUserAuth0UserId() string {
+	if x != nil {
+		return x.UserAuth0UserId
+	}
+	return ""
+}
+
+func (x *AddUserToTeamRequest) GetProfileType() ProfileType {
+	if x != nil {
+		return x.ProfileType
+	}
+	return ProfileType_PROFILE_TYPE_UNSPECIFIED
+}
+
+type AddUserToTeamResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Team *Team `protobuf:"bytes,1,opt,name=team,proto3" json:"team,omitempty"`
+}
+
+func (x *AddUserToTeamResponse) Reset() {
+	*x = AddUserToTeamResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_service_v1_request_response_proto_msgTypes[81]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *AddUserToTeamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AddUserToTeamResponse) ProtoMessage() {}
+
+func (x *AddUserToTeamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_v1_request_response_proto_msgTypes[81]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AddUserToTeamResponse.ProtoReflect.Descriptor instead.
+func (*AddUserToTeamResponse) Descriptor() ([]byte, []int) {
+	return file_user_service_v1_request_response_proto_rawDescGZIP(), []int{81}
+}
+
+func (x *AddUserToTeamResponse) GetTeam() *Team {
+	if x != nil {
+		return x.Team
+	}
+	return nil
+}
+
+// Remove User from Team Request and Response
+type RemoveUserFromTeamRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	TeamId           int64       `protobuf:"varint,1,opt,name=team_id,json=teamId,proto3" json:"team_id,omitempty"`
+	AdminAuth0UserId string      `protobuf:"bytes,2,opt,name=admin_auth0_user_id,json=adminAuth0UserId,proto3" json:"admin_auth0_user_id,omitempty"`
+	UserAuth0UserId  string      `protobuf:"bytes,3,opt,name=user_auth0_user_id,json=userAuth0UserId,proto3" json:"user_auth0_user_id,omitempty"`
+	ProfileType      ProfileType `protobuf:"varint,4,opt,name=profile_type,json=profileType,proto3,enum=user_service.v1.ProfileType" json:"profile_type,omitempty"`
+}
+
+func (x *RemoveUserFromTeamRequest) Reset() {
+	*x = RemoveUserFromTeamRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_service_v1_request_response_proto_msgTypes[82]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RemoveUserFromTeamRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveUserFromTeamRequest) ProtoMessage() {}
+
+func (x *RemoveUserFromTeamRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_v1_request_response_proto_msgTypes[82]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveUserFromTeamRequest.ProtoReflect.Descriptor instead.
+func (*RemoveUserFromTeamRequest) Descriptor() ([]byte, []int) {
+	return file_user_service_v1_request_response_proto_rawDescGZIP(), []int{82}
+}
+
+func (x *RemoveUserFromTeamRequest) GetTeamId() int64 {
+	if x != nil {
+		return x.TeamId
+	}
+	return 0
+}
+
+func (x *RemoveUserFromTeamRequest) GetAdminAuth0UserId() string {
+	if x != nil {
+		return x.AdminAuth0UserId
+	}
+	return ""
+}
+
+func (x *RemoveUserFromTeamRequest) GetUserAuth0UserId() string {
+	if x != nil {
+		return x.UserAuth0UserId
+	}
+	return ""
+}
+
+func (x *RemoveUserFromTeamRequest) GetProfileType() ProfileType {
+	if x != nil {
+		return x.ProfileType
+	}
+	return ProfileType_PROFILE_TYPE_UNSPECIFIED
+}
+
+type RemoveUserFromTeamResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Team *Team `protobuf:"bytes,1,opt,name=team,proto3" json:"team,omitempty"`
+}
+
+func (x *RemoveUserFromTeamResponse) Reset() {
+	*x = RemoveUserFromTeamResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_user_service_v1_request_response_proto_msgTypes[83]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *RemoveUserFromTeamResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*RemoveUserFromTeamResponse) ProtoMessage() {}
+
+func (x *RemoveUserFromTeamResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_user_service_v1_request_response_proto_msgTypes[83]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use RemoveUserFromTeamResponse.ProtoReflect.Descriptor instead.
+func (*RemoveUserFromTeamResponse) Descriptor() ([]byte, []int) {
+	return file_user_service_v1_request_response_proto_rawDescGZIP(), []int{83}
+}
+
+func (x *RemoveUserFromTeamResponse) GetTeam() *Team {
+	if x != nil {
+		return x.Team
+	}
+	return nil
+}
+
 var File_user_service_v1_request_response_proto protoreflect.FileDescriptor
 
 var file_user_service_v1_request_response_proto_rawDesc = []byte{
@@ -4660,22 +5302,98 @@ var file_user_service_v1_request_response_proto_rawDesc = []byte{
 	0x73, 0x69, 0x6e, 0x65, 0x73, 0x73, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x16, 0x0a,
 	0x06, 0x65, 0x78, 0x69, 0x73, 0x74, 0x73, 0x18, 0x03, 0x20, 0x01, 0x28, 0x08, 0x52, 0x06, 0x65,
 	0x78, 0x69, 0x73, 0x74, 0x73, 0x42, 0x09, 0x0a, 0x07, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74,
-	0x42, 0xf4, 0x01, 0x0a, 0x13, 0x63, 0x6f, 0x6d, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x73, 0x65,
-	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x42, 0x14, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01,
-	0x5a, 0x6e, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x53, 0x6f, 0x6c,
-	0x6f, 0x6d, 0x6f, 0x6e, 0x41, 0x49, 0x45, 0x6e, 0x67, 0x69, 0x6e, 0x65, 0x65, 0x72, 0x69, 0x6e,
-	0x67, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2d, 0x6c, 0x69, 0x62, 0x72,
-	0x61, 0x72, 0x79, 0x2f, 0x70, 0x6b, 0x67, 0x2f, 0x67, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65,
-	0x64, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x2d, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x76,
-	0x31, 0x2f, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x76,
-	0x31, 0x3b, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x76, 0x31,
-	0xa2, 0x02, 0x03, 0x55, 0x58, 0x58, 0xaa, 0x02, 0x0e, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72,
-	0x76, 0x69, 0x63, 0x65, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x0e, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65,
-	0x72, 0x76, 0x69, 0x63, 0x65, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x1a, 0x55, 0x73, 0x65, 0x72, 0x53,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5c, 0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74,
-	0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x0f, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x22, 0xcf, 0x01, 0x0a, 0x11, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x65, 0x61, 0x6d, 0x52,
+	0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x2d, 0x0a, 0x13, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x5f,
+	0x61, 0x75, 0x74, 0x68, 0x30, 0x5f, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x09, 0x52, 0x10, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x41, 0x75, 0x74, 0x68, 0x30, 0x55,
+	0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x3a, 0x0a, 0x09, 0x74, 0x65, 0x61, 0x6d, 0x5f, 0x6e, 0x61,
+	0x6d, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x42, 0x1d, 0x92, 0x41, 0x13, 0x4a, 0x11, 0x22,
+	0x74, 0x65, 0x61, 0x6d, 0x5f, 0x6e, 0x61, 0x6d, 0x65, 0x3a, 0x74, 0x65, 0x61, 0x6d, 0x31, 0x22,
+	0xfa, 0x42, 0x04, 0x72, 0x02, 0x20, 0x01, 0x52, 0x08, 0x74, 0x65, 0x61, 0x6d, 0x4e, 0x61, 0x6d,
+	0x65, 0x12, 0x4f, 0x0a, 0x10, 0x74, 0x65, 0x61, 0x6d, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69,
+	0x70, 0x74, 0x69, 0x6f, 0x6e, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x42, 0x24, 0x92, 0x41, 0x1a,
+	0x4a, 0x18, 0x22, 0x74, 0x65, 0x61, 0x6d, 0x5f, 0x64, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74,
+	0x69, 0x6f, 0x6e, 0x3a, 0x74, 0x65, 0x61, 0x6d, 0x31, 0x22, 0xfa, 0x42, 0x04, 0x72, 0x02, 0x20,
+	0x01, 0x52, 0x0f, 0x74, 0x65, 0x61, 0x6d, 0x44, 0x65, 0x73, 0x63, 0x72, 0x69, 0x70, 0x74, 0x69,
+	0x6f, 0x6e, 0x22, 0x3f, 0x0a, 0x12, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x54, 0x65, 0x61, 0x6d,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x29, 0x0a, 0x04, 0x74, 0x65, 0x61, 0x6d,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x73, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x04, 0x74,
+	0x65, 0x61, 0x6d, 0x22, 0x29, 0x0a, 0x0e, 0x47, 0x65, 0x74, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x65,
+	0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x74, 0x65, 0x61, 0x6d, 0x5f, 0x69, 0x64,
+	0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x64, 0x22, 0x3c,
+	0x0a, 0x0f, 0x47, 0x65, 0x74, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x29, 0x0a, 0x04, 0x74, 0x65, 0x61, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x15, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76,
+	0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x04, 0x74, 0x65, 0x61, 0x6d, 0x22, 0x3e, 0x0a, 0x11,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
+	0x74, 0x12, 0x29, 0x0a, 0x04, 0x74, 0x65, 0x61, 0x6d, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0b, 0x32,
+	0x15, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76,
+	0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x04, 0x74, 0x65, 0x61, 0x6d, 0x22, 0x3f, 0x0a, 0x12,
+	0x55, 0x70, 0x64, 0x61, 0x74, 0x65, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x29, 0x0a, 0x04, 0x74, 0x65, 0x61, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x15, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x04, 0x74, 0x65, 0x61, 0x6d, 0x22, 0x5b, 0x0a,
+	0x11, 0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65,
+	0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x74, 0x65, 0x61, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x64, 0x12, 0x2d, 0x0a, 0x13, 0x61,
+	0x64, 0x6d, 0x69, 0x6e, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x30, 0x5f, 0x75, 0x73, 0x65, 0x72, 0x5f,
+	0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x10, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x41,
+	0x75, 0x74, 0x68, 0x30, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x22, 0x2e, 0x0a, 0x12, 0x44, 0x65,
+	0x6c, 0x65, 0x74, 0x65, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65,
+	0x12, 0x18, 0x0a, 0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x08, 0x52, 0x07, 0x73, 0x75, 0x63, 0x63, 0x65, 0x73, 0x73, 0x22, 0xcc, 0x01, 0x0a, 0x14, 0x41,
+	0x64, 0x64, 0x55, 0x73, 0x65, 0x72, 0x54, 0x6f, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x74, 0x65, 0x61, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x74, 0x65, 0x61, 0x6d, 0x49, 0x64, 0x12, 0x2d, 0x0a, 0x13,
+	0x61, 0x64, 0x6d, 0x69, 0x6e, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x30, 0x5f, 0x75, 0x73, 0x65, 0x72,
+	0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x10, 0x61, 0x64, 0x6d, 0x69, 0x6e,
+	0x41, 0x75, 0x74, 0x68, 0x30, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x2b, 0x0a, 0x12, 0x75,
+	0x73, 0x65, 0x72, 0x5f, 0x61, 0x75, 0x74, 0x68, 0x30, 0x5f, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69,
+	0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0f, 0x75, 0x73, 0x65, 0x72, 0x41, 0x75, 0x74,
+	0x68, 0x30, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x3f, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x66,
+	0x69, 0x6c, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1c,
+	0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31,
+	0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x52, 0x0b, 0x70, 0x72,
+	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x22, 0x42, 0x0a, 0x15, 0x41, 0x64, 0x64,
+	0x55, 0x73, 0x65, 0x72, 0x54, 0x6f, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e,
+	0x73, 0x65, 0x12, 0x29, 0x0a, 0x04, 0x74, 0x65, 0x61, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b,
+	0x32, 0x15, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x04, 0x74, 0x65, 0x61, 0x6d, 0x22, 0xd1, 0x01,
+	0x0a, 0x19, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x55, 0x73, 0x65, 0x72, 0x46, 0x72, 0x6f, 0x6d,
+	0x54, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x74,
+	0x65, 0x61, 0x6d, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x03, 0x52, 0x06, 0x74, 0x65,
+	0x61, 0x6d, 0x49, 0x64, 0x12, 0x2d, 0x0a, 0x13, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x5f, 0x61, 0x75,
+	0x74, 0x68, 0x30, 0x5f, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x10, 0x61, 0x64, 0x6d, 0x69, 0x6e, 0x41, 0x75, 0x74, 0x68, 0x30, 0x55, 0x73, 0x65,
+	0x72, 0x49, 0x64, 0x12, 0x2b, 0x0a, 0x12, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x61, 0x75, 0x74, 0x68,
+	0x30, 0x5f, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x0f, 0x75, 0x73, 0x65, 0x72, 0x41, 0x75, 0x74, 0x68, 0x30, 0x55, 0x73, 0x65, 0x72, 0x49, 0x64,
+	0x12, 0x3f, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65,
+	0x18, 0x04, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x1c, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x73, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
+	0x54, 0x79, 0x70, 0x65, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70,
+	0x65, 0x22, 0x47, 0x0a, 0x1a, 0x52, 0x65, 0x6d, 0x6f, 0x76, 0x65, 0x55, 0x73, 0x65, 0x72, 0x46,
+	0x72, 0x6f, 0x6d, 0x54, 0x65, 0x61, 0x6d, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12,
+	0x29, 0x0a, 0x04, 0x74, 0x65, 0x61, 0x6d, 0x18, 0x01, 0x20, 0x01, 0x28, 0x0b, 0x32, 0x15, 0x2e,
+	0x75, 0x73, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e,
+	0x54, 0x65, 0x61, 0x6d, 0x52, 0x04, 0x74, 0x65, 0x61, 0x6d, 0x42, 0xf4, 0x01, 0x0a, 0x13, 0x63,
+	0x6f, 0x6d, 0x2e, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
+	0x76, 0x31, 0x42, 0x14, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x6e, 0x67, 0x69, 0x74, 0x68,
+	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x53, 0x6f, 0x6c, 0x6f, 0x6d, 0x6f, 0x6e, 0x41, 0x49,
+	0x45, 0x6e, 0x67, 0x69, 0x6e, 0x65, 0x65, 0x72, 0x69, 0x6e, 0x67, 0x2f, 0x63, 0x6f, 0x72, 0x65,
+	0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2d, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x2f, 0x70, 0x6b,
+	0x67, 0x2f, 0x67, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x64, 0x2f, 0x75, 0x73, 0x65, 0x72,
+	0x2d, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x76, 0x31, 0x2f, 0x75, 0x73, 0x65, 0x72,
+	0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x76, 0x31, 0x3b, 0x75, 0x73, 0x65, 0x72,
+	0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x55, 0x58, 0x58,
+	0xaa, 0x02, 0x0e, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x56,
+	0x31, 0xca, 0x02, 0x0e, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5c,
+	0x56, 0x31, 0xe2, 0x02, 0x1a, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x5c, 0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea,
+	0x02, 0x0f, 0x55, 0x73, 0x65, 0x72, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x3a, 0x3a, 0x56,
+	0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -4690,7 +5408,7 @@ func file_user_service_v1_request_response_proto_rawDescGZIP() []byte {
 	return file_user_service_v1_request_response_proto_rawDescData
 }
 
-var file_user_service_v1_request_response_proto_msgTypes = make([]protoimpl.MessageInfo, 72)
+var file_user_service_v1_request_response_proto_msgTypes = make([]protoimpl.MessageInfo, 84)
 var file_user_service_v1_request_response_proto_goTypes = []interface{}{
 	(*GetUserRequest)(nil),                         // 0: user_service.v1.GetUserRequest
 	(*GetUserResponse)(nil),                        // 1: user_service.v1.GetUserResponse
@@ -4764,64 +5482,85 @@ var file_user_service_v1_request_response_proto_goTypes = []interface{}{
 	(*ListRolesResponse)(nil),                      // 69: user_service.v1.ListRolesResponse
 	(*CheckEmailAndAuth0UserIdExistsRequest)(nil),  // 70: user_service.v1.CheckEmailAndAuth0UserIdExistsRequest
 	(*CheckEmailAndAuth0UserIdExistsResponse)(nil), // 71: user_service.v1.CheckEmailAndAuth0UserIdExistsResponse
-	(*UserAccount)(nil),                            // 72: user_service.v1.UserAccount
-	(*Settings)(nil),                               // 73: user_service.v1.Settings
-	(ProfileType)(0),                               // 74: user_service.v1.ProfileType
-	(*BusinessAccount)(nil),                        // 75: user_service.v1.BusinessAccount
-	(*Role)(nil),                                   // 76: user_service.v1.Role
+	(*CreateTeamRequest)(nil),                      // 72: user_service.v1.CreateTeamRequest
+	(*CreateTeamResponse)(nil),                     // 73: user_service.v1.CreateTeamResponse
+	(*GetTeamRequest)(nil),                         // 74: user_service.v1.GetTeamRequest
+	(*GetTeamResponse)(nil),                        // 75: user_service.v1.GetTeamResponse
+	(*UpdateTeamRequest)(nil),                      // 76: user_service.v1.UpdateTeamRequest
+	(*UpdateTeamResponse)(nil),                     // 77: user_service.v1.UpdateTeamResponse
+	(*DeleteTeamRequest)(nil),                      // 78: user_service.v1.DeleteTeamRequest
+	(*DeleteTeamResponse)(nil),                     // 79: user_service.v1.DeleteTeamResponse
+	(*AddUserToTeamRequest)(nil),                   // 80: user_service.v1.AddUserToTeamRequest
+	(*AddUserToTeamResponse)(nil),                  // 81: user_service.v1.AddUserToTeamResponse
+	(*RemoveUserFromTeamRequest)(nil),              // 82: user_service.v1.RemoveUserFromTeamRequest
+	(*RemoveUserFromTeamResponse)(nil),             // 83: user_service.v1.RemoveUserFromTeamResponse
+	(*UserAccount)(nil),                            // 84: user_service.v1.UserAccount
+	(*Settings)(nil),                               // 85: user_service.v1.Settings
+	(ProfileType)(0),                               // 86: user_service.v1.ProfileType
+	(*BusinessAccount)(nil),                        // 87: user_service.v1.BusinessAccount
+	(*Role)(nil),                                   // 88: user_service.v1.Role
+	(*Team)(nil),                                   // 89: user_service.v1.Team
 }
 var file_user_service_v1_request_response_proto_depIdxs = []int32{
-	72, // 0: user_service.v1.GetUserResponse.account:type_name -> user_service.v1.UserAccount
-	72, // 1: user_service.v1.UpdateUserRequest.account:type_name -> user_service.v1.UserAccount
-	72, // 2: user_service.v1.UpdateUserResponse.account:type_name -> user_service.v1.UserAccount
-	72, // 3: user_service.v1.CreateUserRequest.account:type_name -> user_service.v1.UserAccount
-	72, // 4: user_service.v1.GetUserByEmailOrUsernameResponse.account:type_name -> user_service.v1.UserAccount
-	72, // 5: user_service.v1.GetUserByUsernameResponse.account:type_name -> user_service.v1.UserAccount
-	72, // 6: user_service.v1.GetUserByEmailResponse.account:type_name -> user_service.v1.UserAccount
-	73, // 7: user_service.v1.GetBusinessSettingsResponse.settings:type_name -> user_service.v1.Settings
-	74, // 8: user_service.v1.GetUserV2Request.profile_type:type_name -> user_service.v1.ProfileType
-	72, // 9: user_service.v1.GetUserV2Response.user_account:type_name -> user_service.v1.UserAccount
-	75, // 10: user_service.v1.GetUserV2Response.business_account:type_name -> user_service.v1.BusinessAccount
-	74, // 11: user_service.v1.DeleteUserV2Request.profile_type:type_name -> user_service.v1.ProfileType
-	72, // 12: user_service.v1.UpdateUserV2Request.user_account:type_name -> user_service.v1.UserAccount
-	75, // 13: user_service.v1.UpdateUserV2Request.business_account:type_name -> user_service.v1.BusinessAccount
-	72, // 14: user_service.v1.UpdateUserV2Response.user_account:type_name -> user_service.v1.UserAccount
-	75, // 15: user_service.v1.UpdateUserV2Response.business_account:type_name -> user_service.v1.BusinessAccount
-	72, // 16: user_service.v1.CreateUserV2Request.user_account:type_name -> user_service.v1.UserAccount
-	75, // 17: user_service.v1.CreateUserV2Request.business_account:type_name -> user_service.v1.BusinessAccount
-	74, // 18: user_service.v1.GetUserIdV2Request.profile_type:type_name -> user_service.v1.ProfileType
-	74, // 19: user_service.v1.GetUserByEmailOrUsernameV2Request.profile_type:type_name -> user_service.v1.ProfileType
-	72, // 20: user_service.v1.GetUserByEmailOrUsernameV2Response.user_account:type_name -> user_service.v1.UserAccount
-	75, // 21: user_service.v1.GetUserByEmailOrUsernameV2Response.business_account:type_name -> user_service.v1.BusinessAccount
-	74, // 22: user_service.v1.VerifyUserV2Request.profile_type:type_name -> user_service.v1.ProfileType
-	74, // 23: user_service.v1.GetUserByUsernameV2Request.profile_type:type_name -> user_service.v1.ProfileType
-	72, // 24: user_service.v1.GetUserByUsernameV2Response.user_account:type_name -> user_service.v1.UserAccount
-	75, // 25: user_service.v1.GetUserByUsernameV2Response.business_account:type_name -> user_service.v1.BusinessAccount
-	74, // 26: user_service.v1.CheckUsernameExistsV2Request.profile_type:type_name -> user_service.v1.ProfileType
-	74, // 27: user_service.v1.CheckEmailExistsV2Request.profile_type:type_name -> user_service.v1.ProfileType
-	74, // 28: user_service.v1.GetUserByEmailV2Request.profile_type:type_name -> user_service.v1.ProfileType
-	72, // 29: user_service.v1.GetUserByEmailV2Response.user_account:type_name -> user_service.v1.UserAccount
-	75, // 30: user_service.v1.GetUserByEmailV2Response.business_account:type_name -> user_service.v1.BusinessAccount
-	74, // 31: user_service.v1.GetUserByAuthnIDV2Request.profile_type:type_name -> user_service.v1.ProfileType
-	72, // 32: user_service.v1.GetUserByAuthnIDV2Response.user_account:type_name -> user_service.v1.UserAccount
-	75, // 33: user_service.v1.GetUserByAuthnIDV2Response.business_account:type_name -> user_service.v1.BusinessAccount
-	74, // 34: user_service.v1.GetCannyUserSSOTokenRequest.profile_type:type_name -> user_service.v1.ProfileType
-	74, // 35: user_service.v1.GetUserByAuth0IDRequest.profile_type:type_name -> user_service.v1.ProfileType
-	72, // 36: user_service.v1.GetUserByAuth0IDResponse.user_account:type_name -> user_service.v1.UserAccount
-	75, // 37: user_service.v1.GetUserByAuth0IDResponse.business_account:type_name -> user_service.v1.BusinessAccount
-	76, // 38: user_service.v1.CreateRoleRequest.role:type_name -> user_service.v1.Role
-	76, // 39: user_service.v1.CreateRoleResponse.role:type_name -> user_service.v1.Role
-	76, // 40: user_service.v1.GetRoleResponse.role:type_name -> user_service.v1.Role
-	76, // 41: user_service.v1.UpdateRoleRequest.role:type_name -> user_service.v1.Role
-	76, // 42: user_service.v1.UpdateRoleResponse.role:type_name -> user_service.v1.Role
-	76, // 43: user_service.v1.ListRolesResponse.roles:type_name -> user_service.v1.Role
-	72, // 44: user_service.v1.CheckEmailAndAuth0UserIdExistsResponse.user_account:type_name -> user_service.v1.UserAccount
-	75, // 45: user_service.v1.CheckEmailAndAuth0UserIdExistsResponse.business_account:type_name -> user_service.v1.BusinessAccount
-	46, // [46:46] is the sub-list for method output_type
-	46, // [46:46] is the sub-list for method input_type
-	46, // [46:46] is the sub-list for extension type_name
-	46, // [46:46] is the sub-list for extension extendee
-	0,  // [0:46] is the sub-list for field type_name
+	84, // 0: user_service.v1.GetUserResponse.account:type_name -> user_service.v1.UserAccount
+	84, // 1: user_service.v1.UpdateUserRequest.account:type_name -> user_service.v1.UserAccount
+	84, // 2: user_service.v1.UpdateUserResponse.account:type_name -> user_service.v1.UserAccount
+	84, // 3: user_service.v1.CreateUserRequest.account:type_name -> user_service.v1.UserAccount
+	84, // 4: user_service.v1.GetUserByEmailOrUsernameResponse.account:type_name -> user_service.v1.UserAccount
+	84, // 5: user_service.v1.GetUserByUsernameResponse.account:type_name -> user_service.v1.UserAccount
+	84, // 6: user_service.v1.GetUserByEmailResponse.account:type_name -> user_service.v1.UserAccount
+	85, // 7: user_service.v1.GetBusinessSettingsResponse.settings:type_name -> user_service.v1.Settings
+	86, // 8: user_service.v1.GetUserV2Request.profile_type:type_name -> user_service.v1.ProfileType
+	84, // 9: user_service.v1.GetUserV2Response.user_account:type_name -> user_service.v1.UserAccount
+	87, // 10: user_service.v1.GetUserV2Response.business_account:type_name -> user_service.v1.BusinessAccount
+	86, // 11: user_service.v1.DeleteUserV2Request.profile_type:type_name -> user_service.v1.ProfileType
+	84, // 12: user_service.v1.UpdateUserV2Request.user_account:type_name -> user_service.v1.UserAccount
+	87, // 13: user_service.v1.UpdateUserV2Request.business_account:type_name -> user_service.v1.BusinessAccount
+	84, // 14: user_service.v1.UpdateUserV2Response.user_account:type_name -> user_service.v1.UserAccount
+	87, // 15: user_service.v1.UpdateUserV2Response.business_account:type_name -> user_service.v1.BusinessAccount
+	84, // 16: user_service.v1.CreateUserV2Request.user_account:type_name -> user_service.v1.UserAccount
+	87, // 17: user_service.v1.CreateUserV2Request.business_account:type_name -> user_service.v1.BusinessAccount
+	86, // 18: user_service.v1.GetUserIdV2Request.profile_type:type_name -> user_service.v1.ProfileType
+	86, // 19: user_service.v1.GetUserByEmailOrUsernameV2Request.profile_type:type_name -> user_service.v1.ProfileType
+	84, // 20: user_service.v1.GetUserByEmailOrUsernameV2Response.user_account:type_name -> user_service.v1.UserAccount
+	87, // 21: user_service.v1.GetUserByEmailOrUsernameV2Response.business_account:type_name -> user_service.v1.BusinessAccount
+	86, // 22: user_service.v1.VerifyUserV2Request.profile_type:type_name -> user_service.v1.ProfileType
+	86, // 23: user_service.v1.GetUserByUsernameV2Request.profile_type:type_name -> user_service.v1.ProfileType
+	84, // 24: user_service.v1.GetUserByUsernameV2Response.user_account:type_name -> user_service.v1.UserAccount
+	87, // 25: user_service.v1.GetUserByUsernameV2Response.business_account:type_name -> user_service.v1.BusinessAccount
+	86, // 26: user_service.v1.CheckUsernameExistsV2Request.profile_type:type_name -> user_service.v1.ProfileType
+	86, // 27: user_service.v1.CheckEmailExistsV2Request.profile_type:type_name -> user_service.v1.ProfileType
+	86, // 28: user_service.v1.GetUserByEmailV2Request.profile_type:type_name -> user_service.v1.ProfileType
+	84, // 29: user_service.v1.GetUserByEmailV2Response.user_account:type_name -> user_service.v1.UserAccount
+	87, // 30: user_service.v1.GetUserByEmailV2Response.business_account:type_name -> user_service.v1.BusinessAccount
+	86, // 31: user_service.v1.GetUserByAuthnIDV2Request.profile_type:type_name -> user_service.v1.ProfileType
+	84, // 32: user_service.v1.GetUserByAuthnIDV2Response.user_account:type_name -> user_service.v1.UserAccount
+	87, // 33: user_service.v1.GetUserByAuthnIDV2Response.business_account:type_name -> user_service.v1.BusinessAccount
+	86, // 34: user_service.v1.GetCannyUserSSOTokenRequest.profile_type:type_name -> user_service.v1.ProfileType
+	86, // 35: user_service.v1.GetUserByAuth0IDRequest.profile_type:type_name -> user_service.v1.ProfileType
+	84, // 36: user_service.v1.GetUserByAuth0IDResponse.user_account:type_name -> user_service.v1.UserAccount
+	87, // 37: user_service.v1.GetUserByAuth0IDResponse.business_account:type_name -> user_service.v1.BusinessAccount
+	88, // 38: user_service.v1.CreateRoleRequest.role:type_name -> user_service.v1.Role
+	88, // 39: user_service.v1.CreateRoleResponse.role:type_name -> user_service.v1.Role
+	88, // 40: user_service.v1.GetRoleResponse.role:type_name -> user_service.v1.Role
+	88, // 41: user_service.v1.UpdateRoleRequest.role:type_name -> user_service.v1.Role
+	88, // 42: user_service.v1.UpdateRoleResponse.role:type_name -> user_service.v1.Role
+	88, // 43: user_service.v1.ListRolesResponse.roles:type_name -> user_service.v1.Role
+	84, // 44: user_service.v1.CheckEmailAndAuth0UserIdExistsResponse.user_account:type_name -> user_service.v1.UserAccount
+	87, // 45: user_service.v1.CheckEmailAndAuth0UserIdExistsResponse.business_account:type_name -> user_service.v1.BusinessAccount
+	89, // 46: user_service.v1.CreateTeamResponse.team:type_name -> user_service.v1.Team
+	89, // 47: user_service.v1.GetTeamResponse.team:type_name -> user_service.v1.Team
+	89, // 48: user_service.v1.UpdateTeamRequest.team:type_name -> user_service.v1.Team
+	89, // 49: user_service.v1.UpdateTeamResponse.team:type_name -> user_service.v1.Team
+	86, // 50: user_service.v1.AddUserToTeamRequest.profile_type:type_name -> user_service.v1.ProfileType
+	89, // 51: user_service.v1.AddUserToTeamResponse.team:type_name -> user_service.v1.Team
+	86, // 52: user_service.v1.RemoveUserFromTeamRequest.profile_type:type_name -> user_service.v1.ProfileType
+	89, // 53: user_service.v1.RemoveUserFromTeamResponse.team:type_name -> user_service.v1.Team
+	54, // [54:54] is the sub-list for method output_type
+	54, // [54:54] is the sub-list for method input_type
+	54, // [54:54] is the sub-list for extension type_name
+	54, // [54:54] is the sub-list for extension extendee
+	0,  // [0:54] is the sub-list for field type_name
 }
 
 func init() { file_user_service_v1_request_response_proto_init() }
@@ -5697,6 +6436,150 @@ func file_user_service_v1_request_response_proto_init() {
 				return nil
 			}
 		}
+		file_user_service_v1_request_response_proto_msgTypes[72].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateTeamRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_service_v1_request_response_proto_msgTypes[73].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateTeamResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_service_v1_request_response_proto_msgTypes[74].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetTeamRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_service_v1_request_response_proto_msgTypes[75].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetTeamResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_service_v1_request_response_proto_msgTypes[76].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateTeamRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_service_v1_request_response_proto_msgTypes[77].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*UpdateTeamResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_service_v1_request_response_proto_msgTypes[78].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteTeamRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_service_v1_request_response_proto_msgTypes[79].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*DeleteTeamResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_service_v1_request_response_proto_msgTypes[80].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddUserToTeamRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_service_v1_request_response_proto_msgTypes[81].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*AddUserToTeamResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_service_v1_request_response_proto_msgTypes[82].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RemoveUserFromTeamRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_user_service_v1_request_response_proto_msgTypes[83].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*RemoveUserFromTeamResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	file_user_service_v1_request_response_proto_msgTypes[31].OneofWrappers = []interface{}{
 		(*GetUserV2Response_UserAccount)(nil),
@@ -5744,7 +6627,7 @@ func file_user_service_v1_request_response_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_user_service_v1_request_response_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   72,
+			NumMessages:   84,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

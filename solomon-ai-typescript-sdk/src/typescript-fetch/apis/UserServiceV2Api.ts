@@ -15,17 +15,23 @@
 
 import * as runtime from '../runtime';
 import type {
+  AddUserToTeamBody,
+  AddUserToTeamResponse,
   CheckEmailAndAuth0UserIdExistsResponse,
   CheckEmailExistsV2Response,
   CheckUsernameExistsV2Response,
   CreateRoleResponse,
+  CreateTeamRequest,
+  CreateTeamResponse,
   CreateUserV2Request,
   CreateUserV2Response,
   DeleteRoleResponse,
+  DeleteTeamResponse,
   DeleteUserV2Response,
   GetBusinessSettingsResponse,
   GetCannyUserSSOTokenResponse,
   GetRoleResponse,
+  GetTeamResponse,
   GetUserByAuth0IDResponse,
   GetUserByAuthnIDV2Response,
   GetUserByEmailOrUsernameV2Response,
@@ -37,15 +43,22 @@ import type {
   ListRolesResponse,
   PasswordResetWebhookV2Response,
   PathUnknownErrorMessageResponse,
+  RemoveUserFromTeamResponse,
   Role,
   Status,
+  Team,
   UpdateRoleResponse,
+  UpdateTeamResponse,
   UpdateUserV2Request,
   UpdateUserV2Response,
   ValidationErrorMessageResponse,
   VerifyUserV2Response,
 } from '../models/index';
 import {
+    AddUserToTeamBodyFromJSON,
+    AddUserToTeamBodyToJSON,
+    AddUserToTeamResponseFromJSON,
+    AddUserToTeamResponseToJSON,
     CheckEmailAndAuth0UserIdExistsResponseFromJSON,
     CheckEmailAndAuth0UserIdExistsResponseToJSON,
     CheckEmailExistsV2ResponseFromJSON,
@@ -54,12 +67,18 @@ import {
     CheckUsernameExistsV2ResponseToJSON,
     CreateRoleResponseFromJSON,
     CreateRoleResponseToJSON,
+    CreateTeamRequestFromJSON,
+    CreateTeamRequestToJSON,
+    CreateTeamResponseFromJSON,
+    CreateTeamResponseToJSON,
     CreateUserV2RequestFromJSON,
     CreateUserV2RequestToJSON,
     CreateUserV2ResponseFromJSON,
     CreateUserV2ResponseToJSON,
     DeleteRoleResponseFromJSON,
     DeleteRoleResponseToJSON,
+    DeleteTeamResponseFromJSON,
+    DeleteTeamResponseToJSON,
     DeleteUserV2ResponseFromJSON,
     DeleteUserV2ResponseToJSON,
     GetBusinessSettingsResponseFromJSON,
@@ -68,6 +87,8 @@ import {
     GetCannyUserSSOTokenResponseToJSON,
     GetRoleResponseFromJSON,
     GetRoleResponseToJSON,
+    GetTeamResponseFromJSON,
+    GetTeamResponseToJSON,
     GetUserByAuth0IDResponseFromJSON,
     GetUserByAuth0IDResponseToJSON,
     GetUserByAuthnIDV2ResponseFromJSON,
@@ -90,12 +111,18 @@ import {
     PasswordResetWebhookV2ResponseToJSON,
     PathUnknownErrorMessageResponseFromJSON,
     PathUnknownErrorMessageResponseToJSON,
+    RemoveUserFromTeamResponseFromJSON,
+    RemoveUserFromTeamResponseToJSON,
     RoleFromJSON,
     RoleToJSON,
     StatusFromJSON,
     StatusToJSON,
+    TeamFromJSON,
+    TeamToJSON,
     UpdateRoleResponseFromJSON,
     UpdateRoleResponseToJSON,
+    UpdateTeamResponseFromJSON,
+    UpdateTeamResponseToJSON,
     UpdateUserV2RequestFromJSON,
     UpdateUserV2RequestToJSON,
     UpdateUserV2ResponseFromJSON,
@@ -105,6 +132,11 @@ import {
     VerifyUserV2ResponseFromJSON,
     VerifyUserV2ResponseToJSON,
 } from '../models/index';
+
+export interface AddUserToTeamRequest {
+    teamId: string;
+    addUserToTeamBody: AddUserToTeamBody;
+}
 
 export interface CheckEmailAndAuth0UserIdExistsRequest {
     email: string;
@@ -125,12 +157,21 @@ export interface CreateRoleRequest {
     role: Role;
 }
 
+export interface CreateTeamOperationRequest {
+    createTeamRequest: CreateTeamRequest;
+}
+
 export interface CreateUserV2OperationRequest {
     createUserV2Request: CreateUserV2Request;
 }
 
 export interface DeleteRoleRequest {
     id: string;
+}
+
+export interface DeleteTeamRequest {
+    teamId: string;
+    adminAuth0UserId: string;
 }
 
 export interface DeleteUserV2Request {
@@ -145,6 +186,10 @@ export interface GetCannyUserSSOTokenRequest {
 
 export interface GetRoleRequest {
     id: string;
+}
+
+export interface GetTeamRequest {
+    teamId: string;
 }
 
 export interface GetUserByAuth0IDRequest {
@@ -194,12 +239,23 @@ export interface PasswordResetWebhookV2Request {
     token?: string;
 }
 
+export interface RemoveUserFromTeamRequest {
+    teamId: string;
+    adminAuth0UserId?: string;
+    userAuth0UserId?: string;
+    profileType?: RemoveUserFromTeamProfileTypeEnum;
+}
+
 export interface RetrieveBusinessSettingsRequest {
     userId: string;
 }
 
 export interface UpdateRoleRequest {
     role: Role;
+}
+
+export interface UpdateTeamRequest {
+    team: Team;
 }
 
 export interface UpdateUserV2OperationRequest {
@@ -215,6 +271,45 @@ export interface VerifyUserV2Request {
  * 
  */
 export class UserServiceV2Api extends runtime.BaseAPI {
+
+    /**
+     * This endpoint adds a user to a team based on the provided team ID and user ID.The addition process ensures that the user is properly associated with the team.
+     * Adds a user to a team
+     */
+    async addUserToTeamRaw(requestParameters: AddUserToTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddUserToTeamResponse>> {
+        if (requestParameters.teamId === null || requestParameters.teamId === undefined) {
+            throw new runtime.RequiredError('teamId','Required parameter requestParameters.teamId was null or undefined when calling addUserToTeam.');
+        }
+
+        if (requestParameters.addUserToTeamBody === null || requestParameters.addUserToTeamBody === undefined) {
+            throw new runtime.RequiredError('addUserToTeamBody','Required parameter requestParameters.addUserToTeamBody was null or undefined when calling addUserToTeam.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/user-microservice/api/v2/user-service/user/team/{teamId}/add-new-user`.replace(`{${"teamId"}}`, encodeURIComponent(String(requestParameters.teamId))),
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AddUserToTeamBodyToJSON(requestParameters.addUserToTeamBody),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddUserToTeamResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint adds a user to a team based on the provided team ID and user ID.The addition process ensures that the user is properly associated with the team.
+     * Adds a user to a team
+     */
+    async addUserToTeam(requestParameters: AddUserToTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddUserToTeamResponse> {
+        const response = await this.addUserToTeamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
 
     /**
      * Checks if an email and auth0 user id exists or not
@@ -368,6 +463,41 @@ export class UserServiceV2Api extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint adds a new team to the system. It requires team details such as name, description, and members.The creation process involves adding the team to the database and initializing its members.
+     * Creates a new team
+     */
+    async createTeamRaw(requestParameters: CreateTeamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTeamResponse>> {
+        if (requestParameters.createTeamRequest === null || requestParameters.createTeamRequest === undefined) {
+            throw new runtime.RequiredError('createTeamRequest','Required parameter requestParameters.createTeamRequest was null or undefined when calling createTeam.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/user-microservice/api/v2/user-service/user/team`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateTeamRequestToJSON(requestParameters.createTeamRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateTeamResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint adds a new team to the system. It requires team details such as name, description, and members.The creation process involves adding the team to the database and initializing its members.
+     * Creates a new team
+     */
+    async createTeam(requestParameters: CreateTeamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateTeamResponse> {
+        const response = await this.createTeamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * This endpoint performs an a creation operation of a user account based on the provided parametersThis operation is implemented as a distributed transactions as this operation spans multiple services
      * create a user account
      */
@@ -431,6 +561,42 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      */
     async deleteRole(requestParameters: DeleteRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteRoleResponse> {
         const response = await this.deleteRoleRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This endpoint deletes a team from the system based on the provided team ID.The deletion process ensures that all related data and members are properly removed.
+     * Deletes a team
+     */
+    async deleteTeamRaw(requestParameters: DeleteTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteTeamResponse>> {
+        if (requestParameters.teamId === null || requestParameters.teamId === undefined) {
+            throw new runtime.RequiredError('teamId','Required parameter requestParameters.teamId was null or undefined when calling deleteTeam.');
+        }
+
+        if (requestParameters.adminAuth0UserId === null || requestParameters.adminAuth0UserId === undefined) {
+            throw new runtime.RequiredError('adminAuth0UserId','Required parameter requestParameters.adminAuth0UserId was null or undefined when calling deleteTeam.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/user-microservice/api/v2/user-service/user/team/{teamId}/admin/{adminAuth0UserId}`.replace(`{${"teamId"}}`, encodeURIComponent(String(requestParameters.teamId))).replace(`{${"adminAuth0UserId"}}`, encodeURIComponent(String(requestParameters.adminAuth0UserId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => DeleteTeamResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint deletes a team from the system based on the provided team ID.The deletion process ensures that all related data and members are properly removed.
+     * Deletes a team
+     */
+    async deleteTeam(requestParameters: DeleteTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<DeleteTeamResponse> {
+        const response = await this.deleteTeamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -543,6 +709,38 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      */
     async getRole(requestParameters: GetRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetRoleResponse> {
         const response = await this.getRoleRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This endpoint fetches details of a specific team using the team ID.It retrieves the team\'s name, description, members, and audit history.
+     * Retrieves a team
+     */
+    async getTeamRaw(requestParameters: GetTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTeamResponse>> {
+        if (requestParameters.teamId === null || requestParameters.teamId === undefined) {
+            throw new runtime.RequiredError('teamId','Required parameter requestParameters.teamId was null or undefined when calling getTeam.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/user-microservice/api/v2/user-service/user/team/{teamId}`.replace(`{${"teamId"}}`, encodeURIComponent(String(requestParameters.teamId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetTeamResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint fetches details of a specific team using the team ID.It retrieves the team\'s name, description, members, and audit history.
+     * Retrieves a team
+     */
+    async getTeam(requestParameters: GetTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetTeamResponse> {
+        const response = await this.getTeamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -907,6 +1105,50 @@ export class UserServiceV2Api extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint removes a user from a team based on the provided team ID and user ID.The removal process ensures that the user is properly disassociated from the team.
+     * Removes a user from a team
+     */
+    async removeUserFromTeamRaw(requestParameters: RemoveUserFromTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RemoveUserFromTeamResponse>> {
+        if (requestParameters.teamId === null || requestParameters.teamId === undefined) {
+            throw new runtime.RequiredError('teamId','Required parameter requestParameters.teamId was null or undefined when calling removeUserFromTeam.');
+        }
+
+        const queryParameters: any = {};
+
+        if (requestParameters.adminAuth0UserId !== undefined) {
+            queryParameters['adminAuth0UserId'] = requestParameters.adminAuth0UserId;
+        }
+
+        if (requestParameters.userAuth0UserId !== undefined) {
+            queryParameters['userAuth0UserId'] = requestParameters.userAuth0UserId;
+        }
+
+        if (requestParameters.profileType !== undefined) {
+            queryParameters['profileType'] = requestParameters.profileType;
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/user-microservice/api/v2/user-service/user/team/{teamId}/remove-user`.replace(`{${"teamId"}}`, encodeURIComponent(String(requestParameters.teamId))),
+            method: 'DELETE',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => RemoveUserFromTeamResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint removes a user from a team based on the provided team ID and user ID.The removal process ensures that the user is properly disassociated from the team.
+     * Removes a user from a team
+     */
+    async removeUserFromTeam(requestParameters: RemoveUserFromTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<RemoveUserFromTeamResponse> {
+        const response = await this.removeUserFromTeamRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Fetches settings associated with a specified business account using the user ID.
      * Retrieve Business Account Settings
      */
@@ -970,6 +1212,41 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      */
     async updateRole(requestParameters: UpdateRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateRoleResponse> {
         const response = await this.updateRoleRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This endpoint updates the details of an existing team. The team ID is used to identify the team to be updated.The update operation can modify the team\'s name, description, and members.
+     * Updates an existing team
+     */
+    async updateTeamRaw(requestParameters: UpdateTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateTeamResponse>> {
+        if (requestParameters.team === null || requestParameters.team === undefined) {
+            throw new runtime.RequiredError('team','Required parameter requestParameters.team was null or undefined when calling updateTeam.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/user-microservice/api/v2/user-service/user/team`,
+            method: 'PATCH',
+            headers: headerParameters,
+            query: queryParameters,
+            body: TeamToJSON(requestParameters.team),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => UpdateTeamResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint updates the details of an existing team. The team ID is used to identify the team to be updated.The update operation can modify the team\'s name, description, and members.
+     * Updates an existing team
+     */
+    async updateTeam(requestParameters: UpdateTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<UpdateTeamResponse> {
+        const response = await this.updateTeamRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -1145,6 +1422,15 @@ export const GetUserV2ProfileTypeEnum = {
     Business: 'PROFILE_TYPE_BUSINESS'
 } as const;
 export type GetUserV2ProfileTypeEnum = typeof GetUserV2ProfileTypeEnum[keyof typeof GetUserV2ProfileTypeEnum];
+/**
+ * @export
+ */
+export const RemoveUserFromTeamProfileTypeEnum = {
+    Unspecified: 'PROFILE_TYPE_UNSPECIFIED',
+    User: 'PROFILE_TYPE_USER',
+    Business: 'PROFILE_TYPE_BUSINESS'
+} as const;
+export type RemoveUserFromTeamProfileTypeEnum = typeof RemoveUserFromTeamProfileTypeEnum[keyof typeof RemoveUserFromTeamProfileTypeEnum];
 /**
  * @export
  */

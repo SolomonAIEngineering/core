@@ -1365,6 +1365,316 @@ paths:
             format: int32
       tags:
         - user-service-v2
+  /user-microservice/api/v2/user-service/user/team:
+    post:
+      summary: Creates a new team
+      description: This endpoint adds a new team to the system. It requires team
+        details such as name, description, and members.The creation process
+        involves adding the team to the database and initializing its members.
+      operationId: CreateTeam
+      responses:
+        "200":
+          description: Team created successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CreateTeamResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/CreateTeamRequest"
+        required: true
+      tags:
+        - user-service-v2
+    patch:
+      summary: Updates an existing team
+      description: This endpoint updates the details of an existing team. The team ID
+        is used to identify the team to be updated.The update operation can
+        modify the team's name, description, and members.
+      operationId: UpdateTeam
+      responses:
+        "200":
+          description: Team updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/UpdateTeamResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/Team"
+        required: true
+      tags:
+        - user-service-v2
+  "/user-microservice/api/v2/user-service/user/team/{teamId}":
+    get:
+      summary: Retrieves a team
+      description: This endpoint fetches details of a specific team using the team
+        ID.It retrieves the team's name, description, members, and audit
+        history.
+      operationId: GetTeam
+      responses:
+        "200":
+          description: Team retrieval successful.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetTeamResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: int64
+      tags:
+        - user-service-v2
+  "/user-microservice/api/v2/user-service/user/team/{teamId}/add-new-user":
+    post:
+      summary: Adds a user to a team
+      description: This endpoint adds a user to a team based on the provided team ID
+        and user ID.The addition process ensures that the user is properly
+        associated with the team.
+      operationId: AddUserToTeam
+      responses:
+        "200":
+          description: User added to team successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AddUserToTeamResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: int64
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/AddUserToTeamBody"
+        required: true
+      tags:
+        - user-service-v2
+  "/user-microservice/api/v2/user-service/user/team/{teamId}/admin/{adminAuth0UserId}":
+    delete:
+      summary: Deletes a team
+      description: This endpoint deletes a team from the system based on the provided
+        team ID.The deletion process ensures that all related data and members
+        are properly removed.
+      operationId: DeleteTeam
+      responses:
+        "200":
+          description: Team deleted successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/DeleteTeamResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: int64
+        - name: adminAuth0UserId
+          in: path
+          required: true
+          schema:
+            type: string
+      tags:
+        - user-service-v2
+  "/user-microservice/api/v2/user-service/user/team/{teamId}/remove-user":
+    delete:
+      summary: Removes a user from a team
+      description: This endpoint removes a user from a team based on the provided team
+        ID and user ID.The removal process ensures that the user is properly
+        disassociated from the team.
+      operationId: RemoveUserFromTeam
+      responses:
+        "200":
+          description: User removed from team successfully.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/RemoveUserFromTeamResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: teamId
+          in: path
+          required: true
+          schema:
+            type: string
+            format: int64
+        - name: adminAuth0UserId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: userAuth0UserId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: profileType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - PROFILE_TYPE_UNSPECIFIED
+              - PROFILE_TYPE_USER
+              - PROFILE_TYPE_BUSINESS
+            default: PROFILE_TYPE_UNSPECIFIED
+      tags:
+        - user-service-v2
   "/user-microservice/api/v2/user-service/user/username/{username}":
     get:
       summary: Retrieve user details by username
@@ -1816,6 +2126,21 @@ components:
             $ref: "#/components/schemas/Role"
       required: true
   schemas:
+    AddUserToTeamBody:
+      type: object
+      properties:
+        adminAuth0UserId:
+          type: string
+        userAuth0UserId:
+          type: string
+        profileType:
+          $ref: "#/components/schemas/ProfileType"
+      title: Add User to Team Request and Response
+    AddUserToTeamResponse:
+      type: object
+      properties:
+        team:
+          $ref: "#/components/schemas/Team"
     Address:
       type: object
       properties:
@@ -1987,8 +2312,10 @@ components:
         auth0UserId:
           type: string
           title: auth0 user id associated with the business account
-        role:
-          $ref: "#/components/schemas/Role"
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/Role"
         algoliaUserId:
           type: string
           title: Algolia user id
@@ -2028,6 +2355,23 @@ components:
       properties:
         role:
           $ref: "#/components/schemas/Role"
+    CreateTeamRequest:
+      type: object
+      properties:
+        adminAuth0UserId:
+          type: string
+        teamName:
+          type: string
+          example: team_name:team1
+        teamDescription:
+          type: string
+          example: team_description:team1
+      title: Create Team Request and Response
+    CreateTeamResponse:
+      type: object
+      properties:
+        team:
+          $ref: "#/components/schemas/Team"
     CreateUserV2Request:
       type: object
       properties:
@@ -2075,6 +2419,11 @@ components:
 
         the `create-user` request
     DeleteRoleResponse:
+      type: object
+      properties:
+        success:
+          type: boolean
+    DeleteTeamResponse:
       type: object
       properties:
         success:
@@ -2193,6 +2542,11 @@ components:
       properties:
         role:
           $ref: "#/components/schemas/Role"
+    GetTeamResponse:
+      type: object
+      properties:
+        team:
+          $ref: "#/components/schemas/Team"
     GetUserByAuth0IDResponse:
       type: object
       properties:
@@ -2407,6 +2761,11 @@ components:
       properties:
         healthy:
           type: boolean
+    RemoveUserFromTeamResponse:
+      type: object
+      properties:
+        team:
+          $ref: "#/components/schemas/Team"
     RiskToleranceSettings:
       type: string
       enum:
@@ -2588,11 +2947,55 @@ components:
             validations:
             - must provide between 1 and 10 metadata tags
       title: "Tags: represents metadata tags associated to an account"
+    Team:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uint64
+          description: Unique identifier for the team.
+        name:
+          type: string
+          description: Name of the team.
+        description:
+          type: string
+          description: Description of the team.
+        tags:
+          type: array
+          items:
+            $ref: "#/components/schemas/Tags"
+          description: Tags associated with the team.
+        teamAdmin:
+          $ref: "#/components/schemas/BusinessAccount"
+        memberUsersAccounts:
+          type: array
+          items:
+            $ref: "#/components/schemas/UserAccount"
+          description: Members of the team.
+        memberBusinessAccounts:
+          type: array
+          items:
+            $ref: "#/components/schemas/BusinessAccount"
+          description: Member business accounts of the team.
+        createdAt:
+          type: string
+          format: date-time
+          description: Timestamp for when the team was created.
+        updatedAt:
+          type: string
+          format: date-time
+          description: Timestamp for when the team was last updated.
+      description: "Team: represents a team within the context of solomon-ai."
     UpdateRoleResponse:
       type: object
       properties:
         role:
           $ref: "#/components/schemas/Role"
+    UpdateTeamResponse:
+      type: object
+      properties:
+        team:
+          $ref: "#/components/schemas/Team"
     UpdateUserRequest:
       type: object
       properties:
@@ -2701,8 +3104,10 @@ components:
         auth0UserId:
           type: string
           title: Auth0 user id
-        role:
-          $ref: "#/components/schemas/Role"
+        roles:
+          type: array
+          items:
+            $ref: "#/components/schemas/Role"
         algoliaUserId:
           type: string
           title: Algolia user id

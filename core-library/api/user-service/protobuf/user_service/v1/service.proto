@@ -855,4 +855,145 @@ service UserService {
             }
         };
     }
+
+    rpc CreateTeam(CreateTeamRequest) returns (CreateTeamResponse) {
+        option (google.api.http) = {
+            post: "/user-microservice/api/v2/user-service/user/team"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Creates a new team"
+            tags: ["user-service-v2"]
+            operation_id: "CreateTeam"
+            description: 
+                "This endpoint adds a new team to the system. It requires team details such as name, description, and members."
+                "The creation process involves adding the team to the database and initializing its members."
+            responses: {
+                key: "200"
+                value: {
+                    description: "Team created successfully."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.CreateTeamResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc GetTeam(GetTeamRequest) returns (GetTeamResponse) {
+        option (google.api.http) = {
+            get: "/user-microservice/api/v2/user-service/user/team/{team_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Retrieves a team"
+            tags: ["user-service-v2"]
+            operation_id: "GetTeam"
+            description: 
+                "This endpoint fetches details of a specific team using the team ID."
+                "It retrieves the team's name, description, members, and audit history."
+            responses: {
+                key: "200"
+                value: {
+                    description: "Team retrieval successful."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.GetTeamResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc UpdateTeam(UpdateTeamRequest) returns (UpdateTeamResponse) {
+        option (google.api.http) = {
+            patch: "/user-microservice/api/v2/user-service/user/team"
+            body: "team"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Updates an existing team"
+            tags: ["user-service-v2"]
+            operation_id: "UpdateTeam"
+            description: 
+                "This endpoint updates the details of an existing team. The team ID is used to identify the team to be updated."
+                "The update operation can modify the team's name, description, and members."
+            responses: {
+                key: "200"
+                value: {
+                    description: "Team updated successfully."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.UpdateTeamResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc DeleteTeam(DeleteTeamRequest) returns (DeleteTeamResponse) {
+        option (google.api.http) = {
+            delete: "/user-microservice/api/v2/user-service/user/team/{team_id}/admin/{admin_auth0_user_id}"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Deletes a team"
+            tags: ["user-service-v2"]
+            operation_id: "DeleteTeam"
+            description: 
+                "This endpoint deletes a team from the system based on the provided team ID."
+                "The deletion process ensures that all related data and members are properly removed."
+            responses: {
+                key: "200"
+                value: {
+                    description: "Team deleted successfully."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.DeleteTeamResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc AddUserToTeam(AddUserToTeamRequest) returns (AddUserToTeamResponse) {
+        option (google.api.http) = {
+            post: "/user-microservice/api/v2/user-service/user/team/{team_id}/add-new-user"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Adds a user to a team"
+            tags: ["user-service-v2"]
+            operation_id: "AddUserToTeam"
+            description: 
+                "This endpoint adds a user to a team based on the provided team ID and user ID."
+                "The addition process ensures that the user is properly associated with the team."
+            responses: {
+                key: "200"
+                value: {
+                    description: "User added to team successfully."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.AddUserToTeamResponse"}
+                    }
+                }
+            }
+        };
+    }
+
+    rpc RemoveUserFromTeam(RemoveUserFromTeamRequest) returns (RemoveUserFromTeamResponse) {
+        option (google.api.http) = {
+            delete: "/user-microservice/api/v2/user-service/user/team/{team_id}/remove-user"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Removes a user from a team"
+            tags: ["user-service-v2"]
+            operation_id: "RemoveUserFromTeam"
+            description: 
+                "This endpoint removes a user from a team based on the provided team ID and user ID."
+                "The removal process ensures that the user is properly disassociated from the team."
+            responses: {
+                key: "200"
+                value: {
+                    description: "User removed from team successfully."
+                    schema: {
+                        json_schema: {ref: ".user_service.v1.RemoveUserFromTeamResponse"}
+                    }
+                }
+            }
+        };
+    }
 }

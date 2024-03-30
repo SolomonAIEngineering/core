@@ -211,15 +211,19 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *UserServiceV1Api* | [**readynessCheck**](Apis/UserServiceV1Api.md#readynesscheck) | **GET** /user-microservice/api/v1/user-service/user/ready | readyness check |
 *UserServiceV1Api* | [**updateUser**](Apis/UserServiceV1Api.md#updateuser) | **PUT** /user-microservice/api/v1/user-service/user | update a user account |
 *UserServiceV1Api* | [**verification**](Apis/UserServiceV1Api.md#verification) | **POST** /user-microservice/api/v1/user-service/user/verification/{userId} | user verification |
-| *UserServiceV2Api* | [**checkEmailAndAuth0UserIdExists**](Apis/UserServiceV2Api.md#checkemailandauth0useridexists) | **GET** /user-microservice/api/v2/user/email/{email}/auth0/{auth0UserId}/exists | Checks that an email and auth0 user id exists or not |
+| *UserServiceV2Api* | [**addUserToTeam**](Apis/UserServiceV2Api.md#addusertoteam) | **POST** /user-microservice/api/v2/user-service/user/team/{teamId}/add-new-user | Adds a user to a team |
+*UserServiceV2Api* | [**checkEmailAndAuth0UserIdExists**](Apis/UserServiceV2Api.md#checkemailandauth0useridexists) | **GET** /user-microservice/api/v2/user/email/{email}/auth0/{auth0UserId}/exists | Checks that an email and auth0 user id exists or not |
 *UserServiceV2Api* | [**checkEmailExistsV2**](Apis/UserServiceV2Api.md#checkemailexistsv2) | **GET** /user-microservice/api/v2/user-service/user/email/{email}/exists | Checks that an email exists or not |
 *UserServiceV2Api* | [**checkUsernameExistsV2**](Apis/UserServiceV2Api.md#checkusernameexistsv2) | **GET** /user-microservice/api/v2/user-service/user/username/{username}/exists | Checks that a username exists or not |
 *UserServiceV2Api* | [**createRole**](Apis/UserServiceV2Api.md#createrole) | **POST** /user-microservice/api/v2/user-service/user/role | Creates a new role |
+*UserServiceV2Api* | [**createTeam**](Apis/UserServiceV2Api.md#createteam) | **POST** /user-microservice/api/v2/user-service/user/team | Creates a new team |
 *UserServiceV2Api* | [**createUserV2**](Apis/UserServiceV2Api.md#createuserv2) | **POST** /user-microservice/api/v2/user-service/user | create a user account |
 *UserServiceV2Api* | [**deleteRole**](Apis/UserServiceV2Api.md#deleterole) | **DELETE** /user-microservice/api/v2/user-service/user/role/{id} | Deletes a role |
+*UserServiceV2Api* | [**deleteTeam**](Apis/UserServiceV2Api.md#deleteteam) | **DELETE** /user-microservice/api/v2/user-service/user/team/{teamId}/admin/{adminAuth0UserId} | Deletes a team |
 *UserServiceV2Api* | [**deleteUserV2**](Apis/UserServiceV2Api.md#deleteuserv2) | **DELETE** /user-microservice/api/v2/user-service/user/{userId} | deletes a user account |
 *UserServiceV2Api* | [**getCannyUserSSOToken**](Apis/UserServiceV2Api.md#getcannyuserssotoken) | **GET** /user-microservice/api/v2/user-service/user/canny/{userId} | Retrieves user sso token for canny |
 *UserServiceV2Api* | [**getRole**](Apis/UserServiceV2Api.md#getrole) | **GET** /user-microservice/api/v2/user-service/user/role/{id} | Retrieves a role |
+*UserServiceV2Api* | [**getTeam**](Apis/UserServiceV2Api.md#getteam) | **GET** /user-microservice/api/v2/user-service/user/team/{teamId} | Retrieves a team |
 *UserServiceV2Api* | [**getUserByAuth0ID**](Apis/UserServiceV2Api.md#getuserbyauth0id) | **GET** /user-microservice/api/v2/user-service/user/auth-zero/{auth0UserId} | Retrieve user account details by auth0 id and profile type |
 *UserServiceV2Api* | [**getUserByAuthnIDV2**](Apis/UserServiceV2Api.md#getuserbyauthnidv2) | **GET** /user-microservice/api/v2/user-service/user/authn/{authnId} | Retrieve user account details by authn id |
 *UserServiceV2Api* | [**getUserByEmailOrUsernameV2**](Apis/UserServiceV2Api.md#getuserbyemailorusernamev2) | **GET** /user-microservice/api/v2/user-service/user/account/query-by-email-or-username | Retrieve user account by email or username |
@@ -229,8 +233,10 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *UserServiceV2Api* | [**getUserV2**](Apis/UserServiceV2Api.md#getuserv2) | **GET** /user-microservice/api/v2/user-service/user/{userId} | Retrieve user account details |
 *UserServiceV2Api* | [**listRoles**](Apis/UserServiceV2Api.md#listroles) | **GET** /user-microservice/api/v2/user-service/user/roles | Lists all roles |
 *UserServiceV2Api* | [**passwordResetWebhookV2**](Apis/UserServiceV2Api.md#passwordresetwebhookv2) | **POST** /user-microservice/api/v2/user-service/user/webhook/password-reset | Webhook for Password Reset |
+*UserServiceV2Api* | [**removeUserFromTeam**](Apis/UserServiceV2Api.md#removeuserfromteam) | **DELETE** /user-microservice/api/v2/user-service/user/team/{teamId}/remove-user | Removes a user from a team |
 *UserServiceV2Api* | [**retrieveBusinessSettings**](Apis/UserServiceV2Api.md#retrievebusinesssettings) | **GET** /user-microservice/api/v2/user-service/user/business/settings/{userId} | Retrieve Business Account Settings |
 *UserServiceV2Api* | [**updateRole**](Apis/UserServiceV2Api.md#updaterole) | **PATCH** /user-microservice/api/v2/user/role | Updates an existing role |
+*UserServiceV2Api* | [**updateTeam**](Apis/UserServiceV2Api.md#updateteam) | **PATCH** /user-microservice/api/v2/user-service/user/team | Updates an existing team |
 *UserServiceV2Api* | [**updateUserV2**](Apis/UserServiceV2Api.md#updateuserv2) | **PUT** /user-microservice/api/v2/user-service/user | update a user account |
 *UserServiceV2Api* | [**verifyUserV2**](Apis/UserServiceV2Api.md#verifyuserv2) | **POST** /user-microservice/api/v2/user-service/user/verification/{userId}/profile-type/{profileType} | User Email Verification |
 | *WorkspaceServiceApi* | [**createAccount**](Apis/WorkspaceServiceApi.md#createaccount) | **POST** /workspace-microservice/api/v1/accounts | Create a new account |
@@ -275,6 +281,8 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [AddPostToPublicationResponse](./Models/AddPostToPublicationResponse.md)
  - [AddPostToThreadResponse](./Models/AddPostToThreadResponse.md)
  - [AddPublicationEditorResponse](./Models/AddPublicationEditorResponse.md)
+ - [AddUserToTeamBody](./Models/AddUserToTeamBody.md)
+ - [AddUserToTeamResponse](./Models/AddUserToTeamResponse.md)
  - [Address](./Models/Address.md)
  - [Any](./Models/Any.md)
  - [Any1](./Models/Any1.md)
@@ -353,6 +361,8 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [CreateSmartGoalResponse](./Models/CreateSmartGoalResponse.md)
  - [CreateSubscriptionRequest](./Models/CreateSubscriptionRequest.md)
  - [CreateSubscriptionResponse](./Models/CreateSubscriptionResponse.md)
+ - [CreateTeamRequest](./Models/CreateTeamRequest.md)
+ - [CreateTeamResponse](./Models/CreateTeamResponse.md)
  - [CreateTopicResponse](./Models/CreateTopicResponse.md)
  - [CreateUserProfileRequest](./Models/CreateUserProfileRequest.md)
  - [CreateUserProfileRequest1](./Models/CreateUserProfileRequest1.md)
@@ -391,6 +401,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [DeleteRecurringTransactionResponse](./Models/DeleteRecurringTransactionResponse.md)
  - [DeleteRoleResponse](./Models/DeleteRoleResponse.md)
  - [DeleteSmartGoalResponse](./Models/DeleteSmartGoalResponse.md)
+ - [DeleteTeamResponse](./Models/DeleteTeamResponse.md)
  - [DeleteTransactionResponse](./Models/DeleteTransactionResponse.md)
  - [DeleteUserProfileResponse](./Models/DeleteUserProfileResponse.md)
  - [DeleteUserProfileResponse1](./Models/DeleteUserProfileResponse1.md)
@@ -505,6 +516,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [GetSmartGoalsByPocketIdResponse](./Models/GetSmartGoalsByPocketIdResponse.md)
  - [GetSplitTransactionResponse](./Models/GetSplitTransactionResponse.md)
  - [GetStudentLoanAccountResponse](./Models/GetStudentLoanAccountResponse.md)
+ - [GetTeamResponse](./Models/GetTeamResponse.md)
  - [GetTopicsOfCommunitiesUserFollowsResponse](./Models/GetTopicsOfCommunitiesUserFollowsResponse.md)
  - [GetTotalInvestmentBySecurityResponse](./Models/GetTotalInvestmentBySecurityResponse.md)
  - [GetTransactionAggregatesResponse](./Models/GetTransactionAggregatesResponse.md)
@@ -658,6 +670,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [RemoveBookmarkedPostResponse](./Models/RemoveBookmarkedPostResponse.md)
  - [RemoveBookmarkedPublicationResponse](./Models/RemoveBookmarkedPublicationResponse.md)
  - [RemovePostFromThreadResponse](./Models/RemovePostFromThreadResponse.md)
+ - [RemoveUserFromTeamResponse](./Models/RemoveUserFromTeamResponse.md)
  - [ReportCommentBody](./Models/ReportCommentBody.md)
  - [ReportCommentReplyBody](./Models/ReportCommentReplyBody.md)
  - [ReportCommentReplyResponse](./Models/ReportCommentReplyResponse.md)
@@ -691,6 +704,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [TaskState](./Models/TaskState.md)
  - [Tax](./Models/Tax.md)
  - [TaxRate](./Models/TaxRate.md)
+ - [Team](./Models/Team.md)
  - [Thread](./Models/Thread.md)
  - [ThreadParticipantType](./Models/ThreadParticipantType.md)
  - [Token](./Models/Token.md)
@@ -731,6 +745,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [UpdateSingleTransactionResponse](./Models/UpdateSingleTransactionResponse.md)
  - [UpdateSmartGoalRequest](./Models/UpdateSmartGoalRequest.md)
  - [UpdateSmartGoalResponse](./Models/UpdateSmartGoalResponse.md)
+ - [UpdateTeamResponse](./Models/UpdateTeamResponse.md)
  - [UpdateUserProfileRequest](./Models/UpdateUserProfileRequest.md)
  - [UpdateUserProfileResponse](./Models/UpdateUserProfileResponse.md)
  - [UpdateUserRequest](./Models/UpdateUserRequest.md)

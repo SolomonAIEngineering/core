@@ -4,15 +4,19 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 
 | Method | HTTP request | Description |
 |------------- | ------------- | -------------|
+| [**addUserToTeam**](UserServiceV2Api.md#addUserToTeam) | **POST** /user-microservice/api/v2/user-service/user/team/{teamId}/add-new-user | Adds a user to a team |
 | [**checkEmailAndAuth0UserIdExists**](UserServiceV2Api.md#checkEmailAndAuth0UserIdExists) | **GET** /user-microservice/api/v2/user/email/{email}/auth0/{auth0UserId}/exists | Checks that an email and auth0 user id exists or not |
 | [**checkEmailExistsV2**](UserServiceV2Api.md#checkEmailExistsV2) | **GET** /user-microservice/api/v2/user-service/user/email/{email}/exists | Checks that an email exists or not |
 | [**checkUsernameExistsV2**](UserServiceV2Api.md#checkUsernameExistsV2) | **GET** /user-microservice/api/v2/user-service/user/username/{username}/exists | Checks that a username exists or not |
 | [**createRole**](UserServiceV2Api.md#createRole) | **POST** /user-microservice/api/v2/user-service/user/role | Creates a new role |
+| [**createTeam**](UserServiceV2Api.md#createTeam) | **POST** /user-microservice/api/v2/user-service/user/team | Creates a new team |
 | [**createUserV2**](UserServiceV2Api.md#createUserV2) | **POST** /user-microservice/api/v2/user-service/user | create a user account |
 | [**deleteRole**](UserServiceV2Api.md#deleteRole) | **DELETE** /user-microservice/api/v2/user-service/user/role/{id} | Deletes a role |
+| [**deleteTeam**](UserServiceV2Api.md#deleteTeam) | **DELETE** /user-microservice/api/v2/user-service/user/team/{teamId}/admin/{adminAuth0UserId} | Deletes a team |
 | [**deleteUserV2**](UserServiceV2Api.md#deleteUserV2) | **DELETE** /user-microservice/api/v2/user-service/user/{userId} | deletes a user account |
 | [**getCannyUserSSOToken**](UserServiceV2Api.md#getCannyUserSSOToken) | **GET** /user-microservice/api/v2/user-service/user/canny/{userId} | Retrieves user sso token for canny |
 | [**getRole**](UserServiceV2Api.md#getRole) | **GET** /user-microservice/api/v2/user-service/user/role/{id} | Retrieves a role |
+| [**getTeam**](UserServiceV2Api.md#getTeam) | **GET** /user-microservice/api/v2/user-service/user/team/{teamId} | Retrieves a team |
 | [**getUserByAuth0ID**](UserServiceV2Api.md#getUserByAuth0ID) | **GET** /user-microservice/api/v2/user-service/user/auth-zero/{auth0UserId} | Retrieve user account details by auth0 id and profile type |
 | [**getUserByAuthnIDV2**](UserServiceV2Api.md#getUserByAuthnIDV2) | **GET** /user-microservice/api/v2/user-service/user/authn/{authnId} | Retrieve user account details by authn id |
 | [**getUserByEmailOrUsernameV2**](UserServiceV2Api.md#getUserByEmailOrUsernameV2) | **GET** /user-microservice/api/v2/user-service/user/account/query-by-email-or-username | Retrieve user account by email or username |
@@ -22,11 +26,41 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**getUserV2**](UserServiceV2Api.md#getUserV2) | **GET** /user-microservice/api/v2/user-service/user/{userId} | Retrieve user account details |
 | [**listRoles**](UserServiceV2Api.md#listRoles) | **GET** /user-microservice/api/v2/user-service/user/roles | Lists all roles |
 | [**passwordResetWebhookV2**](UserServiceV2Api.md#passwordResetWebhookV2) | **POST** /user-microservice/api/v2/user-service/user/webhook/password-reset | Webhook for Password Reset |
+| [**removeUserFromTeam**](UserServiceV2Api.md#removeUserFromTeam) | **DELETE** /user-microservice/api/v2/user-service/user/team/{teamId}/remove-user | Removes a user from a team |
 | [**retrieveBusinessSettings**](UserServiceV2Api.md#retrieveBusinessSettings) | **GET** /user-microservice/api/v2/user-service/user/business/settings/{userId} | Retrieve Business Account Settings |
 | [**updateRole**](UserServiceV2Api.md#updateRole) | **PATCH** /user-microservice/api/v2/user/role | Updates an existing role |
+| [**updateTeam**](UserServiceV2Api.md#updateTeam) | **PATCH** /user-microservice/api/v2/user-service/user/team | Updates an existing team |
 | [**updateUserV2**](UserServiceV2Api.md#updateUserV2) | **PUT** /user-microservice/api/v2/user-service/user | update a user account |
 | [**verifyUserV2**](UserServiceV2Api.md#verifyUserV2) | **POST** /user-microservice/api/v2/user-service/user/verification/{userId}/profile-type/{profileType} | User Email Verification |
 
+
+<a name="addUserToTeam"></a>
+# **addUserToTeam**
+> AddUserToTeamResponse addUserToTeam(teamId, AddUserToTeamBody)
+
+Adds a user to a team
+
+    This endpoint adds a user to a team based on the provided team ID and user ID.The addition process ensures that the user is properly associated with the team.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **teamId** | **String**|  | [default to null] |
+| **AddUserToTeamBody** | [**AddUserToTeamBody**](../Models/AddUserToTeamBody.md)|  | |
+
+### Return type
+
+[**AddUserToTeamResponse**](../Models/AddUserToTeamResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
 
 <a name="checkEmailAndAuth0UserIdExists"></a>
 # **checkEmailAndAuth0UserIdExists**
@@ -139,6 +173,33 @@ No authorization required
 - **Content-Type**: application/json
 - **Accept**: application/json
 
+<a name="createTeam"></a>
+# **createTeam**
+> CreateTeamResponse createTeam(CreateTeamRequest)
+
+Creates a new team
+
+    This endpoint adds a new team to the system. It requires team details such as name, description, and members.The creation process involves adding the team to the database and initializing its members.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **CreateTeamRequest** | [**CreateTeamRequest**](../Models/CreateTeamRequest.md)|  | |
+
+### Return type
+
+[**CreateTeamResponse**](../Models/CreateTeamResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
 <a name="createUserV2"></a>
 # **createUserV2**
 > CreateUserV2Response createUserV2(CreateUserV2Request)
@@ -183,6 +244,34 @@ Deletes a role
 ### Return type
 
 [**DeleteRoleResponse**](../Models/DeleteRoleResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="deleteTeam"></a>
+# **deleteTeam**
+> DeleteTeamResponse deleteTeam(teamId, adminAuth0UserId)
+
+Deletes a team
+
+    This endpoint deletes a team from the system based on the provided team ID.The deletion process ensures that all related data and members are properly removed.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **teamId** | **String**|  | [default to null] |
+| **adminAuth0UserId** | **String**|  | [default to null] |
+
+### Return type
+
+[**DeleteTeamResponse**](../Models/DeleteTeamResponse.md)
 
 ### Authorization
 
@@ -266,6 +355,33 @@ Retrieves a role
 ### Return type
 
 [**GetRoleResponse**](../Models/GetRoleResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getTeam"></a>
+# **getTeam**
+> GetTeamResponse getTeam(teamId)
+
+Retrieves a team
+
+    This endpoint fetches details of a specific team using the team ID.It retrieves the team&#39;s name, description, members, and audit history.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **teamId** | **String**|  | [default to null] |
+
+### Return type
+
+[**GetTeamResponse**](../Models/GetTeamResponse.md)
 
 ### Authorization
 
@@ -530,6 +646,36 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="removeUserFromTeam"></a>
+# **removeUserFromTeam**
+> RemoveUserFromTeamResponse removeUserFromTeam(teamId, adminAuth0UserId, userAuth0UserId, profileType)
+
+Removes a user from a team
+
+    This endpoint removes a user from a team based on the provided team ID and user ID.The removal process ensures that the user is properly disassociated from the team.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **teamId** | **String**|  | [default to null] |
+| **adminAuth0UserId** | **String**|  | [optional] [default to null] |
+| **userAuth0UserId** | **String**|  | [optional] [default to null] |
+| **profileType** | **String**|  | [optional] [default to PROFILE_TYPE_UNSPECIFIED] [enum: PROFILE_TYPE_UNSPECIFIED, PROFILE_TYPE_USER, PROFILE_TYPE_BUSINESS] |
+
+### Return type
+
+[**RemoveUserFromTeamResponse**](../Models/RemoveUserFromTeamResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="retrieveBusinessSettings"></a>
 # **retrieveBusinessSettings**
 > GetBusinessSettingsResponse retrieveBusinessSettings(userId)
@@ -574,6 +720,33 @@ Updates an existing role
 ### Return type
 
 [**UpdateRoleResponse**](../Models/UpdateRoleResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="updateTeam"></a>
+# **updateTeam**
+> UpdateTeamResponse updateTeam(Team)
+
+Updates an existing team
+
+    This endpoint updates the details of an existing team. The team ID is used to identify the team to be updated.The update operation can modify the team&#39;s name, description, and members.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **Team** | [**Team**](../Models/Team.md)|  | |
+
+### Return type
+
+[**UpdateTeamResponse**](../Models/UpdateTeamResponse.md)
 
 ### Authorization
 

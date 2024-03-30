@@ -21,6 +21,50 @@ enum ProfileType {
 }
 
 /**
+  Team: represents a team within the context of solomon-ai.
+*/
+message Team {
+  option (gorm.opts) = {
+    ormable: true
+  };
+
+  // Unique identifier for the team.
+  uint64 id = 1 [(gorm.field).tag = {unique_index: "idx_team_id"}];
+
+  // Name of the team.
+  string name = 2;
+
+  // Description of the team.
+  string description = 3;
+
+  // Tags associated with the team.
+  repeated Tags tags = 4;
+
+  // Admin of the team.
+  // NOTE: only one admin is allowed per team and that admin must be a business account.
+  BusinessAccount team_admin = 5 [
+    (gorm.field).has_one.preload = true
+  ];
+
+  // Members of the team.
+  repeated UserAccount member_users_accounts = 6 [
+    (gorm.field).has_many.preload = true
+  ];
+
+  // Member business accounts of the team.
+  repeated BusinessAccount member_business_accounts = 7 [
+    (gorm.field).has_many.preload = true
+  ];
+
+  // Timestamp for when the team was created.
+  google.protobuf.Timestamp created_at = 8;
+
+  // Timestamp for when the team was last updated.
+  google.protobuf.Timestamp updated_at = 9;
+}
+
+
+/**
  * @brief Represents a user account in the context of simfinni.
  */
 message UserAccount {
@@ -105,8 +149,8 @@ message UserAccount {
     (gorm.field).tag = {unique_index: "idx_user_auth0_user_id"}
   ];
 
-  Role role = 45 [
-    (gorm.field).has_one.preload = true
+  repeated Role roles = 45 [
+    (gorm.field).has_many.preload = true
   ];
 
   // Algolia user id
@@ -238,8 +282,8 @@ message BusinessAccount {
     (gorm.field).tag = {unique_index: "auth0_user_id"}
   ];
 
-  Role role = 45 [
-    (gorm.field).has_one.preload = true
+  repeated Role roles = 45 [
+    (gorm.field).has_many.preload = true
   ];
 
   // Algolia user id

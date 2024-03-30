@@ -752,3 +752,82 @@ message CheckEmailAndAuth0UserIdExistsResponse {
   } 
   bool exists = 3;
 }
+
+// Create Team Request and Response
+message CreateTeamRequest {
+  string admin_auth0_user_id = 1;
+  string team_name = 2 [
+    (validate.rules).string = {
+      min_bytes: 1,
+    },
+    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+      example: "\"team_name:team1\""
+    }
+  ];
+  string team_description = 3 [
+    (validate.rules).string = {
+      min_bytes: 1,
+    },
+    (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_field) = {
+      example: "\"team_description:team1\""
+    }
+  ];
+}
+
+message CreateTeamResponse {
+  Team team = 1;
+}
+
+// Get Team Request and Response
+message GetTeamRequest {
+  int64 team_id = 1;
+}
+
+message GetTeamResponse {
+  Team team = 1;
+}
+
+// Update Team Request and Response
+message UpdateTeamRequest {
+  Team team = 2;
+}
+
+message UpdateTeamResponse {
+  Team team = 1;
+}
+
+// Delete Team Request and Response
+message DeleteTeamRequest {
+  int64 team_id = 1;
+  string admin_auth0_user_id = 2;
+}
+
+message DeleteTeamResponse {
+  bool success = 1;
+}
+
+// Add User to Team Request and Response
+message AddUserToTeamRequest {
+  int64 team_id = 1;
+  string admin_auth0_user_id = 2;
+
+  string user_auth0_user_id = 3;
+  ProfileType profile_type = 4;
+}
+
+message AddUserToTeamResponse {
+  Team team = 1;
+}
+
+// Remove User from Team Request and Response
+message RemoveUserFromTeamRequest {
+  int64 team_id = 1;
+  string admin_auth0_user_id = 2;
+
+  string user_auth0_user_id = 3;
+  ProfileType profile_type = 4;
+}
+
+message RemoveUserFromTeamResponse {
+  Team team = 1;
+}

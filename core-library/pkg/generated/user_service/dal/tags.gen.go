@@ -33,6 +33,7 @@ func newTagsORM(db *gorm.DB, opts ...gen.DOOption) tagsORM {
 	_tagsORM.Metadata = field.NewField(tableName, "metadata")
 	_tagsORM.TagDescription = field.NewString(tableName, "tag_description")
 	_tagsORM.TagName = field.NewString(tableName, "tag_name")
+	_tagsORM.TeamId = field.NewUint64(tableName, "team_id")
 	_tagsORM.UserAccountId = field.NewUint64(tableName, "user_account_id")
 
 	_tagsORM.fillFieldMap()
@@ -49,6 +50,7 @@ type tagsORM struct {
 	Metadata          field.Field
 	TagDescription    field.String
 	TagName           field.String
+	TeamId            field.Uint64
 	UserAccountId     field.Uint64
 
 	fieldMap map[string]field.Expr
@@ -71,6 +73,7 @@ func (t *tagsORM) updateTableName(table string) *tagsORM {
 	t.Metadata = field.NewField(table, "metadata")
 	t.TagDescription = field.NewString(table, "tag_description")
 	t.TagName = field.NewString(table, "tag_name")
+	t.TeamId = field.NewUint64(table, "team_id")
 	t.UserAccountId = field.NewUint64(table, "user_account_id")
 
 	t.fillFieldMap()
@@ -88,12 +91,13 @@ func (t *tagsORM) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (t *tagsORM) fillFieldMap() {
-	t.fieldMap = make(map[string]field.Expr, 6)
+	t.fieldMap = make(map[string]field.Expr, 7)
 	t.fieldMap["business_account_id"] = t.BusinessAccountId
 	t.fieldMap["id"] = t.Id
 	t.fieldMap["metadata"] = t.Metadata
 	t.fieldMap["tag_description"] = t.TagDescription
 	t.fieldMap["tag_name"] = t.TagName
+	t.fieldMap["team_id"] = t.TeamId
 	t.fieldMap["user_account_id"] = t.UserAccountId
 }
 
