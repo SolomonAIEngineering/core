@@ -58,3 +58,7 @@ spec:
       method: POST
       pathRegex: /accounting_service\.v1\.AccountingService/ReadBusinessTransactions
     name: ReadBusinessTransactions
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/GetWorkflowExecutionStatus
+    name: GetWorkflowExecutionStatus

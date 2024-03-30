@@ -13,6 +13,64 @@
 	            "name": "accounting-service",
 	            "item": [
 	                        {
+    "name": "/accounting-microservice/api/v1/async-task/:workflowId/run/:workflowRunId",
+                "description": "This endpoint polls the status of an async task",
+                 "item": [
+                            {
+                                "name": "polls the status of an async task",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/async-task/:workflowId/run/:workflowRunId",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "async-task",
+                                            ":workflowId",
+                                            "run",
+                                            ":workflowRunId"
+                                        ],
+                                        "variable": [
+                                            {
+                                                "key": "workflowId",
+                                                "value": "",
+                                                "description": "The task id Validations: - workflow id cannot be empty"
+                                            },
+                                            {
+                                                "key": "workflowRunId",
+                                                "value": "",
+                                                "description": "The run id Validations: - run id cannot be empty"
+                                            }
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint polls the status of an async task"
+                                }
+                            }
+                            ]
+                        },
+	                        {
     "name": "/accounting-microservice/api/v1/balance-sheets",
                 "description": "Queries balance sheets for a business.",
                  "item": [

@@ -286,6 +286,7 @@ Models/GetUserProfileResponse1.md
 Models/GetUserProfilesResponse.md
 Models/GetUserResponse.md
 Models/GetUserV2Response.md
+Models/GetWorkflowExecutionStatusResponse.md
 Models/GoalType.md
 Models/Group.md
 Models/HealthCheckResponse.md

@@ -8,6 +8,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**deleteProfile**](AccountingServiceApi.md#deleteProfile) | **DELETE** /accounting-microservice/api/v1/profile/{authZeroUserId} | Delete Payroll Profile |
 | [**exchangePublicLinkTokenForAccountTokenResponse**](AccountingServiceApi.md#exchangePublicLinkTokenForAccountTokenResponse) | **POST** /accounting-microservice/api/v1/merge/exchange-token | Exchange Link Token |
 | [**getLinkToken**](AccountingServiceApi.md#getLinkToken) | **POST** /accounting-microservice/api/v1/merge/initiate-token-exchange | Get Link Token |
+| [**getWorkflowExecutionStatus**](AccountingServiceApi.md#getWorkflowExecutionStatus) | **GET** /accounting-microservice/api/v1/async-task/{workflowId}/run/{workflowRunId} | polls the status of an async task |
 | [**healthCheck3**](AccountingServiceApi.md#healthCheck3) | **GET** /accounting-microservice/api/v1/health | Health Check |
 | [**readAccountingProfileResponse**](AccountingServiceApi.md#readAccountingProfileResponse) | **GET** /accounting-microservice/api/v1/profile/{authZeroUserId} | Get Business Account Profile |
 | [**readBalanceSheets**](AccountingServiceApi.md#readBalanceSheets) | **POST** /accounting-microservice/api/v1/balance-sheets | Gets Balance Sheets |
@@ -125,6 +126,34 @@ No authorization required
 ### HTTP request headers
 
 - **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="getWorkflowExecutionStatus"></a>
+# **getWorkflowExecutionStatus**
+> GetWorkflowExecutionStatusResponse getWorkflowExecutionStatus(workflowId, workflowRunId)
+
+polls the status of an async task
+
+    This endpoint polls the status of an async task
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **workflowId** | **String**| The task id Validations: - workflow id cannot be empty | [default to null] |
+| **workflowRunId** | **String**| The run id Validations: - run id cannot be empty | [default to null] |
+
+### Return type
+
+[**GetWorkflowExecutionStatusResponse**](../Models/GetWorkflowExecutionStatusResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
 - **Accept**: application/json
 
 <a name="healthCheck3"></a>

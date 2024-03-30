@@ -73,6 +73,10 @@ message ExchangePublicLinkTokenForAccountTokenResponse { // Defines a message na
   bool success = 1 [
     (google.api.field_behavior) = REQUIRED // Field behavior: success is required.
   ];
+
+  string workflow_id = 2; // A string field named "workflow_id" with field number 2.
+
+  string workflow_run_id = 3; // A string field named "workflow_run_id" with field number 3.
 }
 
 message ReadBalanceSheetsResponse {
@@ -103,3 +107,12 @@ message ReadBusinessChartOfAccountsResponse {
   // the chart of accounts
   repeated BusinessChartOfAccount chart_of_accounts = 1;
 } 
+
+message GetWorkflowExecutionStatusResponse {
+  // The workflow id
+  string workflow_id = 1;
+  // The task status
+  string status = 2;
+  // The run id
+  string run_id = 3;
+}

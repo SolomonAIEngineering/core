@@ -87,3 +87,9 @@ func (m *AccountingServiceDefaultServer) ReadBusinessTransactions(ctx context.Co
 	out := &ReadBusinessTransactionsResponse{}
 	return out, nil
 }
+
+// GetWorkflowExecutionStatus ...
+func (m *AccountingServiceDefaultServer) GetWorkflowExecutionStatus(ctx context.Context, in *GetWorkflowExecutionStatusRequest) (*GetWorkflowExecutionStatusResponse, error) {
+	out := &GetWorkflowExecutionStatusResponse{}
+	return out, nil
+}

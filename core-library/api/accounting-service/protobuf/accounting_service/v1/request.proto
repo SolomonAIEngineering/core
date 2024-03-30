@@ -280,3 +280,20 @@ message ReadBusinessTransactionsResponse {
   repeated BusinessTransaction transactions = 1; // The list of transactions for the current page.
   uint64 next_page = 3; // The current page number.
 }
+
+message GetWorkflowExecutionStatusRequest {
+    // The task id
+  // Validations:
+  // - workflow id cannot be empty
+  string workflow_id = 1 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The run id
+  // Validations:
+  // - run id cannot be empty
+  string workflow_run_id = 2 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+}
+

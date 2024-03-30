@@ -288,6 +288,7 @@ models/GetUserProfileResponse1.ts
 models/GetUserProfilesResponse.ts
 models/GetUserResponse.ts
 models/GetUserV2Response.ts
+models/GetWorkflowExecutionStatusResponse.ts
 models/GoalType.ts
 models/Group.ts
 models/HealthCheckResponse.ts
