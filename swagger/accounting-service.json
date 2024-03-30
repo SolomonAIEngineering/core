@@ -4354,6 +4354,11 @@
           "type": "string",
           "description": "The ID of the user whose transactions are to be fetched."
         },
+        "linkedAccountingAccountId": {
+          "type": "string",
+          "format": "uint64",
+          "description": "The ID of the accounting account whose transactions are to be fetched."
+        },
         "pageNumber": {
           "type": "string",
           "format": "uint64",
@@ -4378,6 +4383,7 @@
       "description": "Request for reading business transactions with pagination and time filtering.",
       "required": [
         "authZeroUserId",
+        "linkedAccountingAccountId",
         "pageNumber",
         "pageSize"
       ]

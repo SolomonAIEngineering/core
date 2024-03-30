@@ -3666,6 +3666,11 @@ components:
         authZeroUserId:
           type: string
           description: The ID of the user whose transactions are to be fetched.
+        linkedAccountingAccountId:
+          type: string
+          format: uint64
+          description: The ID of the accounting account whose transactions are to be
+            fetched.
         pageNumber:
           type: string
           format: uint64
@@ -3686,6 +3691,7 @@ components:
         filtering.
       required:
         - authZeroUserId
+        - linkedAccountingAccountId
         - pageNumber
         - pageSize
     ReadBusinessTransactionsResponse:
