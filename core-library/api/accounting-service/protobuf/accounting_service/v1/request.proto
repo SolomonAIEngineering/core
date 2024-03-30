@@ -269,8 +269,8 @@ message ReadBusinessTransactionsRequest {
     (validate.rules).uint64.gt = 0,
     (google.api.field_behavior) = REQUIRED
   ]; // The number of items to be returned per page.
-  string start_time = 4; // The start of the time range for the transactions (inclusive).
-  string end_time = 5; // The end of the time range for the transactions (exclusive).
+  google.protobuf.Timestamp start_time = 4; // The start of the time range for the transactions (inclusive).
+  google.protobuf.Timestamp end_time = 5; // The end of the time range for the transactions (exclusive).
 }
 
 // Response for the request containing the paginated list of transactions.
