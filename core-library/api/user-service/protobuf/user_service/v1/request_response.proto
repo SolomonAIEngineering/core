@@ -4,7 +4,6 @@ package user_service.v1;
 
 import "user_service/v1/message.proto";
 import "user_service/v1/settings.proto";
-import "user_service/v1/roles.proto";
 
 import "validate/validate.proto";
 import "google/api/field_behavior.proto";

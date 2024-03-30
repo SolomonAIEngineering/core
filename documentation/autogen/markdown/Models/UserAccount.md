@@ -23,7 +23,6 @@
 | **accountType** | [**ProfileType**](ProfileType.md) |  | [optional] [default to null] |
 | **profileImageUrl** | **String** | Profile image associated with the user account. | [optional] [default to null] |
 | **auth0UserId** | **String** |  | [optional] [default to null] |
-| **roles** | [**List**](Role.md) |  | [optional] [default to null] |
 | **algoliaUserId** | **String** |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)

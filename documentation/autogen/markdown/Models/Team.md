@@ -12,6 +12,7 @@
 | **memberBusinessAccounts** | [**List**](BusinessAccount.md) | Member business accounts of the team. | [optional] [default to null] |
 | **createdAt** | **Date** | Timestamp for when the team was created. | [optional] [default to null] |
 | **updatedAt** | **Date** | Timestamp for when the team was last updated. | [optional] [default to null] |
+| **roles** | [**List**](Role.md) |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

@@ -21584,12 +21584,6 @@
                         "type": "string",
                         "title": "auth0 user id associated with the business account"
                     },
-                    "roles": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Role"
-                        }
-                    },
                     "algoliaUserId": {
                         "type": "string",
                         "title": "Algolia user id"
@@ -22255,6 +22249,15 @@
                             "$ref": "#/components/schemas/RoleAuditEvents"
                         },
                         "description": "Audit log for this role."
+                    },
+                    "team": {
+                        "$ref": "#/components/schemas/Team"
+                    },
+                    "user": {
+                        "$ref": "#/components/schemas/UserAccount"
+                    },
+                    "business": {
+                        "$ref": "#/components/schemas/BusinessAccount"
                     }
                 },
                 "description": "Role defines the role of a user in the system with specific permissions."
@@ -22455,6 +22458,12 @@
                         "type": "string",
                         "format": "date-time",
                         "description": "Timestamp for when the team was last updated."
+                    },
+                    "roles": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/Role"
+                        }
                     }
                 },
                 "description": "Team: represents a team within the context of solomon-ai."
@@ -22612,12 +22621,6 @@
                     "auth0UserId": {
                         "type": "string",
                         "title": "Auth0 user id"
-                    },
-                    "roles": {
-                        "type": "array",
-                        "items": {
-                            "$ref": "#/components/schemas/Role"
-                        }
                     },
                     "algoliaUserId": {
                         "type": "string",

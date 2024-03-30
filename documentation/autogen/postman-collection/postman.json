@@ -12792,7 +12792,7 @@
                                     ],
                                     "body": {
                                         "mode": "raw",
-                                        "raw": "{\n \"id\": \"<string>\",\n \"name\": \"<string>\",\n \"type\": \"<string>\",\n \"canCreateUsers\": \"<string>\",\n \"canReadUsers\": \"<string>\",\n \"canUpdateUsers\": \"<string>\",\n \"canDeleteUsers\": \"<string>\",\n \"canCreateProjects\": \"<string>\",\n \"canReadProjects\": \"<string>\",\n \"canUpdateProjects\": \"<string>\",\n \"canDeleteProjects\": \"<string>\",\n \"canCreateReports\": \"<string>\",\n \"canReadReports\": \"<string>\",\n \"canUpdateReports\": \"<string>\",\n \"canDeleteReports\": \"<string>\",\n \"createdAt\": \"<string>\",\n \"updatedAt\": \"<string>\",\n \"auditLog\": \"<string>\"\n}",
+                                        "raw": "{\n \"id\": \"<string>\",\n \"name\": \"<string>\",\n \"type\": \"<string>\",\n \"canCreateUsers\": \"<string>\",\n \"canReadUsers\": \"<string>\",\n \"canUpdateUsers\": \"<string>\",\n \"canDeleteUsers\": \"<string>\",\n \"canCreateProjects\": \"<string>\",\n \"canReadProjects\": \"<string>\",\n \"canUpdateProjects\": \"<string>\",\n \"canDeleteProjects\": \"<string>\",\n \"canCreateReports\": \"<string>\",\n \"canReadReports\": \"<string>\",\n \"canUpdateReports\": \"<string>\",\n \"canDeleteReports\": \"<string>\",\n \"createdAt\": \"<string>\",\n \"updatedAt\": \"<string>\",\n \"auditLog\": \"<string>\",\n \"team\": \"<string>\",\n \"user\": \"<string>\",\n \"business\": \"<string>\"\n}",
                                         "options": {
                                             "raw": {
                                                 "language": "json"
@@ -13057,7 +13057,7 @@
                                     ],
                                     "body": {
                                         "mode": "raw",
-                                        "raw": "{\n \"id\": \"<string>\",\n \"name\": \"<string>\",\n \"description\": \"<string>\",\n \"tags\": \"<string>\",\n \"teamAdmin\": \"<string>\",\n \"memberUsersAccounts\": \"<string>\",\n \"memberBusinessAccounts\": \"<string>\",\n \"createdAt\": \"<string>\",\n \"updatedAt\": \"<string>\"\n}",
+                                        "raw": "{\n \"id\": \"<string>\",\n \"name\": \"<string>\",\n \"description\": \"<string>\",\n \"tags\": \"<string>\",\n \"teamAdmin\": \"<string>\",\n \"memberUsersAccounts\": \"<string>\",\n \"memberBusinessAccounts\": \"<string>\",\n \"createdAt\": \"<string>\",\n \"updatedAt\": \"<string>\",\n \"roles\": \"<string>\"\n}",
                                         "options": {
                                             "raw": {
                                                 "language": "json"
@@ -13638,7 +13638,7 @@
                                     ],
                                     "body": {
                                         "mode": "raw",
-                                        "raw": "{\n \"id\": \"<string>\",\n \"name\": \"<string>\",\n \"type\": \"<string>\",\n \"canCreateUsers\": \"<string>\",\n \"canReadUsers\": \"<string>\",\n \"canUpdateUsers\": \"<string>\",\n \"canDeleteUsers\": \"<string>\",\n \"canCreateProjects\": \"<string>\",\n \"canReadProjects\": \"<string>\",\n \"canUpdateProjects\": \"<string>\",\n \"canDeleteProjects\": \"<string>\",\n \"canCreateReports\": \"<string>\",\n \"canReadReports\": \"<string>\",\n \"canUpdateReports\": \"<string>\",\n \"canDeleteReports\": \"<string>\",\n \"createdAt\": \"<string>\",\n \"updatedAt\": \"<string>\",\n \"auditLog\": \"<string>\"\n}",
+                                        "raw": "{\n \"id\": \"<string>\",\n \"name\": \"<string>\",\n \"type\": \"<string>\",\n \"canCreateUsers\": \"<string>\",\n \"canReadUsers\": \"<string>\",\n \"canUpdateUsers\": \"<string>\",\n \"canDeleteUsers\": \"<string>\",\n \"canCreateProjects\": \"<string>\",\n \"canReadProjects\": \"<string>\",\n \"canUpdateProjects\": \"<string>\",\n \"canDeleteProjects\": \"<string>\",\n \"canCreateReports\": \"<string>\",\n \"canReadReports\": \"<string>\",\n \"canUpdateReports\": \"<string>\",\n \"canDeleteReports\": \"<string>\",\n \"createdAt\": \"<string>\",\n \"updatedAt\": \"<string>\",\n \"auditLog\": \"<string>\",\n \"team\": \"<string>\",\n \"user\": \"<string>\",\n \"business\": \"<string>\"\n}",
                                         "options": {
                                             "raw": {
                                                 "language": "json"

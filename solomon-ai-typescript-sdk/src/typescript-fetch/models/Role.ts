@@ -13,6 +13,12 @@
  */
 
 import { exists, mapValues } from '../runtime';
+import type { BusinessAccount } from './BusinessAccount';
+import {
+    BusinessAccountFromJSON,
+    BusinessAccountFromJSONTyped,
+    BusinessAccountToJSON,
+} from './BusinessAccount';
 import type { RoleAuditEvents } from './RoleAuditEvents';
 import {
     RoleAuditEventsFromJSON,
@@ -25,6 +31,18 @@ import {
     RoleTypeFromJSONTyped,
     RoleTypeToJSON,
 } from './RoleType';
+import type { Team } from './Team';
+import {
+    TeamFromJSON,
+    TeamFromJSONTyped,
+    TeamToJSON,
+} from './Team';
+import type { UserAccount } from './UserAccount';
+import {
+    UserAccountFromJSON,
+    UserAccountFromJSONTyped,
+    UserAccountToJSON,
+} from './UserAccount';
 
 /**
  * Role defines the role of a user in the system with specific permissions.
@@ -141,6 +159,24 @@ export interface Role {
      * @memberof Role
      */
     auditLog?: Array<RoleAuditEvents>;
+    /**
+     * 
+     * @type {Team}
+     * @memberof Role
+     */
+    team?: Team;
+    /**
+     * 
+     * @type {UserAccount}
+     * @memberof Role
+     */
+    user?: UserAccount;
+    /**
+     * 
+     * @type {BusinessAccount}
+     * @memberof Role
+     */
+    business?: BusinessAccount;
 }
 
 /**
@@ -180,6 +216,9 @@ export function RoleFromJSONTyped(json: any, ignoreDiscriminator: boolean): Role
         'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
         'updatedAt': !exists(json, 'updatedAt') ? undefined : (new Date(json['updatedAt'])),
         'auditLog': !exists(json, 'auditLog') ? undefined : ((json['auditLog'] as Array<any>).map(RoleAuditEventsFromJSON)),
+        'team': !exists(json, 'team') ? undefined : TeamFromJSON(json['team']),
+        'user': !exists(json, 'user') ? undefined : UserAccountFromJSON(json['user']),
+        'business': !exists(json, 'business') ? undefined : BusinessAccountFromJSON(json['business']),
     };
 }
 
@@ -210,6 +249,9 @@ export function RoleToJSON(value?: Role | null): any {
         'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'updatedAt': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
         'auditLog': value.auditLog === undefined ? undefined : ((value.auditLog as Array<any>).map(RoleAuditEventsToJSON)),
+        'team': TeamToJSON(value.team),
+        'user': UserAccountToJSON(value.user),
+        'business': BusinessAccountToJSON(value.business),
     };
 }
 

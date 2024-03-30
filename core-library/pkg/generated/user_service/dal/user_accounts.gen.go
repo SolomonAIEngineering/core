@@ -8,6 +8,7 @@ import (
 	"context"
 	"strings"
 
+	user_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"gorm.io/gorm/schema"
@@ -17,8 +18,6 @@ import (
 	"gorm.io/gen/helper"
 
 	"gorm.io/plugin/dbresolver"
-
-	user_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1"
 )
 
 func newUserAccountORM(db *gorm.DB, opts ...gen.DOOption) userAccountORM {
@@ -45,6 +44,7 @@ func newUserAccountORM(db *gorm.DB, opts ...gen.DOOption) userAccountORM {
 	_userAccountORM.Lastname = field.NewString(tableName, "lastname")
 	_userAccountORM.PhoneNumber = field.NewString(tableName, "phone_number")
 	_userAccountORM.ProfileImageUrl = field.NewString(tableName, "profile_image_url")
+	_userAccountORM.RoleId = field.NewInt64(tableName, "role_id")
 	_userAccountORM.TeamId = field.NewUint64(tableName, "team_id")
 	_userAccountORM.Username = field.NewString(tableName, "username")
 	_userAccountORM.VerifiedAt = field.NewTime(tableName, "verified_at")
@@ -72,17 +72,6 @@ func newUserAccountORM(db *gorm.DB, opts ...gen.DOOption) userAccountORM {
 			field.RelationField
 		}{
 			RelationField: field.NewRelation("Settings.NotificationSettings", "user_servicev1.NotificationSettingsORM"),
-		},
-	}
-
-	_userAccountORM.Roles = userAccountORMHasManyRoles{
-		db: db.Session(&gorm.Session{}),
-
-		RelationField: field.NewRelation("Roles", "user_servicev1.RoleORM"),
-		AuditLog: struct {
-			field.RelationField
-		}{
-			RelationField: field.NewRelation("Roles.AuditLog", "user_servicev1.RoleAuditEventsORM"),
 		},
 	}
 
@@ -117,14 +106,13 @@ type userAccountORM struct {
 	Lastname        field.String
 	PhoneNumber     field.String
 	ProfileImageUrl field.String
+	RoleId          field.Int64
 	TeamId          field.Uint64
 	Username        field.String
 	VerifiedAt      field.Time
 	Address         userAccountORMHasOneAddress
 
 	Settings userAccountORMHasOneSettings
-
-	Roles userAccountORMHasManyRoles
 
 	Tags userAccountORMHasManyTags
 
@@ -159,6 +147,7 @@ func (u *userAccountORM) updateTableName(table string) *userAccountORM {
 	u.Lastname = field.NewString(table, "lastname")
 	u.PhoneNumber = field.NewString(table, "phone_number")
 	u.ProfileImageUrl = field.NewString(table, "profile_image_url")
+	u.RoleId = field.NewInt64(table, "role_id")
 	u.TeamId = field.NewUint64(table, "team_id")
 	u.Username = field.NewString(table, "username")
 	u.VerifiedAt = field.NewTime(table, "verified_at")
@@ -195,6 +184,7 @@ func (u *userAccountORM) fillFieldMap() {
 	u.fieldMap["lastname"] = u.Lastname
 	u.fieldMap["phone_number"] = u.PhoneNumber
 	u.fieldMap["profile_image_url"] = u.ProfileImageUrl
+	u.fieldMap["role_id"] = u.RoleId
 	u.fieldMap["team_id"] = u.TeamId
 	u.fieldMap["username"] = u.Username
 	u.fieldMap["verified_at"] = u.VerifiedAt
@@ -360,81 +350,6 @@ func (a userAccountORMHasOneSettingsTx) Clear() error {
 }
 
 func (a userAccountORMHasOneSettingsTx) Count() int64 {
-	return a.tx.Count()
-}
-
-type userAccountORMHasManyRoles struct {
-	db *gorm.DB
-
-	field.RelationField
-
-	AuditLog struct {
-		field.RelationField
-	}
-}
-
-func (a userAccountORMHasManyRoles) Where(conds ...field.Expr) *userAccountORMHasManyRoles {
-	if len(conds) == 0 {
-		return &a
-	}
-
-	exprs := make([]clause.Expression, 0, len(conds))
-	for _, cond := range conds {
-		exprs = append(exprs, cond.BeCond().(clause.Expression))
-	}
-	a.db = a.db.Clauses(clause.Where{Exprs: exprs})
-	return &a
-}
-
-func (a userAccountORMHasManyRoles) WithContext(ctx context.Context) *userAccountORMHasManyRoles {
-	a.db = a.db.WithContext(ctx)
-	return &a
-}
-
-func (a userAccountORMHasManyRoles) Session(session *gorm.Session) *userAccountORMHasManyRoles {
-	a.db = a.db.Session(session)
-	return &a
-}
-
-func (a userAccountORMHasManyRoles) Model(m *user_servicev1.UserAccountORM) *userAccountORMHasManyRolesTx {
-	return &userAccountORMHasManyRolesTx{a.db.Model(m).Association(a.Name())}
-}
-
-type userAccountORMHasManyRolesTx struct{ tx *gorm.Association }
-
-func (a userAccountORMHasManyRolesTx) Find() (result []*user_servicev1.RoleORM, err error) {
-	return result, a.tx.Find(&result)
-}
-
-func (a userAccountORMHasManyRolesTx) Append(values ...*user_servicev1.RoleORM) (err error) {
-	targetValues := make([]interface{}, len(values))
-	for i, v := range values {
-		targetValues[i] = v
-	}
-	return a.tx.Append(targetValues...)
-}
-
-func (a userAccountORMHasManyRolesTx) Replace(values ...*user_servicev1.RoleORM) (err error) {
-	targetValues := make([]interface{}, len(values))
-	for i, v := range values {
-		targetValues[i] = v
-	}
-	return a.tx.Replace(targetValues...)
-}
-
-func (a userAccountORMHasManyRolesTx) Delete(values ...*user_servicev1.RoleORM) (err error) {
-	targetValues := make([]interface{}, len(values))
-	for i, v := range values {
-		targetValues[i] = v
-	}
-	return a.tx.Delete(targetValues...)
-}
-
-func (a userAccountORMHasManyRolesTx) Clear() error {
-	return a.tx.Clear()
-}
-
-func (a userAccountORMHasManyRolesTx) Count() int64 {
 	return a.tx.Count()
 }
 

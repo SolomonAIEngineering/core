@@ -19,6 +19,12 @@ import {
     BusinessAccountFromJSONTyped,
     BusinessAccountToJSON,
 } from './BusinessAccount';
+import type { Role } from './Role';
+import {
+    RoleFromJSON,
+    RoleFromJSONTyped,
+    RoleToJSON,
+} from './Role';
 import type { Tags } from './Tags';
 import {
     TagsFromJSON,
@@ -92,6 +98,12 @@ export interface Team {
      * @memberof Team
      */
     updatedAt?: Date;
+    /**
+     * 
+     * @type {Array<Role>}
+     * @memberof Team
+     */
+    roles?: Array<Role>;
 }
 
 /**
@@ -122,6 +134,7 @@ export function TeamFromJSONTyped(json: any, ignoreDiscriminator: boolean): Team
         'memberBusinessAccounts': !exists(json, 'memberBusinessAccounts') ? undefined : ((json['memberBusinessAccounts'] as Array<any>).map(BusinessAccountFromJSON)),
         'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
         'updatedAt': !exists(json, 'updatedAt') ? undefined : (new Date(json['updatedAt'])),
+        'roles': !exists(json, 'roles') ? undefined : ((json['roles'] as Array<any>).map(RoleFromJSON)),
     };
 }
 
@@ -143,6 +156,7 @@ export function TeamToJSON(value?: Team | null): any {
         'memberBusinessAccounts': value.memberBusinessAccounts === undefined ? undefined : ((value.memberBusinessAccounts as Array<any>).map(BusinessAccountToJSON)),
         'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
         'updatedAt': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'roles': value.roles === undefined ? undefined : ((value.roles as Array<any>).map(RoleToJSON)),
     };
 }
 

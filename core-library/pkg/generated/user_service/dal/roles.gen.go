@@ -8,7 +8,6 @@ import (
 	"context"
 	"strings"
 
-	user_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"gorm.io/gorm/schema"
@@ -18,6 +17,8 @@ import (
 	"gorm.io/gen/helper"
 
 	"gorm.io/plugin/dbresolver"
+
+	user_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1"
 )
 
 func newRoleORM(db *gorm.DB, opts ...gen.DOOption) roleORM {
@@ -28,7 +29,6 @@ func newRoleORM(db *gorm.DB, opts ...gen.DOOption) roleORM {
 
 	tableName := _roleORM.roleORMDo.TableName()
 	_roleORM.ALL = field.NewAsterisk(tableName)
-	_roleORM.BusinessAccountId = field.NewUint64(tableName, "business_account_id")
 	_roleORM.CanCreateProjects = field.NewBool(tableName, "can_create_projects")
 	_roleORM.CanCreateReports = field.NewBool(tableName, "can_create_reports")
 	_roleORM.CanCreateUsers = field.NewBool(tableName, "can_create_users")
@@ -44,9 +44,147 @@ func newRoleORM(db *gorm.DB, opts ...gen.DOOption) roleORM {
 	_roleORM.CreatedAt = field.NewTime(tableName, "created_at")
 	_roleORM.Id = field.NewInt64(tableName, "id")
 	_roleORM.Name = field.NewString(tableName, "name")
+	_roleORM.TeamId = field.NewUint64(tableName, "team_id")
 	_roleORM.Type = field.NewString(tableName, "type")
 	_roleORM.UpdatedAt = field.NewTime(tableName, "updated_at")
-	_roleORM.UserAccountId = field.NewUint64(tableName, "user_account_id")
+	_roleORM.Business = roleORMHasOneBusiness{
+		db: db.Session(&gorm.Session{}),
+
+		RelationField: field.NewRelation("Business", "user_servicev1.BusinessAccountORM"),
+		Address: struct {
+			field.RelationField
+		}{
+			RelationField: field.NewRelation("Business.Address", "user_servicev1.AddressORM"),
+		},
+		Settings: struct {
+			field.RelationField
+			DigitalWorkerSettings struct {
+				field.RelationField
+			}
+			FinancialPreferences struct {
+				field.RelationField
+			}
+			NotificationSettings struct {
+				field.RelationField
+			}
+		}{
+			RelationField: field.NewRelation("Business.Settings", "user_servicev1.SettingsORM"),
+			DigitalWorkerSettings: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Business.Settings.DigitalWorkerSettings", "user_servicev1.DigitalWorkerSettingsORM"),
+			},
+			FinancialPreferences: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Business.Settings.FinancialPreferences", "user_servicev1.FinancialPreferencesORM"),
+			},
+			NotificationSettings: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Business.Settings.NotificationSettings", "user_servicev1.NotificationSettingsORM"),
+			},
+		},
+		Tags: struct {
+			field.RelationField
+		}{
+			RelationField: field.NewRelation("Business.Tags", "user_servicev1.TagsORM"),
+		},
+	}
+
+	_roleORM.Team = roleORMHasOneTeam{
+		db: db.Session(&gorm.Session{}),
+
+		RelationField: field.NewRelation("Team", "user_servicev1.TeamORM"),
+		TeamAdmin: struct {
+			field.RelationField
+		}{
+			RelationField: field.NewRelation("Team.TeamAdmin", "user_servicev1.BusinessAccountORM"),
+		},
+		MemberBusinessAccounts: struct {
+			field.RelationField
+		}{
+			RelationField: field.NewRelation("Team.MemberBusinessAccounts", "user_servicev1.BusinessAccountORM"),
+		},
+		MemberUsersAccounts: struct {
+			field.RelationField
+			Address struct {
+				field.RelationField
+			}
+			Settings struct {
+				field.RelationField
+			}
+			Tags struct {
+				field.RelationField
+			}
+		}{
+			RelationField: field.NewRelation("Team.MemberUsersAccounts", "user_servicev1.UserAccountORM"),
+			Address: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Team.MemberUsersAccounts.Address", "user_servicev1.AddressORM"),
+			},
+			Settings: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Team.MemberUsersAccounts.Settings", "user_servicev1.SettingsORM"),
+			},
+			Tags: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Team.MemberUsersAccounts.Tags", "user_servicev1.TagsORM"),
+			},
+		},
+		Roles: struct {
+			field.RelationField
+			Business struct {
+				field.RelationField
+			}
+			Team struct {
+				field.RelationField
+			}
+			User struct {
+				field.RelationField
+			}
+			AuditLog struct {
+				field.RelationField
+			}
+		}{
+			RelationField: field.NewRelation("Team.Roles", "user_servicev1.RoleORM"),
+			Business: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Team.Roles.Business", "user_servicev1.BusinessAccountORM"),
+			},
+			Team: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Team.Roles.Team", "user_servicev1.TeamORM"),
+			},
+			User: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Team.Roles.User", "user_servicev1.UserAccountORM"),
+			},
+			AuditLog: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Team.Roles.AuditLog", "user_servicev1.RoleAuditEventsORM"),
+			},
+		},
+		Tags: struct {
+			field.RelationField
+		}{
+			RelationField: field.NewRelation("Team.Tags", "user_servicev1.TagsORM"),
+		},
+	}
+
+	_roleORM.User = roleORMHasOneUser{
+		db: db.Session(&gorm.Session{}),
+
+		RelationField: field.NewRelation("User", "user_servicev1.UserAccountORM"),
+	}
+
 	_roleORM.AuditLog = roleORMHasManyAuditLog{
 		db: db.Session(&gorm.Session{}),
 
@@ -62,7 +200,6 @@ type roleORM struct {
 	roleORMDo
 
 	ALL               field.Asterisk
-	BusinessAccountId field.Uint64
 	CanCreateProjects field.Bool
 	CanCreateReports  field.Bool
 	CanCreateUsers    field.Bool
@@ -78,10 +215,16 @@ type roleORM struct {
 	CreatedAt         field.Time
 	Id                field.Int64
 	Name              field.String
+	TeamId            field.Uint64
 	Type              field.String
 	UpdatedAt         field.Time
-	UserAccountId     field.Uint64
-	AuditLog          roleORMHasManyAuditLog
+	Business          roleORMHasOneBusiness
+
+	Team roleORMHasOneTeam
+
+	User roleORMHasOneUser
+
+	AuditLog roleORMHasManyAuditLog
 
 	fieldMap map[string]field.Expr
 }
@@ -98,7 +241,6 @@ func (r roleORM) As(alias string) *roleORM {
 
 func (r *roleORM) updateTableName(table string) *roleORM {
 	r.ALL = field.NewAsterisk(table)
-	r.BusinessAccountId = field.NewUint64(table, "business_account_id")
 	r.CanCreateProjects = field.NewBool(table, "can_create_projects")
 	r.CanCreateReports = field.NewBool(table, "can_create_reports")
 	r.CanCreateUsers = field.NewBool(table, "can_create_users")
@@ -114,9 +256,9 @@ func (r *roleORM) updateTableName(table string) *roleORM {
 	r.CreatedAt = field.NewTime(table, "created_at")
 	r.Id = field.NewInt64(table, "id")
 	r.Name = field.NewString(table, "name")
+	r.TeamId = field.NewUint64(table, "team_id")
 	r.Type = field.NewString(table, "type")
 	r.UpdatedAt = field.NewTime(table, "updated_at")
-	r.UserAccountId = field.NewUint64(table, "user_account_id")
 
 	r.fillFieldMap()
 
@@ -133,8 +275,7 @@ func (r *roleORM) GetFieldByName(fieldName string) (field.OrderExpr, bool) {
 }
 
 func (r *roleORM) fillFieldMap() {
-	r.fieldMap = make(map[string]field.Expr, 20)
-	r.fieldMap["business_account_id"] = r.BusinessAccountId
+	r.fieldMap = make(map[string]field.Expr, 22)
 	r.fieldMap["can_create_projects"] = r.CanCreateProjects
 	r.fieldMap["can_create_reports"] = r.CanCreateReports
 	r.fieldMap["can_create_users"] = r.CanCreateUsers
@@ -150,9 +291,9 @@ func (r *roleORM) fillFieldMap() {
 	r.fieldMap["created_at"] = r.CreatedAt
 	r.fieldMap["id"] = r.Id
 	r.fieldMap["name"] = r.Name
+	r.fieldMap["team_id"] = r.TeamId
 	r.fieldMap["type"] = r.Type
 	r.fieldMap["updated_at"] = r.UpdatedAt
-	r.fieldMap["user_account_id"] = r.UserAccountId
 
 }
 
@@ -164,6 +305,275 @@ func (r roleORM) clone(db *gorm.DB) roleORM {
 func (r roleORM) replaceDB(db *gorm.DB) roleORM {
 	r.roleORMDo.ReplaceDB(db)
 	return r
+}
+
+type roleORMHasOneBusiness struct {
+	db *gorm.DB
+
+	field.RelationField
+
+	Address struct {
+		field.RelationField
+	}
+	Settings struct {
+		field.RelationField
+		DigitalWorkerSettings struct {
+			field.RelationField
+		}
+		FinancialPreferences struct {
+			field.RelationField
+		}
+		NotificationSettings struct {
+			field.RelationField
+		}
+	}
+	Tags struct {
+		field.RelationField
+	}
+}
+
+func (a roleORMHasOneBusiness) Where(conds ...field.Expr) *roleORMHasOneBusiness {
+	if len(conds) == 0 {
+		return &a
+	}
+
+	exprs := make([]clause.Expression, 0, len(conds))
+	for _, cond := range conds {
+		exprs = append(exprs, cond.BeCond().(clause.Expression))
+	}
+	a.db = a.db.Clauses(clause.Where{Exprs: exprs})
+	return &a
+}
+
+func (a roleORMHasOneBusiness) WithContext(ctx context.Context) *roleORMHasOneBusiness {
+	a.db = a.db.WithContext(ctx)
+	return &a
+}
+
+func (a roleORMHasOneBusiness) Session(session *gorm.Session) *roleORMHasOneBusiness {
+	a.db = a.db.Session(session)
+	return &a
+}
+
+func (a roleORMHasOneBusiness) Model(m *user_servicev1.RoleORM) *roleORMHasOneBusinessTx {
+	return &roleORMHasOneBusinessTx{a.db.Model(m).Association(a.Name())}
+}
+
+type roleORMHasOneBusinessTx struct{ tx *gorm.Association }
+
+func (a roleORMHasOneBusinessTx) Find() (result *user_servicev1.BusinessAccountORM, err error) {
+	return result, a.tx.Find(&result)
+}
+
+func (a roleORMHasOneBusinessTx) Append(values ...*user_servicev1.BusinessAccountORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Append(targetValues...)
+}
+
+func (a roleORMHasOneBusinessTx) Replace(values ...*user_servicev1.BusinessAccountORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Replace(targetValues...)
+}
+
+func (a roleORMHasOneBusinessTx) Delete(values ...*user_servicev1.BusinessAccountORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Delete(targetValues...)
+}
+
+func (a roleORMHasOneBusinessTx) Clear() error {
+	return a.tx.Clear()
+}
+
+func (a roleORMHasOneBusinessTx) Count() int64 {
+	return a.tx.Count()
+}
+
+type roleORMHasOneTeam struct {
+	db *gorm.DB
+
+	field.RelationField
+
+	TeamAdmin struct {
+		field.RelationField
+	}
+	MemberBusinessAccounts struct {
+		field.RelationField
+	}
+	MemberUsersAccounts struct {
+		field.RelationField
+		Address struct {
+			field.RelationField
+		}
+		Settings struct {
+			field.RelationField
+		}
+		Tags struct {
+			field.RelationField
+		}
+	}
+	Roles struct {
+		field.RelationField
+		Business struct {
+			field.RelationField
+		}
+		Team struct {
+			field.RelationField
+		}
+		User struct {
+			field.RelationField
+		}
+		AuditLog struct {
+			field.RelationField
+		}
+	}
+	Tags struct {
+		field.RelationField
+	}
+}
+
+func (a roleORMHasOneTeam) Where(conds ...field.Expr) *roleORMHasOneTeam {
+	if len(conds) == 0 {
+		return &a
+	}
+
+	exprs := make([]clause.Expression, 0, len(conds))
+	for _, cond := range conds {
+		exprs = append(exprs, cond.BeCond().(clause.Expression))
+	}
+	a.db = a.db.Clauses(clause.Where{Exprs: exprs})
+	return &a
+}
+
+func (a roleORMHasOneTeam) WithContext(ctx context.Context) *roleORMHasOneTeam {
+	a.db = a.db.WithContext(ctx)
+	return &a
+}
+
+func (a roleORMHasOneTeam) Session(session *gorm.Session) *roleORMHasOneTeam {
+	a.db = a.db.Session(session)
+	return &a
+}
+
+func (a roleORMHasOneTeam) Model(m *user_servicev1.RoleORM) *roleORMHasOneTeamTx {
+	return &roleORMHasOneTeamTx{a.db.Model(m).Association(a.Name())}
+}
+
+type roleORMHasOneTeamTx struct{ tx *gorm.Association }
+
+func (a roleORMHasOneTeamTx) Find() (result *user_servicev1.TeamORM, err error) {
+	return result, a.tx.Find(&result)
+}
+
+func (a roleORMHasOneTeamTx) Append(values ...*user_servicev1.TeamORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Append(targetValues...)
+}
+
+func (a roleORMHasOneTeamTx) Replace(values ...*user_servicev1.TeamORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Replace(targetValues...)
+}
+
+func (a roleORMHasOneTeamTx) Delete(values ...*user_servicev1.TeamORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Delete(targetValues...)
+}
+
+func (a roleORMHasOneTeamTx) Clear() error {
+	return a.tx.Clear()
+}
+
+func (a roleORMHasOneTeamTx) Count() int64 {
+	return a.tx.Count()
+}
+
+type roleORMHasOneUser struct {
+	db *gorm.DB
+
+	field.RelationField
+}
+
+func (a roleORMHasOneUser) Where(conds ...field.Expr) *roleORMHasOneUser {
+	if len(conds) == 0 {
+		return &a
+	}
+
+	exprs := make([]clause.Expression, 0, len(conds))
+	for _, cond := range conds {
+		exprs = append(exprs, cond.BeCond().(clause.Expression))
+	}
+	a.db = a.db.Clauses(clause.Where{Exprs: exprs})
+	return &a
+}
+
+func (a roleORMHasOneUser) WithContext(ctx context.Context) *roleORMHasOneUser {
+	a.db = a.db.WithContext(ctx)
+	return &a
+}
+
+func (a roleORMHasOneUser) Session(session *gorm.Session) *roleORMHasOneUser {
+	a.db = a.db.Session(session)
+	return &a
+}
+
+func (a roleORMHasOneUser) Model(m *user_servicev1.RoleORM) *roleORMHasOneUserTx {
+	return &roleORMHasOneUserTx{a.db.Model(m).Association(a.Name())}
+}
+
+type roleORMHasOneUserTx struct{ tx *gorm.Association }
+
+func (a roleORMHasOneUserTx) Find() (result *user_servicev1.UserAccountORM, err error) {
+	return result, a.tx.Find(&result)
+}
+
+func (a roleORMHasOneUserTx) Append(values ...*user_servicev1.UserAccountORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Append(targetValues...)
+}
+
+func (a roleORMHasOneUserTx) Replace(values ...*user_servicev1.UserAccountORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Replace(targetValues...)
+}
+
+func (a roleORMHasOneUserTx) Delete(values ...*user_servicev1.UserAccountORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Delete(targetValues...)
+}
+
+func (a roleORMHasOneUserTx) Clear() error {
+	return a.tx.Clear()
+}
+
+func (a roleORMHasOneUserTx) Count() int64 {
+	return a.tx.Count()
 }
 
 type roleORMHasManyAuditLog struct {

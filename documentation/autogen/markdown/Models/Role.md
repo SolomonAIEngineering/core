@@ -21,6 +21,9 @@
 | **createdAt** | **Date** | Add more permissions as necessary for other modules or features. Timestamps for tracking creation and modification times. | [optional] [default to null] |
 | **updatedAt** | **Date** |  | [optional] [default to null] |
 | **auditLog** | [**List**](RoleAuditEvents.md) | Audit log for this role. | [optional] [default to null] |
+| **team** | [**Team**](Team.md) |  | [optional] [default to null] |
+| **user** | [**UserAccount**](UserAccount.md) |  | [optional] [default to null] |
+| **business** | [**BusinessAccount**](BusinessAccount.md) |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 
