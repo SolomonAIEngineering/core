@@ -43,18 +43,6 @@ export interface ReadBusinessTransactionsRequest {
      * @memberof ReadBusinessTransactionsRequest
      */
     pageSize: string;
-    /**
-     * The start of the time range for the transactions (inclusive).
-     * @type {Date}
-     * @memberof ReadBusinessTransactionsRequest
-     */
-    startTime?: Date;
-    /**
-     * The end of the time range for the transactions (exclusive).
-     * @type {Date}
-     * @memberof ReadBusinessTransactionsRequest
-     */
-    endTime?: Date;
 }
 
 /**
@@ -84,8 +72,6 @@ export function ReadBusinessTransactionsRequestFromJSONTyped(json: any, ignoreDi
         'linkedAccountingAccountId': json['linkedAccountingAccountId'],
         'pageNumber': json['pageNumber'],
         'pageSize': json['pageSize'],
-        'startTime': !exists(json, 'startTime') ? undefined : (new Date(json['startTime'])),
-        'endTime': !exists(json, 'endTime') ? undefined : (new Date(json['endTime'])),
     };
 }
 
@@ -102,8 +88,6 @@ export function ReadBusinessTransactionsRequestToJSON(value?: ReadBusinessTransa
         'linkedAccountingAccountId': value.linkedAccountingAccountId,
         'pageNumber': value.pageNumber,
         'pageSize': value.pageSize,
-        'startTime': value.startTime === undefined ? undefined : (value.startTime.toISOString()),
-        'endTime': value.endTime === undefined ? undefined : (value.endTime.toISOString()),
     };
 }
 
