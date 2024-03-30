@@ -92,6 +92,79 @@
                 ]
             }
         },
+        "/accounting-microservice/api/v1/business-transactions": {
+            "post": {
+                "summary": "Gets Business Transactions",
+                "description": "Queries transactions for a business.",
+                "operationId": "ReadBusinessTransactions",
+                "responses": {
+                    "200": {
+                        "description": "A successful response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ReadBusinessTransactionsResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ReadBusinessTransactionsRequest"
+                            }
+                        }
+                    },
+                    "description": "Request for reading business transactions with pagination and time filtering.",
+                    "required": true
+                },
+                "tags": [
+                    "accounting-service"
+                ]
+            }
+        },
         "/accounting-microservice/api/v1/cashflow-statements": {
             "post": {
                 "summary": "Gets Cashfloe Sheets",
@@ -4452,6 +4525,59 @@
                         "title": "the chart of accounts"
                     }
                 }
+            },
+            "ReadBusinessTransactionsRequest": {
+                "type": "object",
+                "properties": {
+                    "authZeroUserId": {
+                        "type": "string",
+                        "description": "The ID of the user whose transactions are to be fetched."
+                    },
+                    "pageNumber": {
+                        "type": "string",
+                        "format": "uint64",
+                        "description": "The page number of the paginated results."
+                    },
+                    "pageSize": {
+                        "type": "string",
+                        "format": "uint64",
+                        "description": "The number of items to be returned per page."
+                    },
+                    "startTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The start of the time range for the transactions (inclusive)."
+                    },
+                    "endTime": {
+                        "type": "string",
+                        "format": "date-time",
+                        "description": "The end of the time range for the transactions (exclusive)."
+                    }
+                },
+                "description": "Request for reading business transactions with pagination and time filtering.",
+                "required": [
+                    "authZeroUserId",
+                    "pageNumber",
+                    "pageSize"
+                ]
+            },
+            "ReadBusinessTransactionsResponse": {
+                "type": "object",
+                "properties": {
+                    "transactions": {
+                        "type": "array",
+                        "items": {
+                            "$ref": "#/components/schemas/BusinessTransaction"
+                        },
+                        "description": "The list of transactions for the current page."
+                    },
+                    "nextPage": {
+                        "type": "string",
+                        "format": "uint64",
+                        "description": "The current page number."
+                    }
+                },
+                "description": "Response for the request containing the paginated list of transactions."
             },
             "ReadCashFlowStatementsRequest": {
                 "type": "object",

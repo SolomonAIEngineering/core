@@ -1798,3 +1798,338 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = ReadBusinessChartOfAccountsRequestValidationError{}
+
+// Validate checks the field values on ReadBusinessTransactionsRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *ReadBusinessTransactionsRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ReadBusinessTransactionsRequest with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// ReadBusinessTransactionsRequestMultiError, or nil if none found.
+func (m *ReadBusinessTransactionsRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ReadBusinessTransactionsRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if utf8.RuneCountInString(m.GetAuthZeroUserId()) < 1 {
+		err := ReadBusinessTransactionsRequestValidationError{
+			field:  "AuthZeroUserId",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if m.GetPageNumber() <= 0 {
+		err := ReadBusinessTransactionsRequestValidationError{
+			field:  "PageNumber",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if m.GetPageSize() <= 0 {
+		err := ReadBusinessTransactionsRequestValidationError{
+			field:  "PageSize",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if all {
+		switch v := interface{}(m.GetStartTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, ReadBusinessTransactionsRequestValidationError{
+					field:  "StartTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, ReadBusinessTransactionsRequestValidationError{
+					field:  "StartTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetStartTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadBusinessTransactionsRequestValidationError{
+				field:  "StartTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if all {
+		switch v := interface{}(m.GetEndTime()).(type) {
+		case interface{ ValidateAll() error }:
+			if err := v.ValidateAll(); err != nil {
+				errors = append(errors, ReadBusinessTransactionsRequestValidationError{
+					field:  "EndTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		case interface{ Validate() error }:
+			if err := v.Validate(); err != nil {
+				errors = append(errors, ReadBusinessTransactionsRequestValidationError{
+					field:  "EndTime",
+					reason: "embedded message failed validation",
+					cause:  err,
+				})
+			}
+		}
+	} else if v, ok := interface{}(m.GetEndTime()).(interface{ Validate() error }); ok {
+		if err := v.Validate(); err != nil {
+			return ReadBusinessTransactionsRequestValidationError{
+				field:  "EndTime",
+				reason: "embedded message failed validation",
+				cause:  err,
+			}
+		}
+	}
+
+	if len(errors) > 0 {
+		return ReadBusinessTransactionsRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// ReadBusinessTransactionsRequestMultiError is an error wrapping multiple
+// validation errors returned by ReadBusinessTransactionsRequest.ValidateAll()
+// if the designated constraints aren't met.
+type ReadBusinessTransactionsRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ReadBusinessTransactionsRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ReadBusinessTransactionsRequestMultiError) AllErrors() []error { return m }
+
+// ReadBusinessTransactionsRequestValidationError is the validation error
+// returned by ReadBusinessTransactionsRequest.Validate if the designated
+// constraints aren't met.
+type ReadBusinessTransactionsRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadBusinessTransactionsRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadBusinessTransactionsRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadBusinessTransactionsRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadBusinessTransactionsRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadBusinessTransactionsRequestValidationError) ErrorName() string {
+	return "ReadBusinessTransactionsRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadBusinessTransactionsRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadBusinessTransactionsRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadBusinessTransactionsRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadBusinessTransactionsRequestValidationError{}
+
+// Validate checks the field values on ReadBusinessTransactionsResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the first error encountered is returned, or nil if there are
+// no violations.
+func (m *ReadBusinessTransactionsResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on ReadBusinessTransactionsResponse with
+// the rules defined in the proto definition for this message. If any rules
+// are violated, the result is a list of violation errors wrapped in
+// ReadBusinessTransactionsResponseMultiError, or nil if none found.
+func (m *ReadBusinessTransactionsResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *ReadBusinessTransactionsResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetTransactions() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, ReadBusinessTransactionsResponseValidationError{
+						field:  fmt.Sprintf("Transactions[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, ReadBusinessTransactionsResponseValidationError{
+						field:  fmt.Sprintf("Transactions[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return ReadBusinessTransactionsResponseValidationError{
+					field:  fmt.Sprintf("Transactions[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	// no validation rules for NextPage
+
+	if len(errors) > 0 {
+		return ReadBusinessTransactionsResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// ReadBusinessTransactionsResponseMultiError is an error wrapping multiple
+// validation errors returned by
+// ReadBusinessTransactionsResponse.ValidateAll() if the designated
+// constraints aren't met.
+type ReadBusinessTransactionsResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m ReadBusinessTransactionsResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m ReadBusinessTransactionsResponseMultiError) AllErrors() []error { return m }
+
+// ReadBusinessTransactionsResponseValidationError is the validation error
+// returned by ReadBusinessTransactionsResponse.Validate if the designated
+// constraints aren't met.
+type ReadBusinessTransactionsResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e ReadBusinessTransactionsResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e ReadBusinessTransactionsResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e ReadBusinessTransactionsResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e ReadBusinessTransactionsResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e ReadBusinessTransactionsResponseValidationError) ErrorName() string {
+	return "ReadBusinessTransactionsResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e ReadBusinessTransactionsResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sReadBusinessTransactionsResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = ReadBusinessTransactionsResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = ReadBusinessTransactionsResponseValidationError{}

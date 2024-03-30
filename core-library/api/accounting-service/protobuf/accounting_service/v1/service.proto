@@ -281,4 +281,27 @@ service AccountingService {
       }
     };
   }
+
+  // ReadBusinessTransactions reads the business transactions for a given a user
+  rpc ReadBusinessTransactions(ReadBusinessTransactionsRequest) returns (ReadBusinessTransactionsResponse) {
+  option (google.api.http) = {
+    post: "/accounting-microservice/api/v1/business-transactions"
+    body: "*"
+  };
+  option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+    summary: "Gets Business Transactions",
+    tags: ["accounting-service"],
+    operation_id: "ReadBusinessTransactions"
+    description: "Queries transactions for a business.",
+    responses: {
+      key: "200"
+      value: {
+        description: ""
+        schema: {
+          json_schema: {ref: ".accounting_service.v1.ReadBusinessTransactionsResponse"}
+        }
+      }
+    }
+  };
+}
 }

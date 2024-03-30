@@ -398,6 +398,8 @@ models/ReadBalanceSheetsRequest.ts
 models/ReadBalanceSheetsResponse.ts
 models/ReadBusinessChartOfAccountsRequest.ts
 models/ReadBusinessChartOfAccountsResponse.ts
+models/ReadBusinessTransactionsRequest.ts
+models/ReadBusinessTransactionsResponse.ts
 models/ReadCashFlowStatementsRequest.ts
 models/ReadCashFlowStatementsResponse.ts
 models/ReadIncomeStatementsRequest.ts

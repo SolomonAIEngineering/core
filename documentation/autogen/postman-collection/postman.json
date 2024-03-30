@@ -63,6 +63,56 @@
                             ]
                         },
 	                        {
+    "name": "/accounting-microservice/api/v1/business-transactions",
+                "description": "Queries transactions for a business.",
+                 "item": [
+                            {
+                                "name": "Gets Business Transactions",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"pageNumber\": \"<string>\",\n \"pageSize\": \"<string>\",\n \"startTime\": \"<string>\",\n \"endTime\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/accounting-microservice/api/v1/business-transactions",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "accounting-microservice",
+                                            "api",
+                                            "v1",
+                                            "business-transactions"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "Queries transactions for a business."
+                                }
+                            }
+                            ]
+                        },
+	                        {
     "name": "/accounting-microservice/api/v1/cashflow-statements",
                 "description": "Queries cashflow sheets for a business.",
                  "item": [

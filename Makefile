@@ -8,6 +8,13 @@ VERSION = 3
 FILE_PROD = ./krakend-config/final-krakend.prod.json
 FILE_STAGING = ./krakend-config/final-krakend.staging.json
 
+gen-linkerd:
+	linkerd profile --proto ./core-library/api/accounting-service/protobuf/accounting_service/v1/service.proto backend-accounting-service > linkerd-definitions/accounting-service.yaml
+	linkerd profile --proto ./core-library/api/financial-service/protobuf/financial_service/v1/service_financial_service.proto backend-financial-service > linkerd-definitions/financial-service.yaml
+	linkerd profile --proto ./core-library/api/social-service/protobuf/social_service/v2/service.proto backend-social-service > linkerd-definitions/social-service.yaml
+	linkerd profile --proto ./core-library/api/user-service/protobuf/user_service/v1/service.proto backend-user-service > linkerd-definitions/user-service.yaml
+	linkerd profile --proto ./core-library/api/workspace-service/protobuf/workspace_service/v1/account_service.proto backend-workspace-service > linkerd-definitions/workspace-service.yaml
+
 gen: 
 	cd core-library && make gen && cd ../
 
@@ -89,6 +96,6 @@ gen-workspace-service-api:
 	go get github.com/swaggo/swag/cmd/swag@latest
 	cd api-packages/workspace-service-http && $$(go env GOPATH)/bin/swag init -g api.go
 
-autogen: gen-workspace-service-api gen copy-swagger convert-swagger-to-openapiv3 update-typescript-sdk update-docs generate-krakend-config prettify-krakend merge-configs validate copy-configs-to-gateway
+autogen: gen-workspace-service-api gen copy-swagger convert-swagger-to-openapiv3 update-typescript-sdk update-docs generate-krakend-config prettify-krakend merge-configs validate copy-configs-to-gateway gen-linkerd
 
-generate: gen-workspace-service-api gen copy-swagger convert-swagger-to-openapiv3 update-typescript-sdk update-docs generate-krakend-config prettify-krakend merge-configs validate copy-configs-to-gateway
+generate: gen-workspace-service-api gen copy-swagger convert-swagger-to-openapiv3 update-typescript-sdk update-docs generate-krakend-config prettify-krakend merge-configs validate copy-configs-to-gateway gen-linkerd

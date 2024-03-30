@@ -6,6 +6,7 @@ import "validate/validate.proto";
 import "google/api/field_behavior.proto";
 import "gogoproto/gogo.proto";
 import "accounting_service/v1/business_profile_database_schema.proto";
+import "accounting_service/v1/accounting_database_schema.proto";
 import "google/protobuf/timestamp.proto";
 
 option go_package = "github.com/SolomonAIEngineering/core/core-library/pkg/generated/accounting_service/v1";
@@ -252,4 +253,28 @@ message ReadBusinessChartOfAccountsRequest {
     (validate.rules).uint64.gt = 0,
     (google.api.field_behavior) = REQUIRED
   ];
+}
+
+// Request for reading business transactions with pagination and time filtering.
+message ReadBusinessTransactionsRequest {
+  string auth_zero_user_id= 1 [
+    (validate.rules).string.min_len = 1, // Validation rule: auth0UserId must have a minimum length of 1.
+    (google.api.field_behavior) = REQUIRED // Field behavior: user_id is required.
+  ]; // The ID of the user whose transactions are to be fetched.
+  uint64 page_number = 2 [
+    (validate.rules).uint64.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ]; // The page number of the paginated results.
+  uint64 page_size = 3[
+    (validate.rules).uint64.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ]; // The number of items to be returned per page.
+  google.protobuf.Timestamp start_time = 4; // The start of the time range for the transactions (inclusive).
+  google.protobuf.Timestamp end_time = 5; // The end of the time range for the transactions (exclusive).
+}
+
+// Response for the request containing the paginated list of transactions.
+message ReadBusinessTransactionsResponse {
+  repeated BusinessTransaction transactions = 1; // The list of transactions for the current page.
+  uint64 next_page = 3; // The current page number.
 }

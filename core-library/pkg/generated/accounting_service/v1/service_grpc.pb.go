@@ -31,6 +31,7 @@ const (
 	AccountingService_ReadCashFlowStatements_FullMethodName                 = "/accounting_service.v1.AccountingService/ReadCashFlowStatements"
 	AccountingService_ReadIncomeStatements_FullMethodName                   = "/accounting_service.v1.AccountingService/ReadIncomeStatements"
 	AccountingService_ReadBusinessChartOfAccounts_FullMethodName            = "/accounting_service.v1.AccountingService/ReadBusinessChartOfAccounts"
+	AccountingService_ReadBusinessTransactions_FullMethodName               = "/accounting_service.v1.AccountingService/ReadBusinessTransactions"
 )
 
 // AccountingServiceClient is the client API for AccountingService service.
@@ -60,6 +61,8 @@ type AccountingServiceClient interface {
 	// ReadIncomeStatements reads the income statements for a given a user
 	ReadIncomeStatements(ctx context.Context, in *ReadIncomeStatementsRequest, opts ...grpc.CallOption) (*ReadIncomeStatementsResponse, error)
 	ReadBusinessChartOfAccounts(ctx context.Context, in *ReadBusinessChartOfAccountsRequest, opts ...grpc.CallOption) (*ReadBusinessChartOfAccountsResponse, error)
+	// ReadBusinessTransactions reads the business transactions for a given a user
+	ReadBusinessTransactions(ctx context.Context, in *ReadBusinessTransactionsRequest, opts ...grpc.CallOption) (*ReadBusinessTransactionsResponse, error)
 }
 
 type accountingServiceClient struct {
@@ -178,6 +181,15 @@ func (c *accountingServiceClient) ReadBusinessChartOfAccounts(ctx context.Contex
 	return out, nil
 }
 
+func (c *accountingServiceClient) ReadBusinessTransactions(ctx context.Context, in *ReadBusinessTransactionsRequest, opts ...grpc.CallOption) (*ReadBusinessTransactionsResponse, error) {
+	out := new(ReadBusinessTransactionsResponse)
+	err := c.cc.Invoke(ctx, AccountingService_ReadBusinessTransactions_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccountingServiceServer is the server API for AccountingService service.
 // All implementations must embed UnimplementedAccountingServiceServer
 // for forward compatibility
@@ -205,6 +217,8 @@ type AccountingServiceServer interface {
 	// ReadIncomeStatements reads the income statements for a given a user
 	ReadIncomeStatements(context.Context, *ReadIncomeStatementsRequest) (*ReadIncomeStatementsResponse, error)
 	ReadBusinessChartOfAccounts(context.Context, *ReadBusinessChartOfAccountsRequest) (*ReadBusinessChartOfAccountsResponse, error)
+	// ReadBusinessTransactions reads the business transactions for a given a user
+	ReadBusinessTransactions(context.Context, *ReadBusinessTransactionsRequest) (*ReadBusinessTransactionsResponse, error)
 	mustEmbedUnimplementedAccountingServiceServer()
 }
 
@@ -247,6 +261,9 @@ func (UnimplementedAccountingServiceServer) ReadIncomeStatements(context.Context
 }
 func (UnimplementedAccountingServiceServer) ReadBusinessChartOfAccounts(context.Context, *ReadBusinessChartOfAccountsRequest) (*ReadBusinessChartOfAccountsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadBusinessChartOfAccounts not implemented")
+}
+func (UnimplementedAccountingServiceServer) ReadBusinessTransactions(context.Context, *ReadBusinessTransactionsRequest) (*ReadBusinessTransactionsResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ReadBusinessTransactions not implemented")
 }
 func (UnimplementedAccountingServiceServer) mustEmbedUnimplementedAccountingServiceServer() {}
 
@@ -477,6 +494,24 @@ func _AccountingService_ReadBusinessChartOfAccounts_Handler(srv interface{}, ctx
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountingService_ReadBusinessTransactions_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ReadBusinessTransactionsRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountingServiceServer).ReadBusinessTransactions(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountingService_ReadBusinessTransactions_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountingServiceServer).ReadBusinessTransactions(ctx, req.(*ReadBusinessTransactionsRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AccountingService_ServiceDesc is the grpc.ServiceDesc for AccountingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -531,6 +566,10 @@ var AccountingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReadBusinessChartOfAccounts",
 			Handler:    _AccountingService_ReadBusinessChartOfAccounts_Handler,
+		},
+		{
+			MethodName: "ReadBusinessTransactions",
+			Handler:    _AccountingService_ReadBusinessTransactions_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

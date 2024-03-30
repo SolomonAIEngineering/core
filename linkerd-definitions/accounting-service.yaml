@@ -1,0 +1,60 @@
+apiVersion: linkerd.io/v1alpha2
+kind: ServiceProfile
+metadata:
+  creationTimestamp: null
+  name: backend-accounting-service.default.svc.cluster.local
+  namespace: default
+spec:
+  routes:
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/HealthCheck
+    name: HealthCheck
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/ReadynessCheck
+    name: ReadynessCheck
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/CreateAccountingProfile
+    name: CreateAccountingProfile
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/ReadAccountingProfile
+    name: ReadAccountingProfile
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/DeleteAccountingProfile
+    name: DeleteAccountingProfile
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/UpdateAccountingProfile
+    name: UpdateAccountingProfile
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/GetMergeLinkToken
+    name: GetMergeLinkToken
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/ExchangePublicLinkTokenForAccountToken
+    name: ExchangePublicLinkTokenForAccountToken
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/ReadBalanceSheets
+    name: ReadBalanceSheets
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/ReadCashFlowStatements
+    name: ReadCashFlowStatements
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/ReadIncomeStatements
+    name: ReadIncomeStatements
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/ReadBusinessChartOfAccounts
+    name: ReadBusinessChartOfAccounts
+  - condition:
+      method: POST
+      pathRegex: /accounting_service\.v1\.AccountingService/ReadBusinessTransactions
+    name: ReadBusinessTransactions
