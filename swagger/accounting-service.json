@@ -30,6 +30,64 @@
     "application/json"
   ],
   "paths": {
+    "/accounting-microservice/api/v1/async-task/{workflowId}/run/{workflowRunId}": {
+      "get": {
+        "summary": "polls the status of an async task",
+        "description": "This endpoint polls the status of an async task",
+        "operationId": "GetWorkflowExecutionStatus",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetWorkflowExecutionStatusResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "workflowId",
+            "description": "The task id\nValidations:\n- workflow id cannot be empty",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "workflowRunId",
+            "description": "The run id\nValidations:\n- run id cannot be empty",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "tags": [
+          "accounting-service"
+        ]
+      }
+    },
     "/accounting-microservice/api/v1/balance-sheets": {
       "post": {
         "summary": "Gets Balance Sheets",
@@ -2628,6 +2686,14 @@
         "success": {
           "type": "boolean",
           "title": "the status of the exchange token"
+        },
+        "workflowId": {
+          "type": "string",
+          "description": "A string field named \"workflow_id\" with field number 2."
+        },
+        "workflowRunId": {
+          "type": "string",
+          "description": "A string field named \"workflow_run_id\" with field number 3."
         }
       },
       "description": "Defines a message named ExchangePublicLinkTokenForAccountTokenResponse.",
@@ -2879,6 +2945,23 @@
         }
       },
       "description": "Defines a message named GetLinkTokenResponse."
+    },
+    "GetWorkflowExecutionStatusResponse": {
+      "type": "object",
+      "properties": {
+        "workflowId": {
+          "type": "string",
+          "title": "The workflow id"
+        },
+        "status": {
+          "type": "string",
+          "title": "The task status"
+        },
+        "runId": {
+          "type": "string",
+          "title": "The run id"
+        }
+      }
     },
     "Group": {
       "type": "object",

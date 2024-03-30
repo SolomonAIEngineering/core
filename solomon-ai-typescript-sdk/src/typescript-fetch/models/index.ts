@@ -281,6 +281,7 @@ export * from './GetUserProfileResponse1';
 export * from './GetUserProfilesResponse';
 export * from './GetUserResponse';
 export * from './GetUserV2Response';
+export * from './GetWorkflowExecutionStatusResponse';
 export * from './GoalType';
 export * from './Group';
 export * from './HealthCheckResponse';

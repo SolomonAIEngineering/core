@@ -22,6 +22,7 @@ import type {
   ExchangePublicLinkTokenForAccountTokenResponse,
   GetMergeLinkTokenRequest,
   GetMergeLinkTokenResponse,
+  GetWorkflowExecutionStatusResponse,
   HealthCheckResponse2,
   InternalErrorMessageResponse,
   PathUnknownErrorMessageResponse,
@@ -57,6 +58,8 @@ import {
     GetMergeLinkTokenRequestToJSON,
     GetMergeLinkTokenResponseFromJSON,
     GetMergeLinkTokenResponseToJSON,
+    GetWorkflowExecutionStatusResponseFromJSON,
+    GetWorkflowExecutionStatusResponseToJSON,
     HealthCheckResponse2FromJSON,
     HealthCheckResponse2ToJSON,
     InternalErrorMessageResponseFromJSON,
@@ -111,6 +114,11 @@ export interface ExchangePublicLinkTokenForAccountTokenResponseRequest {
 
 export interface GetLinkTokenRequest {
     getMergeLinkTokenRequest: GetMergeLinkTokenRequest;
+}
+
+export interface GetWorkflowExecutionStatusRequest {
+    workflowId: string;
+    workflowRunId: string;
 }
 
 export interface ReadAccountingProfileResponseRequest {
@@ -281,6 +289,42 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      */
     async getLinkToken(requestParameters: GetLinkTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMergeLinkTokenResponse> {
         const response = await this.getLinkTokenRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This endpoint polls the status of an async task
+     * polls the status of an async task
+     */
+    async getWorkflowExecutionStatusRaw(requestParameters: GetWorkflowExecutionStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetWorkflowExecutionStatusResponse>> {
+        if (requestParameters.workflowId === null || requestParameters.workflowId === undefined) {
+            throw new runtime.RequiredError('workflowId','Required parameter requestParameters.workflowId was null or undefined when calling getWorkflowExecutionStatus.');
+        }
+
+        if (requestParameters.workflowRunId === null || requestParameters.workflowRunId === undefined) {
+            throw new runtime.RequiredError('workflowRunId','Required parameter requestParameters.workflowRunId was null or undefined when calling getWorkflowExecutionStatus.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/accounting-microservice/api/v1/async-task/{workflowId}/run/{workflowRunId}`.replace(`{${"workflowId"}}`, encodeURIComponent(String(requestParameters.workflowId))).replace(`{${"workflowRunId"}}`, encodeURIComponent(String(requestParameters.workflowRunId))),
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetWorkflowExecutionStatusResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint polls the status of an async task
+     * polls the status of an async task
+     */
+    async getWorkflowExecutionStatus(requestParameters: GetWorkflowExecutionStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetWorkflowExecutionStatusResponse> {
+        const response = await this.getWorkflowExecutionStatusRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

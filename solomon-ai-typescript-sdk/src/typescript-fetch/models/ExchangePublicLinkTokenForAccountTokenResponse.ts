@@ -25,6 +25,18 @@ export interface ExchangePublicLinkTokenForAccountTokenResponse {
      * @memberof ExchangePublicLinkTokenForAccountTokenResponse
      */
     success: boolean;
+    /**
+     * A string field named "workflow_id" with field number 2.
+     * @type {string}
+     * @memberof ExchangePublicLinkTokenForAccountTokenResponse
+     */
+    workflowId?: string;
+    /**
+     * A string field named "workflow_run_id" with field number 3.
+     * @type {string}
+     * @memberof ExchangePublicLinkTokenForAccountTokenResponse
+     */
+    workflowRunId?: string;
 }
 
 /**
@@ -48,6 +60,8 @@ export function ExchangePublicLinkTokenForAccountTokenResponseFromJSONTyped(json
     return {
         
         'success': json['success'],
+        'workflowId': !exists(json, 'workflowId') ? undefined : json['workflowId'],
+        'workflowRunId': !exists(json, 'workflowRunId') ? undefined : json['workflowRunId'],
     };
 }
 
@@ -61,6 +75,8 @@ export function ExchangePublicLinkTokenForAccountTokenResponseToJSON(value?: Exc
     return {
         
         'success': value.success,
+        'workflowId': value.workflowId,
+        'workflowRunId': value.workflowRunId,
     };
 }
 

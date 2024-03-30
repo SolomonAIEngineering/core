@@ -32,6 +32,7 @@ const (
 	AccountingService_ReadIncomeStatements_FullMethodName                   = "/accounting_service.v1.AccountingService/ReadIncomeStatements"
 	AccountingService_ReadBusinessChartOfAccounts_FullMethodName            = "/accounting_service.v1.AccountingService/ReadBusinessChartOfAccounts"
 	AccountingService_ReadBusinessTransactions_FullMethodName               = "/accounting_service.v1.AccountingService/ReadBusinessTransactions"
+	AccountingService_GetWorkflowExecutionStatus_FullMethodName             = "/accounting_service.v1.AccountingService/GetWorkflowExecutionStatus"
 )
 
 // AccountingServiceClient is the client API for AccountingService service.
@@ -63,6 +64,7 @@ type AccountingServiceClient interface {
 	ReadBusinessChartOfAccounts(ctx context.Context, in *ReadBusinessChartOfAccountsRequest, opts ...grpc.CallOption) (*ReadBusinessChartOfAccountsResponse, error)
 	// ReadBusinessTransactions reads the business transactions for a given a user
 	ReadBusinessTransactions(ctx context.Context, in *ReadBusinessTransactionsRequest, opts ...grpc.CallOption) (*ReadBusinessTransactionsResponse, error)
+	GetWorkflowExecutionStatus(ctx context.Context, in *GetWorkflowExecutionStatusRequest, opts ...grpc.CallOption) (*GetWorkflowExecutionStatusResponse, error)
 }
 
 type accountingServiceClient struct {
@@ -190,6 +192,15 @@ func (c *accountingServiceClient) ReadBusinessTransactions(ctx context.Context, 
 	return out, nil
 }
 
+func (c *accountingServiceClient) GetWorkflowExecutionStatus(ctx context.Context, in *GetWorkflowExecutionStatusRequest, opts ...grpc.CallOption) (*GetWorkflowExecutionStatusResponse, error) {
+	out := new(GetWorkflowExecutionStatusResponse)
+	err := c.cc.Invoke(ctx, AccountingService_GetWorkflowExecutionStatus_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // AccountingServiceServer is the server API for AccountingService service.
 // All implementations must embed UnimplementedAccountingServiceServer
 // for forward compatibility
@@ -219,6 +230,7 @@ type AccountingServiceServer interface {
 	ReadBusinessChartOfAccounts(context.Context, *ReadBusinessChartOfAccountsRequest) (*ReadBusinessChartOfAccountsResponse, error)
 	// ReadBusinessTransactions reads the business transactions for a given a user
 	ReadBusinessTransactions(context.Context, *ReadBusinessTransactionsRequest) (*ReadBusinessTransactionsResponse, error)
+	GetWorkflowExecutionStatus(context.Context, *GetWorkflowExecutionStatusRequest) (*GetWorkflowExecutionStatusResponse, error)
 	mustEmbedUnimplementedAccountingServiceServer()
 }
 
@@ -264,6 +276,9 @@ func (UnimplementedAccountingServiceServer) ReadBusinessChartOfAccounts(context.
 }
 func (UnimplementedAccountingServiceServer) ReadBusinessTransactions(context.Context, *ReadBusinessTransactionsRequest) (*ReadBusinessTransactionsResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method ReadBusinessTransactions not implemented")
+}
+func (UnimplementedAccountingServiceServer) GetWorkflowExecutionStatus(context.Context, *GetWorkflowExecutionStatusRequest) (*GetWorkflowExecutionStatusResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method GetWorkflowExecutionStatus not implemented")
 }
 func (UnimplementedAccountingServiceServer) mustEmbedUnimplementedAccountingServiceServer() {}
 
@@ -512,6 +527,24 @@ func _AccountingService_ReadBusinessTransactions_Handler(srv interface{}, ctx co
 	return interceptor(ctx, in, info, handler)
 }
 
+func _AccountingService_GetWorkflowExecutionStatus_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(GetWorkflowExecutionStatusRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AccountingServiceServer).GetWorkflowExecutionStatus(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AccountingService_GetWorkflowExecutionStatus_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AccountingServiceServer).GetWorkflowExecutionStatus(ctx, req.(*GetWorkflowExecutionStatusRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // AccountingService_ServiceDesc is the grpc.ServiceDesc for AccountingService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -570,6 +603,10 @@ var AccountingService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "ReadBusinessTransactions",
 			Handler:    _AccountingService_ReadBusinessTransactions_Handler,
+		},
+		{
+			MethodName: "GetWorkflowExecutionStatus",
+			Handler:    _AccountingService_GetWorkflowExecutionStatus_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

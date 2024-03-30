@@ -11,6 +11,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *AccountingServiceApi* | [**deleteProfile**](Apis/AccountingServiceApi.md#deleteprofile) | **DELETE** /accounting-microservice/api/v1/profile/{authZeroUserId} | Delete Payroll Profile |
 *AccountingServiceApi* | [**exchangePublicLinkTokenForAccountTokenResponse**](Apis/AccountingServiceApi.md#exchangepubliclinktokenforaccounttokenresponse) | **POST** /accounting-microservice/api/v1/merge/exchange-token | Exchange Link Token |
 *AccountingServiceApi* | [**getLinkToken**](Apis/AccountingServiceApi.md#getlinktoken) | **POST** /accounting-microservice/api/v1/merge/initiate-token-exchange | Get Link Token |
+*AccountingServiceApi* | [**getWorkflowExecutionStatus**](Apis/AccountingServiceApi.md#getworkflowexecutionstatus) | **GET** /accounting-microservice/api/v1/async-task/{workflowId}/run/{workflowRunId} | polls the status of an async task |
 *AccountingServiceApi* | [**healthCheck3**](Apis/AccountingServiceApi.md#healthcheck3) | **GET** /accounting-microservice/api/v1/health | Health Check |
 *AccountingServiceApi* | [**readAccountingProfileResponse**](Apis/AccountingServiceApi.md#readaccountingprofileresponse) | **GET** /accounting-microservice/api/v1/profile/{authZeroUserId} | Get Business Account Profile |
 *AccountingServiceApi* | [**readBalanceSheets**](Apis/AccountingServiceApi.md#readbalancesheets) | **POST** /accounting-microservice/api/v1/balance-sheets | Gets Balance Sheets |
@@ -532,6 +533,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [GetUserProfilesResponse](./Models/GetUserProfilesResponse.md)
  - [GetUserResponse](./Models/GetUserResponse.md)
  - [GetUserV2Response](./Models/GetUserV2Response.md)
+ - [GetWorkflowExecutionStatusResponse](./Models/GetWorkflowExecutionStatusResponse.md)
  - [GoalType](./Models/GoalType.md)
  - [Group](./Models/Group.md)
  - [HealthCheckResponse](./Models/HealthCheckResponse.md)
