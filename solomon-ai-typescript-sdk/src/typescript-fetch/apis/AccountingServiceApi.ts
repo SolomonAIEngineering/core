@@ -30,6 +30,8 @@ import type {
   ReadBalanceSheetsResponse,
   ReadBusinessChartOfAccountsRequest,
   ReadBusinessChartOfAccountsResponse,
+  ReadBusinessTransactionsRequest,
+  ReadBusinessTransactionsResponse,
   ReadCashFlowStatementsRequest,
   ReadCashFlowStatementsResponse,
   ReadIncomeStatementsRequest,
@@ -71,6 +73,10 @@ import {
     ReadBusinessChartOfAccountsRequestToJSON,
     ReadBusinessChartOfAccountsResponseFromJSON,
     ReadBusinessChartOfAccountsResponseToJSON,
+    ReadBusinessTransactionsRequestFromJSON,
+    ReadBusinessTransactionsRequestToJSON,
+    ReadBusinessTransactionsResponseFromJSON,
+    ReadBusinessTransactionsResponseToJSON,
     ReadCashFlowStatementsRequestFromJSON,
     ReadCashFlowStatementsRequestToJSON,
     ReadCashFlowStatementsResponseFromJSON,
@@ -118,6 +124,10 @@ export interface ReadBalanceSheetsOperationRequest {
 
 export interface ReadBusinessChartOfAccountsOperationRequest {
     readBusinessChartOfAccountsRequest: ReadBusinessChartOfAccountsRequest;
+}
+
+export interface ReadBusinessTransactionsOperationRequest {
+    readBusinessTransactionsRequest: ReadBusinessTransactionsRequest;
 }
 
 export interface ReadCashFlowStatementsOperationRequest {
@@ -409,6 +419,41 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      */
     async readBusinessChartOfAccounts(requestParameters: ReadBusinessChartOfAccountsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReadBusinessChartOfAccountsResponse> {
         const response = await this.readBusinessChartOfAccountsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * Queries transactions for a business.
+     * Gets Business Transactions
+     */
+    async readBusinessTransactionsRaw(requestParameters: ReadBusinessTransactionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReadBusinessTransactionsResponse>> {
+        if (requestParameters.readBusinessTransactionsRequest === null || requestParameters.readBusinessTransactionsRequest === undefined) {
+            throw new runtime.RequiredError('readBusinessTransactionsRequest','Required parameter requestParameters.readBusinessTransactionsRequest was null or undefined when calling readBusinessTransactions.');
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/accounting-microservice/api/v1/business-transactions`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: ReadBusinessTransactionsRequestToJSON(requestParameters.readBusinessTransactionsRequest),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => ReadBusinessTransactionsResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * Queries transactions for a business.
+     * Gets Business Transactions
+     */
+    async readBusinessTransactions(requestParameters: ReadBusinessTransactionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<ReadBusinessTransactionsResponse> {
+        const response = await this.readBusinessTransactionsRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

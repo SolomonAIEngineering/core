@@ -12,6 +12,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**readAccountingProfileResponse**](AccountingServiceApi.md#readAccountingProfileResponse) | **GET** /accounting-microservice/api/v1/profile/{authZeroUserId} | Get Business Account Profile |
 | [**readBalanceSheets**](AccountingServiceApi.md#readBalanceSheets) | **POST** /accounting-microservice/api/v1/balance-sheets | Gets Balance Sheets |
 | [**readBusinessChartOfAccounts**](AccountingServiceApi.md#readBusinessChartOfAccounts) | **POST** /accounting-microservice/api/v1/chart-of-accounts | Gets Chart of Accounts |
+| [**readBusinessTransactions**](AccountingServiceApi.md#readBusinessTransactions) | **POST** /accounting-microservice/api/v1/business-transactions | Gets Business Transactions |
 | [**readCashFlowStatements**](AccountingServiceApi.md#readCashFlowStatements) | **POST** /accounting-microservice/api/v1/cashflow-statements | Gets Cashfloe Sheets |
 | [**readIncomeStatements**](AccountingServiceApi.md#readIncomeStatements) | **POST** /accounting-microservice/api/v1/income-statements | Gets Cashfloe Sheets |
 | [**readinessCheck**](AccountingServiceApi.md#readinessCheck) | **GET** /accounting-microservice/api/v1/ready | Readiness Check |
@@ -222,6 +223,33 @@ Gets Chart of Accounts
 ### Return type
 
 [**ReadBusinessChartOfAccountsResponse**](../Models/ReadBusinessChartOfAccountsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="readBusinessTransactions"></a>
+# **readBusinessTransactions**
+> ReadBusinessTransactionsResponse readBusinessTransactions(ReadBusinessTransactionsRequest)
+
+Gets Business Transactions
+
+    Queries transactions for a business.
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **ReadBusinessTransactionsRequest** | [**ReadBusinessTransactionsRequest**](../Models/ReadBusinessTransactionsRequest.md)| Request for reading business transactions with pagination and time filtering. | |
+
+### Return type
+
+[**ReadBusinessTransactionsResponse**](../Models/ReadBusinessTransactionsResponse.md)
 
 ### Authorization
 

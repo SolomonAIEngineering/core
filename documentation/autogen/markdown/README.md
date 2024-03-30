@@ -15,6 +15,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *AccountingServiceApi* | [**readAccountingProfileResponse**](Apis/AccountingServiceApi.md#readaccountingprofileresponse) | **GET** /accounting-microservice/api/v1/profile/{authZeroUserId} | Get Business Account Profile |
 *AccountingServiceApi* | [**readBalanceSheets**](Apis/AccountingServiceApi.md#readbalancesheets) | **POST** /accounting-microservice/api/v1/balance-sheets | Gets Balance Sheets |
 *AccountingServiceApi* | [**readBusinessChartOfAccounts**](Apis/AccountingServiceApi.md#readbusinesschartofaccounts) | **POST** /accounting-microservice/api/v1/chart-of-accounts | Gets Chart of Accounts |
+*AccountingServiceApi* | [**readBusinessTransactions**](Apis/AccountingServiceApi.md#readbusinesstransactions) | **POST** /accounting-microservice/api/v1/business-transactions | Gets Business Transactions |
 *AccountingServiceApi* | [**readCashFlowStatements**](Apis/AccountingServiceApi.md#readcashflowstatements) | **POST** /accounting-microservice/api/v1/cashflow-statements | Gets Cashfloe Sheets |
 *AccountingServiceApi* | [**readIncomeStatements**](Apis/AccountingServiceApi.md#readincomestatements) | **POST** /accounting-microservice/api/v1/income-statements | Gets Cashfloe Sheets |
 *AccountingServiceApi* | [**readinessCheck**](Apis/AccountingServiceApi.md#readinesscheck) | **GET** /accounting-microservice/api/v1/ready | Readiness Check |
@@ -641,6 +642,8 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [ReadBalanceSheetsResponse](./Models/ReadBalanceSheetsResponse.md)
  - [ReadBusinessChartOfAccountsRequest](./Models/ReadBusinessChartOfAccountsRequest.md)
  - [ReadBusinessChartOfAccountsResponse](./Models/ReadBusinessChartOfAccountsResponse.md)
+ - [ReadBusinessTransactionsRequest](./Models/ReadBusinessTransactionsRequest.md)
+ - [ReadBusinessTransactionsResponse](./Models/ReadBusinessTransactionsResponse.md)
  - [ReadCashFlowStatementsRequest](./Models/ReadCashFlowStatementsRequest.md)
  - [ReadCashFlowStatementsResponse](./Models/ReadCashFlowStatementsResponse.md)
  - [ReadIncomeStatementsRequest](./Models/ReadIncomeStatementsRequest.md)

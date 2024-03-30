@@ -396,6 +396,8 @@ Models/ReadBalanceSheetsRequest.md
 Models/ReadBalanceSheetsResponse.md
 Models/ReadBusinessChartOfAccountsRequest.md
 Models/ReadBusinessChartOfAccountsResponse.md
+Models/ReadBusinessTransactionsRequest.md
+Models/ReadBusinessTransactionsResponse.md
 Models/ReadCashFlowStatementsRequest.md
 Models/ReadCashFlowStatementsResponse.md
 Models/ReadIncomeStatementsRequest.md

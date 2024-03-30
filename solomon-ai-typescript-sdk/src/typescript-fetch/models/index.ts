@@ -391,6 +391,8 @@ export * from './ReadBalanceSheetsRequest';
 export * from './ReadBalanceSheetsResponse';
 export * from './ReadBusinessChartOfAccountsRequest';
 export * from './ReadBusinessChartOfAccountsResponse';
+export * from './ReadBusinessTransactionsRequest';
+export * from './ReadBusinessTransactionsResponse';
 export * from './ReadCashFlowStatementsRequest';
 export * from './ReadCashFlowStatementsResponse';
 export * from './ReadIncomeStatementsRequest';
