@@ -3679,14 +3679,6 @@ components:
           type: string
           format: uint64
           description: The number of items to be returned per page.
-        startTime:
-          type: string
-          format: date-time
-          description: The start of the time range for the transactions (inclusive).
-        endTime:
-          type: string
-          format: date-time
-          description: The end of the time range for the transactions (exclusive).
       description: Request for reading business transactions with pagination and time
         filtering.
       required:

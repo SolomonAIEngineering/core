@@ -84,7 +84,7 @@
                                     ],
                                     "body": {
                                         "mode": "raw",
-                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"linkedAccountingAccountId\": \"<string>\",\n \"pageNumber\": \"<string>\",\n \"pageSize\": \"<string>\",\n \"startTime\": \"<string>\",\n \"endTime\": \"<string>\"\n}",
+                                        "raw": "{\n \"authZeroUserId\": \"<string>\",\n \"linkedAccountingAccountId\": \"<string>\",\n \"pageNumber\": \"<string>\",\n \"pageSize\": \"<string>\"\n}",
                                         "options": {
                                             "raw": {
                                                 "language": "json"
