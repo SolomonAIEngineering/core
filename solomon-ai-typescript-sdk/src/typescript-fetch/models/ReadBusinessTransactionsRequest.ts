@@ -39,16 +39,16 @@ export interface ReadBusinessTransactionsRequest {
     pageSize: string;
     /**
      * The start of the time range for the transactions (inclusive).
-     * @type {string}
+     * @type {Date}
      * @memberof ReadBusinessTransactionsRequest
      */
-    startTime?: string;
+    startTime?: Date;
     /**
      * The end of the time range for the transactions (exclusive).
-     * @type {string}
+     * @type {Date}
      * @memberof ReadBusinessTransactionsRequest
      */
-    endTime?: string;
+    endTime?: Date;
 }
 
 /**
@@ -76,8 +76,8 @@ export function ReadBusinessTransactionsRequestFromJSONTyped(json: any, ignoreDi
         'authZeroUserId': json['authZeroUserId'],
         'pageNumber': json['pageNumber'],
         'pageSize': json['pageSize'],
-        'startTime': !exists(json, 'startTime') ? undefined : json['startTime'],
-        'endTime': !exists(json, 'endTime') ? undefined : json['endTime'],
+        'startTime': !exists(json, 'startTime') ? undefined : (new Date(json['startTime'])),
+        'endTime': !exists(json, 'endTime') ? undefined : (new Date(json['endTime'])),
     };
 }
 
@@ -93,8 +93,8 @@ export function ReadBusinessTransactionsRequestToJSON(value?: ReadBusinessTransa
         'authZeroUserId': value.authZeroUserId,
         'pageNumber': value.pageNumber,
         'pageSize': value.pageSize,
-        'startTime': value.startTime,
-        'endTime': value.endTime,
+        'startTime': value.startTime === undefined ? undefined : (value.startTime.toISOString()),
+        'endTime': value.endTime === undefined ? undefined : (value.endTime.toISOString()),
     };
 }
 

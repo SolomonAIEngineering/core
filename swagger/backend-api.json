@@ -32632,10 +32632,12 @@
                     },
                     "startTime": {
                         "type": "string",
+                        "format": "date-time",
                         "description": "The start of the time range for the transactions (inclusive)."
                     },
                     "endTime": {
                         "type": "string",
+                        "format": "date-time",
                         "description": "The end of the time range for the transactions (exclusive)."
                     }
                 },
