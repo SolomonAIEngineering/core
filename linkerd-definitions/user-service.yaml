@@ -146,3 +146,27 @@ spec:
       method: POST
       pathRegex: /user_service\.v1\.UserService/CheckEmailAndAuth0UserIdExists
     name: CheckEmailAndAuth0UserIdExists
+  - condition:
+      method: POST
+      pathRegex: /user_service\.v1\.UserService/CreateTeam
+    name: CreateTeam
+  - condition:
+      method: POST
+      pathRegex: /user_service\.v1\.UserService/GetTeam
+    name: GetTeam
+  - condition:
+      method: POST
+      pathRegex: /user_service\.v1\.UserService/UpdateTeam
+    name: UpdateTeam
+  - condition:
+      method: POST
+      pathRegex: /user_service\.v1\.UserService/DeleteTeam
+    name: DeleteTeam
+  - condition:
+      method: POST
+      pathRegex: /user_service\.v1\.UserService/AddUserToTeam
+    name: AddUserToTeam
+  - condition:
+      method: POST
+      pathRegex: /user_service\.v1\.UserService/RemoveUserFromTeam
+    name: RemoveUserFromTeam

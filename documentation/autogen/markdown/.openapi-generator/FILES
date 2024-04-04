@@ -28,6 +28,8 @@ Models/AddPostQualityScoreResponse.md
 Models/AddPostToPublicationResponse.md
 Models/AddPostToThreadResponse.md
 Models/AddPublicationEditorResponse.md
+Models/AddUserToTeamBody.md
+Models/AddUserToTeamResponse.md
 Models/Address.md
 Models/Any.md
 Models/Any1.md
@@ -106,6 +108,8 @@ Models/CreateSmartGoalRequest.md
 Models/CreateSmartGoalResponse.md
 Models/CreateSubscriptionRequest.md
 Models/CreateSubscriptionResponse.md
+Models/CreateTeamRequest.md
+Models/CreateTeamResponse.md
 Models/CreateTopicResponse.md
 Models/CreateUserProfileRequest.md
 Models/CreateUserProfileRequest1.md
@@ -144,6 +148,7 @@ Models/DeletePublicationResponse.md
 Models/DeleteRecurringTransactionResponse.md
 Models/DeleteRoleResponse.md
 Models/DeleteSmartGoalResponse.md
+Models/DeleteTeamResponse.md
 Models/DeleteTransactionResponse.md
 Models/DeleteUserProfileResponse.md
 Models/DeleteUserProfileResponse1.md
@@ -258,6 +263,7 @@ Models/GetSingleRecurringTransactionResponse.md
 Models/GetSmartGoalsByPocketIdResponse.md
 Models/GetSplitTransactionResponse.md
 Models/GetStudentLoanAccountResponse.md
+Models/GetTeamResponse.md
 Models/GetTopicsOfCommunitiesUserFollowsResponse.md
 Models/GetTotalInvestmentBySecurityResponse.md
 Models/GetTransactionAggregatesResponse.md
@@ -411,6 +417,7 @@ Models/RecordAskCopilotQuestionResponse.md
 Models/RemoveBookmarkedPostResponse.md
 Models/RemoveBookmarkedPublicationResponse.md
 Models/RemovePostFromThreadResponse.md
+Models/RemoveUserFromTeamResponse.md
 Models/ReportCommentBody.md
 Models/ReportCommentReplyBody.md
 Models/ReportCommentReplyResponse.md
@@ -444,6 +451,7 @@ Models/Tags.md
 Models/TaskState.md
 Models/Tax.md
 Models/TaxRate.md
+Models/Team.md
 Models/Thread.md
 Models/ThreadParticipantType.md
 Models/Token.md
@@ -484,6 +492,7 @@ Models/UpdateSingleTransactionRequest.md
 Models/UpdateSingleTransactionResponse.md
 Models/UpdateSmartGoalRequest.md
 Models/UpdateSmartGoalResponse.md
+Models/UpdateTeamResponse.md
 Models/UpdateUserProfileRequest.md
 Models/UpdateUserProfileResponse.md
 Models/UpdateUserRequest.md

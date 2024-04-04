@@ -8,6 +8,7 @@ import (
 	"context"
 	"strings"
 
+	user_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"gorm.io/gorm/schema"
@@ -17,8 +18,6 @@ import (
 	"gorm.io/gen/helper"
 
 	"gorm.io/plugin/dbresolver"
-
-	user_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1"
 )
 
 func newUserAccountORM(db *gorm.DB, opts ...gen.DOOption) userAccountORM {
@@ -45,23 +44,14 @@ func newUserAccountORM(db *gorm.DB, opts ...gen.DOOption) userAccountORM {
 	_userAccountORM.Lastname = field.NewString(tableName, "lastname")
 	_userAccountORM.PhoneNumber = field.NewString(tableName, "phone_number")
 	_userAccountORM.ProfileImageUrl = field.NewString(tableName, "profile_image_url")
+	_userAccountORM.RoleId = field.NewInt64(tableName, "role_id")
+	_userAccountORM.TeamId = field.NewUint64(tableName, "team_id")
 	_userAccountORM.Username = field.NewString(tableName, "username")
 	_userAccountORM.VerifiedAt = field.NewTime(tableName, "verified_at")
 	_userAccountORM.Address = userAccountORMHasOneAddress{
 		db: db.Session(&gorm.Session{}),
 
 		RelationField: field.NewRelation("Address", "user_servicev1.AddressORM"),
-	}
-
-	_userAccountORM.Role = userAccountORMHasOneRole{
-		db: db.Session(&gorm.Session{}),
-
-		RelationField: field.NewRelation("Role", "user_servicev1.RoleORM"),
-		AuditLog: struct {
-			field.RelationField
-		}{
-			RelationField: field.NewRelation("Role.AuditLog", "user_servicev1.RoleAuditEventsORM"),
-		},
 	}
 
 	_userAccountORM.Settings = userAccountORMHasOneSettings{
@@ -116,11 +106,11 @@ type userAccountORM struct {
 	Lastname        field.String
 	PhoneNumber     field.String
 	ProfileImageUrl field.String
+	RoleId          field.Int64
+	TeamId          field.Uint64
 	Username        field.String
 	VerifiedAt      field.Time
 	Address         userAccountORMHasOneAddress
-
-	Role userAccountORMHasOneRole
 
 	Settings userAccountORMHasOneSettings
 
@@ -157,6 +147,8 @@ func (u *userAccountORM) updateTableName(table string) *userAccountORM {
 	u.Lastname = field.NewString(table, "lastname")
 	u.PhoneNumber = field.NewString(table, "phone_number")
 	u.ProfileImageUrl = field.NewString(table, "profile_image_url")
+	u.RoleId = field.NewInt64(table, "role_id")
+	u.TeamId = field.NewUint64(table, "team_id")
 	u.Username = field.NewString(table, "username")
 	u.VerifiedAt = field.NewTime(table, "verified_at")
 
@@ -175,7 +167,7 @@ func (u *userAccountORM) GetFieldByName(fieldName string) (field.OrderExpr, bool
 }
 
 func (u *userAccountORM) fillFieldMap() {
-	u.fieldMap = make(map[string]field.Expr, 22)
+	u.fieldMap = make(map[string]field.Expr, 23)
 	u.fieldMap["account_type"] = u.AccountType
 	u.fieldMap["algolia_user_id"] = u.AlgoliaUserId
 	u.fieldMap["auth0_user_id"] = u.Auth0UserId
@@ -192,6 +184,8 @@ func (u *userAccountORM) fillFieldMap() {
 	u.fieldMap["lastname"] = u.Lastname
 	u.fieldMap["phone_number"] = u.PhoneNumber
 	u.fieldMap["profile_image_url"] = u.ProfileImageUrl
+	u.fieldMap["role_id"] = u.RoleId
+	u.fieldMap["team_id"] = u.TeamId
 	u.fieldMap["username"] = u.Username
 	u.fieldMap["verified_at"] = u.VerifiedAt
 
@@ -275,81 +269,6 @@ func (a userAccountORMHasOneAddressTx) Clear() error {
 }
 
 func (a userAccountORMHasOneAddressTx) Count() int64 {
-	return a.tx.Count()
-}
-
-type userAccountORMHasOneRole struct {
-	db *gorm.DB
-
-	field.RelationField
-
-	AuditLog struct {
-		field.RelationField
-	}
-}
-
-func (a userAccountORMHasOneRole) Where(conds ...field.Expr) *userAccountORMHasOneRole {
-	if len(conds) == 0 {
-		return &a
-	}
-
-	exprs := make([]clause.Expression, 0, len(conds))
-	for _, cond := range conds {
-		exprs = append(exprs, cond.BeCond().(clause.Expression))
-	}
-	a.db = a.db.Clauses(clause.Where{Exprs: exprs})
-	return &a
-}
-
-func (a userAccountORMHasOneRole) WithContext(ctx context.Context) *userAccountORMHasOneRole {
-	a.db = a.db.WithContext(ctx)
-	return &a
-}
-
-func (a userAccountORMHasOneRole) Session(session *gorm.Session) *userAccountORMHasOneRole {
-	a.db = a.db.Session(session)
-	return &a
-}
-
-func (a userAccountORMHasOneRole) Model(m *user_servicev1.UserAccountORM) *userAccountORMHasOneRoleTx {
-	return &userAccountORMHasOneRoleTx{a.db.Model(m).Association(a.Name())}
-}
-
-type userAccountORMHasOneRoleTx struct{ tx *gorm.Association }
-
-func (a userAccountORMHasOneRoleTx) Find() (result *user_servicev1.RoleORM, err error) {
-	return result, a.tx.Find(&result)
-}
-
-func (a userAccountORMHasOneRoleTx) Append(values ...*user_servicev1.RoleORM) (err error) {
-	targetValues := make([]interface{}, len(values))
-	for i, v := range values {
-		targetValues[i] = v
-	}
-	return a.tx.Append(targetValues...)
-}
-
-func (a userAccountORMHasOneRoleTx) Replace(values ...*user_servicev1.RoleORM) (err error) {
-	targetValues := make([]interface{}, len(values))
-	for i, v := range values {
-		targetValues[i] = v
-	}
-	return a.tx.Replace(targetValues...)
-}
-
-func (a userAccountORMHasOneRoleTx) Delete(values ...*user_servicev1.RoleORM) (err error) {
-	targetValues := make([]interface{}, len(values))
-	for i, v := range values {
-		targetValues[i] = v
-	}
-	return a.tx.Delete(targetValues...)
-}
-
-func (a userAccountORMHasOneRoleTx) Clear() error {
-	return a.tx.Clear()
-}
-
-func (a userAccountORMHasOneRoleTx) Count() int64 {
 	return a.tx.Count()
 }
 

@@ -25,12 +25,6 @@ import {
     ProfileTypeFromJSONTyped,
     ProfileTypeToJSON,
 } from './ProfileType';
-import type { Role } from './Role';
-import {
-    RoleFromJSON,
-    RoleFromJSONTyped,
-    RoleToJSON,
-} from './Role';
 import type { Settings } from './Settings';
 import {
     SettingsFromJSON,
@@ -190,12 +184,6 @@ export interface BusinessAccount {
     auth0UserId?: string;
     /**
      * 
-     * @type {Role}
-     * @memberof BusinessAccount
-     */
-    role?: Role;
-    /**
-     * 
      * @type {string}
      * @memberof BusinessAccount
      */
@@ -244,7 +232,6 @@ export function BusinessAccountFromJSONTyped(json: any, ignoreDiscriminator: boo
         'accountType': !exists(json, 'accountType') ? undefined : ProfileTypeFromJSON(json['accountType']),
         'profileImageUrl': !exists(json, 'profileImageUrl') ? undefined : json['profileImageUrl'],
         'auth0UserId': !exists(json, 'auth0UserId') ? undefined : json['auth0UserId'],
-        'role': !exists(json, 'role') ? undefined : RoleFromJSON(json['role']),
         'algoliaUserId': !exists(json, 'algoliaUserId') ? undefined : json['algoliaUserId'],
     };
 }
@@ -281,7 +268,6 @@ export function BusinessAccountToJSON(value?: BusinessAccount | null): any {
         'accountType': ProfileTypeToJSON(value.accountType),
         'profileImageUrl': value.profileImageUrl,
         'auth0UserId': value.auth0UserId,
-        'role': RoleToJSON(value.role),
         'algoliaUserId': value.algoliaUserId,
     };
 }

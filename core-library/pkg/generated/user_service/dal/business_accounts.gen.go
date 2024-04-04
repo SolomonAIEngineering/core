@@ -8,6 +8,7 @@ import (
 	"context"
 	"strings"
 
+	user_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1"
 	"gorm.io/gorm"
 	"gorm.io/gorm/clause"
 	"gorm.io/gorm/schema"
@@ -17,8 +18,6 @@ import (
 	"gorm.io/gen/helper"
 
 	"gorm.io/plugin/dbresolver"
-
-	user_servicev1 "github.com/SolomonAIEngineering/core/core-library/pkg/generated/user_service/v1"
 )
 
 func newBusinessAccountORM(db *gorm.DB, opts ...gen.DOOption) businessAccountORM {
@@ -46,25 +45,17 @@ func newBusinessAccountORM(db *gorm.DB, opts ...gen.DOOption) businessAccountORM
 	_businessAccountORM.IsActive = field.NewBool(tableName, "is_active")
 	_businessAccountORM.IsEmailVerified = field.NewBool(tableName, "is_email_verified")
 	_businessAccountORM.IsPrivate = field.NewBool(tableName, "is_private")
+	_businessAccountORM.MemberBusinessAccountsTeamId = field.NewUint64(tableName, "member_business_accounts_team_id")
 	_businessAccountORM.PhoneNumber = field.NewString(tableName, "phone_number")
 	_businessAccountORM.ProfileImageUrl = field.NewString(tableName, "profile_image_url")
+	_businessAccountORM.RoleId = field.NewInt64(tableName, "role_id")
+	_businessAccountORM.TeamAdminTeamId = field.NewUint64(tableName, "team_admin_team_id")
 	_businessAccountORM.Username = field.NewString(tableName, "username")
 	_businessAccountORM.VerifiedAt = field.NewTime(tableName, "verified_at")
 	_businessAccountORM.Address = businessAccountORMHasOneAddress{
 		db: db.Session(&gorm.Session{}),
 
 		RelationField: field.NewRelation("Address", "user_servicev1.AddressORM"),
-	}
-
-	_businessAccountORM.Role = businessAccountORMHasOneRole{
-		db: db.Session(&gorm.Session{}),
-
-		RelationField: field.NewRelation("Role", "user_servicev1.RoleORM"),
-		AuditLog: struct {
-			field.RelationField
-		}{
-			RelationField: field.NewRelation("Role.AuditLog", "user_servicev1.RoleAuditEventsORM"),
-		},
 	}
 
 	_businessAccountORM.Settings = businessAccountORMHasOneSettings{
@@ -102,31 +93,32 @@ func newBusinessAccountORM(db *gorm.DB, opts ...gen.DOOption) businessAccountORM
 type businessAccountORM struct {
 	businessAccountORMDo
 
-	ALL                    field.Asterisk
-	AccountType            field.String
-	AlgoliaUserId          field.String
-	Auth0UserId            field.String
-	AuthnAccountId         field.Uint64
-	Bio                    field.String
-	CompanyDescription     field.String
-	CompanyEstablishedDate field.String
-	CompanyIndustryType    field.String
-	CompanyName            field.String
-	CompanyWebsiteUrl      field.String
-	CreatedAt              field.Time
-	Email                  field.String
-	Headline               field.String
-	Id                     field.Uint64
-	IsActive               field.Bool
-	IsEmailVerified        field.Bool
-	IsPrivate              field.Bool
-	PhoneNumber            field.String
-	ProfileImageUrl        field.String
-	Username               field.String
-	VerifiedAt             field.Time
-	Address                businessAccountORMHasOneAddress
-
-	Role businessAccountORMHasOneRole
+	ALL                          field.Asterisk
+	AccountType                  field.String
+	AlgoliaUserId                field.String
+	Auth0UserId                  field.String
+	AuthnAccountId               field.Uint64
+	Bio                          field.String
+	CompanyDescription           field.String
+	CompanyEstablishedDate       field.String
+	CompanyIndustryType          field.String
+	CompanyName                  field.String
+	CompanyWebsiteUrl            field.String
+	CreatedAt                    field.Time
+	Email                        field.String
+	Headline                     field.String
+	Id                           field.Uint64
+	IsActive                     field.Bool
+	IsEmailVerified              field.Bool
+	IsPrivate                    field.Bool
+	MemberBusinessAccountsTeamId field.Uint64
+	PhoneNumber                  field.String
+	ProfileImageUrl              field.String
+	RoleId                       field.Int64
+	TeamAdminTeamId              field.Uint64
+	Username                     field.String
+	VerifiedAt                   field.Time
+	Address                      businessAccountORMHasOneAddress
 
 	Settings businessAccountORMHasOneSettings
 
@@ -164,8 +156,11 @@ func (b *businessAccountORM) updateTableName(table string) *businessAccountORM {
 	b.IsActive = field.NewBool(table, "is_active")
 	b.IsEmailVerified = field.NewBool(table, "is_email_verified")
 	b.IsPrivate = field.NewBool(table, "is_private")
+	b.MemberBusinessAccountsTeamId = field.NewUint64(table, "member_business_accounts_team_id")
 	b.PhoneNumber = field.NewString(table, "phone_number")
 	b.ProfileImageUrl = field.NewString(table, "profile_image_url")
+	b.RoleId = field.NewInt64(table, "role_id")
+	b.TeamAdminTeamId = field.NewUint64(table, "team_admin_team_id")
 	b.Username = field.NewString(table, "username")
 	b.VerifiedAt = field.NewTime(table, "verified_at")
 
@@ -184,7 +179,7 @@ func (b *businessAccountORM) GetFieldByName(fieldName string) (field.OrderExpr, 
 }
 
 func (b *businessAccountORM) fillFieldMap() {
-	b.fieldMap = make(map[string]field.Expr, 25)
+	b.fieldMap = make(map[string]field.Expr, 27)
 	b.fieldMap["account_type"] = b.AccountType
 	b.fieldMap["algolia_user_id"] = b.AlgoliaUserId
 	b.fieldMap["auth0_user_id"] = b.Auth0UserId
@@ -202,8 +197,11 @@ func (b *businessAccountORM) fillFieldMap() {
 	b.fieldMap["is_active"] = b.IsActive
 	b.fieldMap["is_email_verified"] = b.IsEmailVerified
 	b.fieldMap["is_private"] = b.IsPrivate
+	b.fieldMap["member_business_accounts_team_id"] = b.MemberBusinessAccountsTeamId
 	b.fieldMap["phone_number"] = b.PhoneNumber
 	b.fieldMap["profile_image_url"] = b.ProfileImageUrl
+	b.fieldMap["role_id"] = b.RoleId
+	b.fieldMap["team_admin_team_id"] = b.TeamAdminTeamId
 	b.fieldMap["username"] = b.Username
 	b.fieldMap["verified_at"] = b.VerifiedAt
 
@@ -287,81 +285,6 @@ func (a businessAccountORMHasOneAddressTx) Clear() error {
 }
 
 func (a businessAccountORMHasOneAddressTx) Count() int64 {
-	return a.tx.Count()
-}
-
-type businessAccountORMHasOneRole struct {
-	db *gorm.DB
-
-	field.RelationField
-
-	AuditLog struct {
-		field.RelationField
-	}
-}
-
-func (a businessAccountORMHasOneRole) Where(conds ...field.Expr) *businessAccountORMHasOneRole {
-	if len(conds) == 0 {
-		return &a
-	}
-
-	exprs := make([]clause.Expression, 0, len(conds))
-	for _, cond := range conds {
-		exprs = append(exprs, cond.BeCond().(clause.Expression))
-	}
-	a.db = a.db.Clauses(clause.Where{Exprs: exprs})
-	return &a
-}
-
-func (a businessAccountORMHasOneRole) WithContext(ctx context.Context) *businessAccountORMHasOneRole {
-	a.db = a.db.WithContext(ctx)
-	return &a
-}
-
-func (a businessAccountORMHasOneRole) Session(session *gorm.Session) *businessAccountORMHasOneRole {
-	a.db = a.db.Session(session)
-	return &a
-}
-
-func (a businessAccountORMHasOneRole) Model(m *user_servicev1.BusinessAccountORM) *businessAccountORMHasOneRoleTx {
-	return &businessAccountORMHasOneRoleTx{a.db.Model(m).Association(a.Name())}
-}
-
-type businessAccountORMHasOneRoleTx struct{ tx *gorm.Association }
-
-func (a businessAccountORMHasOneRoleTx) Find() (result *user_servicev1.RoleORM, err error) {
-	return result, a.tx.Find(&result)
-}
-
-func (a businessAccountORMHasOneRoleTx) Append(values ...*user_servicev1.RoleORM) (err error) {
-	targetValues := make([]interface{}, len(values))
-	for i, v := range values {
-		targetValues[i] = v
-	}
-	return a.tx.Append(targetValues...)
-}
-
-func (a businessAccountORMHasOneRoleTx) Replace(values ...*user_servicev1.RoleORM) (err error) {
-	targetValues := make([]interface{}, len(values))
-	for i, v := range values {
-		targetValues[i] = v
-	}
-	return a.tx.Replace(targetValues...)
-}
-
-func (a businessAccountORMHasOneRoleTx) Delete(values ...*user_servicev1.RoleORM) (err error) {
-	targetValues := make([]interface{}, len(values))
-	for i, v := range values {
-		targetValues[i] = v
-	}
-	return a.tx.Delete(targetValues...)
-}
-
-func (a businessAccountORMHasOneRoleTx) Clear() error {
-	return a.tx.Clear()
-}
-
-func (a businessAccountORMHasOneRoleTx) Count() int64 {
 	return a.tx.Count()
 }
 
