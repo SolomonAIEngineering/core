@@ -1,4 +1,4 @@
-# RFC: Microservice Template Design Document
+# RFC: Teams Technical Specification
 
 **Date:** 2021-xx-xx
 
