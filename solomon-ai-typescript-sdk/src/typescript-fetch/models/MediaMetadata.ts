@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MediaCrop } from './MediaCrop';
 import {
     MediaCropFromJSON,
@@ -80,9 +80,7 @@ export interface MediaMetadata {
  * Check if a given object implements the MediaMetadata interface.
  */
 export function instanceOfMediaMetadata(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function MediaMetadataFromJSON(json: any): MediaMetadata {
@@ -90,35 +88,32 @@ export function MediaMetadataFromJSON(json: any): MediaMetadata {
 }
 
 export function MediaMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): MediaMetadata {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'resize': !exists(json, 'resize') ? undefined : MediaResizeFromJSON(json['resize']),
-        'crop': !exists(json, 'crop') ? undefined : MediaCropFromJSON(json['crop']),
-        'imageWidth': !exists(json, 'imageWidth') ? undefined : json['imageWidth'],
-        'imageHeight': !exists(json, 'imageHeight') ? undefined : json['imageHeight'],
-        'type': !exists(json, 'type') ? undefined : MediaTypeFromJSON(json['type']),
+        'id': json['id'] == null ? undefined : json['id'],
+        'resize': json['resize'] == null ? undefined : MediaResizeFromJSON(json['resize']),
+        'crop': json['crop'] == null ? undefined : MediaCropFromJSON(json['crop']),
+        'imageWidth': json['imageWidth'] == null ? undefined : json['imageWidth'],
+        'imageHeight': json['imageHeight'] == null ? undefined : json['imageHeight'],
+        'type': json['type'] == null ? undefined : MediaTypeFromJSON(json['type']),
     };
 }
 
 export function MediaMetadataToJSON(value?: MediaMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'resize': MediaResizeToJSON(value.resize),
-        'crop': MediaCropToJSON(value.crop),
-        'imageWidth': value.imageWidth,
-        'imageHeight': value.imageHeight,
-        'type': MediaTypeToJSON(value.type),
+        'id': value['id'],
+        'resize': MediaResizeToJSON(value['resize']),
+        'crop': MediaCropToJSON(value['crop']),
+        'imageWidth': value['imageWidth'],
+        'imageHeight': value['imageHeight'],
+        'type': MediaTypeToJSON(value['type']),
     };
 }
 

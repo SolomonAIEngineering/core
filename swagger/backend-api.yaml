@@ -9703,6 +9703,53 @@ paths:
             default: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
       tags:
         - financial-service
+  /financial-microservice/api/v1/manual-linked-account/transactions:
+    post:
+      summary: Adds transactions to a manually linked account
+      description: This endpoint adds transactions to a manually linked account
+      operationId: AddTransactionsToManuallyLinkedAccount
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: >-
+                  #/components/schemas/AddTransactionsToManuallyLinkedAccountResponse
+        '400':
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorMessageResponse'
+        '404':
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PathUnknownErrorMessageResponse'
+        '500':
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalErrorMessageResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status1'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: >-
+                #/components/schemas/AddTransactionsToManuallyLinkedAccountRequest
+        description: Add transactions to an account.
+        required: true
+      tags:
+        - financial-service
   /financial-microservice/api/v1/milestone:
     post:
       summary: create a milestone
@@ -13540,6 +13587,50 @@ paths:
       tags:
         - workspace-service
   /workspace-microservice/api/v1/files:
+    post:
+      summary: Create a markdown file
+      description: This endpoint creates a new file
+      operationId: CreateMarkdownFile
+      responses:
+        '200':
+          description: Folder creation successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateMarkdownFileResponse'
+        '400':
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorMessageResponse'
+        '404':
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PathUnknownErrorMessageResponse'
+        '500':
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalErrorMessageResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateMarkdownFileRequest'
+        description: Request to create a Markdown file.
+        required: true
+      tags:
+        - workspace-service
     put:
       summary: Update a file
       description: This endpoint updates a file by ID
@@ -17461,6 +17552,24 @@ components:
       description: |-
         Account Balance History
         This message is used to represent the balance history of an account.
+    AccountStatements:
+      type: object
+      properties:
+        id:
+          type: string
+          format: uint64
+        plaidStatementId:
+          type: string
+        month:
+          type: string
+          format: uint64
+        year:
+          type: string
+          format: uint64
+        statementPdfUrl:
+          type: string
+          title: statement pdf url as stored in s3
+      title: AccountStatements is a set of statements tied to an account
     ActionableInsight:
       type: object
       properties:
@@ -17620,6 +17729,47 @@ components:
       title: >-
         AddNoteToTransactionResponse is the responsed obtained after we add a
         note to a transaction
+    AddTransactionsToManuallyLinkedAccountRequest:
+      type: object
+      properties:
+        accountId:
+          type: string
+          format: uint64
+          title: |-
+            The account id.
+            Validations:
+            - account_id must be greater than 0
+        transactions:
+          type: array
+          items:
+            $ref: '#/components/schemas/PlaidAccountTransaction'
+          title: |-
+            The transactions to add.
+            Validations:
+            - cannot be nil hence required
+            - must have at least 1 item and at most 400 items
+        profileType:
+          $ref: '#/components/schemas/FinancialUserProfileType'
+        financialAccountType:
+          $ref: '#/components/schemas/FinancialAccountType'
+        userId:
+          type: string
+          title: |-
+            The user id.
+            Validations:
+            - user_id must have a minimum length of 1 character
+      description: Add transactions to an account.
+      required:
+        - accountId
+        - transactions
+        - profileType
+        - userId
+    AddTransactionsToManuallyLinkedAccountResponse:
+      type: object
+      properties:
+        succes:
+          type: boolean
+          title: The account
     Any1:
       type: object
       properties:
@@ -17841,6 +17991,11 @@ components:
           items:
             $ref: '#/components/schemas/PlaidAccountRecurringTransaction'
           title: the set of subscriptions tied to this account
+        statements:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountStatements'
+          title: the set of statements tied to this account
       required:
         - type
         - balance
@@ -18331,6 +18486,11 @@ components:
           items:
             $ref: '#/components/schemas/Pocket'
           title: set of pockets tied to this account
+        statements:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountStatements'
+          title: the set of statements tied to this account
     DebtToIncomeRatio:
       type: object
       properties:
@@ -19209,6 +19369,11 @@ components:
           items:
             $ref: '#/components/schemas/PlaidAccountInvestmentTransaction'
           title: the set of transactions tied to this account
+        statements:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountStatements'
+          title: the set of statements tied to this account
     InvestmentSecurity:
       type: object
       properties:
@@ -19806,6 +19971,11 @@ components:
           type: string
         status:
           $ref: '#/components/schemas/BankAccountStatus'
+        statements:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountStatements'
+          title: the set of statements tied to this account
     PaymentChannelMetricsFinancialSubProfile:
       type: object
       properties:
@@ -20966,6 +21136,11 @@ components:
           title: the account name
         status:
           $ref: '#/components/schemas/BankAccountStatus'
+        statements:
+          type: array
+          items:
+            $ref: '#/components/schemas/AccountStatements'
+          title: the set of statements tied to this account
     TaskState:
       type: string
       enum:
@@ -25097,6 +25272,35 @@ components:
       properties:
         folder:
           $ref: '#/components/schemas/FolderMetadata'
+    CreateMarkdownFileRequest:
+      type: object
+      properties:
+        workspaceId:
+          type: string
+          title: Workspace ID
+        folderId:
+          type: string
+          title: Folder ID
+        filename:
+          type: string
+          title: Filename
+        userId:
+          type: string
+          title: User ID
+        content:
+          type: string
+          title: File content
+      description: Request to create a Markdown file.
+    CreateMarkdownFileResponse:
+      type: object
+      properties:
+        fileId:
+          type: string
+          title: File ID
+        fileUrl:
+          type: string
+          title: File URL
+      description: Response from creating a Markdown file.
     CreateWorkspaceRequest:
       type: object
       properties:
@@ -25234,6 +25438,9 @@ components:
         location:
           type: string
           title: location of the file
+        markdownContent:
+          type: string
+          title: markdown content of the file which is used for markdown files
       title: File Metadata
     FolderMetadata:
       type: object

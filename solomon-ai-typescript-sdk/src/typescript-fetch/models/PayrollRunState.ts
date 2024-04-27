@@ -29,6 +29,10 @@ export const PayrollRunState = {
 export type PayrollRunState = typeof PayrollRunState[keyof typeof PayrollRunState];
 
 
+export function instanceOfPayrollRunState(value: any): boolean {
+    return Object.values(PayrollRunState).includes(value);
+}
+
 export function PayrollRunStateFromJSON(json: any): PayrollRunState {
     return PayrollRunStateFromJSONTyped(json, false);
 }

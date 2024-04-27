@@ -10,6 +10,7 @@ index.ts
 models/AcceptFollowProfileResponse.ts
 models/Account.ts
 models/AccountBalanceHistory.ts
+models/AccountStatements.ts
 models/AccountType.ts
 models/AccountingAttachment.ts
 models/AccountingIntegrationMergeLink.ts
@@ -30,6 +31,8 @@ models/AddPostQualityScoreResponse.ts
 models/AddPostToPublicationResponse.ts
 models/AddPostToThreadResponse.ts
 models/AddPublicationEditorResponse.ts
+models/AddTransactionsToManuallyLinkedAccountRequest.ts
+models/AddTransactionsToManuallyLinkedAccountResponse.ts
 models/AddUserToTeamBody.ts
 models/AddUserToTeamResponse.ts
 models/Address.ts
@@ -98,6 +101,8 @@ models/CreateFolderRequest.ts
 models/CreateFolderResponse.ts
 models/CreateManualLinkRequest.ts
 models/CreateManualLinkResponse.ts
+models/CreateMarkdownFileRequest.ts
+models/CreateMarkdownFileResponse.ts
 models/CreateMilestoneRequest.ts
 models/CreateMilestoneResponse.ts
 models/CreateNoteBody.ts

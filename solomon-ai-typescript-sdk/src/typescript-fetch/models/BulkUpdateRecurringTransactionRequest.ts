@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlaidAccountRecurringTransaction } from './PlaidAccountRecurringTransaction';
 import {
     PlaidAccountRecurringTransactionFromJSON,
@@ -38,10 +38,8 @@ export interface BulkUpdateRecurringTransactionRequest {
  * Check if a given object implements the BulkUpdateRecurringTransactionRequest interface.
  */
 export function instanceOfBulkUpdateRecurringTransactionRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "transactions" in value;
-
-    return isInstance;
+    if (!('transactions' in value)) return false;
+    return true;
 }
 
 export function BulkUpdateRecurringTransactionRequestFromJSON(json: any): BulkUpdateRecurringTransactionRequest {
@@ -49,7 +47,7 @@ export function BulkUpdateRecurringTransactionRequestFromJSON(json: any): BulkUp
 }
 
 export function BulkUpdateRecurringTransactionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): BulkUpdateRecurringTransactionRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function BulkUpdateRecurringTransactionRequestFromJSONTyped(json: any, ig
 }
 
 export function BulkUpdateRecurringTransactionRequestToJSON(value?: BulkUpdateRecurringTransactionRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transactions': ((value.transactions as Array<any>).map(PlaidAccountRecurringTransactionToJSON)),
+        'transactions': ((value['transactions'] as Array<any>).map(PlaidAccountRecurringTransactionToJSON)),
     };
 }
 

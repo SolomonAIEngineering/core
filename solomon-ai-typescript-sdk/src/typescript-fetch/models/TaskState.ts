@@ -40,6 +40,10 @@ export const TaskState = {
 export type TaskState = typeof TaskState[keyof typeof TaskState];
 
 
+export function instanceOfTaskState(value: any): boolean {
+    return Object.values(TaskState).includes(value);
+}
+
 export function TaskStateFromJSON(json: any): TaskState {
     return TaskStateFromJSONTyped(json, false);
 }

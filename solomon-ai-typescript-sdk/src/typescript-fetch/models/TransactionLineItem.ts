@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The TransactionLineItem object is used to represent a transaction's line items.
  * @export
@@ -129,9 +129,7 @@ export interface TransactionLineItem {
  * Check if a given object implements the TransactionLineItem interface.
  */
 export function instanceOfTransactionLineItem(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function TransactionLineItemFromJSON(json: any): TransactionLineItem {
@@ -139,57 +137,54 @@ export function TransactionLineItemFromJSON(json: any): TransactionLineItem {
 }
 
 export function TransactionLineItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): TransactionLineItem {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'memo': !exists(json, 'memo') ? undefined : json['memo'],
-        'unitPrice': !exists(json, 'unitPrice') ? undefined : json['unitPrice'],
-        'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
-        'item': !exists(json, 'item') ? undefined : json['item'],
-        'account': !exists(json, 'account') ? undefined : json['account'],
-        'trackingCategory': !exists(json, 'trackingCategory') ? undefined : json['trackingCategory'],
-        'trackingCategories': !exists(json, 'trackingCategories') ? undefined : json['trackingCategories'],
-        'totalLineAmount': !exists(json, 'totalLineAmount') ? undefined : json['totalLineAmount'],
-        'taxRate': !exists(json, 'taxRate') ? undefined : json['taxRate'],
-        'currency': !exists(json, 'currency') ? undefined : json['currency'],
-        'exchangeRate': !exists(json, 'exchangeRate') ? undefined : json['exchangeRate'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'memo': json['memo'] == null ? undefined : json['memo'],
+        'unitPrice': json['unitPrice'] == null ? undefined : json['unitPrice'],
+        'quantity': json['quantity'] == null ? undefined : json['quantity'],
+        'item': json['item'] == null ? undefined : json['item'],
+        'account': json['account'] == null ? undefined : json['account'],
+        'trackingCategory': json['trackingCategory'] == null ? undefined : json['trackingCategory'],
+        'trackingCategories': json['trackingCategories'] == null ? undefined : json['trackingCategories'],
+        'totalLineAmount': json['totalLineAmount'] == null ? undefined : json['totalLineAmount'],
+        'taxRate': json['taxRate'] == null ? undefined : json['taxRate'],
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'exchangeRate': json['exchangeRate'] == null ? undefined : json['exchangeRate'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
     };
 }
 
 export function TransactionLineItemToJSON(value?: TransactionLineItem | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'memo': value.memo,
-        'unitPrice': value.unitPrice,
-        'quantity': value.quantity,
-        'item': value.item,
-        'account': value.account,
-        'trackingCategory': value.trackingCategory,
-        'trackingCategories': value.trackingCategories,
-        'totalLineAmount': value.totalLineAmount,
-        'taxRate': value.taxRate,
-        'currency': value.currency,
-        'exchangeRate': value.exchangeRate,
-        'company': value.company,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'memo': value['memo'],
+        'unitPrice': value['unitPrice'],
+        'quantity': value['quantity'],
+        'item': value['item'],
+        'account': value['account'],
+        'trackingCategory': value['trackingCategory'],
+        'trackingCategories': value['trackingCategories'],
+        'totalLineAmount': value['totalLineAmount'],
+        'taxRate': value['taxRate'],
+        'currency': value['currency'],
+        'exchangeRate': value['exchangeRate'],
+        'company': value['company'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
     };
 }
 

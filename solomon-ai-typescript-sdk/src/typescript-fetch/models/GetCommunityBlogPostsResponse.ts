@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Post } from './Post';
 import {
     PostFromJSON,
@@ -38,9 +38,7 @@ export interface GetCommunityBlogPostsResponse {
  * Check if a given object implements the GetCommunityBlogPostsResponse interface.
  */
 export function instanceOfGetCommunityBlogPostsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetCommunityBlogPostsResponseFromJSON(json: any): GetCommunityBlogPostsResponse {
@@ -48,25 +46,22 @@ export function GetCommunityBlogPostsResponseFromJSON(json: any): GetCommunityBl
 }
 
 export function GetCommunityBlogPostsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCommunityBlogPostsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'posts': !exists(json, 'posts') ? undefined : ((json['posts'] as Array<any>).map(PostFromJSON)),
+        'posts': json['posts'] == null ? undefined : ((json['posts'] as Array<any>).map(PostFromJSON)),
     };
 }
 
 export function GetCommunityBlogPostsResponseToJSON(value?: GetCommunityBlogPostsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'posts': value.posts === undefined ? undefined : ((value.posts as Array<any>).map(PostToJSON)),
+        'posts': value['posts'] == null ? undefined : ((value['posts'] as Array<any>).map(PostToJSON)),
     };
 }
 

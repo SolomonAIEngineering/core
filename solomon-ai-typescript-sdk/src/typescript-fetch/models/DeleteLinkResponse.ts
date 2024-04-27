@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface DeleteLinkResponse {
  * Check if a given object implements the DeleteLinkResponse interface.
  */
 export function instanceOfDeleteLinkResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DeleteLinkResponseFromJSON(json: any): DeleteLinkResponse {
@@ -41,25 +39,22 @@ export function DeleteLinkResponseFromJSON(json: any): DeleteLinkResponse {
 }
 
 export function DeleteLinkResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteLinkResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'linkId': !exists(json, 'linkId') ? undefined : json['linkId'],
+        'linkId': json['linkId'] == null ? undefined : json['linkId'],
     };
 }
 
 export function DeleteLinkResponseToJSON(value?: DeleteLinkResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'linkId': value.linkId,
+        'linkId': value['linkId'],
     };
 }
 

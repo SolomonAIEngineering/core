@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PostType } from './PostType';
 import {
     PostTypeFromJSON,
@@ -38,10 +38,8 @@ export interface ReportCommentReplyBody {
  * Check if a given object implements the ReportCommentReplyBody interface.
  */
 export function instanceOfReportCommentReplyBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "postType" in value;
-
-    return isInstance;
+    if (!('postType' in value)) return false;
+    return true;
 }
 
 export function ReportCommentReplyBodyFromJSON(json: any): ReportCommentReplyBody {
@@ -49,7 +47,7 @@ export function ReportCommentReplyBodyFromJSON(json: any): ReportCommentReplyBod
 }
 
 export function ReportCommentReplyBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReportCommentReplyBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function ReportCommentReplyBodyFromJSONTyped(json: any, ignoreDiscriminat
 }
 
 export function ReportCommentReplyBodyToJSON(value?: ReportCommentReplyBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'postType': PostTypeToJSON(value.postType),
+        'postType': PostTypeToJSON(value['postType']),
     };
 }
 

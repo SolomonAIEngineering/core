@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Bookmark } from './Bookmark';
 import {
     BookmarkFromJSON,
@@ -110,20 +110,18 @@ export interface UserProfile {
  * Check if a given object implements the UserProfile interface.
  */
 export function instanceOfUserProfile(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "tags" in value;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "_private" in value;
-    isInstance = isInstance && "followers" in value;
-    isInstance = isInstance && "following" in value;
-    isInstance = isInstance && "notificationFeedTimelineId" in value;
-    isInstance = isInstance && "personalFeedTimelineId" in value;
-    isInstance = isInstance && "newsFeedTimelineId" in value;
-    isInstance = isInstance && "profileImageUrl" in value;
-    isInstance = isInstance && "bookmarks" in value;
-    isInstance = isInstance && "algoliaId" in value;
-
-    return isInstance;
+    if (!('tags' in value)) return false;
+    if (!('name' in value)) return false;
+    if (!('_private' in value)) return false;
+    if (!('followers' in value)) return false;
+    if (!('following' in value)) return false;
+    if (!('notificationFeedTimelineId' in value)) return false;
+    if (!('personalFeedTimelineId' in value)) return false;
+    if (!('newsFeedTimelineId' in value)) return false;
+    if (!('profileImageUrl' in value)) return false;
+    if (!('bookmarks' in value)) return false;
+    if (!('algoliaId' in value)) return false;
+    return true;
 }
 
 export function UserProfileFromJSON(json: any): UserProfile {
@@ -131,12 +129,12 @@ export function UserProfileFromJSON(json: any): UserProfile {
 }
 
 export function UserProfileFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserProfile {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'tags': ((json['tags'] as Array<any>).map(UserTagsFromJSON)),
         'name': json['name'],
         '_private': json['private'],
@@ -152,26 +150,23 @@ export function UserProfileFromJSONTyped(json: any, ignoreDiscriminator: boolean
 }
 
 export function UserProfileToJSON(value?: UserProfile | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'tags': ((value.tags as Array<any>).map(UserTagsToJSON)),
-        'name': value.name,
-        'private': value._private,
-        'followers': value.followers,
-        'following': value.following,
-        'notificationFeedTimelineId': value.notificationFeedTimelineId,
-        'personalFeedTimelineId': value.personalFeedTimelineId,
-        'newsFeedTimelineId': value.newsFeedTimelineId,
-        'profileImageUrl': value.profileImageUrl,
-        'bookmarks': BookmarkToJSON(value.bookmarks),
-        'algoliaId': value.algoliaId,
+        'id': value['id'],
+        'tags': ((value['tags'] as Array<any>).map(UserTagsToJSON)),
+        'name': value['name'],
+        'private': value['_private'],
+        'followers': value['followers'],
+        'following': value['following'],
+        'notificationFeedTimelineId': value['notificationFeedTimelineId'],
+        'personalFeedTimelineId': value['personalFeedTimelineId'],
+        'newsFeedTimelineId': value['newsFeedTimelineId'],
+        'profileImageUrl': value['profileImageUrl'],
+        'bookmarks': BookmarkToJSON(value['bookmarks']),
+        'algoliaId': value['algoliaId'],
     };
 }
 

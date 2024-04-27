@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Defines a message named GetMergeLinkTokenRequest.
  * @export
@@ -45,12 +45,10 @@ export interface GetMergeLinkTokenRequest {
  * Check if a given object implements the GetMergeLinkTokenRequest interface.
  */
 export function instanceOfGetMergeLinkTokenRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "authZeroUserId" in value;
-    isInstance = isInstance && "organizationName" in value;
-    isInstance = isInstance && "email" in value;
-
-    return isInstance;
+    if (!('authZeroUserId' in value)) return false;
+    if (!('organizationName' in value)) return false;
+    if (!('email' in value)) return false;
+    return true;
 }
 
 export function GetMergeLinkTokenRequestFromJSON(json: any): GetMergeLinkTokenRequest {
@@ -58,7 +56,7 @@ export function GetMergeLinkTokenRequestFromJSON(json: any): GetMergeLinkTokenRe
 }
 
 export function GetMergeLinkTokenRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetMergeLinkTokenRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -70,17 +68,14 @@ export function GetMergeLinkTokenRequestFromJSONTyped(json: any, ignoreDiscrimin
 }
 
 export function GetMergeLinkTokenRequestToJSON(value?: GetMergeLinkTokenRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'authZeroUserId': value.authZeroUserId,
-        'organizationName': value.organizationName,
-        'email': value.email,
+        'authZeroUserId': value['authZeroUserId'],
+        'organizationName': value['organizationName'],
+        'email': value['email'],
     };
 }
 

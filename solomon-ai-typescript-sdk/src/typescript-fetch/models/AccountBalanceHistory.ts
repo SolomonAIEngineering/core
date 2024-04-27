@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -81,9 +81,7 @@ export interface AccountBalanceHistory {
  * Check if a given object implements the AccountBalanceHistory interface.
  */
 export function instanceOfAccountBalanceHistory(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function AccountBalanceHistoryFromJSON(json: any): AccountBalanceHistory {
@@ -91,39 +89,36 @@ export function AccountBalanceHistoryFromJSON(json: any): AccountBalanceHistory 
 }
 
 export function AccountBalanceHistoryFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountBalanceHistory {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'time': !exists(json, 'time') ? undefined : (new Date(json['time'])),
-        'accountId': !exists(json, 'accountId') ? undefined : json['accountId'],
-        'isoCurrencyCode': !exists(json, 'isoCurrencyCode') ? undefined : json['isoCurrencyCode'],
-        'balance': !exists(json, 'balance') ? undefined : json['balance'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'sign': !exists(json, 'sign') ? undefined : json['sign'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'time': json['time'] == null ? undefined : (new Date(json['time'])),
+        'accountId': json['accountId'] == null ? undefined : json['accountId'],
+        'isoCurrencyCode': json['isoCurrencyCode'] == null ? undefined : json['isoCurrencyCode'],
+        'balance': json['balance'] == null ? undefined : json['balance'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'sign': json['sign'] == null ? undefined : json['sign'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function AccountBalanceHistoryToJSON(value?: AccountBalanceHistory | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'time': value.time === undefined ? undefined : (value.time.toISOString()),
-        'accountId': value.accountId,
-        'isoCurrencyCode': value.isoCurrencyCode,
-        'balance': value.balance,
-        'userId': value.userId,
-        'sign': value.sign,
-        'id': value.id,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'time': value['time'] == null ? undefined : ((value['time']).toISOString()),
+        'accountId': value['accountId'],
+        'isoCurrencyCode': value['isoCurrencyCode'],
+        'balance': value['balance'],
+        'userId': value['userId'],
+        'sign': value['sign'],
+        'id': value['id'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

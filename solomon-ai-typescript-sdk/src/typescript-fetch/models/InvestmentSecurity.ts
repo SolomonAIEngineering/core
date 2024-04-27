@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -127,9 +127,7 @@ export interface InvestmentSecurity {
  * Check if a given object implements the InvestmentSecurity interface.
  */
 export function instanceOfInvestmentSecurity(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function InvestmentSecurityFromJSON(json: any): InvestmentSecurity {
@@ -137,57 +135,54 @@ export function InvestmentSecurityFromJSON(json: any): InvestmentSecurity {
 }
 
 export function InvestmentSecurityFromJSONTyped(json: any, ignoreDiscriminator: boolean): InvestmentSecurity {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'closePrice': !exists(json, 'closePrice') ? undefined : json['closePrice'],
-        'closePriceAsOf': !exists(json, 'closePriceAsOf') ? undefined : json['closePriceAsOf'],
-        'cusip': !exists(json, 'cusip') ? undefined : json['cusip'],
-        'institutionId': !exists(json, 'institutionId') ? undefined : json['institutionId'],
-        'institutionSecurityId': !exists(json, 'institutionSecurityId') ? undefined : json['institutionSecurityId'],
-        'isCashEquivalent': !exists(json, 'isCashEquivalent') ? undefined : json['isCashEquivalent'],
-        'isin': !exists(json, 'isin') ? undefined : json['isin'],
-        'isoCurrencyCode': !exists(json, 'isoCurrencyCode') ? undefined : json['isoCurrencyCode'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'proxySecurityId': !exists(json, 'proxySecurityId') ? undefined : json['proxySecurityId'],
-        'securityId': !exists(json, 'securityId') ? undefined : json['securityId'],
-        'sedol': !exists(json, 'sedol') ? undefined : json['sedol'],
-        'tickerSymbol': !exists(json, 'tickerSymbol') ? undefined : json['tickerSymbol'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'unofficialCurrencyCode': !exists(json, 'unofficialCurrencyCode') ? undefined : json['unofficialCurrencyCode'],
-        'updateDatetime': !exists(json, 'updateDatetime') ? undefined : json['updateDatetime'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'closePrice': json['closePrice'] == null ? undefined : json['closePrice'],
+        'closePriceAsOf': json['closePriceAsOf'] == null ? undefined : json['closePriceAsOf'],
+        'cusip': json['cusip'] == null ? undefined : json['cusip'],
+        'institutionId': json['institutionId'] == null ? undefined : json['institutionId'],
+        'institutionSecurityId': json['institutionSecurityId'] == null ? undefined : json['institutionSecurityId'],
+        'isCashEquivalent': json['isCashEquivalent'] == null ? undefined : json['isCashEquivalent'],
+        'isin': json['isin'] == null ? undefined : json['isin'],
+        'isoCurrencyCode': json['isoCurrencyCode'] == null ? undefined : json['isoCurrencyCode'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'proxySecurityId': json['proxySecurityId'] == null ? undefined : json['proxySecurityId'],
+        'securityId': json['securityId'] == null ? undefined : json['securityId'],
+        'sedol': json['sedol'] == null ? undefined : json['sedol'],
+        'tickerSymbol': json['tickerSymbol'] == null ? undefined : json['tickerSymbol'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'unofficialCurrencyCode': json['unofficialCurrencyCode'] == null ? undefined : json['unofficialCurrencyCode'],
+        'updateDatetime': json['updateDatetime'] == null ? undefined : json['updateDatetime'],
     };
 }
 
 export function InvestmentSecurityToJSON(value?: InvestmentSecurity | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'closePrice': value.closePrice,
-        'closePriceAsOf': value.closePriceAsOf,
-        'cusip': value.cusip,
-        'institutionId': value.institutionId,
-        'institutionSecurityId': value.institutionSecurityId,
-        'isCashEquivalent': value.isCashEquivalent,
-        'isin': value.isin,
-        'isoCurrencyCode': value.isoCurrencyCode,
-        'name': value.name,
-        'proxySecurityId': value.proxySecurityId,
-        'securityId': value.securityId,
-        'sedol': value.sedol,
-        'tickerSymbol': value.tickerSymbol,
-        'type': value.type,
-        'unofficialCurrencyCode': value.unofficialCurrencyCode,
-        'updateDatetime': value.updateDatetime,
+        'id': value['id'],
+        'closePrice': value['closePrice'],
+        'closePriceAsOf': value['closePriceAsOf'],
+        'cusip': value['cusip'],
+        'institutionId': value['institutionId'],
+        'institutionSecurityId': value['institutionSecurityId'],
+        'isCashEquivalent': value['isCashEquivalent'],
+        'isin': value['isin'],
+        'isoCurrencyCode': value['isoCurrencyCode'],
+        'name': value['name'],
+        'proxySecurityId': value['proxySecurityId'],
+        'securityId': value['securityId'],
+        'sedol': value['sedol'],
+        'tickerSymbol': value['tickerSymbol'],
+        'type': value['type'],
+        'unofficialCurrencyCode': value['unofficialCurrencyCode'],
+        'updateDatetime': value['updateDatetime'],
     };
 }
 

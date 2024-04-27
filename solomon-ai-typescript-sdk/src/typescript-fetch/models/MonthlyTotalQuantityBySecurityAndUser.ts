@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -63,9 +63,7 @@ export interface MonthlyTotalQuantityBySecurityAndUser {
  * Check if a given object implements the MonthlyTotalQuantityBySecurityAndUser interface.
  */
 export function instanceOfMonthlyTotalQuantityBySecurityAndUser(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function MonthlyTotalQuantityBySecurityAndUserFromJSON(json: any): MonthlyTotalQuantityBySecurityAndUser {
@@ -73,33 +71,30 @@ export function MonthlyTotalQuantityBySecurityAndUserFromJSON(json: any): Monthl
 }
 
 export function MonthlyTotalQuantityBySecurityAndUserFromJSONTyped(json: any, ignoreDiscriminator: boolean): MonthlyTotalQuantityBySecurityAndUser {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'month': !exists(json, 'month') ? undefined : json['month'],
-        'securityId': !exists(json, 'securityId') ? undefined : json['securityId'],
-        'totalQuantity': !exists(json, 'totalQuantity') ? undefined : json['totalQuantity'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'month': json['month'] == null ? undefined : json['month'],
+        'securityId': json['securityId'] == null ? undefined : json['securityId'],
+        'totalQuantity': json['totalQuantity'] == null ? undefined : json['totalQuantity'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function MonthlyTotalQuantityBySecurityAndUserToJSON(value?: MonthlyTotalQuantityBySecurityAndUser | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'month': value.month,
-        'securityId': value.securityId,
-        'totalQuantity': value.totalQuantity,
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'month': value['month'],
+        'securityId': value['securityId'],
+        'totalQuantity': value['totalQuantity'],
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

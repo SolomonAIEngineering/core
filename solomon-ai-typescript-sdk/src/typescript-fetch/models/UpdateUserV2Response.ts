@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BusinessAccount } from './BusinessAccount';
 import {
     BusinessAccountFromJSON,
@@ -56,9 +56,7 @@ export interface UpdateUserV2Response {
  * Check if a given object implements the UpdateUserV2Response interface.
  */
 export function instanceOfUpdateUserV2Response(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UpdateUserV2ResponseFromJSON(json: any): UpdateUserV2Response {
@@ -66,29 +64,26 @@ export function UpdateUserV2ResponseFromJSON(json: any): UpdateUserV2Response {
 }
 
 export function UpdateUserV2ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateUserV2Response {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'accountUpdated': !exists(json, 'accountUpdated') ? undefined : json['accountUpdated'],
-        'userAccount': !exists(json, 'userAccount') ? undefined : UserAccountFromJSON(json['userAccount']),
-        'businessAccount': !exists(json, 'businessAccount') ? undefined : BusinessAccountFromJSON(json['businessAccount']),
+        'accountUpdated': json['accountUpdated'] == null ? undefined : json['accountUpdated'],
+        'userAccount': json['userAccount'] == null ? undefined : UserAccountFromJSON(json['userAccount']),
+        'businessAccount': json['businessAccount'] == null ? undefined : BusinessAccountFromJSON(json['businessAccount']),
     };
 }
 
 export function UpdateUserV2ResponseToJSON(value?: UpdateUserV2Response | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'accountUpdated': value.accountUpdated,
-        'userAccount': UserAccountToJSON(value.userAccount),
-        'businessAccount': BusinessAccountToJSON(value.businessAccount),
+        'accountUpdated': value['accountUpdated'],
+        'userAccount': UserAccountToJSON(value['userAccount']),
+        'businessAccount': BusinessAccountToJSON(value['businessAccount']),
     };
 }
 

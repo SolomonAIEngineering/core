@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CommunityProfile } from './CommunityProfile';
 import {
     CommunityProfileFromJSON,
@@ -38,9 +38,7 @@ export interface GetCommunitiesUserFollowsResponse {
  * Check if a given object implements the GetCommunitiesUserFollowsResponse interface.
  */
 export function instanceOfGetCommunitiesUserFollowsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetCommunitiesUserFollowsResponseFromJSON(json: any): GetCommunitiesUserFollowsResponse {
@@ -48,25 +46,22 @@ export function GetCommunitiesUserFollowsResponseFromJSON(json: any): GetCommuni
 }
 
 export function GetCommunitiesUserFollowsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCommunitiesUserFollowsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'communities': !exists(json, 'communities') ? undefined : ((json['communities'] as Array<any>).map(CommunityProfileFromJSON)),
+        'communities': json['communities'] == null ? undefined : ((json['communities'] as Array<any>).map(CommunityProfileFromJSON)),
     };
 }
 
 export function GetCommunitiesUserFollowsResponseToJSON(value?: GetCommunitiesUserFollowsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'communities': value.communities === undefined ? undefined : ((value.communities as Array<any>).map(CommunityProfileToJSON)),
+        'communities': value['communities'] == null ? undefined : ((value['communities'] as Array<any>).map(CommunityProfileToJSON)),
     };
 }
 

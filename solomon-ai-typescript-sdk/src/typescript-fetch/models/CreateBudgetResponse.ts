@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface CreateBudgetResponse {
  * Check if a given object implements the CreateBudgetResponse interface.
  */
 export function instanceOfCreateBudgetResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreateBudgetResponseFromJSON(json: any): CreateBudgetResponse {
@@ -41,25 +39,22 @@ export function CreateBudgetResponseFromJSON(json: any): CreateBudgetResponse {
 }
 
 export function CreateBudgetResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateBudgetResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'budgetId': !exists(json, 'budgetId') ? undefined : json['budgetId'],
+        'budgetId': json['budgetId'] == null ? undefined : json['budgetId'],
     };
 }
 
 export function CreateBudgetResponseToJSON(value?: CreateBudgetResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'budgetId': value.budgetId,
+        'budgetId': value['budgetId'],
     };
 }
 

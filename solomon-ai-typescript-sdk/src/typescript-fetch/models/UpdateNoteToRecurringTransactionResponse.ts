@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlaidAccountRecurringTransaction } from './PlaidAccountRecurringTransaction';
 import {
     PlaidAccountRecurringTransactionFromJSON,
@@ -38,9 +38,7 @@ export interface UpdateNoteToRecurringTransactionResponse {
  * Check if a given object implements the UpdateNoteToRecurringTransactionResponse interface.
  */
 export function instanceOfUpdateNoteToRecurringTransactionResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UpdateNoteToRecurringTransactionResponseFromJSON(json: any): UpdateNoteToRecurringTransactionResponse {
@@ -48,25 +46,22 @@ export function UpdateNoteToRecurringTransactionResponseFromJSON(json: any): Upd
 }
 
 export function UpdateNoteToRecurringTransactionResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateNoteToRecurringTransactionResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'transaction': !exists(json, 'transaction') ? undefined : PlaidAccountRecurringTransactionFromJSON(json['transaction']),
+        'transaction': json['transaction'] == null ? undefined : PlaidAccountRecurringTransactionFromJSON(json['transaction']),
     };
 }
 
 export function UpdateNoteToRecurringTransactionResponseToJSON(value?: UpdateNoteToRecurringTransactionResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transaction': PlaidAccountRecurringTransactionToJSON(value.transaction),
+        'transaction': PlaidAccountRecurringTransactionToJSON(value['transaction']),
     };
 }
 

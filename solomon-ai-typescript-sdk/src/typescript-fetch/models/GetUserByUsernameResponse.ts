@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { UserAccount } from './UserAccount';
 import {
     UserAccountFromJSON,
@@ -38,9 +38,7 @@ export interface GetUserByUsernameResponse {
  * Check if a given object implements the GetUserByUsernameResponse interface.
  */
 export function instanceOfGetUserByUsernameResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetUserByUsernameResponseFromJSON(json: any): GetUserByUsernameResponse {
@@ -48,25 +46,22 @@ export function GetUserByUsernameResponseFromJSON(json: any): GetUserByUsernameR
 }
 
 export function GetUserByUsernameResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUserByUsernameResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'account': !exists(json, 'account') ? undefined : UserAccountFromJSON(json['account']),
+        'account': json['account'] == null ? undefined : UserAccountFromJSON(json['account']),
     };
 }
 
 export function GetUserByUsernameResponseToJSON(value?: GetUserByUsernameResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'account': UserAccountToJSON(value.account),
+        'account': UserAccountToJSON(value['account']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { AccountBalanceHistory } from './AccountBalanceHistory';
 import {
     AccountBalanceHistoryFromJSON,
@@ -38,9 +38,7 @@ export interface GetHistoricalAccountBalanceResponse {
  * Check if a given object implements the GetHistoricalAccountBalanceResponse interface.
  */
 export function instanceOfGetHistoricalAccountBalanceResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetHistoricalAccountBalanceResponseFromJSON(json: any): GetHistoricalAccountBalanceResponse {
@@ -48,25 +46,22 @@ export function GetHistoricalAccountBalanceResponseFromJSON(json: any): GetHisto
 }
 
 export function GetHistoricalAccountBalanceResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetHistoricalAccountBalanceResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'historicalAccountBalance': !exists(json, 'historicalAccountBalance') ? undefined : ((json['historicalAccountBalance'] as Array<any>).map(AccountBalanceHistoryFromJSON)),
+        'historicalAccountBalance': json['historicalAccountBalance'] == null ? undefined : ((json['historicalAccountBalance'] as Array<any>).map(AccountBalanceHistoryFromJSON)),
     };
 }
 
 export function GetHistoricalAccountBalanceResponseToJSON(value?: GetHistoricalAccountBalanceResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'historicalAccountBalance': value.historicalAccountBalance === undefined ? undefined : ((value.historicalAccountBalance as Array<any>).map(AccountBalanceHistoryToJSON)),
+        'historicalAccountBalance': value['historicalAccountBalance'] == null ? undefined : ((value['historicalAccountBalance'] as Array<any>).map(AccountBalanceHistoryToJSON)),
     };
 }
 

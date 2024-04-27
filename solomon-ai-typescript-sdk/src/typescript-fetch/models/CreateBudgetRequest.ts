@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Budget } from './Budget';
 import {
     BudgetFromJSON,
@@ -44,11 +44,9 @@ export interface CreateBudgetRequest {
  * Check if a given object implements the CreateBudgetRequest interface.
  */
 export function instanceOfCreateBudgetRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "milestroneId" in value;
-    isInstance = isInstance && "budget" in value;
-
-    return isInstance;
+    if (!('milestroneId' in value)) return false;
+    if (!('budget' in value)) return false;
+    return true;
 }
 
 export function CreateBudgetRequestFromJSON(json: any): CreateBudgetRequest {
@@ -56,7 +54,7 @@ export function CreateBudgetRequestFromJSON(json: any): CreateBudgetRequest {
 }
 
 export function CreateBudgetRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateBudgetRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function CreateBudgetRequestFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function CreateBudgetRequestToJSON(value?: CreateBudgetRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'milestroneId': value.milestroneId,
-        'budget': BudgetToJSON(value.budget),
+        'milestroneId': value['milestroneId'],
+        'budget': BudgetToJSON(value['budget']),
     };
 }
 

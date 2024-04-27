@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface GetUserIdV2Response {
  * Check if a given object implements the GetUserIdV2Response interface.
  */
 export function instanceOfGetUserIdV2Response(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetUserIdV2ResponseFromJSON(json: any): GetUserIdV2Response {
@@ -41,25 +39,22 @@ export function GetUserIdV2ResponseFromJSON(json: any): GetUserIdV2Response {
 }
 
 export function GetUserIdV2ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUserIdV2Response {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
     };
 }
 
 export function GetUserIdV2ResponseToJSON(value?: GetUserIdV2Response | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userId': value.userId,
+        'userId': value['userId'],
     };
 }
 

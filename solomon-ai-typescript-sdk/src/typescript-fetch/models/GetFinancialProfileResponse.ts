@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialProfile } from './FinancialProfile';
 import {
     FinancialProfileFromJSON,
@@ -44,9 +44,7 @@ export interface GetFinancialProfileResponse {
  * Check if a given object implements the GetFinancialProfileResponse interface.
  */
 export function instanceOfGetFinancialProfileResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetFinancialProfileResponseFromJSON(json: any): GetFinancialProfileResponse {
@@ -54,27 +52,24 @@ export function GetFinancialProfileResponseFromJSON(json: any): GetFinancialProf
 }
 
 export function GetFinancialProfileResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetFinancialProfileResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'financialProfiles': !exists(json, 'financialProfiles') ? undefined : ((json['financialProfiles'] as Array<any>).map(FinancialProfileFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'financialProfiles': json['financialProfiles'] == null ? undefined : ((json['financialProfiles'] as Array<any>).map(FinancialProfileFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetFinancialProfileResponseToJSON(value?: GetFinancialProfileResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'financialProfiles': value.financialProfiles === undefined ? undefined : ((value.financialProfiles as Array<any>).map(FinancialProfileToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'financialProfiles': value['financialProfiles'] == null ? undefined : ((value['financialProfiles'] as Array<any>).map(FinancialProfileToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

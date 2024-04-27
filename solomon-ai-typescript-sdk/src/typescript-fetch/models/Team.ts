@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BusinessAccount } from './BusinessAccount';
 import {
     BusinessAccountFromJSON,
@@ -110,9 +110,7 @@ export interface Team {
  * Check if a given object implements the Team interface.
  */
 export function instanceOfTeam(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function TeamFromJSON(json: any): Team {
@@ -120,43 +118,40 @@ export function TeamFromJSON(json: any): Team {
 }
 
 export function TeamFromJSONTyped(json: any, ignoreDiscriminator: boolean): Team {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'tags': !exists(json, 'tags') ? undefined : ((json['tags'] as Array<any>).map(TagsFromJSON)),
-        'teamAdmin': !exists(json, 'teamAdmin') ? undefined : BusinessAccountFromJSON(json['teamAdmin']),
-        'memberUsersAccounts': !exists(json, 'memberUsersAccounts') ? undefined : ((json['memberUsersAccounts'] as Array<any>).map(UserAccountFromJSON)),
-        'memberBusinessAccounts': !exists(json, 'memberBusinessAccounts') ? undefined : ((json['memberBusinessAccounts'] as Array<any>).map(BusinessAccountFromJSON)),
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'updatedAt': !exists(json, 'updatedAt') ? undefined : (new Date(json['updatedAt'])),
-        'roles': !exists(json, 'roles') ? undefined : ((json['roles'] as Array<any>).map(RoleFromJSON)),
+        'id': json['id'] == null ? undefined : json['id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'tags': json['tags'] == null ? undefined : ((json['tags'] as Array<any>).map(TagsFromJSON)),
+        'teamAdmin': json['teamAdmin'] == null ? undefined : BusinessAccountFromJSON(json['teamAdmin']),
+        'memberUsersAccounts': json['memberUsersAccounts'] == null ? undefined : ((json['memberUsersAccounts'] as Array<any>).map(UserAccountFromJSON)),
+        'memberBusinessAccounts': json['memberBusinessAccounts'] == null ? undefined : ((json['memberBusinessAccounts'] as Array<any>).map(BusinessAccountFromJSON)),
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
+        'roles': json['roles'] == null ? undefined : ((json['roles'] as Array<any>).map(RoleFromJSON)),
     };
 }
 
 export function TeamToJSON(value?: Team | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'description': value.description,
-        'tags': value.tags === undefined ? undefined : ((value.tags as Array<any>).map(TagsToJSON)),
-        'teamAdmin': BusinessAccountToJSON(value.teamAdmin),
-        'memberUsersAccounts': value.memberUsersAccounts === undefined ? undefined : ((value.memberUsersAccounts as Array<any>).map(UserAccountToJSON)),
-        'memberBusinessAccounts': value.memberBusinessAccounts === undefined ? undefined : ((value.memberBusinessAccounts as Array<any>).map(BusinessAccountToJSON)),
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'updatedAt': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
-        'roles': value.roles === undefined ? undefined : ((value.roles as Array<any>).map(RoleToJSON)),
+        'id': value['id'],
+        'name': value['name'],
+        'description': value['description'],
+        'tags': value['tags'] == null ? undefined : ((value['tags'] as Array<any>).map(TagsToJSON)),
+        'teamAdmin': BusinessAccountToJSON(value['teamAdmin']),
+        'memberUsersAccounts': value['memberUsersAccounts'] == null ? undefined : ((value['memberUsersAccounts'] as Array<any>).map(UserAccountToJSON)),
+        'memberBusinessAccounts': value['memberBusinessAccounts'] == null ? undefined : ((value['memberBusinessAccounts'] as Array<any>).map(BusinessAccountToJSON)),
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
+        'roles': value['roles'] == null ? undefined : ((value['roles'] as Array<any>).map(RoleToJSON)),
     };
 }
 

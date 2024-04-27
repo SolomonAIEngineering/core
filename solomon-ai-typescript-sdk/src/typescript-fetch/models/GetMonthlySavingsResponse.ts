@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MonthlySavings } from './MonthlySavings';
 import {
     MonthlySavingsFromJSON,
@@ -44,9 +44,7 @@ export interface GetMonthlySavingsResponse {
  * Check if a given object implements the GetMonthlySavingsResponse interface.
  */
 export function instanceOfGetMonthlySavingsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetMonthlySavingsResponseFromJSON(json: any): GetMonthlySavingsResponse {
@@ -54,27 +52,24 @@ export function GetMonthlySavingsResponseFromJSON(json: any): GetMonthlySavingsR
 }
 
 export function GetMonthlySavingsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetMonthlySavingsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'monthlySavings': !exists(json, 'monthlySavings') ? undefined : ((json['monthlySavings'] as Array<any>).map(MonthlySavingsFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'monthlySavings': json['monthlySavings'] == null ? undefined : ((json['monthlySavings'] as Array<any>).map(MonthlySavingsFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetMonthlySavingsResponseToJSON(value?: GetMonthlySavingsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'monthlySavings': value.monthlySavings === undefined ? undefined : ((value.monthlySavings as Array<any>).map(MonthlySavingsToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'monthlySavings': value['monthlySavings'] == null ? undefined : ((value['monthlySavings'] as Array<any>).map(MonthlySavingsToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

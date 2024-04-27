@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,10 +31,8 @@ export interface CreateAccountRequest {
  * Check if a given object implements the CreateAccountRequest interface.
  */
 export function instanceOfCreateAccountRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "authZeroUserId" in value;
-
-    return isInstance;
+    if (!('authZeroUserId' in value)) return false;
+    return true;
 }
 
 export function CreateAccountRequestFromJSON(json: any): CreateAccountRequest {
@@ -42,7 +40,7 @@ export function CreateAccountRequestFromJSON(json: any): CreateAccountRequest {
 }
 
 export function CreateAccountRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateAccountRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -52,15 +50,12 @@ export function CreateAccountRequestFromJSONTyped(json: any, ignoreDiscriminator
 }
 
 export function CreateAccountRequestToJSON(value?: CreateAccountRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'authZeroUserId': value.authZeroUserId,
+        'authZeroUserId': value['authZeroUserId'],
     };
 }
 

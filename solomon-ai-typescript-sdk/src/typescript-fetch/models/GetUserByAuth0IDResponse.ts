@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BusinessAccount } from './BusinessAccount';
 import {
     BusinessAccountFromJSON,
@@ -50,9 +50,7 @@ export interface GetUserByAuth0IDResponse {
  * Check if a given object implements the GetUserByAuth0IDResponse interface.
  */
 export function instanceOfGetUserByAuth0IDResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetUserByAuth0IDResponseFromJSON(json: any): GetUserByAuth0IDResponse {
@@ -60,27 +58,24 @@ export function GetUserByAuth0IDResponseFromJSON(json: any): GetUserByAuth0IDRes
 }
 
 export function GetUserByAuth0IDResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUserByAuth0IDResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'userAccount': !exists(json, 'userAccount') ? undefined : UserAccountFromJSON(json['userAccount']),
-        'businessAccount': !exists(json, 'businessAccount') ? undefined : BusinessAccountFromJSON(json['businessAccount']),
+        'userAccount': json['userAccount'] == null ? undefined : UserAccountFromJSON(json['userAccount']),
+        'businessAccount': json['businessAccount'] == null ? undefined : BusinessAccountFromJSON(json['businessAccount']),
     };
 }
 
 export function GetUserByAuth0IDResponseToJSON(value?: GetUserByAuth0IDResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userAccount': UserAccountToJSON(value.userAccount),
-        'businessAccount': BusinessAccountToJSON(value.businessAccount),
+        'userAccount': UserAccountToJSON(value['userAccount']),
+        'businessAccount': BusinessAccountToJSON(value['businessAccount']),
     };
 }
 

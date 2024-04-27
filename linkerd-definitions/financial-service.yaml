@@ -422,3 +422,7 @@ spec:
       method: POST
       pathRegex: /financial_service\.v1\.FinancialService/GetNotesFromFinancialUserProfile
     name: GetNotesFromFinancialUserProfile
+  - condition:
+      method: POST
+      pathRegex: /financial_service\.v1\.FinancialService/AddTransactionsToManuallyLinkedAccount
+    name: AddTransactionsToManuallyLinkedAccount

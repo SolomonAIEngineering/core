@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FlsaStatus } from './FlsaStatus';
 import {
     FlsaStatusFromJSON,
@@ -125,9 +125,7 @@ export interface EmployeeJobPositionAtCompany {
  * Check if a given object implements the EmployeeJobPositionAtCompany interface.
  */
 export function instanceOfEmployeeJobPositionAtCompany(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function EmployeeJobPositionAtCompanyFromJSON(json: any): EmployeeJobPositionAtCompany {
@@ -135,49 +133,46 @@ export function EmployeeJobPositionAtCompanyFromJSON(json: any): EmployeeJobPosi
 }
 
 export function EmployeeJobPositionAtCompanyFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmployeeJobPositionAtCompany {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'jobTitle': !exists(json, 'jobTitle') ? undefined : json['jobTitle'],
-        'payRate': !exists(json, 'payRate') ? undefined : json['payRate'],
-        'payPeriod': !exists(json, 'payPeriod') ? undefined : PayPeriodFromJSON(json['payPeriod']),
-        'payFrequency': !exists(json, 'payFrequency') ? undefined : PayFrequencyFromJSON(json['payFrequency']),
-        'payCurrency': !exists(json, 'payCurrency') ? undefined : json['payCurrency'],
-        'flsaStatus': !exists(json, 'flsaStatus') ? undefined : FlsaStatusFromJSON(json['flsaStatus']),
-        'effectiveDate': !exists(json, 'effectiveDate') ? undefined : (new Date(json['effectiveDate'])),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'jobTitle': json['jobTitle'] == null ? undefined : json['jobTitle'],
+        'payRate': json['payRate'] == null ? undefined : json['payRate'],
+        'payPeriod': json['payPeriod'] == null ? undefined : PayPeriodFromJSON(json['payPeriod']),
+        'payFrequency': json['payFrequency'] == null ? undefined : PayFrequencyFromJSON(json['payFrequency']),
+        'payCurrency': json['payCurrency'] == null ? undefined : json['payCurrency'],
+        'flsaStatus': json['flsaStatus'] == null ? undefined : FlsaStatusFromJSON(json['flsaStatus']),
+        'effectiveDate': json['effectiveDate'] == null ? undefined : (new Date(json['effectiveDate'])),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
     };
 }
 
 export function EmployeeJobPositionAtCompanyToJSON(value?: EmployeeJobPositionAtCompany | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'jobTitle': value.jobTitle,
-        'payRate': value.payRate,
-        'payPeriod': PayPeriodToJSON(value.payPeriod),
-        'payFrequency': PayFrequencyToJSON(value.payFrequency),
-        'payCurrency': value.payCurrency,
-        'flsaStatus': FlsaStatusToJSON(value.flsaStatus),
-        'effectiveDate': value.effectiveDate === undefined ? undefined : (value.effectiveDate.toISOString()),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeAccountId': value.mergeAccountId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'jobTitle': value['jobTitle'],
+        'payRate': value['payRate'],
+        'payPeriod': PayPeriodToJSON(value['payPeriod']),
+        'payFrequency': PayFrequencyToJSON(value['payFrequency']),
+        'payCurrency': value['payCurrency'],
+        'flsaStatus': FlsaStatusToJSON(value['flsaStatus']),
+        'effectiveDate': value['effectiveDate'] == null ? undefined : ((value['effectiveDate']).toISOString()),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeAccountId': value['mergeAccountId'],
     };
 }
 

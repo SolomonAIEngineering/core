@@ -160,8 +160,11 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      * Create Payroll Profile
      */
     async createPayrollProfileRaw(requestParameters: CreatePayrollProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateAccountingProfileResponse>> {
-        if (requestParameters.createAccountingProfileRequest === null || requestParameters.createAccountingProfileRequest === undefined) {
-            throw new runtime.RequiredError('createAccountingProfileRequest','Required parameter requestParameters.createAccountingProfileRequest was null or undefined when calling createPayrollProfile.');
+        if (requestParameters['createAccountingProfileRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createAccountingProfileRequest',
+                'Required parameter "createAccountingProfileRequest" was null or undefined when calling createPayrollProfile().'
+            );
         }
 
         const queryParameters: any = {};
@@ -175,7 +178,7 @@ export class AccountingServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateAccountingProfileRequestToJSON(requestParameters.createAccountingProfileRequest),
+            body: CreateAccountingProfileRequestToJSON(requestParameters['createAccountingProfileRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateAccountingProfileResponseFromJSON(jsonValue));
@@ -195,8 +198,11 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      * Delete Payroll Profile
      */
     async deleteProfileRaw(requestParameters: DeleteProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteAccountingProfileResponse>> {
-        if (requestParameters.authZeroUserId === null || requestParameters.authZeroUserId === undefined) {
-            throw new runtime.RequiredError('authZeroUserId','Required parameter requestParameters.authZeroUserId was null or undefined when calling deleteProfile.');
+        if (requestParameters['authZeroUserId'] == null) {
+            throw new runtime.RequiredError(
+                'authZeroUserId',
+                'Required parameter "authZeroUserId" was null or undefined when calling deleteProfile().'
+            );
         }
 
         const queryParameters: any = {};
@@ -204,7 +210,7 @@ export class AccountingServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/accounting-microservice/api/v1/profile/{authZeroUserId}`.replace(`{${"authZeroUserId"}}`, encodeURIComponent(String(requestParameters.authZeroUserId))),
+            path: `/accounting-microservice/api/v1/profile/{authZeroUserId}`.replace(`{${"authZeroUserId"}}`, encodeURIComponent(String(requestParameters['authZeroUserId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -227,8 +233,11 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      * Exchange Link Token
      */
     async exchangePublicLinkTokenForAccountTokenResponseRaw(requestParameters: ExchangePublicLinkTokenForAccountTokenResponseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ExchangePublicLinkTokenForAccountTokenResponse>> {
-        if (requestParameters.exchangePublicLinkTokenForAccountTokenRequest === null || requestParameters.exchangePublicLinkTokenForAccountTokenRequest === undefined) {
-            throw new runtime.RequiredError('exchangePublicLinkTokenForAccountTokenRequest','Required parameter requestParameters.exchangePublicLinkTokenForAccountTokenRequest was null or undefined when calling exchangePublicLinkTokenForAccountTokenResponse.');
+        if (requestParameters['exchangePublicLinkTokenForAccountTokenRequest'] == null) {
+            throw new runtime.RequiredError(
+                'exchangePublicLinkTokenForAccountTokenRequest',
+                'Required parameter "exchangePublicLinkTokenForAccountTokenRequest" was null or undefined when calling exchangePublicLinkTokenForAccountTokenResponse().'
+            );
         }
 
         const queryParameters: any = {};
@@ -242,7 +251,7 @@ export class AccountingServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ExchangePublicLinkTokenForAccountTokenRequestToJSON(requestParameters.exchangePublicLinkTokenForAccountTokenRequest),
+            body: ExchangePublicLinkTokenForAccountTokenRequestToJSON(requestParameters['exchangePublicLinkTokenForAccountTokenRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ExchangePublicLinkTokenForAccountTokenResponseFromJSON(jsonValue));
@@ -262,8 +271,11 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      * Get Link Token
      */
     async getLinkTokenRaw(requestParameters: GetLinkTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMergeLinkTokenResponse>> {
-        if (requestParameters.getMergeLinkTokenRequest === null || requestParameters.getMergeLinkTokenRequest === undefined) {
-            throw new runtime.RequiredError('getMergeLinkTokenRequest','Required parameter requestParameters.getMergeLinkTokenRequest was null or undefined when calling getLinkToken.');
+        if (requestParameters['getMergeLinkTokenRequest'] == null) {
+            throw new runtime.RequiredError(
+                'getMergeLinkTokenRequest',
+                'Required parameter "getMergeLinkTokenRequest" was null or undefined when calling getLinkToken().'
+            );
         }
 
         const queryParameters: any = {};
@@ -277,7 +289,7 @@ export class AccountingServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: GetMergeLinkTokenRequestToJSON(requestParameters.getMergeLinkTokenRequest),
+            body: GetMergeLinkTokenRequestToJSON(requestParameters['getMergeLinkTokenRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => GetMergeLinkTokenResponseFromJSON(jsonValue));
@@ -297,12 +309,18 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      * polls the status of an async task
      */
     async getWorkflowExecutionStatusRaw(requestParameters: GetWorkflowExecutionStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetWorkflowExecutionStatusResponse>> {
-        if (requestParameters.workflowId === null || requestParameters.workflowId === undefined) {
-            throw new runtime.RequiredError('workflowId','Required parameter requestParameters.workflowId was null or undefined when calling getWorkflowExecutionStatus.');
+        if (requestParameters['workflowId'] == null) {
+            throw new runtime.RequiredError(
+                'workflowId',
+                'Required parameter "workflowId" was null or undefined when calling getWorkflowExecutionStatus().'
+            );
         }
 
-        if (requestParameters.workflowRunId === null || requestParameters.workflowRunId === undefined) {
-            throw new runtime.RequiredError('workflowRunId','Required parameter requestParameters.workflowRunId was null or undefined when calling getWorkflowExecutionStatus.');
+        if (requestParameters['workflowRunId'] == null) {
+            throw new runtime.RequiredError(
+                'workflowRunId',
+                'Required parameter "workflowRunId" was null or undefined when calling getWorkflowExecutionStatus().'
+            );
         }
 
         const queryParameters: any = {};
@@ -310,7 +328,7 @@ export class AccountingServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/accounting-microservice/api/v1/async-task/{workflowId}/run/{workflowRunId}`.replace(`{${"workflowId"}}`, encodeURIComponent(String(requestParameters.workflowId))).replace(`{${"workflowRunId"}}`, encodeURIComponent(String(requestParameters.workflowRunId))),
+            path: `/accounting-microservice/api/v1/async-task/{workflowId}/run/{workflowRunId}`.replace(`{${"workflowId"}}`, encodeURIComponent(String(requestParameters['workflowId']))).replace(`{${"workflowRunId"}}`, encodeURIComponent(String(requestParameters['workflowRunId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -361,24 +379,30 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      * Get Business Account Profile
      */
     async readAccountingProfileResponseRaw(requestParameters: ReadAccountingProfileResponseRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReadAccountingProfileResponse>> {
-        if (requestParameters.authZeroUserId === null || requestParameters.authZeroUserId === undefined) {
-            throw new runtime.RequiredError('authZeroUserId','Required parameter requestParameters.authZeroUserId was null or undefined when calling readAccountingProfileResponse.');
+        if (requestParameters['authZeroUserId'] == null) {
+            throw new runtime.RequiredError(
+                'authZeroUserId',
+                'Required parameter "authZeroUserId" was null or undefined when calling readAccountingProfileResponse().'
+            );
         }
 
-        if (requestParameters.linkedAccountingAccountId === null || requestParameters.linkedAccountingAccountId === undefined) {
-            throw new runtime.RequiredError('linkedAccountingAccountId','Required parameter requestParameters.linkedAccountingAccountId was null or undefined when calling readAccountingProfileResponse.');
+        if (requestParameters['linkedAccountingAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'linkedAccountingAccountId',
+                'Required parameter "linkedAccountingAccountId" was null or undefined when calling readAccountingProfileResponse().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.linkedAccountingAccountId !== undefined) {
-            queryParameters['linkedAccountingAccountId'] = requestParameters.linkedAccountingAccountId;
+        if (requestParameters['linkedAccountingAccountId'] != null) {
+            queryParameters['linkedAccountingAccountId'] = requestParameters['linkedAccountingAccountId'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/accounting-microservice/api/v1/profile/{authZeroUserId}`.replace(`{${"authZeroUserId"}}`, encodeURIComponent(String(requestParameters.authZeroUserId))),
+            path: `/accounting-microservice/api/v1/profile/{authZeroUserId}`.replace(`{${"authZeroUserId"}}`, encodeURIComponent(String(requestParameters['authZeroUserId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -401,8 +425,11 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      * Gets Balance Sheets
      */
     async readBalanceSheetsRaw(requestParameters: ReadBalanceSheetsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReadBalanceSheetsResponse>> {
-        if (requestParameters.readBalanceSheetsRequest === null || requestParameters.readBalanceSheetsRequest === undefined) {
-            throw new runtime.RequiredError('readBalanceSheetsRequest','Required parameter requestParameters.readBalanceSheetsRequest was null or undefined when calling readBalanceSheets.');
+        if (requestParameters['readBalanceSheetsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'readBalanceSheetsRequest',
+                'Required parameter "readBalanceSheetsRequest" was null or undefined when calling readBalanceSheets().'
+            );
         }
 
         const queryParameters: any = {};
@@ -416,7 +443,7 @@ export class AccountingServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ReadBalanceSheetsRequestToJSON(requestParameters.readBalanceSheetsRequest),
+            body: ReadBalanceSheetsRequestToJSON(requestParameters['readBalanceSheetsRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ReadBalanceSheetsResponseFromJSON(jsonValue));
@@ -436,8 +463,11 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      * Gets Chart of Accounts
      */
     async readBusinessChartOfAccountsRaw(requestParameters: ReadBusinessChartOfAccountsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReadBusinessChartOfAccountsResponse>> {
-        if (requestParameters.readBusinessChartOfAccountsRequest === null || requestParameters.readBusinessChartOfAccountsRequest === undefined) {
-            throw new runtime.RequiredError('readBusinessChartOfAccountsRequest','Required parameter requestParameters.readBusinessChartOfAccountsRequest was null or undefined when calling readBusinessChartOfAccounts.');
+        if (requestParameters['readBusinessChartOfAccountsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'readBusinessChartOfAccountsRequest',
+                'Required parameter "readBusinessChartOfAccountsRequest" was null or undefined when calling readBusinessChartOfAccounts().'
+            );
         }
 
         const queryParameters: any = {};
@@ -451,7 +481,7 @@ export class AccountingServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ReadBusinessChartOfAccountsRequestToJSON(requestParameters.readBusinessChartOfAccountsRequest),
+            body: ReadBusinessChartOfAccountsRequestToJSON(requestParameters['readBusinessChartOfAccountsRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ReadBusinessChartOfAccountsResponseFromJSON(jsonValue));
@@ -471,8 +501,11 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      * Gets Business Transactions
      */
     async readBusinessTransactionsRaw(requestParameters: ReadBusinessTransactionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReadBusinessTransactionsResponse>> {
-        if (requestParameters.readBusinessTransactionsRequest === null || requestParameters.readBusinessTransactionsRequest === undefined) {
-            throw new runtime.RequiredError('readBusinessTransactionsRequest','Required parameter requestParameters.readBusinessTransactionsRequest was null or undefined when calling readBusinessTransactions.');
+        if (requestParameters['readBusinessTransactionsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'readBusinessTransactionsRequest',
+                'Required parameter "readBusinessTransactionsRequest" was null or undefined when calling readBusinessTransactions().'
+            );
         }
 
         const queryParameters: any = {};
@@ -486,7 +519,7 @@ export class AccountingServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ReadBusinessTransactionsRequestToJSON(requestParameters.readBusinessTransactionsRequest),
+            body: ReadBusinessTransactionsRequestToJSON(requestParameters['readBusinessTransactionsRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ReadBusinessTransactionsResponseFromJSON(jsonValue));
@@ -506,8 +539,11 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      * Gets Cashfloe Sheets
      */
     async readCashFlowStatementsRaw(requestParameters: ReadCashFlowStatementsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReadCashFlowStatementsResponse>> {
-        if (requestParameters.readCashFlowStatementsRequest === null || requestParameters.readCashFlowStatementsRequest === undefined) {
-            throw new runtime.RequiredError('readCashFlowStatementsRequest','Required parameter requestParameters.readCashFlowStatementsRequest was null or undefined when calling readCashFlowStatements.');
+        if (requestParameters['readCashFlowStatementsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'readCashFlowStatementsRequest',
+                'Required parameter "readCashFlowStatementsRequest" was null or undefined when calling readCashFlowStatements().'
+            );
         }
 
         const queryParameters: any = {};
@@ -521,7 +557,7 @@ export class AccountingServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ReadCashFlowStatementsRequestToJSON(requestParameters.readCashFlowStatementsRequest),
+            body: ReadCashFlowStatementsRequestToJSON(requestParameters['readCashFlowStatementsRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ReadCashFlowStatementsResponseFromJSON(jsonValue));
@@ -541,8 +577,11 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      * Gets Cashfloe Sheets
      */
     async readIncomeStatementsRaw(requestParameters: ReadIncomeStatementsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ReadIncomeStatementsResponse>> {
-        if (requestParameters.readIncomeStatementsRequest === null || requestParameters.readIncomeStatementsRequest === undefined) {
-            throw new runtime.RequiredError('readIncomeStatementsRequest','Required parameter requestParameters.readIncomeStatementsRequest was null or undefined when calling readIncomeStatements.');
+        if (requestParameters['readIncomeStatementsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'readIncomeStatementsRequest',
+                'Required parameter "readIncomeStatementsRequest" was null or undefined when calling readIncomeStatements().'
+            );
         }
 
         const queryParameters: any = {};
@@ -556,7 +595,7 @@ export class AccountingServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: ReadIncomeStatementsRequestToJSON(requestParameters.readIncomeStatementsRequest),
+            body: ReadIncomeStatementsRequestToJSON(requestParameters['readIncomeStatementsRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => ReadIncomeStatementsResponseFromJSON(jsonValue));
@@ -604,8 +643,11 @@ export class AccountingServiceApi extends runtime.BaseAPI {
      * Update Payroll Profile
      */
     async updatePayrollProfileRaw(requestParameters: UpdatePayrollProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateAccountingProfileResponse>> {
-        if (requestParameters.updateAccountingProfileRequest === null || requestParameters.updateAccountingProfileRequest === undefined) {
-            throw new runtime.RequiredError('updateAccountingProfileRequest','Required parameter requestParameters.updateAccountingProfileRequest was null or undefined when calling updatePayrollProfile.');
+        if (requestParameters['updateAccountingProfileRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateAccountingProfileRequest',
+                'Required parameter "updateAccountingProfileRequest" was null or undefined when calling updatePayrollProfile().'
+            );
         }
 
         const queryParameters: any = {};
@@ -619,7 +661,7 @@ export class AccountingServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateAccountingProfileRequestToJSON(requestParameters.updateAccountingProfileRequest),
+            body: UpdateAccountingProfileRequestToJSON(requestParameters['updateAccountingProfileRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateAccountingProfileResponseFromJSON(jsonValue));

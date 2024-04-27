@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Any1 } from './Any1';
 import {
     Any1FromJSON,
@@ -50,9 +50,7 @@ export interface Status1 {
  * Check if a given object implements the Status1 interface.
  */
 export function instanceOfStatus1(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function Status1FromJSON(json: any): Status1 {
@@ -60,29 +58,26 @@ export function Status1FromJSON(json: any): Status1 {
 }
 
 export function Status1FromJSONTyped(json: any, ignoreDiscriminator: boolean): Status1 {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'code': !exists(json, 'code') ? undefined : json['code'],
-        'message': !exists(json, 'message') ? undefined : json['message'],
-        'details': !exists(json, 'details') ? undefined : ((json['details'] as Array<any>).map(Any1FromJSON)),
+        'code': json['code'] == null ? undefined : json['code'],
+        'message': json['message'] == null ? undefined : json['message'],
+        'details': json['details'] == null ? undefined : ((json['details'] as Array<any>).map(Any1FromJSON)),
     };
 }
 
 export function Status1ToJSON(value?: Status1 | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'code': value.code,
-        'message': value.message,
-        'details': value.details === undefined ? undefined : ((value.details as Array<any>).map(Any1ToJSON)),
+        'code': value['code'],
+        'message': value['message'],
+        'details': value['details'] == null ? undefined : ((value['details'] as Array<any>).map(Any1ToJSON)),
     };
 }
 

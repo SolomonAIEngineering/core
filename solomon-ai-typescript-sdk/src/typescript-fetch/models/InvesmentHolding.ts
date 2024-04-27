@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -97,9 +97,7 @@ export interface InvesmentHolding {
  * Check if a given object implements the InvesmentHolding interface.
  */
 export function instanceOfInvesmentHolding(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function InvesmentHoldingFromJSON(json: any): InvesmentHolding {
@@ -107,47 +105,44 @@ export function InvesmentHoldingFromJSON(json: any): InvesmentHolding {
 }
 
 export function InvesmentHoldingFromJSONTyped(json: any, ignoreDiscriminator: boolean): InvesmentHolding {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'plaidAccountId': !exists(json, 'plaidAccountId') ? undefined : json['plaidAccountId'],
-        'costBasis': !exists(json, 'costBasis') ? undefined : json['costBasis'],
-        'institutionPrice': !exists(json, 'institutionPrice') ? undefined : json['institutionPrice'],
-        'institutionPriceAsOf': !exists(json, 'institutionPriceAsOf') ? undefined : json['institutionPriceAsOf'],
-        'institutionPriceDatetime': !exists(json, 'institutionPriceDatetime') ? undefined : json['institutionPriceDatetime'],
-        'institutionValue': !exists(json, 'institutionValue') ? undefined : json['institutionValue'],
-        'isoCurrencyCode': !exists(json, 'isoCurrencyCode') ? undefined : json['isoCurrencyCode'],
-        'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
-        'securityId': !exists(json, 'securityId') ? undefined : json['securityId'],
-        'unofficialCurrencyCode': !exists(json, 'unofficialCurrencyCode') ? undefined : json['unofficialCurrencyCode'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'plaidAccountId': json['plaidAccountId'] == null ? undefined : json['plaidAccountId'],
+        'costBasis': json['costBasis'] == null ? undefined : json['costBasis'],
+        'institutionPrice': json['institutionPrice'] == null ? undefined : json['institutionPrice'],
+        'institutionPriceAsOf': json['institutionPriceAsOf'] == null ? undefined : json['institutionPriceAsOf'],
+        'institutionPriceDatetime': json['institutionPriceDatetime'] == null ? undefined : json['institutionPriceDatetime'],
+        'institutionValue': json['institutionValue'] == null ? undefined : json['institutionValue'],
+        'isoCurrencyCode': json['isoCurrencyCode'] == null ? undefined : json['isoCurrencyCode'],
+        'quantity': json['quantity'] == null ? undefined : json['quantity'],
+        'securityId': json['securityId'] == null ? undefined : json['securityId'],
+        'unofficialCurrencyCode': json['unofficialCurrencyCode'] == null ? undefined : json['unofficialCurrencyCode'],
     };
 }
 
 export function InvesmentHoldingToJSON(value?: InvesmentHolding | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'plaidAccountId': value.plaidAccountId,
-        'costBasis': value.costBasis,
-        'institutionPrice': value.institutionPrice,
-        'institutionPriceAsOf': value.institutionPriceAsOf,
-        'institutionPriceDatetime': value.institutionPriceDatetime,
-        'institutionValue': value.institutionValue,
-        'isoCurrencyCode': value.isoCurrencyCode,
-        'quantity': value.quantity,
-        'securityId': value.securityId,
-        'unofficialCurrencyCode': value.unofficialCurrencyCode,
+        'id': value['id'],
+        'name': value['name'],
+        'plaidAccountId': value['plaidAccountId'],
+        'costBasis': value['costBasis'],
+        'institutionPrice': value['institutionPrice'],
+        'institutionPriceAsOf': value['institutionPriceAsOf'],
+        'institutionPriceDatetime': value['institutionPriceDatetime'],
+        'institutionValue': value['institutionValue'],
+        'isoCurrencyCode': value['isoCurrencyCode'],
+        'quantity': value['quantity'],
+        'securityId': value['securityId'],
+        'unofficialCurrencyCode': value['unofficialCurrencyCode'],
     };
 }
 

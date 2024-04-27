@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * DigitalWorkerToolChainConfiguration defines the overall settings for a digital worker.
  * @export
@@ -49,9 +49,7 @@ export interface DigitalWorkerSettings {
  * Check if a given object implements the DigitalWorkerSettings interface.
  */
 export function instanceOfDigitalWorkerSettings(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DigitalWorkerSettingsFromJSON(json: any): DigitalWorkerSettings {
@@ -59,31 +57,28 @@ export function DigitalWorkerSettingsFromJSON(json: any): DigitalWorkerSettings 
 }
 
 export function DigitalWorkerSettingsFromJSONTyped(json: any, ignoreDiscriminator: boolean): DigitalWorkerSettings {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'workerName': !exists(json, 'workerName') ? undefined : json['workerName'],
-        'workerVersion': !exists(json, 'workerVersion') ? undefined : json['workerVersion'],
-        'enableLogging': !exists(json, 'enableLogging') ? undefined : json['enableLogging'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'workerName': json['workerName'] == null ? undefined : json['workerName'],
+        'workerVersion': json['workerVersion'] == null ? undefined : json['workerVersion'],
+        'enableLogging': json['enableLogging'] == null ? undefined : json['enableLogging'],
     };
 }
 
 export function DigitalWorkerSettingsToJSON(value?: DigitalWorkerSettings | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'workerName': value.workerName,
-        'workerVersion': value.workerVersion,
-        'enableLogging': value.enableLogging,
+        'id': value['id'],
+        'workerName': value['workerName'],
+        'workerVersion': value['workerVersion'],
+        'enableLogging': value['enableLogging'],
     };
 }
 

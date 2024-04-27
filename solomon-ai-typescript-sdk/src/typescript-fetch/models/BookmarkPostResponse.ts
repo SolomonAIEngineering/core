@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Bookmark } from './Bookmark';
 import {
     BookmarkFromJSON,
@@ -38,9 +38,7 @@ export interface BookmarkPostResponse {
  * Check if a given object implements the BookmarkPostResponse interface.
  */
 export function instanceOfBookmarkPostResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function BookmarkPostResponseFromJSON(json: any): BookmarkPostResponse {
@@ -48,25 +46,22 @@ export function BookmarkPostResponseFromJSON(json: any): BookmarkPostResponse {
 }
 
 export function BookmarkPostResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): BookmarkPostResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'bookmark': !exists(json, 'bookmark') ? undefined : BookmarkFromJSON(json['bookmark']),
+        'bookmark': json['bookmark'] == null ? undefined : BookmarkFromJSON(json['bookmark']),
     };
 }
 
 export function BookmarkPostResponseToJSON(value?: BookmarkPostResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'bookmark': BookmarkToJSON(value.bookmark),
+        'bookmark': BookmarkToJSON(value['bookmark']),
     };
 }
 

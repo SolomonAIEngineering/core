@@ -33,6 +33,10 @@ export const Ethnicity = {
 export type Ethnicity = typeof Ethnicity[keyof typeof Ethnicity];
 
 
+export function instanceOfEthnicity(value: any): boolean {
+    return Object.values(Ethnicity).includes(value);
+}
+
 export function EthnicityFromJSON(json: any): Ethnicity {
     return EthnicityFromJSONTyped(json, false);
 }

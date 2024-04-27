@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BankInfo } from './BankInfo';
 import {
     BankInfoFromJSON,
@@ -323,9 +323,7 @@ export interface Employee {
  * Check if a given object implements the Employee interface.
  */
 export function instanceOfEmployee(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function EmployeeFromJSON(json: any): Employee {
@@ -333,97 +331,94 @@ export function EmployeeFromJSON(json: any): Employee {
 }
 
 export function EmployeeFromJSONTyped(json: any, ignoreDiscriminator: boolean): Employee {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'employeeNumber': !exists(json, 'employeeNumber') ? undefined : json['employeeNumber'],
-        'companyId': !exists(json, 'companyId') ? undefined : json['companyId'],
-        'firstName': !exists(json, 'firstName') ? undefined : json['firstName'],
-        'lastName': !exists(json, 'lastName') ? undefined : json['lastName'],
-        'employeesPreferredName': !exists(json, 'employeesPreferredName') ? undefined : json['employeesPreferredName'],
-        'displayFullName': !exists(json, 'displayFullName') ? undefined : json['displayFullName'],
-        'employeeUserNameAsSeenInRemoteUi': !exists(json, 'employeeUserNameAsSeenInRemoteUi') ? undefined : json['employeeUserNameAsSeenInRemoteUi'],
-        'workEmail': !exists(json, 'workEmail') ? undefined : json['workEmail'],
-        'personalEmail': !exists(json, 'personalEmail') ? undefined : json['personalEmail'],
-        'mobilePhoneNumber': !exists(json, 'mobilePhoneNumber') ? undefined : json['mobilePhoneNumber'],
-        'employments': !exists(json, 'employments') ? undefined : ((json['employments'] as Array<any>).map(EmployeeJobPositionAtCompanyFromJSON)),
-        'employmentType': !exists(json, 'employmentType') ? undefined : json['employmentType'],
-        'homeLocation': !exists(json, 'homeLocation') ? undefined : LocationAddressFromJSON(json['homeLocation']),
-        'workLocation': !exists(json, 'workLocation') ? undefined : LocationAddressFromJSON(json['workLocation']),
-        'manager': !exists(json, 'manager') ? undefined : EmployeeFromJSON(json['manager']),
-        'group': !exists(json, 'group') ? undefined : GroupFromJSON(json['group']),
-        'ssn': !exists(json, 'ssn') ? undefined : json['ssn'],
-        'gender': !exists(json, 'gender') ? undefined : GenderFromJSON(json['gender']),
-        'ethnicity': !exists(json, 'ethnicity') ? undefined : EthnicityFromJSON(json['ethnicity']),
-        'maritalStatus': !exists(json, 'maritalStatus') ? undefined : MaritalStatusFromJSON(json['maritalStatus']),
-        'dateOfBirth': !exists(json, 'dateOfBirth') ? undefined : json['dateOfBirth'],
-        'startDate': !exists(json, 'startDate') ? undefined : (new Date(json['startDate'])),
-        'remoteCreatedAt': !exists(json, 'remoteCreatedAt') ? undefined : (new Date(json['remoteCreatedAt'])),
-        'employmentStatus': !exists(json, 'employmentStatus') ? undefined : EmploymentStatusFromJSON(json['employmentStatus']),
-        'terminationDate': !exists(json, 'terminationDate') ? undefined : (new Date(json['terminationDate'])),
-        'avatar': !exists(json, 'avatar') ? undefined : json['avatar'],
-        'bankAccounts': !exists(json, 'bankAccounts') ? undefined : ((json['bankAccounts'] as Array<any>).map(BankInfoFromJSON)),
-        'dependents': !exists(json, 'dependents') ? undefined : ((json['dependents'] as Array<any>).map(DependentsFromJSON)),
-        'payrollRuns': !exists(json, 'payrollRuns') ? undefined : ((json['payrollRuns'] as Array<any>).map(EmployeePayrollRunFromJSON)),
-        'payTimeOffBalance': !exists(json, 'payTimeOffBalance') ? undefined : EmployeTimeOffBalanceFromJSON(json['payTimeOffBalance']),
-        'benefits': !exists(json, 'benefits') ? undefined : ((json['benefits'] as Array<any>).map(EmployeeBenefitsFromJSON)),
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'employeeNumber': json['employeeNumber'] == null ? undefined : json['employeeNumber'],
+        'companyId': json['companyId'] == null ? undefined : json['companyId'],
+        'firstName': json['firstName'] == null ? undefined : json['firstName'],
+        'lastName': json['lastName'] == null ? undefined : json['lastName'],
+        'employeesPreferredName': json['employeesPreferredName'] == null ? undefined : json['employeesPreferredName'],
+        'displayFullName': json['displayFullName'] == null ? undefined : json['displayFullName'],
+        'employeeUserNameAsSeenInRemoteUi': json['employeeUserNameAsSeenInRemoteUi'] == null ? undefined : json['employeeUserNameAsSeenInRemoteUi'],
+        'workEmail': json['workEmail'] == null ? undefined : json['workEmail'],
+        'personalEmail': json['personalEmail'] == null ? undefined : json['personalEmail'],
+        'mobilePhoneNumber': json['mobilePhoneNumber'] == null ? undefined : json['mobilePhoneNumber'],
+        'employments': json['employments'] == null ? undefined : ((json['employments'] as Array<any>).map(EmployeeJobPositionAtCompanyFromJSON)),
+        'employmentType': json['employmentType'] == null ? undefined : json['employmentType'],
+        'homeLocation': json['homeLocation'] == null ? undefined : LocationAddressFromJSON(json['homeLocation']),
+        'workLocation': json['workLocation'] == null ? undefined : LocationAddressFromJSON(json['workLocation']),
+        'manager': json['manager'] == null ? undefined : EmployeeFromJSON(json['manager']),
+        'group': json['group'] == null ? undefined : GroupFromJSON(json['group']),
+        'ssn': json['ssn'] == null ? undefined : json['ssn'],
+        'gender': json['gender'] == null ? undefined : GenderFromJSON(json['gender']),
+        'ethnicity': json['ethnicity'] == null ? undefined : EthnicityFromJSON(json['ethnicity']),
+        'maritalStatus': json['maritalStatus'] == null ? undefined : MaritalStatusFromJSON(json['maritalStatus']),
+        'dateOfBirth': json['dateOfBirth'] == null ? undefined : json['dateOfBirth'],
+        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
+        'remoteCreatedAt': json['remoteCreatedAt'] == null ? undefined : (new Date(json['remoteCreatedAt'])),
+        'employmentStatus': json['employmentStatus'] == null ? undefined : EmploymentStatusFromJSON(json['employmentStatus']),
+        'terminationDate': json['terminationDate'] == null ? undefined : (new Date(json['terminationDate'])),
+        'avatar': json['avatar'] == null ? undefined : json['avatar'],
+        'bankAccounts': json['bankAccounts'] == null ? undefined : ((json['bankAccounts'] as Array<any>).map(BankInfoFromJSON)),
+        'dependents': json['dependents'] == null ? undefined : ((json['dependents'] as Array<any>).map(DependentsFromJSON)),
+        'payrollRuns': json['payrollRuns'] == null ? undefined : ((json['payrollRuns'] as Array<any>).map(EmployeePayrollRunFromJSON)),
+        'payTimeOffBalance': json['payTimeOffBalance'] == null ? undefined : EmployeTimeOffBalanceFromJSON(json['payTimeOffBalance']),
+        'benefits': json['benefits'] == null ? undefined : ((json['benefits'] as Array<any>).map(EmployeeBenefitsFromJSON)),
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
     };
 }
 
 export function EmployeeToJSON(value?: Employee | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'employeeNumber': value.employeeNumber,
-        'companyId': value.companyId,
-        'firstName': value.firstName,
-        'lastName': value.lastName,
-        'employeesPreferredName': value.employeesPreferredName,
-        'displayFullName': value.displayFullName,
-        'employeeUserNameAsSeenInRemoteUi': value.employeeUserNameAsSeenInRemoteUi,
-        'workEmail': value.workEmail,
-        'personalEmail': value.personalEmail,
-        'mobilePhoneNumber': value.mobilePhoneNumber,
-        'employments': value.employments === undefined ? undefined : ((value.employments as Array<any>).map(EmployeeJobPositionAtCompanyToJSON)),
-        'employmentType': value.employmentType,
-        'homeLocation': LocationAddressToJSON(value.homeLocation),
-        'workLocation': LocationAddressToJSON(value.workLocation),
-        'manager': EmployeeToJSON(value.manager),
-        'group': GroupToJSON(value.group),
-        'ssn': value.ssn,
-        'gender': GenderToJSON(value.gender),
-        'ethnicity': EthnicityToJSON(value.ethnicity),
-        'maritalStatus': MaritalStatusToJSON(value.maritalStatus),
-        'dateOfBirth': value.dateOfBirth,
-        'startDate': value.startDate === undefined ? undefined : (value.startDate.toISOString()),
-        'remoteCreatedAt': value.remoteCreatedAt === undefined ? undefined : (value.remoteCreatedAt.toISOString()),
-        'employmentStatus': EmploymentStatusToJSON(value.employmentStatus),
-        'terminationDate': value.terminationDate === undefined ? undefined : (value.terminationDate.toISOString()),
-        'avatar': value.avatar,
-        'bankAccounts': value.bankAccounts === undefined ? undefined : ((value.bankAccounts as Array<any>).map(BankInfoToJSON)),
-        'dependents': value.dependents === undefined ? undefined : ((value.dependents as Array<any>).map(DependentsToJSON)),
-        'payrollRuns': value.payrollRuns === undefined ? undefined : ((value.payrollRuns as Array<any>).map(EmployeePayrollRunToJSON)),
-        'payTimeOffBalance': EmployeTimeOffBalanceToJSON(value.payTimeOffBalance),
-        'benefits': value.benefits === undefined ? undefined : ((value.benefits as Array<any>).map(EmployeeBenefitsToJSON)),
-        'mergeAccountId': value.mergeAccountId,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'remoteWasDeleted': value.remoteWasDeleted,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'employeeNumber': value['employeeNumber'],
+        'companyId': value['companyId'],
+        'firstName': value['firstName'],
+        'lastName': value['lastName'],
+        'employeesPreferredName': value['employeesPreferredName'],
+        'displayFullName': value['displayFullName'],
+        'employeeUserNameAsSeenInRemoteUi': value['employeeUserNameAsSeenInRemoteUi'],
+        'workEmail': value['workEmail'],
+        'personalEmail': value['personalEmail'],
+        'mobilePhoneNumber': value['mobilePhoneNumber'],
+        'employments': value['employments'] == null ? undefined : ((value['employments'] as Array<any>).map(EmployeeJobPositionAtCompanyToJSON)),
+        'employmentType': value['employmentType'],
+        'homeLocation': LocationAddressToJSON(value['homeLocation']),
+        'workLocation': LocationAddressToJSON(value['workLocation']),
+        'manager': EmployeeToJSON(value['manager']),
+        'group': GroupToJSON(value['group']),
+        'ssn': value['ssn'],
+        'gender': GenderToJSON(value['gender']),
+        'ethnicity': EthnicityToJSON(value['ethnicity']),
+        'maritalStatus': MaritalStatusToJSON(value['maritalStatus']),
+        'dateOfBirth': value['dateOfBirth'],
+        'startDate': value['startDate'] == null ? undefined : ((value['startDate']).toISOString()),
+        'remoteCreatedAt': value['remoteCreatedAt'] == null ? undefined : ((value['remoteCreatedAt']).toISOString()),
+        'employmentStatus': EmploymentStatusToJSON(value['employmentStatus']),
+        'terminationDate': value['terminationDate'] == null ? undefined : ((value['terminationDate']).toISOString()),
+        'avatar': value['avatar'],
+        'bankAccounts': value['bankAccounts'] == null ? undefined : ((value['bankAccounts'] as Array<any>).map(BankInfoToJSON)),
+        'dependents': value['dependents'] == null ? undefined : ((value['dependents'] as Array<any>).map(DependentsToJSON)),
+        'payrollRuns': value['payrollRuns'] == null ? undefined : ((value['payrollRuns'] as Array<any>).map(EmployeePayrollRunToJSON)),
+        'payTimeOffBalance': EmployeTimeOffBalanceToJSON(value['payTimeOffBalance']),
+        'benefits': value['benefits'] == null ? undefined : ((value['benefits'] as Array<any>).map(EmployeeBenefitsToJSON)),
+        'mergeAccountId': value['mergeAccountId'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'remoteWasDeleted': value['remoteWasDeleted'],
     };
 }
 

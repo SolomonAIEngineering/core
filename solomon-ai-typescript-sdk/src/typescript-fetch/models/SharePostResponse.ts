@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface SharePostResponse {
  * Check if a given object implements the SharePostResponse interface.
  */
 export function instanceOfSharePostResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function SharePostResponseFromJSON(json: any): SharePostResponse {
@@ -41,25 +39,22 @@ export function SharePostResponseFromJSON(json: any): SharePostResponse {
 }
 
 export function SharePostResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SharePostResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'success': !exists(json, 'success') ? undefined : json['success'],
+        'success': json['success'] == null ? undefined : json['success'],
     };
 }
 
 export function SharePostResponseToJSON(value?: SharePostResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'success': value.success,
+        'success': value['success'],
     };
 }
 

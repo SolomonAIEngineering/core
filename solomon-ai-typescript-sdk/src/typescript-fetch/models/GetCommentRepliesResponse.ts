@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CommentReply } from './CommentReply';
 import {
     CommentReplyFromJSON,
@@ -38,9 +38,7 @@ export interface GetCommentRepliesResponse {
  * Check if a given object implements the GetCommentRepliesResponse interface.
  */
 export function instanceOfGetCommentRepliesResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetCommentRepliesResponseFromJSON(json: any): GetCommentRepliesResponse {
@@ -48,25 +46,22 @@ export function GetCommentRepliesResponseFromJSON(json: any): GetCommentRepliesR
 }
 
 export function GetCommentRepliesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCommentRepliesResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'replies': !exists(json, 'replies') ? undefined : ((json['replies'] as Array<any>).map(CommentReplyFromJSON)),
+        'replies': json['replies'] == null ? undefined : ((json['replies'] as Array<any>).map(CommentReplyFromJSON)),
     };
 }
 
 export function GetCommentRepliesResponseToJSON(value?: GetCommentRepliesResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'replies': value.replies === undefined ? undefined : ((value.replies as Array<any>).map(CommentReplyToJSON)),
+        'replies': value['replies'] == null ? undefined : ((value['replies'] as Array<any>).map(CommentReplyToJSON)),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BusinessAccount } from './BusinessAccount';
 import {
     BusinessAccountFromJSON,
@@ -56,9 +56,7 @@ export interface GetUserByEmailOrUsernameV2Response {
  * Check if a given object implements the GetUserByEmailOrUsernameV2Response interface.
  */
 export function instanceOfGetUserByEmailOrUsernameV2Response(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetUserByEmailOrUsernameV2ResponseFromJSON(json: any): GetUserByEmailOrUsernameV2Response {
@@ -66,29 +64,26 @@ export function GetUserByEmailOrUsernameV2ResponseFromJSON(json: any): GetUserBy
 }
 
 export function GetUserByEmailOrUsernameV2ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUserByEmailOrUsernameV2Response {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'userAccount': !exists(json, 'userAccount') ? undefined : UserAccountFromJSON(json['userAccount']),
-        'businessAccount': !exists(json, 'businessAccount') ? undefined : BusinessAccountFromJSON(json['businessAccount']),
-        'ssoToken': !exists(json, 'ssoToken') ? undefined : json['ssoToken'],
+        'userAccount': json['userAccount'] == null ? undefined : UserAccountFromJSON(json['userAccount']),
+        'businessAccount': json['businessAccount'] == null ? undefined : BusinessAccountFromJSON(json['businessAccount']),
+        'ssoToken': json['ssoToken'] == null ? undefined : json['ssoToken'],
     };
 }
 
 export function GetUserByEmailOrUsernameV2ResponseToJSON(value?: GetUserByEmailOrUsernameV2Response | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userAccount': UserAccountToJSON(value.userAccount),
-        'businessAccount': BusinessAccountToJSON(value.businessAccount),
-        'ssoToken': value.ssoToken,
+        'userAccount': UserAccountToJSON(value['userAccount']),
+        'businessAccount': BusinessAccountToJSON(value['businessAccount']),
+        'ssoToken': value['ssoToken'],
     };
 }
 

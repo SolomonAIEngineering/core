@@ -34,6 +34,10 @@ export const PocketType = {
 export type PocketType = typeof PocketType[keyof typeof PocketType];
 
 
+export function instanceOfPocketType(value: any): boolean {
+    return Object.values(PocketType).includes(value);
+}
+
 export function PocketTypeFromJSON(json: any): PocketType {
     return PocketTypeFromJSONTyped(json, false);
 }

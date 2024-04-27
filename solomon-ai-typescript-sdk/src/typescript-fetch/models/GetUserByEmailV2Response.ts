@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BusinessAccount } from './BusinessAccount';
 import {
     BusinessAccountFromJSON,
@@ -50,9 +50,7 @@ export interface GetUserByEmailV2Response {
  * Check if a given object implements the GetUserByEmailV2Response interface.
  */
 export function instanceOfGetUserByEmailV2Response(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetUserByEmailV2ResponseFromJSON(json: any): GetUserByEmailV2Response {
@@ -60,27 +58,24 @@ export function GetUserByEmailV2ResponseFromJSON(json: any): GetUserByEmailV2Res
 }
 
 export function GetUserByEmailV2ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUserByEmailV2Response {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'userAccount': !exists(json, 'userAccount') ? undefined : UserAccountFromJSON(json['userAccount']),
-        'businessAccount': !exists(json, 'businessAccount') ? undefined : BusinessAccountFromJSON(json['businessAccount']),
+        'userAccount': json['userAccount'] == null ? undefined : UserAccountFromJSON(json['userAccount']),
+        'businessAccount': json['businessAccount'] == null ? undefined : BusinessAccountFromJSON(json['businessAccount']),
     };
 }
 
 export function GetUserByEmailV2ResponseToJSON(value?: GetUserByEmailV2Response | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userAccount': UserAccountToJSON(value.userAccount),
-        'businessAccount': BusinessAccountToJSON(value.businessAccount),
+        'userAccount': UserAccountToJSON(value['userAccount']),
+        'businessAccount': BusinessAccountToJSON(value['businessAccount']),
     };
 }
 

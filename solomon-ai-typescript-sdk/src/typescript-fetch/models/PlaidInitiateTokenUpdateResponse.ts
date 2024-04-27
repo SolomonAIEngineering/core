@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,7 @@ export interface PlaidInitiateTokenUpdateResponse {
  * Check if a given object implements the PlaidInitiateTokenUpdateResponse interface.
  */
 export function instanceOfPlaidInitiateTokenUpdateResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PlaidInitiateTokenUpdateResponseFromJSON(json: any): PlaidInitiateTokenUpdateResponse {
@@ -47,27 +45,24 @@ export function PlaidInitiateTokenUpdateResponseFromJSON(json: any): PlaidInitia
 }
 
 export function PlaidInitiateTokenUpdateResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlaidInitiateTokenUpdateResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'linkToken': !exists(json, 'linkToken') ? undefined : json['linkToken'],
-        'expiration': !exists(json, 'expiration') ? undefined : json['expiration'],
+        'linkToken': json['linkToken'] == null ? undefined : json['linkToken'],
+        'expiration': json['expiration'] == null ? undefined : json['expiration'],
     };
 }
 
 export function PlaidInitiateTokenUpdateResponseToJSON(value?: PlaidInitiateTokenUpdateResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'linkToken': value.linkToken,
-        'expiration': value.expiration,
+        'linkToken': value['linkToken'],
+        'expiration': value['expiration'],
     };
 }
 

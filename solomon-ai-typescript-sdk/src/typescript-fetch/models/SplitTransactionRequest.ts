@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { TransactionSplit } from './TransactionSplit';
 import {
     TransactionSplitFromJSON,
@@ -44,11 +44,9 @@ export interface SplitTransactionRequest {
  * Check if a given object implements the SplitTransactionRequest interface.
  */
 export function instanceOfSplitTransactionRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "transactionId" in value;
-    isInstance = isInstance && "splitTransactions" in value;
-
-    return isInstance;
+    if (!('transactionId' in value)) return false;
+    if (!('splitTransactions' in value)) return false;
+    return true;
 }
 
 export function SplitTransactionRequestFromJSON(json: any): SplitTransactionRequest {
@@ -56,7 +54,7 @@ export function SplitTransactionRequestFromJSON(json: any): SplitTransactionRequ
 }
 
 export function SplitTransactionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): SplitTransactionRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function SplitTransactionRequestFromJSONTyped(json: any, ignoreDiscrimina
 }
 
 export function SplitTransactionRequestToJSON(value?: SplitTransactionRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transactionId': value.transactionId,
-        'splitTransactions': ((value.splitTransactions as Array<any>).map(TransactionSplitToJSON)),
+        'transactionId': value['transactionId'],
+        'splitTransactions': ((value['splitTransactions'] as Array<any>).map(TransactionSplitToJSON)),
     };
 }
 

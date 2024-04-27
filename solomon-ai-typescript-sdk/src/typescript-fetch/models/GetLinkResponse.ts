@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Link } from './Link';
 import {
     LinkFromJSON,
@@ -38,9 +38,7 @@ export interface GetLinkResponse {
  * Check if a given object implements the GetLinkResponse interface.
  */
 export function instanceOfGetLinkResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetLinkResponseFromJSON(json: any): GetLinkResponse {
@@ -48,25 +46,22 @@ export function GetLinkResponseFromJSON(json: any): GetLinkResponse {
 }
 
 export function GetLinkResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetLinkResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'link': !exists(json, 'link') ? undefined : LinkFromJSON(json['link']),
+        'link': json['link'] == null ? undefined : LinkFromJSON(json['link']),
     };
 }
 
 export function GetLinkResponseToJSON(value?: GetLinkResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'link': LinkToJSON(value.link),
+        'link': LinkToJSON(value['link']),
     };
 }
 

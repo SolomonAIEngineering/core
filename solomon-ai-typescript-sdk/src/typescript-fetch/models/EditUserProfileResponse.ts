@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { UserProfile } from './UserProfile';
 import {
     UserProfileFromJSON,
@@ -38,9 +38,7 @@ export interface EditUserProfileResponse {
  * Check if a given object implements the EditUserProfileResponse interface.
  */
 export function instanceOfEditUserProfileResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function EditUserProfileResponseFromJSON(json: any): EditUserProfileResponse {
@@ -48,25 +46,22 @@ export function EditUserProfileResponseFromJSON(json: any): EditUserProfileRespo
 }
 
 export function EditUserProfileResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): EditUserProfileResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'profile': !exists(json, 'profile') ? undefined : UserProfileFromJSON(json['profile']),
+        'profile': json['profile'] == null ? undefined : UserProfileFromJSON(json['profile']),
     };
 }
 
 export function EditUserProfileResponseToJSON(value?: EditUserProfileResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'profile': UserProfileToJSON(value.profile),
+        'profile': UserProfileToJSON(value['profile']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FolderMetadata } from './FolderMetadata';
 import {
     FolderMetadataFromJSON,
@@ -38,9 +38,7 @@ export interface UpdateFolderResponse {
  * Check if a given object implements the UpdateFolderResponse interface.
  */
 export function instanceOfUpdateFolderResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UpdateFolderResponseFromJSON(json: any): UpdateFolderResponse {
@@ -48,25 +46,22 @@ export function UpdateFolderResponseFromJSON(json: any): UpdateFolderResponse {
 }
 
 export function UpdateFolderResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateFolderResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'folder': !exists(json, 'folder') ? undefined : FolderMetadataFromJSON(json['folder']),
+        'folder': json['folder'] == null ? undefined : FolderMetadataFromJSON(json['folder']),
     };
 }
 
 export function UpdateFolderResponseToJSON(value?: UpdateFolderResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'folder': FolderMetadataToJSON(value.folder),
+        'folder': FolderMetadataToJSON(value['folder']),
     };
 }
 

@@ -28,6 +28,10 @@ export const FinancialAccountType = {
 export type FinancialAccountType = typeof FinancialAccountType[keyof typeof FinancialAccountType];
 
 
+export function instanceOfFinancialAccountType(value: any): boolean {
+    return Object.values(FinancialAccountType).includes(value);
+}
+
 export function FinancialAccountTypeFromJSON(json: any): FinancialAccountType {
     return FinancialAccountTypeFromJSONTyped(json, false);
 }

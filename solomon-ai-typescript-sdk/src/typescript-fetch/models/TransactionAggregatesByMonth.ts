@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -87,9 +87,7 @@ export interface TransactionAggregatesByMonth {
  * Check if a given object implements the TransactionAggregatesByMonth interface.
  */
 export function instanceOfTransactionAggregatesByMonth(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function TransactionAggregatesByMonthFromJSON(json: any): TransactionAggregatesByMonth {
@@ -97,41 +95,38 @@ export function TransactionAggregatesByMonthFromJSON(json: any): TransactionAggr
 }
 
 export function TransactionAggregatesByMonthFromJSONTyped(json: any, ignoreDiscriminator: boolean): TransactionAggregatesByMonth {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'month': !exists(json, 'month') ? undefined : json['month'],
-        'personalFinanceCategoryPrimary': !exists(json, 'personalFinanceCategoryPrimary') ? undefined : json['personalFinanceCategoryPrimary'],
-        'locationCity': !exists(json, 'locationCity') ? undefined : json['locationCity'],
-        'paymentChannel': !exists(json, 'paymentChannel') ? undefined : json['paymentChannel'],
-        'merchantName': !exists(json, 'merchantName') ? undefined : json['merchantName'],
-        'transactionCount': !exists(json, 'transactionCount') ? undefined : json['transactionCount'],
-        'totalAmount': !exists(json, 'totalAmount') ? undefined : json['totalAmount'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'month': json['month'] == null ? undefined : json['month'],
+        'personalFinanceCategoryPrimary': json['personalFinanceCategoryPrimary'] == null ? undefined : json['personalFinanceCategoryPrimary'],
+        'locationCity': json['locationCity'] == null ? undefined : json['locationCity'],
+        'paymentChannel': json['paymentChannel'] == null ? undefined : json['paymentChannel'],
+        'merchantName': json['merchantName'] == null ? undefined : json['merchantName'],
+        'transactionCount': json['transactionCount'] == null ? undefined : json['transactionCount'],
+        'totalAmount': json['totalAmount'] == null ? undefined : json['totalAmount'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function TransactionAggregatesByMonthToJSON(value?: TransactionAggregatesByMonth | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'month': value.month,
-        'personalFinanceCategoryPrimary': value.personalFinanceCategoryPrimary,
-        'locationCity': value.locationCity,
-        'paymentChannel': value.paymentChannel,
-        'merchantName': value.merchantName,
-        'transactionCount': value.transactionCount,
-        'totalAmount': value.totalAmount,
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'month': value['month'],
+        'personalFinanceCategoryPrimary': value['personalFinanceCategoryPrimary'],
+        'locationCity': value['locationCity'],
+        'paymentChannel': value['paymentChannel'],
+        'merchantName': value['merchantName'],
+        'transactionCount': value['transactionCount'],
+        'totalAmount': value['totalAmount'],
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

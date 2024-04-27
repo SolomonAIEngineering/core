@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlaidAccountTransaction } from './PlaidAccountTransaction';
 import {
     PlaidAccountTransactionFromJSON,
@@ -38,10 +38,8 @@ export interface UpdateSingleTransactionRequest {
  * Check if a given object implements the UpdateSingleTransactionRequest interface.
  */
 export function instanceOfUpdateSingleTransactionRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "transaction" in value;
-
-    return isInstance;
+    if (!('transaction' in value)) return false;
+    return true;
 }
 
 export function UpdateSingleTransactionRequestFromJSON(json: any): UpdateSingleTransactionRequest {
@@ -49,7 +47,7 @@ export function UpdateSingleTransactionRequestFromJSON(json: any): UpdateSingleT
 }
 
 export function UpdateSingleTransactionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateSingleTransactionRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function UpdateSingleTransactionRequestFromJSONTyped(json: any, ignoreDis
 }
 
 export function UpdateSingleTransactionRequestToJSON(value?: UpdateSingleTransactionRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transaction': PlaidAccountTransactionToJSON(value.transaction),
+        'transaction': PlaidAccountTransactionToJSON(value['transaction']),
     };
 }
 

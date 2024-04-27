@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfile } from './FinancialUserProfile';
 import {
     FinancialUserProfileFromJSON,
@@ -38,10 +38,8 @@ export interface UpdateUserProfileRequest {
  * Check if a given object implements the UpdateUserProfileRequest interface.
  */
 export function instanceOfUpdateUserProfileRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "profile" in value;
-
-    return isInstance;
+    if (!('profile' in value)) return false;
+    return true;
 }
 
 export function UpdateUserProfileRequestFromJSON(json: any): UpdateUserProfileRequest {
@@ -49,7 +47,7 @@ export function UpdateUserProfileRequestFromJSON(json: any): UpdateUserProfileRe
 }
 
 export function UpdateUserProfileRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateUserProfileRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function UpdateUserProfileRequestFromJSONTyped(json: any, ignoreDiscrimin
 }
 
 export function UpdateUserProfileRequestToJSON(value?: UpdateUserProfileRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'profile': FinancialUserProfileToJSON(value.profile),
+        'profile': FinancialUserProfileToJSON(value['profile']),
     };
 }
 

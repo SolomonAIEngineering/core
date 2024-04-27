@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CompanyAddress } from './CompanyAddress';
 import {
     CompanyAddressFromJSON,
@@ -124,9 +124,7 @@ export interface CompanyInfo {
  * Check if a given object implements the CompanyInfo interface.
  */
 export function instanceOfCompanyInfo(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CompanyInfoFromJSON(json: any): CompanyInfo {
@@ -134,53 +132,50 @@ export function CompanyInfoFromJSON(json: any): CompanyInfo {
 }
 
 export function CompanyInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): CompanyInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'legalName': !exists(json, 'legalName') ? undefined : json['legalName'],
-        'taxNumber': !exists(json, 'taxNumber') ? undefined : json['taxNumber'],
-        'fiscalYearEndMonth': !exists(json, 'fiscalYearEndMonth') ? undefined : json['fiscalYearEndMonth'],
-        'fiscalYearEndDay': !exists(json, 'fiscalYearEndDay') ? undefined : json['fiscalYearEndDay'],
-        'currency': !exists(json, 'currency') ? undefined : json['currency'],
-        'remoteCreatedAt': !exists(json, 'remoteCreatedAt') ? undefined : (new Date(json['remoteCreatedAt'])),
-        'urls': !exists(json, 'urls') ? undefined : json['urls'],
-        'addresses': !exists(json, 'addresses') ? undefined : ((json['addresses'] as Array<any>).map(CompanyAddressFromJSON)),
-        'phoneNumbers': !exists(json, 'phoneNumbers') ? undefined : json['phoneNumbers'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeRecordId': !exists(json, 'mergeRecordId') ? undefined : json['mergeRecordId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'legalName': json['legalName'] == null ? undefined : json['legalName'],
+        'taxNumber': json['taxNumber'] == null ? undefined : json['taxNumber'],
+        'fiscalYearEndMonth': json['fiscalYearEndMonth'] == null ? undefined : json['fiscalYearEndMonth'],
+        'fiscalYearEndDay': json['fiscalYearEndDay'] == null ? undefined : json['fiscalYearEndDay'],
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'remoteCreatedAt': json['remoteCreatedAt'] == null ? undefined : (new Date(json['remoteCreatedAt'])),
+        'urls': json['urls'] == null ? undefined : json['urls'],
+        'addresses': json['addresses'] == null ? undefined : ((json['addresses'] as Array<any>).map(CompanyAddressFromJSON)),
+        'phoneNumbers': json['phoneNumbers'] == null ? undefined : json['phoneNumbers'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeRecordId': json['mergeRecordId'] == null ? undefined : json['mergeRecordId'],
     };
 }
 
 export function CompanyInfoToJSON(value?: CompanyInfo | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'name': value.name,
-        'legalName': value.legalName,
-        'taxNumber': value.taxNumber,
-        'fiscalYearEndMonth': value.fiscalYearEndMonth,
-        'fiscalYearEndDay': value.fiscalYearEndDay,
-        'currency': value.currency,
-        'remoteCreatedAt': value.remoteCreatedAt === undefined ? undefined : (value.remoteCreatedAt.toISOString()),
-        'urls': value.urls,
-        'addresses': value.addresses === undefined ? undefined : ((value.addresses as Array<any>).map(CompanyAddressToJSON)),
-        'phoneNumbers': value.phoneNumbers,
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeRecordId': value.mergeRecordId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'name': value['name'],
+        'legalName': value['legalName'],
+        'taxNumber': value['taxNumber'],
+        'fiscalYearEndMonth': value['fiscalYearEndMonth'],
+        'fiscalYearEndDay': value['fiscalYearEndDay'],
+        'currency': value['currency'],
+        'remoteCreatedAt': value['remoteCreatedAt'] == null ? undefined : ((value['remoteCreatedAt']).toISOString()),
+        'urls': value['urls'],
+        'addresses': value['addresses'] == null ? undefined : ((value['addresses'] as Array<any>).map(CompanyAddressToJSON)),
+        'phoneNumbers': value['phoneNumbers'],
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeRecordId': value['mergeRecordId'],
     };
 }
 

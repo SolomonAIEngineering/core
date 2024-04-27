@@ -42,6 +42,10 @@ export const BusinessActionableInsightType = {
 export type BusinessActionableInsightType = typeof BusinessActionableInsightType[keyof typeof BusinessActionableInsightType];
 
 
+export function instanceOfBusinessActionableInsightType(value: any): boolean {
+    return Object.values(BusinessActionableInsightType).includes(value);
+}
+
 export function BusinessActionableInsightTypeFromJSON(json: any): BusinessActionableInsightType {
     return BusinessActionableInsightTypeFromJSONTyped(json, false);
 }

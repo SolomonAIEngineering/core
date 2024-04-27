@@ -25,6 +25,10 @@ export const ThreadParticipantType = {
 export type ThreadParticipantType = typeof ThreadParticipantType[keyof typeof ThreadParticipantType];
 
 
+export function instanceOfThreadParticipantType(value: any): boolean {
+    return Object.values(ThreadParticipantType).includes(value);
+}
+
 export function ThreadParticipantTypeFromJSON(json: any): ThreadParticipantType {
     return ThreadParticipantTypeFromJSONTyped(json, false);
 }

@@ -29,6 +29,10 @@ export const PayGroupType = {
 export type PayGroupType = typeof PayGroupType[keyof typeof PayGroupType];
 
 
+export function instanceOfPayGroupType(value: any): boolean {
+    return Object.values(PayGroupType).includes(value);
+}
+
 export function PayGroupTypeFromJSON(json: any): PayGroupType {
     return PayGroupTypeFromJSONTyped(json, false);
 }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BusinessAccount } from './BusinessAccount';
 import {
     BusinessAccountFromJSON,
@@ -183,9 +183,7 @@ export interface Role {
  * Check if a given object implements the Role interface.
  */
 export function instanceOfRole(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function RoleFromJSON(json: any): Role {
@@ -193,65 +191,62 @@ export function RoleFromJSON(json: any): Role {
 }
 
 export function RoleFromJSONTyped(json: any, ignoreDiscriminator: boolean): Role {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'type': !exists(json, 'type') ? undefined : RoleTypeFromJSON(json['type']),
-        'canCreateUsers': !exists(json, 'canCreateUsers') ? undefined : json['canCreateUsers'],
-        'canReadUsers': !exists(json, 'canReadUsers') ? undefined : json['canReadUsers'],
-        'canUpdateUsers': !exists(json, 'canUpdateUsers') ? undefined : json['canUpdateUsers'],
-        'canDeleteUsers': !exists(json, 'canDeleteUsers') ? undefined : json['canDeleteUsers'],
-        'canCreateProjects': !exists(json, 'canCreateProjects') ? undefined : json['canCreateProjects'],
-        'canReadProjects': !exists(json, 'canReadProjects') ? undefined : json['canReadProjects'],
-        'canUpdateProjects': !exists(json, 'canUpdateProjects') ? undefined : json['canUpdateProjects'],
-        'canDeleteProjects': !exists(json, 'canDeleteProjects') ? undefined : json['canDeleteProjects'],
-        'canCreateReports': !exists(json, 'canCreateReports') ? undefined : json['canCreateReports'],
-        'canReadReports': !exists(json, 'canReadReports') ? undefined : json['canReadReports'],
-        'canUpdateReports': !exists(json, 'canUpdateReports') ? undefined : json['canUpdateReports'],
-        'canDeleteReports': !exists(json, 'canDeleteReports') ? undefined : json['canDeleteReports'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'updatedAt': !exists(json, 'updatedAt') ? undefined : (new Date(json['updatedAt'])),
-        'auditLog': !exists(json, 'auditLog') ? undefined : ((json['auditLog'] as Array<any>).map(RoleAuditEventsFromJSON)),
-        'team': !exists(json, 'team') ? undefined : TeamFromJSON(json['team']),
-        'user': !exists(json, 'user') ? undefined : UserAccountFromJSON(json['user']),
-        'business': !exists(json, 'business') ? undefined : BusinessAccountFromJSON(json['business']),
+        'id': json['id'] == null ? undefined : json['id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'type': json['type'] == null ? undefined : RoleTypeFromJSON(json['type']),
+        'canCreateUsers': json['canCreateUsers'] == null ? undefined : json['canCreateUsers'],
+        'canReadUsers': json['canReadUsers'] == null ? undefined : json['canReadUsers'],
+        'canUpdateUsers': json['canUpdateUsers'] == null ? undefined : json['canUpdateUsers'],
+        'canDeleteUsers': json['canDeleteUsers'] == null ? undefined : json['canDeleteUsers'],
+        'canCreateProjects': json['canCreateProjects'] == null ? undefined : json['canCreateProjects'],
+        'canReadProjects': json['canReadProjects'] == null ? undefined : json['canReadProjects'],
+        'canUpdateProjects': json['canUpdateProjects'] == null ? undefined : json['canUpdateProjects'],
+        'canDeleteProjects': json['canDeleteProjects'] == null ? undefined : json['canDeleteProjects'],
+        'canCreateReports': json['canCreateReports'] == null ? undefined : json['canCreateReports'],
+        'canReadReports': json['canReadReports'] == null ? undefined : json['canReadReports'],
+        'canUpdateReports': json['canUpdateReports'] == null ? undefined : json['canUpdateReports'],
+        'canDeleteReports': json['canDeleteReports'] == null ? undefined : json['canDeleteReports'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
+        'auditLog': json['auditLog'] == null ? undefined : ((json['auditLog'] as Array<any>).map(RoleAuditEventsFromJSON)),
+        'team': json['team'] == null ? undefined : TeamFromJSON(json['team']),
+        'user': json['user'] == null ? undefined : UserAccountFromJSON(json['user']),
+        'business': json['business'] == null ? undefined : BusinessAccountFromJSON(json['business']),
     };
 }
 
 export function RoleToJSON(value?: Role | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'type': RoleTypeToJSON(value.type),
-        'canCreateUsers': value.canCreateUsers,
-        'canReadUsers': value.canReadUsers,
-        'canUpdateUsers': value.canUpdateUsers,
-        'canDeleteUsers': value.canDeleteUsers,
-        'canCreateProjects': value.canCreateProjects,
-        'canReadProjects': value.canReadProjects,
-        'canUpdateProjects': value.canUpdateProjects,
-        'canDeleteProjects': value.canDeleteProjects,
-        'canCreateReports': value.canCreateReports,
-        'canReadReports': value.canReadReports,
-        'canUpdateReports': value.canUpdateReports,
-        'canDeleteReports': value.canDeleteReports,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'updatedAt': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
-        'auditLog': value.auditLog === undefined ? undefined : ((value.auditLog as Array<any>).map(RoleAuditEventsToJSON)),
-        'team': TeamToJSON(value.team),
-        'user': UserAccountToJSON(value.user),
-        'business': BusinessAccountToJSON(value.business),
+        'id': value['id'],
+        'name': value['name'],
+        'type': RoleTypeToJSON(value['type']),
+        'canCreateUsers': value['canCreateUsers'],
+        'canReadUsers': value['canReadUsers'],
+        'canUpdateUsers': value['canUpdateUsers'],
+        'canDeleteUsers': value['canDeleteUsers'],
+        'canCreateProjects': value['canCreateProjects'],
+        'canReadProjects': value['canReadProjects'],
+        'canUpdateProjects': value['canUpdateProjects'],
+        'canDeleteProjects': value['canDeleteProjects'],
+        'canCreateReports': value['canCreateReports'],
+        'canReadReports': value['canReadReports'],
+        'canUpdateReports': value['canUpdateReports'],
+        'canDeleteReports': value['canDeleteReports'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
+        'auditLog': value['auditLog'] == null ? undefined : ((value['auditLog'] as Array<any>).map(RoleAuditEventsToJSON)),
+        'team': TeamToJSON(value['team']),
+        'user': UserAccountToJSON(value['user']),
+        'business': BusinessAccountToJSON(value['business']),
     };
 }
 

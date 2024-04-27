@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -55,9 +55,7 @@ export interface FinancialPreferences {
  * Check if a given object implements the FinancialPreferences interface.
  */
 export function instanceOfFinancialPreferences(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function FinancialPreferencesFromJSON(json: any): FinancialPreferences {
@@ -65,33 +63,30 @@ export function FinancialPreferencesFromJSON(json: any): FinancialPreferences {
 }
 
 export function FinancialPreferencesFromJSONTyped(json: any, ignoreDiscriminator: boolean): FinancialPreferences {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'currencyPreference': !exists(json, 'currencyPreference') ? undefined : json['currencyPreference'],
-        'financialYearStart': !exists(json, 'financialYearStart') ? undefined : json['financialYearStart'],
-        'taxPercentage': !exists(json, 'taxPercentage') ? undefined : json['taxPercentage'],
-        'taxCode': !exists(json, 'taxCode') ? undefined : json['taxCode'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'currencyPreference': json['currencyPreference'] == null ? undefined : json['currencyPreference'],
+        'financialYearStart': json['financialYearStart'] == null ? undefined : json['financialYearStart'],
+        'taxPercentage': json['taxPercentage'] == null ? undefined : json['taxPercentage'],
+        'taxCode': json['taxCode'] == null ? undefined : json['taxCode'],
     };
 }
 
 export function FinancialPreferencesToJSON(value?: FinancialPreferences | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'currencyPreference': value.currencyPreference,
-        'financialYearStart': value.financialYearStart,
-        'taxPercentage': value.taxPercentage,
-        'taxCode': value.taxCode,
+        'id': value['id'],
+        'currencyPreference': value['currencyPreference'],
+        'financialYearStart': value['financialYearStart'],
+        'taxPercentage': value['taxPercentage'],
+        'taxCode': value['taxCode'],
     };
 }
 

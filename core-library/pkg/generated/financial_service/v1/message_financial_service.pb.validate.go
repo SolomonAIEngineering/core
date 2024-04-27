@@ -1557,6 +1557,40 @@ func (m *StudentLoanAccount) validate(all bool) error {
 
 	// no validation rules for Status
 
+	for idx, item := range m.GetStatements() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, StudentLoanAccountValidationError{
+						field:  fmt.Sprintf("Statements[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, StudentLoanAccountValidationError{
+						field:  fmt.Sprintf("Statements[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return StudentLoanAccountValidationError{
+					field:  fmt.Sprintf("Statements[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	if len(errors) > 0 {
 		return StudentLoanAccountMultiError(errors)
 	}
@@ -1835,6 +1869,40 @@ func (m *CreditAccount) validate(all bool) error {
 
 	}
 
+	for idx, item := range m.GetStatements() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, CreditAccountValidationError{
+						field:  fmt.Sprintf("Statements[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, CreditAccountValidationError{
+						field:  fmt.Sprintf("Statements[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return CreditAccountValidationError{
+					field:  fmt.Sprintf("Statements[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	if len(errors) > 0 {
 		return CreditAccountMultiError(errors)
 	}
@@ -2000,6 +2068,40 @@ func (m *MortgageAccount) validate(all bool) error {
 	// no validation rules for InterestRateType
 
 	// no validation rules for Status
+
+	for idx, item := range m.GetStatements() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, MortgageAccountValidationError{
+						field:  fmt.Sprintf("Statements[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, MortgageAccountValidationError{
+						field:  fmt.Sprintf("Statements[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return MortgageAccountValidationError{
+					field:  fmt.Sprintf("Statements[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
 
 	if len(errors) > 0 {
 		return MortgageAccountMultiError(errors)
@@ -2217,6 +2319,40 @@ func (m *InvestmentAccount) validate(all bool) error {
 			if err := v.Validate(); err != nil {
 				return InvestmentAccountValidationError{
 					field:  fmt.Sprintf("Transactions[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	for idx, item := range m.GetStatements() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, InvestmentAccountValidationError{
+						field:  fmt.Sprintf("Statements[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, InvestmentAccountValidationError{
+						field:  fmt.Sprintf("Statements[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return InvestmentAccountValidationError{
+					field:  fmt.Sprintf("Statements[%v]", idx),
 					reason: "embedded message failed validation",
 					cause:  err,
 				}
@@ -2453,6 +2589,40 @@ func (m *BankAccount) validate(all bool) error {
 
 	}
 
+	for idx, item := range m.GetStatements() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, BankAccountValidationError{
+						field:  fmt.Sprintf("Statements[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, BankAccountValidationError{
+						field:  fmt.Sprintf("Statements[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return BankAccountValidationError{
+					field:  fmt.Sprintf("Statements[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
 	if len(errors) > 0 {
 		return BankAccountMultiError(errors)
 	}
@@ -2529,6 +2699,118 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = BankAccountValidationError{}
+
+// Validate checks the field values on AccountStatements with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *AccountStatements) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on AccountStatements with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// AccountStatementsMultiError, or nil if none found.
+func (m *AccountStatements) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AccountStatements) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Id
+
+	// no validation rules for PlaidStatementId
+
+	// no validation rules for Month
+
+	// no validation rules for Year
+
+	// no validation rules for StatementPdfUrl
+
+	if len(errors) > 0 {
+		return AccountStatementsMultiError(errors)
+	}
+
+	return nil
+}
+
+// AccountStatementsMultiError is an error wrapping multiple validation errors
+// returned by AccountStatements.ValidateAll() if the designated constraints
+// aren't met.
+type AccountStatementsMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AccountStatementsMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AccountStatementsMultiError) AllErrors() []error { return m }
+
+// AccountStatementsValidationError is the validation error returned by
+// AccountStatements.Validate if the designated constraints aren't met.
+type AccountStatementsValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AccountStatementsValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AccountStatementsValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e AccountStatementsValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AccountStatementsValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AccountStatementsValidationError) ErrorName() string {
+	return "AccountStatementsValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AccountStatementsValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAccountStatements.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AccountStatementsValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AccountStatementsValidationError{}
 
 // Validate checks the field values on Pocket with the rules defined in the
 // proto definition for this message. If any rules are violated, the first

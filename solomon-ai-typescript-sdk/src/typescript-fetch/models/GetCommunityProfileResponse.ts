@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CommunityProfile } from './CommunityProfile';
 import {
     CommunityProfileFromJSON,
@@ -50,9 +50,7 @@ export interface GetCommunityProfileResponse {
  * Check if a given object implements the GetCommunityProfileResponse interface.
  */
 export function instanceOfGetCommunityProfileResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetCommunityProfileResponseFromJSON(json: any): GetCommunityProfileResponse {
@@ -60,27 +58,24 @@ export function GetCommunityProfileResponseFromJSON(json: any): GetCommunityProf
 }
 
 export function GetCommunityProfileResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCommunityProfileResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'profile': !exists(json, 'profile') ? undefined : CommunityProfileFromJSON(json['profile']),
-        'metadata': !exists(json, 'metadata') ? undefined : SocialRelationshipMetadataFromJSON(json['metadata']),
+        'profile': json['profile'] == null ? undefined : CommunityProfileFromJSON(json['profile']),
+        'metadata': json['metadata'] == null ? undefined : SocialRelationshipMetadataFromJSON(json['metadata']),
     };
 }
 
 export function GetCommunityProfileResponseToJSON(value?: GetCommunityProfileResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'profile': CommunityProfileToJSON(value.profile),
-        'metadata': SocialRelationshipMetadataToJSON(value.metadata),
+        'profile': CommunityProfileToJSON(value['profile']),
+        'metadata': SocialRelationshipMetadataToJSON(value['metadata']),
     };
 }
 

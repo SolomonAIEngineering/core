@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Post } from './Post';
 import {
     PostFromJSON,
@@ -38,9 +38,7 @@ export interface ReportPostResponse {
  * Check if a given object implements the ReportPostResponse interface.
  */
 export function instanceOfReportPostResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ReportPostResponseFromJSON(json: any): ReportPostResponse {
@@ -48,25 +46,22 @@ export function ReportPostResponseFromJSON(json: any): ReportPostResponse {
 }
 
 export function ReportPostResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReportPostResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'post': !exists(json, 'post') ? undefined : PostFromJSON(json['post']),
+        'post': json['post'] == null ? undefined : PostFromJSON(json['post']),
     };
 }
 
 export function ReportPostResponseToJSON(value?: ReportPostResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'post': PostToJSON(value.post),
+        'post': PostToJSON(value['post']),
     };
 }
 

@@ -9,6 +9,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**addNoteToRecurringTransaction**](FinancialServiceApi.md#addNoteToRecurringTransaction) | **POST** /financial-microservice/api/v1/transactions/recurring/note | adds a note to a transaction |
 | [**addNoteToSmartGoal**](FinancialServiceApi.md#addNoteToSmartGoal) | **POST** /financial-microservice/api/v1/smart-goal/note | adds a note to a smart goal |
 | [**addNoteToTransaction**](FinancialServiceApi.md#addNoteToTransaction) | **POST** /financial-microservice/api/v1/transactions/transaction/note | adds a note to a transaction |
+| [**addTransactionsToManuallyLinkedAccount**](FinancialServiceApi.md#addTransactionsToManuallyLinkedAccount) | **POST** /financial-microservice/api/v1/manual-linked-account/transactions | Adds transactions to a manually linked account |
 | [**askCopilotQuestion**](FinancialServiceApi.md#askCopilotQuestion) | **POST** /financial-microservice/api/v1/copilot/quota/question | Ask a question to copilot |
 | [**bulkUpdateRecurringTransaction**](FinancialServiceApi.md#bulkUpdateRecurringTransaction) | **PUT** /financial-microservice/api/v1/transactions/recurring/bulk | update a transaction |
 | [**bulkUpdateTransaction**](FinancialServiceApi.md#bulkUpdateTransaction) | **PUT** /financial-microservice/api/v1/transactions/transaction/bulk | update a transaction |
@@ -235,6 +236,33 @@ adds a note to a transaction
 ### Return type
 
 [**AddNoteToTransactionResponse**](../Models/AddNoteToTransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="addTransactionsToManuallyLinkedAccount"></a>
+# **addTransactionsToManuallyLinkedAccount**
+> AddTransactionsToManuallyLinkedAccountResponse addTransactionsToManuallyLinkedAccount(AddTransactionsToManuallyLinkedAccountRequest)
+
+Adds transactions to a manually linked account
+
+    This endpoint adds transactions to a manually linked account
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **AddTransactionsToManuallyLinkedAccountRequest** | [**AddTransactionsToManuallyLinkedAccountRequest**](../Models/AddTransactionsToManuallyLinkedAccountRequest.md)| Add transactions to an account. | |
+
+### Return type
+
+[**AddTransactionsToManuallyLinkedAccountResponse**](../Models/AddTransactionsToManuallyLinkedAccountResponse.md)
 
 ### Authorization
 

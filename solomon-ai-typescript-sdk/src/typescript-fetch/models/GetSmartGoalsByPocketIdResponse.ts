@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SmartGoal } from './SmartGoal';
 import {
     SmartGoalFromJSON,
@@ -38,9 +38,7 @@ export interface GetSmartGoalsByPocketIdResponse {
  * Check if a given object implements the GetSmartGoalsByPocketIdResponse interface.
  */
 export function instanceOfGetSmartGoalsByPocketIdResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetSmartGoalsByPocketIdResponseFromJSON(json: any): GetSmartGoalsByPocketIdResponse {
@@ -48,25 +46,22 @@ export function GetSmartGoalsByPocketIdResponseFromJSON(json: any): GetSmartGoal
 }
 
 export function GetSmartGoalsByPocketIdResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetSmartGoalsByPocketIdResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'smartGoals': !exists(json, 'smartGoals') ? undefined : ((json['smartGoals'] as Array<any>).map(SmartGoalFromJSON)),
+        'smartGoals': json['smartGoals'] == null ? undefined : ((json['smartGoals'] as Array<any>).map(SmartGoalFromJSON)),
     };
 }
 
 export function GetSmartGoalsByPocketIdResponseToJSON(value?: GetSmartGoalsByPocketIdResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'smartGoals': value.smartGoals === undefined ? undefined : ((value.smartGoals as Array<any>).map(SmartGoalToJSON)),
+        'smartGoals': value['smartGoals'] == null ? undefined : ((value['smartGoals'] as Array<any>).map(SmartGoalToJSON)),
     };
 }
 

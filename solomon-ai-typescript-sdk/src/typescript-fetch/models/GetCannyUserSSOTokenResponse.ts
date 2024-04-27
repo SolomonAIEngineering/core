@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface GetCannyUserSSOTokenResponse {
  * Check if a given object implements the GetCannyUserSSOTokenResponse interface.
  */
 export function instanceOfGetCannyUserSSOTokenResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetCannyUserSSOTokenResponseFromJSON(json: any): GetCannyUserSSOTokenResponse {
@@ -41,25 +39,22 @@ export function GetCannyUserSSOTokenResponseFromJSON(json: any): GetCannyUserSSO
 }
 
 export function GetCannyUserSSOTokenResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCannyUserSSOTokenResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'token': !exists(json, 'token') ? undefined : json['token'],
+        'token': json['token'] == null ? undefined : json['token'],
     };
 }
 
 export function GetCannyUserSSOTokenResponseToJSON(value?: GetCannyUserSSOTokenResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'token': value.token,
+        'token': value['token'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -55,9 +55,7 @@ export interface Thread {
  * Check if a given object implements the Thread interface.
  */
 export function instanceOfThread(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ThreadFromJSON(json: any): Thread {
@@ -65,33 +63,30 @@ export function ThreadFromJSON(json: any): Thread {
 }
 
 export function ThreadFromJSONTyped(json: any, ignoreDiscriminator: boolean): Thread {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'postIds': !exists(json, 'postIds') ? undefined : json['postIds'],
-        'parentPostId': !exists(json, 'parentPostId') ? undefined : json['parentPostId'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : json['createdAt'],
-        'updatedAt': !exists(json, 'updatedAt') ? undefined : json['updatedAt'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'postIds': json['postIds'] == null ? undefined : json['postIds'],
+        'parentPostId': json['parentPostId'] == null ? undefined : json['parentPostId'],
+        'createdAt': json['createdAt'] == null ? undefined : json['createdAt'],
+        'updatedAt': json['updatedAt'] == null ? undefined : json['updatedAt'],
     };
 }
 
 export function ThreadToJSON(value?: Thread | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'postIds': value.postIds,
-        'parentPostId': value.parentPostId,
-        'createdAt': value.createdAt,
-        'updatedAt': value.updatedAt,
+        'id': value['id'],
+        'postIds': value['postIds'],
+        'parentPostId': value['parentPostId'],
+        'createdAt': value['createdAt'],
+        'updatedAt': value['updatedAt'],
     };
 }
 

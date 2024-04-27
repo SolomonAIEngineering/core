@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -67,9 +67,7 @@ export interface PlaidSync {
  * Check if a given object implements the PlaidSync interface.
  */
 export function instanceOfPlaidSync(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PlaidSyncFromJSON(json: any): PlaidSync {
@@ -77,37 +75,34 @@ export function PlaidSyncFromJSON(json: any): PlaidSync {
 }
 
 export function PlaidSyncFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlaidSync {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'timeStamp': !exists(json, 'timeStamp') ? undefined : json['timeStamp'],
-        'trigger': !exists(json, 'trigger') ? undefined : json['trigger'],
-        'nextCursor': !exists(json, 'nextCursor') ? undefined : json['nextCursor'],
-        'added': !exists(json, 'added') ? undefined : json['added'],
-        'removed': !exists(json, 'removed') ? undefined : json['removed'],
-        'modified': !exists(json, 'modified') ? undefined : json['modified'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'timeStamp': json['timeStamp'] == null ? undefined : json['timeStamp'],
+        'trigger': json['trigger'] == null ? undefined : json['trigger'],
+        'nextCursor': json['nextCursor'] == null ? undefined : json['nextCursor'],
+        'added': json['added'] == null ? undefined : json['added'],
+        'removed': json['removed'] == null ? undefined : json['removed'],
+        'modified': json['modified'] == null ? undefined : json['modified'],
     };
 }
 
 export function PlaidSyncToJSON(value?: PlaidSync | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'timeStamp': value.timeStamp,
-        'trigger': value.trigger,
-        'nextCursor': value.nextCursor,
-        'added': value.added,
-        'removed': value.removed,
-        'modified': value.modified,
+        'id': value['id'],
+        'timeStamp': value['timeStamp'],
+        'trigger': value['trigger'],
+        'nextCursor': value['nextCursor'],
+        'added': value['added'],
+        'removed': value['removed'],
+        'modified': value['modified'],
     };
 }
 

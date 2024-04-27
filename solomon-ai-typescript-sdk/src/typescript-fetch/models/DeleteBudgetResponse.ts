@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface DeleteBudgetResponse {
  * Check if a given object implements the DeleteBudgetResponse interface.
  */
 export function instanceOfDeleteBudgetResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DeleteBudgetResponseFromJSON(json: any): DeleteBudgetResponse {
@@ -41,25 +39,22 @@ export function DeleteBudgetResponseFromJSON(json: any): DeleteBudgetResponse {
 }
 
 export function DeleteBudgetResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteBudgetResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'deleted': !exists(json, 'deleted') ? undefined : json['deleted'],
+        'deleted': json['deleted'] == null ? undefined : json['deleted'],
     };
 }
 
 export function DeleteBudgetResponseToJSON(value?: DeleteBudgetResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'deleted': value.deleted,
+        'deleted': value['deleted'],
     };
 }
 

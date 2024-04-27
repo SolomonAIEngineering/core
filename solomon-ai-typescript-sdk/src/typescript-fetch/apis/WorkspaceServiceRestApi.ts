@@ -40,20 +40,32 @@ export class WorkspaceServiceRestApi extends runtime.BaseAPI {
      * Uploads a file to the server
      */
     async workspaceMicroserviceRestApiV1FileUploadPostRaw(requestParameters: WorkspaceMicroserviceRestApiV1FileUploadPostRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<WorkspaceservicehttpFileUploadResponse>> {
-        if (requestParameters.workspaceId === null || requestParameters.workspaceId === undefined) {
-            throw new runtime.RequiredError('workspaceId','Required parameter requestParameters.workspaceId was null or undefined when calling workspaceMicroserviceRestApiV1FileUploadPost.');
+        if (requestParameters['workspaceId'] == null) {
+            throw new runtime.RequiredError(
+                'workspaceId',
+                'Required parameter "workspaceId" was null or undefined when calling workspaceMicroserviceRestApiV1FileUploadPost().'
+            );
         }
 
-        if (requestParameters.folderId === null || requestParameters.folderId === undefined) {
-            throw new runtime.RequiredError('folderId','Required parameter requestParameters.folderId was null or undefined when calling workspaceMicroserviceRestApiV1FileUploadPost.');
+        if (requestParameters['folderId'] == null) {
+            throw new runtime.RequiredError(
+                'folderId',
+                'Required parameter "folderId" was null or undefined when calling workspaceMicroserviceRestApiV1FileUploadPost().'
+            );
         }
 
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling workspaceMicroserviceRestApiV1FileUploadPost.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling workspaceMicroserviceRestApiV1FileUploadPost().'
+            );
         }
 
-        if (requestParameters.attachment === null || requestParameters.attachment === undefined) {
-            throw new runtime.RequiredError('attachment','Required parameter requestParameters.attachment was null or undefined when calling workspaceMicroserviceRestApiV1FileUploadPost.');
+        if (requestParameters['attachment'] == null) {
+            throw new runtime.RequiredError(
+                'attachment',
+                'Required parameter "attachment" was null or undefined when calling workspaceMicroserviceRestApiV1FileUploadPost().'
+            );
         }
 
         const queryParameters: any = {};
@@ -76,24 +88,24 @@ export class WorkspaceServiceRestApi extends runtime.BaseAPI {
             formParams = new URLSearchParams();
         }
 
-        if (requestParameters.workspaceId !== undefined) {
-            formParams.append('workspaceId', requestParameters.workspaceId as any);
+        if (requestParameters['workspaceId'] != null) {
+            formParams.append('workspaceId', requestParameters['workspaceId'] as any);
         }
 
-        if (requestParameters.folderId !== undefined) {
-            formParams.append('folderId', requestParameters.folderId as any);
+        if (requestParameters['folderId'] != null) {
+            formParams.append('folderId', requestParameters['folderId'] as any);
         }
 
-        if (requestParameters.filename !== undefined) {
-            formParams.append('filename', requestParameters.filename as any);
+        if (requestParameters['filename'] != null) {
+            formParams.append('filename', requestParameters['filename'] as any);
         }
 
-        if (requestParameters.userId !== undefined) {
-            formParams.append('userId', requestParameters.userId as any);
+        if (requestParameters['userId'] != null) {
+            formParams.append('userId', requestParameters['userId'] as any);
         }
 
-        if (requestParameters.attachment !== undefined) {
-            formParams.append('attachment', requestParameters.attachment as any);
+        if (requestParameters['attachment'] != null) {
+            formParams.append('attachment', requestParameters['attachment'] as any);
         }
 
         const response = await this.request({

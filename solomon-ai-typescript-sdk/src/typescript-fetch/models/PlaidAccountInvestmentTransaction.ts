@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Any1 } from './Any1';
 import {
     Any1FromJSON,
@@ -164,9 +164,7 @@ export interface PlaidAccountInvestmentTransaction {
  * Check if a given object implements the PlaidAccountInvestmentTransaction interface.
  */
 export function instanceOfPlaidAccountInvestmentTransaction(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PlaidAccountInvestmentTransactionFromJSON(json: any): PlaidAccountInvestmentTransaction {
@@ -174,65 +172,62 @@ export function PlaidAccountInvestmentTransactionFromJSON(json: any): PlaidAccou
 }
 
 export function PlaidAccountInvestmentTransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlaidAccountInvestmentTransaction {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'accountId': !exists(json, 'accountId') ? undefined : json['accountId'],
-        'ammount': !exists(json, 'ammount') ? undefined : json['ammount'],
-        'investmentTransactionId': !exists(json, 'investmentTransactionId') ? undefined : json['investmentTransactionId'],
-        'securityId': !exists(json, 'securityId') ? undefined : json['securityId'],
-        'currentDate': !exists(json, 'currentDate') ? undefined : json['currentDate'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
-        'amount': !exists(json, 'amount') ? undefined : json['amount'],
-        'price': !exists(json, 'price') ? undefined : json['price'],
-        'fees': !exists(json, 'fees') ? undefined : json['fees'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'subtype': !exists(json, 'subtype') ? undefined : json['subtype'],
-        'isoCurrencyCode': !exists(json, 'isoCurrencyCode') ? undefined : json['isoCurrencyCode'],
-        'unofficialCurrencyCode': !exists(json, 'unofficialCurrencyCode') ? undefined : json['unofficialCurrencyCode'],
-        'linkId': !exists(json, 'linkId') ? undefined : json['linkId'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'time': !exists(json, 'time') ? undefined : (new Date(json['time'])),
-        'additionalProperties': !exists(json, 'additionalProperties') ? undefined : Any1FromJSON(json['additionalProperties']),
-        'notes': !exists(json, 'notes') ? undefined : ((json['notes'] as Array<any>).map(SmartNoteFromJSON)),
+        'accountId': json['accountId'] == null ? undefined : json['accountId'],
+        'ammount': json['ammount'] == null ? undefined : json['ammount'],
+        'investmentTransactionId': json['investmentTransactionId'] == null ? undefined : json['investmentTransactionId'],
+        'securityId': json['securityId'] == null ? undefined : json['securityId'],
+        'currentDate': json['currentDate'] == null ? undefined : json['currentDate'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'quantity': json['quantity'] == null ? undefined : json['quantity'],
+        'amount': json['amount'] == null ? undefined : json['amount'],
+        'price': json['price'] == null ? undefined : json['price'],
+        'fees': json['fees'] == null ? undefined : json['fees'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'subtype': json['subtype'] == null ? undefined : json['subtype'],
+        'isoCurrencyCode': json['isoCurrencyCode'] == null ? undefined : json['isoCurrencyCode'],
+        'unofficialCurrencyCode': json['unofficialCurrencyCode'] == null ? undefined : json['unofficialCurrencyCode'],
+        'linkId': json['linkId'] == null ? undefined : json['linkId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'time': json['time'] == null ? undefined : (new Date(json['time'])),
+        'additionalProperties': json['additionalProperties'] == null ? undefined : Any1FromJSON(json['additionalProperties']),
+        'notes': json['notes'] == null ? undefined : ((json['notes'] as Array<any>).map(SmartNoteFromJSON)),
     };
 }
 
 export function PlaidAccountInvestmentTransactionToJSON(value?: PlaidAccountInvestmentTransaction | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'accountId': value.accountId,
-        'ammount': value.ammount,
-        'investmentTransactionId': value.investmentTransactionId,
-        'securityId': value.securityId,
-        'currentDate': value.currentDate,
-        'name': value.name,
-        'quantity': value.quantity,
-        'amount': value.amount,
-        'price': value.price,
-        'fees': value.fees,
-        'type': value.type,
-        'subtype': value.subtype,
-        'isoCurrencyCode': value.isoCurrencyCode,
-        'unofficialCurrencyCode': value.unofficialCurrencyCode,
-        'linkId': value.linkId,
-        'id': value.id,
-        'userId': value.userId,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'time': value.time === undefined ? undefined : (value.time.toISOString()),
-        'additionalProperties': Any1ToJSON(value.additionalProperties),
-        'notes': value.notes === undefined ? undefined : ((value.notes as Array<any>).map(SmartNoteToJSON)),
+        'accountId': value['accountId'],
+        'ammount': value['ammount'],
+        'investmentTransactionId': value['investmentTransactionId'],
+        'securityId': value['securityId'],
+        'currentDate': value['currentDate'],
+        'name': value['name'],
+        'quantity': value['quantity'],
+        'amount': value['amount'],
+        'price': value['price'],
+        'fees': value['fees'],
+        'type': value['type'],
+        'subtype': value['subtype'],
+        'isoCurrencyCode': value['isoCurrencyCode'],
+        'unofficialCurrencyCode': value['unofficialCurrencyCode'],
+        'linkId': value['linkId'],
+        'id': value['id'],
+        'userId': value['userId'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'time': value['time'] == null ? undefined : ((value['time']).toISOString()),
+        'additionalProperties': Any1ToJSON(value['additionalProperties']),
+        'notes': value['notes'] == null ? undefined : ((value['notes'] as Array<any>).map(SmartNoteToJSON)),
     };
 }
 

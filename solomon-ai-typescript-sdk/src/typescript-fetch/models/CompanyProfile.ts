@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -79,9 +79,7 @@ export interface CompanyProfile {
  * Check if a given object implements the CompanyProfile interface.
  */
 export function instanceOfCompanyProfile(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CompanyProfileFromJSON(json: any): CompanyProfile {
@@ -89,41 +87,38 @@ export function CompanyProfileFromJSON(json: any): CompanyProfile {
 }
 
 export function CompanyProfileFromJSONTyped(json: any, ignoreDiscriminator: boolean): CompanyProfile {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'legalName': !exists(json, 'legalName') ? undefined : json['legalName'],
-        'displayName': !exists(json, 'displayName') ? undefined : json['displayName'],
-        'einNumbers': !exists(json, 'einNumbers') ? undefined : json['einNumbers'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'lastUpdatedAt': !exists(json, 'lastUpdatedAt') ? undefined : (new Date(json['lastUpdatedAt'])),
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'legalName': json['legalName'] == null ? undefined : json['legalName'],
+        'displayName': json['displayName'] == null ? undefined : json['displayName'],
+        'einNumbers': json['einNumbers'] == null ? undefined : json['einNumbers'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'lastUpdatedAt': json['lastUpdatedAt'] == null ? undefined : (new Date(json['lastUpdatedAt'])),
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
     };
 }
 
 export function CompanyProfileToJSON(value?: CompanyProfile | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'legalName': value.legalName,
-        'displayName': value.displayName,
-        'einNumbers': value.einNumbers,
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'lastUpdatedAt': value.lastUpdatedAt === undefined ? undefined : (value.lastUpdatedAt.toISOString()),
-        'mergeAccountId': value.mergeAccountId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'legalName': value['legalName'],
+        'displayName': value['displayName'],
+        'einNumbers': value['einNumbers'],
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'lastUpdatedAt': value['lastUpdatedAt'] == null ? undefined : ((value['lastUpdatedAt']).toISOString()),
+        'mergeAccountId': value['mergeAccountId'],
     };
 }
 

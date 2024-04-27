@@ -30,6 +30,10 @@ export const Reaction = {
 export type Reaction = typeof Reaction[keyof typeof Reaction];
 
 
+export function instanceOfReaction(value: any): boolean {
+    return Object.values(Reaction).includes(value);
+}
+
 export function ReactionFromJSON(json: any): Reaction {
     return ReactionFromJSONTyped(json, false);
 }

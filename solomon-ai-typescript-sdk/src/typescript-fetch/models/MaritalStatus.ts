@@ -30,6 +30,10 @@ export const MaritalStatus = {
 export type MaritalStatus = typeof MaritalStatus[keyof typeof MaritalStatus];
 
 
+export function instanceOfMaritalStatus(value: any): boolean {
+    return Object.values(MaritalStatus).includes(value);
+}
+
 export function MaritalStatusFromJSON(json: any): MaritalStatus {
     return MaritalStatusFromJSONTyped(json, false);
 }

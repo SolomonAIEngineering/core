@@ -1764,3 +1764,46 @@ message GetNotesFromFinancialUserProfileResponse {
   // The notes
   repeated SmartNote notes = 1;
 }
+
+// Add transactions to an account.
+message AddTransactionsToManuallyLinkedAccountRequest {
+    // The account id.
+    // Validations:
+    // - account_id must be greater than 0
+    uint64 account_id = 1 [
+        (validate.rules).uint64.gt = 0,
+        (google.api.field_behavior) = REQUIRED
+    ];
+
+    // The transactions to add.
+    // Validations:
+    // - cannot be nil hence required
+    // - must have at least 1 item and at most 400 items
+    repeated PlaidAccountTransaction transactions = 2 [
+        (validate.rules).repeated.min_items = 1,
+        (validate.rules).repeated.max_items = 400,
+        (google.api.field_behavior) = REQUIRED
+    ];
+
+    // The financial user profile type.
+    // Required field.
+    FinancialUserProfileType profile_type = 3 [
+        (google.api.field_behavior) = REQUIRED
+    ];
+
+    // The financial account type.
+    FinancialAccountType financial_account_type = 4;
+
+    // The user id.
+    // Validations:
+    // - user_id must have a minimum length of 1 character
+    string user_id = 5 [
+        (validate.rules).string.min_len = 1,
+        (google.api.field_behavior) = REQUIRED
+    ];
+}
+
+message AddTransactionsToManuallyLinkedAccountResponse {
+  // The account
+  bool succes = 1;
+}

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { NotificationType } from './NotificationType';
 import {
     NotificationTypeFromJSON,
@@ -50,9 +50,7 @@ export interface NotificationSettings {
  * Check if a given object implements the NotificationSettings interface.
  */
 export function instanceOfNotificationSettings(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function NotificationSettingsFromJSON(json: any): NotificationSettings {
@@ -60,29 +58,26 @@ export function NotificationSettingsFromJSON(json: any): NotificationSettings {
 }
 
 export function NotificationSettingsFromJSONTyped(json: any, ignoreDiscriminator: boolean): NotificationSettings {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'notificationType': !exists(json, 'notificationType') ? undefined : NotificationTypeFromJSON(json['notificationType']),
-        'alerts': !exists(json, 'alerts') ? undefined : json['alerts'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'notificationType': json['notificationType'] == null ? undefined : NotificationTypeFromJSON(json['notificationType']),
+        'alerts': json['alerts'] == null ? undefined : json['alerts'],
     };
 }
 
 export function NotificationSettingsToJSON(value?: NotificationSettings | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'notificationType': NotificationTypeToJSON(value.notificationType),
-        'alerts': value.alerts,
+        'id': value['id'],
+        'notificationType': NotificationTypeToJSON(value['notificationType']),
+        'alerts': value['alerts'],
     };
 }
 

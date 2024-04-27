@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Pocket } from './Pocket';
 import {
     PocketFromJSON,
@@ -38,10 +38,8 @@ export interface UpdatePocketRequest {
  * Check if a given object implements the UpdatePocketRequest interface.
  */
 export function instanceOfUpdatePocketRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "pocket" in value;
-
-    return isInstance;
+    if (!('pocket' in value)) return false;
+    return true;
 }
 
 export function UpdatePocketRequestFromJSON(json: any): UpdatePocketRequest {
@@ -49,7 +47,7 @@ export function UpdatePocketRequestFromJSON(json: any): UpdatePocketRequest {
 }
 
 export function UpdatePocketRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdatePocketRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function UpdatePocketRequestFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function UpdatePocketRequestToJSON(value?: UpdatePocketRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'pocket': PocketToJSON(value.pocket),
+        'pocket': PocketToJSON(value['pocket']),
     };
 }
 

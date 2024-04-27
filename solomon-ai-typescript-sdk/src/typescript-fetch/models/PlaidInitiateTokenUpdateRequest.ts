@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -50,12 +50,10 @@ export interface PlaidInitiateTokenUpdateRequest {
  * Check if a given object implements the PlaidInitiateTokenUpdateRequest interface.
  */
 export function instanceOfPlaidInitiateTokenUpdateRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "linkId" in value;
-    isInstance = isInstance && "profileType" in value;
-
-    return isInstance;
+    if (!('userId' in value)) return false;
+    if (!('linkId' in value)) return false;
+    if (!('profileType' in value)) return false;
+    return true;
 }
 
 export function PlaidInitiateTokenUpdateRequestFromJSON(json: any): PlaidInitiateTokenUpdateRequest {
@@ -63,7 +61,7 @@ export function PlaidInitiateTokenUpdateRequestFromJSON(json: any): PlaidInitiat
 }
 
 export function PlaidInitiateTokenUpdateRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlaidInitiateTokenUpdateRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -75,17 +73,14 @@ export function PlaidInitiateTokenUpdateRequestFromJSONTyped(json: any, ignoreDi
 }
 
 export function PlaidInitiateTokenUpdateRequestToJSON(value?: PlaidInitiateTokenUpdateRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userId': value.userId,
-        'linkId': value.linkId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'userId': value['userId'],
+        'linkId': value['linkId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

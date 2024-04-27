@@ -28,6 +28,10 @@ export const LikedDashboardPanels = {
 export type LikedDashboardPanels = typeof LikedDashboardPanels[keyof typeof LikedDashboardPanels];
 
 
+export function instanceOfLikedDashboardPanels(value: any): boolean {
+    return Object.values(LikedDashboardPanels).includes(value);
+}
+
 export function LikedDashboardPanelsFromJSON(json: any): LikedDashboardPanels {
     return LikedDashboardPanelsFromJSONTyped(json, false);
 }

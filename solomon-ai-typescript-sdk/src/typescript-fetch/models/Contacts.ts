@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The Contact object refers to either a supplier or a customer.
  * @export
@@ -125,9 +125,7 @@ export interface Contacts {
  * Check if a given object implements the Contacts interface.
  */
 export function instanceOfContacts(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ContactsFromJSON(json: any): Contacts {
@@ -135,55 +133,52 @@ export function ContactsFromJSON(json: any): Contacts {
 }
 
 export function ContactsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Contacts {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'isSupplier': !exists(json, 'isSupplier') ? undefined : json['isSupplier'],
-        'isCustomer': !exists(json, 'isCustomer') ? undefined : json['isCustomer'],
-        'emailAddress': !exists(json, 'emailAddress') ? undefined : json['emailAddress'],
-        'taxNumber': !exists(json, 'taxNumber') ? undefined : json['taxNumber'],
-        'status': !exists(json, 'status') ? undefined : json['status'],
-        'currency': !exists(json, 'currency') ? undefined : json['currency'],
-        'remoteUpdatedAt': !exists(json, 'remoteUpdatedAt') ? undefined : (new Date(json['remoteUpdatedAt'])),
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'addressesIds': !exists(json, 'addressesIds') ? undefined : json['addressesIds'],
-        'phoneNumbers': !exists(json, 'phoneNumbers') ? undefined : json['phoneNumbers'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeRecordId': !exists(json, 'mergeRecordId') ? undefined : json['mergeRecordId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'isSupplier': json['isSupplier'] == null ? undefined : json['isSupplier'],
+        'isCustomer': json['isCustomer'] == null ? undefined : json['isCustomer'],
+        'emailAddress': json['emailAddress'] == null ? undefined : json['emailAddress'],
+        'taxNumber': json['taxNumber'] == null ? undefined : json['taxNumber'],
+        'status': json['status'] == null ? undefined : json['status'],
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'remoteUpdatedAt': json['remoteUpdatedAt'] == null ? undefined : (new Date(json['remoteUpdatedAt'])),
+        'company': json['company'] == null ? undefined : json['company'],
+        'addressesIds': json['addressesIds'] == null ? undefined : json['addressesIds'],
+        'phoneNumbers': json['phoneNumbers'] == null ? undefined : json['phoneNumbers'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeRecordId': json['mergeRecordId'] == null ? undefined : json['mergeRecordId'],
     };
 }
 
 export function ContactsToJSON(value?: Contacts | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'name': value.name,
-        'isSupplier': value.isSupplier,
-        'isCustomer': value.isCustomer,
-        'emailAddress': value.emailAddress,
-        'taxNumber': value.taxNumber,
-        'status': value.status,
-        'currency': value.currency,
-        'remoteUpdatedAt': value.remoteUpdatedAt === undefined ? undefined : (value.remoteUpdatedAt.toISOString()),
-        'company': value.company,
-        'addressesIds': value.addressesIds,
-        'phoneNumbers': value.phoneNumbers,
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeRecordId': value.mergeRecordId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'name': value['name'],
+        'isSupplier': value['isSupplier'],
+        'isCustomer': value['isCustomer'],
+        'emailAddress': value['emailAddress'],
+        'taxNumber': value['taxNumber'],
+        'status': value['status'],
+        'currency': value['currency'],
+        'remoteUpdatedAt': value['remoteUpdatedAt'] == null ? undefined : ((value['remoteUpdatedAt']).toISOString()),
+        'company': value['company'],
+        'addressesIds': value['addressesIds'],
+        'phoneNumbers': value['phoneNumbers'],
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeRecordId': value['mergeRecordId'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface VerifyUserResponse {
  * Check if a given object implements the VerifyUserResponse interface.
  */
 export function instanceOfVerifyUserResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function VerifyUserResponseFromJSON(json: any): VerifyUserResponse {
@@ -41,25 +39,22 @@ export function VerifyUserResponseFromJSON(json: any): VerifyUserResponse {
 }
 
 export function VerifyUserResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): VerifyUserResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'accountVerified': !exists(json, 'accountVerified') ? undefined : json['accountVerified'],
+        'accountVerified': json['accountVerified'] == null ? undefined : json['accountVerified'],
     };
 }
 
 export function VerifyUserResponseToJSON(value?: VerifyUserResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'accountVerified': value.accountVerified,
+        'accountVerified': value['accountVerified'],
     };
 }
 

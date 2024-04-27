@@ -332,6 +332,8 @@ func (m *FileMetadata) validate(all bool) error {
 
 	// no validation rules for Location
 
+	// no validation rules for MarkdownContent
+
 	if len(errors) > 0 {
 		return FileMetadataMultiError(errors)
 	}

@@ -27,6 +27,10 @@ export const GoalType = {
 export type GoalType = typeof GoalType[keyof typeof GoalType];
 
 
+export function instanceOfGoalType(value: any): boolean {
+    return Object.values(GoalType).includes(value);
+}
+
 export function GoalTypeFromJSON(json: any): GoalType {
     return GoalTypeFromJSONTyped(json, false);
 }

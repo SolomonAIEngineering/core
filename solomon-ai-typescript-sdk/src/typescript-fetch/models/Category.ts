@@ -30,6 +30,10 @@ export const Category = {
 export type Category = typeof Category[keyof typeof Category];
 
 
+export function instanceOfCategory(value: any): boolean {
+    return Object.values(Category).includes(value);
+}
+
 export function CategoryFromJSON(json: any): Category {
     return CategoryFromJSONTyped(json, false);
 }

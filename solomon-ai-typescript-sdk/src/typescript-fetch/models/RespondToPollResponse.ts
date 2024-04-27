@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PollPost } from './PollPost';
 import {
     PollPostFromJSON,
@@ -38,9 +38,7 @@ export interface RespondToPollResponse {
  * Check if a given object implements the RespondToPollResponse interface.
  */
 export function instanceOfRespondToPollResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function RespondToPollResponseFromJSON(json: any): RespondToPollResponse {
@@ -48,25 +46,22 @@ export function RespondToPollResponseFromJSON(json: any): RespondToPollResponse 
 }
 
 export function RespondToPollResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): RespondToPollResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'poll': !exists(json, 'poll') ? undefined : PollPostFromJSON(json['poll']),
+        'poll': json['poll'] == null ? undefined : PollPostFromJSON(json['poll']),
     };
 }
 
 export function RespondToPollResponseToJSON(value?: RespondToPollResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'poll': PollPostToJSON(value.poll),
+        'poll': PollPostToJSON(value['poll']),
     };
 }
 

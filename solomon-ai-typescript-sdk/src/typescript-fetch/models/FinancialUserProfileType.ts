@@ -25,6 +25,10 @@ export const FinancialUserProfileType = {
 export type FinancialUserProfileType = typeof FinancialUserProfileType[keyof typeof FinancialUserProfileType];
 
 
+export function instanceOfFinancialUserProfileType(value: any): boolean {
+    return Object.values(FinancialUserProfileType).includes(value);
+}
+
 export function FinancialUserProfileTypeFromJSON(json: any): FinancialUserProfileType {
     return FinancialUserProfileTypeFromJSONTyped(json, false);
 }

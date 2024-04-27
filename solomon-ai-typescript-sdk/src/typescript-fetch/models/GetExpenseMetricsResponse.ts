@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ExpenseMetrics } from './ExpenseMetrics';
 import {
     ExpenseMetricsFromJSON,
@@ -44,9 +44,7 @@ export interface GetExpenseMetricsResponse {
  * Check if a given object implements the GetExpenseMetricsResponse interface.
  */
 export function instanceOfGetExpenseMetricsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetExpenseMetricsResponseFromJSON(json: any): GetExpenseMetricsResponse {
@@ -54,27 +52,24 @@ export function GetExpenseMetricsResponseFromJSON(json: any): GetExpenseMetricsR
 }
 
 export function GetExpenseMetricsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetExpenseMetricsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'expenseMetrics': !exists(json, 'expenseMetrics') ? undefined : ((json['expenseMetrics'] as Array<any>).map(ExpenseMetricsFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'expenseMetrics': json['expenseMetrics'] == null ? undefined : ((json['expenseMetrics'] as Array<any>).map(ExpenseMetricsFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetExpenseMetricsResponseToJSON(value?: GetExpenseMetricsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'expenseMetrics': value.expenseMetrics === undefined ? undefined : ((value.expenseMetrics as Array<any>).map(ExpenseMetricsToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'expenseMetrics': value['expenseMetrics'] == null ? undefined : ((value['expenseMetrics'] as Array<any>).map(ExpenseMetricsToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

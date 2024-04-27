@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BusinessAccount } from './BusinessAccount';
 import {
     BusinessAccountFromJSON,
@@ -50,9 +50,7 @@ export interface GetUserByAuthnIDV2Response {
  * Check if a given object implements the GetUserByAuthnIDV2Response interface.
  */
 export function instanceOfGetUserByAuthnIDV2Response(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetUserByAuthnIDV2ResponseFromJSON(json: any): GetUserByAuthnIDV2Response {
@@ -60,27 +58,24 @@ export function GetUserByAuthnIDV2ResponseFromJSON(json: any): GetUserByAuthnIDV
 }
 
 export function GetUserByAuthnIDV2ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUserByAuthnIDV2Response {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'userAccount': !exists(json, 'userAccount') ? undefined : UserAccountFromJSON(json['userAccount']),
-        'businessAccount': !exists(json, 'businessAccount') ? undefined : BusinessAccountFromJSON(json['businessAccount']),
+        'userAccount': json['userAccount'] == null ? undefined : UserAccountFromJSON(json['userAccount']),
+        'businessAccount': json['businessAccount'] == null ? undefined : BusinessAccountFromJSON(json['businessAccount']),
     };
 }
 
 export function GetUserByAuthnIDV2ResponseToJSON(value?: GetUserByAuthnIDV2Response | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userAccount': UserAccountToJSON(value.userAccount),
-        'businessAccount': BusinessAccountToJSON(value.businessAccount),
+        'userAccount': UserAccountToJSON(value['userAccount']),
+        'businessAccount': BusinessAccountToJSON(value['businessAccount']),
     };
 }
 

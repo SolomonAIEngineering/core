@@ -31,6 +31,10 @@ export const FeedType = {
 export type FeedType = typeof FeedType[keyof typeof FeedType];
 
 
+export function instanceOfFeedType(value: any): boolean {
+    return Object.values(FeedType).includes(value);
+}
+
 export function FeedTypeFromJSON(json: any): FeedType {
     return FeedTypeFromJSONTyped(json, false);
 }

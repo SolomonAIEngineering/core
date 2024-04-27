@@ -125,6 +125,7 @@ type FileMetadataORM struct {
 	Id                     uint64 `gorm:"unique_index:idx_file_id"`
 	IsDeleted              bool
 	Location               string
+	MarkdownContent        string
 	Name                   string
 	S3Acl                  string
 	S3BucketName           string
@@ -200,6 +201,7 @@ func (m *FileMetadata) ToORM(ctx context.Context) (FileMetadataORM, error) {
 	to.VersionId = m.VersionId
 	to.UploadId = m.UploadId
 	to.Location = m.Location
+	to.MarkdownContent = m.MarkdownContent
 	if posthook, ok := interface{}(m).(FileMetadataWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -251,6 +253,7 @@ func (m *FileMetadataORM) ToPB(ctx context.Context) (FileMetadata, error) {
 	to.VersionId = m.VersionId
 	to.UploadId = m.UploadId
 	to.Location = m.Location
+	to.MarkdownContent = m.MarkdownContent
 	if posthook, ok := interface{}(m).(FileMetadataWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -1412,6 +1415,10 @@ func DefaultApplyFieldMaskFileMetadata(ctx context.Context, patchee *FileMetadat
 		}
 		if f == prefix+"Location" {
 			patchee.Location = patcher.Location
+			continue
+		}
+		if f == prefix+"MarkdownContent" {
+			patchee.MarkdownContent = patcher.MarkdownContent
 			continue
 		}
 	}

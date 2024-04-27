@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { AuditAction } from './AuditAction';
 import {
     AuditActionFromJSON,
@@ -86,9 +86,7 @@ export interface RoleAuditEvents {
  * Check if a given object implements the RoleAuditEvents interface.
  */
 export function instanceOfRoleAuditEvents(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function RoleAuditEventsFromJSON(json: any): RoleAuditEvents {
@@ -96,41 +94,38 @@ export function RoleAuditEventsFromJSON(json: any): RoleAuditEvents {
 }
 
 export function RoleAuditEventsFromJSONTyped(json: any, ignoreDiscriminator: boolean): RoleAuditEvents {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'action': !exists(json, 'action') ? undefined : AuditActionFromJSON(json['action']),
-        'performedBy': !exists(json, 'performedBy') ? undefined : json['performedBy'],
-        'timestamp': !exists(json, 'timestamp') ? undefined : (new Date(json['timestamp'])),
-        'affectedFields': !exists(json, 'affectedFields') ? undefined : json['affectedFields'],
-        'previousValues': !exists(json, 'previousValues') ? undefined : json['previousValues'],
-        'clientIp': !exists(json, 'clientIp') ? undefined : json['clientIp'],
-        'userAgent': !exists(json, 'userAgent') ? undefined : json['userAgent'],
-        'context': !exists(json, 'context') ? undefined : json['context'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'action': json['action'] == null ? undefined : AuditActionFromJSON(json['action']),
+        'performedBy': json['performedBy'] == null ? undefined : json['performedBy'],
+        'timestamp': json['timestamp'] == null ? undefined : (new Date(json['timestamp'])),
+        'affectedFields': json['affectedFields'] == null ? undefined : json['affectedFields'],
+        'previousValues': json['previousValues'] == null ? undefined : json['previousValues'],
+        'clientIp': json['clientIp'] == null ? undefined : json['clientIp'],
+        'userAgent': json['userAgent'] == null ? undefined : json['userAgent'],
+        'context': json['context'] == null ? undefined : json['context'],
     };
 }
 
 export function RoleAuditEventsToJSON(value?: RoleAuditEvents | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'action': AuditActionToJSON(value.action),
-        'performedBy': value.performedBy,
-        'timestamp': value.timestamp === undefined ? undefined : (value.timestamp.toISOString()),
-        'affectedFields': value.affectedFields,
-        'previousValues': value.previousValues,
-        'clientIp': value.clientIp,
-        'userAgent': value.userAgent,
-        'context': value.context,
+        'id': value['id'],
+        'action': AuditActionToJSON(value['action']),
+        'performedBy': value['performedBy'],
+        'timestamp': value['timestamp'] == null ? undefined : ((value['timestamp']).toISOString()),
+        'affectedFields': value['affectedFields'],
+        'previousValues': value['previousValues'],
+        'clientIp': value['clientIp'],
+        'userAgent': value['userAgent'],
+        'context': value['context'],
     };
 }
 

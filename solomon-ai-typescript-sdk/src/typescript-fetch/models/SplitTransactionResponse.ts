@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlaidAccountTransaction } from './PlaidAccountTransaction';
 import {
     PlaidAccountTransactionFromJSON,
@@ -38,9 +38,7 @@ export interface SplitTransactionResponse {
  * Check if a given object implements the SplitTransactionResponse interface.
  */
 export function instanceOfSplitTransactionResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function SplitTransactionResponseFromJSON(json: any): SplitTransactionResponse {
@@ -48,25 +46,22 @@ export function SplitTransactionResponseFromJSON(json: any): SplitTransactionRes
 }
 
 export function SplitTransactionResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): SplitTransactionResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'transaction': !exists(json, 'transaction') ? undefined : PlaidAccountTransactionFromJSON(json['transaction']),
+        'transaction': json['transaction'] == null ? undefined : PlaidAccountTransactionFromJSON(json['transaction']),
     };
 }
 
 export function SplitTransactionResponseToJSON(value?: SplitTransactionResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transaction': PlaidAccountTransactionToJSON(value.transaction),
+        'transaction': PlaidAccountTransactionToJSON(value['transaction']),
     };
 }
 

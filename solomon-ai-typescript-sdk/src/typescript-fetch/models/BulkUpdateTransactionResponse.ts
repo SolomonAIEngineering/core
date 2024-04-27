@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlaidAccountTransaction } from './PlaidAccountTransaction';
 import {
     PlaidAccountTransactionFromJSON,
@@ -38,9 +38,7 @@ export interface BulkUpdateTransactionResponse {
  * Check if a given object implements the BulkUpdateTransactionResponse interface.
  */
 export function instanceOfBulkUpdateTransactionResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function BulkUpdateTransactionResponseFromJSON(json: any): BulkUpdateTransactionResponse {
@@ -48,25 +46,22 @@ export function BulkUpdateTransactionResponseFromJSON(json: any): BulkUpdateTran
 }
 
 export function BulkUpdateTransactionResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): BulkUpdateTransactionResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'transactions': !exists(json, 'transactions') ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountTransactionFromJSON)),
+        'transactions': json['transactions'] == null ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountTransactionFromJSON)),
     };
 }
 
 export function BulkUpdateTransactionResponseToJSON(value?: BulkUpdateTransactionResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transactions': value.transactions === undefined ? undefined : ((value.transactions as Array<any>).map(PlaidAccountTransactionToJSON)),
+        'transactions': value['transactions'] == null ? undefined : ((value['transactions'] as Array<any>).map(PlaidAccountTransactionToJSON)),
     };
 }
 

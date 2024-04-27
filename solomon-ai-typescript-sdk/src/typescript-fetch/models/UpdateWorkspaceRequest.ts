@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Workspace } from './Workspace';
 import {
     WorkspaceFromJSON,
@@ -38,9 +38,7 @@ export interface UpdateWorkspaceRequest {
  * Check if a given object implements the UpdateWorkspaceRequest interface.
  */
 export function instanceOfUpdateWorkspaceRequest(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UpdateWorkspaceRequestFromJSON(json: any): UpdateWorkspaceRequest {
@@ -48,25 +46,22 @@ export function UpdateWorkspaceRequestFromJSON(json: any): UpdateWorkspaceReques
 }
 
 export function UpdateWorkspaceRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateWorkspaceRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'workspace': !exists(json, 'workspace') ? undefined : WorkspaceFromJSON(json['workspace']),
+        'workspace': json['workspace'] == null ? undefined : WorkspaceFromJSON(json['workspace']),
     };
 }
 
 export function UpdateWorkspaceRequestToJSON(value?: UpdateWorkspaceRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'workspace': WorkspaceToJSON(value.workspace),
+        'workspace': WorkspaceToJSON(value['workspace']),
     };
 }
 

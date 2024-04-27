@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The Forecast table stores information about each forecast generated for a particular goal,
  * including the forecast date, the forecasted amount of money saved or invested for the
@@ -52,9 +52,7 @@ export interface Forecast {
  * Check if a given object implements the Forecast interface.
  */
 export function instanceOfForecast(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ForecastFromJSON(json: any): Forecast {
@@ -62,31 +60,28 @@ export function ForecastFromJSON(json: any): Forecast {
 }
 
 export function ForecastFromJSONTyped(json: any, ignoreDiscriminator: boolean): Forecast {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'forecastedAmount': !exists(json, 'forecastedAmount') ? undefined : json['forecastedAmount'],
-        'forecastedCompletionDate': !exists(json, 'forecastedCompletionDate') ? undefined : json['forecastedCompletionDate'],
-        'varianceAmount': !exists(json, 'varianceAmount') ? undefined : json['varianceAmount'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'forecastedAmount': json['forecastedAmount'] == null ? undefined : json['forecastedAmount'],
+        'forecastedCompletionDate': json['forecastedCompletionDate'] == null ? undefined : json['forecastedCompletionDate'],
+        'varianceAmount': json['varianceAmount'] == null ? undefined : json['varianceAmount'],
     };
 }
 
 export function ForecastToJSON(value?: Forecast | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'forecastedAmount': value.forecastedAmount,
-        'forecastedCompletionDate': value.forecastedCompletionDate,
-        'varianceAmount': value.varianceAmount,
+        'id': value['id'],
+        'forecastedAmount': value['forecastedAmount'],
+        'forecastedCompletionDate': value['forecastedCompletionDate'],
+        'varianceAmount': value['varianceAmount'],
     };
 }
 

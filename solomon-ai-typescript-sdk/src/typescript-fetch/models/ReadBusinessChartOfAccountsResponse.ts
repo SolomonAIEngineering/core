@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BusinessChartOfAccount } from './BusinessChartOfAccount';
 import {
     BusinessChartOfAccountFromJSON,
@@ -38,9 +38,7 @@ export interface ReadBusinessChartOfAccountsResponse {
  * Check if a given object implements the ReadBusinessChartOfAccountsResponse interface.
  */
 export function instanceOfReadBusinessChartOfAccountsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ReadBusinessChartOfAccountsResponseFromJSON(json: any): ReadBusinessChartOfAccountsResponse {
@@ -48,25 +46,22 @@ export function ReadBusinessChartOfAccountsResponseFromJSON(json: any): ReadBusi
 }
 
 export function ReadBusinessChartOfAccountsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReadBusinessChartOfAccountsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'chartOfAccounts': !exists(json, 'chartOfAccounts') ? undefined : ((json['chartOfAccounts'] as Array<any>).map(BusinessChartOfAccountFromJSON)),
+        'chartOfAccounts': json['chartOfAccounts'] == null ? undefined : ((json['chartOfAccounts'] as Array<any>).map(BusinessChartOfAccountFromJSON)),
     };
 }
 
 export function ReadBusinessChartOfAccountsResponseToJSON(value?: ReadBusinessChartOfAccountsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'chartOfAccounts': value.chartOfAccounts === undefined ? undefined : ((value.chartOfAccounts as Array<any>).map(BusinessChartOfAccountToJSON)),
+        'chartOfAccounts': value['chartOfAccounts'] == null ? undefined : ((value['chartOfAccounts'] as Array<any>).map(BusinessChartOfAccountToJSON)),
     };
 }
 

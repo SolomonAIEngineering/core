@@ -29,6 +29,10 @@ export const PersonalActionableInsightName = {
 export type PersonalActionableInsightName = typeof PersonalActionableInsightName[keyof typeof PersonalActionableInsightName];
 
 
+export function instanceOfPersonalActionableInsightName(value: any): boolean {
+    return Object.values(PersonalActionableInsightName).includes(value);
+}
+
 export function PersonalActionableInsightNameFromJSON(json: any): PersonalActionableInsightName {
     return PersonalActionableInsightNameFromJSONTyped(json, false);
 }

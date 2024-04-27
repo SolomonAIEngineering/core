@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -44,10 +44,8 @@ export interface RecordAskCopilotQuestionRequest {
  * Check if a given object implements the RecordAskCopilotQuestionRequest interface.
  */
 export function instanceOfRecordAskCopilotQuestionRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "profileType" in value;
-
-    return isInstance;
+    if (!('profileType' in value)) return false;
+    return true;
 }
 
 export function RecordAskCopilotQuestionRequestFromJSON(json: any): RecordAskCopilotQuestionRequest {
@@ -55,27 +53,24 @@ export function RecordAskCopilotQuestionRequestFromJSON(json: any): RecordAskCop
 }
 
 export function RecordAskCopilotQuestionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): RecordAskCopilotQuestionRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'profileType': FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function RecordAskCopilotQuestionRequestToJSON(value?: RecordAskCopilotQuestionRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

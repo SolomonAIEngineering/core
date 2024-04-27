@@ -2313,4 +2313,28 @@ service FinancialService {
           }
       };
     }
+
+    // this is useful for the admin to add transactions to manually linked accounts
+    rpc AddTransactionsToManuallyLinkedAccount(AddTransactionsToManuallyLinkedAccountRequest) returns (AddTransactionsToManuallyLinkedAccountResponse) {
+      option (google.api.http) = {
+          post: "/financial-microservice/api/v1/manual-linked-account/transactions" 
+          body: "*"
+      };
+      option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          summary: "Adds transactions to a manually linked account"
+          tags: ["financial-service"]
+          operation_id: "AddTransactionsToManuallyLinkedAccount"
+          description: 
+              "This endpoint adds transactions to a manually linked account"
+          responses: {
+              key: "200"
+              value: {
+                  description: "A successful response."
+                  schema: {
+                      json_schema: {ref: ".financial_service.v1.AddTransactionsToManuallyLinkedAccountResponse"}
+                  }
+              }
+          }
+      };
+    }
 }

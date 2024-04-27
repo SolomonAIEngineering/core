@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface DeleteTransactionResponse {
  * Check if a given object implements the DeleteTransactionResponse interface.
  */
 export function instanceOfDeleteTransactionResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DeleteTransactionResponseFromJSON(json: any): DeleteTransactionResponse {
@@ -41,25 +39,22 @@ export function DeleteTransactionResponseFromJSON(json: any): DeleteTransactionR
 }
 
 export function DeleteTransactionResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteTransactionResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'deleted': !exists(json, 'deleted') ? undefined : json['deleted'],
+        'deleted': json['deleted'] == null ? undefined : json['deleted'],
     };
 }
 
 export function DeleteTransactionResponseToJSON(value?: DeleteTransactionResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'deleted': value.deleted,
+        'deleted': value['deleted'],
     };
 }
 

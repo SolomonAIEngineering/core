@@ -126,6 +126,12 @@ func newCreditAccountORM(db *gorm.DB, opts ...gen.DOOption) creditAccountORM {
 		},
 	}
 
+	_creditAccountORM.Statements = creditAccountORMHasManyStatements{
+		db: db.Session(&gorm.Session{}),
+
+		RelationField: field.NewRelation("Statements", "financial_servicev1.AccountStatementsORM"),
+	}
+
 	_creditAccountORM.Transactions = creditAccountORMHasManyTransactions{
 		db: db.Session(&gorm.Session{}),
 
@@ -177,6 +183,8 @@ type creditAccountORM struct {
 	Pockets creditAccountORMHasManyPockets
 
 	RecurringTransactions creditAccountORMHasManyRecurringTransactions
+
+	Statements creditAccountORMHasManyStatements
 
 	Transactions creditAccountORMHasManyTransactions
 
@@ -232,7 +240,7 @@ func (c *creditAccountORM) GetFieldByName(fieldName string) (field.OrderExpr, bo
 }
 
 func (c *creditAccountORM) fillFieldMap() {
-	c.fieldMap = make(map[string]field.Expr, 25)
+	c.fieldMap = make(map[string]field.Expr, 26)
 	c.fieldMap["balance"] = c.Balance
 	c.fieldMap["balance_limit"] = c.BalanceLimit
 	c.fieldMap["current_funds"] = c.CurrentFunds
@@ -500,6 +508,77 @@ func (a creditAccountORMHasManyRecurringTransactionsTx) Clear() error {
 }
 
 func (a creditAccountORMHasManyRecurringTransactionsTx) Count() int64 {
+	return a.tx.Count()
+}
+
+type creditAccountORMHasManyStatements struct {
+	db *gorm.DB
+
+	field.RelationField
+}
+
+func (a creditAccountORMHasManyStatements) Where(conds ...field.Expr) *creditAccountORMHasManyStatements {
+	if len(conds) == 0 {
+		return &a
+	}
+
+	exprs := make([]clause.Expression, 0, len(conds))
+	for _, cond := range conds {
+		exprs = append(exprs, cond.BeCond().(clause.Expression))
+	}
+	a.db = a.db.Clauses(clause.Where{Exprs: exprs})
+	return &a
+}
+
+func (a creditAccountORMHasManyStatements) WithContext(ctx context.Context) *creditAccountORMHasManyStatements {
+	a.db = a.db.WithContext(ctx)
+	return &a
+}
+
+func (a creditAccountORMHasManyStatements) Session(session *gorm.Session) *creditAccountORMHasManyStatements {
+	a.db = a.db.Session(session)
+	return &a
+}
+
+func (a creditAccountORMHasManyStatements) Model(m *financial_servicev1.CreditAccountORM) *creditAccountORMHasManyStatementsTx {
+	return &creditAccountORMHasManyStatementsTx{a.db.Model(m).Association(a.Name())}
+}
+
+type creditAccountORMHasManyStatementsTx struct{ tx *gorm.Association }
+
+func (a creditAccountORMHasManyStatementsTx) Find() (result []*financial_servicev1.AccountStatementsORM, err error) {
+	return result, a.tx.Find(&result)
+}
+
+func (a creditAccountORMHasManyStatementsTx) Append(values ...*financial_servicev1.AccountStatementsORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Append(targetValues...)
+}
+
+func (a creditAccountORMHasManyStatementsTx) Replace(values ...*financial_servicev1.AccountStatementsORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Replace(targetValues...)
+}
+
+func (a creditAccountORMHasManyStatementsTx) Delete(values ...*financial_servicev1.AccountStatementsORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Delete(targetValues...)
+}
+
+func (a creditAccountORMHasManyStatementsTx) Clear() error {
+	return a.tx.Clear()
+}
+
+func (a creditAccountORMHasManyStatementsTx) Count() int64 {
 	return a.tx.Count()
 }
 

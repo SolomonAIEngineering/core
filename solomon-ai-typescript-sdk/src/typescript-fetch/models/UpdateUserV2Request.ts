@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BusinessAccount } from './BusinessAccount';
 import {
     BusinessAccountFromJSON,
@@ -50,9 +50,7 @@ export interface UpdateUserV2Request {
  * Check if a given object implements the UpdateUserV2Request interface.
  */
 export function instanceOfUpdateUserV2Request(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UpdateUserV2RequestFromJSON(json: any): UpdateUserV2Request {
@@ -60,27 +58,24 @@ export function UpdateUserV2RequestFromJSON(json: any): UpdateUserV2Request {
 }
 
 export function UpdateUserV2RequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateUserV2Request {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'userAccount': !exists(json, 'userAccount') ? undefined : UserAccountFromJSON(json['userAccount']),
-        'businessAccount': !exists(json, 'businessAccount') ? undefined : BusinessAccountFromJSON(json['businessAccount']),
+        'userAccount': json['userAccount'] == null ? undefined : UserAccountFromJSON(json['userAccount']),
+        'businessAccount': json['businessAccount'] == null ? undefined : BusinessAccountFromJSON(json['businessAccount']),
     };
 }
 
 export function UpdateUserV2RequestToJSON(value?: UpdateUserV2Request | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userAccount': UserAccountToJSON(value.userAccount),
-        'businessAccount': BusinessAccountToJSON(value.businessAccount),
+        'userAccount': UserAccountToJSON(value['userAccount']),
+        'businessAccount': BusinessAccountToJSON(value['businessAccount']),
     };
 }
 

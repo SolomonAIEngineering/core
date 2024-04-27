@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -99,9 +99,7 @@ export interface LocationFinancialSubProfile {
  * Check if a given object implements the LocationFinancialSubProfile interface.
  */
 export function instanceOfLocationFinancialSubProfile(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function LocationFinancialSubProfileFromJSON(json: any): LocationFinancialSubProfile {
@@ -109,45 +107,42 @@ export function LocationFinancialSubProfileFromJSON(json: any): LocationFinancia
 }
 
 export function LocationFinancialSubProfileFromJSONTyped(json: any, ignoreDiscriminator: boolean): LocationFinancialSubProfile {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'locationCity': !exists(json, 'locationCity') ? undefined : json['locationCity'],
-        'transactionCount': !exists(json, 'transactionCount') ? undefined : json['transactionCount'],
-        'spentLastWeek': !exists(json, 'spentLastWeek') ? undefined : json['spentLastWeek'],
-        'spentLastTwoWeeks': !exists(json, 'spentLastTwoWeeks') ? undefined : json['spentLastTwoWeeks'],
-        'spentLastMonth': !exists(json, 'spentLastMonth') ? undefined : json['spentLastMonth'],
-        'spentLastSixMonths': !exists(json, 'spentLastSixMonths') ? undefined : json['spentLastSixMonths'],
-        'spentLastYear': !exists(json, 'spentLastYear') ? undefined : json['spentLastYear'],
-        'spentLastTwoYears': !exists(json, 'spentLastTwoYears') ? undefined : json['spentLastTwoYears'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'month': !exists(json, 'month') ? undefined : json['month'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'locationCity': json['locationCity'] == null ? undefined : json['locationCity'],
+        'transactionCount': json['transactionCount'] == null ? undefined : json['transactionCount'],
+        'spentLastWeek': json['spentLastWeek'] == null ? undefined : json['spentLastWeek'],
+        'spentLastTwoWeeks': json['spentLastTwoWeeks'] == null ? undefined : json['spentLastTwoWeeks'],
+        'spentLastMonth': json['spentLastMonth'] == null ? undefined : json['spentLastMonth'],
+        'spentLastSixMonths': json['spentLastSixMonths'] == null ? undefined : json['spentLastSixMonths'],
+        'spentLastYear': json['spentLastYear'] == null ? undefined : json['spentLastYear'],
+        'spentLastTwoYears': json['spentLastTwoYears'] == null ? undefined : json['spentLastTwoYears'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'month': json['month'] == null ? undefined : json['month'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function LocationFinancialSubProfileToJSON(value?: LocationFinancialSubProfile | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'locationCity': value.locationCity,
-        'transactionCount': value.transactionCount,
-        'spentLastWeek': value.spentLastWeek,
-        'spentLastTwoWeeks': value.spentLastTwoWeeks,
-        'spentLastMonth': value.spentLastMonth,
-        'spentLastSixMonths': value.spentLastSixMonths,
-        'spentLastYear': value.spentLastYear,
-        'spentLastTwoYears': value.spentLastTwoYears,
-        'userId': value.userId,
-        'month': value.month,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'locationCity': value['locationCity'],
+        'transactionCount': value['transactionCount'],
+        'spentLastWeek': value['spentLastWeek'],
+        'spentLastTwoWeeks': value['spentLastTwoWeeks'],
+        'spentLastMonth': value['spentLastMonth'],
+        'spentLastSixMonths': value['spentLastSixMonths'],
+        'spentLastYear': value['spentLastYear'],
+        'spentLastTwoYears': value['spentLastTwoYears'],
+        'userId': value['userId'],
+        'month': value['month'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

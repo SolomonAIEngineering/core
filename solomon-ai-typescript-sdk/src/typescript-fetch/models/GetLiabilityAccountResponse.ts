@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CreditAccount } from './CreditAccount';
 import {
     CreditAccountFromJSON,
@@ -38,9 +38,7 @@ export interface GetLiabilityAccountResponse {
  * Check if a given object implements the GetLiabilityAccountResponse interface.
  */
 export function instanceOfGetLiabilityAccountResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetLiabilityAccountResponseFromJSON(json: any): GetLiabilityAccountResponse {
@@ -48,25 +46,22 @@ export function GetLiabilityAccountResponseFromJSON(json: any): GetLiabilityAcco
 }
 
 export function GetLiabilityAccountResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetLiabilityAccountResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'liabilityAccount': !exists(json, 'liabilityAccount') ? undefined : CreditAccountFromJSON(json['liabilityAccount']),
+        'liabilityAccount': json['liabilityAccount'] == null ? undefined : CreditAccountFromJSON(json['liabilityAccount']),
     };
 }
 
 export function GetLiabilityAccountResponseToJSON(value?: GetLiabilityAccountResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'liabilityAccount': CreditAccountToJSON(value.liabilityAccount),
+        'liabilityAccount': CreditAccountToJSON(value['liabilityAccount']),
     };
 }
 

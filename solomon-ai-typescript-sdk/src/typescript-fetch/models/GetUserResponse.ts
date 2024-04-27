@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { UserAccount } from './UserAccount';
 import {
     UserAccountFromJSON,
@@ -38,9 +38,7 @@ export interface GetUserResponse {
  * Check if a given object implements the GetUserResponse interface.
  */
 export function instanceOfGetUserResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetUserResponseFromJSON(json: any): GetUserResponse {
@@ -48,25 +46,22 @@ export function GetUserResponseFromJSON(json: any): GetUserResponse {
 }
 
 export function GetUserResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUserResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'account': !exists(json, 'account') ? undefined : UserAccountFromJSON(json['account']),
+        'account': json['account'] == null ? undefined : UserAccountFromJSON(json['account']),
     };
 }
 
 export function GetUserResponseToJSON(value?: GetUserResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'account': UserAccountToJSON(value.account),
+        'account': UserAccountToJSON(value['account']),
     };
 }
 

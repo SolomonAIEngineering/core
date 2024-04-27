@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Role } from './Role';
 import {
     RoleFromJSON,
@@ -44,9 +44,7 @@ export interface ListRolesResponse {
  * Check if a given object implements the ListRolesResponse interface.
  */
 export function instanceOfListRolesResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListRolesResponseFromJSON(json: any): ListRolesResponse {
@@ -54,27 +52,24 @@ export function ListRolesResponseFromJSON(json: any): ListRolesResponse {
 }
 
 export function ListRolesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListRolesResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'roles': !exists(json, 'roles') ? undefined : ((json['roles'] as Array<any>).map(RoleFromJSON)),
-        'totalCount': !exists(json, 'totalCount') ? undefined : json['totalCount'],
+        'roles': json['roles'] == null ? undefined : ((json['roles'] as Array<any>).map(RoleFromJSON)),
+        'totalCount': json['totalCount'] == null ? undefined : json['totalCount'],
     };
 }
 
 export function ListRolesResponseToJSON(value?: ListRolesResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'roles': value.roles === undefined ? undefined : ((value.roles as Array<any>).map(RoleToJSON)),
-        'totalCount': value.totalCount,
+        'roles': value['roles'] == null ? undefined : ((value['roles'] as Array<any>).map(RoleToJSON)),
+        'totalCount': value['totalCount'],
     };
 }
 

@@ -21098,3 +21098,294 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = GetNotesFromFinancialUserProfileResponseValidationError{}
+
+// Validate checks the field values on
+// AddTransactionsToManuallyLinkedAccountRequest with the rules defined in the
+// proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *AddTransactionsToManuallyLinkedAccountRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// AddTransactionsToManuallyLinkedAccountRequest with the rules defined in the
+// proto definition for this message. If any rules are violated, the result is
+// a list of violation errors wrapped in
+// AddTransactionsToManuallyLinkedAccountRequestMultiError, or nil if none found.
+func (m *AddTransactionsToManuallyLinkedAccountRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AddTransactionsToManuallyLinkedAccountRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	if m.GetAccountId() <= 0 {
+		err := AddTransactionsToManuallyLinkedAccountRequestValidationError{
+			field:  "AccountId",
+			reason: "value must be greater than 0",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if l := len(m.GetTransactions()); l < 1 || l > 400 {
+		err := AddTransactionsToManuallyLinkedAccountRequestValidationError{
+			field:  "Transactions",
+			reason: "value must contain between 1 and 400 items, inclusive",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	for idx, item := range m.GetTransactions() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, AddTransactionsToManuallyLinkedAccountRequestValidationError{
+						field:  fmt.Sprintf("Transactions[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, AddTransactionsToManuallyLinkedAccountRequestValidationError{
+						field:  fmt.Sprintf("Transactions[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return AddTransactionsToManuallyLinkedAccountRequestValidationError{
+					field:  fmt.Sprintf("Transactions[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	// no validation rules for ProfileType
+
+	// no validation rules for FinancialAccountType
+
+	if utf8.RuneCountInString(m.GetUserId()) < 1 {
+		err := AddTransactionsToManuallyLinkedAccountRequestValidationError{
+			field:  "UserId",
+			reason: "value length must be at least 1 runes",
+		}
+		if !all {
+			return err
+		}
+		errors = append(errors, err)
+	}
+
+	if len(errors) > 0 {
+		return AddTransactionsToManuallyLinkedAccountRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// AddTransactionsToManuallyLinkedAccountRequestMultiError is an error wrapping
+// multiple validation errors returned by
+// AddTransactionsToManuallyLinkedAccountRequest.ValidateAll() if the
+// designated constraints aren't met.
+type AddTransactionsToManuallyLinkedAccountRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AddTransactionsToManuallyLinkedAccountRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AddTransactionsToManuallyLinkedAccountRequestMultiError) AllErrors() []error { return m }
+
+// AddTransactionsToManuallyLinkedAccountRequestValidationError is the
+// validation error returned by
+// AddTransactionsToManuallyLinkedAccountRequest.Validate if the designated
+// constraints aren't met.
+type AddTransactionsToManuallyLinkedAccountRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AddTransactionsToManuallyLinkedAccountRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AddTransactionsToManuallyLinkedAccountRequestValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e AddTransactionsToManuallyLinkedAccountRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AddTransactionsToManuallyLinkedAccountRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AddTransactionsToManuallyLinkedAccountRequestValidationError) ErrorName() string {
+	return "AddTransactionsToManuallyLinkedAccountRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AddTransactionsToManuallyLinkedAccountRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAddTransactionsToManuallyLinkedAccountRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AddTransactionsToManuallyLinkedAccountRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AddTransactionsToManuallyLinkedAccountRequestValidationError{}
+
+// Validate checks the field values on
+// AddTransactionsToManuallyLinkedAccountResponse with the rules defined in
+// the proto definition for this message. If any rules are violated, the first
+// error encountered is returned, or nil if there are no violations.
+func (m *AddTransactionsToManuallyLinkedAccountResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// AddTransactionsToManuallyLinkedAccountResponse with the rules defined in
+// the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// AddTransactionsToManuallyLinkedAccountResponseMultiError, or nil if none found.
+func (m *AddTransactionsToManuallyLinkedAccountResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *AddTransactionsToManuallyLinkedAccountResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for Succes
+
+	if len(errors) > 0 {
+		return AddTransactionsToManuallyLinkedAccountResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// AddTransactionsToManuallyLinkedAccountResponseMultiError is an error
+// wrapping multiple validation errors returned by
+// AddTransactionsToManuallyLinkedAccountResponse.ValidateAll() if the
+// designated constraints aren't met.
+type AddTransactionsToManuallyLinkedAccountResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m AddTransactionsToManuallyLinkedAccountResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m AddTransactionsToManuallyLinkedAccountResponseMultiError) AllErrors() []error { return m }
+
+// AddTransactionsToManuallyLinkedAccountResponseValidationError is the
+// validation error returned by
+// AddTransactionsToManuallyLinkedAccountResponse.Validate if the designated
+// constraints aren't met.
+type AddTransactionsToManuallyLinkedAccountResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e AddTransactionsToManuallyLinkedAccountResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e AddTransactionsToManuallyLinkedAccountResponseValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e AddTransactionsToManuallyLinkedAccountResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e AddTransactionsToManuallyLinkedAccountResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e AddTransactionsToManuallyLinkedAccountResponseValidationError) ErrorName() string {
+	return "AddTransactionsToManuallyLinkedAccountResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e AddTransactionsToManuallyLinkedAccountResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sAddTransactionsToManuallyLinkedAccountResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = AddTransactionsToManuallyLinkedAccountResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = AddTransactionsToManuallyLinkedAccountResponseValidationError{}

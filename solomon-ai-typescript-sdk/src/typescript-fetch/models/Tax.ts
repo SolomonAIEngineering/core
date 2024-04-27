@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The Tax object is used to represent an array of the tax deductions for a given employee's payroll run.
  * @export
@@ -85,9 +85,7 @@ export interface Tax {
  * Check if a given object implements the Tax interface.
  */
 export function instanceOfTax(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function TaxFromJSON(json: any): Tax {
@@ -95,43 +93,40 @@ export function TaxFromJSON(json: any): Tax {
 }
 
 export function TaxFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tax {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'amount': !exists(json, 'amount') ? undefined : json['amount'],
-        'employerTax': !exists(json, 'employerTax') ? undefined : json['employerTax'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'payrollRunMergeAccountId': !exists(json, 'payrollRunMergeAccountId') ? undefined : json['payrollRunMergeAccountId'],
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'amount': json['amount'] == null ? undefined : json['amount'],
+        'employerTax': json['employerTax'] == null ? undefined : json['employerTax'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'payrollRunMergeAccountId': json['payrollRunMergeAccountId'] == null ? undefined : json['payrollRunMergeAccountId'],
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
     };
 }
 
 export function TaxToJSON(value?: Tax | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'name': value.name,
-        'amount': value.amount,
-        'employerTax': value.employerTax,
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'payrollRunMergeAccountId': value.payrollRunMergeAccountId,
-        'mergeAccountId': value.mergeAccountId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'name': value['name'],
+        'amount': value['amount'],
+        'employerTax': value['employerTax'],
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'payrollRunMergeAccountId': value['payrollRunMergeAccountId'],
+        'mergeAccountId': value['mergeAccountId'],
     };
 }
 

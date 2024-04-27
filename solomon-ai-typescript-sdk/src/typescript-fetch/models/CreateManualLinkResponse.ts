@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface CreateManualLinkResponse {
  * Check if a given object implements the CreateManualLinkResponse interface.
  */
 export function instanceOfCreateManualLinkResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreateManualLinkResponseFromJSON(json: any): CreateManualLinkResponse {
@@ -41,25 +39,22 @@ export function CreateManualLinkResponseFromJSON(json: any): CreateManualLinkRes
 }
 
 export function CreateManualLinkResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateManualLinkResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'linkId': !exists(json, 'linkId') ? undefined : json['linkId'],
+        'linkId': json['linkId'] == null ? undefined : json['linkId'],
     };
 }
 
 export function CreateManualLinkResponseToJSON(value?: CreateManualLinkResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'linkId': value.linkId,
+        'linkId': value['linkId'],
     };
 }
 

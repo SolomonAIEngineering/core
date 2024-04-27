@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { EarningType } from './EarningType';
 import {
     EarningTypeFromJSON,
@@ -87,9 +87,7 @@ export interface Earning {
  * Check if a given object implements the Earning interface.
  */
 export function instanceOfEarning(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function EarningFromJSON(json: any): Earning {
@@ -97,41 +95,38 @@ export function EarningFromJSON(json: any): Earning {
 }
 
 export function EarningFromJSONTyped(json: any, ignoreDiscriminator: boolean): Earning {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'amount': !exists(json, 'amount') ? undefined : json['amount'],
-        'type': !exists(json, 'type') ? undefined : EarningTypeFromJSON(json['type']),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'payrollRunMergeAccountId': !exists(json, 'payrollRunMergeAccountId') ? undefined : json['payrollRunMergeAccountId'],
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'amount': json['amount'] == null ? undefined : json['amount'],
+        'type': json['type'] == null ? undefined : EarningTypeFromJSON(json['type']),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'payrollRunMergeAccountId': json['payrollRunMergeAccountId'] == null ? undefined : json['payrollRunMergeAccountId'],
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
     };
 }
 
 export function EarningToJSON(value?: Earning | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'amount': value.amount,
-        'type': EarningTypeToJSON(value.type),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'payrollRunMergeAccountId': value.payrollRunMergeAccountId,
-        'mergeAccountId': value.mergeAccountId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'amount': value['amount'],
+        'type': EarningTypeToJSON(value['type']),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'payrollRunMergeAccountId': value['payrollRunMergeAccountId'],
+        'mergeAccountId': value['mergeAccountId'],
     };
 }
 

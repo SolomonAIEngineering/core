@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface CheckEmailExistsV2Response {
  * Check if a given object implements the CheckEmailExistsV2Response interface.
  */
 export function instanceOfCheckEmailExistsV2Response(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CheckEmailExistsV2ResponseFromJSON(json: any): CheckEmailExistsV2Response {
@@ -41,25 +39,22 @@ export function CheckEmailExistsV2ResponseFromJSON(json: any): CheckEmailExistsV
 }
 
 export function CheckEmailExistsV2ResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CheckEmailExistsV2Response {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        '_exists': !exists(json, 'exists') ? undefined : json['exists'],
+        '_exists': json['exists'] == null ? undefined : json['exists'],
     };
 }
 
 export function CheckEmailExistsV2ResponseToJSON(value?: CheckEmailExistsV2Response | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'exists': value._exists,
+        'exists': value['_exists'],
     };
 }
 

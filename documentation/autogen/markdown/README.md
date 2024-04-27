@@ -26,6 +26,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *FinancialServiceApi* | [**addNoteToRecurringTransaction**](Apis/FinancialServiceApi.md#addnotetorecurringtransaction) | **POST** /financial-microservice/api/v1/transactions/recurring/note | adds a note to a transaction |
 *FinancialServiceApi* | [**addNoteToSmartGoal**](Apis/FinancialServiceApi.md#addnotetosmartgoal) | **POST** /financial-microservice/api/v1/smart-goal/note | adds a note to a smart goal |
 *FinancialServiceApi* | [**addNoteToTransaction**](Apis/FinancialServiceApi.md#addnotetotransaction) | **POST** /financial-microservice/api/v1/transactions/transaction/note | adds a note to a transaction |
+*FinancialServiceApi* | [**addTransactionsToManuallyLinkedAccount**](Apis/FinancialServiceApi.md#addtransactionstomanuallylinkedaccount) | **POST** /financial-microservice/api/v1/manual-linked-account/transactions | Adds transactions to a manually linked account |
 *FinancialServiceApi* | [**askCopilotQuestion**](Apis/FinancialServiceApi.md#askcopilotquestion) | **POST** /financial-microservice/api/v1/copilot/quota/question | Ask a question to copilot |
 *FinancialServiceApi* | [**bulkUpdateRecurringTransaction**](Apis/FinancialServiceApi.md#bulkupdaterecurringtransaction) | **PUT** /financial-microservice/api/v1/transactions/recurring/bulk | update a transaction |
 *FinancialServiceApi* | [**bulkUpdateTransaction**](Apis/FinancialServiceApi.md#bulkupdatetransaction) | **PUT** /financial-microservice/api/v1/transactions/transaction/bulk | update a transaction |
@@ -241,6 +242,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *UserServiceV2Api* | [**verifyUserV2**](Apis/UserServiceV2Api.md#verifyuserv2) | **POST** /user-microservice/api/v2/user-service/user/verification/{userId}/profile-type/{profileType} | User Email Verification |
 | *WorkspaceServiceApi* | [**createAccount**](Apis/WorkspaceServiceApi.md#createaccount) | **POST** /workspace-microservice/api/v1/accounts | Create a new account |
 *WorkspaceServiceApi* | [**createFolder**](Apis/WorkspaceServiceApi.md#createfolder) | **POST** /workspace-microservice/api/v1/folders | Create a folder |
+*WorkspaceServiceApi* | [**createMarkdownFile**](Apis/WorkspaceServiceApi.md#createmarkdownfile) | **POST** /workspace-microservice/api/v1/files | Create a markdown file |
 *WorkspaceServiceApi* | [**createWorkspace**](Apis/WorkspaceServiceApi.md#createworkspace) | **POST** /workspace-microservice/api/v1/workspaces | Create a workspace |
 *WorkspaceServiceApi* | [**deleteAccount**](Apis/WorkspaceServiceApi.md#deleteaccount) | **DELETE** /workspace-microservice/api/v1/accounts/{authZeroUserId} | Delete an account |
 *WorkspaceServiceApi* | [**deleteFile**](Apis/WorkspaceServiceApi.md#deletefile) | **DELETE** /workspace-microservice/api/v1/files/{fileId} | Delete a file |
@@ -261,6 +263,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [AcceptFollowProfileResponse](./Models/AcceptFollowProfileResponse.md)
  - [Account](./Models/Account.md)
  - [AccountBalanceHistory](./Models/AccountBalanceHistory.md)
+ - [AccountStatements](./Models/AccountStatements.md)
  - [AccountType](./Models/AccountType.md)
  - [AccountingAttachment](./Models/AccountingAttachment.md)
  - [AccountingIntegrationMergeLink](./Models/AccountingIntegrationMergeLink.md)
@@ -281,6 +284,8 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [AddPostToPublicationResponse](./Models/AddPostToPublicationResponse.md)
  - [AddPostToThreadResponse](./Models/AddPostToThreadResponse.md)
  - [AddPublicationEditorResponse](./Models/AddPublicationEditorResponse.md)
+ - [AddTransactionsToManuallyLinkedAccountRequest](./Models/AddTransactionsToManuallyLinkedAccountRequest.md)
+ - [AddTransactionsToManuallyLinkedAccountResponse](./Models/AddTransactionsToManuallyLinkedAccountResponse.md)
  - [AddUserToTeamBody](./Models/AddUserToTeamBody.md)
  - [AddUserToTeamResponse](./Models/AddUserToTeamResponse.md)
  - [Address](./Models/Address.md)
@@ -349,6 +354,8 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [CreateFolderResponse](./Models/CreateFolderResponse.md)
  - [CreateManualLinkRequest](./Models/CreateManualLinkRequest.md)
  - [CreateManualLinkResponse](./Models/CreateManualLinkResponse.md)
+ - [CreateMarkdownFileRequest](./Models/CreateMarkdownFileRequest.md)
+ - [CreateMarkdownFileResponse](./Models/CreateMarkdownFileResponse.md)
  - [CreateMilestoneRequest](./Models/CreateMilestoneRequest.md)
  - [CreateMilestoneResponse](./Models/CreateMilestoneResponse.md)
  - [CreateNoteBody](./Models/CreateNoteBody.md)

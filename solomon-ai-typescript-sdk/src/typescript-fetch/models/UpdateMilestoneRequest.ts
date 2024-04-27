@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Milestone } from './Milestone';
 import {
     MilestoneFromJSON,
@@ -38,10 +38,8 @@ export interface UpdateMilestoneRequest {
  * Check if a given object implements the UpdateMilestoneRequest interface.
  */
 export function instanceOfUpdateMilestoneRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "milestone" in value;
-
-    return isInstance;
+    if (!('milestone' in value)) return false;
+    return true;
 }
 
 export function UpdateMilestoneRequestFromJSON(json: any): UpdateMilestoneRequest {
@@ -49,7 +47,7 @@ export function UpdateMilestoneRequestFromJSON(json: any): UpdateMilestoneReques
 }
 
 export function UpdateMilestoneRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateMilestoneRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function UpdateMilestoneRequestFromJSONTyped(json: any, ignoreDiscriminat
 }
 
 export function UpdateMilestoneRequestToJSON(value?: UpdateMilestoneRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'milestone': MilestoneToJSON(value.milestone),
+        'milestone': MilestoneToJSON(value['milestone']),
     };
 }
 

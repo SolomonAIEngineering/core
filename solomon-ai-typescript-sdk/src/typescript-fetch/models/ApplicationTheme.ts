@@ -25,6 +25,10 @@ export const ApplicationTheme = {
 export type ApplicationTheme = typeof ApplicationTheme[keyof typeof ApplicationTheme];
 
 
+export function instanceOfApplicationTheme(value: any): boolean {
+    return Object.values(ApplicationTheme).includes(value);
+}
+
 export function ApplicationThemeFromJSON(json: any): ApplicationTheme {
     return ApplicationThemeFromJSONTyped(json, false);
 }

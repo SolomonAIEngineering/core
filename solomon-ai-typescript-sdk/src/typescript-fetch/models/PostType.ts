@@ -31,6 +31,10 @@ export const PostType = {
 export type PostType = typeof PostType[keyof typeof PostType];
 
 
+export function instanceOfPostType(value: any): boolean {
+    return Object.values(PostType).includes(value);
+}
+
 export function PostTypeFromJSON(json: any): PostType {
     return PostTypeFromJSONTyped(json, false);
 }

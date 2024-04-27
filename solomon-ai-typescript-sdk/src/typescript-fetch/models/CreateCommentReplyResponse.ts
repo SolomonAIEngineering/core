@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Comment } from './Comment';
 import {
     CommentFromJSON,
@@ -38,9 +38,7 @@ export interface CreateCommentReplyResponse {
  * Check if a given object implements the CreateCommentReplyResponse interface.
  */
 export function instanceOfCreateCommentReplyResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreateCommentReplyResponseFromJSON(json: any): CreateCommentReplyResponse {
@@ -48,25 +46,22 @@ export function CreateCommentReplyResponseFromJSON(json: any): CreateCommentRepl
 }
 
 export function CreateCommentReplyResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateCommentReplyResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'comment': !exists(json, 'comment') ? undefined : CommentFromJSON(json['comment']),
+        'comment': json['comment'] == null ? undefined : CommentFromJSON(json['comment']),
     };
 }
 
 export function CreateCommentReplyResponseToJSON(value?: CreateCommentReplyResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'comment': CommentToJSON(value.comment),
+        'comment': CommentToJSON(value['comment']),
     };
 }
 

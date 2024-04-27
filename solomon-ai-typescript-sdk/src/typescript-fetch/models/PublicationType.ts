@@ -27,6 +27,10 @@ export const PublicationType = {
 export type PublicationType = typeof PublicationType[keyof typeof PublicationType];
 
 
+export function instanceOfPublicationType(value: any): boolean {
+    return Object.values(PublicationType).includes(value);
+}
+
 export function PublicationTypeFromJSON(json: any): PublicationType {
     return PublicationTypeFromJSONTyped(json, false);
 }

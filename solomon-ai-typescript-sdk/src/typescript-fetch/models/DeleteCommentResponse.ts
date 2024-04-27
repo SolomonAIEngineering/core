@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface DeleteCommentResponse {
  * Check if a given object implements the DeleteCommentResponse interface.
  */
 export function instanceOfDeleteCommentResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DeleteCommentResponseFromJSON(json: any): DeleteCommentResponse {
@@ -41,25 +39,22 @@ export function DeleteCommentResponseFromJSON(json: any): DeleteCommentResponse 
 }
 
 export function DeleteCommentResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteCommentResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'sucess': !exists(json, 'sucess') ? undefined : json['sucess'],
+        'sucess': json['sucess'] == null ? undefined : json['sucess'],
     };
 }
 
 export function DeleteCommentResponseToJSON(value?: DeleteCommentResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'sucess': value.sucess,
+        'sucess': value['sucess'],
     };
 }
 

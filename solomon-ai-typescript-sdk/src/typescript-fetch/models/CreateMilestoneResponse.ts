@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface CreateMilestoneResponse {
  * Check if a given object implements the CreateMilestoneResponse interface.
  */
 export function instanceOfCreateMilestoneResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreateMilestoneResponseFromJSON(json: any): CreateMilestoneResponse {
@@ -41,25 +39,22 @@ export function CreateMilestoneResponseFromJSON(json: any): CreateMilestoneRespo
 }
 
 export function CreateMilestoneResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateMilestoneResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'milestoneId': !exists(json, 'milestoneId') ? undefined : json['milestoneId'],
+        'milestoneId': json['milestoneId'] == null ? undefined : json['milestoneId'],
     };
 }
 
 export function CreateMilestoneResponseToJSON(value?: CreateMilestoneResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'milestoneId': value.milestoneId,
+        'milestoneId': value['milestoneId'],
     };
 }
 

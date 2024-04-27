@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { AccountType } from './AccountType';
 import {
     AccountTypeFromJSON,
@@ -266,11 +266,9 @@ export interface Post {
  * Check if a given object implements the Post interface.
  */
 export function instanceOfPost(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "action" in value;
-    isInstance = isInstance && "content" in value;
-
-    return isInstance;
+    if (!('action' in value)) return false;
+    if (!('content' in value)) return false;
+    return true;
 }
 
 export function PostFromJSON(json: any): Post {
@@ -278,83 +276,80 @@ export function PostFromJSON(json: any): Post {
 }
 
 export function PostFromJSONTyped(json: any, ignoreDiscriminator: boolean): Post {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : json['createdAt'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'createdAt': json['createdAt'] == null ? undefined : json['createdAt'],
         'action': PostTypeFromJSON(json['action']),
         'content': json['content'],
-        'mentions': !exists(json, 'mentions') ? undefined : json['mentions'],
-        'hashtags': !exists(json, 'hashtags') ? undefined : json['hashtags'],
-        'media': !exists(json, 'media') ? undefined : MediaFromJSON(json['media']),
-        'extra': !exists(json, 'extra') ? undefined : json['extra'],
-        'comments': !exists(json, 'comments') ? undefined : ((json['comments'] as Array<any>).map(CommentFromJSON)),
-        'backendPlatformUserId': !exists(json, 'backendPlatformUserId') ? undefined : json['backendPlatformUserId'],
-        'profileId': !exists(json, 'profileId') ? undefined : json['profileId'],
-        'title': !exists(json, 'title') ? undefined : json['title'],
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
-        'topicName': !exists(json, 'topicName') ? undefined : json['topicName'],
-        'authorUsername': !exists(json, 'authorUsername') ? undefined : json['authorUsername'],
-        'authorProfileImage': !exists(json, 'authorProfileImage') ? undefined : json['authorProfileImage'],
-        'affinityScore': !exists(json, 'affinityScore') ? undefined : json['affinityScore'],
-        'qualityScore': !exists(json, 'qualityScore') ? undefined : json['qualityScore'],
-        'userIdToAffinityScoreMap': !exists(json, 'userIdToAffinityScoreMap') ? undefined : json['userIdToAffinityScoreMap'],
-        'insights': !exists(json, 'insights') ? undefined : ContentInsightsFromJSON(json['insights']),
-        'userIdToReportsMap': !exists(json, 'userIdToReportsMap') ? undefined : json['userIdToReportsMap'],
-        'readingTime': !exists(json, 'readingTime') ? undefined : json['readingTime'],
-        'backgroundImageUrl': !exists(json, 'backgroundImageUrl') ? undefined : json['backgroundImageUrl'],
-        'authorAccountType': !exists(json, 'authorAccountType') ? undefined : AccountTypeFromJSON(json['authorAccountType']),
-        'notes': !exists(json, 'notes') ? undefined : ((json['notes'] as Array<any>).map(NoteFromJSON)),
-        'thread': !exists(json, 'thread') ? undefined : ThreadFromJSON(json['thread']),
-        'threadParticipantType': !exists(json, 'threadParticipantType') ? undefined : ThreadParticipantTypeFromJSON(json['threadParticipantType']),
-        'userIdToReactionMap': !exists(json, 'userIdToReactionMap') ? undefined : (mapValues(json['userIdToReactionMap'], ReactionFromJSON)),
-        'aiGeneratedQuestionResponse': !exists(json, 'aiGeneratedQuestionResponse') ? undefined : json['aiGeneratedQuestionResponse'],
-        'category': !exists(json, 'category') ? undefined : CategoryFromJSON(json['category']),
+        'mentions': json['mentions'] == null ? undefined : json['mentions'],
+        'hashtags': json['hashtags'] == null ? undefined : json['hashtags'],
+        'media': json['media'] == null ? undefined : MediaFromJSON(json['media']),
+        'extra': json['extra'] == null ? undefined : json['extra'],
+        'comments': json['comments'] == null ? undefined : ((json['comments'] as Array<any>).map(CommentFromJSON)),
+        'backendPlatformUserId': json['backendPlatformUserId'] == null ? undefined : json['backendPlatformUserId'],
+        'profileId': json['profileId'] == null ? undefined : json['profileId'],
+        'title': json['title'] == null ? undefined : json['title'],
+        'tags': json['tags'] == null ? undefined : json['tags'],
+        'topicName': json['topicName'] == null ? undefined : json['topicName'],
+        'authorUsername': json['authorUsername'] == null ? undefined : json['authorUsername'],
+        'authorProfileImage': json['authorProfileImage'] == null ? undefined : json['authorProfileImage'],
+        'affinityScore': json['affinityScore'] == null ? undefined : json['affinityScore'],
+        'qualityScore': json['qualityScore'] == null ? undefined : json['qualityScore'],
+        'userIdToAffinityScoreMap': json['userIdToAffinityScoreMap'] == null ? undefined : json['userIdToAffinityScoreMap'],
+        'insights': json['insights'] == null ? undefined : ContentInsightsFromJSON(json['insights']),
+        'userIdToReportsMap': json['userIdToReportsMap'] == null ? undefined : json['userIdToReportsMap'],
+        'readingTime': json['readingTime'] == null ? undefined : json['readingTime'],
+        'backgroundImageUrl': json['backgroundImageUrl'] == null ? undefined : json['backgroundImageUrl'],
+        'authorAccountType': json['authorAccountType'] == null ? undefined : AccountTypeFromJSON(json['authorAccountType']),
+        'notes': json['notes'] == null ? undefined : ((json['notes'] as Array<any>).map(NoteFromJSON)),
+        'thread': json['thread'] == null ? undefined : ThreadFromJSON(json['thread']),
+        'threadParticipantType': json['threadParticipantType'] == null ? undefined : ThreadParticipantTypeFromJSON(json['threadParticipantType']),
+        'userIdToReactionMap': json['userIdToReactionMap'] == null ? undefined : (mapValues(json['userIdToReactionMap'], ReactionFromJSON)),
+        'aiGeneratedQuestionResponse': json['aiGeneratedQuestionResponse'] == null ? undefined : json['aiGeneratedQuestionResponse'],
+        'category': json['category'] == null ? undefined : CategoryFromJSON(json['category']),
     };
 }
 
 export function PostToJSON(value?: Post | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'createdAt': value.createdAt,
-        'action': PostTypeToJSON(value.action),
-        'content': value.content,
-        'mentions': value.mentions,
-        'hashtags': value.hashtags,
-        'media': MediaToJSON(value.media),
-        'extra': value.extra,
-        'comments': value.comments === undefined ? undefined : ((value.comments as Array<any>).map(CommentToJSON)),
-        'backendPlatformUserId': value.backendPlatformUserId,
-        'profileId': value.profileId,
-        'title': value.title,
-        'tags': value.tags,
-        'topicName': value.topicName,
-        'authorUsername': value.authorUsername,
-        'authorProfileImage': value.authorProfileImage,
-        'affinityScore': value.affinityScore,
-        'qualityScore': value.qualityScore,
-        'userIdToAffinityScoreMap': value.userIdToAffinityScoreMap,
-        'insights': ContentInsightsToJSON(value.insights),
-        'userIdToReportsMap': value.userIdToReportsMap,
-        'readingTime': value.readingTime,
-        'backgroundImageUrl': value.backgroundImageUrl,
-        'authorAccountType': AccountTypeToJSON(value.authorAccountType),
-        'notes': value.notes === undefined ? undefined : ((value.notes as Array<any>).map(NoteToJSON)),
-        'thread': ThreadToJSON(value.thread),
-        'threadParticipantType': ThreadParticipantTypeToJSON(value.threadParticipantType),
-        'userIdToReactionMap': value.userIdToReactionMap === undefined ? undefined : (mapValues(value.userIdToReactionMap, ReactionToJSON)),
-        'aiGeneratedQuestionResponse': value.aiGeneratedQuestionResponse,
-        'category': CategoryToJSON(value.category),
+        'id': value['id'],
+        'createdAt': value['createdAt'],
+        'action': PostTypeToJSON(value['action']),
+        'content': value['content'],
+        'mentions': value['mentions'],
+        'hashtags': value['hashtags'],
+        'media': MediaToJSON(value['media']),
+        'extra': value['extra'],
+        'comments': value['comments'] == null ? undefined : ((value['comments'] as Array<any>).map(CommentToJSON)),
+        'backendPlatformUserId': value['backendPlatformUserId'],
+        'profileId': value['profileId'],
+        'title': value['title'],
+        'tags': value['tags'],
+        'topicName': value['topicName'],
+        'authorUsername': value['authorUsername'],
+        'authorProfileImage': value['authorProfileImage'],
+        'affinityScore': value['affinityScore'],
+        'qualityScore': value['qualityScore'],
+        'userIdToAffinityScoreMap': value['userIdToAffinityScoreMap'],
+        'insights': ContentInsightsToJSON(value['insights']),
+        'userIdToReportsMap': value['userIdToReportsMap'],
+        'readingTime': value['readingTime'],
+        'backgroundImageUrl': value['backgroundImageUrl'],
+        'authorAccountType': AccountTypeToJSON(value['authorAccountType']),
+        'notes': value['notes'] == null ? undefined : ((value['notes'] as Array<any>).map(NoteToJSON)),
+        'thread': ThreadToJSON(value['thread']),
+        'threadParticipantType': ThreadParticipantTypeToJSON(value['threadParticipantType']),
+        'userIdToReactionMap': value['userIdToReactionMap'] == null ? undefined : (mapValues(value['userIdToReactionMap'], ReactionToJSON)),
+        'aiGeneratedQuestionResponse': value['aiGeneratedQuestionResponse'],
+        'category': CategoryToJSON(value['category']),
     };
 }
 

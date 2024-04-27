@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Defines a message named CreatesAccountingProfileResponse.
  * @export
@@ -31,9 +31,7 @@ export interface CreateAccountingProfileResponse {
  * Check if a given object implements the CreateAccountingProfileResponse interface.
  */
 export function instanceOfCreateAccountingProfileResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreateAccountingProfileResponseFromJSON(json: any): CreateAccountingProfileResponse {
@@ -41,25 +39,22 @@ export function CreateAccountingProfileResponseFromJSON(json: any): CreateAccoun
 }
 
 export function CreateAccountingProfileResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateAccountingProfileResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'profileId': !exists(json, 'profileId') ? undefined : json['profileId'],
+        'profileId': json['profileId'] == null ? undefined : json['profileId'],
     };
 }
 
 export function CreateAccountingProfileResponseToJSON(value?: CreateAccountingProfileResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'profileId': value.profileId,
+        'profileId': value['profileId'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface ReadynessCheckResponse {
  * Check if a given object implements the ReadynessCheckResponse interface.
  */
 export function instanceOfReadynessCheckResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ReadynessCheckResponseFromJSON(json: any): ReadynessCheckResponse {
@@ -41,25 +39,22 @@ export function ReadynessCheckResponseFromJSON(json: any): ReadynessCheckRespons
 }
 
 export function ReadynessCheckResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReadynessCheckResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'healthy': !exists(json, 'healthy') ? undefined : json['healthy'],
+        'healthy': json['healthy'] == null ? undefined : json['healthy'],
     };
 }
 
 export function ReadynessCheckResponseToJSON(value?: ReadynessCheckResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'healthy': value.healthy,
+        'healthy': value['healthy'],
     };
 }
 

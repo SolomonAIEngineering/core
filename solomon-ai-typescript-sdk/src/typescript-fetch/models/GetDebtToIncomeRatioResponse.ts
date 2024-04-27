@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { DebtToIncomeRatio } from './DebtToIncomeRatio';
 import {
     DebtToIncomeRatioFromJSON,
@@ -44,9 +44,7 @@ export interface GetDebtToIncomeRatioResponse {
  * Check if a given object implements the GetDebtToIncomeRatioResponse interface.
  */
 export function instanceOfGetDebtToIncomeRatioResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetDebtToIncomeRatioResponseFromJSON(json: any): GetDebtToIncomeRatioResponse {
@@ -54,27 +52,24 @@ export function GetDebtToIncomeRatioResponseFromJSON(json: any): GetDebtToIncome
 }
 
 export function GetDebtToIncomeRatioResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetDebtToIncomeRatioResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'debtToIncomeRatios': !exists(json, 'debtToIncomeRatios') ? undefined : ((json['debtToIncomeRatios'] as Array<any>).map(DebtToIncomeRatioFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'debtToIncomeRatios': json['debtToIncomeRatios'] == null ? undefined : ((json['debtToIncomeRatios'] as Array<any>).map(DebtToIncomeRatioFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetDebtToIncomeRatioResponseToJSON(value?: GetDebtToIncomeRatioResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'debtToIncomeRatios': value.debtToIncomeRatios === undefined ? undefined : ((value.debtToIncomeRatios as Array<any>).map(DebtToIncomeRatioToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'debtToIncomeRatios': value['debtToIncomeRatios'] == null ? undefined : ((value['debtToIncomeRatios'] as Array<any>).map(DebtToIncomeRatioToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MerchantMonthlyExpenditure } from './MerchantMonthlyExpenditure';
 import {
     MerchantMonthlyExpenditureFromJSON,
@@ -44,9 +44,7 @@ export interface GetMerchantMonthlyExpenditureResponse {
  * Check if a given object implements the GetMerchantMonthlyExpenditureResponse interface.
  */
 export function instanceOfGetMerchantMonthlyExpenditureResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetMerchantMonthlyExpenditureResponseFromJSON(json: any): GetMerchantMonthlyExpenditureResponse {
@@ -54,27 +52,24 @@ export function GetMerchantMonthlyExpenditureResponseFromJSON(json: any): GetMer
 }
 
 export function GetMerchantMonthlyExpenditureResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetMerchantMonthlyExpenditureResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'merchantMonthlyExpenditures': !exists(json, 'merchantMonthlyExpenditures') ? undefined : ((json['merchantMonthlyExpenditures'] as Array<any>).map(MerchantMonthlyExpenditureFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'merchantMonthlyExpenditures': json['merchantMonthlyExpenditures'] == null ? undefined : ((json['merchantMonthlyExpenditures'] as Array<any>).map(MerchantMonthlyExpenditureFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetMerchantMonthlyExpenditureResponseToJSON(value?: GetMerchantMonthlyExpenditureResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'merchantMonthlyExpenditures': value.merchantMonthlyExpenditures === undefined ? undefined : ((value.merchantMonthlyExpenditures as Array<any>).map(MerchantMonthlyExpenditureToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'merchantMonthlyExpenditures': value['merchantMonthlyExpenditures'] == null ? undefined : ((value['merchantMonthlyExpenditures'] as Array<any>).map(MerchantMonthlyExpenditureToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

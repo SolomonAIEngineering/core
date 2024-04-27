@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -81,9 +81,7 @@ export interface IncomeMetricsFinancialSubProfile {
  * Check if a given object implements the IncomeMetricsFinancialSubProfile interface.
  */
 export function instanceOfIncomeMetricsFinancialSubProfile(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function IncomeMetricsFinancialSubProfileFromJSON(json: any): IncomeMetricsFinancialSubProfile {
@@ -91,39 +89,36 @@ export function IncomeMetricsFinancialSubProfileFromJSON(json: any): IncomeMetri
 }
 
 export function IncomeMetricsFinancialSubProfileFromJSONTyped(json: any, ignoreDiscriminator: boolean): IncomeMetricsFinancialSubProfile {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'month': !exists(json, 'month') ? undefined : json['month'],
-        'incomeLastTwoWeeks': !exists(json, 'incomeLastTwoWeeks') ? undefined : json['incomeLastTwoWeeks'],
-        'incomeLastMonth': !exists(json, 'incomeLastMonth') ? undefined : json['incomeLastMonth'],
-        'incomeLastTwoMonths': !exists(json, 'incomeLastTwoMonths') ? undefined : json['incomeLastTwoMonths'],
-        'incomeLastSixMonths': !exists(json, 'incomeLastSixMonths') ? undefined : json['incomeLastSixMonths'],
-        'incomeLastYear': !exists(json, 'incomeLastYear') ? undefined : json['incomeLastYear'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'month': json['month'] == null ? undefined : json['month'],
+        'incomeLastTwoWeeks': json['incomeLastTwoWeeks'] == null ? undefined : json['incomeLastTwoWeeks'],
+        'incomeLastMonth': json['incomeLastMonth'] == null ? undefined : json['incomeLastMonth'],
+        'incomeLastTwoMonths': json['incomeLastTwoMonths'] == null ? undefined : json['incomeLastTwoMonths'],
+        'incomeLastSixMonths': json['incomeLastSixMonths'] == null ? undefined : json['incomeLastSixMonths'],
+        'incomeLastYear': json['incomeLastYear'] == null ? undefined : json['incomeLastYear'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function IncomeMetricsFinancialSubProfileToJSON(value?: IncomeMetricsFinancialSubProfile | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'month': value.month,
-        'incomeLastTwoWeeks': value.incomeLastTwoWeeks,
-        'incomeLastMonth': value.incomeLastMonth,
-        'incomeLastTwoMonths': value.incomeLastTwoMonths,
-        'incomeLastSixMonths': value.incomeLastSixMonths,
-        'incomeLastYear': value.incomeLastYear,
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'month': value['month'],
+        'incomeLastTwoWeeks': value['incomeLastTwoWeeks'],
+        'incomeLastMonth': value['incomeLastMonth'],
+        'incomeLastTwoMonths': value['incomeLastTwoMonths'],
+        'incomeLastSixMonths': value['incomeLastSixMonths'],
+        'incomeLastYear': value['incomeLastYear'],
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

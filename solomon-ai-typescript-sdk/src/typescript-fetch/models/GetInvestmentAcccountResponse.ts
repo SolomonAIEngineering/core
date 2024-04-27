@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { InvestmentAccount } from './InvestmentAccount';
 import {
     InvestmentAccountFromJSON,
@@ -38,9 +38,7 @@ export interface GetInvestmentAcccountResponse {
  * Check if a given object implements the GetInvestmentAcccountResponse interface.
  */
 export function instanceOfGetInvestmentAcccountResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetInvestmentAcccountResponseFromJSON(json: any): GetInvestmentAcccountResponse {
@@ -48,25 +46,22 @@ export function GetInvestmentAcccountResponseFromJSON(json: any): GetInvestmentA
 }
 
 export function GetInvestmentAcccountResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetInvestmentAcccountResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'investmentAccount': !exists(json, 'investmentAccount') ? undefined : InvestmentAccountFromJSON(json['investmentAccount']),
+        'investmentAccount': json['investmentAccount'] == null ? undefined : InvestmentAccountFromJSON(json['investmentAccount']),
     };
 }
 
 export function GetInvestmentAcccountResponseToJSON(value?: GetInvestmentAcccountResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'investmentAccount': InvestmentAccountToJSON(value.investmentAccount),
+        'investmentAccount': InvestmentAccountToJSON(value['investmentAccount']),
     };
 }
 

@@ -79,6 +79,29 @@ service WorkspaceService {
             }
         };
     }
+    
+    // Create Markdown File
+    rpc CreateMarkdownFile(CreateMarkdownFileRequest) returns (CreateMarkdownFileResponse) {
+        option (google.api.http) = {
+            post: "/workspace-microservice/api/v1/files"
+            body: "*"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+            summary: "Create a markdown file"
+            tags: ["workspace-service"]
+            operation_id: "CreateMarkdownFile"
+            description: "This endpoint creates a new file"
+            responses: {
+                key: "200"
+                value: {
+                    description: "Folder creation successful"
+                    schema: {
+                        json_schema: { ref: ".workspace_service.v1.CreateMarkdownFileResponse" }
+                    }
+                }
+            }
+        };
+    }
 
 
     // Delete a File

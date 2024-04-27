@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PollPost } from './PollPost';
 import {
     PollPostFromJSON,
@@ -38,9 +38,7 @@ export interface GetPollsResponse {
  * Check if a given object implements the GetPollsResponse interface.
  */
 export function instanceOfGetPollsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetPollsResponseFromJSON(json: any): GetPollsResponse {
@@ -48,25 +46,22 @@ export function GetPollsResponseFromJSON(json: any): GetPollsResponse {
 }
 
 export function GetPollsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetPollsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'polls': !exists(json, 'polls') ? undefined : ((json['polls'] as Array<any>).map(PollPostFromJSON)),
+        'polls': json['polls'] == null ? undefined : ((json['polls'] as Array<any>).map(PollPostFromJSON)),
     };
 }
 
 export function GetPollsResponseToJSON(value?: GetPollsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'polls': value.polls === undefined ? undefined : ((value.polls as Array<any>).map(PollPostToJSON)),
+        'polls': value['polls'] == null ? undefined : ((value['polls'] as Array<any>).map(PollPostToJSON)),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The JournalLine object is used to represent a journal entry's line items.
  * @export
@@ -101,9 +101,7 @@ export interface JournalLine {
  * Check if a given object implements the JournalLine interface.
  */
 export function instanceOfJournalLine(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function JournalLineFromJSON(json: any): JournalLine {
@@ -111,47 +109,44 @@ export function JournalLineFromJSON(json: any): JournalLine {
 }
 
 export function JournalLineFromJSONTyped(json: any, ignoreDiscriminator: boolean): JournalLine {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'account': !exists(json, 'account') ? undefined : json['account'],
-        'netAmount': !exists(json, 'netAmount') ? undefined : json['netAmount'],
-        'trackingCategory': !exists(json, 'trackingCategory') ? undefined : json['trackingCategory'],
-        'trackingCategories': !exists(json, 'trackingCategories') ? undefined : json['trackingCategories'],
-        'contact': !exists(json, 'contact') ? undefined : json['contact'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'exchangeRate': !exists(json, 'exchangeRate') ? undefined : json['exchangeRate'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'account': json['account'] == null ? undefined : json['account'],
+        'netAmount': json['netAmount'] == null ? undefined : json['netAmount'],
+        'trackingCategory': json['trackingCategory'] == null ? undefined : json['trackingCategory'],
+        'trackingCategories': json['trackingCategories'] == null ? undefined : json['trackingCategories'],
+        'contact': json['contact'] == null ? undefined : json['contact'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'exchangeRate': json['exchangeRate'] == null ? undefined : json['exchangeRate'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
     };
 }
 
 export function JournalLineToJSON(value?: JournalLine | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'account': value.account,
-        'netAmount': value.netAmount,
-        'trackingCategory': value.trackingCategory,
-        'trackingCategories': value.trackingCategories,
-        'contact': value.contact,
-        'company': value.company,
-        'description': value.description,
-        'exchangeRate': value.exchangeRate,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'account': value['account'],
+        'netAmount': value['netAmount'],
+        'trackingCategory': value['trackingCategory'],
+        'trackingCategories': value['trackingCategories'],
+        'contact': value['contact'],
+        'company': value['company'],
+        'description': value['description'],
+        'exchangeRate': value['exchangeRate'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
     };
 }
 

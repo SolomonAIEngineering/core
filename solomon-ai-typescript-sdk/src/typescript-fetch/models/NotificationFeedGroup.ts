@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { NotificationActivity } from './NotificationActivity';
 import {
     NotificationActivityFromJSON,
@@ -92,9 +92,7 @@ export interface NotificationFeedGroup {
  * Check if a given object implements the NotificationFeedGroup interface.
  */
 export function instanceOfNotificationFeedGroup(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function NotificationFeedGroupFromJSON(json: any): NotificationFeedGroup {
@@ -102,43 +100,40 @@ export function NotificationFeedGroupFromJSON(json: any): NotificationFeedGroup 
 }
 
 export function NotificationFeedGroupFromJSONTyped(json: any, ignoreDiscriminator: boolean): NotificationFeedGroup {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'activityCount': !exists(json, 'activityCount') ? undefined : json['activityCount'],
-        'actorCount': !exists(json, 'actorCount') ? undefined : json['actorCount'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : json['createdAt'],
-        'group': !exists(json, 'group') ? undefined : json['group'],
-        'feedGroupId': !exists(json, 'feedGroupId') ? undefined : json['feedGroupId'],
-        'isRead': !exists(json, 'isRead') ? undefined : json['isRead'],
-        'isSeen': !exists(json, 'isSeen') ? undefined : json['isSeen'],
-        'updatedAt': !exists(json, 'updatedAt') ? undefined : json['updatedAt'],
-        'verb': !exists(json, 'verb') ? undefined : json['verb'],
-        'activities': !exists(json, 'activities') ? undefined : ((json['activities'] as Array<any>).map(NotificationActivityFromJSON)),
+        'activityCount': json['activityCount'] == null ? undefined : json['activityCount'],
+        'actorCount': json['actorCount'] == null ? undefined : json['actorCount'],
+        'createdAt': json['createdAt'] == null ? undefined : json['createdAt'],
+        'group': json['group'] == null ? undefined : json['group'],
+        'feedGroupId': json['feedGroupId'] == null ? undefined : json['feedGroupId'],
+        'isRead': json['isRead'] == null ? undefined : json['isRead'],
+        'isSeen': json['isSeen'] == null ? undefined : json['isSeen'],
+        'updatedAt': json['updatedAt'] == null ? undefined : json['updatedAt'],
+        'verb': json['verb'] == null ? undefined : json['verb'],
+        'activities': json['activities'] == null ? undefined : ((json['activities'] as Array<any>).map(NotificationActivityFromJSON)),
     };
 }
 
 export function NotificationFeedGroupToJSON(value?: NotificationFeedGroup | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'activityCount': value.activityCount,
-        'actorCount': value.actorCount,
-        'createdAt': value.createdAt,
-        'group': value.group,
-        'feedGroupId': value.feedGroupId,
-        'isRead': value.isRead,
-        'isSeen': value.isSeen,
-        'updatedAt': value.updatedAt,
-        'verb': value.verb,
-        'activities': value.activities === undefined ? undefined : ((value.activities as Array<any>).map(NotificationActivityToJSON)),
+        'activityCount': value['activityCount'],
+        'actorCount': value['actorCount'],
+        'createdAt': value['createdAt'],
+        'group': value['group'],
+        'feedGroupId': value['feedGroupId'],
+        'isRead': value['isRead'],
+        'isSeen': value['isSeen'],
+        'updatedAt': value['updatedAt'],
+        'verb': value['verb'],
+        'activities': value['activities'] == null ? undefined : ((value['activities'] as Array<any>).map(NotificationActivityToJSON)),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { UserProfile } from './UserProfile';
 import {
     UserProfileFromJSON,
@@ -44,9 +44,7 @@ export interface GetUserProfilesResponse {
  * Check if a given object implements the GetUserProfilesResponse interface.
  */
 export function instanceOfGetUserProfilesResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetUserProfilesResponseFromJSON(json: any): GetUserProfilesResponse {
@@ -54,27 +52,24 @@ export function GetUserProfilesResponseFromJSON(json: any): GetUserProfilesRespo
 }
 
 export function GetUserProfilesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUserProfilesResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
-        'profiles': !exists(json, 'profiles') ? undefined : ((json['profiles'] as Array<any>).map(UserProfileFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
+        'profiles': json['profiles'] == null ? undefined : ((json['profiles'] as Array<any>).map(UserProfileFromJSON)),
     };
 }
 
 export function GetUserProfilesResponseToJSON(value?: GetUserProfilesResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'nextPageNumber': value.nextPageNumber,
-        'profiles': value.profiles === undefined ? undefined : ((value.profiles as Array<any>).map(UserProfileToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
+        'profiles': value['profiles'] == null ? undefined : ((value['profiles'] as Array<any>).map(UserProfileToJSON)),
     };
 }
 

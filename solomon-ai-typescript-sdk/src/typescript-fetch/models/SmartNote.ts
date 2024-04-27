@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -55,9 +55,7 @@ export interface SmartNote {
  * Check if a given object implements the SmartNote interface.
  */
 export function instanceOfSmartNote(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function SmartNoteFromJSON(json: any): SmartNote {
@@ -65,33 +63,30 @@ export function SmartNoteFromJSON(json: any): SmartNote {
 }
 
 export function SmartNoteFromJSONTyped(json: any, ignoreDiscriminator: boolean): SmartNote {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'content': !exists(json, 'content') ? undefined : json['content'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'updatedAt': !exists(json, 'updatedAt') ? undefined : (new Date(json['updatedAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'content': json['content'] == null ? undefined : json['content'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
     };
 }
 
 export function SmartNoteToJSON(value?: SmartNote | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'userId': value.userId,
-        'content': value.content,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'updatedAt': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
+        'id': value['id'],
+        'userId': value['userId'],
+        'content': value['content'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
     };
 }
 
