@@ -896,10 +896,12 @@
       "properties": {
         "workspaceId": {
           "type": "string",
+          "format": "uint64",
           "title": "Workspace ID"
         },
         "folderId": {
           "type": "string",
+          "format": "uint64",
           "title": "Folder ID"
         },
         "filename": {
@@ -908,6 +910,7 @@
         },
         "userId": {
           "type": "string",
+          "format": "uint64",
           "title": "User ID"
         },
         "content": {
@@ -922,6 +925,7 @@
       "properties": {
         "fileId": {
           "type": "string",
+          "format": "uint64",
           "title": "File ID"
         },
         "fileUrl": {

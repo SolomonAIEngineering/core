@@ -750,15 +750,18 @@ components:
       properties:
         workspaceId:
           type: string
+          format: uint64
           title: Workspace ID
         folderId:
           type: string
+          format: uint64
           title: Folder ID
         filename:
           type: string
           title: Filename
         userId:
           type: string
+          format: uint64
           title: User ID
         content:
           type: string
@@ -769,6 +772,7 @@ components:
       properties:
         fileId:
           type: string
+          format: uint64
           title: File ID
         fileUrl:
           type: string

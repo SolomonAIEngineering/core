@@ -216,15 +216,15 @@ message DeleteWorkspaceResponse {
 
 // Request to create a Markdown file.
 message CreateMarkdownFileRequest {
-    string workspace_id = 1; // Workspace ID
-    string folder_id = 2;    // Folder ID
+    uint64 workspace_id = 1; // Workspace ID
+    uint64 folder_id = 2;    // Folder ID
     string filename = 3;    // Filename
-    string user_id = 4;     // User ID
+    uint64 user_id = 4;     // User ID
     string content = 5;  // File content
 }
 
 // Response from creating a Markdown file.
 message CreateMarkdownFileResponse {
-    string file_id = 1; // File ID
+    uint64 file_id = 1; // File ID
     string file_url = 2; // File URL
 }
