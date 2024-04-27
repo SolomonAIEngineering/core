@@ -25800,7 +25800,6 @@ components:
           title: Filename
         userId:
           type: string
-          format: uint64
           title: User ID
         content:
           type: string

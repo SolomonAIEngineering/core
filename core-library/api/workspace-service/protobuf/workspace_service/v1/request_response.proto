@@ -219,7 +219,7 @@ message CreateMarkdownFileRequest {
     uint64 workspace_id = 1; // Workspace ID
     uint64 folder_id = 2;    // Folder ID
     string filename = 3;    // Filename
-    uint64 user_id = 4;     // User ID
+    string user_id = 4;     // User ID
     string content = 5;  // File content
 }
 

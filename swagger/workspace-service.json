@@ -910,7 +910,6 @@
         },
         "userId": {
           "type": "string",
-          "format": "uint64",
           "title": "User ID"
         },
         "content": {
