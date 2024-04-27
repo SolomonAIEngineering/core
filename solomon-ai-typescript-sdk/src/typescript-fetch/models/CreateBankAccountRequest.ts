@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BankAccount } from './BankAccount';
 import {
     BankAccountFromJSON,
@@ -62,13 +62,11 @@ export interface CreateBankAccountRequest {
  * Check if a given object implements the CreateBankAccountRequest interface.
  */
 export function instanceOfCreateBankAccountRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "bankAccount" in value;
-    isInstance = isInstance && "profileType" in value;
-    isInstance = isInstance && "linkId" in value;
-
-    return isInstance;
+    if (!('userId' in value)) return false;
+    if (!('bankAccount' in value)) return false;
+    if (!('profileType' in value)) return false;
+    if (!('linkId' in value)) return false;
+    return true;
 }
 
 export function CreateBankAccountRequestFromJSON(json: any): CreateBankAccountRequest {
@@ -76,7 +74,7 @@ export function CreateBankAccountRequestFromJSON(json: any): CreateBankAccountRe
 }
 
 export function CreateBankAccountRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateBankAccountRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -89,18 +87,15 @@ export function CreateBankAccountRequestFromJSONTyped(json: any, ignoreDiscrimin
 }
 
 export function CreateBankAccountRequestToJSON(value?: CreateBankAccountRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userId': value.userId,
-        'bankAccount': BankAccountToJSON(value.bankAccount),
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
-        'linkId': value.linkId,
+        'userId': value['userId'],
+        'bankAccount': BankAccountToJSON(value['bankAccount']),
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
+        'linkId': value['linkId'],
     };
 }
 

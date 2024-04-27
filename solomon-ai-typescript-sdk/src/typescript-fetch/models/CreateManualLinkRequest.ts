@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -56,12 +56,10 @@ export interface CreateManualLinkRequest {
  * Check if a given object implements the CreateManualLinkRequest interface.
  */
 export function instanceOfCreateManualLinkRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "manualAccountLink" in value;
-    isInstance = isInstance && "profileType" in value;
-
-    return isInstance;
+    if (!('userId' in value)) return false;
+    if (!('manualAccountLink' in value)) return false;
+    if (!('profileType' in value)) return false;
+    return true;
 }
 
 export function CreateManualLinkRequestFromJSON(json: any): CreateManualLinkRequest {
@@ -69,7 +67,7 @@ export function CreateManualLinkRequestFromJSON(json: any): CreateManualLinkRequ
 }
 
 export function CreateManualLinkRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateManualLinkRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -81,17 +79,14 @@ export function CreateManualLinkRequestFromJSONTyped(json: any, ignoreDiscrimina
 }
 
 export function CreateManualLinkRequestToJSON(value?: CreateManualLinkRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userId': value.userId,
-        'manualAccountLink': LinkToJSON(value.manualAccountLink),
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'userId': value['userId'],
+        'manualAccountLink': LinkToJSON(value['manualAccountLink']),
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

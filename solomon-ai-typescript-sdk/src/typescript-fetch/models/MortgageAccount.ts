@@ -12,7 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
+import type { AccountStatements } from './AccountStatements';
+import {
+    AccountStatementsFromJSON,
+    AccountStatementsFromJSONTyped,
+    AccountStatementsToJSON,
+} from './AccountStatements';
 import type { BankAccountStatus } from './BankAccountStatus';
 import {
     BankAccountStatusFromJSON,
@@ -224,15 +230,19 @@ export interface MortgageAccount {
      * @memberof MortgageAccount
      */
     status?: BankAccountStatus;
+    /**
+     * 
+     * @type {Array<AccountStatements>}
+     * @memberof MortgageAccount
+     */
+    statements?: Array<AccountStatements>;
 }
 
 /**
  * Check if a given object implements the MortgageAccount interface.
  */
 export function instanceOfMortgageAccount(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function MortgageAccountFromJSON(json: any): MortgageAccount {
@@ -240,89 +250,88 @@ export function MortgageAccountFromJSON(json: any): MortgageAccount {
 }
 
 export function MortgageAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): MortgageAccount {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'plaidAccountId': !exists(json, 'plaidAccountId') ? undefined : json['plaidAccountId'],
-        'accountNumber': !exists(json, 'accountNumber') ? undefined : json['accountNumber'],
-        'currentLateFee': !exists(json, 'currentLateFee') ? undefined : json['currentLateFee'],
-        'escrowBalance': !exists(json, 'escrowBalance') ? undefined : json['escrowBalance'],
-        'hasPmi': !exists(json, 'hasPmi') ? undefined : json['hasPmi'],
-        'hasPrepaymentPenalty': !exists(json, 'hasPrepaymentPenalty') ? undefined : json['hasPrepaymentPenalty'],
-        'lastPaymentAmount': !exists(json, 'lastPaymentAmount') ? undefined : json['lastPaymentAmount'],
-        'lastPaymentDate': !exists(json, 'lastPaymentDate') ? undefined : json['lastPaymentDate'],
-        'loanTerm': !exists(json, 'loanTerm') ? undefined : json['loanTerm'],
-        'loanTypeDescription': !exists(json, 'loanTypeDescription') ? undefined : json['loanTypeDescription'],
-        'maturityDate': !exists(json, 'maturityDate') ? undefined : json['maturityDate'],
-        'nextMonthlyPayment': !exists(json, 'nextMonthlyPayment') ? undefined : json['nextMonthlyPayment'],
-        'nextPaymentDueDate': !exists(json, 'nextPaymentDueDate') ? undefined : json['nextPaymentDueDate'],
-        'originalPrincipalBalance': !exists(json, 'originalPrincipalBalance') ? undefined : json['originalPrincipalBalance'],
-        'originalPropertyValue': !exists(json, 'originalPropertyValue') ? undefined : json['originalPropertyValue'],
-        'outstandingPrincipalBalance': !exists(json, 'outstandingPrincipalBalance') ? undefined : json['outstandingPrincipalBalance'],
-        'paymentAmount': !exists(json, 'paymentAmount') ? undefined : json['paymentAmount'],
-        'paymentDate': !exists(json, 'paymentDate') ? undefined : json['paymentDate'],
-        'originationDate': !exists(json, 'originationDate') ? undefined : json['originationDate'],
-        'originationPrincipalAmount': !exists(json, 'originationPrincipalAmount') ? undefined : json['originationPrincipalAmount'],
-        'pastDueAmount': !exists(json, 'pastDueAmount') ? undefined : json['pastDueAmount'],
-        'ytdInterestPaid': !exists(json, 'ytdInterestPaid') ? undefined : json['ytdInterestPaid'],
-        'ytdPrincipalPaid': !exists(json, 'ytdPrincipalPaid') ? undefined : json['ytdPrincipalPaid'],
-        'propertyAddressCity': !exists(json, 'propertyAddressCity') ? undefined : json['propertyAddressCity'],
-        'propertyAddressState': !exists(json, 'propertyAddressState') ? undefined : json['propertyAddressState'],
-        'propertyAddressStreet': !exists(json, 'propertyAddressStreet') ? undefined : json['propertyAddressStreet'],
-        'propertyAddressPostalCode': !exists(json, 'propertyAddressPostalCode') ? undefined : json['propertyAddressPostalCode'],
-        'propertyRegion': !exists(json, 'propertyRegion') ? undefined : json['propertyRegion'],
-        'propertyCountry': !exists(json, 'propertyCountry') ? undefined : json['propertyCountry'],
-        'interestRatePercentage': !exists(json, 'interestRatePercentage') ? undefined : json['interestRatePercentage'],
-        'interestRateType': !exists(json, 'interestRateType') ? undefined : json['interestRateType'],
-        'status': !exists(json, 'status') ? undefined : BankAccountStatusFromJSON(json['status']),
+        'id': json['id'] == null ? undefined : json['id'],
+        'plaidAccountId': json['plaidAccountId'] == null ? undefined : json['plaidAccountId'],
+        'accountNumber': json['accountNumber'] == null ? undefined : json['accountNumber'],
+        'currentLateFee': json['currentLateFee'] == null ? undefined : json['currentLateFee'],
+        'escrowBalance': json['escrowBalance'] == null ? undefined : json['escrowBalance'],
+        'hasPmi': json['hasPmi'] == null ? undefined : json['hasPmi'],
+        'hasPrepaymentPenalty': json['hasPrepaymentPenalty'] == null ? undefined : json['hasPrepaymentPenalty'],
+        'lastPaymentAmount': json['lastPaymentAmount'] == null ? undefined : json['lastPaymentAmount'],
+        'lastPaymentDate': json['lastPaymentDate'] == null ? undefined : json['lastPaymentDate'],
+        'loanTerm': json['loanTerm'] == null ? undefined : json['loanTerm'],
+        'loanTypeDescription': json['loanTypeDescription'] == null ? undefined : json['loanTypeDescription'],
+        'maturityDate': json['maturityDate'] == null ? undefined : json['maturityDate'],
+        'nextMonthlyPayment': json['nextMonthlyPayment'] == null ? undefined : json['nextMonthlyPayment'],
+        'nextPaymentDueDate': json['nextPaymentDueDate'] == null ? undefined : json['nextPaymentDueDate'],
+        'originalPrincipalBalance': json['originalPrincipalBalance'] == null ? undefined : json['originalPrincipalBalance'],
+        'originalPropertyValue': json['originalPropertyValue'] == null ? undefined : json['originalPropertyValue'],
+        'outstandingPrincipalBalance': json['outstandingPrincipalBalance'] == null ? undefined : json['outstandingPrincipalBalance'],
+        'paymentAmount': json['paymentAmount'] == null ? undefined : json['paymentAmount'],
+        'paymentDate': json['paymentDate'] == null ? undefined : json['paymentDate'],
+        'originationDate': json['originationDate'] == null ? undefined : json['originationDate'],
+        'originationPrincipalAmount': json['originationPrincipalAmount'] == null ? undefined : json['originationPrincipalAmount'],
+        'pastDueAmount': json['pastDueAmount'] == null ? undefined : json['pastDueAmount'],
+        'ytdInterestPaid': json['ytdInterestPaid'] == null ? undefined : json['ytdInterestPaid'],
+        'ytdPrincipalPaid': json['ytdPrincipalPaid'] == null ? undefined : json['ytdPrincipalPaid'],
+        'propertyAddressCity': json['propertyAddressCity'] == null ? undefined : json['propertyAddressCity'],
+        'propertyAddressState': json['propertyAddressState'] == null ? undefined : json['propertyAddressState'],
+        'propertyAddressStreet': json['propertyAddressStreet'] == null ? undefined : json['propertyAddressStreet'],
+        'propertyAddressPostalCode': json['propertyAddressPostalCode'] == null ? undefined : json['propertyAddressPostalCode'],
+        'propertyRegion': json['propertyRegion'] == null ? undefined : json['propertyRegion'],
+        'propertyCountry': json['propertyCountry'] == null ? undefined : json['propertyCountry'],
+        'interestRatePercentage': json['interestRatePercentage'] == null ? undefined : json['interestRatePercentage'],
+        'interestRateType': json['interestRateType'] == null ? undefined : json['interestRateType'],
+        'status': json['status'] == null ? undefined : BankAccountStatusFromJSON(json['status']),
+        'statements': json['statements'] == null ? undefined : ((json['statements'] as Array<any>).map(AccountStatementsFromJSON)),
     };
 }
 
 export function MortgageAccountToJSON(value?: MortgageAccount | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'plaidAccountId': value.plaidAccountId,
-        'accountNumber': value.accountNumber,
-        'currentLateFee': value.currentLateFee,
-        'escrowBalance': value.escrowBalance,
-        'hasPmi': value.hasPmi,
-        'hasPrepaymentPenalty': value.hasPrepaymentPenalty,
-        'lastPaymentAmount': value.lastPaymentAmount,
-        'lastPaymentDate': value.lastPaymentDate,
-        'loanTerm': value.loanTerm,
-        'loanTypeDescription': value.loanTypeDescription,
-        'maturityDate': value.maturityDate,
-        'nextMonthlyPayment': value.nextMonthlyPayment,
-        'nextPaymentDueDate': value.nextPaymentDueDate,
-        'originalPrincipalBalance': value.originalPrincipalBalance,
-        'originalPropertyValue': value.originalPropertyValue,
-        'outstandingPrincipalBalance': value.outstandingPrincipalBalance,
-        'paymentAmount': value.paymentAmount,
-        'paymentDate': value.paymentDate,
-        'originationDate': value.originationDate,
-        'originationPrincipalAmount': value.originationPrincipalAmount,
-        'pastDueAmount': value.pastDueAmount,
-        'ytdInterestPaid': value.ytdInterestPaid,
-        'ytdPrincipalPaid': value.ytdPrincipalPaid,
-        'propertyAddressCity': value.propertyAddressCity,
-        'propertyAddressState': value.propertyAddressState,
-        'propertyAddressStreet': value.propertyAddressStreet,
-        'propertyAddressPostalCode': value.propertyAddressPostalCode,
-        'propertyRegion': value.propertyRegion,
-        'propertyCountry': value.propertyCountry,
-        'interestRatePercentage': value.interestRatePercentage,
-        'interestRateType': value.interestRateType,
-        'status': BankAccountStatusToJSON(value.status),
+        'id': value['id'],
+        'plaidAccountId': value['plaidAccountId'],
+        'accountNumber': value['accountNumber'],
+        'currentLateFee': value['currentLateFee'],
+        'escrowBalance': value['escrowBalance'],
+        'hasPmi': value['hasPmi'],
+        'hasPrepaymentPenalty': value['hasPrepaymentPenalty'],
+        'lastPaymentAmount': value['lastPaymentAmount'],
+        'lastPaymentDate': value['lastPaymentDate'],
+        'loanTerm': value['loanTerm'],
+        'loanTypeDescription': value['loanTypeDescription'],
+        'maturityDate': value['maturityDate'],
+        'nextMonthlyPayment': value['nextMonthlyPayment'],
+        'nextPaymentDueDate': value['nextPaymentDueDate'],
+        'originalPrincipalBalance': value['originalPrincipalBalance'],
+        'originalPropertyValue': value['originalPropertyValue'],
+        'outstandingPrincipalBalance': value['outstandingPrincipalBalance'],
+        'paymentAmount': value['paymentAmount'],
+        'paymentDate': value['paymentDate'],
+        'originationDate': value['originationDate'],
+        'originationPrincipalAmount': value['originationPrincipalAmount'],
+        'pastDueAmount': value['pastDueAmount'],
+        'ytdInterestPaid': value['ytdInterestPaid'],
+        'ytdPrincipalPaid': value['ytdPrincipalPaid'],
+        'propertyAddressCity': value['propertyAddressCity'],
+        'propertyAddressState': value['propertyAddressState'],
+        'propertyAddressStreet': value['propertyAddressStreet'],
+        'propertyAddressPostalCode': value['propertyAddressPostalCode'],
+        'propertyRegion': value['propertyRegion'],
+        'propertyCountry': value['propertyCountry'],
+        'interestRatePercentage': value['interestRatePercentage'],
+        'interestRateType': value['interestRateType'],
+        'status': BankAccountStatusToJSON(value['status']),
+        'statements': value['statements'] == null ? undefined : ((value['statements'] as Array<any>).map(AccountStatementsToJSON)),
     };
 }
 

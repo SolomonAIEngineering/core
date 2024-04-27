@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { EmployeePayrollRun } from './EmployeePayrollRun';
 import {
     EmployeePayrollRunFromJSON,
@@ -110,9 +110,7 @@ export interface EmployerPayrollRun {
  * Check if a given object implements the EmployerPayrollRun interface.
  */
 export function instanceOfEmployerPayrollRun(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function EmployerPayrollRunFromJSON(json: any): EmployerPayrollRun {
@@ -120,45 +118,42 @@ export function EmployerPayrollRunFromJSON(json: any): EmployerPayrollRun {
 }
 
 export function EmployerPayrollRunFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmployerPayrollRun {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'runState': !exists(json, 'runState') ? undefined : PayrollRunStateFromJSON(json['runState']),
-        'runType': !exists(json, 'runType') ? undefined : PayrollRunTypeFromJSON(json['runType']),
-        'startDate': !exists(json, 'startDate') ? undefined : (new Date(json['startDate'])),
-        'endDate': !exists(json, 'endDate') ? undefined : (new Date(json['endDate'])),
-        'checkDate': !exists(json, 'checkDate') ? undefined : (new Date(json['checkDate'])),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'payrollRuns': !exists(json, 'payrollRuns') ? undefined : ((json['payrollRuns'] as Array<any>).map(EmployeePayrollRunFromJSON)),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'runState': json['runState'] == null ? undefined : PayrollRunStateFromJSON(json['runState']),
+        'runType': json['runType'] == null ? undefined : PayrollRunTypeFromJSON(json['runType']),
+        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
+        'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
+        'checkDate': json['checkDate'] == null ? undefined : (new Date(json['checkDate'])),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'payrollRuns': json['payrollRuns'] == null ? undefined : ((json['payrollRuns'] as Array<any>).map(EmployeePayrollRunFromJSON)),
     };
 }
 
 export function EmployerPayrollRunToJSON(value?: EmployerPayrollRun | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'runState': PayrollRunStateToJSON(value.runState),
-        'runType': PayrollRunTypeToJSON(value.runType),
-        'startDate': value.startDate === undefined ? undefined : (value.startDate.toISOString()),
-        'endDate': value.endDate === undefined ? undefined : (value.endDate.toISOString()),
-        'checkDate': value.checkDate === undefined ? undefined : (value.checkDate.toISOString()),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'payrollRuns': value.payrollRuns === undefined ? undefined : ((value.payrollRuns as Array<any>).map(EmployeePayrollRunToJSON)),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'runState': PayrollRunStateToJSON(value['runState']),
+        'runType': PayrollRunTypeToJSON(value['runType']),
+        'startDate': value['startDate'] == null ? undefined : ((value['startDate']).toISOString()),
+        'endDate': value['endDate'] == null ? undefined : ((value['endDate']).toISOString()),
+        'checkDate': value['checkDate'] == null ? undefined : ((value['checkDate']).toISOString()),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'payrollRuns': value['payrollRuns'] == null ? undefined : ((value['payrollRuns'] as Array<any>).map(EmployeePayrollRunToJSON)),
     };
 }
 

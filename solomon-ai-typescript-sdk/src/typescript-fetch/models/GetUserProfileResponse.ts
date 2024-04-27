@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SocialRelationshipMetadata } from './SocialRelationshipMetadata';
 import {
     SocialRelationshipMetadataFromJSON,
@@ -50,9 +50,7 @@ export interface GetUserProfileResponse {
  * Check if a given object implements the GetUserProfileResponse interface.
  */
 export function instanceOfGetUserProfileResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetUserProfileResponseFromJSON(json: any): GetUserProfileResponse {
@@ -60,27 +58,24 @@ export function GetUserProfileResponseFromJSON(json: any): GetUserProfileRespons
 }
 
 export function GetUserProfileResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUserProfileResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'profile': !exists(json, 'profile') ? undefined : UserProfileFromJSON(json['profile']),
-        'metadata': !exists(json, 'metadata') ? undefined : SocialRelationshipMetadataFromJSON(json['metadata']),
+        'profile': json['profile'] == null ? undefined : UserProfileFromJSON(json['profile']),
+        'metadata': json['metadata'] == null ? undefined : SocialRelationshipMetadataFromJSON(json['metadata']),
     };
 }
 
 export function GetUserProfileResponseToJSON(value?: GetUserProfileResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'profile': UserProfileToJSON(value.profile),
-        'metadata': SocialRelationshipMetadataToJSON(value.metadata),
+        'profile': UserProfileToJSON(value['profile']),
+        'metadata': SocialRelationshipMetadataToJSON(value['metadata']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfile } from './FinancialUserProfile';
 import {
     FinancialUserProfileFromJSON,
@@ -38,9 +38,7 @@ export interface AddNoteToFinancialUserProfileResponse {
  * Check if a given object implements the AddNoteToFinancialUserProfileResponse interface.
  */
 export function instanceOfAddNoteToFinancialUserProfileResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function AddNoteToFinancialUserProfileResponseFromJSON(json: any): AddNoteToFinancialUserProfileResponse {
@@ -48,25 +46,22 @@ export function AddNoteToFinancialUserProfileResponseFromJSON(json: any): AddNot
 }
 
 export function AddNoteToFinancialUserProfileResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddNoteToFinancialUserProfileResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'businessAccount': !exists(json, 'businessAccount') ? undefined : FinancialUserProfileFromJSON(json['businessAccount']),
+        'businessAccount': json['businessAccount'] == null ? undefined : FinancialUserProfileFromJSON(json['businessAccount']),
     };
 }
 
 export function AddNoteToFinancialUserProfileResponseToJSON(value?: AddNoteToFinancialUserProfileResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'businessAccount': FinancialUserProfileToJSON(value.businessAccount),
+        'businessAccount': FinancialUserProfileToJSON(value['businessAccount']),
     };
 }
 

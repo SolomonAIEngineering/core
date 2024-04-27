@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -49,12 +49,10 @@ export interface Topic {
  * Check if a given object implements the Topic interface.
  */
 export function instanceOfTopic(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "topicName" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "imageUrl" in value;
-
-    return isInstance;
+    if (!('topicName' in value)) return false;
+    if (!('description' in value)) return false;
+    if (!('imageUrl' in value)) return false;
+    return true;
 }
 
 export function TopicFromJSON(json: any): Topic {
@@ -62,12 +60,12 @@ export function TopicFromJSON(json: any): Topic {
 }
 
 export function TopicFromJSONTyped(json: any, ignoreDiscriminator: boolean): Topic {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'topicName': json['topicName'],
         'description': json['description'],
         'imageUrl': json['imageUrl'],
@@ -75,18 +73,15 @@ export function TopicFromJSONTyped(json: any, ignoreDiscriminator: boolean): Top
 }
 
 export function TopicToJSON(value?: Topic | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'topicName': value.topicName,
-        'description': value.description,
-        'imageUrl': value.imageUrl,
+        'id': value['id'],
+        'topicName': value['topicName'],
+        'description': value['description'],
+        'imageUrl': value['imageUrl'],
     };
 }
 

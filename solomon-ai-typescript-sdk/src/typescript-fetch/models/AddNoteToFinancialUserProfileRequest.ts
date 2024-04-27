@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -62,13 +62,11 @@ export interface AddNoteToFinancialUserProfileRequest {
  * Check if a given object implements the AddNoteToFinancialUserProfileRequest interface.
  */
 export function instanceOfAddNoteToFinancialUserProfileRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "businessAccountId" in value;
-    isInstance = isInstance && "note" in value;
-    isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "profileType" in value;
-
-    return isInstance;
+    if (!('businessAccountId' in value)) return false;
+    if (!('note' in value)) return false;
+    if (!('userId' in value)) return false;
+    if (!('profileType' in value)) return false;
+    return true;
 }
 
 export function AddNoteToFinancialUserProfileRequestFromJSON(json: any): AddNoteToFinancialUserProfileRequest {
@@ -76,7 +74,7 @@ export function AddNoteToFinancialUserProfileRequestFromJSON(json: any): AddNote
 }
 
 export function AddNoteToFinancialUserProfileRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddNoteToFinancialUserProfileRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -89,18 +87,15 @@ export function AddNoteToFinancialUserProfileRequestFromJSONTyped(json: any, ign
 }
 
 export function AddNoteToFinancialUserProfileRequestToJSON(value?: AddNoteToFinancialUserProfileRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'businessAccountId': value.businessAccountId,
-        'note': SmartNoteToJSON(value.note),
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'businessAccountId': value['businessAccountId'],
+        'note': SmartNoteToJSON(value['note']),
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

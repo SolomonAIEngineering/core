@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The Item object refers to the goods involved in a transaction.
  * @export
@@ -109,9 +109,7 @@ export interface Item {
  * Check if a given object implements the Item interface.
  */
 export function instanceOfItem(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ItemFromJSON(json: any): Item {
@@ -119,51 +117,48 @@ export function ItemFromJSON(json: any): Item {
 }
 
 export function ItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): Item {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'status': !exists(json, 'status') ? undefined : json['status'],
-        'unitPrice': !exists(json, 'unitPrice') ? undefined : json['unitPrice'],
-        'purchasePrice': !exists(json, 'purchasePrice') ? undefined : json['purchasePrice'],
-        'purchaseAccount': !exists(json, 'purchaseAccount') ? undefined : json['purchaseAccount'],
-        'salesAccount': !exists(json, 'salesAccount') ? undefined : json['salesAccount'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'remoteUpdatedAt': !exists(json, 'remoteUpdatedAt') ? undefined : (new Date(json['remoteUpdatedAt'])),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeRecordId': !exists(json, 'mergeRecordId') ? undefined : json['mergeRecordId'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'status': json['status'] == null ? undefined : json['status'],
+        'unitPrice': json['unitPrice'] == null ? undefined : json['unitPrice'],
+        'purchasePrice': json['purchasePrice'] == null ? undefined : json['purchasePrice'],
+        'purchaseAccount': json['purchaseAccount'] == null ? undefined : json['purchaseAccount'],
+        'salesAccount': json['salesAccount'] == null ? undefined : json['salesAccount'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'remoteUpdatedAt': json['remoteUpdatedAt'] == null ? undefined : (new Date(json['remoteUpdatedAt'])),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeRecordId': json['mergeRecordId'] == null ? undefined : json['mergeRecordId'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
     };
 }
 
 export function ItemToJSON(value?: Item | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'name': value.name,
-        'status': value.status,
-        'unitPrice': value.unitPrice,
-        'purchasePrice': value.purchasePrice,
-        'purchaseAccount': value.purchaseAccount,
-        'salesAccount': value.salesAccount,
-        'company': value.company,
-        'remoteUpdatedAt': value.remoteUpdatedAt === undefined ? undefined : (value.remoteUpdatedAt.toISOString()),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeRecordId': value.mergeRecordId,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'name': value['name'],
+        'status': value['status'],
+        'unitPrice': value['unitPrice'],
+        'purchasePrice': value['purchasePrice'],
+        'purchaseAccount': value['purchaseAccount'],
+        'salesAccount': value['salesAccount'],
+        'company': value['company'],
+        'remoteUpdatedAt': value['remoteUpdatedAt'] == null ? undefined : ((value['remoteUpdatedAt']).toISOString()),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeRecordId': value['mergeRecordId'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
     };
 }
 

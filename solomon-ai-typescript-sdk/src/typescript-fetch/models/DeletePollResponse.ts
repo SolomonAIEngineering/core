@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface DeletePollResponse {
  * Check if a given object implements the DeletePollResponse interface.
  */
 export function instanceOfDeletePollResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DeletePollResponseFromJSON(json: any): DeletePollResponse {
@@ -41,25 +39,22 @@ export function DeletePollResponseFromJSON(json: any): DeletePollResponse {
 }
 
 export function DeletePollResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeletePollResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'success': !exists(json, 'success') ? undefined : json['success'],
+        'success': json['success'] == null ? undefined : json['success'],
     };
 }
 
 export function DeletePollResponseToJSON(value?: DeletePollResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'success': value.success,
+        'success': value['success'],
     };
 }
 

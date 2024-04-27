@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { IncomeStatement } from './IncomeStatement';
 import {
     IncomeStatementFromJSON,
@@ -44,9 +44,7 @@ export interface ReadIncomeStatementsResponse {
  * Check if a given object implements the ReadIncomeStatementsResponse interface.
  */
 export function instanceOfReadIncomeStatementsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ReadIncomeStatementsResponseFromJSON(json: any): ReadIncomeStatementsResponse {
@@ -54,27 +52,24 @@ export function ReadIncomeStatementsResponseFromJSON(json: any): ReadIncomeState
 }
 
 export function ReadIncomeStatementsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReadIncomeStatementsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'incomeStatements': !exists(json, 'incomeStatements') ? undefined : ((json['incomeStatements'] as Array<any>).map(IncomeStatementFromJSON)),
-        'nextPage': !exists(json, 'nextPage') ? undefined : json['nextPage'],
+        'incomeStatements': json['incomeStatements'] == null ? undefined : ((json['incomeStatements'] as Array<any>).map(IncomeStatementFromJSON)),
+        'nextPage': json['nextPage'] == null ? undefined : json['nextPage'],
     };
 }
 
 export function ReadIncomeStatementsResponseToJSON(value?: ReadIncomeStatementsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'incomeStatements': value.incomeStatements === undefined ? undefined : ((value.incomeStatements as Array<any>).map(IncomeStatementToJSON)),
-        'nextPage': value.nextPage,
+        'incomeStatements': value['incomeStatements'] == null ? undefined : ((value['incomeStatements'] as Array<any>).map(IncomeStatementToJSON)),
+        'nextPage': value['nextPage'],
     };
 }
 

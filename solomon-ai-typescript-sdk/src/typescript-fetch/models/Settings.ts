@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ApplicationTheme } from './ApplicationTheme';
 import {
     ApplicationThemeFromJSON,
@@ -110,9 +110,7 @@ export interface Settings {
  * Check if a given object implements the Settings interface.
  */
 export function instanceOfSettings(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function SettingsFromJSON(json: any): Settings {
@@ -120,39 +118,36 @@ export function SettingsFromJSON(json: any): Settings {
 }
 
 export function SettingsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Settings {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'appTheme': !exists(json, 'appTheme') ? undefined : ApplicationThemeFromJSON(json['appTheme']),
-        'notificationSettings': !exists(json, 'notificationSettings') ? undefined : NotificationSettingsFromJSON(json['notificationSettings']),
-        'preferredLanguage': !exists(json, 'preferredLanguage') ? undefined : json['preferredLanguage'],
-        'riskTolerance': !exists(json, 'riskTolerance') ? undefined : RiskToleranceSettingsFromJSON(json['riskTolerance']),
-        'likedDashboardPanels': !exists(json, 'likedDashboardPanels') ? undefined : ((json['likedDashboardPanels'] as Array<any>).map(LikedDashboardPanelsFromJSON)),
-        'digitalWorkerSettings': !exists(json, 'digitalWorkerSettings') ? undefined : DigitalWorkerSettingsFromJSON(json['digitalWorkerSettings']),
-        'financialPreferences': !exists(json, 'financialPreferences') ? undefined : FinancialPreferencesFromJSON(json['financialPreferences']),
+        'id': json['id'] == null ? undefined : json['id'],
+        'appTheme': json['appTheme'] == null ? undefined : ApplicationThemeFromJSON(json['appTheme']),
+        'notificationSettings': json['notificationSettings'] == null ? undefined : NotificationSettingsFromJSON(json['notificationSettings']),
+        'preferredLanguage': json['preferredLanguage'] == null ? undefined : json['preferredLanguage'],
+        'riskTolerance': json['riskTolerance'] == null ? undefined : RiskToleranceSettingsFromJSON(json['riskTolerance']),
+        'likedDashboardPanels': json['likedDashboardPanels'] == null ? undefined : ((json['likedDashboardPanels'] as Array<any>).map(LikedDashboardPanelsFromJSON)),
+        'digitalWorkerSettings': json['digitalWorkerSettings'] == null ? undefined : DigitalWorkerSettingsFromJSON(json['digitalWorkerSettings']),
+        'financialPreferences': json['financialPreferences'] == null ? undefined : FinancialPreferencesFromJSON(json['financialPreferences']),
     };
 }
 
 export function SettingsToJSON(value?: Settings | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'appTheme': ApplicationThemeToJSON(value.appTheme),
-        'notificationSettings': NotificationSettingsToJSON(value.notificationSettings),
-        'preferredLanguage': value.preferredLanguage,
-        'riskTolerance': RiskToleranceSettingsToJSON(value.riskTolerance),
-        'likedDashboardPanels': value.likedDashboardPanels === undefined ? undefined : ((value.likedDashboardPanels as Array<any>).map(LikedDashboardPanelsToJSON)),
-        'digitalWorkerSettings': DigitalWorkerSettingsToJSON(value.digitalWorkerSettings),
-        'financialPreferences': FinancialPreferencesToJSON(value.financialPreferences),
+        'id': value['id'],
+        'appTheme': ApplicationThemeToJSON(value['appTheme']),
+        'notificationSettings': NotificationSettingsToJSON(value['notificationSettings']),
+        'preferredLanguage': value['preferredLanguage'],
+        'riskTolerance': RiskToleranceSettingsToJSON(value['riskTolerance']),
+        'likedDashboardPanels': value['likedDashboardPanels'] == null ? undefined : ((value['likedDashboardPanels'] as Array<any>).map(LikedDashboardPanelsToJSON)),
+        'digitalWorkerSettings': DigitalWorkerSettingsToJSON(value['digitalWorkerSettings']),
+        'financialPreferences': FinancialPreferencesToJSON(value['financialPreferences']),
     };
 }
 

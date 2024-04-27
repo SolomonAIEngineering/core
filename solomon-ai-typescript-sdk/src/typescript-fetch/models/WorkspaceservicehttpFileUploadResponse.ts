@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,7 @@ export interface WorkspaceservicehttpFileUploadResponse {
  * Check if a given object implements the WorkspaceservicehttpFileUploadResponse interface.
  */
 export function instanceOfWorkspaceservicehttpFileUploadResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function WorkspaceservicehttpFileUploadResponseFromJSON(json: any): WorkspaceservicehttpFileUploadResponse {
@@ -47,27 +45,24 @@ export function WorkspaceservicehttpFileUploadResponseFromJSON(json: any): Works
 }
 
 export function WorkspaceservicehttpFileUploadResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): WorkspaceservicehttpFileUploadResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'fileUrl': !exists(json, 'fileUrl') ? undefined : json['fileUrl'],
-        'fileId': !exists(json, 'file_id') ? undefined : json['file_id'],
+        'fileUrl': json['fileUrl'] == null ? undefined : json['fileUrl'],
+        'fileId': json['file_id'] == null ? undefined : json['file_id'],
     };
 }
 
 export function WorkspaceservicehttpFileUploadResponseToJSON(value?: WorkspaceservicehttpFileUploadResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'fileUrl': value.fileUrl,
-        'file_id': value.fileId,
+        'fileUrl': value['fileUrl'],
+        'file_id': value['fileId'],
     };
 }
 

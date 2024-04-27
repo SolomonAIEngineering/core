@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,7 @@ export interface CreateSubscriptionResponse {
  * Check if a given object implements the CreateSubscriptionResponse interface.
  */
 export function instanceOfCreateSubscriptionResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreateSubscriptionResponseFromJSON(json: any): CreateSubscriptionResponse {
@@ -47,27 +45,24 @@ export function CreateSubscriptionResponseFromJSON(json: any): CreateSubscriptio
 }
 
 export function CreateSubscriptionResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateSubscriptionResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'subscriptionId': !exists(json, 'subscriptionId') ? undefined : json['subscriptionId'],
-        'paymentIntentClientSecret': !exists(json, 'paymentIntentClientSecret') ? undefined : json['paymentIntentClientSecret'],
+        'subscriptionId': json['subscriptionId'] == null ? undefined : json['subscriptionId'],
+        'paymentIntentClientSecret': json['paymentIntentClientSecret'] == null ? undefined : json['paymentIntentClientSecret'],
     };
 }
 
 export function CreateSubscriptionResponseToJSON(value?: CreateSubscriptionResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'subscriptionId': value.subscriptionId,
-        'paymentIntentClientSecret': value.paymentIntentClientSecret,
+        'subscriptionId': value['subscriptionId'],
+        'paymentIntentClientSecret': value['paymentIntentClientSecret'],
     };
 }
 

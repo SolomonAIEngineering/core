@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { TaskState } from './TaskState';
 import {
     TaskStateFromJSON,
@@ -50,9 +50,7 @@ export interface PollAsyncTaskExecutionStatusResponse {
  * Check if a given object implements the PollAsyncTaskExecutionStatusResponse interface.
  */
 export function instanceOfPollAsyncTaskExecutionStatusResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PollAsyncTaskExecutionStatusResponseFromJSON(json: any): PollAsyncTaskExecutionStatusResponse {
@@ -60,29 +58,26 @@ export function PollAsyncTaskExecutionStatusResponseFromJSON(json: any): PollAsy
 }
 
 export function PollAsyncTaskExecutionStatusResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): PollAsyncTaskExecutionStatusResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'workflowId': !exists(json, 'workflowId') ? undefined : json['workflowId'],
-        'status': !exists(json, 'status') ? undefined : TaskStateFromJSON(json['status']),
-        'runId': !exists(json, 'runId') ? undefined : json['runId'],
+        'workflowId': json['workflowId'] == null ? undefined : json['workflowId'],
+        'status': json['status'] == null ? undefined : TaskStateFromJSON(json['status']),
+        'runId': json['runId'] == null ? undefined : json['runId'],
     };
 }
 
 export function PollAsyncTaskExecutionStatusResponseToJSON(value?: PollAsyncTaskExecutionStatusResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'workflowId': value.workflowId,
-        'status': TaskStateToJSON(value.status),
-        'runId': value.runId,
+        'workflowId': value['workflowId'],
+        'status': TaskStateToJSON(value['status']),
+        'runId': value['runId'],
     };
 }
 

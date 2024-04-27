@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface CreatePublicationResponse {
  * Check if a given object implements the CreatePublicationResponse interface.
  */
 export function instanceOfCreatePublicationResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreatePublicationResponseFromJSON(json: any): CreatePublicationResponse {
@@ -41,25 +39,22 @@ export function CreatePublicationResponseFromJSON(json: any): CreatePublicationR
 }
 
 export function CreatePublicationResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreatePublicationResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 
 export function CreatePublicationResponseToJSON(value?: CreatePublicationResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
+        'id': value['id'],
     };
 }
 

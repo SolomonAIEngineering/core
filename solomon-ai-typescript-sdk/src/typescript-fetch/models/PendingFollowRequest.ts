@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { UserProfile } from './UserProfile';
 import {
     UserProfileFromJSON,
@@ -50,11 +50,9 @@ export interface PendingFollowRequest {
  * Check if a given object implements the PendingFollowRequest interface.
  */
 export function instanceOfPendingFollowRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "followerRequestionToFollow" in value;
-    isInstance = isInstance && "createdAt" in value;
-
-    return isInstance;
+    if (!('followerRequestionToFollow' in value)) return false;
+    if (!('createdAt' in value)) return false;
+    return true;
 }
 
 export function PendingFollowRequestFromJSON(json: any): PendingFollowRequest {
@@ -62,29 +60,26 @@ export function PendingFollowRequestFromJSON(json: any): PendingFollowRequest {
 }
 
 export function PendingFollowRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): PendingFollowRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'followRequestId': !exists(json, 'followRequestId') ? undefined : json['followRequestId'],
+        'followRequestId': json['followRequestId'] == null ? undefined : json['followRequestId'],
         'followerRequestionToFollow': UserProfileFromJSON(json['followerRequestionToFollow']),
         'createdAt': json['createdAt'],
     };
 }
 
 export function PendingFollowRequestToJSON(value?: PendingFollowRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'followRequestId': value.followRequestId,
-        'followerRequestionToFollow': UserProfileToJSON(value.followerRequestionToFollow),
-        'createdAt': value.createdAt,
+        'followRequestId': value['followRequestId'],
+        'followerRequestionToFollow': UserProfileToJSON(value['followerRequestionToFollow']),
+        'createdAt': value['createdAt'],
     };
 }
 

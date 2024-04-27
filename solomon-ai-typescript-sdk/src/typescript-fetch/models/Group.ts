@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PayGroupType } from './PayGroupType';
 import {
     PayGroupTypeFromJSON,
@@ -86,9 +86,7 @@ export interface Group {
  * Check if a given object implements the Group interface.
  */
 export function instanceOfGroup(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GroupFromJSON(json: any): Group {
@@ -96,41 +94,38 @@ export function GroupFromJSON(json: any): Group {
 }
 
 export function GroupFromJSONTyped(json: any, ignoreDiscriminator: boolean): Group {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'type': !exists(json, 'type') ? undefined : PayGroupTypeFromJSON(json['type']),
-        'parentGroupMergeAccountId': !exists(json, 'parentGroupMergeAccountId') ? undefined : json['parentGroupMergeAccountId'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'type': json['type'] == null ? undefined : PayGroupTypeFromJSON(json['type']),
+        'parentGroupMergeAccountId': json['parentGroupMergeAccountId'] == null ? undefined : json['parentGroupMergeAccountId'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
     };
 }
 
 export function GroupToJSON(value?: Group | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'name': value.name,
-        'type': PayGroupTypeToJSON(value.type),
-        'parentGroupMergeAccountId': value.parentGroupMergeAccountId,
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeAccountId': value.mergeAccountId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'name': value['name'],
+        'type': PayGroupTypeToJSON(value['type']),
+        'parentGroupMergeAccountId': value['parentGroupMergeAccountId'],
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeAccountId': value['mergeAccountId'],
     };
 }
 

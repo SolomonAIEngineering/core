@@ -34,6 +34,7 @@ func newFileMetadataORM(db *gorm.DB, opts ...gen.DOOption) fileMetadataORM {
 	_fileMetadataORM.Id = field.NewUint64(tableName, "id")
 	_fileMetadataORM.IsDeleted = field.NewBool(tableName, "is_deleted")
 	_fileMetadataORM.Location = field.NewString(tableName, "location")
+	_fileMetadataORM.MarkdownContent = field.NewString(tableName, "markdown_content")
 	_fileMetadataORM.Name = field.NewString(tableName, "name")
 	_fileMetadataORM.S3Acl = field.NewString(tableName, "s3_acl")
 	_fileMetadataORM.S3BucketName = field.NewString(tableName, "s3_bucket_name")
@@ -70,6 +71,7 @@ type fileMetadataORM struct {
 	Id                     field.Uint64
 	IsDeleted              field.Bool
 	Location               field.String
+	MarkdownContent        field.String
 	Name                   field.String
 	S3Acl                  field.String
 	S3BucketName           field.String
@@ -112,6 +114,7 @@ func (f *fileMetadataORM) updateTableName(table string) *fileMetadataORM {
 	f.Id = field.NewUint64(table, "id")
 	f.IsDeleted = field.NewBool(table, "is_deleted")
 	f.Location = field.NewString(table, "location")
+	f.MarkdownContent = field.NewString(table, "markdown_content")
 	f.Name = field.NewString(table, "name")
 	f.S3Acl = field.NewString(table, "s3_acl")
 	f.S3BucketName = field.NewString(table, "s3_bucket_name")
@@ -148,13 +151,14 @@ func (f *fileMetadataORM) GetFieldByName(fieldName string) (field.OrderExpr, boo
 }
 
 func (f *fileMetadataORM) fillFieldMap() {
-	f.fieldMap = make(map[string]field.Expr, 26)
+	f.fieldMap = make(map[string]field.Expr, 27)
 	f.fieldMap["created_at"] = f.CreatedAt
 	f.fieldMap["file_type"] = f.FileType
 	f.fieldMap["folder_metadata_id"] = f.FolderMetadataId
 	f.fieldMap["id"] = f.Id
 	f.fieldMap["is_deleted"] = f.IsDeleted
 	f.fieldMap["location"] = f.Location
+	f.fieldMap["markdown_content"] = f.MarkdownContent
 	f.fieldMap["name"] = f.Name
 	f.fieldMap["s3_acl"] = f.S3Acl
 	f.fieldMap["s3_bucket_name"] = f.S3BucketName

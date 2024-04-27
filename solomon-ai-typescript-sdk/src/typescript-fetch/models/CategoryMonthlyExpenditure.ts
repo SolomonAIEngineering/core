@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -63,9 +63,7 @@ export interface CategoryMonthlyExpenditure {
  * Check if a given object implements the CategoryMonthlyExpenditure interface.
  */
 export function instanceOfCategoryMonthlyExpenditure(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CategoryMonthlyExpenditureFromJSON(json: any): CategoryMonthlyExpenditure {
@@ -73,33 +71,30 @@ export function CategoryMonthlyExpenditureFromJSON(json: any): CategoryMonthlyEx
 }
 
 export function CategoryMonthlyExpenditureFromJSONTyped(json: any, ignoreDiscriminator: boolean): CategoryMonthlyExpenditure {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'month': !exists(json, 'month') ? undefined : json['month'],
-        'personalFinanceCategoryPrimary': !exists(json, 'personalFinanceCategoryPrimary') ? undefined : json['personalFinanceCategoryPrimary'],
-        'totalSpending': !exists(json, 'totalSpending') ? undefined : json['totalSpending'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'month': json['month'] == null ? undefined : json['month'],
+        'personalFinanceCategoryPrimary': json['personalFinanceCategoryPrimary'] == null ? undefined : json['personalFinanceCategoryPrimary'],
+        'totalSpending': json['totalSpending'] == null ? undefined : json['totalSpending'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function CategoryMonthlyExpenditureToJSON(value?: CategoryMonthlyExpenditure | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'month': value.month,
-        'personalFinanceCategoryPrimary': value.personalFinanceCategoryPrimary,
-        'totalSpending': value.totalSpending,
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'month': value['month'],
+        'personalFinanceCategoryPrimary': value['personalFinanceCategoryPrimary'],
+        'totalSpending': value['totalSpending'],
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

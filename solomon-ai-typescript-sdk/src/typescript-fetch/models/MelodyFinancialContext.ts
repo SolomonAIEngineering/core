@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BankAccount } from './BankAccount';
 import {
     BankAccountFromJSON,
@@ -171,9 +171,7 @@ export interface MelodyFinancialContext {
  * Check if a given object implements the MelodyFinancialContext interface.
  */
 export function instanceOfMelodyFinancialContext(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function MelodyFinancialContextFromJSON(json: any): MelodyFinancialContext {
@@ -181,47 +179,44 @@ export function MelodyFinancialContextFromJSON(json: any): MelodyFinancialContex
 }
 
 export function MelodyFinancialContextFromJSONTyped(json: any, ignoreDiscriminator: boolean): MelodyFinancialContext {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'categories': !exists(json, 'categories') ? undefined : ((json['categories'] as Array<any>).map(CategoryMetricsFinancialSubProfileFromJSON)),
-        'expenses': !exists(json, 'expenses') ? undefined : ((json['expenses'] as Array<any>).map(ExpenseMetricsFinancialSubProfileMetricsFromJSON)),
-        'income': !exists(json, 'income') ? undefined : ((json['income'] as Array<any>).map(IncomeMetricsFinancialSubProfileFromJSON)),
-        'locations': !exists(json, 'locations') ? undefined : ((json['locations'] as Array<any>).map(LocationFinancialSubProfileFromJSON)),
-        'merchants': !exists(json, 'merchants') ? undefined : ((json['merchants'] as Array<any>).map(MerchantMetricsFinancialSubProfileFromJSON)),
-        'paymentChannels': !exists(json, 'paymentChannels') ? undefined : ((json['paymentChannels'] as Array<any>).map(PaymentChannelMetricsFinancialSubProfileFromJSON)),
-        'bankAccounts': !exists(json, 'bankAccounts') ? undefined : ((json['bankAccounts'] as Array<any>).map(BankAccountFromJSON)),
-        'investmentAccounts': !exists(json, 'investmentAccounts') ? undefined : ((json['investmentAccounts'] as Array<any>).map(InvestmentAccountFromJSON)),
-        'creditAccounts': !exists(json, 'creditAccounts') ? undefined : ((json['creditAccounts'] as Array<any>).map(CreditAccountFromJSON)),
-        'mortgageLoanAccounts': !exists(json, 'mortgageLoanAccounts') ? undefined : ((json['mortgageLoanAccounts'] as Array<any>).map(MortgageAccountFromJSON)),
-        'studentLoanAccounts': !exists(json, 'studentLoanAccounts') ? undefined : ((json['studentLoanAccounts'] as Array<any>).map(StudentLoanAccountFromJSON)),
-        'financialUserProfileType': !exists(json, 'financialUserProfileType') ? undefined : FinancialUserProfileTypeFromJSON(json['financialUserProfileType']),
+        'categories': json['categories'] == null ? undefined : ((json['categories'] as Array<any>).map(CategoryMetricsFinancialSubProfileFromJSON)),
+        'expenses': json['expenses'] == null ? undefined : ((json['expenses'] as Array<any>).map(ExpenseMetricsFinancialSubProfileMetricsFromJSON)),
+        'income': json['income'] == null ? undefined : ((json['income'] as Array<any>).map(IncomeMetricsFinancialSubProfileFromJSON)),
+        'locations': json['locations'] == null ? undefined : ((json['locations'] as Array<any>).map(LocationFinancialSubProfileFromJSON)),
+        'merchants': json['merchants'] == null ? undefined : ((json['merchants'] as Array<any>).map(MerchantMetricsFinancialSubProfileFromJSON)),
+        'paymentChannels': json['paymentChannels'] == null ? undefined : ((json['paymentChannels'] as Array<any>).map(PaymentChannelMetricsFinancialSubProfileFromJSON)),
+        'bankAccounts': json['bankAccounts'] == null ? undefined : ((json['bankAccounts'] as Array<any>).map(BankAccountFromJSON)),
+        'investmentAccounts': json['investmentAccounts'] == null ? undefined : ((json['investmentAccounts'] as Array<any>).map(InvestmentAccountFromJSON)),
+        'creditAccounts': json['creditAccounts'] == null ? undefined : ((json['creditAccounts'] as Array<any>).map(CreditAccountFromJSON)),
+        'mortgageLoanAccounts': json['mortgageLoanAccounts'] == null ? undefined : ((json['mortgageLoanAccounts'] as Array<any>).map(MortgageAccountFromJSON)),
+        'studentLoanAccounts': json['studentLoanAccounts'] == null ? undefined : ((json['studentLoanAccounts'] as Array<any>).map(StudentLoanAccountFromJSON)),
+        'financialUserProfileType': json['financialUserProfileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['financialUserProfileType']),
     };
 }
 
 export function MelodyFinancialContextToJSON(value?: MelodyFinancialContext | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'categories': value.categories === undefined ? undefined : ((value.categories as Array<any>).map(CategoryMetricsFinancialSubProfileToJSON)),
-        'expenses': value.expenses === undefined ? undefined : ((value.expenses as Array<any>).map(ExpenseMetricsFinancialSubProfileMetricsToJSON)),
-        'income': value.income === undefined ? undefined : ((value.income as Array<any>).map(IncomeMetricsFinancialSubProfileToJSON)),
-        'locations': value.locations === undefined ? undefined : ((value.locations as Array<any>).map(LocationFinancialSubProfileToJSON)),
-        'merchants': value.merchants === undefined ? undefined : ((value.merchants as Array<any>).map(MerchantMetricsFinancialSubProfileToJSON)),
-        'paymentChannels': value.paymentChannels === undefined ? undefined : ((value.paymentChannels as Array<any>).map(PaymentChannelMetricsFinancialSubProfileToJSON)),
-        'bankAccounts': value.bankAccounts === undefined ? undefined : ((value.bankAccounts as Array<any>).map(BankAccountToJSON)),
-        'investmentAccounts': value.investmentAccounts === undefined ? undefined : ((value.investmentAccounts as Array<any>).map(InvestmentAccountToJSON)),
-        'creditAccounts': value.creditAccounts === undefined ? undefined : ((value.creditAccounts as Array<any>).map(CreditAccountToJSON)),
-        'mortgageLoanAccounts': value.mortgageLoanAccounts === undefined ? undefined : ((value.mortgageLoanAccounts as Array<any>).map(MortgageAccountToJSON)),
-        'studentLoanAccounts': value.studentLoanAccounts === undefined ? undefined : ((value.studentLoanAccounts as Array<any>).map(StudentLoanAccountToJSON)),
-        'financialUserProfileType': FinancialUserProfileTypeToJSON(value.financialUserProfileType),
+        'categories': value['categories'] == null ? undefined : ((value['categories'] as Array<any>).map(CategoryMetricsFinancialSubProfileToJSON)),
+        'expenses': value['expenses'] == null ? undefined : ((value['expenses'] as Array<any>).map(ExpenseMetricsFinancialSubProfileMetricsToJSON)),
+        'income': value['income'] == null ? undefined : ((value['income'] as Array<any>).map(IncomeMetricsFinancialSubProfileToJSON)),
+        'locations': value['locations'] == null ? undefined : ((value['locations'] as Array<any>).map(LocationFinancialSubProfileToJSON)),
+        'merchants': value['merchants'] == null ? undefined : ((value['merchants'] as Array<any>).map(MerchantMetricsFinancialSubProfileToJSON)),
+        'paymentChannels': value['paymentChannels'] == null ? undefined : ((value['paymentChannels'] as Array<any>).map(PaymentChannelMetricsFinancialSubProfileToJSON)),
+        'bankAccounts': value['bankAccounts'] == null ? undefined : ((value['bankAccounts'] as Array<any>).map(BankAccountToJSON)),
+        'investmentAccounts': value['investmentAccounts'] == null ? undefined : ((value['investmentAccounts'] as Array<any>).map(InvestmentAccountToJSON)),
+        'creditAccounts': value['creditAccounts'] == null ? undefined : ((value['creditAccounts'] as Array<any>).map(CreditAccountToJSON)),
+        'mortgageLoanAccounts': value['mortgageLoanAccounts'] == null ? undefined : ((value['mortgageLoanAccounts'] as Array<any>).map(MortgageAccountToJSON)),
+        'studentLoanAccounts': value['studentLoanAccounts'] == null ? undefined : ((value['studentLoanAccounts'] as Array<any>).map(StudentLoanAccountToJSON)),
+        'financialUserProfileType': FinancialUserProfileTypeToJSON(value['financialUserProfileType']),
     };
 }
 

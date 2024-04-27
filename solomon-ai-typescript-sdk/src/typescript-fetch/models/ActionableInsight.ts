@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -55,9 +55,7 @@ export interface ActionableInsight {
  * Check if a given object implements the ActionableInsight interface.
  */
 export function instanceOfActionableInsight(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ActionableInsightFromJSON(json: any): ActionableInsight {
@@ -65,33 +63,30 @@ export function ActionableInsightFromJSON(json: any): ActionableInsight {
 }
 
 export function ActionableInsightFromJSONTyped(json: any, ignoreDiscriminator: boolean): ActionableInsight {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'detailedAction': !exists(json, 'detailedAction') ? undefined : json['detailedAction'],
-        'summarizedAction': !exists(json, 'summarizedAction') ? undefined : json['summarizedAction'],
-        'generatedTime': !exists(json, 'generatedTime') ? undefined : (new Date(json['generatedTime'])),
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'detailedAction': json['detailedAction'] == null ? undefined : json['detailedAction'],
+        'summarizedAction': json['summarizedAction'] == null ? undefined : json['summarizedAction'],
+        'generatedTime': json['generatedTime'] == null ? undefined : (new Date(json['generatedTime'])),
+        'tags': json['tags'] == null ? undefined : json['tags'],
     };
 }
 
 export function ActionableInsightToJSON(value?: ActionableInsight | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'detailedAction': value.detailedAction,
-        'summarizedAction': value.summarizedAction,
-        'generatedTime': value.generatedTime === undefined ? undefined : (value.generatedTime.toISOString()),
-        'tags': value.tags,
+        'id': value['id'],
+        'detailedAction': value['detailedAction'],
+        'summarizedAction': value['summarizedAction'],
+        'generatedTime': value['generatedTime'] == null ? undefined : ((value['generatedTime']).toISOString()),
+        'tags': value['tags'],
     };
 }
 

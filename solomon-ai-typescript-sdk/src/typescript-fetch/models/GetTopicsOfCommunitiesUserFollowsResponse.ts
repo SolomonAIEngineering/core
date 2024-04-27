@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Topic } from './Topic';
 import {
     TopicFromJSON,
@@ -38,9 +38,7 @@ export interface GetTopicsOfCommunitiesUserFollowsResponse {
  * Check if a given object implements the GetTopicsOfCommunitiesUserFollowsResponse interface.
  */
 export function instanceOfGetTopicsOfCommunitiesUserFollowsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetTopicsOfCommunitiesUserFollowsResponseFromJSON(json: any): GetTopicsOfCommunitiesUserFollowsResponse {
@@ -48,25 +46,22 @@ export function GetTopicsOfCommunitiesUserFollowsResponseFromJSON(json: any): Ge
 }
 
 export function GetTopicsOfCommunitiesUserFollowsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetTopicsOfCommunitiesUserFollowsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'topic': !exists(json, 'topic') ? undefined : ((json['topic'] as Array<any>).map(TopicFromJSON)),
+        'topic': json['topic'] == null ? undefined : ((json['topic'] as Array<any>).map(TopicFromJSON)),
     };
 }
 
 export function GetTopicsOfCommunitiesUserFollowsResponseToJSON(value?: GetTopicsOfCommunitiesUserFollowsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'topic': value.topic === undefined ? undefined : ((value.topic as Array<any>).map(TopicToJSON)),
+        'topic': value['topic'] == null ? undefined : ((value['topic'] as Array<any>).map(TopicToJSON)),
     };
 }
 

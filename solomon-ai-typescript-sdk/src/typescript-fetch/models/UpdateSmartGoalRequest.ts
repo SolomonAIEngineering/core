@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SmartGoal } from './SmartGoal';
 import {
     SmartGoalFromJSON,
@@ -38,10 +38,8 @@ export interface UpdateSmartGoalRequest {
  * Check if a given object implements the UpdateSmartGoalRequest interface.
  */
 export function instanceOfUpdateSmartGoalRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "smartGoal" in value;
-
-    return isInstance;
+    if (!('smartGoal' in value)) return false;
+    return true;
 }
 
 export function UpdateSmartGoalRequestFromJSON(json: any): UpdateSmartGoalRequest {
@@ -49,7 +47,7 @@ export function UpdateSmartGoalRequestFromJSON(json: any): UpdateSmartGoalReques
 }
 
 export function UpdateSmartGoalRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateSmartGoalRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function UpdateSmartGoalRequestFromJSONTyped(json: any, ignoreDiscriminat
 }
 
 export function UpdateSmartGoalRequestToJSON(value?: UpdateSmartGoalRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'smartGoal': SmartGoalToJSON(value.smartGoal),
+        'smartGoal': SmartGoalToJSON(value['smartGoal']),
     };
 }
 

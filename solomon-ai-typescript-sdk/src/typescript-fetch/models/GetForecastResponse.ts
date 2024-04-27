@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Forecast } from './Forecast';
 import {
     ForecastFromJSON,
@@ -38,9 +38,7 @@ export interface GetForecastResponse {
  * Check if a given object implements the GetForecastResponse interface.
  */
 export function instanceOfGetForecastResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetForecastResponseFromJSON(json: any): GetForecastResponse {
@@ -48,25 +46,22 @@ export function GetForecastResponseFromJSON(json: any): GetForecastResponse {
 }
 
 export function GetForecastResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetForecastResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'forecast': !exists(json, 'forecast') ? undefined : ForecastFromJSON(json['forecast']),
+        'forecast': json['forecast'] == null ? undefined : ForecastFromJSON(json['forecast']),
     };
 }
 
 export function GetForecastResponseToJSON(value?: GetForecastResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'forecast': ForecastToJSON(value.forecast),
+        'forecast': ForecastToJSON(value['forecast']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -57,9 +57,7 @@ export interface MonthlyTransactionCount {
  * Check if a given object implements the MonthlyTransactionCount interface.
  */
 export function instanceOfMonthlyTransactionCount(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function MonthlyTransactionCountFromJSON(json: any): MonthlyTransactionCount {
@@ -67,31 +65,28 @@ export function MonthlyTransactionCountFromJSON(json: any): MonthlyTransactionCo
 }
 
 export function MonthlyTransactionCountFromJSONTyped(json: any, ignoreDiscriminator: boolean): MonthlyTransactionCount {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'month': !exists(json, 'month') ? undefined : json['month'],
-        'transactionCount': !exists(json, 'transactionCount') ? undefined : json['transactionCount'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'month': json['month'] == null ? undefined : json['month'],
+        'transactionCount': json['transactionCount'] == null ? undefined : json['transactionCount'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function MonthlyTransactionCountToJSON(value?: MonthlyTransactionCount | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'month': value.month,
-        'transactionCount': value.transactionCount,
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'month': value['month'],
+        'transactionCount': value['transactionCount'],
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

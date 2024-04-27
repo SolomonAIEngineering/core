@@ -62,6 +62,11 @@ func newMortgageAccountORM(db *gorm.DB, opts ...gen.DOOption) mortgageAccountORM
 	_mortgageAccountORM.Status = field.NewString(tableName, "status")
 	_mortgageAccountORM.YtdInterestPaid = field.NewFloat64(tableName, "ytd_interest_paid")
 	_mortgageAccountORM.YtdPrincipalPaid = field.NewFloat64(tableName, "ytd_principal_paid")
+	_mortgageAccountORM.Statements = mortgageAccountORMHasManyStatements{
+		db: db.Session(&gorm.Session{}),
+
+		RelationField: field.NewRelation("Statements", "financial_servicev1.AccountStatementsORM"),
+	}
 
 	_mortgageAccountORM.fillFieldMap()
 
@@ -106,6 +111,7 @@ type mortgageAccountORM struct {
 	Status                      field.String
 	YtdInterestPaid             field.Float64
 	YtdPrincipalPaid            field.Float64
+	Statements                  mortgageAccountORMHasManyStatements
 
 	fieldMap map[string]field.Expr
 }
@@ -172,7 +178,7 @@ func (m *mortgageAccountORM) GetFieldByName(fieldName string) (field.OrderExpr, 
 }
 
 func (m *mortgageAccountORM) fillFieldMap() {
-	m.fieldMap = make(map[string]field.Expr, 34)
+	m.fieldMap = make(map[string]field.Expr, 35)
 	m.fieldMap["account_number"] = m.AccountNumber
 	m.fieldMap["current_late_fee"] = m.CurrentLateFee
 	m.fieldMap["escrow_balance"] = m.EscrowBalance
@@ -207,6 +213,7 @@ func (m *mortgageAccountORM) fillFieldMap() {
 	m.fieldMap["status"] = m.Status
 	m.fieldMap["ytd_interest_paid"] = m.YtdInterestPaid
 	m.fieldMap["ytd_principal_paid"] = m.YtdPrincipalPaid
+
 }
 
 func (m mortgageAccountORM) clone(db *gorm.DB) mortgageAccountORM {
@@ -217,6 +224,77 @@ func (m mortgageAccountORM) clone(db *gorm.DB) mortgageAccountORM {
 func (m mortgageAccountORM) replaceDB(db *gorm.DB) mortgageAccountORM {
 	m.mortgageAccountORMDo.ReplaceDB(db)
 	return m
+}
+
+type mortgageAccountORMHasManyStatements struct {
+	db *gorm.DB
+
+	field.RelationField
+}
+
+func (a mortgageAccountORMHasManyStatements) Where(conds ...field.Expr) *mortgageAccountORMHasManyStatements {
+	if len(conds) == 0 {
+		return &a
+	}
+
+	exprs := make([]clause.Expression, 0, len(conds))
+	for _, cond := range conds {
+		exprs = append(exprs, cond.BeCond().(clause.Expression))
+	}
+	a.db = a.db.Clauses(clause.Where{Exprs: exprs})
+	return &a
+}
+
+func (a mortgageAccountORMHasManyStatements) WithContext(ctx context.Context) *mortgageAccountORMHasManyStatements {
+	a.db = a.db.WithContext(ctx)
+	return &a
+}
+
+func (a mortgageAccountORMHasManyStatements) Session(session *gorm.Session) *mortgageAccountORMHasManyStatements {
+	a.db = a.db.Session(session)
+	return &a
+}
+
+func (a mortgageAccountORMHasManyStatements) Model(m *financial_servicev1.MortgageAccountORM) *mortgageAccountORMHasManyStatementsTx {
+	return &mortgageAccountORMHasManyStatementsTx{a.db.Model(m).Association(a.Name())}
+}
+
+type mortgageAccountORMHasManyStatementsTx struct{ tx *gorm.Association }
+
+func (a mortgageAccountORMHasManyStatementsTx) Find() (result []*financial_servicev1.AccountStatementsORM, err error) {
+	return result, a.tx.Find(&result)
+}
+
+func (a mortgageAccountORMHasManyStatementsTx) Append(values ...*financial_servicev1.AccountStatementsORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Append(targetValues...)
+}
+
+func (a mortgageAccountORMHasManyStatementsTx) Replace(values ...*financial_servicev1.AccountStatementsORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Replace(targetValues...)
+}
+
+func (a mortgageAccountORMHasManyStatementsTx) Delete(values ...*financial_servicev1.AccountStatementsORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Delete(targetValues...)
+}
+
+func (a mortgageAccountORMHasManyStatementsTx) Clear() error {
+	return a.tx.Clear()
+}
+
+func (a mortgageAccountORMHasManyStatementsTx) Count() int64 {
+	return a.tx.Count()
 }
 
 type mortgageAccountORMDo struct{ gen.DO }

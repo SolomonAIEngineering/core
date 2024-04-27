@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MediaMetadata } from './MediaMetadata';
 import {
     MediaMetadataFromJSON,
@@ -56,9 +56,7 @@ export interface Media {
  * Check if a given object implements the Media interface.
  */
 export function instanceOfMedia(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function MediaFromJSON(json: any): Media {
@@ -66,31 +64,28 @@ export function MediaFromJSON(json: any): Media {
 }
 
 export function MediaFromJSONTyped(json: any, ignoreDiscriminator: boolean): Media {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : json['createdAt'],
-        'link': !exists(json, 'link') ? undefined : json['link'],
-        'metadata': !exists(json, 'metadata') ? undefined : MediaMetadataFromJSON(json['metadata']),
+        'id': json['id'] == null ? undefined : json['id'],
+        'createdAt': json['createdAt'] == null ? undefined : json['createdAt'],
+        'link': json['link'] == null ? undefined : json['link'],
+        'metadata': json['metadata'] == null ? undefined : MediaMetadataFromJSON(json['metadata']),
     };
 }
 
 export function MediaToJSON(value?: Media | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'createdAt': value.createdAt,
-        'link': value.link,
-        'metadata': MediaMetadataToJSON(value.metadata),
+        'id': value['id'],
+        'createdAt': value['createdAt'],
+        'link': value['link'],
+        'metadata': MediaMetadataToJSON(value['metadata']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Actor } from './Actor';
 import {
     ActorFromJSON,
@@ -140,11 +140,9 @@ export interface FeedActivity {
  * Check if a given object implements the FeedActivity interface.
  */
 export function instanceOfFeedActivity(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "actor" in value;
-    isInstance = isInstance && "getstreamActivityId" in value;
-
-    return isInstance;
+    if (!('actor' in value)) return false;
+    if (!('getstreamActivityId' in value)) return false;
+    return true;
 }
 
 export function FeedActivityFromJSON(json: any): FeedActivity {
@@ -152,49 +150,46 @@ export function FeedActivityFromJSON(json: any): FeedActivity {
 }
 
 export function FeedActivityFromJSONTyped(json: any, ignoreDiscriminator: boolean): FeedActivity {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'actor': ActorFromJSON(json['actor']),
-        'verb': !exists(json, 'verb') ? undefined : PostTypeFromJSON(json['verb']),
-        'regularPost': !exists(json, 'regularPost') ? undefined : PostFromJSON(json['regularPost']),
-        'sharedPost': !exists(json, 'sharedPost') ? undefined : SharedPostFromJSON(json['sharedPost']),
-        'pollPost': !exists(json, 'pollPost') ? undefined : PollPostFromJSON(json['pollPost']),
-        'foreignId': !exists(json, 'foreignId') ? undefined : json['foreignId'],
-        'target': !exists(json, 'target') ? undefined : json['target'],
-        'time': !exists(json, 'time') ? undefined : json['time'],
-        'origin': !exists(json, 'origin') ? undefined : json['origin'],
-        'to': !exists(json, 'to') ? undefined : json['to'],
-        'score': !exists(json, 'score') ? undefined : json['score'],
-        'extra': !exists(json, 'extra') ? undefined : json['extra'],
+        'verb': json['verb'] == null ? undefined : PostTypeFromJSON(json['verb']),
+        'regularPost': json['regularPost'] == null ? undefined : PostFromJSON(json['regularPost']),
+        'sharedPost': json['sharedPost'] == null ? undefined : SharedPostFromJSON(json['sharedPost']),
+        'pollPost': json['pollPost'] == null ? undefined : PollPostFromJSON(json['pollPost']),
+        'foreignId': json['foreignId'] == null ? undefined : json['foreignId'],
+        'target': json['target'] == null ? undefined : json['target'],
+        'time': json['time'] == null ? undefined : json['time'],
+        'origin': json['origin'] == null ? undefined : json['origin'],
+        'to': json['to'] == null ? undefined : json['to'],
+        'score': json['score'] == null ? undefined : json['score'],
+        'extra': json['extra'] == null ? undefined : json['extra'],
         'getstreamActivityId': json['getstreamActivityId'],
     };
 }
 
 export function FeedActivityToJSON(value?: FeedActivity | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'actor': ActorToJSON(value.actor),
-        'verb': PostTypeToJSON(value.verb),
-        'regularPost': PostToJSON(value.regularPost),
-        'sharedPost': SharedPostToJSON(value.sharedPost),
-        'pollPost': PollPostToJSON(value.pollPost),
-        'foreignId': value.foreignId,
-        'target': value.target,
-        'time': value.time,
-        'origin': value.origin,
-        'to': value.to,
-        'score': value.score,
-        'extra': value.extra,
-        'getstreamActivityId': value.getstreamActivityId,
+        'actor': ActorToJSON(value['actor']),
+        'verb': PostTypeToJSON(value['verb']),
+        'regularPost': PostToJSON(value['regularPost']),
+        'sharedPost': SharedPostToJSON(value['sharedPost']),
+        'pollPost': PollPostToJSON(value['pollPost']),
+        'foreignId': value['foreignId'],
+        'target': value['target'],
+        'time': value['time'],
+        'origin': value['origin'],
+        'to': value['to'],
+        'score': value['score'],
+        'extra': value['extra'],
+        'getstreamActivityId': value['getstreamActivityId'],
     };
 }
 

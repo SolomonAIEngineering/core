@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -55,9 +55,7 @@ export interface Apr {
  * Check if a given object implements the Apr interface.
  */
 export function instanceOfApr(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function AprFromJSON(json: any): Apr {
@@ -65,33 +63,30 @@ export function AprFromJSON(json: any): Apr {
 }
 
 export function AprFromJSONTyped(json: any, ignoreDiscriminator: boolean): Apr {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'percentage': !exists(json, 'percentage') ? undefined : json['percentage'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'balanceSubjectToApr': !exists(json, 'balanceSubjectToApr') ? undefined : json['balanceSubjectToApr'],
-        'interestChargeAmount': !exists(json, 'interestChargeAmount') ? undefined : json['interestChargeAmount'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'percentage': json['percentage'] == null ? undefined : json['percentage'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'balanceSubjectToApr': json['balanceSubjectToApr'] == null ? undefined : json['balanceSubjectToApr'],
+        'interestChargeAmount': json['interestChargeAmount'] == null ? undefined : json['interestChargeAmount'],
     };
 }
 
 export function AprToJSON(value?: Apr | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'percentage': value.percentage,
-        'type': value.type,
-        'balanceSubjectToApr': value.balanceSubjectToApr,
-        'interestChargeAmount': value.interestChargeAmount,
+        'id': value['id'],
+        'percentage': value['percentage'],
+        'type': value['type'],
+        'balanceSubjectToApr': value['balanceSubjectToApr'],
+        'interestChargeAmount': value['interestChargeAmount'],
     };
 }
 

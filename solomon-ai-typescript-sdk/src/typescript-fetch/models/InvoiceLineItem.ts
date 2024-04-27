@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The Invoice object represents an itemized record of goods and/or services sold to a customer.
  * @export
@@ -115,9 +115,7 @@ export interface InvoiceLineItem {
  * Check if a given object implements the InvoiceLineItem interface.
  */
 export function instanceOfInvoiceLineItem(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function InvoiceLineItemFromJSON(json: any): InvoiceLineItem {
@@ -125,53 +123,50 @@ export function InvoiceLineItemFromJSON(json: any): InvoiceLineItem {
 }
 
 export function InvoiceLineItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): InvoiceLineItem {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'unitPrice': !exists(json, 'unitPrice') ? undefined : json['unitPrice'],
-        'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
-        'totalAmount': !exists(json, 'totalAmount') ? undefined : json['totalAmount'],
-        'currency': !exists(json, 'currency') ? undefined : json['currency'],
-        'exchangeRate': !exists(json, 'exchangeRate') ? undefined : json['exchangeRate'],
-        'item': !exists(json, 'item') ? undefined : json['item'],
-        'account': !exists(json, 'account') ? undefined : json['account'],
-        'trackingCategory': !exists(json, 'trackingCategory') ? undefined : json['trackingCategory'],
-        'trackingCategories': !exists(json, 'trackingCategories') ? undefined : json['trackingCategories'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'mergeRecordId': !exists(json, 'mergeRecordId') ? undefined : json['mergeRecordId'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'unitPrice': json['unitPrice'] == null ? undefined : json['unitPrice'],
+        'quantity': json['quantity'] == null ? undefined : json['quantity'],
+        'totalAmount': json['totalAmount'] == null ? undefined : json['totalAmount'],
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'exchangeRate': json['exchangeRate'] == null ? undefined : json['exchangeRate'],
+        'item': json['item'] == null ? undefined : json['item'],
+        'account': json['account'] == null ? undefined : json['account'],
+        'trackingCategory': json['trackingCategory'] == null ? undefined : json['trackingCategory'],
+        'trackingCategories': json['trackingCategories'] == null ? undefined : json['trackingCategories'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'mergeRecordId': json['mergeRecordId'] == null ? undefined : json['mergeRecordId'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
     };
 }
 
 export function InvoiceLineItemToJSON(value?: InvoiceLineItem | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'description': value.description,
-        'unitPrice': value.unitPrice,
-        'quantity': value.quantity,
-        'totalAmount': value.totalAmount,
-        'currency': value.currency,
-        'exchangeRate': value.exchangeRate,
-        'item': value.item,
-        'account': value.account,
-        'trackingCategory': value.trackingCategory,
-        'trackingCategories': value.trackingCategories,
-        'company': value.company,
-        'mergeRecordId': value.mergeRecordId,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'description': value['description'],
+        'unitPrice': value['unitPrice'],
+        'quantity': value['quantity'],
+        'totalAmount': value['totalAmount'],
+        'currency': value['currency'],
+        'exchangeRate': value['exchangeRate'],
+        'item': value['item'],
+        'account': value['account'],
+        'trackingCategory': value['trackingCategory'],
+        'trackingCategories': value['trackingCategories'],
+        'company': value['company'],
+        'mergeRecordId': value['mergeRecordId'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
     };
 }
 

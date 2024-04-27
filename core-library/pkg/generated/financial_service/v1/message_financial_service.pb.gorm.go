@@ -1052,6 +1052,7 @@ type StudentLoanAccountORM struct {
 	ServicerAddressRegion              string
 	ServicerAddressState               string
 	ServicerAddressStreet              string
+	Statements                         []*AccountStatementsORM `gorm:"foreignkey:StudentLoanAccountId;association_foreignkey:Id;preload:true"`
 	Status                             string
 	UserId                             string
 	YtdInterestPaid                    float64
@@ -1112,6 +1113,17 @@ func (m *StudentLoanAccount) ToORM(ctx context.Context) (StudentLoanAccountORM, 
 	to.UserId = m.UserId
 	to.Name = m.Name
 	to.Status = BankAccountStatus_name[int32(m.Status)]
+	for _, v := range m.Statements {
+		if v != nil {
+			if tempStatements, cErr := v.ToORM(ctx); cErr == nil {
+				to.Statements = append(to.Statements, &tempStatements)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Statements = append(to.Statements, nil)
+		}
+	}
 	if posthook, ok := interface{}(m).(StudentLoanAccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -1167,6 +1179,17 @@ func (m *StudentLoanAccountORM) ToPB(ctx context.Context) (StudentLoanAccount, e
 	to.UserId = m.UserId
 	to.Name = m.Name
 	to.Status = BankAccountStatus(BankAccountStatus_value[m.Status])
+	for _, v := range m.Statements {
+		if v != nil {
+			if tempStatements, cErr := v.ToPB(ctx); cErr == nil {
+				to.Statements = append(to.Statements, &tempStatements)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Statements = append(to.Statements, nil)
+		}
+	}
 	if posthook, ok := interface{}(m).(StudentLoanAccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -1217,6 +1240,7 @@ type CreditAccountORM struct {
 	PlaidAccountId         string                                 `gorm:"index:idx_credit_account_plaid_account_id"`
 	Pockets                []*PocketORM                           `gorm:"foreignkey:CreditAccountId;association_foreignkey:Id;preload:true"`
 	RecurringTransactions  []*PlaidAccountRecurringTransactionORM `gorm:"foreignkey:CreditAccountId;association_foreignkey:Id;preload:true"`
+	Statements             []*AccountStatementsORM                `gorm:"foreignkey:CreditAccountId;association_foreignkey:Id;preload:true"`
 	Status                 string
 	Subtype                string
 	Transactions           []*PlaidAccountTransactionORM `gorm:"foreignkey:CreditAccountId;association_foreignkey:Id;preload:true"`
@@ -1303,6 +1327,17 @@ func (m *CreditAccount) ToORM(ctx context.Context) (CreditAccountORM, error) {
 			to.Pockets = append(to.Pockets, nil)
 		}
 	}
+	for _, v := range m.Statements {
+		if v != nil {
+			if tempStatements, cErr := v.ToORM(ctx); cErr == nil {
+				to.Statements = append(to.Statements, &tempStatements)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Statements = append(to.Statements, nil)
+		}
+	}
 	if posthook, ok := interface{}(m).(CreditAccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -1383,6 +1418,17 @@ func (m *CreditAccountORM) ToPB(ctx context.Context) (CreditAccount, error) {
 			to.Pockets = append(to.Pockets, nil)
 		}
 	}
+	for _, v := range m.Statements {
+		if v != nil {
+			if tempStatements, cErr := v.ToPB(ctx); cErr == nil {
+				to.Statements = append(to.Statements, &tempStatements)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Statements = append(to.Statements, nil)
+		}
+	}
 	if posthook, ok := interface{}(m).(CreditAccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -1444,6 +1490,7 @@ type MortgageAccountORM struct {
 	PropertyAddressStreet       string
 	PropertyCountry             string
 	PropertyRegion              string
+	Statements                  []*AccountStatementsORM `gorm:"foreignkey:MortgageAccountId;association_foreignkey:Id;preload:true"`
 	Status                      string
 	YtdInterestPaid             float64
 	YtdPrincipalPaid            float64
@@ -1497,6 +1544,17 @@ func (m *MortgageAccount) ToORM(ctx context.Context) (MortgageAccountORM, error)
 	to.InterestRatePercentage = m.InterestRatePercentage
 	to.InterestRateType = m.InterestRateType
 	to.Status = BankAccountStatus_name[int32(m.Status)]
+	for _, v := range m.Statements {
+		if v != nil {
+			if tempStatements, cErr := v.ToORM(ctx); cErr == nil {
+				to.Statements = append(to.Statements, &tempStatements)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Statements = append(to.Statements, nil)
+		}
+	}
 	if posthook, ok := interface{}(m).(MortgageAccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -1546,6 +1604,17 @@ func (m *MortgageAccountORM) ToPB(ctx context.Context) (MortgageAccount, error) 
 	to.InterestRatePercentage = m.InterestRatePercentage
 	to.InterestRateType = m.InterestRateType
 	to.Status = BankAccountStatus(BankAccountStatus_value[m.Status])
+	for _, v := range m.Statements {
+		if v != nil {
+			if tempStatements, cErr := v.ToPB(ctx); cErr == nil {
+				to.Statements = append(to.Statements, &tempStatements)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Statements = append(to.Statements, nil)
+		}
+	}
 	if posthook, ok := interface{}(m).(MortgageAccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -1586,6 +1655,7 @@ type InvestmentAccountORM struct {
 	Number         string                   `gorm:"index:idx_investment_account_number"`
 	PlaidAccountId string                   `gorm:"index:idx_investment_account_plaid_account_id"`
 	Securities     []*InvestmentSecurityORM `gorm:"foreignkey:InvestmentAccountId;association_foreignkey:Id;preload:true"`
+	Statements     []*AccountStatementsORM  `gorm:"foreignkey:InvestmentAccountId;association_foreignkey:Id;preload:true"`
 	Status         string
 	Subtype        string                                  `gorm:"index:idx_investment_account_subtype"`
 	Transactions   []*PlaidAccountInvestmentTransactionORM `gorm:"foreignkey:InvestmentAccountId;association_foreignkey:Id;preload:true"`
@@ -1652,6 +1722,17 @@ func (m *InvestmentAccount) ToORM(ctx context.Context) (InvestmentAccountORM, er
 			to.Transactions = append(to.Transactions, nil)
 		}
 	}
+	for _, v := range m.Statements {
+		if v != nil {
+			if tempStatements, cErr := v.ToORM(ctx); cErr == nil {
+				to.Statements = append(to.Statements, &tempStatements)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Statements = append(to.Statements, nil)
+		}
+	}
 	if posthook, ok := interface{}(m).(InvestmentAccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -1712,6 +1793,17 @@ func (m *InvestmentAccountORM) ToPB(ctx context.Context) (InvestmentAccount, err
 			to.Transactions = append(to.Transactions, nil)
 		}
 	}
+	for _, v := range m.Statements {
+		if v != nil {
+			if tempStatements, cErr := v.ToPB(ctx); cErr == nil {
+				to.Statements = append(to.Statements, &tempStatements)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Statements = append(to.Statements, nil)
+		}
+	}
 	if posthook, ok := interface{}(m).(InvestmentAccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -1753,6 +1845,7 @@ type BankAccountORM struct {
 	PlaidAccountId        string                                 `gorm:"index:idx_bank_account_plaid_account_id"`
 	Pockets               []*PocketORM                           `gorm:"foreignkey:BankAccountId;association_foreignkey:Id;preload:true"`
 	RecurringTransactions []*PlaidAccountRecurringTransactionORM `gorm:"foreignkey:BankAccountId;association_foreignkey:Id;preload:true"`
+	Statements            []*AccountStatementsORM                `gorm:"foreignkey:BankAccountId;association_foreignkey:Id;preload:true"`
 	Status                string
 	Subtype               string                        `gorm:"index:idx_bank_account_subtype"`
 	Transactions          []*PlaidAccountTransactionORM `gorm:"foreignkey:BankAccountId;association_foreignkey:Id;preload:true"`
@@ -1820,6 +1913,17 @@ func (m *BankAccount) ToORM(ctx context.Context) (BankAccountORM, error) {
 			to.RecurringTransactions = append(to.RecurringTransactions, nil)
 		}
 	}
+	for _, v := range m.Statements {
+		if v != nil {
+			if tempStatements, cErr := v.ToORM(ctx); cErr == nil {
+				to.Statements = append(to.Statements, &tempStatements)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Statements = append(to.Statements, nil)
+		}
+	}
 	if posthook, ok := interface{}(m).(BankAccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -1881,6 +1985,17 @@ func (m *BankAccountORM) ToPB(ctx context.Context) (BankAccount, error) {
 			to.RecurringTransactions = append(to.RecurringTransactions, nil)
 		}
 	}
+	for _, v := range m.Statements {
+		if v != nil {
+			if tempStatements, cErr := v.ToPB(ctx); cErr == nil {
+				to.Statements = append(to.Statements, &tempStatements)
+			} else {
+				return to, cErr
+			}
+		} else {
+			to.Statements = append(to.Statements, nil)
+		}
+	}
 	if posthook, ok := interface{}(m).(BankAccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -1908,6 +2023,89 @@ type BankAccountWithBeforeToPB interface {
 // BankAccountAfterToPB called after default ToPB code
 type BankAccountWithAfterToPB interface {
 	AfterToPB(context.Context, *BankAccount) error
+}
+
+type AccountStatementsORM struct {
+	BankAccountId        *uint64
+	CreditAccountId      *uint64
+	Id                   uint64 `gorm:"unique_index:idx_account_statements_id"`
+	InvestmentAccountId  *uint64
+	Month                uint64
+	MortgageAccountId    *uint64
+	PlaidStatementId     string `gorm:"index:idx_account_statements_plaid_statement_id"`
+	StatementPdfUrl      string
+	StudentLoanAccountId *uint64
+	Year                 uint64
+}
+
+// TableName overrides the default tablename generated by GORM
+func (AccountStatementsORM) TableName() string {
+	return "account_statements"
+}
+
+// ToORM runs the BeforeToORM hook if present, converts the fields of this
+// object to ORM format, runs the AfterToORM hook, then returns the ORM object
+func (m *AccountStatements) ToORM(ctx context.Context) (AccountStatementsORM, error) {
+	to := AccountStatementsORM{}
+	var err error
+	if prehook, ok := interface{}(m).(AccountStatementsWithBeforeToORM); ok {
+		if err = prehook.BeforeToORM(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	to.Id = m.Id
+	to.PlaidStatementId = m.PlaidStatementId
+	to.Month = m.Month
+	to.Year = m.Year
+	to.StatementPdfUrl = m.StatementPdfUrl
+	if posthook, ok := interface{}(m).(AccountStatementsWithAfterToORM); ok {
+		err = posthook.AfterToORM(ctx, &to)
+	}
+	return to, err
+}
+
+// ToPB runs the BeforeToPB hook if present, converts the fields of this
+// object to PB format, runs the AfterToPB hook, then returns the PB object
+func (m *AccountStatementsORM) ToPB(ctx context.Context) (AccountStatements, error) {
+	to := AccountStatements{}
+	var err error
+	if prehook, ok := interface{}(m).(AccountStatementsWithBeforeToPB); ok {
+		if err = prehook.BeforeToPB(ctx, &to); err != nil {
+			return to, err
+		}
+	}
+	to.Id = m.Id
+	to.PlaidStatementId = m.PlaidStatementId
+	to.Month = m.Month
+	to.Year = m.Year
+	to.StatementPdfUrl = m.StatementPdfUrl
+	if posthook, ok := interface{}(m).(AccountStatementsWithAfterToPB); ok {
+		err = posthook.AfterToPB(ctx, &to)
+	}
+	return to, err
+}
+
+// The following are interfaces you can implement for special behavior during ORM/PB conversions
+// of type AccountStatements the arg will be the target, the caller the one being converted from
+
+// AccountStatementsBeforeToORM called before default ToORM code
+type AccountStatementsWithBeforeToORM interface {
+	BeforeToORM(context.Context, *AccountStatementsORM) error
+}
+
+// AccountStatementsAfterToORM called after default ToORM code
+type AccountStatementsWithAfterToORM interface {
+	AfterToORM(context.Context, *AccountStatementsORM) error
+}
+
+// AccountStatementsBeforeToPB called before default ToPB code
+type AccountStatementsWithBeforeToPB interface {
+	BeforeToPB(context.Context, *AccountStatements) error
+}
+
+// AccountStatementsAfterToPB called after default ToPB code
+type AccountStatementsWithAfterToPB interface {
+	AfterToPB(context.Context, *AccountStatements) error
 }
 
 type PocketORM struct {
@@ -7179,6 +7377,15 @@ func DefaultStrictUpdateStudentLoanAccount(ctx context.Context, in *StudentLoanA
 			return nil, err
 		}
 	}
+	filterStatements := AccountStatementsORM{}
+	if ormObj.Id == 0 {
+		return nil, errors.EmptyIdError
+	}
+	filterStatements.StudentLoanAccountId = new(uint64)
+	*filterStatements.StudentLoanAccountId = ormObj.Id
+	if err = db.Where(filterStatements).Delete(AccountStatementsORM{}).Error; err != nil {
+		return nil, err
+	}
 	if hook, ok := interface{}(&ormObj).(StudentLoanAccountORMWithBeforeStrictUpdateSave); ok {
 		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
 			return nil, err
@@ -7436,6 +7643,10 @@ func DefaultApplyFieldMaskStudentLoanAccount(ctx context.Context, patchee *Stude
 			patchee.Status = patcher.Status
 			continue
 		}
+		if f == prefix+"Statements" {
+			patchee.Statements = patcher.Statements
+			continue
+		}
 	}
 	if err != nil {
 		return nil, err
@@ -7690,6 +7901,15 @@ func DefaultStrictUpdateCreditAccount(ctx context.Context, in *CreditAccount, db
 	if err = db.Where(filterRecurringTransactions).Delete(PlaidAccountRecurringTransactionORM{}).Error; err != nil {
 		return nil, err
 	}
+	filterStatements := AccountStatementsORM{}
+	if ormObj.Id == 0 {
+		return nil, errors.EmptyIdError
+	}
+	filterStatements.CreditAccountId = new(uint64)
+	*filterStatements.CreditAccountId = ormObj.Id
+	if err = db.Where(filterStatements).Delete(AccountStatementsORM{}).Error; err != nil {
+		return nil, err
+	}
 	filterTransactions := PlaidAccountTransactionORM{}
 	if ormObj.Id == 0 {
 		return nil, errors.EmptyIdError
@@ -7906,6 +8126,10 @@ func DefaultApplyFieldMaskCreditAccount(ctx context.Context, patchee *CreditAcco
 		}
 		if f == prefix+"Pockets" {
 			patchee.Pockets = patcher.Pockets
+			continue
+		}
+		if f == prefix+"Statements" {
+			patchee.Statements = patcher.Statements
 			continue
 		}
 	}
@@ -8134,6 +8358,15 @@ func DefaultStrictUpdateMortgageAccount(ctx context.Context, in *MortgageAccount
 		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
 			return nil, err
 		}
+	}
+	filterStatements := AccountStatementsORM{}
+	if ormObj.Id == 0 {
+		return nil, errors.EmptyIdError
+	}
+	filterStatements.MortgageAccountId = new(uint64)
+	*filterStatements.MortgageAccountId = ormObj.Id
+	if err = db.Where(filterStatements).Delete(AccountStatementsORM{}).Error; err != nil {
+		return nil, err
 	}
 	if hook, ok := interface{}(&ormObj).(MortgageAccountORMWithBeforeStrictUpdateSave); ok {
 		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
@@ -8378,6 +8611,10 @@ func DefaultApplyFieldMaskMortgageAccount(ctx context.Context, patchee *Mortgage
 		}
 		if f == prefix+"Status" {
 			patchee.Status = patcher.Status
+			continue
+		}
+		if f == prefix+"Statements" {
+			patchee.Statements = patcher.Statements
 			continue
 		}
 	}
@@ -8625,6 +8862,15 @@ func DefaultStrictUpdateInvestmentAccount(ctx context.Context, in *InvestmentAcc
 	if err = db.Where(filterSecurities).Delete(InvestmentSecurityORM{}).Error; err != nil {
 		return nil, err
 	}
+	filterStatements := AccountStatementsORM{}
+	if ormObj.Id == 0 {
+		return nil, errors.EmptyIdError
+	}
+	filterStatements.InvestmentAccountId = new(uint64)
+	*filterStatements.InvestmentAccountId = ormObj.Id
+	if err = db.Where(filterStatements).Delete(AccountStatementsORM{}).Error; err != nil {
+		return nil, err
+	}
 	filterTransactions := PlaidAccountInvestmentTransactionORM{}
 	if ormObj.Id == 0 {
 		return nil, errors.EmptyIdError
@@ -8801,6 +9047,10 @@ func DefaultApplyFieldMaskInvestmentAccount(ctx context.Context, patchee *Invest
 		}
 		if f == prefix+"Transactions" {
 			patchee.Transactions = patcher.Transactions
+			continue
+		}
+		if f == prefix+"Statements" {
+			patchee.Statements = patcher.Statements
 			continue
 		}
 	}
@@ -9048,6 +9298,15 @@ func DefaultStrictUpdateBankAccount(ctx context.Context, in *BankAccount, db *go
 	if err = db.Where(filterRecurringTransactions).Delete(PlaidAccountRecurringTransactionORM{}).Error; err != nil {
 		return nil, err
 	}
+	filterStatements := AccountStatementsORM{}
+	if ormObj.Id == 0 {
+		return nil, errors.EmptyIdError
+	}
+	filterStatements.BankAccountId = new(uint64)
+	*filterStatements.BankAccountId = ormObj.Id
+	if err = db.Where(filterStatements).Delete(AccountStatementsORM{}).Error; err != nil {
+		return nil, err
+	}
 	filterTransactions := PlaidAccountTransactionORM{}
 	if ormObj.Id == 0 {
 		return nil, errors.EmptyIdError
@@ -9230,6 +9489,10 @@ func DefaultApplyFieldMaskBankAccount(ctx context.Context, patchee *BankAccount,
 			patchee.RecurringTransactions = patcher.RecurringTransactions
 			continue
 		}
+		if f == prefix+"Statements" {
+			patchee.Statements = patcher.Statements
+			continue
+		}
 	}
 	if err != nil {
 		return nil, err
@@ -9288,6 +9551,366 @@ type BankAccountORMWithBeforeListFind interface {
 }
 type BankAccountORMWithAfterListFind interface {
 	AfterListFind(context.Context, *gorm.DB, *[]BankAccountORM) error
+}
+
+// DefaultCreateAccountStatements executes a basic gorm create call
+func DefaultCreateAccountStatements(ctx context.Context, in *AccountStatements, db *gorm.DB) (*AccountStatements, error) {
+	if in == nil {
+		return nil, errors.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(AccountStatementsORMWithBeforeCreate_); ok {
+		if db, err = hook.BeforeCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Create(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(AccountStatementsORMWithAfterCreate_); ok {
+		if err = hook.AfterCreate_(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type AccountStatementsORMWithBeforeCreate_ interface {
+	BeforeCreate_(context.Context, *gorm.DB) (*gorm.DB, error)
+}
+type AccountStatementsORMWithAfterCreate_ interface {
+	AfterCreate_(context.Context, *gorm.DB) error
+}
+
+func DefaultReadAccountStatements(ctx context.Context, in *AccountStatements, db *gorm.DB) (*AccountStatements, error) {
+	if in == nil {
+		return nil, errors.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if ormObj.Id == 0 {
+		return nil, errors.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(AccountStatementsORMWithBeforeReadApplyQuery); ok {
+		if db, err = hook.BeforeReadApplyQuery(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if db, err = gorm1.ApplyFieldSelection(ctx, db, nil, &AccountStatementsORM{}); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(AccountStatementsORMWithBeforeReadFind); ok {
+		if db, err = hook.BeforeReadFind(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	ormResponse := AccountStatementsORM{}
+	if err = db.Where(&ormObj).First(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormResponse).(AccountStatementsORMWithAfterReadFind); ok {
+		if err = hook.AfterReadFind(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormResponse.ToPB(ctx)
+	return &pbResponse, err
+}
+
+type AccountStatementsORMWithBeforeReadApplyQuery interface {
+	BeforeReadApplyQuery(context.Context, *gorm.DB) (*gorm.DB, error)
+}
+type AccountStatementsORMWithBeforeReadFind interface {
+	BeforeReadFind(context.Context, *gorm.DB) (*gorm.DB, error)
+}
+type AccountStatementsORMWithAfterReadFind interface {
+	AfterReadFind(context.Context, *gorm.DB) error
+}
+
+func DefaultDeleteAccountStatements(ctx context.Context, in *AccountStatements, db *gorm.DB) error {
+	if in == nil {
+		return errors.NilArgumentError
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return err
+	}
+	if ormObj.Id == 0 {
+		return errors.EmptyIdError
+	}
+	if hook, ok := interface{}(&ormObj).(AccountStatementsORMWithBeforeDelete_); ok {
+		if db, err = hook.BeforeDelete_(ctx, db); err != nil {
+			return err
+		}
+	}
+	err = db.Where(&ormObj).Delete(&AccountStatementsORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := interface{}(&ormObj).(AccountStatementsORMWithAfterDelete_); ok {
+		err = hook.AfterDelete_(ctx, db)
+	}
+	return err
+}
+
+type AccountStatementsORMWithBeforeDelete_ interface {
+	BeforeDelete_(context.Context, *gorm.DB) (*gorm.DB, error)
+}
+type AccountStatementsORMWithAfterDelete_ interface {
+	AfterDelete_(context.Context, *gorm.DB) error
+}
+
+func DefaultDeleteAccountStatementsSet(ctx context.Context, in []*AccountStatements, db *gorm.DB) error {
+	if in == nil {
+		return errors.NilArgumentError
+	}
+	var err error
+	keys := []uint64{}
+	for _, obj := range in {
+		ormObj, err := obj.ToORM(ctx)
+		if err != nil {
+			return err
+		}
+		if ormObj.Id == 0 {
+			return errors.EmptyIdError
+		}
+		keys = append(keys, ormObj.Id)
+	}
+	if hook, ok := (interface{}(&AccountStatementsORM{})).(AccountStatementsORMWithBeforeDeleteSet); ok {
+		if db, err = hook.BeforeDeleteSet(ctx, in, db); err != nil {
+			return err
+		}
+	}
+	err = db.Where("id in (?)", keys).Delete(&AccountStatementsORM{}).Error
+	if err != nil {
+		return err
+	}
+	if hook, ok := (interface{}(&AccountStatementsORM{})).(AccountStatementsORMWithAfterDeleteSet); ok {
+		err = hook.AfterDeleteSet(ctx, in, db)
+	}
+	return err
+}
+
+type AccountStatementsORMWithBeforeDeleteSet interface {
+	BeforeDeleteSet(context.Context, []*AccountStatements, *gorm.DB) (*gorm.DB, error)
+}
+type AccountStatementsORMWithAfterDeleteSet interface {
+	AfterDeleteSet(context.Context, []*AccountStatements, *gorm.DB) error
+}
+
+// DefaultStrictUpdateAccountStatements clears / replaces / appends first level 1:many children and then executes a gorm update call
+func DefaultStrictUpdateAccountStatements(ctx context.Context, in *AccountStatements, db *gorm.DB) (*AccountStatements, error) {
+	if in == nil {
+		return nil, fmt.Errorf("Nil argument to DefaultStrictUpdateAccountStatements")
+	}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	lockedRow := &AccountStatementsORM{}
+	db.Model(&ormObj).Set("gorm:query_option", "FOR UPDATE").Where("id=?", ormObj.Id).First(lockedRow)
+	if hook, ok := interface{}(&ormObj).(AccountStatementsORMWithBeforeStrictUpdateCleanup); ok {
+		if db, err = hook.BeforeStrictUpdateCleanup(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if hook, ok := interface{}(&ormObj).(AccountStatementsORMWithBeforeStrictUpdateSave); ok {
+		if db, err = hook.BeforeStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	if err = db.Save(&ormObj).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(AccountStatementsORMWithAfterStrictUpdateSave); ok {
+		if err = hook.AfterStrictUpdateSave(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := ormObj.ToPB(ctx)
+	if err != nil {
+		return nil, err
+	}
+	return &pbResponse, err
+}
+
+type AccountStatementsORMWithBeforeStrictUpdateCleanup interface {
+	BeforeStrictUpdateCleanup(context.Context, *gorm.DB) (*gorm.DB, error)
+}
+type AccountStatementsORMWithBeforeStrictUpdateSave interface {
+	BeforeStrictUpdateSave(context.Context, *gorm.DB) (*gorm.DB, error)
+}
+type AccountStatementsORMWithAfterStrictUpdateSave interface {
+	AfterStrictUpdateSave(context.Context, *gorm.DB) error
+}
+
+// DefaultPatchAccountStatements executes a basic gorm update call with patch behavior
+func DefaultPatchAccountStatements(ctx context.Context, in *AccountStatements, updateMask *field_mask.FieldMask, db *gorm.DB) (*AccountStatements, error) {
+	if in == nil {
+		return nil, errors.NilArgumentError
+	}
+	var pbObj AccountStatements
+	var err error
+	if hook, ok := interface{}(&pbObj).(AccountStatementsWithBeforePatchRead); ok {
+		if db, err = hook.BeforePatchRead(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbReadRes, err := DefaultReadAccountStatements(ctx, &AccountStatements{Id: in.GetId()}, db)
+	if err != nil {
+		return nil, err
+	}
+	pbObj = *pbReadRes
+	if hook, ok := interface{}(&pbObj).(AccountStatementsWithBeforePatchApplyFieldMask); ok {
+		if db, err = hook.BeforePatchApplyFieldMask(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	if _, err := DefaultApplyFieldMaskAccountStatements(ctx, &pbObj, in, updateMask, "", db); err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&pbObj).(AccountStatementsWithBeforePatchSave); ok {
+		if db, err = hook.BeforePatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse, err := DefaultStrictUpdateAccountStatements(ctx, &pbObj, db)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(pbResponse).(AccountStatementsWithAfterPatchSave); ok {
+		if err = hook.AfterPatchSave(ctx, in, updateMask, db); err != nil {
+			return nil, err
+		}
+	}
+	return pbResponse, nil
+}
+
+type AccountStatementsWithBeforePatchRead interface {
+	BeforePatchRead(context.Context, *AccountStatements, *field_mask.FieldMask, *gorm.DB) (*gorm.DB, error)
+}
+type AccountStatementsWithBeforePatchApplyFieldMask interface {
+	BeforePatchApplyFieldMask(context.Context, *AccountStatements, *field_mask.FieldMask, *gorm.DB) (*gorm.DB, error)
+}
+type AccountStatementsWithBeforePatchSave interface {
+	BeforePatchSave(context.Context, *AccountStatements, *field_mask.FieldMask, *gorm.DB) (*gorm.DB, error)
+}
+type AccountStatementsWithAfterPatchSave interface {
+	AfterPatchSave(context.Context, *AccountStatements, *field_mask.FieldMask, *gorm.DB) error
+}
+
+// DefaultPatchSetAccountStatements executes a bulk gorm update call with patch behavior
+func DefaultPatchSetAccountStatements(ctx context.Context, objects []*AccountStatements, updateMasks []*field_mask.FieldMask, db *gorm.DB) ([]*AccountStatements, error) {
+	if len(objects) != len(updateMasks) {
+		return nil, fmt.Errorf(errors.BadRepeatedFieldMaskTpl, len(updateMasks), len(objects))
+	}
+
+	results := make([]*AccountStatements, 0, len(objects))
+	for i, patcher := range objects {
+		pbResponse, err := DefaultPatchAccountStatements(ctx, patcher, updateMasks[i], db)
+		if err != nil {
+			return nil, err
+		}
+
+		results = append(results, pbResponse)
+	}
+
+	return results, nil
+}
+
+// DefaultApplyFieldMaskAccountStatements patches an pbObject with patcher according to a field mask.
+func DefaultApplyFieldMaskAccountStatements(ctx context.Context, patchee *AccountStatements, patcher *AccountStatements, updateMask *field_mask.FieldMask, prefix string, db *gorm.DB) (*AccountStatements, error) {
+	if patcher == nil {
+		return nil, nil
+	} else if patchee == nil {
+		return nil, errors.NilArgumentError
+	}
+	var err error
+	for _, f := range updateMask.Paths {
+		if f == prefix+"Id" {
+			patchee.Id = patcher.Id
+			continue
+		}
+		if f == prefix+"PlaidStatementId" {
+			patchee.PlaidStatementId = patcher.PlaidStatementId
+			continue
+		}
+		if f == prefix+"Month" {
+			patchee.Month = patcher.Month
+			continue
+		}
+		if f == prefix+"Year" {
+			patchee.Year = patcher.Year
+			continue
+		}
+		if f == prefix+"StatementPdfUrl" {
+			patchee.StatementPdfUrl = patcher.StatementPdfUrl
+			continue
+		}
+	}
+	if err != nil {
+		return nil, err
+	}
+	return patchee, nil
+}
+
+// DefaultListAccountStatements executes a gorm list call
+func DefaultListAccountStatements(ctx context.Context, db *gorm.DB) ([]*AccountStatements, error) {
+	in := AccountStatements{}
+	ormObj, err := in.ToORM(ctx)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(AccountStatementsORMWithBeforeListApplyQuery); ok {
+		if db, err = hook.BeforeListApplyQuery(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	db, err = gorm1.ApplyCollectionOperators(ctx, db, &AccountStatementsORM{}, &AccountStatements{}, nil, nil, nil, nil)
+	if err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(AccountStatementsORMWithBeforeListFind); ok {
+		if db, err = hook.BeforeListFind(ctx, db); err != nil {
+			return nil, err
+		}
+	}
+	db = db.Where(&ormObj)
+	db = db.Order("id")
+	ormResponse := []AccountStatementsORM{}
+	if err := db.Find(&ormResponse).Error; err != nil {
+		return nil, err
+	}
+	if hook, ok := interface{}(&ormObj).(AccountStatementsORMWithAfterListFind); ok {
+		if err = hook.AfterListFind(ctx, db, &ormResponse); err != nil {
+			return nil, err
+		}
+	}
+	pbResponse := []*AccountStatements{}
+	for _, responseEntry := range ormResponse {
+		temp, err := responseEntry.ToPB(ctx)
+		if err != nil {
+			return nil, err
+		}
+		pbResponse = append(pbResponse, &temp)
+	}
+	return pbResponse, nil
+}
+
+type AccountStatementsORMWithBeforeListApplyQuery interface {
+	BeforeListApplyQuery(context.Context, *gorm.DB) (*gorm.DB, error)
+}
+type AccountStatementsORMWithBeforeListFind interface {
+	BeforeListFind(context.Context, *gorm.DB) (*gorm.DB, error)
+}
+type AccountStatementsORMWithAfterListFind interface {
+	AfterListFind(context.Context, *gorm.DB, *[]AccountStatementsORM) error
 }
 
 // DefaultCreatePocket executes a basic gorm create call

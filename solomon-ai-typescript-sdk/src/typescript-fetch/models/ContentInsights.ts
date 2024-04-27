@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Entities } from './Entities';
 import {
     EntitiesFromJSON,
@@ -74,9 +74,7 @@ export interface ContentInsights {
  * Check if a given object implements the ContentInsights interface.
  */
 export function instanceOfContentInsights(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ContentInsightsFromJSON(json: any): ContentInsights {
@@ -84,35 +82,32 @@ export function ContentInsightsFromJSON(json: any): ContentInsights {
 }
 
 export function ContentInsightsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ContentInsights {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'sentenceCount': !exists(json, 'sentenceCount') ? undefined : json['sentenceCount'],
-        'wordCount': !exists(json, 'wordCount') ? undefined : json['wordCount'],
-        'language': !exists(json, 'language') ? undefined : json['language'],
-        'languageConfidence': !exists(json, 'languageConfidence') ? undefined : json['languageConfidence'],
-        'entities': !exists(json, 'entities') ? undefined : ((json['entities'] as Array<any>).map(EntitiesFromJSON)),
-        'sentiment': !exists(json, 'sentiment') ? undefined : SentimentFromJSON(json['sentiment']),
+        'sentenceCount': json['sentenceCount'] == null ? undefined : json['sentenceCount'],
+        'wordCount': json['wordCount'] == null ? undefined : json['wordCount'],
+        'language': json['language'] == null ? undefined : json['language'],
+        'languageConfidence': json['languageConfidence'] == null ? undefined : json['languageConfidence'],
+        'entities': json['entities'] == null ? undefined : ((json['entities'] as Array<any>).map(EntitiesFromJSON)),
+        'sentiment': json['sentiment'] == null ? undefined : SentimentFromJSON(json['sentiment']),
     };
 }
 
 export function ContentInsightsToJSON(value?: ContentInsights | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'sentenceCount': value.sentenceCount,
-        'wordCount': value.wordCount,
-        'language': value.language,
-        'languageConfidence': value.languageConfidence,
-        'entities': value.entities === undefined ? undefined : ((value.entities as Array<any>).map(EntitiesToJSON)),
-        'sentiment': SentimentToJSON(value.sentiment),
+        'sentenceCount': value['sentenceCount'],
+        'wordCount': value['wordCount'],
+        'language': value['language'],
+        'languageConfidence': value['languageConfidence'],
+        'entities': value['entities'] == null ? undefined : ((value['entities'] as Array<any>).map(EntitiesToJSON)),
+        'sentiment': SentimentToJSON(value['sentiment']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Workspace } from './Workspace';
 import {
     WorkspaceFromJSON,
@@ -38,9 +38,7 @@ export interface ListWorkspaceResponse {
  * Check if a given object implements the ListWorkspaceResponse interface.
  */
 export function instanceOfListWorkspaceResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListWorkspaceResponseFromJSON(json: any): ListWorkspaceResponse {
@@ -48,25 +46,22 @@ export function ListWorkspaceResponseFromJSON(json: any): ListWorkspaceResponse 
 }
 
 export function ListWorkspaceResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListWorkspaceResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'workspace': !exists(json, 'workspace') ? undefined : ((json['workspace'] as Array<any>).map(WorkspaceFromJSON)),
+        'workspace': json['workspace'] == null ? undefined : ((json['workspace'] as Array<any>).map(WorkspaceFromJSON)),
     };
 }
 
 export function ListWorkspaceResponseToJSON(value?: ListWorkspaceResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'workspace': value.workspace === undefined ? undefined : ((value.workspace as Array<any>).map(WorkspaceToJSON)),
+        'workspace': value['workspace'] == null ? undefined : ((value['workspace'] as Array<any>).map(WorkspaceToJSON)),
     };
 }
 

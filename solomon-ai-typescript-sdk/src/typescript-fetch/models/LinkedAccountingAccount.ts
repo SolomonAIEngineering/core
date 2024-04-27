@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { AccountingAttachment } from './AccountingAttachment';
 import {
     AccountingAttachmentFromJSON,
@@ -236,9 +236,7 @@ export interface LinkedAccountingAccount {
  * Check if a given object implements the LinkedAccountingAccount interface.
  */
 export function instanceOfLinkedAccountingAccount(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function LinkedAccountingAccountFromJSON(json: any): LinkedAccountingAccount {
@@ -246,59 +244,56 @@ export function LinkedAccountingAccountFromJSON(json: any): LinkedAccountingAcco
 }
 
 export function LinkedAccountingAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): LinkedAccountingAccount {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'attachments': !exists(json, 'attachments') ? undefined : ((json['attachments'] as Array<any>).map(AccountingAttachmentFromJSON)),
-        'companyInfo': !exists(json, 'companyInfo') ? undefined : ((json['companyInfo'] as Array<any>).map(CompanyInfoFromJSON)),
-        'purchaseOrders': !exists(json, 'purchaseOrders') ? undefined : ((json['purchaseOrders'] as Array<any>).map(PurchaseOrderFromJSON)),
-        'balanceSheets': !exists(json, 'balanceSheets') ? undefined : ((json['balanceSheets'] as Array<any>).map(BalanceSheetFromJSON)),
-        'cashFlowStatements': !exists(json, 'cashFlowStatements') ? undefined : ((json['cashFlowStatements'] as Array<any>).map(CashFlowStatementFromJSON)),
-        'incomeStatements': !exists(json, 'incomeStatements') ? undefined : ((json['incomeStatements'] as Array<any>).map(IncomeStatementFromJSON)),
-        'chartOfAccounts': !exists(json, 'chartOfAccounts') ? undefined : ((json['chartOfAccounts'] as Array<any>).map(BusinessChartOfAccountFromJSON)),
-        'items': !exists(json, 'items') ? undefined : ((json['items'] as Array<any>).map(ItemFromJSON)),
-        'taxRates': !exists(json, 'taxRates') ? undefined : ((json['taxRates'] as Array<any>).map(TaxRateFromJSON)),
-        'contacts': !exists(json, 'contacts') ? undefined : ((json['contacts'] as Array<any>).map(ContactsFromJSON)),
-        'invoices': !exists(json, 'invoices') ? undefined : ((json['invoices'] as Array<any>).map(InvoiceFromJSON)),
-        'payments': !exists(json, 'payments') ? undefined : ((json['payments'] as Array<any>).map(PaymentFromJSON)),
-        'expenses': !exists(json, 'expenses') ? undefined : ((json['expenses'] as Array<any>).map(ExpenseFromJSON)),
-        'journalEntries': !exists(json, 'journalEntries') ? undefined : ((json['journalEntries'] as Array<any>).map(JournalEntryFromJSON)),
-        'transactions': !exists(json, 'transactions') ? undefined : ((json['transactions'] as Array<any>).map(BusinessTransactionFromJSON)),
-        'vendorCredits': !exists(json, 'vendorCredits') ? undefined : ((json['vendorCredits'] as Array<any>).map(VendorCreditFromJSON)),
-        'creditNotes': !exists(json, 'creditNotes') ? undefined : ((json['creditNotes'] as Array<any>).map(CreditNoteFromJSON)),
+        'id': json['id'] == null ? undefined : json['id'],
+        'attachments': json['attachments'] == null ? undefined : ((json['attachments'] as Array<any>).map(AccountingAttachmentFromJSON)),
+        'companyInfo': json['companyInfo'] == null ? undefined : ((json['companyInfo'] as Array<any>).map(CompanyInfoFromJSON)),
+        'purchaseOrders': json['purchaseOrders'] == null ? undefined : ((json['purchaseOrders'] as Array<any>).map(PurchaseOrderFromJSON)),
+        'balanceSheets': json['balanceSheets'] == null ? undefined : ((json['balanceSheets'] as Array<any>).map(BalanceSheetFromJSON)),
+        'cashFlowStatements': json['cashFlowStatements'] == null ? undefined : ((json['cashFlowStatements'] as Array<any>).map(CashFlowStatementFromJSON)),
+        'incomeStatements': json['incomeStatements'] == null ? undefined : ((json['incomeStatements'] as Array<any>).map(IncomeStatementFromJSON)),
+        'chartOfAccounts': json['chartOfAccounts'] == null ? undefined : ((json['chartOfAccounts'] as Array<any>).map(BusinessChartOfAccountFromJSON)),
+        'items': json['items'] == null ? undefined : ((json['items'] as Array<any>).map(ItemFromJSON)),
+        'taxRates': json['taxRates'] == null ? undefined : ((json['taxRates'] as Array<any>).map(TaxRateFromJSON)),
+        'contacts': json['contacts'] == null ? undefined : ((json['contacts'] as Array<any>).map(ContactsFromJSON)),
+        'invoices': json['invoices'] == null ? undefined : ((json['invoices'] as Array<any>).map(InvoiceFromJSON)),
+        'payments': json['payments'] == null ? undefined : ((json['payments'] as Array<any>).map(PaymentFromJSON)),
+        'expenses': json['expenses'] == null ? undefined : ((json['expenses'] as Array<any>).map(ExpenseFromJSON)),
+        'journalEntries': json['journalEntries'] == null ? undefined : ((json['journalEntries'] as Array<any>).map(JournalEntryFromJSON)),
+        'transactions': json['transactions'] == null ? undefined : ((json['transactions'] as Array<any>).map(BusinessTransactionFromJSON)),
+        'vendorCredits': json['vendorCredits'] == null ? undefined : ((json['vendorCredits'] as Array<any>).map(VendorCreditFromJSON)),
+        'creditNotes': json['creditNotes'] == null ? undefined : ((json['creditNotes'] as Array<any>).map(CreditNoteFromJSON)),
     };
 }
 
 export function LinkedAccountingAccountToJSON(value?: LinkedAccountingAccount | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'attachments': value.attachments === undefined ? undefined : ((value.attachments as Array<any>).map(AccountingAttachmentToJSON)),
-        'companyInfo': value.companyInfo === undefined ? undefined : ((value.companyInfo as Array<any>).map(CompanyInfoToJSON)),
-        'purchaseOrders': value.purchaseOrders === undefined ? undefined : ((value.purchaseOrders as Array<any>).map(PurchaseOrderToJSON)),
-        'balanceSheets': value.balanceSheets === undefined ? undefined : ((value.balanceSheets as Array<any>).map(BalanceSheetToJSON)),
-        'cashFlowStatements': value.cashFlowStatements === undefined ? undefined : ((value.cashFlowStatements as Array<any>).map(CashFlowStatementToJSON)),
-        'incomeStatements': value.incomeStatements === undefined ? undefined : ((value.incomeStatements as Array<any>).map(IncomeStatementToJSON)),
-        'chartOfAccounts': value.chartOfAccounts === undefined ? undefined : ((value.chartOfAccounts as Array<any>).map(BusinessChartOfAccountToJSON)),
-        'items': value.items === undefined ? undefined : ((value.items as Array<any>).map(ItemToJSON)),
-        'taxRates': value.taxRates === undefined ? undefined : ((value.taxRates as Array<any>).map(TaxRateToJSON)),
-        'contacts': value.contacts === undefined ? undefined : ((value.contacts as Array<any>).map(ContactsToJSON)),
-        'invoices': value.invoices === undefined ? undefined : ((value.invoices as Array<any>).map(InvoiceToJSON)),
-        'payments': value.payments === undefined ? undefined : ((value.payments as Array<any>).map(PaymentToJSON)),
-        'expenses': value.expenses === undefined ? undefined : ((value.expenses as Array<any>).map(ExpenseToJSON)),
-        'journalEntries': value.journalEntries === undefined ? undefined : ((value.journalEntries as Array<any>).map(JournalEntryToJSON)),
-        'transactions': value.transactions === undefined ? undefined : ((value.transactions as Array<any>).map(BusinessTransactionToJSON)),
-        'vendorCredits': value.vendorCredits === undefined ? undefined : ((value.vendorCredits as Array<any>).map(VendorCreditToJSON)),
-        'creditNotes': value.creditNotes === undefined ? undefined : ((value.creditNotes as Array<any>).map(CreditNoteToJSON)),
+        'id': value['id'],
+        'attachments': value['attachments'] == null ? undefined : ((value['attachments'] as Array<any>).map(AccountingAttachmentToJSON)),
+        'companyInfo': value['companyInfo'] == null ? undefined : ((value['companyInfo'] as Array<any>).map(CompanyInfoToJSON)),
+        'purchaseOrders': value['purchaseOrders'] == null ? undefined : ((value['purchaseOrders'] as Array<any>).map(PurchaseOrderToJSON)),
+        'balanceSheets': value['balanceSheets'] == null ? undefined : ((value['balanceSheets'] as Array<any>).map(BalanceSheetToJSON)),
+        'cashFlowStatements': value['cashFlowStatements'] == null ? undefined : ((value['cashFlowStatements'] as Array<any>).map(CashFlowStatementToJSON)),
+        'incomeStatements': value['incomeStatements'] == null ? undefined : ((value['incomeStatements'] as Array<any>).map(IncomeStatementToJSON)),
+        'chartOfAccounts': value['chartOfAccounts'] == null ? undefined : ((value['chartOfAccounts'] as Array<any>).map(BusinessChartOfAccountToJSON)),
+        'items': value['items'] == null ? undefined : ((value['items'] as Array<any>).map(ItemToJSON)),
+        'taxRates': value['taxRates'] == null ? undefined : ((value['taxRates'] as Array<any>).map(TaxRateToJSON)),
+        'contacts': value['contacts'] == null ? undefined : ((value['contacts'] as Array<any>).map(ContactsToJSON)),
+        'invoices': value['invoices'] == null ? undefined : ((value['invoices'] as Array<any>).map(InvoiceToJSON)),
+        'payments': value['payments'] == null ? undefined : ((value['payments'] as Array<any>).map(PaymentToJSON)),
+        'expenses': value['expenses'] == null ? undefined : ((value['expenses'] as Array<any>).map(ExpenseToJSON)),
+        'journalEntries': value['journalEntries'] == null ? undefined : ((value['journalEntries'] as Array<any>).map(JournalEntryToJSON)),
+        'transactions': value['transactions'] == null ? undefined : ((value['transactions'] as Array<any>).map(BusinessTransactionToJSON)),
+        'vendorCredits': value['vendorCredits'] == null ? undefined : ((value['vendorCredits'] as Array<any>).map(VendorCreditToJSON)),
+        'creditNotes': value['creditNotes'] == null ? undefined : ((value['creditNotes'] as Array<any>).map(CreditNoteToJSON)),
     };
 }
 

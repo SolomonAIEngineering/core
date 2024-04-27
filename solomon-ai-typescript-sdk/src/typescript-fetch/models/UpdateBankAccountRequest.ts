@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BankAccount } from './BankAccount';
 import {
     BankAccountFromJSON,
@@ -38,10 +38,8 @@ export interface UpdateBankAccountRequest {
  * Check if a given object implements the UpdateBankAccountRequest interface.
  */
 export function instanceOfUpdateBankAccountRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "bankAccount" in value;
-
-    return isInstance;
+    if (!('bankAccount' in value)) return false;
+    return true;
 }
 
 export function UpdateBankAccountRequestFromJSON(json: any): UpdateBankAccountRequest {
@@ -49,7 +47,7 @@ export function UpdateBankAccountRequestFromJSON(json: any): UpdateBankAccountRe
 }
 
 export function UpdateBankAccountRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateBankAccountRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function UpdateBankAccountRequestFromJSONTyped(json: any, ignoreDiscrimin
 }
 
 export function UpdateBankAccountRequestToJSON(value?: UpdateBankAccountRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'bankAccount': BankAccountToJSON(value.bankAccount),
+        'bankAccount': BankAccountToJSON(value['bankAccount']),
     };
 }
 

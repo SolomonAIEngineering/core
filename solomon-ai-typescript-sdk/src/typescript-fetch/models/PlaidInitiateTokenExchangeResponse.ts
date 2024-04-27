@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -43,9 +43,7 @@ export interface PlaidInitiateTokenExchangeResponse {
  * Check if a given object implements the PlaidInitiateTokenExchangeResponse interface.
  */
 export function instanceOfPlaidInitiateTokenExchangeResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PlaidInitiateTokenExchangeResponseFromJSON(json: any): PlaidInitiateTokenExchangeResponse {
@@ -53,29 +51,26 @@ export function PlaidInitiateTokenExchangeResponseFromJSON(json: any): PlaidInit
 }
 
 export function PlaidInitiateTokenExchangeResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlaidInitiateTokenExchangeResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'linkToken': !exists(json, 'linkToken') ? undefined : json['linkToken'],
-        'expiration': !exists(json, 'expiration') ? undefined : json['expiration'],
-        'plaidRequestId': !exists(json, 'plaidRequestId') ? undefined : json['plaidRequestId'],
+        'linkToken': json['linkToken'] == null ? undefined : json['linkToken'],
+        'expiration': json['expiration'] == null ? undefined : json['expiration'],
+        'plaidRequestId': json['plaidRequestId'] == null ? undefined : json['plaidRequestId'],
     };
 }
 
 export function PlaidInitiateTokenExchangeResponseToJSON(value?: PlaidInitiateTokenExchangeResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'linkToken': value.linkToken,
-        'expiration': value.expiration,
-        'plaidRequestId': value.plaidRequestId,
+        'linkToken': value['linkToken'],
+        'expiration': value['expiration'],
+        'plaidRequestId': value['plaidRequestId'],
     };
 }
 

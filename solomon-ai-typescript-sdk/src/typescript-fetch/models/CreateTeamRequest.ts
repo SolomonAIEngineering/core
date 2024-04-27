@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -43,9 +43,7 @@ export interface CreateTeamRequest {
  * Check if a given object implements the CreateTeamRequest interface.
  */
 export function instanceOfCreateTeamRequest(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreateTeamRequestFromJSON(json: any): CreateTeamRequest {
@@ -53,29 +51,26 @@ export function CreateTeamRequestFromJSON(json: any): CreateTeamRequest {
 }
 
 export function CreateTeamRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateTeamRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'adminAuth0UserId': !exists(json, 'adminAuth0UserId') ? undefined : json['adminAuth0UserId'],
-        'teamName': !exists(json, 'teamName') ? undefined : json['teamName'],
-        'teamDescription': !exists(json, 'teamDescription') ? undefined : json['teamDescription'],
+        'adminAuth0UserId': json['adminAuth0UserId'] == null ? undefined : json['adminAuth0UserId'],
+        'teamName': json['teamName'] == null ? undefined : json['teamName'],
+        'teamDescription': json['teamDescription'] == null ? undefined : json['teamDescription'],
     };
 }
 
 export function CreateTeamRequestToJSON(value?: CreateTeamRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'adminAuth0UserId': value.adminAuth0UserId,
-        'teamName': value.teamName,
-        'teamDescription': value.teamDescription,
+        'adminAuth0UserId': value['adminAuth0UserId'],
+        'teamName': value['teamName'],
+        'teamDescription': value['teamDescription'],
     };
 }
 

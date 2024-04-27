@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SmartNote } from './SmartNote';
 import {
     SmartNoteFromJSON,
@@ -38,10 +38,8 @@ export interface UpdateNoteToTransactionRequest {
  * Check if a given object implements the UpdateNoteToTransactionRequest interface.
  */
 export function instanceOfUpdateNoteToTransactionRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "note" in value;
-
-    return isInstance;
+    if (!('note' in value)) return false;
+    return true;
 }
 
 export function UpdateNoteToTransactionRequestFromJSON(json: any): UpdateNoteToTransactionRequest {
@@ -49,7 +47,7 @@ export function UpdateNoteToTransactionRequestFromJSON(json: any): UpdateNoteToT
 }
 
 export function UpdateNoteToTransactionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateNoteToTransactionRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function UpdateNoteToTransactionRequestFromJSONTyped(json: any, ignoreDis
 }
 
 export function UpdateNoteToTransactionRequestToJSON(value?: UpdateNoteToTransactionRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'note': SmartNoteToJSON(value.note),
+        'note': SmartNoteToJSON(value['note']),
     };
 }
 

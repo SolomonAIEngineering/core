@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Budget } from './Budget';
 import {
     BudgetFromJSON,
@@ -38,9 +38,7 @@ export interface GetBudgetResponse {
  * Check if a given object implements the GetBudgetResponse interface.
  */
 export function instanceOfGetBudgetResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetBudgetResponseFromJSON(json: any): GetBudgetResponse {
@@ -48,25 +46,22 @@ export function GetBudgetResponseFromJSON(json: any): GetBudgetResponse {
 }
 
 export function GetBudgetResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetBudgetResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'budget': !exists(json, 'budget') ? undefined : BudgetFromJSON(json['budget']),
+        'budget': json['budget'] == null ? undefined : BudgetFromJSON(json['budget']),
     };
 }
 
 export function GetBudgetResponseToJSON(value?: GetBudgetResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'budget': BudgetToJSON(value.budget),
+        'budget': BudgetToJSON(value['budget']),
     };
 }
 

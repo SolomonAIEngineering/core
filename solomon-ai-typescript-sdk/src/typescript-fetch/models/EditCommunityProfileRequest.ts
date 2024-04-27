@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CommunityProfile } from './CommunityProfile';
 import {
     CommunityProfileFromJSON,
@@ -50,12 +50,10 @@ export interface EditCommunityProfileRequest {
  * Check if a given object implements the EditCommunityProfileRequest interface.
  */
 export function instanceOfEditCommunityProfileRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "profile" in value;
-    isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "communityProfileId" in value;
-
-    return isInstance;
+    if (!('profile' in value)) return false;
+    if (!('userId' in value)) return false;
+    if (!('communityProfileId' in value)) return false;
+    return true;
 }
 
 export function EditCommunityProfileRequestFromJSON(json: any): EditCommunityProfileRequest {
@@ -63,7 +61,7 @@ export function EditCommunityProfileRequestFromJSON(json: any): EditCommunityPro
 }
 
 export function EditCommunityProfileRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): EditCommunityProfileRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -75,17 +73,14 @@ export function EditCommunityProfileRequestFromJSONTyped(json: any, ignoreDiscri
 }
 
 export function EditCommunityProfileRequestToJSON(value?: EditCommunityProfileRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'profile': CommunityProfileToJSON(value.profile),
-        'userId': value.userId,
-        'communityProfileId': value.communityProfileId,
+        'profile': CommunityProfileToJSON(value['profile']),
+        'userId': value['userId'],
+        'communityProfileId': value['communityProfileId'],
     };
 }
 

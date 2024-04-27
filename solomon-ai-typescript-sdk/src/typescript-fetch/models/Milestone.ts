@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Budget } from './Budget';
 import {
     BudgetFromJSON,
@@ -74,9 +74,7 @@ export interface Milestone {
  * Check if a given object implements the Milestone interface.
  */
 export function instanceOfMilestone(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function MilestoneFromJSON(json: any): Milestone {
@@ -84,37 +82,34 @@ export function MilestoneFromJSON(json: any): Milestone {
 }
 
 export function MilestoneFromJSONTyped(json: any, ignoreDiscriminator: boolean): Milestone {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'targetDate': !exists(json, 'targetDate') ? undefined : json['targetDate'],
-        'targetAmount': !exists(json, 'targetAmount') ? undefined : json['targetAmount'],
-        'isCompleted': !exists(json, 'isCompleted') ? undefined : json['isCompleted'],
-        'budget': !exists(json, 'budget') ? undefined : BudgetFromJSON(json['budget']),
+        'id': json['id'] == null ? undefined : json['id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'targetDate': json['targetDate'] == null ? undefined : json['targetDate'],
+        'targetAmount': json['targetAmount'] == null ? undefined : json['targetAmount'],
+        'isCompleted': json['isCompleted'] == null ? undefined : json['isCompleted'],
+        'budget': json['budget'] == null ? undefined : BudgetFromJSON(json['budget']),
     };
 }
 
 export function MilestoneToJSON(value?: Milestone | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'description': value.description,
-        'targetDate': value.targetDate,
-        'targetAmount': value.targetAmount,
-        'isCompleted': value.isCompleted,
-        'budget': BudgetToJSON(value.budget),
+        'id': value['id'],
+        'name': value['name'],
+        'description': value['description'],
+        'targetDate': value['targetDate'],
+        'targetAmount': value['targetAmount'],
+        'isCompleted': value['isCompleted'],
+        'budget': BudgetToJSON(value['budget']),
     };
 }
 

@@ -277,12 +277,18 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Adds a user to a team
      */
     async addUserToTeamRaw(requestParameters: AddUserToTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddUserToTeamResponse>> {
-        if (requestParameters.teamId === null || requestParameters.teamId === undefined) {
-            throw new runtime.RequiredError('teamId','Required parameter requestParameters.teamId was null or undefined when calling addUserToTeam.');
+        if (requestParameters['teamId'] == null) {
+            throw new runtime.RequiredError(
+                'teamId',
+                'Required parameter "teamId" was null or undefined when calling addUserToTeam().'
+            );
         }
 
-        if (requestParameters.addUserToTeamBody === null || requestParameters.addUserToTeamBody === undefined) {
-            throw new runtime.RequiredError('addUserToTeamBody','Required parameter requestParameters.addUserToTeamBody was null or undefined when calling addUserToTeam.');
+        if (requestParameters['addUserToTeamBody'] == null) {
+            throw new runtime.RequiredError(
+                'addUserToTeamBody',
+                'Required parameter "addUserToTeamBody" was null or undefined when calling addUserToTeam().'
+            );
         }
 
         const queryParameters: any = {};
@@ -292,11 +298,11 @@ export class UserServiceV2Api extends runtime.BaseAPI {
         headerParameters['Content-Type'] = 'application/json';
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/team/{teamId}/add-new-user`.replace(`{${"teamId"}}`, encodeURIComponent(String(requestParameters.teamId))),
+            path: `/user-microservice/api/v2/user-service/user/team/{teamId}/add-new-user`.replace(`{${"teamId"}}`, encodeURIComponent(String(requestParameters['teamId']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AddUserToTeamBodyToJSON(requestParameters.addUserToTeamBody),
+            body: AddUserToTeamBodyToJSON(requestParameters['addUserToTeamBody']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AddUserToTeamResponseFromJSON(jsonValue));
@@ -316,12 +322,18 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Checks that an email and auth0 user id exists or not
      */
     async checkEmailAndAuth0UserIdExistsRaw(requestParameters: CheckEmailAndAuth0UserIdExistsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckEmailAndAuth0UserIdExistsResponse>> {
-        if (requestParameters.email === null || requestParameters.email === undefined) {
-            throw new runtime.RequiredError('email','Required parameter requestParameters.email was null or undefined when calling checkEmailAndAuth0UserIdExists.');
+        if (requestParameters['email'] == null) {
+            throw new runtime.RequiredError(
+                'email',
+                'Required parameter "email" was null or undefined when calling checkEmailAndAuth0UserIdExists().'
+            );
         }
 
-        if (requestParameters.auth0UserId === null || requestParameters.auth0UserId === undefined) {
-            throw new runtime.RequiredError('auth0UserId','Required parameter requestParameters.auth0UserId was null or undefined when calling checkEmailAndAuth0UserIdExists.');
+        if (requestParameters['auth0UserId'] == null) {
+            throw new runtime.RequiredError(
+                'auth0UserId',
+                'Required parameter "auth0UserId" was null or undefined when calling checkEmailAndAuth0UserIdExists().'
+            );
         }
 
         const queryParameters: any = {};
@@ -329,7 +341,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user/email/{email}/auth0/{auth0UserId}/exists`.replace(`{${"email"}}`, encodeURIComponent(String(requestParameters.email))).replace(`{${"auth0UserId"}}`, encodeURIComponent(String(requestParameters.auth0UserId))),
+            path: `/user-microservice/api/v2/user/email/{email}/auth0/{auth0UserId}/exists`.replace(`{${"email"}}`, encodeURIComponent(String(requestParameters['email']))).replace(`{${"auth0UserId"}}`, encodeURIComponent(String(requestParameters['auth0UserId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -352,24 +364,30 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Checks that an email exists or not
      */
     async checkEmailExistsV2Raw(requestParameters: CheckEmailExistsV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckEmailExistsV2Response>> {
-        if (requestParameters.email === null || requestParameters.email === undefined) {
-            throw new runtime.RequiredError('email','Required parameter requestParameters.email was null or undefined when calling checkEmailExistsV2.');
+        if (requestParameters['email'] == null) {
+            throw new runtime.RequiredError(
+                'email',
+                'Required parameter "email" was null or undefined when calling checkEmailExistsV2().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling checkEmailExistsV2.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling checkEmailExistsV2().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/email/{email}/exists`.replace(`{${"email"}}`, encodeURIComponent(String(requestParameters.email))),
+            path: `/user-microservice/api/v2/user-service/user/email/{email}/exists`.replace(`{${"email"}}`, encodeURIComponent(String(requestParameters['email']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -392,24 +410,30 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Checks that a username exists or not
      */
     async checkUsernameExistsV2Raw(requestParameters: CheckUsernameExistsV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckUsernameExistsV2Response>> {
-        if (requestParameters.username === null || requestParameters.username === undefined) {
-            throw new runtime.RequiredError('username','Required parameter requestParameters.username was null or undefined when calling checkUsernameExistsV2.');
+        if (requestParameters['username'] == null) {
+            throw new runtime.RequiredError(
+                'username',
+                'Required parameter "username" was null or undefined when calling checkUsernameExistsV2().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling checkUsernameExistsV2.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling checkUsernameExistsV2().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/username/{username}/exists`.replace(`{${"username"}}`, encodeURIComponent(String(requestParameters.username))),
+            path: `/user-microservice/api/v2/user-service/user/username/{username}/exists`.replace(`{${"username"}}`, encodeURIComponent(String(requestParameters['username']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -432,8 +456,11 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Creates a new role
      */
     async createRoleRaw(requestParameters: CreateRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateRoleResponse>> {
-        if (requestParameters.role === null || requestParameters.role === undefined) {
-            throw new runtime.RequiredError('role','Required parameter requestParameters.role was null or undefined when calling createRole.');
+        if (requestParameters['role'] == null) {
+            throw new runtime.RequiredError(
+                'role',
+                'Required parameter "role" was null or undefined when calling createRole().'
+            );
         }
 
         const queryParameters: any = {};
@@ -447,7 +474,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: RoleToJSON(requestParameters.role),
+            body: RoleToJSON(requestParameters['role']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateRoleResponseFromJSON(jsonValue));
@@ -467,8 +494,11 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Creates a new team
      */
     async createTeamRaw(requestParameters: CreateTeamOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateTeamResponse>> {
-        if (requestParameters.createTeamRequest === null || requestParameters.createTeamRequest === undefined) {
-            throw new runtime.RequiredError('createTeamRequest','Required parameter requestParameters.createTeamRequest was null or undefined when calling createTeam.');
+        if (requestParameters['createTeamRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createTeamRequest',
+                'Required parameter "createTeamRequest" was null or undefined when calling createTeam().'
+            );
         }
 
         const queryParameters: any = {};
@@ -482,7 +512,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateTeamRequestToJSON(requestParameters.createTeamRequest),
+            body: CreateTeamRequestToJSON(requestParameters['createTeamRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateTeamResponseFromJSON(jsonValue));
@@ -502,8 +532,11 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * create a user account
      */
     async createUserV2Raw(requestParameters: CreateUserV2OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUserV2Response>> {
-        if (requestParameters.createUserV2Request === null || requestParameters.createUserV2Request === undefined) {
-            throw new runtime.RequiredError('createUserV2Request','Required parameter requestParameters.createUserV2Request was null or undefined when calling createUserV2.');
+        if (requestParameters['createUserV2Request'] == null) {
+            throw new runtime.RequiredError(
+                'createUserV2Request',
+                'Required parameter "createUserV2Request" was null or undefined when calling createUserV2().'
+            );
         }
 
         const queryParameters: any = {};
@@ -517,7 +550,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateUserV2RequestToJSON(requestParameters.createUserV2Request),
+            body: CreateUserV2RequestToJSON(requestParameters['createUserV2Request']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateUserV2ResponseFromJSON(jsonValue));
@@ -537,8 +570,11 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Deletes a role
      */
     async deleteRoleRaw(requestParameters: DeleteRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteRoleResponse>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling deleteRole.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling deleteRole().'
+            );
         }
 
         const queryParameters: any = {};
@@ -546,7 +582,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/role/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/user-microservice/api/v2/user-service/user/role/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -569,12 +605,18 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Deletes a team
      */
     async deleteTeamRaw(requestParameters: DeleteTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteTeamResponse>> {
-        if (requestParameters.teamId === null || requestParameters.teamId === undefined) {
-            throw new runtime.RequiredError('teamId','Required parameter requestParameters.teamId was null or undefined when calling deleteTeam.');
+        if (requestParameters['teamId'] == null) {
+            throw new runtime.RequiredError(
+                'teamId',
+                'Required parameter "teamId" was null or undefined when calling deleteTeam().'
+            );
         }
 
-        if (requestParameters.adminAuth0UserId === null || requestParameters.adminAuth0UserId === undefined) {
-            throw new runtime.RequiredError('adminAuth0UserId','Required parameter requestParameters.adminAuth0UserId was null or undefined when calling deleteTeam.');
+        if (requestParameters['adminAuth0UserId'] == null) {
+            throw new runtime.RequiredError(
+                'adminAuth0UserId',
+                'Required parameter "adminAuth0UserId" was null or undefined when calling deleteTeam().'
+            );
         }
 
         const queryParameters: any = {};
@@ -582,7 +624,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/team/{teamId}/admin/{adminAuth0UserId}`.replace(`{${"teamId"}}`, encodeURIComponent(String(requestParameters.teamId))).replace(`{${"adminAuth0UserId"}}`, encodeURIComponent(String(requestParameters.adminAuth0UserId))),
+            path: `/user-microservice/api/v2/user-service/user/team/{teamId}/admin/{adminAuth0UserId}`.replace(`{${"teamId"}}`, encodeURIComponent(String(requestParameters['teamId']))).replace(`{${"adminAuth0UserId"}}`, encodeURIComponent(String(requestParameters['adminAuth0UserId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -605,24 +647,30 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * deletes a user account
      */
     async deleteUserV2Raw(requestParameters: DeleteUserV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteUserV2Response>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling deleteUserV2.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling deleteUserV2().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling deleteUserV2.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling deleteUserV2().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/user-microservice/api/v2/user-service/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -645,24 +693,30 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Retrieves user sso token for canny
      */
     async getCannyUserSSOTokenRaw(requestParameters: GetCannyUserSSOTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCannyUserSSOTokenResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getCannyUserSSOToken.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getCannyUserSSOToken().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getCannyUserSSOToken.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getCannyUserSSOToken().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/canny/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/user-microservice/api/v2/user-service/user/canny/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -685,8 +739,11 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Retrieves a role
      */
     async getRoleRaw(requestParameters: GetRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetRoleResponse>> {
-        if (requestParameters.id === null || requestParameters.id === undefined) {
-            throw new runtime.RequiredError('id','Required parameter requestParameters.id was null or undefined when calling getRole.');
+        if (requestParameters['id'] == null) {
+            throw new runtime.RequiredError(
+                'id',
+                'Required parameter "id" was null or undefined when calling getRole().'
+            );
         }
 
         const queryParameters: any = {};
@@ -694,7 +751,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/role/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters.id))),
+            path: `/user-microservice/api/v2/user-service/user/role/{id}`.replace(`{${"id"}}`, encodeURIComponent(String(requestParameters['id']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -717,8 +774,11 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Retrieves a team
      */
     async getTeamRaw(requestParameters: GetTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTeamResponse>> {
-        if (requestParameters.teamId === null || requestParameters.teamId === undefined) {
-            throw new runtime.RequiredError('teamId','Required parameter requestParameters.teamId was null or undefined when calling getTeam.');
+        if (requestParameters['teamId'] == null) {
+            throw new runtime.RequiredError(
+                'teamId',
+                'Required parameter "teamId" was null or undefined when calling getTeam().'
+            );
         }
 
         const queryParameters: any = {};
@@ -726,7 +786,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/team/{teamId}`.replace(`{${"teamId"}}`, encodeURIComponent(String(requestParameters.teamId))),
+            path: `/user-microservice/api/v2/user-service/user/team/{teamId}`.replace(`{${"teamId"}}`, encodeURIComponent(String(requestParameters['teamId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -749,24 +809,30 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Retrieve user account details by auth0 id and profile type
      */
     async getUserByAuth0IDRaw(requestParameters: GetUserByAuth0IDRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserByAuth0IDResponse>> {
-        if (requestParameters.auth0UserId === null || requestParameters.auth0UserId === undefined) {
-            throw new runtime.RequiredError('auth0UserId','Required parameter requestParameters.auth0UserId was null or undefined when calling getUserByAuth0ID.');
+        if (requestParameters['auth0UserId'] == null) {
+            throw new runtime.RequiredError(
+                'auth0UserId',
+                'Required parameter "auth0UserId" was null or undefined when calling getUserByAuth0ID().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getUserByAuth0ID.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getUserByAuth0ID().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/auth-zero/{auth0UserId}`.replace(`{${"auth0UserId"}}`, encodeURIComponent(String(requestParameters.auth0UserId))),
+            path: `/user-microservice/api/v2/user-service/user/auth-zero/{auth0UserId}`.replace(`{${"auth0UserId"}}`, encodeURIComponent(String(requestParameters['auth0UserId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -789,24 +855,30 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Retrieve user account details by authn id
      */
     async getUserByAuthnIDV2Raw(requestParameters: GetUserByAuthnIDV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserByAuthnIDV2Response>> {
-        if (requestParameters.authnId === null || requestParameters.authnId === undefined) {
-            throw new runtime.RequiredError('authnId','Required parameter requestParameters.authnId was null or undefined when calling getUserByAuthnIDV2.');
+        if (requestParameters['authnId'] == null) {
+            throw new runtime.RequiredError(
+                'authnId',
+                'Required parameter "authnId" was null or undefined when calling getUserByAuthnIDV2().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getUserByAuthnIDV2.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getUserByAuthnIDV2().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/authn/{authnId}`.replace(`{${"authnId"}}`, encodeURIComponent(String(requestParameters.authnId))),
+            path: `/user-microservice/api/v2/user-service/user/authn/{authnId}`.replace(`{${"authnId"}}`, encodeURIComponent(String(requestParameters['authnId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -829,22 +901,25 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Retrieve user account by email or username
      */
     async getUserByEmailOrUsernameV2Raw(requestParameters: GetUserByEmailOrUsernameV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserByEmailOrUsernameV2Response>> {
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getUserByEmailOrUsernameV2.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getUserByEmailOrUsernameV2().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.email !== undefined) {
-            queryParameters['email'] = requestParameters.email;
+        if (requestParameters['email'] != null) {
+            queryParameters['email'] = requestParameters['email'];
         }
 
-        if (requestParameters.username !== undefined) {
-            queryParameters['username'] = requestParameters.username;
+        if (requestParameters['username'] != null) {
+            queryParameters['username'] = requestParameters['username'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -873,24 +948,30 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Retrieve user details by email
      */
     async getUserByEmailV2Raw(requestParameters: GetUserByEmailV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserByEmailV2Response>> {
-        if (requestParameters.email === null || requestParameters.email === undefined) {
-            throw new runtime.RequiredError('email','Required parameter requestParameters.email was null or undefined when calling getUserByEmailV2.');
+        if (requestParameters['email'] == null) {
+            throw new runtime.RequiredError(
+                'email',
+                'Required parameter "email" was null or undefined when calling getUserByEmailV2().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getUserByEmailV2.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getUserByEmailV2().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/email/{email}`.replace(`{${"email"}}`, encodeURIComponent(String(requestParameters.email))),
+            path: `/user-microservice/api/v2/user-service/user/email/{email}`.replace(`{${"email"}}`, encodeURIComponent(String(requestParameters['email']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -913,24 +994,30 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Retrieve user details by username
      */
     async getUserByUsernameV2Raw(requestParameters: GetUserByUsernameV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserByUsernameV2Response>> {
-        if (requestParameters.username === null || requestParameters.username === undefined) {
-            throw new runtime.RequiredError('username','Required parameter requestParameters.username was null or undefined when calling getUserByUsernameV2.');
+        if (requestParameters['username'] == null) {
+            throw new runtime.RequiredError(
+                'username',
+                'Required parameter "username" was null or undefined when calling getUserByUsernameV2().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getUserByUsernameV2.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getUserByUsernameV2().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/username/{username}`.replace(`{${"username"}}`, encodeURIComponent(String(requestParameters.username))),
+            path: `/user-microservice/api/v2/user-service/user/username/{username}`.replace(`{${"username"}}`, encodeURIComponent(String(requestParameters['username']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -953,22 +1040,25 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * get a user account id
      */
     async getUserIdV2Raw(requestParameters: GetUserIdV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserIdV2Response>> {
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getUserIdV2.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getUserIdV2().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.email !== undefined) {
-            queryParameters['email'] = requestParameters.email;
+        if (requestParameters['email'] != null) {
+            queryParameters['email'] = requestParameters['email'];
         }
 
-        if (requestParameters.username !== undefined) {
-            queryParameters['username'] = requestParameters.username;
+        if (requestParameters['username'] != null) {
+            queryParameters['username'] = requestParameters['username'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -997,24 +1087,30 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Retrieve user account details
      */
     async getUserV2Raw(requestParameters: GetUserV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserV2Response>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUserV2.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getUserV2().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getUserV2.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getUserV2().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/user-microservice/api/v2/user-service/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1039,12 +1135,12 @@ export class UserServiceV2Api extends runtime.BaseAPI {
     async listRolesRaw(requestParameters: ListRolesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListRolesResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.page !== undefined) {
-            queryParameters['page'] = requestParameters.page;
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1075,12 +1171,12 @@ export class UserServiceV2Api extends runtime.BaseAPI {
     async passwordResetWebhookV2Raw(requestParameters: PasswordResetWebhookV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PasswordResetWebhookV2Response>> {
         const queryParameters: any = {};
 
-        if (requestParameters.accountId !== undefined) {
-            queryParameters['accountId'] = requestParameters.accountId;
+        if (requestParameters['accountId'] != null) {
+            queryParameters['accountId'] = requestParameters['accountId'];
         }
 
-        if (requestParameters.token !== undefined) {
-            queryParameters['token'] = requestParameters.token;
+        if (requestParameters['token'] != null) {
+            queryParameters['token'] = requestParameters['token'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -1109,28 +1205,31 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Removes a user from a team
      */
     async removeUserFromTeamRaw(requestParameters: RemoveUserFromTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RemoveUserFromTeamResponse>> {
-        if (requestParameters.teamId === null || requestParameters.teamId === undefined) {
-            throw new runtime.RequiredError('teamId','Required parameter requestParameters.teamId was null or undefined when calling removeUserFromTeam.');
+        if (requestParameters['teamId'] == null) {
+            throw new runtime.RequiredError(
+                'teamId',
+                'Required parameter "teamId" was null or undefined when calling removeUserFromTeam().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.adminAuth0UserId !== undefined) {
-            queryParameters['adminAuth0UserId'] = requestParameters.adminAuth0UserId;
+        if (requestParameters['adminAuth0UserId'] != null) {
+            queryParameters['adminAuth0UserId'] = requestParameters['adminAuth0UserId'];
         }
 
-        if (requestParameters.userAuth0UserId !== undefined) {
-            queryParameters['userAuth0UserId'] = requestParameters.userAuth0UserId;
+        if (requestParameters['userAuth0UserId'] != null) {
+            queryParameters['userAuth0UserId'] = requestParameters['userAuth0UserId'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/team/{teamId}/remove-user`.replace(`{${"teamId"}}`, encodeURIComponent(String(requestParameters.teamId))),
+            path: `/user-microservice/api/v2/user-service/user/team/{teamId}/remove-user`.replace(`{${"teamId"}}`, encodeURIComponent(String(requestParameters['teamId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1153,8 +1252,11 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Retrieve Business Account Settings
      */
     async retrieveBusinessSettingsRaw(requestParameters: RetrieveBusinessSettingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBusinessSettingsResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling retrieveBusinessSettings.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling retrieveBusinessSettings().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1162,7 +1264,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/business/settings/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/user-microservice/api/v2/user-service/user/business/settings/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1185,8 +1287,11 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Updates an existing role
      */
     async updateRoleRaw(requestParameters: UpdateRoleRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateRoleResponse>> {
-        if (requestParameters.role === null || requestParameters.role === undefined) {
-            throw new runtime.RequiredError('role','Required parameter requestParameters.role was null or undefined when calling updateRole.');
+        if (requestParameters['role'] == null) {
+            throw new runtime.RequiredError(
+                'role',
+                'Required parameter "role" was null or undefined when calling updateRole().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1200,7 +1305,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: RoleToJSON(requestParameters.role),
+            body: RoleToJSON(requestParameters['role']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateRoleResponseFromJSON(jsonValue));
@@ -1220,8 +1325,11 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * Updates an existing team
      */
     async updateTeamRaw(requestParameters: UpdateTeamRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateTeamResponse>> {
-        if (requestParameters.team === null || requestParameters.team === undefined) {
-            throw new runtime.RequiredError('team','Required parameter requestParameters.team was null or undefined when calling updateTeam.');
+        if (requestParameters['team'] == null) {
+            throw new runtime.RequiredError(
+                'team',
+                'Required parameter "team" was null or undefined when calling updateTeam().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1235,7 +1343,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
             method: 'PATCH',
             headers: headerParameters,
             query: queryParameters,
-            body: TeamToJSON(requestParameters.team),
+            body: TeamToJSON(requestParameters['team']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateTeamResponseFromJSON(jsonValue));
@@ -1255,8 +1363,11 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * update a user account
      */
     async updateUserV2Raw(requestParameters: UpdateUserV2OperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateUserV2Response>> {
-        if (requestParameters.updateUserV2Request === null || requestParameters.updateUserV2Request === undefined) {
-            throw new runtime.RequiredError('updateUserV2Request','Required parameter requestParameters.updateUserV2Request was null or undefined when calling updateUserV2.');
+        if (requestParameters['updateUserV2Request'] == null) {
+            throw new runtime.RequiredError(
+                'updateUserV2Request',
+                'Required parameter "updateUserV2Request" was null or undefined when calling updateUserV2().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1270,7 +1381,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateUserV2RequestToJSON(requestParameters.updateUserV2Request),
+            body: UpdateUserV2RequestToJSON(requestParameters['updateUserV2Request']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateUserV2ResponseFromJSON(jsonValue));
@@ -1290,12 +1401,18 @@ export class UserServiceV2Api extends runtime.BaseAPI {
      * User Email Verification
      */
     async verifyUserV2Raw(requestParameters: VerifyUserV2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VerifyUserV2Response>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling verifyUserV2.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling verifyUserV2().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling verifyUserV2.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling verifyUserV2().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1303,7 +1420,7 @@ export class UserServiceV2Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v2/user-service/user/verification/{userId}/profile-type/{profileType}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"profileType"}}`, encodeURIComponent(String(requestParameters.profileType))),
+            path: `/user-microservice/api/v2/user-service/user/verification/{userId}/profile-type/{profileType}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"profileType"}}`, encodeURIComponent(String(requestParameters['profileType']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

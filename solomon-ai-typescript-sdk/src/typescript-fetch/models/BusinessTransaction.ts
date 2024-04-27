@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { TransactionLineItem } from './TransactionLineItem';
 import {
     TransactionLineItemFromJSON,
@@ -150,9 +150,7 @@ export interface BusinessTransaction {
  * Check if a given object implements the BusinessTransaction interface.
  */
 export function instanceOfBusinessTransaction(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function BusinessTransactionFromJSON(json: any): BusinessTransaction {
@@ -160,59 +158,56 @@ export function BusinessTransactionFromJSON(json: any): BusinessTransaction {
 }
 
 export function BusinessTransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): BusinessTransaction {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'transactionType': !exists(json, 'transactionType') ? undefined : json['transactionType'],
-        'number': !exists(json, 'number') ? undefined : json['number'],
-        'transactionDate': !exists(json, 'transactionDate') ? undefined : (new Date(json['transactionDate'])),
-        'account': !exists(json, 'account') ? undefined : json['account'],
-        'contact': !exists(json, 'contact') ? undefined : json['contact'],
-        'totalAmount': !exists(json, 'totalAmount') ? undefined : json['totalAmount'],
-        'currency': !exists(json, 'currency') ? undefined : json['currency'],
-        'exchangeRate': !exists(json, 'exchangeRate') ? undefined : json['exchangeRate'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'trackingCategories': !exists(json, 'trackingCategories') ? undefined : json['trackingCategories'],
-        'lineItems': !exists(json, 'lineItems') ? undefined : ((json['lineItems'] as Array<any>).map(TransactionLineItemFromJSON)),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'accountingPeriod': !exists(json, 'accountingPeriod') ? undefined : json['accountingPeriod'],
-        'mergeRecordId': !exists(json, 'mergeRecordId') ? undefined : json['mergeRecordId'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'transactionType': json['transactionType'] == null ? undefined : json['transactionType'],
+        'number': json['number'] == null ? undefined : json['number'],
+        'transactionDate': json['transactionDate'] == null ? undefined : (new Date(json['transactionDate'])),
+        'account': json['account'] == null ? undefined : json['account'],
+        'contact': json['contact'] == null ? undefined : json['contact'],
+        'totalAmount': json['totalAmount'] == null ? undefined : json['totalAmount'],
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'exchangeRate': json['exchangeRate'] == null ? undefined : json['exchangeRate'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'trackingCategories': json['trackingCategories'] == null ? undefined : json['trackingCategories'],
+        'lineItems': json['lineItems'] == null ? undefined : ((json['lineItems'] as Array<any>).map(TransactionLineItemFromJSON)),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'accountingPeriod': json['accountingPeriod'] == null ? undefined : json['accountingPeriod'],
+        'mergeRecordId': json['mergeRecordId'] == null ? undefined : json['mergeRecordId'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
     };
 }
 
 export function BusinessTransactionToJSON(value?: BusinessTransaction | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'transactionType': value.transactionType,
-        'number': value.number,
-        'transactionDate': value.transactionDate === undefined ? undefined : (value.transactionDate.toISOString()),
-        'account': value.account,
-        'contact': value.contact,
-        'totalAmount': value.totalAmount,
-        'currency': value.currency,
-        'exchangeRate': value.exchangeRate,
-        'company': value.company,
-        'trackingCategories': value.trackingCategories,
-        'lineItems': value.lineItems === undefined ? undefined : ((value.lineItems as Array<any>).map(TransactionLineItemToJSON)),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'accountingPeriod': value.accountingPeriod,
-        'mergeRecordId': value.mergeRecordId,
-        'remoteId': value.remoteId,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'id': value['id'],
+        'transactionType': value['transactionType'],
+        'number': value['number'],
+        'transactionDate': value['transactionDate'] == null ? undefined : ((value['transactionDate']).toISOString()),
+        'account': value['account'],
+        'contact': value['contact'],
+        'totalAmount': value['totalAmount'],
+        'currency': value['currency'],
+        'exchangeRate': value['exchangeRate'],
+        'company': value['company'],
+        'trackingCategories': value['trackingCategories'],
+        'lineItems': value['lineItems'] == null ? undefined : ((value['lineItems'] as Array<any>).map(TransactionLineItemToJSON)),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'accountingPeriod': value['accountingPeriod'],
+        'mergeRecordId': value['mergeRecordId'],
+        'remoteId': value['remoteId'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
     };
 }
 

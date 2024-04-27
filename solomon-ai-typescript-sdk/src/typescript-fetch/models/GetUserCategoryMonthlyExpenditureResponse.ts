@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CategoryMonthlyExpenditure } from './CategoryMonthlyExpenditure';
 import {
     CategoryMonthlyExpenditureFromJSON,
@@ -44,9 +44,7 @@ export interface GetUserCategoryMonthlyExpenditureResponse {
  * Check if a given object implements the GetUserCategoryMonthlyExpenditureResponse interface.
  */
 export function instanceOfGetUserCategoryMonthlyExpenditureResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetUserCategoryMonthlyExpenditureResponseFromJSON(json: any): GetUserCategoryMonthlyExpenditureResponse {
@@ -54,27 +52,24 @@ export function GetUserCategoryMonthlyExpenditureResponseFromJSON(json: any): Ge
 }
 
 export function GetUserCategoryMonthlyExpenditureResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUserCategoryMonthlyExpenditureResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'categoryMonthlyExpenditure': !exists(json, 'categoryMonthlyExpenditure') ? undefined : ((json['categoryMonthlyExpenditure'] as Array<any>).map(CategoryMonthlyExpenditureFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'categoryMonthlyExpenditure': json['categoryMonthlyExpenditure'] == null ? undefined : ((json['categoryMonthlyExpenditure'] as Array<any>).map(CategoryMonthlyExpenditureFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetUserCategoryMonthlyExpenditureResponseToJSON(value?: GetUserCategoryMonthlyExpenditureResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'categoryMonthlyExpenditure': value.categoryMonthlyExpenditure === undefined ? undefined : ((value.categoryMonthlyExpenditure as Array<any>).map(CategoryMonthlyExpenditureToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'categoryMonthlyExpenditure': value['categoryMonthlyExpenditure'] == null ? undefined : ((value['categoryMonthlyExpenditure'] as Array<any>).map(CategoryMonthlyExpenditureToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

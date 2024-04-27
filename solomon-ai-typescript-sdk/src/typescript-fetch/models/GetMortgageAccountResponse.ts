@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MortgageAccount } from './MortgageAccount';
 import {
     MortgageAccountFromJSON,
@@ -38,9 +38,7 @@ export interface GetMortgageAccountResponse {
  * Check if a given object implements the GetMortgageAccountResponse interface.
  */
 export function instanceOfGetMortgageAccountResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetMortgageAccountResponseFromJSON(json: any): GetMortgageAccountResponse {
@@ -48,25 +46,22 @@ export function GetMortgageAccountResponseFromJSON(json: any): GetMortgageAccoun
 }
 
 export function GetMortgageAccountResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetMortgageAccountResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'mortageAccount': !exists(json, 'mortageAccount') ? undefined : MortgageAccountFromJSON(json['mortageAccount']),
+        'mortageAccount': json['mortageAccount'] == null ? undefined : MortgageAccountFromJSON(json['mortageAccount']),
     };
 }
 
 export function GetMortgageAccountResponseToJSON(value?: GetMortgageAccountResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'mortageAccount': MortgageAccountToJSON(value.mortageAccount),
+        'mortageAccount': MortgageAccountToJSON(value['mortageAccount']),
     };
 }
 

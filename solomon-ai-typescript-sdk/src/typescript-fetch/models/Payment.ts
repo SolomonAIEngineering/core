@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The Payment object represents general payments made towards a specific transaction.
  * @export
@@ -125,9 +125,7 @@ export interface Payment {
  * Check if a given object implements the Payment interface.
  */
 export function instanceOfPayment(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PaymentFromJSON(json: any): Payment {
@@ -135,55 +133,52 @@ export function PaymentFromJSON(json: any): Payment {
 }
 
 export function PaymentFromJSONTyped(json: any, ignoreDiscriminator: boolean): Payment {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'transactionDate': !exists(json, 'transactionDate') ? undefined : (new Date(json['transactionDate'])),
-        'contact': !exists(json, 'contact') ? undefined : json['contact'],
-        'account': !exists(json, 'account') ? undefined : json['account'],
-        'currency': !exists(json, 'currency') ? undefined : json['currency'],
-        'exchangeRate': !exists(json, 'exchangeRate') ? undefined : json['exchangeRate'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'totalAmount': !exists(json, 'totalAmount') ? undefined : json['totalAmount'],
-        'trackingCategories': !exists(json, 'trackingCategories') ? undefined : json['trackingCategories'],
-        'remoteUpdatedAt': !exists(json, 'remoteUpdatedAt') ? undefined : (new Date(json['remoteUpdatedAt'])),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'accountingPeriod': !exists(json, 'accountingPeriod') ? undefined : json['accountingPeriod'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeRecordId': !exists(json, 'mergeRecordId') ? undefined : json['mergeRecordId'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'transactionDate': json['transactionDate'] == null ? undefined : (new Date(json['transactionDate'])),
+        'contact': json['contact'] == null ? undefined : json['contact'],
+        'account': json['account'] == null ? undefined : json['account'],
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'exchangeRate': json['exchangeRate'] == null ? undefined : json['exchangeRate'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'totalAmount': json['totalAmount'] == null ? undefined : json['totalAmount'],
+        'trackingCategories': json['trackingCategories'] == null ? undefined : json['trackingCategories'],
+        'remoteUpdatedAt': json['remoteUpdatedAt'] == null ? undefined : (new Date(json['remoteUpdatedAt'])),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'accountingPeriod': json['accountingPeriod'] == null ? undefined : json['accountingPeriod'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeRecordId': json['mergeRecordId'] == null ? undefined : json['mergeRecordId'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
     };
 }
 
 export function PaymentToJSON(value?: Payment | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'transactionDate': value.transactionDate === undefined ? undefined : (value.transactionDate.toISOString()),
-        'contact': value.contact,
-        'account': value.account,
-        'currency': value.currency,
-        'exchangeRate': value.exchangeRate,
-        'company': value.company,
-        'totalAmount': value.totalAmount,
-        'trackingCategories': value.trackingCategories,
-        'remoteUpdatedAt': value.remoteUpdatedAt === undefined ? undefined : (value.remoteUpdatedAt.toISOString()),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'accountingPeriod': value.accountingPeriod,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeRecordId': value.mergeRecordId,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'transactionDate': value['transactionDate'] == null ? undefined : ((value['transactionDate']).toISOString()),
+        'contact': value['contact'],
+        'account': value['account'],
+        'currency': value['currency'],
+        'exchangeRate': value['exchangeRate'],
+        'company': value['company'],
+        'totalAmount': value['totalAmount'],
+        'trackingCategories': value['trackingCategories'],
+        'remoteUpdatedAt': value['remoteUpdatedAt'] == null ? undefined : ((value['remoteUpdatedAt']).toISOString()),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'accountingPeriod': value['accountingPeriod'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeRecordId': value['mergeRecordId'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
     };
 }
 

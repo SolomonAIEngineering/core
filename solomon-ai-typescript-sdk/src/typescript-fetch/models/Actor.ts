@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { AccountType } from './AccountType';
 import {
     AccountTypeFromJSON,
@@ -62,12 +62,10 @@ export interface Actor {
  * Check if a given object implements the Actor interface.
  */
 export function instanceOfActor(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "userProfile" in value;
-    isInstance = isInstance && "community" in value;
-    isInstance = isInstance && "actorType" in value;
-
-    return isInstance;
+    if (!('userProfile' in value)) return false;
+    if (!('community' in value)) return false;
+    if (!('actorType' in value)) return false;
+    return true;
 }
 
 export function ActorFromJSON(json: any): Actor {
@@ -75,7 +73,7 @@ export function ActorFromJSON(json: any): Actor {
 }
 
 export function ActorFromJSONTyped(json: any, ignoreDiscriminator: boolean): Actor {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -87,17 +85,14 @@ export function ActorFromJSONTyped(json: any, ignoreDiscriminator: boolean): Act
 }
 
 export function ActorToJSON(value?: Actor | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userProfile': UserProfileToJSON(value.userProfile),
-        'community': CommunityProfileToJSON(value.community),
-        'actorType': AccountTypeToJSON(value.actorType),
+        'userProfile': UserProfileToJSON(value['userProfile']),
+        'community': CommunityProfileToJSON(value['community']),
+        'actorType': AccountTypeToJSON(value['actorType']),
     };
 }
 

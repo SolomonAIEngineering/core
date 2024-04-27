@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Note } from './Note';
 import {
     NoteFromJSON,
@@ -50,10 +50,8 @@ export interface CreateNoteBody {
  * Check if a given object implements the CreateNoteBody interface.
  */
 export function instanceOfCreateNoteBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "postType" in value;
-
-    return isInstance;
+    if (!('postType' in value)) return false;
+    return true;
 }
 
 export function CreateNoteBodyFromJSON(json: any): CreateNoteBody {
@@ -61,27 +59,24 @@ export function CreateNoteBodyFromJSON(json: any): CreateNoteBody {
 }
 
 export function CreateNoteBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateNoteBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'postType': PostTypeFromJSON(json['postType']),
-        'note': !exists(json, 'note') ? undefined : NoteFromJSON(json['note']),
+        'note': json['note'] == null ? undefined : NoteFromJSON(json['note']),
     };
 }
 
 export function CreateNoteBodyToJSON(value?: CreateNoteBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'postType': PostTypeToJSON(value.postType),
-        'note': NoteToJSON(value.note),
+        'postType': PostTypeToJSON(value['postType']),
+        'note': NoteToJSON(value['note']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MergeBusinessProfile } from './MergeBusinessProfile';
 import {
     MergeBusinessProfileFromJSON,
@@ -38,9 +38,7 @@ export interface ReadAccountingProfileResponse {
  * Check if a given object implements the ReadAccountingProfileResponse interface.
  */
 export function instanceOfReadAccountingProfileResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ReadAccountingProfileResponseFromJSON(json: any): ReadAccountingProfileResponse {
@@ -48,25 +46,22 @@ export function ReadAccountingProfileResponseFromJSON(json: any): ReadAccounting
 }
 
 export function ReadAccountingProfileResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReadAccountingProfileResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'profile': !exists(json, 'profile') ? undefined : MergeBusinessProfileFromJSON(json['profile']),
+        'profile': json['profile'] == null ? undefined : MergeBusinessProfileFromJSON(json['profile']),
     };
 }
 
 export function ReadAccountingProfileResponseToJSON(value?: ReadAccountingProfileResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'profile': MergeBusinessProfileToJSON(value.profile),
+        'profile': MergeBusinessProfileToJSON(value['profile']),
     };
 }
 

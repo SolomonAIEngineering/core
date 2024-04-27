@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialAccountType } from './FinancialAccountType';
 import {
     FinancialAccountTypeFromJSON,
@@ -98,13 +98,11 @@ export interface SearchTransactionsRequest {
  * Check if a given object implements the SearchTransactionsRequest interface.
  */
 export function instanceOfSearchTransactionsRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "profileType" in value;
-    isInstance = isInstance && "pageNumber" in value;
-    isInstance = isInstance && "pageSize" in value;
-
-    return isInstance;
+    if (!('userId' in value)) return false;
+    if (!('profileType' in value)) return false;
+    if (!('pageNumber' in value)) return false;
+    if (!('pageSize' in value)) return false;
+    return true;
 }
 
 export function SearchTransactionsRequestFromJSON(json: any): SearchTransactionsRequest {
@@ -112,7 +110,7 @@ export function SearchTransactionsRequestFromJSON(json: any): SearchTransactions
 }
 
 export function SearchTransactionsRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): SearchTransactionsRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -121,34 +119,31 @@ export function SearchTransactionsRequestFromJSONTyped(json: any, ignoreDiscrimi
         'profileType': FinancialUserProfileTypeFromJSON(json['profileType']),
         'pageNumber': json['pageNumber'],
         'pageSize': json['pageSize'],
-        'minAmount': !exists(json, 'minAmount') ? undefined : json['minAmount'],
-        'maxAmount': !exists(json, 'maxAmount') ? undefined : json['maxAmount'],
-        'category': !exists(json, 'category') ? undefined : json['category'],
-        'startDate': !exists(json, 'startDate') ? undefined : (new Date(json['startDate'])),
-        'endDate': !exists(json, 'endDate') ? undefined : (new Date(json['endDate'])),
-        'financialAccountType': !exists(json, 'financialAccountType') ? undefined : FinancialAccountTypeFromJSON(json['financialAccountType']),
+        'minAmount': json['minAmount'] == null ? undefined : json['minAmount'],
+        'maxAmount': json['maxAmount'] == null ? undefined : json['maxAmount'],
+        'category': json['category'] == null ? undefined : json['category'],
+        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
+        'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
+        'financialAccountType': json['financialAccountType'] == null ? undefined : FinancialAccountTypeFromJSON(json['financialAccountType']),
     };
 }
 
 export function SearchTransactionsRequestToJSON(value?: SearchTransactionsRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
-        'pageNumber': value.pageNumber,
-        'pageSize': value.pageSize,
-        'minAmount': value.minAmount,
-        'maxAmount': value.maxAmount,
-        'category': value.category,
-        'startDate': value.startDate === undefined ? undefined : (value.startDate.toISOString()),
-        'endDate': value.endDate === undefined ? undefined : (value.endDate.toISOString()),
-        'financialAccountType': FinancialAccountTypeToJSON(value.financialAccountType),
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
+        'pageNumber': value['pageNumber'],
+        'pageSize': value['pageSize'],
+        'minAmount': value['minAmount'],
+        'maxAmount': value['maxAmount'],
+        'category': value['category'],
+        'startDate': value['startDate'] == null ? undefined : ((value['startDate']).toISOString()),
+        'endDate': value['endDate'] == null ? undefined : ((value['endDate']).toISOString()),
+        'financialAccountType': FinancialAccountTypeToJSON(value['financialAccountType']),
     };
 }
 

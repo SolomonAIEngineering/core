@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { NotFoundErrorCode } from './NotFoundErrorCode';
 import {
     NotFoundErrorCodeFromJSON,
@@ -44,9 +44,7 @@ export interface PathUnknownErrorMessageResponse {
  * Check if a given object implements the PathUnknownErrorMessageResponse interface.
  */
 export function instanceOfPathUnknownErrorMessageResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PathUnknownErrorMessageResponseFromJSON(json: any): PathUnknownErrorMessageResponse {
@@ -54,27 +52,24 @@ export function PathUnknownErrorMessageResponseFromJSON(json: any): PathUnknownE
 }
 
 export function PathUnknownErrorMessageResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): PathUnknownErrorMessageResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'code': !exists(json, 'code') ? undefined : NotFoundErrorCodeFromJSON(json['code']),
-        'message': !exists(json, 'message') ? undefined : json['message'],
+        'code': json['code'] == null ? undefined : NotFoundErrorCodeFromJSON(json['code']),
+        'message': json['message'] == null ? undefined : json['message'],
     };
 }
 
 export function PathUnknownErrorMessageResponseToJSON(value?: PathUnknownErrorMessageResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'code': NotFoundErrorCodeToJSON(value.code),
-        'message': value.message,
+        'code': NotFoundErrorCodeToJSON(value['code']),
+        'message': value['message'],
     };
 }
 

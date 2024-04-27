@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface CheckIfQuotaExceededResponse {
  * Check if a given object implements the CheckIfQuotaExceededResponse interface.
  */
 export function instanceOfCheckIfQuotaExceededResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CheckIfQuotaExceededResponseFromJSON(json: any): CheckIfQuotaExceededResponse {
@@ -41,25 +39,22 @@ export function CheckIfQuotaExceededResponseFromJSON(json: any): CheckIfQuotaExc
 }
 
 export function CheckIfQuotaExceededResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CheckIfQuotaExceededResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'exceeded': !exists(json, 'exceeded') ? undefined : json['exceeded'],
+        'exceeded': json['exceeded'] == null ? undefined : json['exceeded'],
     };
 }
 
 export function CheckIfQuotaExceededResponseToJSON(value?: CheckIfQuotaExceededResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'exceeded': value.exceeded,
+        'exceeded': value['exceeded'],
     };
 }
 

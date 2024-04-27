@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PublicationType } from './PublicationType';
 import {
     PublicationTypeFromJSON,
@@ -108,14 +108,12 @@ export interface Publication {
  * Check if a given object implements the Publication interface.
  */
 export function instanceOfPublication(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "adminBackendPlatformUserId" in value;
-    isInstance = isInstance && "tags" in value;
-    isInstance = isInstance && "subjects" in value;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "publicationName" in value;
-
-    return isInstance;
+    if (!('adminBackendPlatformUserId' in value)) return false;
+    if (!('tags' in value)) return false;
+    if (!('subjects' in value)) return false;
+    if (!('type' in value)) return false;
+    if (!('publicationName' in value)) return false;
+    return true;
 }
 
 export function PublicationFromJSON(json: any): Publication {
@@ -123,45 +121,42 @@ export function PublicationFromJSON(json: any): Publication {
 }
 
 export function PublicationFromJSONTyped(json: any, ignoreDiscriminator: boolean): Publication {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'postIds': !exists(json, 'postIds') ? undefined : json['postIds'],
-        'admin': !exists(json, 'admin') ? undefined : UserProfileFromJSON(json['admin']),
+        'id': json['id'] == null ? undefined : json['id'],
+        'postIds': json['postIds'] == null ? undefined : json['postIds'],
+        'admin': json['admin'] == null ? undefined : UserProfileFromJSON(json['admin']),
         'adminBackendPlatformUserId': json['adminBackendPlatformUserId'],
         'tags': json['tags'],
-        'editors': !exists(json, 'editors') ? undefined : ((json['editors'] as Array<any>).map(UserProfileFromJSON)),
+        'editors': json['editors'] == null ? undefined : ((json['editors'] as Array<any>).map(UserProfileFromJSON)),
         'subjects': json['subjects'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : json['createdAt'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'createdAt': json['createdAt'] == null ? undefined : json['createdAt'],
         'type': PublicationTypeFromJSON(json['type']),
         'publicationName': json['publicationName'],
     };
 }
 
 export function PublicationToJSON(value?: Publication | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'postIds': value.postIds,
-        'admin': UserProfileToJSON(value.admin),
-        'adminBackendPlatformUserId': value.adminBackendPlatformUserId,
-        'tags': value.tags,
-        'editors': value.editors === undefined ? undefined : ((value.editors as Array<any>).map(UserProfileToJSON)),
-        'subjects': value.subjects,
-        'description': value.description,
-        'createdAt': value.createdAt,
-        'type': PublicationTypeToJSON(value.type),
-        'publicationName': value.publicationName,
+        'id': value['id'],
+        'postIds': value['postIds'],
+        'admin': UserProfileToJSON(value['admin']),
+        'adminBackendPlatformUserId': value['adminBackendPlatformUserId'],
+        'tags': value['tags'],
+        'editors': value['editors'] == null ? undefined : ((value['editors'] as Array<any>).map(UserProfileToJSON)),
+        'subjects': value['subjects'],
+        'description': value['description'],
+        'createdAt': value['createdAt'],
+        'type': PublicationTypeToJSON(value['type']),
+        'publicationName': value['publicationName'],
     };
 }
 

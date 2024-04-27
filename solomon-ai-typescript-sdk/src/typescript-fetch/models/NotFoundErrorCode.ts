@@ -26,6 +26,10 @@ export const NotFoundErrorCode = {
 export type NotFoundErrorCode = typeof NotFoundErrorCode[keyof typeof NotFoundErrorCode];
 
 
+export function instanceOfNotFoundErrorCode(value: any): boolean {
+    return Object.values(NotFoundErrorCode).includes(value);
+}
+
 export function NotFoundErrorCodeFromJSON(json: any): NotFoundErrorCode {
     return NotFoundErrorCodeFromJSONTyped(json, false);
 }

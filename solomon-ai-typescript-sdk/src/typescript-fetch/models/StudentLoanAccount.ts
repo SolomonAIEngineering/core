@@ -12,7 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
+import type { AccountStatements } from './AccountStatements';
+import {
+    AccountStatementsFromJSON,
+    AccountStatementsFromJSONTyped,
+    AccountStatementsToJSON,
+} from './AccountStatements';
 import type { BankAccountStatus } from './BankAccountStatus';
 import {
     BankAccountStatusFromJSON,
@@ -242,15 +248,19 @@ export interface StudentLoanAccount {
      * @memberof StudentLoanAccount
      */
     status?: BankAccountStatus;
+    /**
+     * 
+     * @type {Array<AccountStatements>}
+     * @memberof StudentLoanAccount
+     */
+    statements?: Array<AccountStatements>;
 }
 
 /**
  * Check if a given object implements the StudentLoanAccount interface.
  */
 export function instanceOfStudentLoanAccount(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function StudentLoanAccountFromJSON(json: any): StudentLoanAccount {
@@ -258,95 +268,94 @@ export function StudentLoanAccountFromJSON(json: any): StudentLoanAccount {
 }
 
 export function StudentLoanAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): StudentLoanAccount {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'plaidAccountId': !exists(json, 'plaidAccountId') ? undefined : json['plaidAccountId'],
-        'disbursementDates': !exists(json, 'disbursementDates') ? undefined : json['disbursementDates'],
-        'expectedPayoffDate': !exists(json, 'expectedPayoffDate') ? undefined : json['expectedPayoffDate'],
-        'guarantor': !exists(json, 'guarantor') ? undefined : json['guarantor'],
-        'interestRatePercentage': !exists(json, 'interestRatePercentage') ? undefined : json['interestRatePercentage'],
-        'isOverdue': !exists(json, 'isOverdue') ? undefined : json['isOverdue'],
-        'lastPaymentAmount': !exists(json, 'lastPaymentAmount') ? undefined : json['lastPaymentAmount'],
-        'lastPaymentDate': !exists(json, 'lastPaymentDate') ? undefined : json['lastPaymentDate'],
-        'lastStatementIssueDate': !exists(json, 'lastStatementIssueDate') ? undefined : json['lastStatementIssueDate'],
-        'loanName': !exists(json, 'loanName') ? undefined : json['loanName'],
-        'loanEndDate': !exists(json, 'loanEndDate') ? undefined : json['loanEndDate'],
-        'minimumPaymentAmount': !exists(json, 'minimumPaymentAmount') ? undefined : json['minimumPaymentAmount'],
-        'nextPaymentDueDate': !exists(json, 'nextPaymentDueDate') ? undefined : json['nextPaymentDueDate'],
-        'originationDate': !exists(json, 'originationDate') ? undefined : json['originationDate'],
-        'originationPrincipalAmount': !exists(json, 'originationPrincipalAmount') ? undefined : json['originationPrincipalAmount'],
-        'outstandingInterestAmount': !exists(json, 'outstandingInterestAmount') ? undefined : json['outstandingInterestAmount'],
-        'paymentReferenceNumber': !exists(json, 'paymentReferenceNumber') ? undefined : json['paymentReferenceNumber'],
-        'sequenceNumber': !exists(json, 'sequenceNumber') ? undefined : json['sequenceNumber'],
-        'ytdInterestPaid': !exists(json, 'ytdInterestPaid') ? undefined : json['ytdInterestPaid'],
-        'ytdPrincipalPaid': !exists(json, 'ytdPrincipalPaid') ? undefined : json['ytdPrincipalPaid'],
-        'loanType': !exists(json, 'loanType') ? undefined : json['loanType'],
-        'pslfStatusEstimatedEligibilityDate': !exists(json, 'pslfStatusEstimatedEligibilityDate') ? undefined : json['pslfStatusEstimatedEligibilityDate'],
-        'pslfStatusPaymentsMade': !exists(json, 'pslfStatusPaymentsMade') ? undefined : json['pslfStatusPaymentsMade'],
-        'pslfStatusPaymentsRemaining': !exists(json, 'pslfStatusPaymentsRemaining') ? undefined : json['pslfStatusPaymentsRemaining'],
-        'repaymentPlanType': !exists(json, 'repaymentPlanType') ? undefined : json['repaymentPlanType'],
-        'repaymentPlanDescription': !exists(json, 'repaymentPlanDescription') ? undefined : json['repaymentPlanDescription'],
-        'servicerAddressCity': !exists(json, 'servicerAddressCity') ? undefined : json['servicerAddressCity'],
-        'servicerAddressPostalCode': !exists(json, 'servicerAddressPostalCode') ? undefined : json['servicerAddressPostalCode'],
-        'servicerAddressState': !exists(json, 'servicerAddressState') ? undefined : json['servicerAddressState'],
-        'servicerAddressStreet': !exists(json, 'servicerAddressStreet') ? undefined : json['servicerAddressStreet'],
-        'servicerAddressRegion': !exists(json, 'servicerAddressRegion') ? undefined : json['servicerAddressRegion'],
-        'servicerAddressCountry': !exists(json, 'servicerAddressCountry') ? undefined : json['servicerAddressCountry'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'status': !exists(json, 'status') ? undefined : BankAccountStatusFromJSON(json['status']),
+        'id': json['id'] == null ? undefined : json['id'],
+        'plaidAccountId': json['plaidAccountId'] == null ? undefined : json['plaidAccountId'],
+        'disbursementDates': json['disbursementDates'] == null ? undefined : json['disbursementDates'],
+        'expectedPayoffDate': json['expectedPayoffDate'] == null ? undefined : json['expectedPayoffDate'],
+        'guarantor': json['guarantor'] == null ? undefined : json['guarantor'],
+        'interestRatePercentage': json['interestRatePercentage'] == null ? undefined : json['interestRatePercentage'],
+        'isOverdue': json['isOverdue'] == null ? undefined : json['isOverdue'],
+        'lastPaymentAmount': json['lastPaymentAmount'] == null ? undefined : json['lastPaymentAmount'],
+        'lastPaymentDate': json['lastPaymentDate'] == null ? undefined : json['lastPaymentDate'],
+        'lastStatementIssueDate': json['lastStatementIssueDate'] == null ? undefined : json['lastStatementIssueDate'],
+        'loanName': json['loanName'] == null ? undefined : json['loanName'],
+        'loanEndDate': json['loanEndDate'] == null ? undefined : json['loanEndDate'],
+        'minimumPaymentAmount': json['minimumPaymentAmount'] == null ? undefined : json['minimumPaymentAmount'],
+        'nextPaymentDueDate': json['nextPaymentDueDate'] == null ? undefined : json['nextPaymentDueDate'],
+        'originationDate': json['originationDate'] == null ? undefined : json['originationDate'],
+        'originationPrincipalAmount': json['originationPrincipalAmount'] == null ? undefined : json['originationPrincipalAmount'],
+        'outstandingInterestAmount': json['outstandingInterestAmount'] == null ? undefined : json['outstandingInterestAmount'],
+        'paymentReferenceNumber': json['paymentReferenceNumber'] == null ? undefined : json['paymentReferenceNumber'],
+        'sequenceNumber': json['sequenceNumber'] == null ? undefined : json['sequenceNumber'],
+        'ytdInterestPaid': json['ytdInterestPaid'] == null ? undefined : json['ytdInterestPaid'],
+        'ytdPrincipalPaid': json['ytdPrincipalPaid'] == null ? undefined : json['ytdPrincipalPaid'],
+        'loanType': json['loanType'] == null ? undefined : json['loanType'],
+        'pslfStatusEstimatedEligibilityDate': json['pslfStatusEstimatedEligibilityDate'] == null ? undefined : json['pslfStatusEstimatedEligibilityDate'],
+        'pslfStatusPaymentsMade': json['pslfStatusPaymentsMade'] == null ? undefined : json['pslfStatusPaymentsMade'],
+        'pslfStatusPaymentsRemaining': json['pslfStatusPaymentsRemaining'] == null ? undefined : json['pslfStatusPaymentsRemaining'],
+        'repaymentPlanType': json['repaymentPlanType'] == null ? undefined : json['repaymentPlanType'],
+        'repaymentPlanDescription': json['repaymentPlanDescription'] == null ? undefined : json['repaymentPlanDescription'],
+        'servicerAddressCity': json['servicerAddressCity'] == null ? undefined : json['servicerAddressCity'],
+        'servicerAddressPostalCode': json['servicerAddressPostalCode'] == null ? undefined : json['servicerAddressPostalCode'],
+        'servicerAddressState': json['servicerAddressState'] == null ? undefined : json['servicerAddressState'],
+        'servicerAddressStreet': json['servicerAddressStreet'] == null ? undefined : json['servicerAddressStreet'],
+        'servicerAddressRegion': json['servicerAddressRegion'] == null ? undefined : json['servicerAddressRegion'],
+        'servicerAddressCountry': json['servicerAddressCountry'] == null ? undefined : json['servicerAddressCountry'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'status': json['status'] == null ? undefined : BankAccountStatusFromJSON(json['status']),
+        'statements': json['statements'] == null ? undefined : ((json['statements'] as Array<any>).map(AccountStatementsFromJSON)),
     };
 }
 
 export function StudentLoanAccountToJSON(value?: StudentLoanAccount | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'plaidAccountId': value.plaidAccountId,
-        'disbursementDates': value.disbursementDates,
-        'expectedPayoffDate': value.expectedPayoffDate,
-        'guarantor': value.guarantor,
-        'interestRatePercentage': value.interestRatePercentage,
-        'isOverdue': value.isOverdue,
-        'lastPaymentAmount': value.lastPaymentAmount,
-        'lastPaymentDate': value.lastPaymentDate,
-        'lastStatementIssueDate': value.lastStatementIssueDate,
-        'loanName': value.loanName,
-        'loanEndDate': value.loanEndDate,
-        'minimumPaymentAmount': value.minimumPaymentAmount,
-        'nextPaymentDueDate': value.nextPaymentDueDate,
-        'originationDate': value.originationDate,
-        'originationPrincipalAmount': value.originationPrincipalAmount,
-        'outstandingInterestAmount': value.outstandingInterestAmount,
-        'paymentReferenceNumber': value.paymentReferenceNumber,
-        'sequenceNumber': value.sequenceNumber,
-        'ytdInterestPaid': value.ytdInterestPaid,
-        'ytdPrincipalPaid': value.ytdPrincipalPaid,
-        'loanType': value.loanType,
-        'pslfStatusEstimatedEligibilityDate': value.pslfStatusEstimatedEligibilityDate,
-        'pslfStatusPaymentsMade': value.pslfStatusPaymentsMade,
-        'pslfStatusPaymentsRemaining': value.pslfStatusPaymentsRemaining,
-        'repaymentPlanType': value.repaymentPlanType,
-        'repaymentPlanDescription': value.repaymentPlanDescription,
-        'servicerAddressCity': value.servicerAddressCity,
-        'servicerAddressPostalCode': value.servicerAddressPostalCode,
-        'servicerAddressState': value.servicerAddressState,
-        'servicerAddressStreet': value.servicerAddressStreet,
-        'servicerAddressRegion': value.servicerAddressRegion,
-        'servicerAddressCountry': value.servicerAddressCountry,
-        'userId': value.userId,
-        'name': value.name,
-        'status': BankAccountStatusToJSON(value.status),
+        'id': value['id'],
+        'plaidAccountId': value['plaidAccountId'],
+        'disbursementDates': value['disbursementDates'],
+        'expectedPayoffDate': value['expectedPayoffDate'],
+        'guarantor': value['guarantor'],
+        'interestRatePercentage': value['interestRatePercentage'],
+        'isOverdue': value['isOverdue'],
+        'lastPaymentAmount': value['lastPaymentAmount'],
+        'lastPaymentDate': value['lastPaymentDate'],
+        'lastStatementIssueDate': value['lastStatementIssueDate'],
+        'loanName': value['loanName'],
+        'loanEndDate': value['loanEndDate'],
+        'minimumPaymentAmount': value['minimumPaymentAmount'],
+        'nextPaymentDueDate': value['nextPaymentDueDate'],
+        'originationDate': value['originationDate'],
+        'originationPrincipalAmount': value['originationPrincipalAmount'],
+        'outstandingInterestAmount': value['outstandingInterestAmount'],
+        'paymentReferenceNumber': value['paymentReferenceNumber'],
+        'sequenceNumber': value['sequenceNumber'],
+        'ytdInterestPaid': value['ytdInterestPaid'],
+        'ytdPrincipalPaid': value['ytdPrincipalPaid'],
+        'loanType': value['loanType'],
+        'pslfStatusEstimatedEligibilityDate': value['pslfStatusEstimatedEligibilityDate'],
+        'pslfStatusPaymentsMade': value['pslfStatusPaymentsMade'],
+        'pslfStatusPaymentsRemaining': value['pslfStatusPaymentsRemaining'],
+        'repaymentPlanType': value['repaymentPlanType'],
+        'repaymentPlanDescription': value['repaymentPlanDescription'],
+        'servicerAddressCity': value['servicerAddressCity'],
+        'servicerAddressPostalCode': value['servicerAddressPostalCode'],
+        'servicerAddressState': value['servicerAddressState'],
+        'servicerAddressStreet': value['servicerAddressStreet'],
+        'servicerAddressRegion': value['servicerAddressRegion'],
+        'servicerAddressCountry': value['servicerAddressCountry'],
+        'userId': value['userId'],
+        'name': value['name'],
+        'status': BankAccountStatusToJSON(value['status']),
+        'statements': value['statements'] == null ? undefined : ((value['statements'] as Array<any>).map(AccountStatementsToJSON)),
     };
 }
 

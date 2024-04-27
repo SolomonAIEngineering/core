@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { TransactionAggregatesByMonth } from './TransactionAggregatesByMonth';
 import {
     TransactionAggregatesByMonthFromJSON,
@@ -44,9 +44,7 @@ export interface GetTransactionAggregatesResponse {
  * Check if a given object implements the GetTransactionAggregatesResponse interface.
  */
 export function instanceOfGetTransactionAggregatesResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetTransactionAggregatesResponseFromJSON(json: any): GetTransactionAggregatesResponse {
@@ -54,27 +52,24 @@ export function GetTransactionAggregatesResponseFromJSON(json: any): GetTransact
 }
 
 export function GetTransactionAggregatesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetTransactionAggregatesResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'transactionAggregates': !exists(json, 'transactionAggregates') ? undefined : ((json['transactionAggregates'] as Array<any>).map(TransactionAggregatesByMonthFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'transactionAggregates': json['transactionAggregates'] == null ? undefined : ((json['transactionAggregates'] as Array<any>).map(TransactionAggregatesByMonthFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetTransactionAggregatesResponseToJSON(value?: GetTransactionAggregatesResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transactionAggregates': value.transactionAggregates === undefined ? undefined : ((value.transactionAggregates as Array<any>).map(TransactionAggregatesByMonthToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'transactionAggregates': value['transactionAggregates'] == null ? undefined : ((value['transactionAggregates'] as Array<any>).map(TransactionAggregatesByMonthToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

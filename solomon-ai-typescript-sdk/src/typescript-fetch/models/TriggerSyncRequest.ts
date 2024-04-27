@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialAccountType } from './FinancialAccountType';
 import {
     FinancialAccountTypeFromJSON,
@@ -62,11 +62,9 @@ export interface TriggerSyncRequest {
  * Check if a given object implements the TriggerSyncRequest interface.
  */
 export function instanceOfTriggerSyncRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "profileType" in value;
-    isInstance = isInstance && "financialAccountType" in value;
-
-    return isInstance;
+    if (!('profileType' in value)) return false;
+    if (!('financialAccountType' in value)) return false;
+    return true;
 }
 
 export function TriggerSyncRequestFromJSON(json: any): TriggerSyncRequest {
@@ -74,31 +72,28 @@ export function TriggerSyncRequestFromJSON(json: any): TriggerSyncRequest {
 }
 
 export function TriggerSyncRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): TriggerSyncRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
         'profileType': FinancialUserProfileTypeFromJSON(json['profileType']),
-        'linkId': !exists(json, 'linkId') ? undefined : json['linkId'],
+        'linkId': json['linkId'] == null ? undefined : json['linkId'],
         'financialAccountType': FinancialAccountTypeFromJSON(json['financialAccountType']),
     };
 }
 
 export function TriggerSyncRequestToJSON(value?: TriggerSyncRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
-        'linkId': value.linkId,
-        'financialAccountType': FinancialAccountTypeToJSON(value.financialAccountType),
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
+        'linkId': value['linkId'],
+        'financialAccountType': FinancialAccountTypeToJSON(value['financialAccountType']),
     };
 }
 

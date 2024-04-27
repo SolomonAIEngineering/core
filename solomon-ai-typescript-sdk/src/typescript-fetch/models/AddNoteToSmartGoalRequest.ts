@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SmartNote } from './SmartNote';
 import {
     SmartNoteFromJSON,
@@ -44,11 +44,9 @@ export interface AddNoteToSmartGoalRequest {
  * Check if a given object implements the AddNoteToSmartGoalRequest interface.
  */
 export function instanceOfAddNoteToSmartGoalRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "smartGoalId" in value;
-    isInstance = isInstance && "note" in value;
-
-    return isInstance;
+    if (!('smartGoalId' in value)) return false;
+    if (!('note' in value)) return false;
+    return true;
 }
 
 export function AddNoteToSmartGoalRequestFromJSON(json: any): AddNoteToSmartGoalRequest {
@@ -56,7 +54,7 @@ export function AddNoteToSmartGoalRequestFromJSON(json: any): AddNoteToSmartGoal
 }
 
 export function AddNoteToSmartGoalRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddNoteToSmartGoalRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function AddNoteToSmartGoalRequestFromJSONTyped(json: any, ignoreDiscrimi
 }
 
 export function AddNoteToSmartGoalRequestToJSON(value?: AddNoteToSmartGoalRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'smartGoalId': value.smartGoalId,
-        'note': SmartNoteToJSON(value.note),
+        'smartGoalId': value['smartGoalId'],
+        'note': SmartNoteToJSON(value['note']),
     };
 }
 

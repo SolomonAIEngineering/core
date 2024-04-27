@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BusinessAccount } from './BusinessAccount';
 import {
     BusinessAccountFromJSON,
@@ -56,9 +56,7 @@ export interface CheckEmailAndAuth0UserIdExistsResponse {
  * Check if a given object implements the CheckEmailAndAuth0UserIdExistsResponse interface.
  */
 export function instanceOfCheckEmailAndAuth0UserIdExistsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CheckEmailAndAuth0UserIdExistsResponseFromJSON(json: any): CheckEmailAndAuth0UserIdExistsResponse {
@@ -66,29 +64,26 @@ export function CheckEmailAndAuth0UserIdExistsResponseFromJSON(json: any): Check
 }
 
 export function CheckEmailAndAuth0UserIdExistsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CheckEmailAndAuth0UserIdExistsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'userAccount': !exists(json, 'userAccount') ? undefined : UserAccountFromJSON(json['userAccount']),
-        'businessAccount': !exists(json, 'businessAccount') ? undefined : BusinessAccountFromJSON(json['businessAccount']),
-        '_exists': !exists(json, 'exists') ? undefined : json['exists'],
+        'userAccount': json['userAccount'] == null ? undefined : UserAccountFromJSON(json['userAccount']),
+        'businessAccount': json['businessAccount'] == null ? undefined : BusinessAccountFromJSON(json['businessAccount']),
+        '_exists': json['exists'] == null ? undefined : json['exists'],
     };
 }
 
 export function CheckEmailAndAuth0UserIdExistsResponseToJSON(value?: CheckEmailAndAuth0UserIdExistsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userAccount': UserAccountToJSON(value.userAccount),
-        'businessAccount': BusinessAccountToJSON(value.businessAccount),
-        'exists': value._exists,
+        'userAccount': UserAccountToJSON(value['userAccount']),
+        'businessAccount': BusinessAccountToJSON(value['businessAccount']),
+        'exists': value['_exists'],
     };
 }
 

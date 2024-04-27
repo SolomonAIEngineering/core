@@ -382,3 +382,81 @@ message GetHistoricalAccountBalanceRequest {
 message GetHistoricalAccountBalanceResponse {
   repeated AccountBalanceHistory historical_account_balance = 1;
 }
+
+// financial sub-profile analytics endpoints
+message GetCategoryMetricsFinancialSubProfileOverTimeRequest {
+  string user_id = 1;
+  FinancialUserProfileType profile_type = 2;
+  string personal_finance_category_primary = 3;
+  uint32 month = 4;
+  int64 page_number = 7;
+  int64 page_size = 8;  // Number of items to return per page.
+}
+
+message GetCategoryMetricsFinancialSubProfileOverTimeResponse {
+  repeated CategoryMetricsFinancialSubProfile data = 1;
+}
+
+// financial sub-profile analytics endpoints (expense metrics)
+message GetExpenseMetricsFinancialSubProfileOverTimeRequest {
+  string user_id = 1;
+  FinancialUserProfileType profile_type = 2;
+  uint32 month = 4;
+  int64 page_number = 7;
+  int64 page_size = 8;  // Number of items to return per page.
+}
+
+message GetExpenseMetricsFinancialSubProfileOverTimeResponse {
+  repeated ExpenseMetricsFinancialSubProfileMetrics data = 1;
+}
+
+message GetIncomeMetricsFinancialSubProfileOverTimeRequest {
+  string user_id = 1;
+  FinancialUserProfileType profile_type = 2;
+  uint32 month = 4;
+  int64 page_number = 7;
+  int64 page_size = 8;  // Number of items to return per page.
+}
+
+message GetIncomeMetricsFinancialSubProfileOverTimeResponse {
+  repeated IncomeMetricsFinancialSubProfile data = 1;
+}
+
+message GetLocationMetricsFinancialSubProfileOverTimeRequest {
+  string user_id = 1;
+  FinancialUserProfileType profile_type = 2;
+  uint32 month = 4;
+  string location_city = 5;
+  int64 page_number = 7;
+  int64 page_size = 8;  // Number of items to return per page.
+}
+
+message GetLocationMetricsFinancialSubProfileOverTimeResponse {
+  repeated LocationFinancialSubProfile data = 1;
+}
+
+message GetMerchantMetricsFinancialSubProfileOverTimeRequest {
+  string user_id = 1;
+  FinancialUserProfileType profile_type = 2;
+  uint32 month = 4;
+  string merchant_name = 5;
+  int64 page_number = 7;
+  int64 page_size = 8;  // Number of items to return per page.
+}
+
+message GetMerchantMetricsFinancialSubProfileOverTimeResponse {
+  repeated MerchantMetricsFinancialSubProfile data = 1;
+}
+
+message GetPaymentChannelFinancialSubProfileOverTimeRequest {
+  string user_id = 1;
+  FinancialUserProfileType profile_type = 2;
+  uint32 month = 4;
+  string payment_channel = 5;
+  int64 page_number = 7;
+  int64 page_size = 8;  // Number of items to return per page.
+}
+
+message GetPaymentChannelFinancialSubProfileOverTimeResponse {
+  repeated PaymentChannelMetricsFinancialSubProfile data = 1;
+}

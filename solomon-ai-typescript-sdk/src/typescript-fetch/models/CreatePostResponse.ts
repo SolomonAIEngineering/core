@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Post } from './Post';
 import {
     PostFromJSON,
@@ -38,9 +38,7 @@ export interface CreatePostResponse {
  * Check if a given object implements the CreatePostResponse interface.
  */
 export function instanceOfCreatePostResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreatePostResponseFromJSON(json: any): CreatePostResponse {
@@ -48,25 +46,22 @@ export function CreatePostResponseFromJSON(json: any): CreatePostResponse {
 }
 
 export function CreatePostResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreatePostResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'post': !exists(json, 'post') ? undefined : PostFromJSON(json['post']),
+        'post': json['post'] == null ? undefined : PostFromJSON(json['post']),
     };
 }
 
 export function CreatePostResponseToJSON(value?: CreatePostResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'post': PostToJSON(value.post),
+        'post': PostToJSON(value['post']),
     };
 }
 

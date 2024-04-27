@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -176,15 +176,19 @@ export interface FileMetadata {
      * @memberof FileMetadata
      */
     location?: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof FileMetadata
+     */
+    markdownContent?: string;
 }
 
 /**
  * Check if a given object implements the FileMetadata interface.
  */
 export function instanceOfFileMetadata(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function FileMetadataFromJSON(json: any): FileMetadata {
@@ -192,75 +196,74 @@ export function FileMetadataFromJSON(json: any): FileMetadata {
 }
 
 export function FileMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): FileMetadata {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'updatedAt': !exists(json, 'updatedAt') ? undefined : (new Date(json['updatedAt'])),
-        'size': !exists(json, 'size') ? undefined : json['size'],
-        'fileType': !exists(json, 'fileType') ? undefined : json['fileType'],
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
-        'isDeleted': !exists(json, 'isDeleted') ? undefined : json['isDeleted'],
-        'version': !exists(json, 'version') ? undefined : json['version'],
-        's3Key': !exists(json, 's3Key') ? undefined : json['s3Key'],
-        's3BucketName': !exists(json, 's3BucketName') ? undefined : json['s3BucketName'],
-        's3Region': !exists(json, 's3Region') ? undefined : json['s3Region'],
-        's3VersionId': !exists(json, 's3VersionId') ? undefined : json['s3VersionId'],
-        's3Etag': !exists(json, 's3Etag') ? undefined : json['s3Etag'],
-        's3ContentType': !exists(json, 's3ContentType') ? undefined : json['s3ContentType'],
-        's3ContentLength': !exists(json, 's3ContentLength') ? undefined : json['s3ContentLength'],
-        's3ContentEncoding': !exists(json, 's3ContentEncoding') ? undefined : json['s3ContentEncoding'],
-        's3ContentDisposition': !exists(json, 's3ContentDisposition') ? undefined : json['s3ContentDisposition'],
-        's3LastModified': !exists(json, 's3LastModified') ? undefined : (new Date(json['s3LastModified'])),
-        's3StorageClass': !exists(json, 's3StorageClass') ? undefined : json['s3StorageClass'],
-        's3ServerSideEncryption': !exists(json, 's3ServerSideEncryption') ? undefined : json['s3ServerSideEncryption'],
-        's3Acl': !exists(json, 's3Acl') ? undefined : json['s3Acl'],
-        's3Metadata': !exists(json, 's3Metadata') ? undefined : json['s3Metadata'],
-        'versionId': !exists(json, 'versionId') ? undefined : json['versionId'],
-        'uploadId': !exists(json, 'uploadId') ? undefined : json['uploadId'],
-        'location': !exists(json, 'location') ? undefined : json['location'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
+        'size': json['size'] == null ? undefined : json['size'],
+        'fileType': json['fileType'] == null ? undefined : json['fileType'],
+        'tags': json['tags'] == null ? undefined : json['tags'],
+        'isDeleted': json['isDeleted'] == null ? undefined : json['isDeleted'],
+        'version': json['version'] == null ? undefined : json['version'],
+        's3Key': json['s3Key'] == null ? undefined : json['s3Key'],
+        's3BucketName': json['s3BucketName'] == null ? undefined : json['s3BucketName'],
+        's3Region': json['s3Region'] == null ? undefined : json['s3Region'],
+        's3VersionId': json['s3VersionId'] == null ? undefined : json['s3VersionId'],
+        's3Etag': json['s3Etag'] == null ? undefined : json['s3Etag'],
+        's3ContentType': json['s3ContentType'] == null ? undefined : json['s3ContentType'],
+        's3ContentLength': json['s3ContentLength'] == null ? undefined : json['s3ContentLength'],
+        's3ContentEncoding': json['s3ContentEncoding'] == null ? undefined : json['s3ContentEncoding'],
+        's3ContentDisposition': json['s3ContentDisposition'] == null ? undefined : json['s3ContentDisposition'],
+        's3LastModified': json['s3LastModified'] == null ? undefined : (new Date(json['s3LastModified'])),
+        's3StorageClass': json['s3StorageClass'] == null ? undefined : json['s3StorageClass'],
+        's3ServerSideEncryption': json['s3ServerSideEncryption'] == null ? undefined : json['s3ServerSideEncryption'],
+        's3Acl': json['s3Acl'] == null ? undefined : json['s3Acl'],
+        's3Metadata': json['s3Metadata'] == null ? undefined : json['s3Metadata'],
+        'versionId': json['versionId'] == null ? undefined : json['versionId'],
+        'uploadId': json['uploadId'] == null ? undefined : json['uploadId'],
+        'location': json['location'] == null ? undefined : json['location'],
+        'markdownContent': json['markdownContent'] == null ? undefined : json['markdownContent'],
     };
 }
 
 export function FileMetadataToJSON(value?: FileMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'updatedAt': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
-        'size': value.size,
-        'fileType': value.fileType,
-        'tags': value.tags,
-        'isDeleted': value.isDeleted,
-        'version': value.version,
-        's3Key': value.s3Key,
-        's3BucketName': value.s3BucketName,
-        's3Region': value.s3Region,
-        's3VersionId': value.s3VersionId,
-        's3Etag': value.s3Etag,
-        's3ContentType': value.s3ContentType,
-        's3ContentLength': value.s3ContentLength,
-        's3ContentEncoding': value.s3ContentEncoding,
-        's3ContentDisposition': value.s3ContentDisposition,
-        's3LastModified': value.s3LastModified === undefined ? undefined : (value.s3LastModified.toISOString()),
-        's3StorageClass': value.s3StorageClass,
-        's3ServerSideEncryption': value.s3ServerSideEncryption,
-        's3Acl': value.s3Acl,
-        's3Metadata': value.s3Metadata,
-        'versionId': value.versionId,
-        'uploadId': value.uploadId,
-        'location': value.location,
+        'id': value['id'],
+        'name': value['name'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
+        'size': value['size'],
+        'fileType': value['fileType'],
+        'tags': value['tags'],
+        'isDeleted': value['isDeleted'],
+        'version': value['version'],
+        's3Key': value['s3Key'],
+        's3BucketName': value['s3BucketName'],
+        's3Region': value['s3Region'],
+        's3VersionId': value['s3VersionId'],
+        's3Etag': value['s3Etag'],
+        's3ContentType': value['s3ContentType'],
+        's3ContentLength': value['s3ContentLength'],
+        's3ContentEncoding': value['s3ContentEncoding'],
+        's3ContentDisposition': value['s3ContentDisposition'],
+        's3LastModified': value['s3LastModified'] == null ? undefined : ((value['s3LastModified']).toISOString()),
+        's3StorageClass': value['s3StorageClass'],
+        's3ServerSideEncryption': value['s3ServerSideEncryption'],
+        's3Acl': value['s3Acl'],
+        's3Metadata': value['s3Metadata'],
+        'versionId': value['versionId'],
+        'uploadId': value['uploadId'],
+        'location': value['location'],
+        'markdownContent': value['markdownContent'],
     };
 }
 

@@ -25,6 +25,10 @@ export const BankAccountType1 = {
 export type BankAccountType1 = typeof BankAccountType1[keyof typeof BankAccountType1];
 
 
+export function instanceOfBankAccountType1(value: any): boolean {
+    return Object.values(BankAccountType1).includes(value);
+}
+
 export function BankAccountType1FromJSON(json: any): BankAccountType1 {
     return BankAccountType1FromJSONTyped(json, false);
 }

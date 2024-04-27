@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { AccountType } from './AccountType';
 import {
     AccountTypeFromJSON,
@@ -44,9 +44,7 @@ export interface SocialProfileMetadata {
  * Check if a given object implements the SocialProfileMetadata interface.
  */
 export function instanceOfSocialProfileMetadata(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function SocialProfileMetadataFromJSON(json: any): SocialProfileMetadata {
@@ -54,27 +52,24 @@ export function SocialProfileMetadataFromJSON(json: any): SocialProfileMetadata 
 }
 
 export function SocialProfileMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): SocialProfileMetadata {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'profileType': !exists(json, 'profileType') ? undefined : AccountTypeFromJSON(json['profileType']),
-        'profileId': !exists(json, 'profileId') ? undefined : json['profileId'],
+        'profileType': json['profileType'] == null ? undefined : AccountTypeFromJSON(json['profileType']),
+        'profileId': json['profileId'] == null ? undefined : json['profileId'],
     };
 }
 
 export function SocialProfileMetadataToJSON(value?: SocialProfileMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'profileType': AccountTypeToJSON(value.profileType),
-        'profileId': value.profileId,
+        'profileType': AccountTypeToJSON(value['profileType']),
+        'profileId': value['profileId'],
     };
 }
 

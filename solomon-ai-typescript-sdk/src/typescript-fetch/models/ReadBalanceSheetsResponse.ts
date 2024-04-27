@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BalanceSheet } from './BalanceSheet';
 import {
     BalanceSheetFromJSON,
@@ -44,9 +44,7 @@ export interface ReadBalanceSheetsResponse {
  * Check if a given object implements the ReadBalanceSheetsResponse interface.
  */
 export function instanceOfReadBalanceSheetsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ReadBalanceSheetsResponseFromJSON(json: any): ReadBalanceSheetsResponse {
@@ -54,27 +52,24 @@ export function ReadBalanceSheetsResponseFromJSON(json: any): ReadBalanceSheetsR
 }
 
 export function ReadBalanceSheetsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReadBalanceSheetsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'balanceSheets': !exists(json, 'balanceSheets') ? undefined : ((json['balanceSheets'] as Array<any>).map(BalanceSheetFromJSON)),
-        'nextPage': !exists(json, 'nextPage') ? undefined : json['nextPage'],
+        'balanceSheets': json['balanceSheets'] == null ? undefined : ((json['balanceSheets'] as Array<any>).map(BalanceSheetFromJSON)),
+        'nextPage': json['nextPage'] == null ? undefined : json['nextPage'],
     };
 }
 
 export function ReadBalanceSheetsResponseToJSON(value?: ReadBalanceSheetsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'balanceSheets': value.balanceSheets === undefined ? undefined : ((value.balanceSheets as Array<any>).map(BalanceSheetToJSON)),
-        'nextPage': value.nextPage,
+        'balanceSheets': value['balanceSheets'] == null ? undefined : ((value['balanceSheets'] as Array<any>).map(BalanceSheetToJSON)),
+        'nextPage': value['nextPage'],
     };
 }
 

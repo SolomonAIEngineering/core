@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ActionableInsight } from './ActionableInsight';
 import {
     ActionableInsightFromJSON,
@@ -122,9 +122,7 @@ export interface FinancialUserProfile {
  * Check if a given object implements the FinancialUserProfile interface.
  */
 export function instanceOfFinancialUserProfile(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function FinancialUserProfileFromJSON(json: any): FinancialUserProfile {
@@ -132,43 +130,40 @@ export function FinancialUserProfileFromJSON(json: any): FinancialUserProfile {
 }
 
 export function FinancialUserProfileFromJSONTyped(json: any, ignoreDiscriminator: boolean): FinancialUserProfile {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'stripeCustomerId': !exists(json, 'stripeCustomerId') ? undefined : json['stripeCustomerId'],
-        'stripeSubscriptions': !exists(json, 'stripeSubscriptions') ? undefined : StripeSubscriptionFromJSON(json['stripeSubscriptions']),
-        'link': !exists(json, 'link') ? undefined : ((json['link'] as Array<any>).map(LinkFromJSON)),
-        'actionableInsights': !exists(json, 'actionableInsights') ? undefined : ((json['actionableInsights'] as Array<any>).map(ActionableInsightFromJSON)),
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'actionablePersonalInsights': !exists(json, 'actionablePersonalInsights') ? undefined : ((json['actionablePersonalInsights'] as Array<any>).map(PersonalActionableInsightFromJSON)),
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
-        'notes': !exists(json, 'notes') ? undefined : ((json['notes'] as Array<any>).map(SmartNoteFromJSON)),
+        'id': json['id'] == null ? undefined : json['id'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'stripeCustomerId': json['stripeCustomerId'] == null ? undefined : json['stripeCustomerId'],
+        'stripeSubscriptions': json['stripeSubscriptions'] == null ? undefined : StripeSubscriptionFromJSON(json['stripeSubscriptions']),
+        'link': json['link'] == null ? undefined : ((json['link'] as Array<any>).map(LinkFromJSON)),
+        'actionableInsights': json['actionableInsights'] == null ? undefined : ((json['actionableInsights'] as Array<any>).map(ActionableInsightFromJSON)),
+        'email': json['email'] == null ? undefined : json['email'],
+        'actionablePersonalInsights': json['actionablePersonalInsights'] == null ? undefined : ((json['actionablePersonalInsights'] as Array<any>).map(PersonalActionableInsightFromJSON)),
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'notes': json['notes'] == null ? undefined : ((json['notes'] as Array<any>).map(SmartNoteFromJSON)),
     };
 }
 
 export function FinancialUserProfileToJSON(value?: FinancialUserProfile | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'userId': value.userId,
-        'stripeCustomerId': value.stripeCustomerId,
-        'stripeSubscriptions': StripeSubscriptionToJSON(value.stripeSubscriptions),
-        'link': value.link === undefined ? undefined : ((value.link as Array<any>).map(LinkToJSON)),
-        'actionableInsights': value.actionableInsights === undefined ? undefined : ((value.actionableInsights as Array<any>).map(ActionableInsightToJSON)),
-        'email': value.email,
-        'actionablePersonalInsights': value.actionablePersonalInsights === undefined ? undefined : ((value.actionablePersonalInsights as Array<any>).map(PersonalActionableInsightToJSON)),
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
-        'notes': value.notes === undefined ? undefined : ((value.notes as Array<any>).map(SmartNoteToJSON)),
+        'id': value['id'],
+        'userId': value['userId'],
+        'stripeCustomerId': value['stripeCustomerId'],
+        'stripeSubscriptions': StripeSubscriptionToJSON(value['stripeSubscriptions']),
+        'link': value['link'] == null ? undefined : ((value['link'] as Array<any>).map(LinkToJSON)),
+        'actionableInsights': value['actionableInsights'] == null ? undefined : ((value['actionableInsights'] as Array<any>).map(ActionableInsightToJSON)),
+        'email': value['email'],
+        'actionablePersonalInsights': value['actionablePersonalInsights'] == null ? undefined : ((value['actionablePersonalInsights'] as Array<any>).map(PersonalActionableInsightToJSON)),
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
+        'notes': value['notes'] == null ? undefined : ((value['notes'] as Array<any>).map(SmartNoteToJSON)),
     };
 }
 

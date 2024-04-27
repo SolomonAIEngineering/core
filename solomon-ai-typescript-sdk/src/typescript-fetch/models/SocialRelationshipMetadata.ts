@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SocialProfileMetadata } from './SocialProfileMetadata';
 import {
     SocialProfileMetadataFromJSON,
@@ -56,11 +56,9 @@ export interface SocialRelationshipMetadata {
  * Check if a given object implements the SocialRelationshipMetadata interface.
  */
 export function instanceOfSocialRelationshipMetadata(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "sourceProfile" in value;
-    isInstance = isInstance && "targetProfile" in value;
-
-    return isInstance;
+    if (!('sourceProfile' in value)) return false;
+    if (!('targetProfile' in value)) return false;
+    return true;
 }
 
 export function SocialRelationshipMetadataFromJSON(json: any): SocialRelationshipMetadata {
@@ -68,31 +66,28 @@ export function SocialRelationshipMetadataFromJSON(json: any): SocialRelationshi
 }
 
 export function SocialRelationshipMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): SocialRelationshipMetadata {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'sourceProfile': SocialProfileMetadataFromJSON(json['sourceProfile']),
         'targetProfile': SocialProfileMetadataFromJSON(json['targetProfile']),
-        'following': !exists(json, 'following') ? undefined : json['following'],
-        'followingSince': !exists(json, 'followingSince') ? undefined : json['followingSince'],
+        'following': json['following'] == null ? undefined : json['following'],
+        'followingSince': json['followingSince'] == null ? undefined : json['followingSince'],
     };
 }
 
 export function SocialRelationshipMetadataToJSON(value?: SocialRelationshipMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'sourceProfile': SocialProfileMetadataToJSON(value.sourceProfile),
-        'targetProfile': SocialProfileMetadataToJSON(value.targetProfile),
-        'following': value.following,
-        'followingSince': value.followingSince,
+        'sourceProfile': SocialProfileMetadataToJSON(value['sourceProfile']),
+        'targetProfile': SocialProfileMetadataToJSON(value['targetProfile']),
+        'following': value['following'],
+        'followingSince': value['followingSince'],
     };
 }
 

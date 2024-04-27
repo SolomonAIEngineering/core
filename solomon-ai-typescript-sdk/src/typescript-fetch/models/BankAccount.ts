@@ -12,7 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
+import type { AccountStatements } from './AccountStatements';
+import {
+    AccountStatementsFromJSON,
+    AccountStatementsFromJSONTyped,
+    AccountStatementsToJSON,
+} from './AccountStatements';
 import type { BankAccountStatus } from './BankAccountStatus';
 import {
     BankAccountStatusFromJSON,
@@ -140,19 +146,23 @@ export interface BankAccount {
      * @memberof BankAccount
      */
     recurringTransactions?: Array<PlaidAccountRecurringTransaction>;
+    /**
+     * 
+     * @type {Array<AccountStatements>}
+     * @memberof BankAccount
+     */
+    statements?: Array<AccountStatements>;
 }
 
 /**
  * Check if a given object implements the BankAccount interface.
  */
 export function instanceOfBankAccount(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "type" in value;
-    isInstance = isInstance && "balance" in value;
-    isInstance = isInstance && "currency" in value;
-    isInstance = isInstance && "currentFunds" in value;
-
-    return isInstance;
+    if (!('type' in value)) return false;
+    if (!('balance' in value)) return false;
+    if (!('currency' in value)) return false;
+    if (!('currentFunds' in value)) return false;
+    return true;
 }
 
 export function BankAccountFromJSON(json: any): BankAccount {
@@ -160,53 +170,52 @@ export function BankAccountFromJSON(json: any): BankAccount {
 }
 
 export function BankAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): BankAccount {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'number': !exists(json, 'number') ? undefined : json['number'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'number': json['number'] == null ? undefined : json['number'],
         'type': BankAccountTypeFromJSON(json['type']),
         'balance': json['balance'],
         'currency': json['currency'],
         'currentFunds': json['currentFunds'],
-        'balanceLimit': !exists(json, 'balanceLimit') ? undefined : json['balanceLimit'],
-        'pockets': !exists(json, 'pockets') ? undefined : ((json['pockets'] as Array<any>).map(PocketFromJSON)),
-        'plaidAccountId': !exists(json, 'plaidAccountId') ? undefined : json['plaidAccountId'],
-        'subtype': !exists(json, 'subtype') ? undefined : json['subtype'],
-        'status': !exists(json, 'status') ? undefined : BankAccountStatusFromJSON(json['status']),
-        'transactions': !exists(json, 'transactions') ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountTransactionFromJSON)),
-        'recurringTransactions': !exists(json, 'recurringTransactions') ? undefined : ((json['recurringTransactions'] as Array<any>).map(PlaidAccountRecurringTransactionFromJSON)),
+        'balanceLimit': json['balanceLimit'] == null ? undefined : json['balanceLimit'],
+        'pockets': json['pockets'] == null ? undefined : ((json['pockets'] as Array<any>).map(PocketFromJSON)),
+        'plaidAccountId': json['plaidAccountId'] == null ? undefined : json['plaidAccountId'],
+        'subtype': json['subtype'] == null ? undefined : json['subtype'],
+        'status': json['status'] == null ? undefined : BankAccountStatusFromJSON(json['status']),
+        'transactions': json['transactions'] == null ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountTransactionFromJSON)),
+        'recurringTransactions': json['recurringTransactions'] == null ? undefined : ((json['recurringTransactions'] as Array<any>).map(PlaidAccountRecurringTransactionFromJSON)),
+        'statements': json['statements'] == null ? undefined : ((json['statements'] as Array<any>).map(AccountStatementsFromJSON)),
     };
 }
 
 export function BankAccountToJSON(value?: BankAccount | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'userId': value.userId,
-        'name': value.name,
-        'number': value.number,
-        'type': BankAccountTypeToJSON(value.type),
-        'balance': value.balance,
-        'currency': value.currency,
-        'currentFunds': value.currentFunds,
-        'balanceLimit': value.balanceLimit,
-        'pockets': value.pockets === undefined ? undefined : ((value.pockets as Array<any>).map(PocketToJSON)),
-        'plaidAccountId': value.plaidAccountId,
-        'subtype': value.subtype,
-        'status': BankAccountStatusToJSON(value.status),
-        'transactions': value.transactions === undefined ? undefined : ((value.transactions as Array<any>).map(PlaidAccountTransactionToJSON)),
-        'recurringTransactions': value.recurringTransactions === undefined ? undefined : ((value.recurringTransactions as Array<any>).map(PlaidAccountRecurringTransactionToJSON)),
+        'id': value['id'],
+        'userId': value['userId'],
+        'name': value['name'],
+        'number': value['number'],
+        'type': BankAccountTypeToJSON(value['type']),
+        'balance': value['balance'],
+        'currency': value['currency'],
+        'currentFunds': value['currentFunds'],
+        'balanceLimit': value['balanceLimit'],
+        'pockets': value['pockets'] == null ? undefined : ((value['pockets'] as Array<any>).map(PocketToJSON)),
+        'plaidAccountId': value['plaidAccountId'],
+        'subtype': value['subtype'],
+        'status': BankAccountStatusToJSON(value['status']),
+        'transactions': value['transactions'] == null ? undefined : ((value['transactions'] as Array<any>).map(PlaidAccountTransactionToJSON)),
+        'recurringTransactions': value['recurringTransactions'] == null ? undefined : ((value['recurringTransactions'] as Array<any>).map(PlaidAccountRecurringTransactionToJSON)),
+        'statements': value['statements'] == null ? undefined : ((value['statements'] as Array<any>).map(AccountStatementsToJSON)),
     };
 }
 

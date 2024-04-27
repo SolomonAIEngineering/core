@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlaidAccountTransaction } from './PlaidAccountTransaction';
 import {
     PlaidAccountTransactionFromJSON,
@@ -38,9 +38,7 @@ export interface UnSplitTransactionsResponse {
  * Check if a given object implements the UnSplitTransactionsResponse interface.
  */
 export function instanceOfUnSplitTransactionsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UnSplitTransactionsResponseFromJSON(json: any): UnSplitTransactionsResponse {
@@ -48,25 +46,22 @@ export function UnSplitTransactionsResponseFromJSON(json: any): UnSplitTransacti
 }
 
 export function UnSplitTransactionsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UnSplitTransactionsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'transaction': !exists(json, 'transaction') ? undefined : PlaidAccountTransactionFromJSON(json['transaction']),
+        'transaction': json['transaction'] == null ? undefined : PlaidAccountTransactionFromJSON(json['transaction']),
     };
 }
 
 export function UnSplitTransactionsResponseToJSON(value?: UnSplitTransactionsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transaction': PlaidAccountTransactionToJSON(value.transaction),
+        'transaction': PlaidAccountTransactionToJSON(value['transaction']),
     };
 }
 

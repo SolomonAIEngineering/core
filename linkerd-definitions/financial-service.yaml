@@ -422,3 +422,31 @@ spec:
       method: POST
       pathRegex: /financial_service\.v1\.FinancialService/GetNotesFromFinancialUserProfile
     name: GetNotesFromFinancialUserProfile
+  - condition:
+      method: POST
+      pathRegex: /financial_service\.v1\.FinancialService/AddTransactionsToManuallyLinkedAccount
+    name: AddTransactionsToManuallyLinkedAccount
+  - condition:
+      method: POST
+      pathRegex: /financial_service\.v1\.FinancialService/GetCategoryMetricsFinancialSubProfileOverTime
+    name: GetCategoryMetricsFinancialSubProfileOverTime
+  - condition:
+      method: POST
+      pathRegex: /financial_service\.v1\.FinancialService/GetExpenseMetricsFinancialSubProfileOverTime
+    name: GetExpenseMetricsFinancialSubProfileOverTime
+  - condition:
+      method: POST
+      pathRegex: /financial_service\.v1\.FinancialService/GetIncomeMetricsFinancialSubProfileOverTime
+    name: GetIncomeMetricsFinancialSubProfileOverTime
+  - condition:
+      method: POST
+      pathRegex: /financial_service\.v1\.FinancialService/GetLocationMetricsFinancialSubProfileOverTime
+    name: GetLocationMetricsFinancialSubProfileOverTime
+  - condition:
+      method: POST
+      pathRegex: /financial_service\.v1\.FinancialService/GetMerchantMetricsFinancialSubProfileOverTime
+    name: GetMerchantMetricsFinancialSubProfileOverTime
+  - condition:
+      method: POST
+      pathRegex: /financial_service\.v1\.FinancialService/GetPaymentChannelFinancialSubProfileOverTime
+    name: GetPaymentChannelFinancialSubProfileOverTime

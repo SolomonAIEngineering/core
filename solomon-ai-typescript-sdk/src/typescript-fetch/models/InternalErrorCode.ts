@@ -33,6 +33,10 @@ export const InternalErrorCode = {
 export type InternalErrorCode = typeof InternalErrorCode[keyof typeof InternalErrorCode];
 
 
+export function instanceOfInternalErrorCode(value: any): boolean {
+    return Object.values(InternalErrorCode).includes(value);
+}
+
 export function InternalErrorCodeFromJSON(json: any): InternalErrorCode {
     return InternalErrorCodeFromJSONTyped(json, false);
 }

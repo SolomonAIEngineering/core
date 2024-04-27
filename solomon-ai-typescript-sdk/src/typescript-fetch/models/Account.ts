@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Workspace } from './Workspace';
 import {
     WorkspaceFromJSON,
@@ -74,9 +74,7 @@ export interface Account {
  * Check if a given object implements the Account interface.
  */
 export function instanceOfAccount(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function AccountFromJSON(json: any): Account {
@@ -84,37 +82,34 @@ export function AccountFromJSON(json: any): Account {
 }
 
 export function AccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): Account {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'auth0UserId': !exists(json, 'auth0UserId') ? undefined : json['auth0UserId'],
-        'workspace': !exists(json, 'workspace') ? undefined : ((json['workspace'] as Array<any>).map(WorkspaceFromJSON)),
-        'baseDirectory': !exists(json, 'baseDirectory') ? undefined : json['baseDirectory'],
-        'bucketName': !exists(json, 'bucketName') ? undefined : json['bucketName'],
-        'bucketLocation': !exists(json, 'bucketLocation') ? undefined : json['bucketLocation'],
-        'region': !exists(json, 'region') ? undefined : json['region'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'auth0UserId': json['auth0UserId'] == null ? undefined : json['auth0UserId'],
+        'workspace': json['workspace'] == null ? undefined : ((json['workspace'] as Array<any>).map(WorkspaceFromJSON)),
+        'baseDirectory': json['baseDirectory'] == null ? undefined : json['baseDirectory'],
+        'bucketName': json['bucketName'] == null ? undefined : json['bucketName'],
+        'bucketLocation': json['bucketLocation'] == null ? undefined : json['bucketLocation'],
+        'region': json['region'] == null ? undefined : json['region'],
     };
 }
 
 export function AccountToJSON(value?: Account | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'auth0UserId': value.auth0UserId,
-        'workspace': value.workspace === undefined ? undefined : ((value.workspace as Array<any>).map(WorkspaceToJSON)),
-        'baseDirectory': value.baseDirectory,
-        'bucketName': value.bucketName,
-        'bucketLocation': value.bucketLocation,
-        'region': value.region,
+        'id': value['id'],
+        'auth0UserId': value['auth0UserId'],
+        'workspace': value['workspace'] == null ? undefined : ((value['workspace'] as Array<any>).map(WorkspaceToJSON)),
+        'baseDirectory': value['baseDirectory'],
+        'bucketName': value['bucketName'],
+        'bucketLocation': value['bucketLocation'],
+        'region': value['region'],
     };
 }
 

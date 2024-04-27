@@ -27,6 +27,10 @@ export const NotificationType = {
 export type NotificationType = typeof NotificationType[keyof typeof NotificationType];
 
 
+export function instanceOfNotificationType(value: any): boolean {
+    return Object.values(NotificationType).includes(value);
+}
+
 export function NotificationTypeFromJSON(json: any): NotificationType {
     return NotificationTypeFromJSONTyped(json, false);
 }

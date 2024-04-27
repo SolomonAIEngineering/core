@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MonthlyTotalQuantityBySecurityAndUser } from './MonthlyTotalQuantityBySecurityAndUser';
 import {
     MonthlyTotalQuantityBySecurityAndUserFromJSON,
@@ -44,9 +44,7 @@ export interface GetMonthlyTotalQuantityBySecurityAndUserResponse {
  * Check if a given object implements the GetMonthlyTotalQuantityBySecurityAndUserResponse interface.
  */
 export function instanceOfGetMonthlyTotalQuantityBySecurityAndUserResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetMonthlyTotalQuantityBySecurityAndUserResponseFromJSON(json: any): GetMonthlyTotalQuantityBySecurityAndUserResponse {
@@ -54,27 +52,24 @@ export function GetMonthlyTotalQuantityBySecurityAndUserResponseFromJSON(json: a
 }
 
 export function GetMonthlyTotalQuantityBySecurityAndUserResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetMonthlyTotalQuantityBySecurityAndUserResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'monthlyTotalQuantityBySecurityAndUser': !exists(json, 'monthlyTotalQuantityBySecurityAndUser') ? undefined : ((json['monthlyTotalQuantityBySecurityAndUser'] as Array<any>).map(MonthlyTotalQuantityBySecurityAndUserFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'monthlyTotalQuantityBySecurityAndUser': json['monthlyTotalQuantityBySecurityAndUser'] == null ? undefined : ((json['monthlyTotalQuantityBySecurityAndUser'] as Array<any>).map(MonthlyTotalQuantityBySecurityAndUserFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetMonthlyTotalQuantityBySecurityAndUserResponseToJSON(value?: GetMonthlyTotalQuantityBySecurityAndUserResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'monthlyTotalQuantityBySecurityAndUser': value.monthlyTotalQuantityBySecurityAndUser === undefined ? undefined : ((value.monthlyTotalQuantityBySecurityAndUser as Array<any>).map(MonthlyTotalQuantityBySecurityAndUserToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'monthlyTotalQuantityBySecurityAndUser': value['monthlyTotalQuantityBySecurityAndUser'] == null ? undefined : ((value['monthlyTotalQuantityBySecurityAndUser'] as Array<any>).map(MonthlyTotalQuantityBySecurityAndUserToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

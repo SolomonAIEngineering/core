@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfile } from './FinancialUserProfile';
 import {
     FinancialUserProfileFromJSON,
@@ -44,9 +44,7 @@ export interface UpdateUserProfileResponse {
  * Check if a given object implements the UpdateUserProfileResponse interface.
  */
 export function instanceOfUpdateUserProfileResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UpdateUserProfileResponseFromJSON(json: any): UpdateUserProfileResponse {
@@ -54,27 +52,24 @@ export function UpdateUserProfileResponseFromJSON(json: any): UpdateUserProfileR
 }
 
 export function UpdateUserProfileResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateUserProfileResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'profileUpdated': !exists(json, 'profileUpdated') ? undefined : json['profileUpdated'],
-        'profile': !exists(json, 'profile') ? undefined : FinancialUserProfileFromJSON(json['profile']),
+        'profileUpdated': json['profileUpdated'] == null ? undefined : json['profileUpdated'],
+        'profile': json['profile'] == null ? undefined : FinancialUserProfileFromJSON(json['profile']),
     };
 }
 
 export function UpdateUserProfileResponseToJSON(value?: UpdateUserProfileResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'profileUpdated': value.profileUpdated,
-        'profile': FinancialUserProfileToJSON(value.profile),
+        'profileUpdated': value['profileUpdated'],
+        'profile': FinancialUserProfileToJSON(value['profile']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -61,15 +61,13 @@ export interface ReadIncomeStatementsRequest {
  * Check if a given object implements the ReadIncomeStatementsRequest interface.
  */
 export function instanceOfReadIncomeStatementsRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "authZeroUserId" in value;
-    isInstance = isInstance && "acountingIntegrationMergeLinkId" in value;
-    isInstance = isInstance && "startDate" in value;
-    isInstance = isInstance && "endDate" in value;
-    isInstance = isInstance && "pageSize" in value;
-    isInstance = isInstance && "pageNumber" in value;
-
-    return isInstance;
+    if (!('authZeroUserId' in value)) return false;
+    if (!('acountingIntegrationMergeLinkId' in value)) return false;
+    if (!('startDate' in value)) return false;
+    if (!('endDate' in value)) return false;
+    if (!('pageSize' in value)) return false;
+    if (!('pageNumber' in value)) return false;
+    return true;
 }
 
 export function ReadIncomeStatementsRequestFromJSON(json: any): ReadIncomeStatementsRequest {
@@ -77,7 +75,7 @@ export function ReadIncomeStatementsRequestFromJSON(json: any): ReadIncomeStatem
 }
 
 export function ReadIncomeStatementsRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReadIncomeStatementsRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -92,20 +90,17 @@ export function ReadIncomeStatementsRequestFromJSONTyped(json: any, ignoreDiscri
 }
 
 export function ReadIncomeStatementsRequestToJSON(value?: ReadIncomeStatementsRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'authZeroUserId': value.authZeroUserId,
-        'acountingIntegrationMergeLinkId': value.acountingIntegrationMergeLinkId,
-        'startDate': (value.startDate.toISOString()),
-        'endDate': (value.endDate.toISOString()),
-        'pageSize': value.pageSize,
-        'pageNumber': value.pageNumber,
+        'authZeroUserId': value['authZeroUserId'],
+        'acountingIntegrationMergeLinkId': value['acountingIntegrationMergeLinkId'],
+        'startDate': ((value['startDate']).toISOString()),
+        'endDate': ((value['endDate']).toISOString()),
+        'pageSize': value['pageSize'],
+        'pageNumber': value['pageNumber'],
     };
 }
 

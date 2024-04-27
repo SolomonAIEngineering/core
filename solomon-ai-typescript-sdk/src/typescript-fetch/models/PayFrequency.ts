@@ -34,6 +34,10 @@ export const PayFrequency = {
 export type PayFrequency = typeof PayFrequency[keyof typeof PayFrequency];
 
 
+export function instanceOfPayFrequency(value: any): boolean {
+    return Object.values(PayFrequency).includes(value);
+}
+
 export function PayFrequencyFromJSON(json: any): PayFrequency {
     return PayFrequencyFromJSONTyped(json, false);
 }

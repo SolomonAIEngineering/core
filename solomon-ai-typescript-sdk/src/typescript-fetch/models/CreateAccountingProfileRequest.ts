@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Defines a message named CreateAccountingProfileRequest.
  * @export
@@ -43,12 +43,10 @@ export interface CreateAccountingProfileRequest {
  * Check if a given object implements the CreateAccountingProfileRequest interface.
  */
 export function instanceOfCreateAccountingProfileRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "authZeroUserId" in value;
-    isInstance = isInstance && "email" in value;
-    isInstance = isInstance && "companyName" in value;
-
-    return isInstance;
+    if (!('authZeroUserId' in value)) return false;
+    if (!('email' in value)) return false;
+    if (!('companyName' in value)) return false;
+    return true;
 }
 
 export function CreateAccountingProfileRequestFromJSON(json: any): CreateAccountingProfileRequest {
@@ -56,7 +54,7 @@ export function CreateAccountingProfileRequestFromJSON(json: any): CreateAccount
 }
 
 export function CreateAccountingProfileRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateAccountingProfileRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -68,17 +66,14 @@ export function CreateAccountingProfileRequestFromJSONTyped(json: any, ignoreDis
 }
 
 export function CreateAccountingProfileRequestToJSON(value?: CreateAccountingProfileRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'authZeroUserId': value.authZeroUserId,
-        'email': value.email,
-        'companyName': value.companyName,
+        'authZeroUserId': value['authZeroUserId'],
+        'email': value['email'],
+        'companyName': value['companyName'],
     };
 }
 

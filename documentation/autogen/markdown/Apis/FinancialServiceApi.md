@@ -9,6 +9,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**addNoteToRecurringTransaction**](FinancialServiceApi.md#addNoteToRecurringTransaction) | **POST** /financial-microservice/api/v1/transactions/recurring/note | adds a note to a transaction |
 | [**addNoteToSmartGoal**](FinancialServiceApi.md#addNoteToSmartGoal) | **POST** /financial-microservice/api/v1/smart-goal/note | adds a note to a smart goal |
 | [**addNoteToTransaction**](FinancialServiceApi.md#addNoteToTransaction) | **POST** /financial-microservice/api/v1/transactions/transaction/note | adds a note to a transaction |
+| [**addTransactionsToManuallyLinkedAccount**](FinancialServiceApi.md#addTransactionsToManuallyLinkedAccount) | **POST** /financial-microservice/api/v1/manual-linked-account/transactions | Adds transactions to a manually linked account |
 | [**askCopilotQuestion**](FinancialServiceApi.md#askCopilotQuestion) | **POST** /financial-microservice/api/v1/copilot/quota/question | Ask a question to copilot |
 | [**bulkUpdateRecurringTransaction**](FinancialServiceApi.md#bulkUpdateRecurringTransaction) | **PUT** /financial-microservice/api/v1/transactions/recurring/bulk | update a transaction |
 | [**bulkUpdateTransaction**](FinancialServiceApi.md#bulkUpdateTransaction) | **PUT** /financial-microservice/api/v1/transactions/transaction/bulk | update a transaction |
@@ -38,18 +39,23 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**getAllBudgets**](FinancialServiceApi.md#getAllBudgets) | **GET** /financial-microservice/api/v1/budget | get all budgets |
 | [**getBankAccount**](FinancialServiceApi.md#getBankAccount) | **GET** /financial-microservice/api/v1/bank-account/{bankAccountId} | get a bank account for a given user profile |
 | [**getBudget**](FinancialServiceApi.md#getBudget) | **GET** /financial-microservice/api/v1/budget/{budgetId} | get budget by id |
+| [**getCategoryMetricsFinancialSubProfileOverTime**](FinancialServiceApi.md#getCategoryMetricsFinancialSubProfileOverTime) | **GET** /financial-microservice/api/v1/financial-profile/category-metrics | Gets category metrics for a financial sub profile over time |
 | [**getCategoryMonthlyTransactionCount**](FinancialServiceApi.md#getCategoryMonthlyTransactionCount) | **GET** /financial-microservice/api/v1/analytics/category-monthly-transaction-count/user/{userId} | Get monthly transaction count by user, month, and category |
 | [**getDebtToIncomeRatio**](FinancialServiceApi.md#getDebtToIncomeRatio) | **GET** /financial-microservice/api/v1/analytics/debt-to-income-ratio/user/{userId} | Get Debt-to-Income ratio by user and month |
 | [**getExpenseMetrics**](FinancialServiceApi.md#getExpenseMetrics) | **GET** /financial-microservice/api/v1/analytics/expenses/user/{userId} | Get Expense Metrics by user, month and category |
+| [**getExpenseMetricsFinancialSubProfileOverTime**](FinancialServiceApi.md#getExpenseMetricsFinancialSubProfileOverTime) | **GET** /financial-microservice/api/v1/financial-profile/expense-metrics | Gets expense metrics for a financial sub profile over time |
 | [**getFinancialProfile**](FinancialServiceApi.md#getFinancialProfile) | **GET** /financial-microservice/api/v1/analytics/finance-profile/user/{userId} | Get Financial Profile by user and month |
 | [**getForecast**](FinancialServiceApi.md#getForecast) | **GET** /financial-microservice/api/v1/forecast/{smartGoalId} | get forecast by id |
 | [**getIncomeExpenseRatio**](FinancialServiceApi.md#getIncomeExpenseRatio) | **GET** /financial-microservice/api/v1/analytics/income-expense-ratio/user/{userId} | Get Income Expense Ratio by user and month |
 | [**getIncomeMetrics**](FinancialServiceApi.md#getIncomeMetrics) | **GET** /financial-microservice/api/v1/analytics/income/user/{userId} | Get Income Metrics by user, month and category |
+| [**getIncomeMetricsFinancialSubProfileOverTime**](FinancialServiceApi.md#getIncomeMetricsFinancialSubProfileOverTime) | **GET** /financial-microservice/api/v1/financial-profile/income-metrics | Gets income metrics for a financial sub profile over time |
 | [**getInvestmentAccount**](FinancialServiceApi.md#getInvestmentAccount) | **GET** /financial-microservice/api/v1/account/{userId}/investment/{investmentAccountId} | get investment account by id |
 | [**getLiabilityAccount**](FinancialServiceApi.md#getLiabilityAccount) | **GET** /financial-microservice/api/v1/account/{userId}/liability/{liabilityAccountId} | get liability account by id |
 | [**getLink**](FinancialServiceApi.md#getLink) | **GET** /financial-microservice/api/v1/link/{linkId} | get link by id |
 | [**getLinks**](FinancialServiceApi.md#getLinks) | **GET** /financial-microservice/api/v1/links/{userId} | get links |
+| [**getLocationMetricsFinancialSubProfileOverTime**](FinancialServiceApi.md#getLocationMetricsFinancialSubProfileOverTime) | **GET** /financial-microservice/api/v1/financial-profile/location-metrics | Gets income metrics for a financial sub profile over time |
 | [**getMelodyFinancialContext**](FinancialServiceApi.md#getMelodyFinancialContext) | **GET** /financial-microservice/api/v1/analytics/melody-financial-context/user/{userId} | Get Melody Financial Context |
+| [**getMerchantMetricsFinancialSubProfileOverTime**](FinancialServiceApi.md#getMerchantMetricsFinancialSubProfileOverTime) | **GET** /financial-microservice/api/v1/financial-profile/merchant-metrics | Gets merchant metrics for a financial sub profile over time |
 | [**getMerchantMonthlyExpenditure**](FinancialServiceApi.md#getMerchantMonthlyExpenditure) | **GET** /financial-microservice/api/v1/analytics/merchant-monthly-expenditure/user/{userId} | Get Merchant Monthly Expenditure by user, month and merchant name |
 | [**getMilestone**](FinancialServiceApi.md#getMilestone) | **GET** /financial-microservice/api/v1/milestone/{milestoneId} | get milestone by id |
 | [**getMilestones**](FinancialServiceApi.md#getMilestones) | **GET** /financial-microservice/api/v1/milestone/smart-goal/{smartGoalId} | get milestones by smart goal id |
@@ -64,6 +70,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**getNoteFromTransaction**](FinancialServiceApi.md#getNoteFromTransaction) | **GET** /financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId} | gets a note from a transaction |
 | [**getNotesFromFinancialUserProfile**](FinancialServiceApi.md#getNotesFromFinancialUserProfile) | **GET** /financial-microservice/api/v1/financial-profile/business/{businessAccountUserId}/{profileType}/note | Gets notes from a business account |
 | [**getNotesFromSmartGoal**](FinancialServiceApi.md#getNotesFromSmartGoal) | **GET** /financial-microservice/api/v1/smart-goal/{smartGoalId}/note | gets notes from a smart goal |
+| [**getPaymentChannelFinancialSubProfileOverTime**](FinancialServiceApi.md#getPaymentChannelFinancialSubProfileOverTime) | **GET** /financial-microservice/api/v1/financial-profile/payment-channel-metrics | Gets payment metrics for a financial sub profile over time |
 | [**getPaymentChannelMonthlyExpenditure**](FinancialServiceApi.md#getPaymentChannelMonthlyExpenditure) | **GET** /financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{userId} | Get Payment Channel Monthly Expenditure by user, month, and payment channel |
 | [**getPocket**](FinancialServiceApi.md#getPocket) | **GET** /financial-microservice/api/v1/pocket/{pocketId} | get a pocket |
 | [**getRecurringTransaction**](FinancialServiceApi.md#getRecurringTransaction) | **GET** /financial-microservice/api/v1/transactions/recurring/{transactionId} | lists a set of transactions against a given account of interest |
@@ -235,6 +242,33 @@ adds a note to a transaction
 ### Return type
 
 [**AddNoteToTransactionResponse**](../Models/AddNoteToTransactionResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="addTransactionsToManuallyLinkedAccount"></a>
+# **addTransactionsToManuallyLinkedAccount**
+> AddTransactionsToManuallyLinkedAccountResponse addTransactionsToManuallyLinkedAccount(AddTransactionsToManuallyLinkedAccountRequest)
+
+Adds transactions to a manually linked account
+
+    This endpoint adds transactions to a manually linked account
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **AddTransactionsToManuallyLinkedAccountRequest** | [**AddTransactionsToManuallyLinkedAccountRequest**](../Models/AddTransactionsToManuallyLinkedAccountRequest.md)| Add transactions to an account. | |
+
+### Return type
+
+[**AddTransactionsToManuallyLinkedAccountResponse**](../Models/AddTransactionsToManuallyLinkedAccountResponse.md)
 
 ### Authorization
 
@@ -1043,6 +1077,38 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="getCategoryMetricsFinancialSubProfileOverTime"></a>
+# **getCategoryMetricsFinancialSubProfileOverTime**
+> GetCategoryMetricsFinancialSubProfileOverTimeResponse getCategoryMetricsFinancialSubProfileOverTime(userId, profileType, personalFinanceCategoryPrimary, month, pageNumber, pageSize)
+
+Gets category metrics for a financial sub profile over time
+
+    This endpoint gets category metrics for a financial sub profile over time
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userId** | **String**|  | [optional] [default to null] |
+| **profileType** | **String**|  | [optional] [default to FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED] [enum: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED, FINANCIAL_USER_PROFILE_TYPE_USER, FINANCIAL_USER_PROFILE_TYPE_BUSINESS] |
+| **personalFinanceCategoryPrimary** | **String**|  | [optional] [default to null] |
+| **month** | **Long**|  | [optional] [default to null] |
+| **pageNumber** | **String**|  | [optional] [default to null] |
+| **pageSize** | **String**| Number of items to return per page. | [optional] [default to null] |
+
+### Return type
+
+[**GetCategoryMetricsFinancialSubProfileOverTimeResponse**](../Models/GetCategoryMetricsFinancialSubProfileOverTimeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="getCategoryMonthlyTransactionCount"></a>
 # **getCategoryMonthlyTransactionCount**
 > GetCategoryMonthlyTransactionCountResponse getCategoryMonthlyTransactionCount(userId, month, personalFinanceCategoryPrimary, pageNumber, pageSize, profileType)
@@ -1122,6 +1188,37 @@ Get Expense Metrics by user, month and category
 ### Return type
 
 [**GetExpenseMetricsResponse**](../Models/GetExpenseMetricsResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getExpenseMetricsFinancialSubProfileOverTime"></a>
+# **getExpenseMetricsFinancialSubProfileOverTime**
+> GetExpenseMetricsFinancialSubProfileOverTimeResponse getExpenseMetricsFinancialSubProfileOverTime(userId, profileType, month, pageNumber, pageSize)
+
+Gets expense metrics for a financial sub profile over time
+
+    This endpoint gets expense metrics for a financial sub profile over time
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userId** | **String**|  | [optional] [default to null] |
+| **profileType** | **String**|  | [optional] [default to FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED] [enum: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED, FINANCIAL_USER_PROFILE_TYPE_USER, FINANCIAL_USER_PROFILE_TYPE_BUSINESS] |
+| **month** | **Long**|  | [optional] [default to null] |
+| **pageNumber** | **String**|  | [optional] [default to null] |
+| **pageSize** | **String**| Number of items to return per page. | [optional] [default to null] |
+
+### Return type
+
+[**GetExpenseMetricsFinancialSubProfileOverTimeResponse**](../Models/GetExpenseMetricsFinancialSubProfileOverTimeResponse.md)
 
 ### Authorization
 
@@ -1247,6 +1344,37 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="getIncomeMetricsFinancialSubProfileOverTime"></a>
+# **getIncomeMetricsFinancialSubProfileOverTime**
+> GetIncomeMetricsFinancialSubProfileOverTimeResponse getIncomeMetricsFinancialSubProfileOverTime(userId, profileType, month, pageNumber, pageSize)
+
+Gets income metrics for a financial sub profile over time
+
+    This endpoint gets expense metrics for a financial sub profile over time
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userId** | **String**|  | [optional] [default to null] |
+| **profileType** | **String**|  | [optional] [default to FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED] [enum: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED, FINANCIAL_USER_PROFILE_TYPE_USER, FINANCIAL_USER_PROFILE_TYPE_BUSINESS] |
+| **month** | **Long**|  | [optional] [default to null] |
+| **pageNumber** | **String**|  | [optional] [default to null] |
+| **pageSize** | **String**| Number of items to return per page. | [optional] [default to null] |
+
+### Return type
+
+[**GetIncomeMetricsFinancialSubProfileOverTimeResponse**](../Models/GetIncomeMetricsFinancialSubProfileOverTimeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="getInvestmentAccount"></a>
 # **getInvestmentAccount**
 > GetInvestmentAcccountResponse getInvestmentAccount(userId, investmentAccountId, profileType)
@@ -1362,6 +1490,38 @@ No authorization required
 - **Content-Type**: Not defined
 - **Accept**: application/json
 
+<a name="getLocationMetricsFinancialSubProfileOverTime"></a>
+# **getLocationMetricsFinancialSubProfileOverTime**
+> GetLocationMetricsFinancialSubProfileOverTimeResponse getLocationMetricsFinancialSubProfileOverTime(userId, profileType, month, locationCity, pageNumber, pageSize)
+
+Gets income metrics for a financial sub profile over time
+
+    This endpoint gets location metrics for a financial sub profile over time
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userId** | **String**|  | [optional] [default to null] |
+| **profileType** | **String**|  | [optional] [default to FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED] [enum: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED, FINANCIAL_USER_PROFILE_TYPE_USER, FINANCIAL_USER_PROFILE_TYPE_BUSINESS] |
+| **month** | **Long**|  | [optional] [default to null] |
+| **locationCity** | **String**|  | [optional] [default to null] |
+| **pageNumber** | **String**|  | [optional] [default to null] |
+| **pageSize** | **String**| Number of items to return per page. | [optional] [default to null] |
+
+### Return type
+
+[**GetLocationMetricsFinancialSubProfileOverTimeResponse**](../Models/GetLocationMetricsFinancialSubProfileOverTimeResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
 <a name="getMelodyFinancialContext"></a>
 # **getMelodyFinancialContext**
 > GetMelodyFinancialContextResponse getMelodyFinancialContext(userId, profileType)
@@ -1378,6 +1538,38 @@ Get Melody Financial Context
 ### Return type
 
 [**GetMelodyFinancialContextResponse**](../Models/GetMelodyFinancialContextResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getMerchantMetricsFinancialSubProfileOverTime"></a>
+# **getMerchantMetricsFinancialSubProfileOverTime**
+> GetMerchantMetricsFinancialSubProfileOverTimeResponse getMerchantMetricsFinancialSubProfileOverTime(userId, profileType, month, merchantName, pageNumber, pageSize)
+
+Gets merchant metrics for a financial sub profile over time
+
+    This endpoint gets merchant metrics for a financial sub profile over time
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userId** | **String**|  | [optional] [default to null] |
+| **profileType** | **String**|  | [optional] [default to FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED] [enum: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED, FINANCIAL_USER_PROFILE_TYPE_USER, FINANCIAL_USER_PROFILE_TYPE_BUSINESS] |
+| **month** | **Long**|  | [optional] [default to null] |
+| **merchantName** | **String**|  | [optional] [default to null] |
+| **pageNumber** | **String**|  | [optional] [default to null] |
+| **pageSize** | **String**| Number of items to return per page. | [optional] [default to null] |
+
+### Return type
+
+[**GetMerchantMetricsFinancialSubProfileOverTimeResponse**](../Models/GetMerchantMetricsFinancialSubProfileOverTimeResponse.md)
 
 ### Authorization
 
@@ -1776,6 +1968,38 @@ gets notes from a smart goal
 ### Return type
 
 [**GetNotesFromSmartGoalResponse**](../Models/GetNotesFromSmartGoalResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: Not defined
+- **Accept**: application/json
+
+<a name="getPaymentChannelFinancialSubProfileOverTime"></a>
+# **getPaymentChannelFinancialSubProfileOverTime**
+> GetPaymentChannelFinancialSubProfileOverTimeResponse getPaymentChannelFinancialSubProfileOverTime(userId, profileType, month, paymentChannel, pageNumber, pageSize)
+
+Gets payment metrics for a financial sub profile over time
+
+    This endpoint gets payment metrics for a financial sub profile over time
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **userId** | **String**|  | [optional] [default to null] |
+| **profileType** | **String**|  | [optional] [default to FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED] [enum: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED, FINANCIAL_USER_PROFILE_TYPE_USER, FINANCIAL_USER_PROFILE_TYPE_BUSINESS] |
+| **month** | **Long**|  | [optional] [default to null] |
+| **paymentChannel** | **String**|  | [optional] [default to null] |
+| **pageNumber** | **String**|  | [optional] [default to null] |
+| **pageSize** | **String**| Number of items to return per page. | [optional] [default to null] |
+
+### Return type
+
+[**GetPaymentChannelFinancialSubProfileOverTimeResponse**](../Models/GetPaymentChannelFinancialSubProfileOverTimeResponse.md)
 
 ### Authorization
 

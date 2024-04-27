@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,7 @@ export interface Entities {
  * Check if a given object implements the Entities interface.
  */
 export function instanceOfEntities(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function EntitiesFromJSON(json: any): Entities {
@@ -47,27 +45,24 @@ export function EntitiesFromJSON(json: any): Entities {
 }
 
 export function EntitiesFromJSONTyped(json: any, ignoreDiscriminator: boolean): Entities {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'text': !exists(json, 'text') ? undefined : json['text'],
-        'label': !exists(json, 'label') ? undefined : json['label'],
+        'text': json['text'] == null ? undefined : json['text'],
+        'label': json['label'] == null ? undefined : json['label'],
     };
 }
 
 export function EntitiesToJSON(value?: Entities | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'text': value.text,
-        'label': value.label,
+        'text': value['text'],
+        'label': value['label'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SmartNote } from './SmartNote';
 import {
     SmartNoteFromJSON,
@@ -38,10 +38,8 @@ export interface UpdateNoteToRecurringTransactionRequest {
  * Check if a given object implements the UpdateNoteToRecurringTransactionRequest interface.
  */
 export function instanceOfUpdateNoteToRecurringTransactionRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "note" in value;
-
-    return isInstance;
+    if (!('note' in value)) return false;
+    return true;
 }
 
 export function UpdateNoteToRecurringTransactionRequestFromJSON(json: any): UpdateNoteToRecurringTransactionRequest {
@@ -49,7 +47,7 @@ export function UpdateNoteToRecurringTransactionRequestFromJSON(json: any): Upda
 }
 
 export function UpdateNoteToRecurringTransactionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateNoteToRecurringTransactionRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function UpdateNoteToRecurringTransactionRequestFromJSONTyped(json: any, 
 }
 
 export function UpdateNoteToRecurringTransactionRequestToJSON(value?: UpdateNoteToRecurringTransactionRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'note': SmartNoteToJSON(value.note),
+        'note': SmartNoteToJSON(value['note']),
     };
 }
 

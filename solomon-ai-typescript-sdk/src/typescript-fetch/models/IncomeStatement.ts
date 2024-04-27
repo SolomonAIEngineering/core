@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ReportItem } from './ReportItem';
 import {
     ReportItemFromJSON,
@@ -142,9 +142,7 @@ export interface IncomeStatement {
  * Check if a given object implements the IncomeStatement interface.
  */
 export function instanceOfIncomeStatement(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function IncomeStatementFromJSON(json: any): IncomeStatement {
@@ -152,59 +150,56 @@ export function IncomeStatementFromJSON(json: any): IncomeStatement {
 }
 
 export function IncomeStatementFromJSONTyped(json: any, ignoreDiscriminator: boolean): IncomeStatement {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'currency': !exists(json, 'currency') ? undefined : json['currency'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'startPeriod': !exists(json, 'startPeriod') ? undefined : (new Date(json['startPeriod'])),
-        'endPeriod': !exists(json, 'endPeriod') ? undefined : (new Date(json['endPeriod'])),
-        'income': !exists(json, 'income') ? undefined : ((json['income'] as Array<any>).map(ReportItemFromJSON)),
-        'costOfSales': !exists(json, 'costOfSales') ? undefined : ((json['costOfSales'] as Array<any>).map(ReportItemFromJSON)),
-        'grossProfit': !exists(json, 'grossProfit') ? undefined : json['grossProfit'],
-        'operatingExpenses': !exists(json, 'operatingExpenses') ? undefined : ((json['operatingExpenses'] as Array<any>).map(ReportItemFromJSON)),
-        'netOperatingIncome': !exists(json, 'netOperatingIncome') ? undefined : json['netOperatingIncome'],
-        'nonOperatingExpenses': !exists(json, 'nonOperatingExpenses') ? undefined : ((json['nonOperatingExpenses'] as Array<any>).map(ReportItemFromJSON)),
-        'netIncome': !exists(json, 'netIncome') ? undefined : json['netIncome'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeRecordId': !exists(json, 'mergeRecordId') ? undefined : json['mergeRecordId'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'startPeriod': json['startPeriod'] == null ? undefined : (new Date(json['startPeriod'])),
+        'endPeriod': json['endPeriod'] == null ? undefined : (new Date(json['endPeriod'])),
+        'income': json['income'] == null ? undefined : ((json['income'] as Array<any>).map(ReportItemFromJSON)),
+        'costOfSales': json['costOfSales'] == null ? undefined : ((json['costOfSales'] as Array<any>).map(ReportItemFromJSON)),
+        'grossProfit': json['grossProfit'] == null ? undefined : json['grossProfit'],
+        'operatingExpenses': json['operatingExpenses'] == null ? undefined : ((json['operatingExpenses'] as Array<any>).map(ReportItemFromJSON)),
+        'netOperatingIncome': json['netOperatingIncome'] == null ? undefined : json['netOperatingIncome'],
+        'nonOperatingExpenses': json['nonOperatingExpenses'] == null ? undefined : ((json['nonOperatingExpenses'] as Array<any>).map(ReportItemFromJSON)),
+        'netIncome': json['netIncome'] == null ? undefined : json['netIncome'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeRecordId': json['mergeRecordId'] == null ? undefined : json['mergeRecordId'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
     };
 }
 
 export function IncomeStatementToJSON(value?: IncomeStatement | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'name': value.name,
-        'currency': value.currency,
-        'company': value.company,
-        'startPeriod': value.startPeriod === undefined ? undefined : (value.startPeriod.toISOString()),
-        'endPeriod': value.endPeriod === undefined ? undefined : (value.endPeriod.toISOString()),
-        'income': value.income === undefined ? undefined : ((value.income as Array<any>).map(ReportItemToJSON)),
-        'costOfSales': value.costOfSales === undefined ? undefined : ((value.costOfSales as Array<any>).map(ReportItemToJSON)),
-        'grossProfit': value.grossProfit,
-        'operatingExpenses': value.operatingExpenses === undefined ? undefined : ((value.operatingExpenses as Array<any>).map(ReportItemToJSON)),
-        'netOperatingIncome': value.netOperatingIncome,
-        'nonOperatingExpenses': value.nonOperatingExpenses === undefined ? undefined : ((value.nonOperatingExpenses as Array<any>).map(ReportItemToJSON)),
-        'netIncome': value.netIncome,
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeRecordId': value.mergeRecordId,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'name': value['name'],
+        'currency': value['currency'],
+        'company': value['company'],
+        'startPeriod': value['startPeriod'] == null ? undefined : ((value['startPeriod']).toISOString()),
+        'endPeriod': value['endPeriod'] == null ? undefined : ((value['endPeriod']).toISOString()),
+        'income': value['income'] == null ? undefined : ((value['income'] as Array<any>).map(ReportItemToJSON)),
+        'costOfSales': value['costOfSales'] == null ? undefined : ((value['costOfSales'] as Array<any>).map(ReportItemToJSON)),
+        'grossProfit': value['grossProfit'],
+        'operatingExpenses': value['operatingExpenses'] == null ? undefined : ((value['operatingExpenses'] as Array<any>).map(ReportItemToJSON)),
+        'netOperatingIncome': value['netOperatingIncome'],
+        'nonOperatingExpenses': value['nonOperatingExpenses'] == null ? undefined : ((value['nonOperatingExpenses'] as Array<any>).map(ReportItemToJSON)),
+        'netIncome': value['netIncome'],
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeRecordId': value['mergeRecordId'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
     };
 }
 

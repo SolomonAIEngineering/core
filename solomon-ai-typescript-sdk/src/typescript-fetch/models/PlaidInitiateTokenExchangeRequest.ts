@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -65,14 +65,12 @@ export interface PlaidInitiateTokenExchangeRequest {
  * Check if a given object implements the PlaidInitiateTokenExchangeRequest interface.
  */
 export function instanceOfPlaidInitiateTokenExchangeRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "fullName" in value;
-    isInstance = isInstance && "email" in value;
-    isInstance = isInstance && "phoneNumber" in value;
-    isInstance = isInstance && "profileType" in value;
-
-    return isInstance;
+    if (!('userId' in value)) return false;
+    if (!('fullName' in value)) return false;
+    if (!('email' in value)) return false;
+    if (!('phoneNumber' in value)) return false;
+    if (!('profileType' in value)) return false;
+    return true;
 }
 
 export function PlaidInitiateTokenExchangeRequestFromJSON(json: any): PlaidInitiateTokenExchangeRequest {
@@ -80,7 +78,7 @@ export function PlaidInitiateTokenExchangeRequestFromJSON(json: any): PlaidIniti
 }
 
 export function PlaidInitiateTokenExchangeRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlaidInitiateTokenExchangeRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -94,19 +92,16 @@ export function PlaidInitiateTokenExchangeRequestFromJSONTyped(json: any, ignore
 }
 
 export function PlaidInitiateTokenExchangeRequestToJSON(value?: PlaidInitiateTokenExchangeRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userId': value.userId,
-        'fullName': value.fullName,
-        'email': value.email,
-        'phoneNumber': value.phoneNumber,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'userId': value['userId'],
+        'fullName': value['fullName'],
+        'email': value['email'],
+        'phoneNumber': value['phoneNumber'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

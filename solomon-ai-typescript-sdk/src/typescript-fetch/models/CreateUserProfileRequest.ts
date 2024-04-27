@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { UserTags } from './UserTags';
 import {
     UserTagsFromJSON,
@@ -68,13 +68,11 @@ export interface CreateUserProfileRequest {
  * Check if a given object implements the CreateUserProfileRequest interface.
  */
 export function instanceOfCreateUserProfileRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "username" in value;
-    isInstance = isInstance && "tags" in value;
-    isInstance = isInstance && "profileImageUrl" in value;
-
-    return isInstance;
+    if (!('userId' in value)) return false;
+    if (!('username' in value)) return false;
+    if (!('tags' in value)) return false;
+    if (!('profileImageUrl' in value)) return false;
+    return true;
 }
 
 export function CreateUserProfileRequestFromJSON(json: any): CreateUserProfileRequest {
@@ -82,35 +80,32 @@ export function CreateUserProfileRequestFromJSON(json: any): CreateUserProfileRe
 }
 
 export function CreateUserProfileRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateUserProfileRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'userId': json['userId'],
-        'idsOfCommunitiesToFollow': !exists(json, 'idsOfCommunitiesToFollow') ? undefined : json['idsOfCommunitiesToFollow'],
+        'idsOfCommunitiesToFollow': json['idsOfCommunitiesToFollow'] == null ? undefined : json['idsOfCommunitiesToFollow'],
         'username': json['username'],
         'tags': ((json['tags'] as Array<any>).map(UserTagsFromJSON)),
-        'isPrivate': !exists(json, 'isPrivate') ? undefined : json['isPrivate'],
+        'isPrivate': json['isPrivate'] == null ? undefined : json['isPrivate'],
         'profileImageUrl': json['profileImageUrl'],
     };
 }
 
 export function CreateUserProfileRequestToJSON(value?: CreateUserProfileRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userId': value.userId,
-        'idsOfCommunitiesToFollow': value.idsOfCommunitiesToFollow,
-        'username': value.username,
-        'tags': ((value.tags as Array<any>).map(UserTagsToJSON)),
-        'isPrivate': value.isPrivate,
-        'profileImageUrl': value.profileImageUrl,
+        'userId': value['userId'],
+        'idsOfCommunitiesToFollow': value['idsOfCommunitiesToFollow'],
+        'username': value['username'],
+        'tags': ((value['tags'] as Array<any>).map(UserTagsToJSON)),
+        'isPrivate': value['isPrivate'],
+        'profileImageUrl': value['profileImageUrl'],
     };
 }
 

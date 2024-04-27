@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -49,13 +49,11 @@ export interface ExchangePublicLinkTokenForAccountTokenRequest {
  * Check if a given object implements the ExchangePublicLinkTokenForAccountTokenRequest interface.
  */
 export function instanceOfExchangePublicLinkTokenForAccountTokenRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "authZeroUserId" in value;
-    isInstance = isInstance && "publicToken" in value;
-    isInstance = isInstance && "endUserOriginId" in value;
-    isInstance = isInstance && "organizationName" in value;
-
-    return isInstance;
+    if (!('authZeroUserId' in value)) return false;
+    if (!('publicToken' in value)) return false;
+    if (!('endUserOriginId' in value)) return false;
+    if (!('organizationName' in value)) return false;
+    return true;
 }
 
 export function ExchangePublicLinkTokenForAccountTokenRequestFromJSON(json: any): ExchangePublicLinkTokenForAccountTokenRequest {
@@ -63,7 +61,7 @@ export function ExchangePublicLinkTokenForAccountTokenRequestFromJSON(json: any)
 }
 
 export function ExchangePublicLinkTokenForAccountTokenRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExchangePublicLinkTokenForAccountTokenRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -76,18 +74,15 @@ export function ExchangePublicLinkTokenForAccountTokenRequestFromJSONTyped(json:
 }
 
 export function ExchangePublicLinkTokenForAccountTokenRequestToJSON(value?: ExchangePublicLinkTokenForAccountTokenRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'authZeroUserId': value.authZeroUserId,
-        'publicToken': value.publicToken,
-        'endUserOriginId': value.endUserOriginId,
-        'organizationName': value.organizationName,
+        'authZeroUserId': value['authZeroUserId'],
+        'publicToken': value['publicToken'],
+        'endUserOriginId': value['endUserOriginId'],
+        'organizationName': value['organizationName'],
     };
 }
 

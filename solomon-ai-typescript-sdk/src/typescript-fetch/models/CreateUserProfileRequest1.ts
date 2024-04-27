@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfile } from './FinancialUserProfile';
 import {
     FinancialUserProfileFromJSON,
@@ -44,11 +44,9 @@ export interface CreateUserProfileRequest1 {
  * Check if a given object implements the CreateUserProfileRequest1 interface.
  */
 export function instanceOfCreateUserProfileRequest1(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "profile" in value;
-    isInstance = isInstance && "email" in value;
-
-    return isInstance;
+    if (!('profile' in value)) return false;
+    if (!('email' in value)) return false;
+    return true;
 }
 
 export function CreateUserProfileRequest1FromJSON(json: any): CreateUserProfileRequest1 {
@@ -56,7 +54,7 @@ export function CreateUserProfileRequest1FromJSON(json: any): CreateUserProfileR
 }
 
 export function CreateUserProfileRequest1FromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateUserProfileRequest1 {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function CreateUserProfileRequest1FromJSONTyped(json: any, ignoreDiscrimi
 }
 
 export function CreateUserProfileRequest1ToJSON(value?: CreateUserProfileRequest1 | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'profile': FinancialUserProfileToJSON(value.profile),
-        'email': value.email,
+        'profile': FinancialUserProfileToJSON(value['profile']),
+        'email': value['email'],
     };
 }
 

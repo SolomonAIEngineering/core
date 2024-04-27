@@ -26,6 +26,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *FinancialServiceApi* | [**addNoteToRecurringTransaction**](Apis/FinancialServiceApi.md#addnotetorecurringtransaction) | **POST** /financial-microservice/api/v1/transactions/recurring/note | adds a note to a transaction |
 *FinancialServiceApi* | [**addNoteToSmartGoal**](Apis/FinancialServiceApi.md#addnotetosmartgoal) | **POST** /financial-microservice/api/v1/smart-goal/note | adds a note to a smart goal |
 *FinancialServiceApi* | [**addNoteToTransaction**](Apis/FinancialServiceApi.md#addnotetotransaction) | **POST** /financial-microservice/api/v1/transactions/transaction/note | adds a note to a transaction |
+*FinancialServiceApi* | [**addTransactionsToManuallyLinkedAccount**](Apis/FinancialServiceApi.md#addtransactionstomanuallylinkedaccount) | **POST** /financial-microservice/api/v1/manual-linked-account/transactions | Adds transactions to a manually linked account |
 *FinancialServiceApi* | [**askCopilotQuestion**](Apis/FinancialServiceApi.md#askcopilotquestion) | **POST** /financial-microservice/api/v1/copilot/quota/question | Ask a question to copilot |
 *FinancialServiceApi* | [**bulkUpdateRecurringTransaction**](Apis/FinancialServiceApi.md#bulkupdaterecurringtransaction) | **PUT** /financial-microservice/api/v1/transactions/recurring/bulk | update a transaction |
 *FinancialServiceApi* | [**bulkUpdateTransaction**](Apis/FinancialServiceApi.md#bulkupdatetransaction) | **PUT** /financial-microservice/api/v1/transactions/transaction/bulk | update a transaction |
@@ -55,18 +56,23 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *FinancialServiceApi* | [**getAllBudgets**](Apis/FinancialServiceApi.md#getallbudgets) | **GET** /financial-microservice/api/v1/budget | get all budgets |
 *FinancialServiceApi* | [**getBankAccount**](Apis/FinancialServiceApi.md#getbankaccount) | **GET** /financial-microservice/api/v1/bank-account/{bankAccountId} | get a bank account for a given user profile |
 *FinancialServiceApi* | [**getBudget**](Apis/FinancialServiceApi.md#getbudget) | **GET** /financial-microservice/api/v1/budget/{budgetId} | get budget by id |
+*FinancialServiceApi* | [**getCategoryMetricsFinancialSubProfileOverTime**](Apis/FinancialServiceApi.md#getcategorymetricsfinancialsubprofileovertime) | **GET** /financial-microservice/api/v1/financial-profile/category-metrics | Gets category metrics for a financial sub profile over time |
 *FinancialServiceApi* | [**getCategoryMonthlyTransactionCount**](Apis/FinancialServiceApi.md#getcategorymonthlytransactioncount) | **GET** /financial-microservice/api/v1/analytics/category-monthly-transaction-count/user/{userId} | Get monthly transaction count by user, month, and category |
 *FinancialServiceApi* | [**getDebtToIncomeRatio**](Apis/FinancialServiceApi.md#getdebttoincomeratio) | **GET** /financial-microservice/api/v1/analytics/debt-to-income-ratio/user/{userId} | Get Debt-to-Income ratio by user and month |
 *FinancialServiceApi* | [**getExpenseMetrics**](Apis/FinancialServiceApi.md#getexpensemetrics) | **GET** /financial-microservice/api/v1/analytics/expenses/user/{userId} | Get Expense Metrics by user, month and category |
+*FinancialServiceApi* | [**getExpenseMetricsFinancialSubProfileOverTime**](Apis/FinancialServiceApi.md#getexpensemetricsfinancialsubprofileovertime) | **GET** /financial-microservice/api/v1/financial-profile/expense-metrics | Gets expense metrics for a financial sub profile over time |
 *FinancialServiceApi* | [**getFinancialProfile**](Apis/FinancialServiceApi.md#getfinancialprofile) | **GET** /financial-microservice/api/v1/analytics/finance-profile/user/{userId} | Get Financial Profile by user and month |
 *FinancialServiceApi* | [**getForecast**](Apis/FinancialServiceApi.md#getforecast) | **GET** /financial-microservice/api/v1/forecast/{smartGoalId} | get forecast by id |
 *FinancialServiceApi* | [**getIncomeExpenseRatio**](Apis/FinancialServiceApi.md#getincomeexpenseratio) | **GET** /financial-microservice/api/v1/analytics/income-expense-ratio/user/{userId} | Get Income Expense Ratio by user and month |
 *FinancialServiceApi* | [**getIncomeMetrics**](Apis/FinancialServiceApi.md#getincomemetrics) | **GET** /financial-microservice/api/v1/analytics/income/user/{userId} | Get Income Metrics by user, month and category |
+*FinancialServiceApi* | [**getIncomeMetricsFinancialSubProfileOverTime**](Apis/FinancialServiceApi.md#getincomemetricsfinancialsubprofileovertime) | **GET** /financial-microservice/api/v1/financial-profile/income-metrics | Gets income metrics for a financial sub profile over time |
 *FinancialServiceApi* | [**getInvestmentAccount**](Apis/FinancialServiceApi.md#getinvestmentaccount) | **GET** /financial-microservice/api/v1/account/{userId}/investment/{investmentAccountId} | get investment account by id |
 *FinancialServiceApi* | [**getLiabilityAccount**](Apis/FinancialServiceApi.md#getliabilityaccount) | **GET** /financial-microservice/api/v1/account/{userId}/liability/{liabilityAccountId} | get liability account by id |
 *FinancialServiceApi* | [**getLink**](Apis/FinancialServiceApi.md#getlink) | **GET** /financial-microservice/api/v1/link/{linkId} | get link by id |
 *FinancialServiceApi* | [**getLinks**](Apis/FinancialServiceApi.md#getlinks) | **GET** /financial-microservice/api/v1/links/{userId} | get links |
+*FinancialServiceApi* | [**getLocationMetricsFinancialSubProfileOverTime**](Apis/FinancialServiceApi.md#getlocationmetricsfinancialsubprofileovertime) | **GET** /financial-microservice/api/v1/financial-profile/location-metrics | Gets income metrics for a financial sub profile over time |
 *FinancialServiceApi* | [**getMelodyFinancialContext**](Apis/FinancialServiceApi.md#getmelodyfinancialcontext) | **GET** /financial-microservice/api/v1/analytics/melody-financial-context/user/{userId} | Get Melody Financial Context |
+*FinancialServiceApi* | [**getMerchantMetricsFinancialSubProfileOverTime**](Apis/FinancialServiceApi.md#getmerchantmetricsfinancialsubprofileovertime) | **GET** /financial-microservice/api/v1/financial-profile/merchant-metrics | Gets merchant metrics for a financial sub profile over time |
 *FinancialServiceApi* | [**getMerchantMonthlyExpenditure**](Apis/FinancialServiceApi.md#getmerchantmonthlyexpenditure) | **GET** /financial-microservice/api/v1/analytics/merchant-monthly-expenditure/user/{userId} | Get Merchant Monthly Expenditure by user, month and merchant name |
 *FinancialServiceApi* | [**getMilestone**](Apis/FinancialServiceApi.md#getmilestone) | **GET** /financial-microservice/api/v1/milestone/{milestoneId} | get milestone by id |
 *FinancialServiceApi* | [**getMilestones**](Apis/FinancialServiceApi.md#getmilestones) | **GET** /financial-microservice/api/v1/milestone/smart-goal/{smartGoalId} | get milestones by smart goal id |
@@ -81,6 +87,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *FinancialServiceApi* | [**getNoteFromTransaction**](Apis/FinancialServiceApi.md#getnotefromtransaction) | **GET** /financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId} | gets a note from a transaction |
 *FinancialServiceApi* | [**getNotesFromFinancialUserProfile**](Apis/FinancialServiceApi.md#getnotesfromfinancialuserprofile) | **GET** /financial-microservice/api/v1/financial-profile/business/{businessAccountUserId}/{profileType}/note | Gets notes from a business account |
 *FinancialServiceApi* | [**getNotesFromSmartGoal**](Apis/FinancialServiceApi.md#getnotesfromsmartgoal) | **GET** /financial-microservice/api/v1/smart-goal/{smartGoalId}/note | gets notes from a smart goal |
+*FinancialServiceApi* | [**getPaymentChannelFinancialSubProfileOverTime**](Apis/FinancialServiceApi.md#getpaymentchannelfinancialsubprofileovertime) | **GET** /financial-microservice/api/v1/financial-profile/payment-channel-metrics | Gets payment metrics for a financial sub profile over time |
 *FinancialServiceApi* | [**getPaymentChannelMonthlyExpenditure**](Apis/FinancialServiceApi.md#getpaymentchannelmonthlyexpenditure) | **GET** /financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{userId} | Get Payment Channel Monthly Expenditure by user, month, and payment channel |
 *FinancialServiceApi* | [**getPocket**](Apis/FinancialServiceApi.md#getpocket) | **GET** /financial-microservice/api/v1/pocket/{pocketId} | get a pocket |
 *FinancialServiceApi* | [**getRecurringTransaction**](Apis/FinancialServiceApi.md#getrecurringtransaction) | **GET** /financial-microservice/api/v1/transactions/recurring/{transactionId} | lists a set of transactions against a given account of interest |
@@ -241,6 +248,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *UserServiceV2Api* | [**verifyUserV2**](Apis/UserServiceV2Api.md#verifyuserv2) | **POST** /user-microservice/api/v2/user-service/user/verification/{userId}/profile-type/{profileType} | User Email Verification |
 | *WorkspaceServiceApi* | [**createAccount**](Apis/WorkspaceServiceApi.md#createaccount) | **POST** /workspace-microservice/api/v1/accounts | Create a new account |
 *WorkspaceServiceApi* | [**createFolder**](Apis/WorkspaceServiceApi.md#createfolder) | **POST** /workspace-microservice/api/v1/folders | Create a folder |
+*WorkspaceServiceApi* | [**createMarkdownFile**](Apis/WorkspaceServiceApi.md#createmarkdownfile) | **POST** /workspace-microservice/api/v1/files | Create a markdown file |
 *WorkspaceServiceApi* | [**createWorkspace**](Apis/WorkspaceServiceApi.md#createworkspace) | **POST** /workspace-microservice/api/v1/workspaces | Create a workspace |
 *WorkspaceServiceApi* | [**deleteAccount**](Apis/WorkspaceServiceApi.md#deleteaccount) | **DELETE** /workspace-microservice/api/v1/accounts/{authZeroUserId} | Delete an account |
 *WorkspaceServiceApi* | [**deleteFile**](Apis/WorkspaceServiceApi.md#deletefile) | **DELETE** /workspace-microservice/api/v1/files/{fileId} | Delete a file |
@@ -261,6 +269,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [AcceptFollowProfileResponse](./Models/AcceptFollowProfileResponse.md)
  - [Account](./Models/Account.md)
  - [AccountBalanceHistory](./Models/AccountBalanceHistory.md)
+ - [AccountStatements](./Models/AccountStatements.md)
  - [AccountType](./Models/AccountType.md)
  - [AccountingAttachment](./Models/AccountingAttachment.md)
  - [AccountingIntegrationMergeLink](./Models/AccountingIntegrationMergeLink.md)
@@ -281,6 +290,8 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [AddPostToPublicationResponse](./Models/AddPostToPublicationResponse.md)
  - [AddPostToThreadResponse](./Models/AddPostToThreadResponse.md)
  - [AddPublicationEditorResponse](./Models/AddPublicationEditorResponse.md)
+ - [AddTransactionsToManuallyLinkedAccountRequest](./Models/AddTransactionsToManuallyLinkedAccountRequest.md)
+ - [AddTransactionsToManuallyLinkedAccountResponse](./Models/AddTransactionsToManuallyLinkedAccountResponse.md)
  - [AddUserToTeamBody](./Models/AddUserToTeamBody.md)
  - [AddUserToTeamResponse](./Models/AddUserToTeamResponse.md)
  - [Address](./Models/Address.md)
@@ -349,6 +360,8 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [CreateFolderResponse](./Models/CreateFolderResponse.md)
  - [CreateManualLinkRequest](./Models/CreateManualLinkRequest.md)
  - [CreateManualLinkResponse](./Models/CreateManualLinkResponse.md)
+ - [CreateMarkdownFileRequest](./Models/CreateMarkdownFileRequest.md)
+ - [CreateMarkdownFileResponse](./Models/CreateMarkdownFileResponse.md)
  - [CreateMilestoneRequest](./Models/CreateMilestoneRequest.md)
  - [CreateMilestoneResponse](./Models/CreateMilestoneResponse.md)
  - [CreateNoteBody](./Models/CreateNoteBody.md)
@@ -463,6 +476,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [GetBudgetResponse](./Models/GetBudgetResponse.md)
  - [GetBusinessSettingsResponse](./Models/GetBusinessSettingsResponse.md)
  - [GetCannyUserSSOTokenResponse](./Models/GetCannyUserSSOTokenResponse.md)
+ - [GetCategoryMetricsFinancialSubProfileOverTimeResponse](./Models/GetCategoryMetricsFinancialSubProfileOverTimeResponse.md)
  - [GetCategoryMonthlyTransactionCountResponse](./Models/GetCategoryMonthlyTransactionCountResponse.md)
  - [GetCommentRepliesResponse](./Models/GetCommentRepliesResponse.md)
  - [GetCommunitiesUserFollowsResponse](./Models/GetCommunitiesUserFollowsResponse.md)
@@ -471,18 +485,22 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [GetCommunityProfileResponse](./Models/GetCommunityProfileResponse.md)
  - [GetCommunityProfilesResponse](./Models/GetCommunityProfilesResponse.md)
  - [GetDebtToIncomeRatioResponse](./Models/GetDebtToIncomeRatioResponse.md)
+ - [GetExpenseMetricsFinancialSubProfileOverTimeResponse](./Models/GetExpenseMetricsFinancialSubProfileOverTimeResponse.md)
  - [GetExpenseMetricsResponse](./Models/GetExpenseMetricsResponse.md)
  - [GetFinancialProfileResponse](./Models/GetFinancialProfileResponse.md)
  - [GetFollowersResponse](./Models/GetFollowersResponse.md)
  - [GetForecastResponse](./Models/GetForecastResponse.md)
  - [GetHistoricalAccountBalanceResponse](./Models/GetHistoricalAccountBalanceResponse.md)
  - [GetIncomeExpenseRatioResponse](./Models/GetIncomeExpenseRatioResponse.md)
+ - [GetIncomeMetricsFinancialSubProfileOverTimeResponse](./Models/GetIncomeMetricsFinancialSubProfileOverTimeResponse.md)
  - [GetIncomeMetricsResponse](./Models/GetIncomeMetricsResponse.md)
  - [GetInvestmentAcccountResponse](./Models/GetInvestmentAcccountResponse.md)
  - [GetLiabilityAccountResponse](./Models/GetLiabilityAccountResponse.md)
  - [GetLinkResponse](./Models/GetLinkResponse.md)
  - [GetLinksResponse](./Models/GetLinksResponse.md)
+ - [GetLocationMetricsFinancialSubProfileOverTimeResponse](./Models/GetLocationMetricsFinancialSubProfileOverTimeResponse.md)
  - [GetMelodyFinancialContextResponse](./Models/GetMelodyFinancialContextResponse.md)
+ - [GetMerchantMetricsFinancialSubProfileOverTimeResponse](./Models/GetMerchantMetricsFinancialSubProfileOverTimeResponse.md)
  - [GetMerchantMonthlyExpenditureResponse](./Models/GetMerchantMonthlyExpenditureResponse.md)
  - [GetMergeLinkTokenRequest](./Models/GetMergeLinkTokenRequest.md)
  - [GetMergeLinkTokenResponse](./Models/GetMergeLinkTokenResponse.md)
@@ -499,6 +517,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [GetNoteFromTransactionResponse](./Models/GetNoteFromTransactionResponse.md)
  - [GetNotesFromFinancialUserProfileResponse](./Models/GetNotesFromFinancialUserProfileResponse.md)
  - [GetNotesFromSmartGoalResponse](./Models/GetNotesFromSmartGoalResponse.md)
+ - [GetPaymentChannelFinancialSubProfileOverTimeResponse](./Models/GetPaymentChannelFinancialSubProfileOverTimeResponse.md)
  - [GetPaymentChannelMonthlyExpenditureResponse](./Models/GetPaymentChannelMonthlyExpenditureResponse.md)
  - [GetPendingFollowsResponse](./Models/GetPendingFollowsResponse.md)
  - [GetPocketResponse](./Models/GetPocketResponse.md)

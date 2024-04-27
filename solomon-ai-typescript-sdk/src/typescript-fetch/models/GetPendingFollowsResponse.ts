@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PendingFollowRequest } from './PendingFollowRequest';
 import {
     PendingFollowRequestFromJSON,
@@ -38,9 +38,7 @@ export interface GetPendingFollowsResponse {
  * Check if a given object implements the GetPendingFollowsResponse interface.
  */
 export function instanceOfGetPendingFollowsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetPendingFollowsResponseFromJSON(json: any): GetPendingFollowsResponse {
@@ -48,25 +46,22 @@ export function GetPendingFollowsResponseFromJSON(json: any): GetPendingFollowsR
 }
 
 export function GetPendingFollowsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetPendingFollowsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'requests': !exists(json, 'requests') ? undefined : ((json['requests'] as Array<any>).map(PendingFollowRequestFromJSON)),
+        'requests': json['requests'] == null ? undefined : ((json['requests'] as Array<any>).map(PendingFollowRequestFromJSON)),
     };
 }
 
 export function GetPendingFollowsResponseToJSON(value?: GetPendingFollowsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'requests': value.requests === undefined ? undefined : ((value.requests as Array<any>).map(PendingFollowRequestToJSON)),
+        'requests': value['requests'] == null ? undefined : ((value['requests'] as Array<any>).map(PendingFollowRequestToJSON)),
     };
 }
 

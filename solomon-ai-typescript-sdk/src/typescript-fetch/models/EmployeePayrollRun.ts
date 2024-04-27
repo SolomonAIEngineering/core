@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Deduction } from './Deduction';
 import {
     DeductionFromJSON,
@@ -142,9 +142,7 @@ export interface EmployeePayrollRun {
  * Check if a given object implements the EmployeePayrollRun interface.
  */
 export function instanceOfEmployeePayrollRun(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function EmployeePayrollRunFromJSON(json: any): EmployeePayrollRun {
@@ -152,55 +150,52 @@ export function EmployeePayrollRunFromJSON(json: any): EmployeePayrollRun {
 }
 
 export function EmployeePayrollRunFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmployeePayrollRun {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'grossPay': !exists(json, 'grossPay') ? undefined : json['grossPay'],
-        'netPay': !exists(json, 'netPay') ? undefined : json['netPay'],
-        'startDate': !exists(json, 'startDate') ? undefined : (new Date(json['startDate'])),
-        'endDate': !exists(json, 'endDate') ? undefined : (new Date(json['endDate'])),
-        'checkDate': !exists(json, 'checkDate') ? undefined : (new Date(json['checkDate'])),
-        'earnings': !exists(json, 'earnings') ? undefined : ((json['earnings'] as Array<any>).map(EarningFromJSON)),
-        'deductions': !exists(json, 'deductions') ? undefined : ((json['deductions'] as Array<any>).map(DeductionFromJSON)),
-        'taxes': !exists(json, 'taxes') ? undefined : ((json['taxes'] as Array<any>).map(TaxFromJSON)),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'payrollRunMergeAccountId': !exists(json, 'payrollRunMergeAccountId') ? undefined : json['payrollRunMergeAccountId'],
-        'employeeMergeAccountId': !exists(json, 'employeeMergeAccountId') ? undefined : json['employeeMergeAccountId'],
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'grossPay': json['grossPay'] == null ? undefined : json['grossPay'],
+        'netPay': json['netPay'] == null ? undefined : json['netPay'],
+        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
+        'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
+        'checkDate': json['checkDate'] == null ? undefined : (new Date(json['checkDate'])),
+        'earnings': json['earnings'] == null ? undefined : ((json['earnings'] as Array<any>).map(EarningFromJSON)),
+        'deductions': json['deductions'] == null ? undefined : ((json['deductions'] as Array<any>).map(DeductionFromJSON)),
+        'taxes': json['taxes'] == null ? undefined : ((json['taxes'] as Array<any>).map(TaxFromJSON)),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'payrollRunMergeAccountId': json['payrollRunMergeAccountId'] == null ? undefined : json['payrollRunMergeAccountId'],
+        'employeeMergeAccountId': json['employeeMergeAccountId'] == null ? undefined : json['employeeMergeAccountId'],
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
     };
 }
 
 export function EmployeePayrollRunToJSON(value?: EmployeePayrollRun | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'grossPay': value.grossPay,
-        'netPay': value.netPay,
-        'startDate': value.startDate === undefined ? undefined : (value.startDate.toISOString()),
-        'endDate': value.endDate === undefined ? undefined : (value.endDate.toISOString()),
-        'checkDate': value.checkDate === undefined ? undefined : (value.checkDate.toISOString()),
-        'earnings': value.earnings === undefined ? undefined : ((value.earnings as Array<any>).map(EarningToJSON)),
-        'deductions': value.deductions === undefined ? undefined : ((value.deductions as Array<any>).map(DeductionToJSON)),
-        'taxes': value.taxes === undefined ? undefined : ((value.taxes as Array<any>).map(TaxToJSON)),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'payrollRunMergeAccountId': value.payrollRunMergeAccountId,
-        'employeeMergeAccountId': value.employeeMergeAccountId,
-        'mergeAccountId': value.mergeAccountId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'grossPay': value['grossPay'],
+        'netPay': value['netPay'],
+        'startDate': value['startDate'] == null ? undefined : ((value['startDate']).toISOString()),
+        'endDate': value['endDate'] == null ? undefined : ((value['endDate']).toISOString()),
+        'checkDate': value['checkDate'] == null ? undefined : ((value['checkDate']).toISOString()),
+        'earnings': value['earnings'] == null ? undefined : ((value['earnings'] as Array<any>).map(EarningToJSON)),
+        'deductions': value['deductions'] == null ? undefined : ((value['deductions'] as Array<any>).map(DeductionToJSON)),
+        'taxes': value['taxes'] == null ? undefined : ((value['taxes'] as Array<any>).map(TaxToJSON)),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'payrollRunMergeAccountId': value['payrollRunMergeAccountId'],
+        'employeeMergeAccountId': value['employeeMergeAccountId'],
+        'mergeAccountId': value['mergeAccountId'],
     };
 }
 

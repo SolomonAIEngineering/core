@@ -10,6 +10,7 @@ index.ts
 models/AcceptFollowProfileResponse.ts
 models/Account.ts
 models/AccountBalanceHistory.ts
+models/AccountStatements.ts
 models/AccountType.ts
 models/AccountingAttachment.ts
 models/AccountingIntegrationMergeLink.ts
@@ -30,6 +31,8 @@ models/AddPostQualityScoreResponse.ts
 models/AddPostToPublicationResponse.ts
 models/AddPostToThreadResponse.ts
 models/AddPublicationEditorResponse.ts
+models/AddTransactionsToManuallyLinkedAccountRequest.ts
+models/AddTransactionsToManuallyLinkedAccountResponse.ts
 models/AddUserToTeamBody.ts
 models/AddUserToTeamResponse.ts
 models/Address.ts
@@ -98,6 +101,8 @@ models/CreateFolderRequest.ts
 models/CreateFolderResponse.ts
 models/CreateManualLinkRequest.ts
 models/CreateManualLinkResponse.ts
+models/CreateMarkdownFileRequest.ts
+models/CreateMarkdownFileResponse.ts
 models/CreateMilestoneRequest.ts
 models/CreateMilestoneResponse.ts
 models/CreateNoteBody.ts
@@ -212,6 +217,7 @@ models/GetBookmarkedPostsResponse.ts
 models/GetBudgetResponse.ts
 models/GetBusinessSettingsResponse.ts
 models/GetCannyUserSSOTokenResponse.ts
+models/GetCategoryMetricsFinancialSubProfileOverTimeResponse.ts
 models/GetCategoryMonthlyTransactionCountResponse.ts
 models/GetCommentRepliesResponse.ts
 models/GetCommunitiesUserFollowsResponse.ts
@@ -220,18 +226,22 @@ models/GetCommunityFeedResponse.ts
 models/GetCommunityProfileResponse.ts
 models/GetCommunityProfilesResponse.ts
 models/GetDebtToIncomeRatioResponse.ts
+models/GetExpenseMetricsFinancialSubProfileOverTimeResponse.ts
 models/GetExpenseMetricsResponse.ts
 models/GetFinancialProfileResponse.ts
 models/GetFollowersResponse.ts
 models/GetForecastResponse.ts
 models/GetHistoricalAccountBalanceResponse.ts
 models/GetIncomeExpenseRatioResponse.ts
+models/GetIncomeMetricsFinancialSubProfileOverTimeResponse.ts
 models/GetIncomeMetricsResponse.ts
 models/GetInvestmentAcccountResponse.ts
 models/GetLiabilityAccountResponse.ts
 models/GetLinkResponse.ts
 models/GetLinksResponse.ts
+models/GetLocationMetricsFinancialSubProfileOverTimeResponse.ts
 models/GetMelodyFinancialContextResponse.ts
+models/GetMerchantMetricsFinancialSubProfileOverTimeResponse.ts
 models/GetMerchantMonthlyExpenditureResponse.ts
 models/GetMergeLinkTokenRequest.ts
 models/GetMergeLinkTokenResponse.ts
@@ -248,6 +258,7 @@ models/GetNoteFromSmartGoalResponse.ts
 models/GetNoteFromTransactionResponse.ts
 models/GetNotesFromFinancialUserProfileResponse.ts
 models/GetNotesFromSmartGoalResponse.ts
+models/GetPaymentChannelFinancialSubProfileOverTimeResponse.ts
 models/GetPaymentChannelMonthlyExpenditureResponse.ts
 models/GetPendingFollowsResponse.ts
 models/GetPocketResponse.ts

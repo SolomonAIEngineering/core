@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { NotificationFeedGroup } from './NotificationFeedGroup';
 import {
     NotificationFeedGroupFromJSON,
@@ -38,9 +38,7 @@ export interface NotificationTimeline {
  * Check if a given object implements the NotificationTimeline interface.
  */
 export function instanceOfNotificationTimeline(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function NotificationTimelineFromJSON(json: any): NotificationTimeline {
@@ -48,25 +46,22 @@ export function NotificationTimelineFromJSON(json: any): NotificationTimeline {
 }
 
 export function NotificationTimelineFromJSONTyped(json: any, ignoreDiscriminator: boolean): NotificationTimeline {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'activities': !exists(json, 'activities') ? undefined : ((json['activities'] as Array<any>).map(NotificationFeedGroupFromJSON)),
+        'activities': json['activities'] == null ? undefined : ((json['activities'] as Array<any>).map(NotificationFeedGroupFromJSON)),
     };
 }
 
 export function NotificationTimelineToJSON(value?: NotificationTimeline | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'activities': value.activities === undefined ? undefined : ((value.activities as Array<any>).map(NotificationFeedGroupToJSON)),
+        'activities': value['activities'] == null ? undefined : ((value['activities'] as Array<any>).map(NotificationFeedGroupToJSON)),
     };
 }
 

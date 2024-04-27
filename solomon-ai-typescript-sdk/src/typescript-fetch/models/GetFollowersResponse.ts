@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { UserProfile } from './UserProfile';
 import {
     UserProfileFromJSON,
@@ -38,9 +38,7 @@ export interface GetFollowersResponse {
  * Check if a given object implements the GetFollowersResponse interface.
  */
 export function instanceOfGetFollowersResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetFollowersResponseFromJSON(json: any): GetFollowersResponse {
@@ -48,25 +46,22 @@ export function GetFollowersResponseFromJSON(json: any): GetFollowersResponse {
 }
 
 export function GetFollowersResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetFollowersResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'users': !exists(json, 'users') ? undefined : ((json['users'] as Array<any>).map(UserProfileFromJSON)),
+        'users': json['users'] == null ? undefined : ((json['users'] as Array<any>).map(UserProfileFromJSON)),
     };
 }
 
 export function GetFollowersResponseToJSON(value?: GetFollowersResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'users': value.users === undefined ? undefined : ((value.users as Array<any>).map(UserProfileToJSON)),
+        'users': value['users'] == null ? undefined : ((value['users'] as Array<any>).map(UserProfileToJSON)),
     };
 }
 

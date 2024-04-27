@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -50,12 +50,10 @@ export interface CreateSubscriptionRequest {
  * Check if a given object implements the CreateSubscriptionRequest interface.
  */
 export function instanceOfCreateSubscriptionRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "priceId" in value;
-    isInstance = isInstance && "profileType" in value;
-
-    return isInstance;
+    if (!('userId' in value)) return false;
+    if (!('priceId' in value)) return false;
+    if (!('profileType' in value)) return false;
+    return true;
 }
 
 export function CreateSubscriptionRequestFromJSON(json: any): CreateSubscriptionRequest {
@@ -63,7 +61,7 @@ export function CreateSubscriptionRequestFromJSON(json: any): CreateSubscription
 }
 
 export function CreateSubscriptionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateSubscriptionRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -75,17 +73,14 @@ export function CreateSubscriptionRequestFromJSONTyped(json: any, ignoreDiscrimi
 }
 
 export function CreateSubscriptionRequestToJSON(value?: CreateSubscriptionRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userId': value.userId,
-        'priceId': value.priceId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'userId': value['userId'],
+        'priceId': value['priceId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

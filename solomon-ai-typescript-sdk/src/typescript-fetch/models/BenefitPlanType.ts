@@ -30,6 +30,10 @@ export const BenefitPlanType = {
 export type BenefitPlanType = typeof BenefitPlanType[keyof typeof BenefitPlanType];
 
 
+export function instanceOfBenefitPlanType(value: any): boolean {
+    return Object.values(BenefitPlanType).includes(value);
+}
+
 export function BenefitPlanTypeFromJSON(json: any): BenefitPlanType {
     return BenefitPlanTypeFromJSONTyped(json, false);
 }

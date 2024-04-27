@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CommunityProfile } from './CommunityProfile';
 import {
     CommunityProfileFromJSON,
@@ -62,9 +62,7 @@ export interface DiscoverProfilesResponse {
  * Check if a given object implements the DiscoverProfilesResponse interface.
  */
 export function instanceOfDiscoverProfilesResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DiscoverProfilesResponseFromJSON(json: any): DiscoverProfilesResponse {
@@ -72,29 +70,26 @@ export function DiscoverProfilesResponseFromJSON(json: any): DiscoverProfilesRes
 }
 
 export function DiscoverProfilesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DiscoverProfilesResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'communityProfiles': !exists(json, 'communityProfiles') ? undefined : ((json['communityProfiles'] as Array<any>).map(CommunityProfileFromJSON)),
-        'userProfiles': !exists(json, 'userProfiles') ? undefined : ((json['userProfiles'] as Array<any>).map(UserProfileFromJSON)),
-        'topics': !exists(json, 'topics') ? undefined : ((json['topics'] as Array<any>).map(TopicFromJSON)),
+        'communityProfiles': json['communityProfiles'] == null ? undefined : ((json['communityProfiles'] as Array<any>).map(CommunityProfileFromJSON)),
+        'userProfiles': json['userProfiles'] == null ? undefined : ((json['userProfiles'] as Array<any>).map(UserProfileFromJSON)),
+        'topics': json['topics'] == null ? undefined : ((json['topics'] as Array<any>).map(TopicFromJSON)),
     };
 }
 
 export function DiscoverProfilesResponseToJSON(value?: DiscoverProfilesResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'communityProfiles': value.communityProfiles === undefined ? undefined : ((value.communityProfiles as Array<any>).map(CommunityProfileToJSON)),
-        'userProfiles': value.userProfiles === undefined ? undefined : ((value.userProfiles as Array<any>).map(UserProfileToJSON)),
-        'topics': value.topics === undefined ? undefined : ((value.topics as Array<any>).map(TopicToJSON)),
+        'communityProfiles': value['communityProfiles'] == null ? undefined : ((value['communityProfiles'] as Array<any>).map(CommunityProfileToJSON)),
+        'userProfiles': value['userProfiles'] == null ? undefined : ((value['userProfiles'] as Array<any>).map(UserProfileToJSON)),
+        'topics': value['topics'] == null ? undefined : ((value['topics'] as Array<any>).map(TopicToJSON)),
     };
 }
 

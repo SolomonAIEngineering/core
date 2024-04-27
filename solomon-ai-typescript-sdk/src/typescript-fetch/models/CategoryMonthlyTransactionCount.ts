@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -63,9 +63,7 @@ export interface CategoryMonthlyTransactionCount {
  * Check if a given object implements the CategoryMonthlyTransactionCount interface.
  */
 export function instanceOfCategoryMonthlyTransactionCount(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CategoryMonthlyTransactionCountFromJSON(json: any): CategoryMonthlyTransactionCount {
@@ -73,33 +71,30 @@ export function CategoryMonthlyTransactionCountFromJSON(json: any): CategoryMont
 }
 
 export function CategoryMonthlyTransactionCountFromJSONTyped(json: any, ignoreDiscriminator: boolean): CategoryMonthlyTransactionCount {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'month': !exists(json, 'month') ? undefined : json['month'],
-        'personalFinanceCategoryPrimary': !exists(json, 'personalFinanceCategoryPrimary') ? undefined : json['personalFinanceCategoryPrimary'],
-        'transactionCount': !exists(json, 'transactionCount') ? undefined : json['transactionCount'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'month': json['month'] == null ? undefined : json['month'],
+        'personalFinanceCategoryPrimary': json['personalFinanceCategoryPrimary'] == null ? undefined : json['personalFinanceCategoryPrimary'],
+        'transactionCount': json['transactionCount'] == null ? undefined : json['transactionCount'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function CategoryMonthlyTransactionCountToJSON(value?: CategoryMonthlyTransactionCount | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'month': value.month,
-        'personalFinanceCategoryPrimary': value.personalFinanceCategoryPrimary,
-        'transactionCount': value.transactionCount,
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'month': value['month'],
+        'personalFinanceCategoryPrimary': value['personalFinanceCategoryPrimary'],
+        'transactionCount': value['transactionCount'],
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

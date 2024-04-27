@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FileMetadata } from './FileMetadata';
 import {
     FileMetadataFromJSON,
@@ -38,9 +38,7 @@ export interface UpdateFileResponse {
  * Check if a given object implements the UpdateFileResponse interface.
  */
 export function instanceOfUpdateFileResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UpdateFileResponseFromJSON(json: any): UpdateFileResponse {
@@ -48,25 +46,22 @@ export function UpdateFileResponseFromJSON(json: any): UpdateFileResponse {
 }
 
 export function UpdateFileResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateFileResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'metadata': !exists(json, 'metadata') ? undefined : FileMetadataFromJSON(json['metadata']),
+        'metadata': json['metadata'] == null ? undefined : FileMetadataFromJSON(json['metadata']),
     };
 }
 
 export function UpdateFileResponseToJSON(value?: UpdateFileResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'metadata': FileMetadataToJSON(value.metadata),
+        'metadata': FileMetadataToJSON(value['metadata']),
     };
 }
 

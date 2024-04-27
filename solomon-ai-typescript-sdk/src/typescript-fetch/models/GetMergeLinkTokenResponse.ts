@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Defines a message named GetLinkTokenResponse.
  * @export
@@ -55,9 +55,7 @@ export interface GetMergeLinkTokenResponse {
  * Check if a given object implements the GetMergeLinkTokenResponse interface.
  */
 export function instanceOfGetMergeLinkTokenResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetMergeLinkTokenResponseFromJSON(json: any): GetMergeLinkTokenResponse {
@@ -65,33 +63,30 @@ export function GetMergeLinkTokenResponseFromJSON(json: any): GetMergeLinkTokenR
 }
 
 export function GetMergeLinkTokenResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetMergeLinkTokenResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'linkToken': !exists(json, 'linkToken') ? undefined : json['linkToken'],
-        'integrationName': !exists(json, 'integrationName') ? undefined : json['integrationName'],
-        'magicLinkUrl': !exists(json, 'magicLinkUrl') ? undefined : json['magicLinkUrl'],
-        'endUserOriginId': !exists(json, 'endUserOriginId') ? undefined : json['endUserOriginId'],
-        'organizationName': !exists(json, 'organizationName') ? undefined : json['organizationName'],
+        'linkToken': json['linkToken'] == null ? undefined : json['linkToken'],
+        'integrationName': json['integrationName'] == null ? undefined : json['integrationName'],
+        'magicLinkUrl': json['magicLinkUrl'] == null ? undefined : json['magicLinkUrl'],
+        'endUserOriginId': json['endUserOriginId'] == null ? undefined : json['endUserOriginId'],
+        'organizationName': json['organizationName'] == null ? undefined : json['organizationName'],
     };
 }
 
 export function GetMergeLinkTokenResponseToJSON(value?: GetMergeLinkTokenResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'linkToken': value.linkToken,
-        'integrationName': value.integrationName,
-        'magicLinkUrl': value.magicLinkUrl,
-        'endUserOriginId': value.endUserOriginId,
-        'organizationName': value.organizationName,
+        'linkToken': value['linkToken'],
+        'integrationName': value['integrationName'],
+        'magicLinkUrl': value['magicLinkUrl'],
+        'endUserOriginId': value['endUserOriginId'],
+        'organizationName': value['organizationName'],
     };
 }
 

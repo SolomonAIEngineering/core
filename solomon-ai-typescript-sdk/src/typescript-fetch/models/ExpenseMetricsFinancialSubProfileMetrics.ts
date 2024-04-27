@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -81,9 +81,7 @@ export interface ExpenseMetricsFinancialSubProfileMetrics {
  * Check if a given object implements the ExpenseMetricsFinancialSubProfileMetrics interface.
  */
 export function instanceOfExpenseMetricsFinancialSubProfileMetrics(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ExpenseMetricsFinancialSubProfileMetricsFromJSON(json: any): ExpenseMetricsFinancialSubProfileMetrics {
@@ -91,39 +89,36 @@ export function ExpenseMetricsFinancialSubProfileMetricsFromJSON(json: any): Exp
 }
 
 export function ExpenseMetricsFinancialSubProfileMetricsFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExpenseMetricsFinancialSubProfileMetrics {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'month': !exists(json, 'month') ? undefined : json['month'],
-        'spentLastWeek': !exists(json, 'spentLastWeek') ? undefined : json['spentLastWeek'],
-        'spentLastMonth': !exists(json, 'spentLastMonth') ? undefined : json['spentLastMonth'],
-        'spentLastSixMonths': !exists(json, 'spentLastSixMonths') ? undefined : json['spentLastSixMonths'],
-        'averageMonthlyDiscretionarySpending': !exists(json, 'averageMonthlyDiscretionarySpending') ? undefined : json['averageMonthlyDiscretionarySpending'],
-        'averageMonthlyRecurringSpending': !exists(json, 'averageMonthlyRecurringSpending') ? undefined : json['averageMonthlyRecurringSpending'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'month': json['month'] == null ? undefined : json['month'],
+        'spentLastWeek': json['spentLastWeek'] == null ? undefined : json['spentLastWeek'],
+        'spentLastMonth': json['spentLastMonth'] == null ? undefined : json['spentLastMonth'],
+        'spentLastSixMonths': json['spentLastSixMonths'] == null ? undefined : json['spentLastSixMonths'],
+        'averageMonthlyDiscretionarySpending': json['averageMonthlyDiscretionarySpending'] == null ? undefined : json['averageMonthlyDiscretionarySpending'],
+        'averageMonthlyRecurringSpending': json['averageMonthlyRecurringSpending'] == null ? undefined : json['averageMonthlyRecurringSpending'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function ExpenseMetricsFinancialSubProfileMetricsToJSON(value?: ExpenseMetricsFinancialSubProfileMetrics | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'month': value.month,
-        'spentLastWeek': value.spentLastWeek,
-        'spentLastMonth': value.spentLastMonth,
-        'spentLastSixMonths': value.spentLastSixMonths,
-        'averageMonthlyDiscretionarySpending': value.averageMonthlyDiscretionarySpending,
-        'averageMonthlyRecurringSpending': value.averageMonthlyRecurringSpending,
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'month': value['month'],
+        'spentLastWeek': value['spentLastWeek'],
+        'spentLastMonth': value['spentLastMonth'],
+        'spentLastSixMonths': value['spentLastSixMonths'],
+        'averageMonthlyDiscretionarySpending': value['averageMonthlyDiscretionarySpending'],
+        'averageMonthlyRecurringSpending': value['averageMonthlyRecurringSpending'],
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

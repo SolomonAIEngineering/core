@@ -8,6 +8,7 @@ Apis/WorkspaceServiceRestApi.md
 Models/AcceptFollowProfileResponse.md
 Models/Account.md
 Models/AccountBalanceHistory.md
+Models/AccountStatements.md
 Models/AccountType.md
 Models/AccountingAttachment.md
 Models/AccountingIntegrationMergeLink.md
@@ -28,6 +29,8 @@ Models/AddPostQualityScoreResponse.md
 Models/AddPostToPublicationResponse.md
 Models/AddPostToThreadResponse.md
 Models/AddPublicationEditorResponse.md
+Models/AddTransactionsToManuallyLinkedAccountRequest.md
+Models/AddTransactionsToManuallyLinkedAccountResponse.md
 Models/AddUserToTeamBody.md
 Models/AddUserToTeamResponse.md
 Models/Address.md
@@ -96,6 +99,8 @@ Models/CreateFolderRequest.md
 Models/CreateFolderResponse.md
 Models/CreateManualLinkRequest.md
 Models/CreateManualLinkResponse.md
+Models/CreateMarkdownFileRequest.md
+Models/CreateMarkdownFileResponse.md
 Models/CreateMilestoneRequest.md
 Models/CreateMilestoneResponse.md
 Models/CreateNoteBody.md
@@ -210,6 +215,7 @@ Models/GetBookmarkedPostsResponse.md
 Models/GetBudgetResponse.md
 Models/GetBusinessSettingsResponse.md
 Models/GetCannyUserSSOTokenResponse.md
+Models/GetCategoryMetricsFinancialSubProfileOverTimeResponse.md
 Models/GetCategoryMonthlyTransactionCountResponse.md
 Models/GetCommentRepliesResponse.md
 Models/GetCommunitiesUserFollowsResponse.md
@@ -218,18 +224,22 @@ Models/GetCommunityFeedResponse.md
 Models/GetCommunityProfileResponse.md
 Models/GetCommunityProfilesResponse.md
 Models/GetDebtToIncomeRatioResponse.md
+Models/GetExpenseMetricsFinancialSubProfileOverTimeResponse.md
 Models/GetExpenseMetricsResponse.md
 Models/GetFinancialProfileResponse.md
 Models/GetFollowersResponse.md
 Models/GetForecastResponse.md
 Models/GetHistoricalAccountBalanceResponse.md
 Models/GetIncomeExpenseRatioResponse.md
+Models/GetIncomeMetricsFinancialSubProfileOverTimeResponse.md
 Models/GetIncomeMetricsResponse.md
 Models/GetInvestmentAcccountResponse.md
 Models/GetLiabilityAccountResponse.md
 Models/GetLinkResponse.md
 Models/GetLinksResponse.md
+Models/GetLocationMetricsFinancialSubProfileOverTimeResponse.md
 Models/GetMelodyFinancialContextResponse.md
+Models/GetMerchantMetricsFinancialSubProfileOverTimeResponse.md
 Models/GetMerchantMonthlyExpenditureResponse.md
 Models/GetMergeLinkTokenRequest.md
 Models/GetMergeLinkTokenResponse.md
@@ -246,6 +256,7 @@ Models/GetNoteFromSmartGoalResponse.md
 Models/GetNoteFromTransactionResponse.md
 Models/GetNotesFromFinancialUserProfileResponse.md
 Models/GetNotesFromSmartGoalResponse.md
+Models/GetPaymentChannelFinancialSubProfileOverTimeResponse.md
 Models/GetPaymentChannelMonthlyExpenditureResponse.md
 Models/GetPendingFollowsResponse.md
 Models/GetPocketResponse.md

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlaidAccountTransaction } from './PlaidAccountTransaction';
 import {
     PlaidAccountTransactionFromJSON,
@@ -44,9 +44,7 @@ export interface ListTransactionsResponse {
  * Check if a given object implements the ListTransactionsResponse interface.
  */
 export function instanceOfListTransactionsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListTransactionsResponseFromJSON(json: any): ListTransactionsResponse {
@@ -54,27 +52,24 @@ export function ListTransactionsResponseFromJSON(json: any): ListTransactionsRes
 }
 
 export function ListTransactionsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListTransactionsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'nextPage': !exists(json, 'nextPage') ? undefined : json['nextPage'],
-        'transactions': !exists(json, 'transactions') ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountTransactionFromJSON)),
+        'nextPage': json['nextPage'] == null ? undefined : json['nextPage'],
+        'transactions': json['transactions'] == null ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountTransactionFromJSON)),
     };
 }
 
 export function ListTransactionsResponseToJSON(value?: ListTransactionsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'nextPage': value.nextPage,
-        'transactions': value.transactions === undefined ? undefined : ((value.transactions as Array<any>).map(PlaidAccountTransactionToJSON)),
+        'nextPage': value['nextPage'],
+        'transactions': value['transactions'] == null ? undefined : ((value['transactions'] as Array<any>).map(PlaidAccountTransactionToJSON)),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PaymentChannelMonthlyExpenditure } from './PaymentChannelMonthlyExpenditure';
 import {
     PaymentChannelMonthlyExpenditureFromJSON,
@@ -44,9 +44,7 @@ export interface GetPaymentChannelMonthlyExpenditureResponse {
  * Check if a given object implements the GetPaymentChannelMonthlyExpenditureResponse interface.
  */
 export function instanceOfGetPaymentChannelMonthlyExpenditureResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetPaymentChannelMonthlyExpenditureResponseFromJSON(json: any): GetPaymentChannelMonthlyExpenditureResponse {
@@ -54,27 +52,24 @@ export function GetPaymentChannelMonthlyExpenditureResponseFromJSON(json: any): 
 }
 
 export function GetPaymentChannelMonthlyExpenditureResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetPaymentChannelMonthlyExpenditureResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'paymentChannelMonthlyExpenditure': !exists(json, 'paymentChannelMonthlyExpenditure') ? undefined : ((json['paymentChannelMonthlyExpenditure'] as Array<any>).map(PaymentChannelMonthlyExpenditureFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'paymentChannelMonthlyExpenditure': json['paymentChannelMonthlyExpenditure'] == null ? undefined : ((json['paymentChannelMonthlyExpenditure'] as Array<any>).map(PaymentChannelMonthlyExpenditureFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetPaymentChannelMonthlyExpenditureResponseToJSON(value?: GetPaymentChannelMonthlyExpenditureResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'paymentChannelMonthlyExpenditure': value.paymentChannelMonthlyExpenditure === undefined ? undefined : ((value.paymentChannelMonthlyExpenditure as Array<any>).map(PaymentChannelMonthlyExpenditureToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'paymentChannelMonthlyExpenditure': value['paymentChannelMonthlyExpenditure'] == null ? undefined : ((value['paymentChannelMonthlyExpenditure'] as Array<any>).map(PaymentChannelMonthlyExpenditureToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

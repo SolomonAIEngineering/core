@@ -30,6 +30,10 @@ export const LinkStatus = {
 export type LinkStatus = typeof LinkStatus[keyof typeof LinkStatus];
 
 
+export function instanceOfLinkStatus(value: any): boolean {
+    return Object.values(LinkStatus).includes(value);
+}
+
 export function LinkStatusFromJSON(json: any): LinkStatus {
     return LinkStatusFromJSONTyped(json, false);
 }

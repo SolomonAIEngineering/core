@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { TransactionSplit } from './TransactionSplit';
 import {
     TransactionSplitFromJSON,
@@ -38,9 +38,7 @@ export interface GetSplitTransactionResponse {
  * Check if a given object implements the GetSplitTransactionResponse interface.
  */
 export function instanceOfGetSplitTransactionResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetSplitTransactionResponseFromJSON(json: any): GetSplitTransactionResponse {
@@ -48,25 +46,22 @@ export function GetSplitTransactionResponseFromJSON(json: any): GetSplitTransact
 }
 
 export function GetSplitTransactionResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetSplitTransactionResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'splitTransactions': !exists(json, 'splitTransactions') ? undefined : ((json['splitTransactions'] as Array<any>).map(TransactionSplitFromJSON)),
+        'splitTransactions': json['splitTransactions'] == null ? undefined : ((json['splitTransactions'] as Array<any>).map(TransactionSplitFromJSON)),
     };
 }
 
 export function GetSplitTransactionResponseToJSON(value?: GetSplitTransactionResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'splitTransactions': value.splitTransactions === undefined ? undefined : ((value.splitTransactions as Array<any>).map(TransactionSplitToJSON)),
+        'splitTransactions': value['splitTransactions'] == null ? undefined : ((value['splitTransactions'] as Array<any>).map(TransactionSplitToJSON)),
     };
 }
 

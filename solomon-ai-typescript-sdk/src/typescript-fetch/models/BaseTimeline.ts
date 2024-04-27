@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FeedActivity } from './FeedActivity';
 import {
     FeedActivityFromJSON,
@@ -38,9 +38,7 @@ export interface BaseTimeline {
  * Check if a given object implements the BaseTimeline interface.
  */
 export function instanceOfBaseTimeline(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function BaseTimelineFromJSON(json: any): BaseTimeline {
@@ -48,25 +46,22 @@ export function BaseTimelineFromJSON(json: any): BaseTimeline {
 }
 
 export function BaseTimelineFromJSONTyped(json: any, ignoreDiscriminator: boolean): BaseTimeline {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'activities': !exists(json, 'activities') ? undefined : ((json['activities'] as Array<any>).map(FeedActivityFromJSON)),
+        'activities': json['activities'] == null ? undefined : ((json['activities'] as Array<any>).map(FeedActivityFromJSON)),
     };
 }
 
 export function BaseTimelineToJSON(value?: BaseTimeline | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'activities': value.activities === undefined ? undefined : ((value.activities as Array<any>).map(FeedActivityToJSON)),
+        'activities': value['activities'] == null ? undefined : ((value['activities'] as Array<any>).map(FeedActivityToJSON)),
     };
 }
 

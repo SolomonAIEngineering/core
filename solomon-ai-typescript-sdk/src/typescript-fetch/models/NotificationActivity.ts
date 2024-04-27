@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -73,9 +73,7 @@ export interface NotificationActivity {
  * Check if a given object implements the NotificationActivity interface.
  */
 export function instanceOfNotificationActivity(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function NotificationActivityFromJSON(json: any): NotificationActivity {
@@ -83,39 +81,36 @@ export function NotificationActivityFromJSON(json: any): NotificationActivity {
 }
 
 export function NotificationActivityFromJSONTyped(json: any, ignoreDiscriminator: boolean): NotificationActivity {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'actorName': !exists(json, 'actorName') ? undefined : json['actorName'],
-        'foreignId': !exists(json, 'foreignId') ? undefined : json['foreignId'],
-        'activityId': !exists(json, 'activityId') ? undefined : json['activityId'],
-        'verb': !exists(json, 'verb') ? undefined : json['verb'],
-        'time': !exists(json, 'time') ? undefined : json['time'],
-        'target': !exists(json, 'target') ? undefined : json['target'],
-        'origin': !exists(json, 'origin') ? undefined : json['origin'],
-        'object': !exists(json, 'object') ? undefined : json['object'],
+        'actorName': json['actorName'] == null ? undefined : json['actorName'],
+        'foreignId': json['foreignId'] == null ? undefined : json['foreignId'],
+        'activityId': json['activityId'] == null ? undefined : json['activityId'],
+        'verb': json['verb'] == null ? undefined : json['verb'],
+        'time': json['time'] == null ? undefined : json['time'],
+        'target': json['target'] == null ? undefined : json['target'],
+        'origin': json['origin'] == null ? undefined : json['origin'],
+        'object': json['object'] == null ? undefined : json['object'],
     };
 }
 
 export function NotificationActivityToJSON(value?: NotificationActivity | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'actorName': value.actorName,
-        'foreignId': value.foreignId,
-        'activityId': value.activityId,
-        'verb': value.verb,
-        'time': value.time,
-        'target': value.target,
-        'origin': value.origin,
-        'object': value.object,
+        'actorName': value['actorName'],
+        'foreignId': value['foreignId'],
+        'activityId': value['activityId'],
+        'verb': value['verb'],
+        'time': value['time'],
+        'target': value['target'],
+        'origin': value['origin'],
+        'object': value['object'],
     };
 }
 

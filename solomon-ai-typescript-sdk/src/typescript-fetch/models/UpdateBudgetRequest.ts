@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Budget } from './Budget';
 import {
     BudgetFromJSON,
@@ -38,10 +38,8 @@ export interface UpdateBudgetRequest {
  * Check if a given object implements the UpdateBudgetRequest interface.
  */
 export function instanceOfUpdateBudgetRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "budget" in value;
-
-    return isInstance;
+    if (!('budget' in value)) return false;
+    return true;
 }
 
 export function UpdateBudgetRequestFromJSON(json: any): UpdateBudgetRequest {
@@ -49,7 +47,7 @@ export function UpdateBudgetRequestFromJSON(json: any): UpdateBudgetRequest {
 }
 
 export function UpdateBudgetRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateBudgetRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function UpdateBudgetRequestFromJSONTyped(json: any, ignoreDiscriminator:
 }
 
 export function UpdateBudgetRequestToJSON(value?: UpdateBudgetRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'budget': BudgetToJSON(value.budget),
+        'budget': BudgetToJSON(value['budget']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PersonalActionableInsightName } from './PersonalActionableInsightName';
 import {
     PersonalActionableInsightNameFromJSON,
@@ -86,9 +86,7 @@ export interface PersonalActionableInsight {
  * Check if a given object implements the PersonalActionableInsight interface.
  */
 export function instanceOfPersonalActionableInsight(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PersonalActionableInsightFromJSON(json: any): PersonalActionableInsight {
@@ -96,41 +94,38 @@ export function PersonalActionableInsightFromJSON(json: any): PersonalActionable
 }
 
 export function PersonalActionableInsightFromJSONTyped(json: any, ignoreDiscriminator: boolean): PersonalActionableInsight {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'insightName': !exists(json, 'insightName') ? undefined : PersonalActionableInsightNameFromJSON(json['insightName']),
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'takeaway': !exists(json, 'takeaway') ? undefined : json['takeaway'],
-        'action': !exists(json, 'action') ? undefined : json['action'],
-        'expectedBenefit': !exists(json, 'expectedBenefit') ? undefined : json['expectedBenefit'],
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
-        'generatedTime': !exists(json, 'generatedTime') ? undefined : (new Date(json['generatedTime'])),
-        'metricsToOptimizeFor': !exists(json, 'metricsToOptimizeFor') ? undefined : json['metricsToOptimizeFor'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'insightName': json['insightName'] == null ? undefined : PersonalActionableInsightNameFromJSON(json['insightName']),
+        'description': json['description'] == null ? undefined : json['description'],
+        'takeaway': json['takeaway'] == null ? undefined : json['takeaway'],
+        'action': json['action'] == null ? undefined : json['action'],
+        'expectedBenefit': json['expectedBenefit'] == null ? undefined : json['expectedBenefit'],
+        'tags': json['tags'] == null ? undefined : json['tags'],
+        'generatedTime': json['generatedTime'] == null ? undefined : (new Date(json['generatedTime'])),
+        'metricsToOptimizeFor': json['metricsToOptimizeFor'] == null ? undefined : json['metricsToOptimizeFor'],
     };
 }
 
 export function PersonalActionableInsightToJSON(value?: PersonalActionableInsight | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'insightName': PersonalActionableInsightNameToJSON(value.insightName),
-        'description': value.description,
-        'takeaway': value.takeaway,
-        'action': value.action,
-        'expectedBenefit': value.expectedBenefit,
-        'tags': value.tags,
-        'generatedTime': value.generatedTime === undefined ? undefined : (value.generatedTime.toISOString()),
-        'metricsToOptimizeFor': value.metricsToOptimizeFor,
+        'id': value['id'],
+        'insightName': PersonalActionableInsightNameToJSON(value['insightName']),
+        'description': value['description'],
+        'takeaway': value['takeaway'],
+        'action': value['action'],
+        'expectedBenefit': value['expectedBenefit'],
+        'tags': value['tags'],
+        'generatedTime': value['generatedTime'] == null ? undefined : ((value['generatedTime']).toISOString()),
+        'metricsToOptimizeFor': value['metricsToOptimizeFor'],
     };
 }
 

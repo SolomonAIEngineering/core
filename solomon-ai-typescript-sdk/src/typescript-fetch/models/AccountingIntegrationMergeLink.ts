@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { LinkedAccountingAccount } from './LinkedAccountingAccount';
 import {
     LinkedAccountingAccountFromJSON,
@@ -140,9 +140,7 @@ export interface AccountingIntegrationMergeLink {
  * Check if a given object implements the AccountingIntegrationMergeLink interface.
  */
 export function instanceOfAccountingIntegrationMergeLink(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function AccountingIntegrationMergeLinkFromJSON(json: any): AccountingIntegrationMergeLink {
@@ -150,57 +148,54 @@ export function AccountingIntegrationMergeLinkFromJSON(json: any): AccountingInt
 }
 
 export function AccountingIntegrationMergeLinkFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountingIntegrationMergeLink {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'integration': !exists(json, 'integration') ? undefined : json['integration'],
-        'integrationSlug': !exists(json, 'integrationSlug') ? undefined : json['integrationSlug'],
-        'category': !exists(json, 'category') ? undefined : json['category'],
-        'endUserOriginId': !exists(json, 'endUserOriginId') ? undefined : json['endUserOriginId'],
-        'endUserOrganizationName': !exists(json, 'endUserOrganizationName') ? undefined : json['endUserOrganizationName'],
-        'endUserEmailAddress': !exists(json, 'endUserEmailAddress') ? undefined : json['endUserEmailAddress'],
-        'status': !exists(json, 'status') ? undefined : json['status'],
-        'webhookListenerUrl': !exists(json, 'webhookListenerUrl') ? undefined : json['webhookListenerUrl'],
-        'isDuplicate': !exists(json, 'isDuplicate') ? undefined : json['isDuplicate'],
-        'token': !exists(json, 'token') ? undefined : MergeLinkedAccountTokenFromJSON(json['token']),
-        'integrationName': !exists(json, 'integrationName') ? undefined : json['integrationName'],
-        'integrationImage': !exists(json, 'integrationImage') ? undefined : json['integrationImage'],
-        'integrationSquareImage': !exists(json, 'integrationSquareImage') ? undefined : json['integrationSquareImage'],
-        'account': !exists(json, 'account') ? undefined : LinkedAccountingAccountFromJSON(json['account']),
-        'mergeLinkedAccountId': !exists(json, 'mergeLinkedAccountId') ? undefined : json['mergeLinkedAccountId'],
-        'lastModifiedAt': !exists(json, 'lastModifiedAt') ? undefined : (new Date(json['lastModifiedAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'integration': json['integration'] == null ? undefined : json['integration'],
+        'integrationSlug': json['integrationSlug'] == null ? undefined : json['integrationSlug'],
+        'category': json['category'] == null ? undefined : json['category'],
+        'endUserOriginId': json['endUserOriginId'] == null ? undefined : json['endUserOriginId'],
+        'endUserOrganizationName': json['endUserOrganizationName'] == null ? undefined : json['endUserOrganizationName'],
+        'endUserEmailAddress': json['endUserEmailAddress'] == null ? undefined : json['endUserEmailAddress'],
+        'status': json['status'] == null ? undefined : json['status'],
+        'webhookListenerUrl': json['webhookListenerUrl'] == null ? undefined : json['webhookListenerUrl'],
+        'isDuplicate': json['isDuplicate'] == null ? undefined : json['isDuplicate'],
+        'token': json['token'] == null ? undefined : MergeLinkedAccountTokenFromJSON(json['token']),
+        'integrationName': json['integrationName'] == null ? undefined : json['integrationName'],
+        'integrationImage': json['integrationImage'] == null ? undefined : json['integrationImage'],
+        'integrationSquareImage': json['integrationSquareImage'] == null ? undefined : json['integrationSquareImage'],
+        'account': json['account'] == null ? undefined : LinkedAccountingAccountFromJSON(json['account']),
+        'mergeLinkedAccountId': json['mergeLinkedAccountId'] == null ? undefined : json['mergeLinkedAccountId'],
+        'lastModifiedAt': json['lastModifiedAt'] == null ? undefined : (new Date(json['lastModifiedAt'])),
     };
 }
 
 export function AccountingIntegrationMergeLinkToJSON(value?: AccountingIntegrationMergeLink | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'integration': value.integration,
-        'integrationSlug': value.integrationSlug,
-        'category': value.category,
-        'endUserOriginId': value.endUserOriginId,
-        'endUserOrganizationName': value.endUserOrganizationName,
-        'endUserEmailAddress': value.endUserEmailAddress,
-        'status': value.status,
-        'webhookListenerUrl': value.webhookListenerUrl,
-        'isDuplicate': value.isDuplicate,
-        'token': MergeLinkedAccountTokenToJSON(value.token),
-        'integrationName': value.integrationName,
-        'integrationImage': value.integrationImage,
-        'integrationSquareImage': value.integrationSquareImage,
-        'account': LinkedAccountingAccountToJSON(value.account),
-        'mergeLinkedAccountId': value.mergeLinkedAccountId,
-        'lastModifiedAt': value.lastModifiedAt === undefined ? undefined : (value.lastModifiedAt.toISOString()),
+        'id': value['id'],
+        'integration': value['integration'],
+        'integrationSlug': value['integrationSlug'],
+        'category': value['category'],
+        'endUserOriginId': value['endUserOriginId'],
+        'endUserOrganizationName': value['endUserOrganizationName'],
+        'endUserEmailAddress': value['endUserEmailAddress'],
+        'status': value['status'],
+        'webhookListenerUrl': value['webhookListenerUrl'],
+        'isDuplicate': value['isDuplicate'],
+        'token': MergeLinkedAccountTokenToJSON(value['token']),
+        'integrationName': value['integrationName'],
+        'integrationImage': value['integrationImage'],
+        'integrationSquareImage': value['integrationSquareImage'],
+        'account': LinkedAccountingAccountToJSON(value['account']),
+        'mergeLinkedAccountId': value['mergeLinkedAccountId'],
+        'lastModifiedAt': value['lastModifiedAt'] == null ? undefined : ((value['lastModifiedAt']).toISOString()),
     };
 }
 

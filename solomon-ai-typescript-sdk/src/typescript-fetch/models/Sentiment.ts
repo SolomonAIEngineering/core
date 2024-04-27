@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -49,9 +49,7 @@ export interface Sentiment {
  * Check if a given object implements the Sentiment interface.
  */
 export function instanceOfSentiment(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function SentimentFromJSON(json: any): Sentiment {
@@ -59,31 +57,28 @@ export function SentimentFromJSON(json: any): Sentiment {
 }
 
 export function SentimentFromJSONTyped(json: any, ignoreDiscriminator: boolean): Sentiment {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'negative': !exists(json, 'negative') ? undefined : json['negative'],
-        'neutral': !exists(json, 'neutral') ? undefined : json['neutral'],
-        'positive': !exists(json, 'positive') ? undefined : json['positive'],
-        'compound': !exists(json, 'compound') ? undefined : json['compound'],
+        'negative': json['negative'] == null ? undefined : json['negative'],
+        'neutral': json['neutral'] == null ? undefined : json['neutral'],
+        'positive': json['positive'] == null ? undefined : json['positive'],
+        'compound': json['compound'] == null ? undefined : json['compound'],
     };
 }
 
 export function SentimentToJSON(value?: Sentiment | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'negative': value.negative,
-        'neutral': value.neutral,
-        'positive': value.positive,
-        'compound': value.compound,
+        'negative': value['negative'],
+        'neutral': value['neutral'],
+        'positive': value['positive'],
+        'compound': value['compound'],
     };
 }
 

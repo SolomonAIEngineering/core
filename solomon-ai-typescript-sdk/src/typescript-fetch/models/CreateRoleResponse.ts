@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Role } from './Role';
 import {
     RoleFromJSON,
@@ -38,9 +38,7 @@ export interface CreateRoleResponse {
  * Check if a given object implements the CreateRoleResponse interface.
  */
 export function instanceOfCreateRoleResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreateRoleResponseFromJSON(json: any): CreateRoleResponse {
@@ -48,25 +46,22 @@ export function CreateRoleResponseFromJSON(json: any): CreateRoleResponse {
 }
 
 export function CreateRoleResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateRoleResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'role': !exists(json, 'role') ? undefined : RoleFromJSON(json['role']),
+        'role': json['role'] == null ? undefined : RoleFromJSON(json['role']),
     };
 }
 
 export function CreateRoleResponseToJSON(value?: CreateRoleResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'role': RoleToJSON(value.role),
+        'role': RoleToJSON(value['role']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { DependentRelationship } from './DependentRelationship';
 import {
     DependentRelationshipFromJSON,
@@ -140,9 +140,7 @@ export interface Dependents {
  * Check if a given object implements the Dependents interface.
  */
 export function instanceOfDependents(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DependentsFromJSON(json: any): Dependents {
@@ -150,55 +148,52 @@ export function DependentsFromJSON(json: any): Dependents {
 }
 
 export function DependentsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Dependents {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'firstName': !exists(json, 'firstName') ? undefined : json['firstName'],
-        'lastName': !exists(json, 'lastName') ? undefined : json['lastName'],
-        'middleName': !exists(json, 'middleName') ? undefined : json['middleName'],
-        'dependentRelationshipToEmployee': !exists(json, 'dependentRelationshipToEmployee') ? undefined : DependentRelationshipFromJSON(json['dependentRelationshipToEmployee']),
-        'dateOfBirth': !exists(json, 'dateOfBirth') ? undefined : (new Date(json['dateOfBirth'])),
-        'gender': !exists(json, 'gender') ? undefined : GenderFromJSON(json['gender']),
-        'phoneNumber': !exists(json, 'phoneNumber') ? undefined : json['phoneNumber'],
-        'homeLocation': !exists(json, 'homeLocation') ? undefined : LocationAddressFromJSON(json['homeLocation']),
-        'isStudent': !exists(json, 'isStudent') ? undefined : json['isStudent'],
-        'ssn': !exists(json, 'ssn') ? undefined : json['ssn'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'firstName': json['firstName'] == null ? undefined : json['firstName'],
+        'lastName': json['lastName'] == null ? undefined : json['lastName'],
+        'middleName': json['middleName'] == null ? undefined : json['middleName'],
+        'dependentRelationshipToEmployee': json['dependentRelationshipToEmployee'] == null ? undefined : DependentRelationshipFromJSON(json['dependentRelationshipToEmployee']),
+        'dateOfBirth': json['dateOfBirth'] == null ? undefined : (new Date(json['dateOfBirth'])),
+        'gender': json['gender'] == null ? undefined : GenderFromJSON(json['gender']),
+        'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
+        'homeLocation': json['homeLocation'] == null ? undefined : LocationAddressFromJSON(json['homeLocation']),
+        'isStudent': json['isStudent'] == null ? undefined : json['isStudent'],
+        'ssn': json['ssn'] == null ? undefined : json['ssn'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
     };
 }
 
 export function DependentsToJSON(value?: Dependents | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'firstName': value.firstName,
-        'lastName': value.lastName,
-        'middleName': value.middleName,
-        'dependentRelationshipToEmployee': DependentRelationshipToJSON(value.dependentRelationshipToEmployee),
-        'dateOfBirth': value.dateOfBirth === undefined ? undefined : (value.dateOfBirth.toISOString()),
-        'gender': GenderToJSON(value.gender),
-        'phoneNumber': value.phoneNumber,
-        'homeLocation': LocationAddressToJSON(value.homeLocation),
-        'isStudent': value.isStudent,
-        'ssn': value.ssn,
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeAccountId': value.mergeAccountId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'firstName': value['firstName'],
+        'lastName': value['lastName'],
+        'middleName': value['middleName'],
+        'dependentRelationshipToEmployee': DependentRelationshipToJSON(value['dependentRelationshipToEmployee']),
+        'dateOfBirth': value['dateOfBirth'] == null ? undefined : ((value['dateOfBirth']).toISOString()),
+        'gender': GenderToJSON(value['gender']),
+        'phoneNumber': value['phoneNumber'],
+        'homeLocation': LocationAddressToJSON(value['homeLocation']),
+        'isStudent': value['isStudent'],
+        'ssn': value['ssn'],
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeAccountId': value['mergeAccountId'],
     };
 }
 

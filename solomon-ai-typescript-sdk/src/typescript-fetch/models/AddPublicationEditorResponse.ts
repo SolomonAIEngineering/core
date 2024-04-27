@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Publication } from './Publication';
 import {
     PublicationFromJSON,
@@ -38,9 +38,7 @@ export interface AddPublicationEditorResponse {
  * Check if a given object implements the AddPublicationEditorResponse interface.
  */
 export function instanceOfAddPublicationEditorResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function AddPublicationEditorResponseFromJSON(json: any): AddPublicationEditorResponse {
@@ -48,25 +46,22 @@ export function AddPublicationEditorResponseFromJSON(json: any): AddPublicationE
 }
 
 export function AddPublicationEditorResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddPublicationEditorResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'publication': !exists(json, 'publication') ? undefined : PublicationFromJSON(json['publication']),
+        'publication': json['publication'] == null ? undefined : PublicationFromJSON(json['publication']),
     };
 }
 
 export function AddPublicationEditorResponseToJSON(value?: AddPublicationEditorResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'publication': PublicationToJSON(value.publication),
+        'publication': PublicationToJSON(value['publication']),
     };
 }
 

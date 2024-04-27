@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SmartNote } from './SmartNote';
 import {
     SmartNoteFromJSON,
@@ -38,9 +38,7 @@ export interface UpdateNoteToSmartGoalResponse {
  * Check if a given object implements the UpdateNoteToSmartGoalResponse interface.
  */
 export function instanceOfUpdateNoteToSmartGoalResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UpdateNoteToSmartGoalResponseFromJSON(json: any): UpdateNoteToSmartGoalResponse {
@@ -48,25 +46,22 @@ export function UpdateNoteToSmartGoalResponseFromJSON(json: any): UpdateNoteToSm
 }
 
 export function UpdateNoteToSmartGoalResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateNoteToSmartGoalResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'note': !exists(json, 'note') ? undefined : SmartNoteFromJSON(json['note']),
+        'note': json['note'] == null ? undefined : SmartNoteFromJSON(json['note']),
     };
 }
 
 export function UpdateNoteToSmartGoalResponseToJSON(value?: UpdateNoteToSmartGoalResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'note': SmartNoteToJSON(value.note),
+        'note': SmartNoteToJSON(value['note']),
     };
 }
 

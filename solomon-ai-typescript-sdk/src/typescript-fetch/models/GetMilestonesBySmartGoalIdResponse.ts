@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Milestone } from './Milestone';
 import {
     MilestoneFromJSON,
@@ -38,9 +38,7 @@ export interface GetMilestonesBySmartGoalIdResponse {
  * Check if a given object implements the GetMilestonesBySmartGoalIdResponse interface.
  */
 export function instanceOfGetMilestonesBySmartGoalIdResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetMilestonesBySmartGoalIdResponseFromJSON(json: any): GetMilestonesBySmartGoalIdResponse {
@@ -48,25 +46,22 @@ export function GetMilestonesBySmartGoalIdResponseFromJSON(json: any): GetMilest
 }
 
 export function GetMilestonesBySmartGoalIdResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetMilestonesBySmartGoalIdResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'milestones': !exists(json, 'milestones') ? undefined : ((json['milestones'] as Array<any>).map(MilestoneFromJSON)),
+        'milestones': json['milestones'] == null ? undefined : ((json['milestones'] as Array<any>).map(MilestoneFromJSON)),
     };
 }
 
 export function GetMilestonesBySmartGoalIdResponseToJSON(value?: GetMilestonesBySmartGoalIdResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'milestones': value.milestones === undefined ? undefined : ((value.milestones as Array<any>).map(MilestoneToJSON)),
+        'milestones': value['milestones'] == null ? undefined : ((value['milestones'] as Array<any>).map(MilestoneToJSON)),
     };
 }
 

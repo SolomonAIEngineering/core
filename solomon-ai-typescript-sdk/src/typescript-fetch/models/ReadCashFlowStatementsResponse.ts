@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CashFlowStatement } from './CashFlowStatement';
 import {
     CashFlowStatementFromJSON,
@@ -44,9 +44,7 @@ export interface ReadCashFlowStatementsResponse {
  * Check if a given object implements the ReadCashFlowStatementsResponse interface.
  */
 export function instanceOfReadCashFlowStatementsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ReadCashFlowStatementsResponseFromJSON(json: any): ReadCashFlowStatementsResponse {
@@ -54,27 +52,24 @@ export function ReadCashFlowStatementsResponseFromJSON(json: any): ReadCashFlowS
 }
 
 export function ReadCashFlowStatementsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReadCashFlowStatementsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'cashFlowStatements': !exists(json, 'cashFlowStatements') ? undefined : ((json['cashFlowStatements'] as Array<any>).map(CashFlowStatementFromJSON)),
-        'nextPage': !exists(json, 'nextPage') ? undefined : json['nextPage'],
+        'cashFlowStatements': json['cashFlowStatements'] == null ? undefined : ((json['cashFlowStatements'] as Array<any>).map(CashFlowStatementFromJSON)),
+        'nextPage': json['nextPage'] == null ? undefined : json['nextPage'],
     };
 }
 
 export function ReadCashFlowStatementsResponseToJSON(value?: ReadCashFlowStatementsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'cashFlowStatements': value.cashFlowStatements === undefined ? undefined : ((value.cashFlowStatements as Array<any>).map(CashFlowStatementToJSON)),
-        'nextPage': value.nextPage,
+        'cashFlowStatements': value['cashFlowStatements'] == null ? undefined : ((value['cashFlowStatements'] as Array<any>).map(CashFlowStatementToJSON)),
+        'nextPage': value['nextPage'],
     };
 }
 

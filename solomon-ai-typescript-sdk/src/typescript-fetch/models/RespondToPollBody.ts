@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,11 +37,9 @@ export interface RespondToPollBody {
  * Check if a given object implements the RespondToPollBody interface.
  */
 export function instanceOfRespondToPollBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "pollOption" in value;
-    isInstance = isInstance && "pollOptionIdx" in value;
-
-    return isInstance;
+    if (!('pollOption' in value)) return false;
+    if (!('pollOptionIdx' in value)) return false;
+    return true;
 }
 
 export function RespondToPollBodyFromJSON(json: any): RespondToPollBody {
@@ -49,7 +47,7 @@ export function RespondToPollBodyFromJSON(json: any): RespondToPollBody {
 }
 
 export function RespondToPollBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): RespondToPollBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function RespondToPollBodyFromJSONTyped(json: any, ignoreDiscriminator: b
 }
 
 export function RespondToPollBodyToJSON(value?: RespondToPollBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'pollOption': value.pollOption,
-        'pollOptionIdx': value.pollOptionIdx,
+        'pollOption': value['pollOption'],
+        'pollOptionIdx': value['pollOptionIdx'],
     };
 }
 

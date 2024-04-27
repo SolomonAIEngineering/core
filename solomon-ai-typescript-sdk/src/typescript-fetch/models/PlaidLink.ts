@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -67,9 +67,7 @@ export interface PlaidLink {
  * Check if a given object implements the PlaidLink interface.
  */
 export function instanceOfPlaidLink(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PlaidLinkFromJSON(json: any): PlaidLink {
@@ -77,37 +75,34 @@ export function PlaidLinkFromJSON(json: any): PlaidLink {
 }
 
 export function PlaidLinkFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlaidLink {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'products': !exists(json, 'products') ? undefined : json['products'],
-        'webhookUrl': !exists(json, 'webhookUrl') ? undefined : json['webhookUrl'],
-        'institutionId': !exists(json, 'institutionId') ? undefined : json['institutionId'],
-        'institutionName': !exists(json, 'institutionName') ? undefined : json['institutionName'],
-        'usePlaidSync': !exists(json, 'usePlaidSync') ? undefined : json['usePlaidSync'],
-        'itemId': !exists(json, 'itemId') ? undefined : json['itemId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'products': json['products'] == null ? undefined : json['products'],
+        'webhookUrl': json['webhookUrl'] == null ? undefined : json['webhookUrl'],
+        'institutionId': json['institutionId'] == null ? undefined : json['institutionId'],
+        'institutionName': json['institutionName'] == null ? undefined : json['institutionName'],
+        'usePlaidSync': json['usePlaidSync'] == null ? undefined : json['usePlaidSync'],
+        'itemId': json['itemId'] == null ? undefined : json['itemId'],
     };
 }
 
 export function PlaidLinkToJSON(value?: PlaidLink | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'products': value.products,
-        'webhookUrl': value.webhookUrl,
-        'institutionId': value.institutionId,
-        'institutionName': value.institutionName,
-        'usePlaidSync': value.usePlaidSync,
-        'itemId': value.itemId,
+        'id': value['id'],
+        'products': value['products'],
+        'webhookUrl': value['webhookUrl'],
+        'institutionId': value['institutionId'],
+        'institutionName': value['institutionName'],
+        'usePlaidSync': value['usePlaidSync'],
+        'itemId': value['itemId'],
     };
 }
 

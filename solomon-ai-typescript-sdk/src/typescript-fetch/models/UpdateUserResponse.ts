@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { UserAccount } from './UserAccount';
 import {
     UserAccountFromJSON,
@@ -44,9 +44,7 @@ export interface UpdateUserResponse {
  * Check if a given object implements the UpdateUserResponse interface.
  */
 export function instanceOfUpdateUserResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UpdateUserResponseFromJSON(json: any): UpdateUserResponse {
@@ -54,27 +52,24 @@ export function UpdateUserResponseFromJSON(json: any): UpdateUserResponse {
 }
 
 export function UpdateUserResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateUserResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'accountUpdated': !exists(json, 'accountUpdated') ? undefined : json['accountUpdated'],
-        'account': !exists(json, 'account') ? undefined : UserAccountFromJSON(json['account']),
+        'accountUpdated': json['accountUpdated'] == null ? undefined : json['accountUpdated'],
+        'account': json['account'] == null ? undefined : UserAccountFromJSON(json['account']),
     };
 }
 
 export function UpdateUserResponseToJSON(value?: UpdateUserResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'accountUpdated': value.accountUpdated,
-        'account': UserAccountToJSON(value.account),
+        'accountUpdated': value['accountUpdated'],
+        'account': UserAccountToJSON(value['account']),
     };
 }
 

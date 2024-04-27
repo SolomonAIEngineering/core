@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The ReportItem object is used to represent a report item for a Balance Sheet, 
  * Cash Flow Statement or Profit and Loss Report.
@@ -62,9 +62,7 @@ export interface ReportItem {
  * Check if a given object implements the ReportItem interface.
  */
 export function instanceOfReportItem(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ReportItemFromJSON(json: any): ReportItem {
@@ -72,35 +70,32 @@ export function ReportItemFromJSON(json: any): ReportItem {
 }
 
 export function ReportItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReportItem {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'value': !exists(json, 'value') ? undefined : json['value'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'value': json['value'] == null ? undefined : json['value'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
     };
 }
 
 export function ReportItemToJSON(value?: ReportItem | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'name': value.name,
-        'value': value.value,
-        'company': value.company,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'name': value['name'],
+        'value': value['value'],
+        'company': value['company'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
     };
 }
 

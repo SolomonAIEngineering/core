@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Topic } from './Topic';
 import {
     TopicFromJSON,
@@ -110,20 +110,18 @@ export interface CommunityProfile {
  * Check if a given object implements the CommunityProfile interface.
  */
 export function instanceOfCommunityProfile(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "name" in value;
-    isInstance = isInstance && "description" in value;
-    isInstance = isInstance && "_private" in value;
-    isInstance = isInstance && "visible" in value;
-    isInstance = isInstance && "followers" in value;
-    isInstance = isInstance && "communityRules" in value;
-    isInstance = isInstance && "notificationFeedTimelineId" in value;
-    isInstance = isInstance && "personalFeedTimelineId" in value;
-    isInstance = isInstance && "newsFeedTimelineId" in value;
-    isInstance = isInstance && "profileImageUrl" in value;
-    isInstance = isInstance && "algoliaId" in value;
-
-    return isInstance;
+    if (!('name' in value)) return false;
+    if (!('description' in value)) return false;
+    if (!('_private' in value)) return false;
+    if (!('visible' in value)) return false;
+    if (!('followers' in value)) return false;
+    if (!('communityRules' in value)) return false;
+    if (!('notificationFeedTimelineId' in value)) return false;
+    if (!('personalFeedTimelineId' in value)) return false;
+    if (!('newsFeedTimelineId' in value)) return false;
+    if (!('profileImageUrl' in value)) return false;
+    if (!('algoliaId' in value)) return false;
+    return true;
 }
 
 export function CommunityProfileFromJSON(json: any): CommunityProfile {
@@ -131,19 +129,19 @@ export function CommunityProfileFromJSON(json: any): CommunityProfile {
 }
 
 export function CommunityProfileFromJSONTyped(json: any, ignoreDiscriminator: boolean): CommunityProfile {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'name': json['name'],
         'description': json['description'],
         '_private': json['private'],
         'visible': json['visible'],
         'followers': json['followers'],
         'communityRules': json['communityRules'],
-        'topics': !exists(json, 'topics') ? undefined : ((json['topics'] as Array<any>).map(TopicFromJSON)),
+        'topics': json['topics'] == null ? undefined : ((json['topics'] as Array<any>).map(TopicFromJSON)),
         'notificationFeedTimelineId': json['notificationFeedTimelineId'],
         'personalFeedTimelineId': json['personalFeedTimelineId'],
         'newsFeedTimelineId': json['newsFeedTimelineId'],
@@ -153,27 +151,24 @@ export function CommunityProfileFromJSONTyped(json: any, ignoreDiscriminator: bo
 }
 
 export function CommunityProfileToJSON(value?: CommunityProfile | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'description': value.description,
-        'private': value._private,
-        'visible': value.visible,
-        'followers': value.followers,
-        'communityRules': value.communityRules,
-        'topics': value.topics === undefined ? undefined : ((value.topics as Array<any>).map(TopicToJSON)),
-        'notificationFeedTimelineId': value.notificationFeedTimelineId,
-        'personalFeedTimelineId': value.personalFeedTimelineId,
-        'newsFeedTimelineId': value.newsFeedTimelineId,
-        'profileImageUrl': value.profileImageUrl,
-        'algoliaId': value.algoliaId,
+        'id': value['id'],
+        'name': value['name'],
+        'description': value['description'],
+        'private': value['_private'],
+        'visible': value['visible'],
+        'followers': value['followers'],
+        'communityRules': value['communityRules'],
+        'topics': value['topics'] == null ? undefined : ((value['topics'] as Array<any>).map(TopicToJSON)),
+        'notificationFeedTimelineId': value['notificationFeedTimelineId'],
+        'personalFeedTimelineId': value['personalFeedTimelineId'],
+        'newsFeedTimelineId': value['newsFeedTimelineId'],
+        'profileImageUrl': value['profileImageUrl'],
+        'algoliaId': value['algoliaId'],
     };
 }
 
