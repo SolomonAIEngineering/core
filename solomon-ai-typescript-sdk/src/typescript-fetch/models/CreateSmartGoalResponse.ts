@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface CreateSmartGoalResponse {
  * Check if a given object implements the CreateSmartGoalResponse interface.
  */
 export function instanceOfCreateSmartGoalResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreateSmartGoalResponseFromJSON(json: any): CreateSmartGoalResponse {
@@ -41,25 +39,22 @@ export function CreateSmartGoalResponseFromJSON(json: any): CreateSmartGoalRespo
 }
 
 export function CreateSmartGoalResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateSmartGoalResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'smartGoalId': !exists(json, 'smartGoalId') ? undefined : json['smartGoalId'],
+        'smartGoalId': json['smartGoalId'] == null ? undefined : json['smartGoalId'],
     };
 }
 
 export function CreateSmartGoalResponseToJSON(value?: CreateSmartGoalResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'smartGoalId': value.smartGoalId,
+        'smartGoalId': value['smartGoalId'],
     };
 }
 

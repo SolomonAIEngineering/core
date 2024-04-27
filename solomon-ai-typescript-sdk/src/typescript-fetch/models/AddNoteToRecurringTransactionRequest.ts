@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SmartNote } from './SmartNote';
 import {
     SmartNoteFromJSON,
@@ -44,11 +44,9 @@ export interface AddNoteToRecurringTransactionRequest {
  * Check if a given object implements the AddNoteToRecurringTransactionRequest interface.
  */
 export function instanceOfAddNoteToRecurringTransactionRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "transactionId" in value;
-    isInstance = isInstance && "note" in value;
-
-    return isInstance;
+    if (!('transactionId' in value)) return false;
+    if (!('note' in value)) return false;
+    return true;
 }
 
 export function AddNoteToRecurringTransactionRequestFromJSON(json: any): AddNoteToRecurringTransactionRequest {
@@ -56,7 +54,7 @@ export function AddNoteToRecurringTransactionRequestFromJSON(json: any): AddNote
 }
 
 export function AddNoteToRecurringTransactionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddNoteToRecurringTransactionRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function AddNoteToRecurringTransactionRequestFromJSONTyped(json: any, ign
 }
 
 export function AddNoteToRecurringTransactionRequestToJSON(value?: AddNoteToRecurringTransactionRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transactionId': value.transactionId,
-        'note': SmartNoteToJSON(value.note),
+        'transactionId': value['transactionId'],
+        'note': SmartNoteToJSON(value['note']),
     };
 }
 

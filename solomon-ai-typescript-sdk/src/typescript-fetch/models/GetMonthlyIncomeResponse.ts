@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MonthlyIncome } from './MonthlyIncome';
 import {
     MonthlyIncomeFromJSON,
@@ -44,9 +44,7 @@ export interface GetMonthlyIncomeResponse {
  * Check if a given object implements the GetMonthlyIncomeResponse interface.
  */
 export function instanceOfGetMonthlyIncomeResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetMonthlyIncomeResponseFromJSON(json: any): GetMonthlyIncomeResponse {
@@ -54,27 +52,24 @@ export function GetMonthlyIncomeResponseFromJSON(json: any): GetMonthlyIncomeRes
 }
 
 export function GetMonthlyIncomeResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetMonthlyIncomeResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'monthlyIncomes': !exists(json, 'monthlyIncomes') ? undefined : ((json['monthlyIncomes'] as Array<any>).map(MonthlyIncomeFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'monthlyIncomes': json['monthlyIncomes'] == null ? undefined : ((json['monthlyIncomes'] as Array<any>).map(MonthlyIncomeFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetMonthlyIncomeResponseToJSON(value?: GetMonthlyIncomeResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'monthlyIncomes': value.monthlyIncomes === undefined ? undefined : ((value.monthlyIncomes as Array<any>).map(MonthlyIncomeToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'monthlyIncomes': value['monthlyIncomes'] == null ? undefined : ((value['monthlyIncomes'] as Array<any>).map(MonthlyIncomeToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

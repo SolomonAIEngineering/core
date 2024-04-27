@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { AccountingIntegrationMergeLink } from './AccountingIntegrationMergeLink';
 import {
     AccountingIntegrationMergeLinkFromJSON,
@@ -86,11 +86,9 @@ export interface MergeBusinessProfile {
  * Check if a given object implements the MergeBusinessProfile interface.
  */
 export function instanceOfMergeBusinessProfile(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "authZeroUserId" in value;
-    isInstance = isInstance && "email" in value;
-
-    return isInstance;
+    if (!('authZeroUserId' in value)) return false;
+    if (!('email' in value)) return false;
+    return true;
 }
 
 export function MergeBusinessProfileFromJSON(json: any): MergeBusinessProfile {
@@ -98,37 +96,34 @@ export function MergeBusinessProfileFromJSON(json: any): MergeBusinessProfile {
 }
 
 export function MergeBusinessProfileFromJSONTyped(json: any, ignoreDiscriminator: boolean): MergeBusinessProfile {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'authZeroUserId': json['authZeroUserId'],
-        'companyName': !exists(json, 'companyName') ? undefined : json['companyName'],
+        'companyName': json['companyName'] == null ? undefined : json['companyName'],
         'email': json['email'],
-        'accountingIntegrationMergeLink': !exists(json, 'accountingIntegrationMergeLink') ? undefined : ((json['accountingIntegrationMergeLink'] as Array<any>).map(AccountingIntegrationMergeLinkFromJSON)),
-        'payrollIntegrationMergeLink': !exists(json, 'payrollIntegrationMergeLink') ? undefined : ((json['payrollIntegrationMergeLink'] as Array<any>).map(HrisIntegrationMergeLinkFromJSON)),
-        'actionablePersonalInsights': !exists(json, 'actionablePersonalInsights') ? undefined : ((json['actionablePersonalInsights'] as Array<any>).map(BusinessActionableInsightFromJSON)),
+        'accountingIntegrationMergeLink': json['accountingIntegrationMergeLink'] == null ? undefined : ((json['accountingIntegrationMergeLink'] as Array<any>).map(AccountingIntegrationMergeLinkFromJSON)),
+        'payrollIntegrationMergeLink': json['payrollIntegrationMergeLink'] == null ? undefined : ((json['payrollIntegrationMergeLink'] as Array<any>).map(HrisIntegrationMergeLinkFromJSON)),
+        'actionablePersonalInsights': json['actionablePersonalInsights'] == null ? undefined : ((json['actionablePersonalInsights'] as Array<any>).map(BusinessActionableInsightFromJSON)),
     };
 }
 
 export function MergeBusinessProfileToJSON(value?: MergeBusinessProfile | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'authZeroUserId': value.authZeroUserId,
-        'companyName': value.companyName,
-        'email': value.email,
-        'accountingIntegrationMergeLink': value.accountingIntegrationMergeLink === undefined ? undefined : ((value.accountingIntegrationMergeLink as Array<any>).map(AccountingIntegrationMergeLinkToJSON)),
-        'payrollIntegrationMergeLink': value.payrollIntegrationMergeLink === undefined ? undefined : ((value.payrollIntegrationMergeLink as Array<any>).map(HrisIntegrationMergeLinkToJSON)),
-        'actionablePersonalInsights': value.actionablePersonalInsights === undefined ? undefined : ((value.actionablePersonalInsights as Array<any>).map(BusinessActionableInsightToJSON)),
+        'id': value['id'],
+        'authZeroUserId': value['authZeroUserId'],
+        'companyName': value['companyName'],
+        'email': value['email'],
+        'accountingIntegrationMergeLink': value['accountingIntegrationMergeLink'] == null ? undefined : ((value['accountingIntegrationMergeLink'] as Array<any>).map(AccountingIntegrationMergeLinkToJSON)),
+        'payrollIntegrationMergeLink': value['payrollIntegrationMergeLink'] == null ? undefined : ((value['payrollIntegrationMergeLink'] as Array<any>).map(HrisIntegrationMergeLinkToJSON)),
+        'actionablePersonalInsights': value['actionablePersonalInsights'] == null ? undefined : ((value['actionablePersonalInsights'] as Array<any>).map(BusinessActionableInsightToJSON)),
     };
 }
 

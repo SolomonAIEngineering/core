@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlaidAccountTransaction } from './PlaidAccountTransaction';
 import {
     PlaidAccountTransactionFromJSON,
@@ -56,9 +56,7 @@ export interface GetTransactionsForPastMonthResponse {
  * Check if a given object implements the GetTransactionsForPastMonthResponse interface.
  */
 export function instanceOfGetTransactionsForPastMonthResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetTransactionsForPastMonthResponseFromJSON(json: any): GetTransactionsForPastMonthResponse {
@@ -66,31 +64,28 @@ export function GetTransactionsForPastMonthResponseFromJSON(json: any): GetTrans
 }
 
 export function GetTransactionsForPastMonthResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetTransactionsForPastMonthResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'transactions': !exists(json, 'transactions') ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountTransactionFromJSON)),
-        'currentPage': !exists(json, 'currentPage') ? undefined : json['currentPage'],
-        'totalPages': !exists(json, 'totalPages') ? undefined : json['totalPages'],
-        'totalTransactions': !exists(json, 'totalTransactions') ? undefined : json['totalTransactions'],
+        'transactions': json['transactions'] == null ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountTransactionFromJSON)),
+        'currentPage': json['currentPage'] == null ? undefined : json['currentPage'],
+        'totalPages': json['totalPages'] == null ? undefined : json['totalPages'],
+        'totalTransactions': json['totalTransactions'] == null ? undefined : json['totalTransactions'],
     };
 }
 
 export function GetTransactionsForPastMonthResponseToJSON(value?: GetTransactionsForPastMonthResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transactions': value.transactions === undefined ? undefined : ((value.transactions as Array<any>).map(PlaidAccountTransactionToJSON)),
-        'currentPage': value.currentPage,
-        'totalPages': value.totalPages,
-        'totalTransactions': value.totalTransactions,
+        'transactions': value['transactions'] == null ? undefined : ((value['transactions'] as Array<any>).map(PlaidAccountTransactionToJSON)),
+        'currentPage': value['currentPage'],
+        'totalPages': value['totalPages'],
+        'totalTransactions': value['totalTransactions'],
     };
 }
 

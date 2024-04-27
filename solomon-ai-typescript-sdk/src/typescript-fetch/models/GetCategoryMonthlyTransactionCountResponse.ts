@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CategoryMonthlyTransactionCount } from './CategoryMonthlyTransactionCount';
 import {
     CategoryMonthlyTransactionCountFromJSON,
@@ -44,9 +44,7 @@ export interface GetCategoryMonthlyTransactionCountResponse {
  * Check if a given object implements the GetCategoryMonthlyTransactionCountResponse interface.
  */
 export function instanceOfGetCategoryMonthlyTransactionCountResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetCategoryMonthlyTransactionCountResponseFromJSON(json: any): GetCategoryMonthlyTransactionCountResponse {
@@ -54,27 +52,24 @@ export function GetCategoryMonthlyTransactionCountResponseFromJSON(json: any): G
 }
 
 export function GetCategoryMonthlyTransactionCountResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCategoryMonthlyTransactionCountResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'categoryMonthlyTransactionCount': !exists(json, 'categoryMonthlyTransactionCount') ? undefined : ((json['categoryMonthlyTransactionCount'] as Array<any>).map(CategoryMonthlyTransactionCountFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'categoryMonthlyTransactionCount': json['categoryMonthlyTransactionCount'] == null ? undefined : ((json['categoryMonthlyTransactionCount'] as Array<any>).map(CategoryMonthlyTransactionCountFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetCategoryMonthlyTransactionCountResponseToJSON(value?: GetCategoryMonthlyTransactionCountResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'categoryMonthlyTransactionCount': value.categoryMonthlyTransactionCount === undefined ? undefined : ((value.categoryMonthlyTransactionCount as Array<any>).map(CategoryMonthlyTransactionCountToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'categoryMonthlyTransactionCount': value['categoryMonthlyTransactionCount'] == null ? undefined : ((value['categoryMonthlyTransactionCount'] as Array<any>).map(CategoryMonthlyTransactionCountToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

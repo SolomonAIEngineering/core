@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface DeleteSmartGoalResponse {
  * Check if a given object implements the DeleteSmartGoalResponse interface.
  */
 export function instanceOfDeleteSmartGoalResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DeleteSmartGoalResponseFromJSON(json: any): DeleteSmartGoalResponse {
@@ -41,25 +39,22 @@ export function DeleteSmartGoalResponseFromJSON(json: any): DeleteSmartGoalRespo
 }
 
 export function DeleteSmartGoalResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteSmartGoalResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'deleted': !exists(json, 'deleted') ? undefined : json['deleted'],
+        'deleted': json['deleted'] == null ? undefined : json['deleted'],
     };
 }
 
 export function DeleteSmartGoalResponseToJSON(value?: DeleteSmartGoalResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'deleted': value.deleted,
+        'deleted': value['deleted'],
     };
 }
 

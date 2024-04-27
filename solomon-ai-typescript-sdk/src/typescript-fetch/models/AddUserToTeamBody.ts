@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ProfileType } from './ProfileType';
 import {
     ProfileTypeFromJSON,
@@ -50,9 +50,7 @@ export interface AddUserToTeamBody {
  * Check if a given object implements the AddUserToTeamBody interface.
  */
 export function instanceOfAddUserToTeamBody(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function AddUserToTeamBodyFromJSON(json: any): AddUserToTeamBody {
@@ -60,29 +58,26 @@ export function AddUserToTeamBodyFromJSON(json: any): AddUserToTeamBody {
 }
 
 export function AddUserToTeamBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddUserToTeamBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'adminAuth0UserId': !exists(json, 'adminAuth0UserId') ? undefined : json['adminAuth0UserId'],
-        'userAuth0UserId': !exists(json, 'userAuth0UserId') ? undefined : json['userAuth0UserId'],
-        'profileType': !exists(json, 'profileType') ? undefined : ProfileTypeFromJSON(json['profileType']),
+        'adminAuth0UserId': json['adminAuth0UserId'] == null ? undefined : json['adminAuth0UserId'],
+        'userAuth0UserId': json['userAuth0UserId'] == null ? undefined : json['userAuth0UserId'],
+        'profileType': json['profileType'] == null ? undefined : ProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function AddUserToTeamBodyToJSON(value?: AddUserToTeamBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'adminAuth0UserId': value.adminAuth0UserId,
-        'userAuth0UserId': value.userAuth0UserId,
-        'profileType': ProfileTypeToJSON(value.profileType),
+        'adminAuth0UserId': value['adminAuth0UserId'],
+        'userAuth0UserId': value['userAuth0UserId'],
+        'profileType': ProfileTypeToJSON(value['profileType']),
     };
 }
 

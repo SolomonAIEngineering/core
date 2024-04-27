@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,7 @@ export interface RecordAskCopilotQuestionResponse {
  * Check if a given object implements the RecordAskCopilotQuestionResponse interface.
  */
 export function instanceOfRecordAskCopilotQuestionResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function RecordAskCopilotQuestionResponseFromJSON(json: any): RecordAskCopilotQuestionResponse {
@@ -47,27 +45,24 @@ export function RecordAskCopilotQuestionResponseFromJSON(json: any): RecordAskCo
 }
 
 export function RecordAskCopilotQuestionResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): RecordAskCopilotQuestionResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'success': !exists(json, 'success') ? undefined : json['success'],
-        'remainingQuota': !exists(json, 'remainingQuota') ? undefined : json['remainingQuota'],
+        'success': json['success'] == null ? undefined : json['success'],
+        'remainingQuota': json['remainingQuota'] == null ? undefined : json['remainingQuota'],
     };
 }
 
 export function RecordAskCopilotQuestionResponseToJSON(value?: RecordAskCopilotQuestionResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'success': value.success,
-        'remainingQuota': value.remainingQuota,
+        'success': value['success'],
+        'remainingQuota': value['remainingQuota'],
     };
 }
 

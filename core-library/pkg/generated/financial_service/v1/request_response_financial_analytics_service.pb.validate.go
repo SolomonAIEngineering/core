@@ -5801,3 +5801,1655 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = GetHistoricalAccountBalanceResponseValidationError{}
+
+// Validate checks the field values on
+// GetCategoryMetricsFinancialSubProfileOverTimeRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *GetCategoryMetricsFinancialSubProfileOverTimeRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetCategoryMetricsFinancialSubProfileOverTimeRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// GetCategoryMetricsFinancialSubProfileOverTimeRequestMultiError, or nil if
+// none found.
+func (m *GetCategoryMetricsFinancialSubProfileOverTimeRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetCategoryMetricsFinancialSubProfileOverTimeRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for UserId
+
+	// no validation rules for ProfileType
+
+	// no validation rules for PersonalFinanceCategoryPrimary
+
+	// no validation rules for Month
+
+	// no validation rules for PageNumber
+
+	// no validation rules for PageSize
+
+	if len(errors) > 0 {
+		return GetCategoryMetricsFinancialSubProfileOverTimeRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetCategoryMetricsFinancialSubProfileOverTimeRequestMultiError is an error
+// wrapping multiple validation errors returned by
+// GetCategoryMetricsFinancialSubProfileOverTimeRequest.ValidateAll() if the
+// designated constraints aren't met.
+type GetCategoryMetricsFinancialSubProfileOverTimeRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetCategoryMetricsFinancialSubProfileOverTimeRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetCategoryMetricsFinancialSubProfileOverTimeRequestMultiError) AllErrors() []error { return m }
+
+// GetCategoryMetricsFinancialSubProfileOverTimeRequestValidationError is the
+// validation error returned by
+// GetCategoryMetricsFinancialSubProfileOverTimeRequest.Validate if the
+// designated constraints aren't met.
+type GetCategoryMetricsFinancialSubProfileOverTimeRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetCategoryMetricsFinancialSubProfileOverTimeRequestValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e GetCategoryMetricsFinancialSubProfileOverTimeRequestValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e GetCategoryMetricsFinancialSubProfileOverTimeRequestValidationError) Cause() error {
+	return e.cause
+}
+
+// Key function returns key value.
+func (e GetCategoryMetricsFinancialSubProfileOverTimeRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetCategoryMetricsFinancialSubProfileOverTimeRequestValidationError) ErrorName() string {
+	return "GetCategoryMetricsFinancialSubProfileOverTimeRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetCategoryMetricsFinancialSubProfileOverTimeRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetCategoryMetricsFinancialSubProfileOverTimeRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetCategoryMetricsFinancialSubProfileOverTimeRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetCategoryMetricsFinancialSubProfileOverTimeRequestValidationError{}
+
+// Validate checks the field values on
+// GetCategoryMetricsFinancialSubProfileOverTimeResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetCategoryMetricsFinancialSubProfileOverTimeResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetCategoryMetricsFinancialSubProfileOverTimeResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetCategoryMetricsFinancialSubProfileOverTimeResponseMultiError, or nil if
+// none found.
+func (m *GetCategoryMetricsFinancialSubProfileOverTimeResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetCategoryMetricsFinancialSubProfileOverTimeResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetData() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError{
+						field:  fmt.Sprintf("Data[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError{
+						field:  fmt.Sprintf("Data[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError{
+					field:  fmt.Sprintf("Data[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetCategoryMetricsFinancialSubProfileOverTimeResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetCategoryMetricsFinancialSubProfileOverTimeResponseMultiError is an error
+// wrapping multiple validation errors returned by
+// GetCategoryMetricsFinancialSubProfileOverTimeResponse.ValidateAll() if the
+// designated constraints aren't met.
+type GetCategoryMetricsFinancialSubProfileOverTimeResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetCategoryMetricsFinancialSubProfileOverTimeResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetCategoryMetricsFinancialSubProfileOverTimeResponseMultiError) AllErrors() []error {
+	return m
+}
+
+// GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError is the
+// validation error returned by
+// GetCategoryMetricsFinancialSubProfileOverTimeResponse.Validate if the
+// designated constraints aren't met.
+type GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError) Cause() error {
+	return e.cause
+}
+
+// Key function returns key value.
+func (e GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError) Key() bool {
+	return e.key
+}
+
+// ErrorName returns error name.
+func (e GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError) ErrorName() string {
+	return "GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetCategoryMetricsFinancialSubProfileOverTimeResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetCategoryMetricsFinancialSubProfileOverTimeResponseValidationError{}
+
+// Validate checks the field values on
+// GetExpenseMetricsFinancialSubProfileOverTimeRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *GetExpenseMetricsFinancialSubProfileOverTimeRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetExpenseMetricsFinancialSubProfileOverTimeRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// GetExpenseMetricsFinancialSubProfileOverTimeRequestMultiError, or nil if
+// none found.
+func (m *GetExpenseMetricsFinancialSubProfileOverTimeRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetExpenseMetricsFinancialSubProfileOverTimeRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for UserId
+
+	// no validation rules for ProfileType
+
+	// no validation rules for Month
+
+	// no validation rules for PageNumber
+
+	// no validation rules for PageSize
+
+	if len(errors) > 0 {
+		return GetExpenseMetricsFinancialSubProfileOverTimeRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetExpenseMetricsFinancialSubProfileOverTimeRequestMultiError is an error
+// wrapping multiple validation errors returned by
+// GetExpenseMetricsFinancialSubProfileOverTimeRequest.ValidateAll() if the
+// designated constraints aren't met.
+type GetExpenseMetricsFinancialSubProfileOverTimeRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetExpenseMetricsFinancialSubProfileOverTimeRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetExpenseMetricsFinancialSubProfileOverTimeRequestMultiError) AllErrors() []error { return m }
+
+// GetExpenseMetricsFinancialSubProfileOverTimeRequestValidationError is the
+// validation error returned by
+// GetExpenseMetricsFinancialSubProfileOverTimeRequest.Validate if the
+// designated constraints aren't met.
+type GetExpenseMetricsFinancialSubProfileOverTimeRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetExpenseMetricsFinancialSubProfileOverTimeRequestValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e GetExpenseMetricsFinancialSubProfileOverTimeRequestValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e GetExpenseMetricsFinancialSubProfileOverTimeRequestValidationError) Cause() error {
+	return e.cause
+}
+
+// Key function returns key value.
+func (e GetExpenseMetricsFinancialSubProfileOverTimeRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetExpenseMetricsFinancialSubProfileOverTimeRequestValidationError) ErrorName() string {
+	return "GetExpenseMetricsFinancialSubProfileOverTimeRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetExpenseMetricsFinancialSubProfileOverTimeRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetExpenseMetricsFinancialSubProfileOverTimeRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetExpenseMetricsFinancialSubProfileOverTimeRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetExpenseMetricsFinancialSubProfileOverTimeRequestValidationError{}
+
+// Validate checks the field values on
+// GetExpenseMetricsFinancialSubProfileOverTimeResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *GetExpenseMetricsFinancialSubProfileOverTimeResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetExpenseMetricsFinancialSubProfileOverTimeResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// GetExpenseMetricsFinancialSubProfileOverTimeResponseMultiError, or nil if
+// none found.
+func (m *GetExpenseMetricsFinancialSubProfileOverTimeResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetExpenseMetricsFinancialSubProfileOverTimeResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetData() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError{
+						field:  fmt.Sprintf("Data[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError{
+						field:  fmt.Sprintf("Data[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError{
+					field:  fmt.Sprintf("Data[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetExpenseMetricsFinancialSubProfileOverTimeResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetExpenseMetricsFinancialSubProfileOverTimeResponseMultiError is an error
+// wrapping multiple validation errors returned by
+// GetExpenseMetricsFinancialSubProfileOverTimeResponse.ValidateAll() if the
+// designated constraints aren't met.
+type GetExpenseMetricsFinancialSubProfileOverTimeResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetExpenseMetricsFinancialSubProfileOverTimeResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetExpenseMetricsFinancialSubProfileOverTimeResponseMultiError) AllErrors() []error { return m }
+
+// GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError is the
+// validation error returned by
+// GetExpenseMetricsFinancialSubProfileOverTimeResponse.Validate if the
+// designated constraints aren't met.
+type GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError) Cause() error {
+	return e.cause
+}
+
+// Key function returns key value.
+func (e GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError) ErrorName() string {
+	return "GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetExpenseMetricsFinancialSubProfileOverTimeResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetExpenseMetricsFinancialSubProfileOverTimeResponseValidationError{}
+
+// Validate checks the field values on
+// GetIncomeMetricsFinancialSubProfileOverTimeRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *GetIncomeMetricsFinancialSubProfileOverTimeRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetIncomeMetricsFinancialSubProfileOverTimeRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// GetIncomeMetricsFinancialSubProfileOverTimeRequestMultiError, or nil if
+// none found.
+func (m *GetIncomeMetricsFinancialSubProfileOverTimeRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetIncomeMetricsFinancialSubProfileOverTimeRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for UserId
+
+	// no validation rules for ProfileType
+
+	// no validation rules for Month
+
+	// no validation rules for PageNumber
+
+	// no validation rules for PageSize
+
+	if len(errors) > 0 {
+		return GetIncomeMetricsFinancialSubProfileOverTimeRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetIncomeMetricsFinancialSubProfileOverTimeRequestMultiError is an error
+// wrapping multiple validation errors returned by
+// GetIncomeMetricsFinancialSubProfileOverTimeRequest.ValidateAll() if the
+// designated constraints aren't met.
+type GetIncomeMetricsFinancialSubProfileOverTimeRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetIncomeMetricsFinancialSubProfileOverTimeRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetIncomeMetricsFinancialSubProfileOverTimeRequestMultiError) AllErrors() []error { return m }
+
+// GetIncomeMetricsFinancialSubProfileOverTimeRequestValidationError is the
+// validation error returned by
+// GetIncomeMetricsFinancialSubProfileOverTimeRequest.Validate if the
+// designated constraints aren't met.
+type GetIncomeMetricsFinancialSubProfileOverTimeRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetIncomeMetricsFinancialSubProfileOverTimeRequestValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e GetIncomeMetricsFinancialSubProfileOverTimeRequestValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e GetIncomeMetricsFinancialSubProfileOverTimeRequestValidationError) Cause() error {
+	return e.cause
+}
+
+// Key function returns key value.
+func (e GetIncomeMetricsFinancialSubProfileOverTimeRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetIncomeMetricsFinancialSubProfileOverTimeRequestValidationError) ErrorName() string {
+	return "GetIncomeMetricsFinancialSubProfileOverTimeRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetIncomeMetricsFinancialSubProfileOverTimeRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetIncomeMetricsFinancialSubProfileOverTimeRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetIncomeMetricsFinancialSubProfileOverTimeRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetIncomeMetricsFinancialSubProfileOverTimeRequestValidationError{}
+
+// Validate checks the field values on
+// GetIncomeMetricsFinancialSubProfileOverTimeResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *GetIncomeMetricsFinancialSubProfileOverTimeResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetIncomeMetricsFinancialSubProfileOverTimeResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// GetIncomeMetricsFinancialSubProfileOverTimeResponseMultiError, or nil if
+// none found.
+func (m *GetIncomeMetricsFinancialSubProfileOverTimeResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetIncomeMetricsFinancialSubProfileOverTimeResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetData() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError{
+						field:  fmt.Sprintf("Data[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError{
+						field:  fmt.Sprintf("Data[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError{
+					field:  fmt.Sprintf("Data[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetIncomeMetricsFinancialSubProfileOverTimeResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetIncomeMetricsFinancialSubProfileOverTimeResponseMultiError is an error
+// wrapping multiple validation errors returned by
+// GetIncomeMetricsFinancialSubProfileOverTimeResponse.ValidateAll() if the
+// designated constraints aren't met.
+type GetIncomeMetricsFinancialSubProfileOverTimeResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetIncomeMetricsFinancialSubProfileOverTimeResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetIncomeMetricsFinancialSubProfileOverTimeResponseMultiError) AllErrors() []error { return m }
+
+// GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError is the
+// validation error returned by
+// GetIncomeMetricsFinancialSubProfileOverTimeResponse.Validate if the
+// designated constraints aren't met.
+type GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError) Cause() error {
+	return e.cause
+}
+
+// Key function returns key value.
+func (e GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError) ErrorName() string {
+	return "GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetIncomeMetricsFinancialSubProfileOverTimeResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetIncomeMetricsFinancialSubProfileOverTimeResponseValidationError{}
+
+// Validate checks the field values on
+// GetLocationMetricsFinancialSubProfileOverTimeRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *GetLocationMetricsFinancialSubProfileOverTimeRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetLocationMetricsFinancialSubProfileOverTimeRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// GetLocationMetricsFinancialSubProfileOverTimeRequestMultiError, or nil if
+// none found.
+func (m *GetLocationMetricsFinancialSubProfileOverTimeRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetLocationMetricsFinancialSubProfileOverTimeRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for UserId
+
+	// no validation rules for ProfileType
+
+	// no validation rules for Month
+
+	// no validation rules for LocationCity
+
+	// no validation rules for PageNumber
+
+	// no validation rules for PageSize
+
+	if len(errors) > 0 {
+		return GetLocationMetricsFinancialSubProfileOverTimeRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetLocationMetricsFinancialSubProfileOverTimeRequestMultiError is an error
+// wrapping multiple validation errors returned by
+// GetLocationMetricsFinancialSubProfileOverTimeRequest.ValidateAll() if the
+// designated constraints aren't met.
+type GetLocationMetricsFinancialSubProfileOverTimeRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetLocationMetricsFinancialSubProfileOverTimeRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetLocationMetricsFinancialSubProfileOverTimeRequestMultiError) AllErrors() []error { return m }
+
+// GetLocationMetricsFinancialSubProfileOverTimeRequestValidationError is the
+// validation error returned by
+// GetLocationMetricsFinancialSubProfileOverTimeRequest.Validate if the
+// designated constraints aren't met.
+type GetLocationMetricsFinancialSubProfileOverTimeRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetLocationMetricsFinancialSubProfileOverTimeRequestValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e GetLocationMetricsFinancialSubProfileOverTimeRequestValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e GetLocationMetricsFinancialSubProfileOverTimeRequestValidationError) Cause() error {
+	return e.cause
+}
+
+// Key function returns key value.
+func (e GetLocationMetricsFinancialSubProfileOverTimeRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetLocationMetricsFinancialSubProfileOverTimeRequestValidationError) ErrorName() string {
+	return "GetLocationMetricsFinancialSubProfileOverTimeRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetLocationMetricsFinancialSubProfileOverTimeRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetLocationMetricsFinancialSubProfileOverTimeRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetLocationMetricsFinancialSubProfileOverTimeRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetLocationMetricsFinancialSubProfileOverTimeRequestValidationError{}
+
+// Validate checks the field values on
+// GetLocationMetricsFinancialSubProfileOverTimeResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetLocationMetricsFinancialSubProfileOverTimeResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetLocationMetricsFinancialSubProfileOverTimeResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetLocationMetricsFinancialSubProfileOverTimeResponseMultiError, or nil if
+// none found.
+func (m *GetLocationMetricsFinancialSubProfileOverTimeResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetLocationMetricsFinancialSubProfileOverTimeResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetData() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError{
+						field:  fmt.Sprintf("Data[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError{
+						field:  fmt.Sprintf("Data[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError{
+					field:  fmt.Sprintf("Data[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetLocationMetricsFinancialSubProfileOverTimeResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetLocationMetricsFinancialSubProfileOverTimeResponseMultiError is an error
+// wrapping multiple validation errors returned by
+// GetLocationMetricsFinancialSubProfileOverTimeResponse.ValidateAll() if the
+// designated constraints aren't met.
+type GetLocationMetricsFinancialSubProfileOverTimeResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetLocationMetricsFinancialSubProfileOverTimeResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetLocationMetricsFinancialSubProfileOverTimeResponseMultiError) AllErrors() []error {
+	return m
+}
+
+// GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError is the
+// validation error returned by
+// GetLocationMetricsFinancialSubProfileOverTimeResponse.Validate if the
+// designated constraints aren't met.
+type GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError) Cause() error {
+	return e.cause
+}
+
+// Key function returns key value.
+func (e GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError) Key() bool {
+	return e.key
+}
+
+// ErrorName returns error name.
+func (e GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError) ErrorName() string {
+	return "GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetLocationMetricsFinancialSubProfileOverTimeResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetLocationMetricsFinancialSubProfileOverTimeResponseValidationError{}
+
+// Validate checks the field values on
+// GetMerchantMetricsFinancialSubProfileOverTimeRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *GetMerchantMetricsFinancialSubProfileOverTimeRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetMerchantMetricsFinancialSubProfileOverTimeRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// GetMerchantMetricsFinancialSubProfileOverTimeRequestMultiError, or nil if
+// none found.
+func (m *GetMerchantMetricsFinancialSubProfileOverTimeRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetMerchantMetricsFinancialSubProfileOverTimeRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for UserId
+
+	// no validation rules for ProfileType
+
+	// no validation rules for Month
+
+	// no validation rules for MerchantName
+
+	// no validation rules for PageNumber
+
+	// no validation rules for PageSize
+
+	if len(errors) > 0 {
+		return GetMerchantMetricsFinancialSubProfileOverTimeRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetMerchantMetricsFinancialSubProfileOverTimeRequestMultiError is an error
+// wrapping multiple validation errors returned by
+// GetMerchantMetricsFinancialSubProfileOverTimeRequest.ValidateAll() if the
+// designated constraints aren't met.
+type GetMerchantMetricsFinancialSubProfileOverTimeRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetMerchantMetricsFinancialSubProfileOverTimeRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetMerchantMetricsFinancialSubProfileOverTimeRequestMultiError) AllErrors() []error { return m }
+
+// GetMerchantMetricsFinancialSubProfileOverTimeRequestValidationError is the
+// validation error returned by
+// GetMerchantMetricsFinancialSubProfileOverTimeRequest.Validate if the
+// designated constraints aren't met.
+type GetMerchantMetricsFinancialSubProfileOverTimeRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetMerchantMetricsFinancialSubProfileOverTimeRequestValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e GetMerchantMetricsFinancialSubProfileOverTimeRequestValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e GetMerchantMetricsFinancialSubProfileOverTimeRequestValidationError) Cause() error {
+	return e.cause
+}
+
+// Key function returns key value.
+func (e GetMerchantMetricsFinancialSubProfileOverTimeRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetMerchantMetricsFinancialSubProfileOverTimeRequestValidationError) ErrorName() string {
+	return "GetMerchantMetricsFinancialSubProfileOverTimeRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetMerchantMetricsFinancialSubProfileOverTimeRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetMerchantMetricsFinancialSubProfileOverTimeRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetMerchantMetricsFinancialSubProfileOverTimeRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetMerchantMetricsFinancialSubProfileOverTimeRequestValidationError{}
+
+// Validate checks the field values on
+// GetMerchantMetricsFinancialSubProfileOverTimeResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *GetMerchantMetricsFinancialSubProfileOverTimeResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetMerchantMetricsFinancialSubProfileOverTimeResponse with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// GetMerchantMetricsFinancialSubProfileOverTimeResponseMultiError, or nil if
+// none found.
+func (m *GetMerchantMetricsFinancialSubProfileOverTimeResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetMerchantMetricsFinancialSubProfileOverTimeResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetData() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError{
+						field:  fmt.Sprintf("Data[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError{
+						field:  fmt.Sprintf("Data[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError{
+					field:  fmt.Sprintf("Data[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetMerchantMetricsFinancialSubProfileOverTimeResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetMerchantMetricsFinancialSubProfileOverTimeResponseMultiError is an error
+// wrapping multiple validation errors returned by
+// GetMerchantMetricsFinancialSubProfileOverTimeResponse.ValidateAll() if the
+// designated constraints aren't met.
+type GetMerchantMetricsFinancialSubProfileOverTimeResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetMerchantMetricsFinancialSubProfileOverTimeResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetMerchantMetricsFinancialSubProfileOverTimeResponseMultiError) AllErrors() []error {
+	return m
+}
+
+// GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError is the
+// validation error returned by
+// GetMerchantMetricsFinancialSubProfileOverTimeResponse.Validate if the
+// designated constraints aren't met.
+type GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError) Cause() error {
+	return e.cause
+}
+
+// Key function returns key value.
+func (e GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError) Key() bool {
+	return e.key
+}
+
+// ErrorName returns error name.
+func (e GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError) ErrorName() string {
+	return "GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetMerchantMetricsFinancialSubProfileOverTimeResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetMerchantMetricsFinancialSubProfileOverTimeResponseValidationError{}
+
+// Validate checks the field values on
+// GetPaymentChannelFinancialSubProfileOverTimeRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *GetPaymentChannelFinancialSubProfileOverTimeRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetPaymentChannelFinancialSubProfileOverTimeRequest with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// GetPaymentChannelFinancialSubProfileOverTimeRequestMultiError, or nil if
+// none found.
+func (m *GetPaymentChannelFinancialSubProfileOverTimeRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetPaymentChannelFinancialSubProfileOverTimeRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for UserId
+
+	// no validation rules for ProfileType
+
+	// no validation rules for Month
+
+	// no validation rules for PaymentChannel
+
+	// no validation rules for PageNumber
+
+	// no validation rules for PageSize
+
+	if len(errors) > 0 {
+		return GetPaymentChannelFinancialSubProfileOverTimeRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetPaymentChannelFinancialSubProfileOverTimeRequestMultiError is an error
+// wrapping multiple validation errors returned by
+// GetPaymentChannelFinancialSubProfileOverTimeRequest.ValidateAll() if the
+// designated constraints aren't met.
+type GetPaymentChannelFinancialSubProfileOverTimeRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetPaymentChannelFinancialSubProfileOverTimeRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetPaymentChannelFinancialSubProfileOverTimeRequestMultiError) AllErrors() []error { return m }
+
+// GetPaymentChannelFinancialSubProfileOverTimeRequestValidationError is the
+// validation error returned by
+// GetPaymentChannelFinancialSubProfileOverTimeRequest.Validate if the
+// designated constraints aren't met.
+type GetPaymentChannelFinancialSubProfileOverTimeRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetPaymentChannelFinancialSubProfileOverTimeRequestValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e GetPaymentChannelFinancialSubProfileOverTimeRequestValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e GetPaymentChannelFinancialSubProfileOverTimeRequestValidationError) Cause() error {
+	return e.cause
+}
+
+// Key function returns key value.
+func (e GetPaymentChannelFinancialSubProfileOverTimeRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetPaymentChannelFinancialSubProfileOverTimeRequestValidationError) ErrorName() string {
+	return "GetPaymentChannelFinancialSubProfileOverTimeRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetPaymentChannelFinancialSubProfileOverTimeRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetPaymentChannelFinancialSubProfileOverTimeRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetPaymentChannelFinancialSubProfileOverTimeRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetPaymentChannelFinancialSubProfileOverTimeRequestValidationError{}
+
+// Validate checks the field values on
+// GetPaymentChannelFinancialSubProfileOverTimeResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// first error encountered is returned, or nil if there are no violations.
+func (m *GetPaymentChannelFinancialSubProfileOverTimeResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on
+// GetPaymentChannelFinancialSubProfileOverTimeResponse with the rules defined
+// in the proto definition for this message. If any rules are violated, the
+// result is a list of violation errors wrapped in
+// GetPaymentChannelFinancialSubProfileOverTimeResponseMultiError, or nil if
+// none found.
+func (m *GetPaymentChannelFinancialSubProfileOverTimeResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *GetPaymentChannelFinancialSubProfileOverTimeResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	for idx, item := range m.GetData() {
+		_, _ = idx, item
+
+		if all {
+			switch v := interface{}(item).(type) {
+			case interface{ ValidateAll() error }:
+				if err := v.ValidateAll(); err != nil {
+					errors = append(errors, GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError{
+						field:  fmt.Sprintf("Data[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			case interface{ Validate() error }:
+				if err := v.Validate(); err != nil {
+					errors = append(errors, GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError{
+						field:  fmt.Sprintf("Data[%v]", idx),
+						reason: "embedded message failed validation",
+						cause:  err,
+					})
+				}
+			}
+		} else if v, ok := interface{}(item).(interface{ Validate() error }); ok {
+			if err := v.Validate(); err != nil {
+				return GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError{
+					field:  fmt.Sprintf("Data[%v]", idx),
+					reason: "embedded message failed validation",
+					cause:  err,
+				}
+			}
+		}
+
+	}
+
+	if len(errors) > 0 {
+		return GetPaymentChannelFinancialSubProfileOverTimeResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// GetPaymentChannelFinancialSubProfileOverTimeResponseMultiError is an error
+// wrapping multiple validation errors returned by
+// GetPaymentChannelFinancialSubProfileOverTimeResponse.ValidateAll() if the
+// designated constraints aren't met.
+type GetPaymentChannelFinancialSubProfileOverTimeResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m GetPaymentChannelFinancialSubProfileOverTimeResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m GetPaymentChannelFinancialSubProfileOverTimeResponseMultiError) AllErrors() []error { return m }
+
+// GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError is the
+// validation error returned by
+// GetPaymentChannelFinancialSubProfileOverTimeResponse.Validate if the
+// designated constraints aren't met.
+type GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError) Field() string {
+	return e.field
+}
+
+// Reason function returns reason value.
+func (e GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError) Reason() string {
+	return e.reason
+}
+
+// Cause function returns cause value.
+func (e GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError) Cause() error {
+	return e.cause
+}
+
+// Key function returns key value.
+func (e GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError) ErrorName() string {
+	return "GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sGetPaymentChannelFinancialSubProfileOverTimeResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = GetPaymentChannelFinancialSubProfileOverTimeResponseValidationError{}

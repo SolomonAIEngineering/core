@@ -28,6 +28,10 @@ export const EarningType = {
 export type EarningType = typeof EarningType[keyof typeof EarningType];
 
 
+export function instanceOfEarningType(value: any): boolean {
+    return Object.values(EarningType).includes(value);
+}
+
 export function EarningTypeFromJSON(json: any): EarningType {
     return EarningTypeFromJSONTyped(json, false);
 }

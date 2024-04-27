@@ -3303,6 +3303,59 @@
         ]
       }
     },
+    "/financial-microservice/api/v1/manual-linked-account/transactions": {
+      "post": {
+        "summary": "Adds transactions to a manually linked account",
+        "description": "This endpoint adds transactions to a manually linked account",
+        "operationId": "AddTransactionsToManuallyLinkedAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/AddTransactionsToManuallyLinkedAccountResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "description": "Add transactions to an account.",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/AddTransactionsToManuallyLinkedAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "financial-service"
+        ]
+      }
+    },
     "/financial-microservice/api/v1/milestone": {
       "post": {
         "summary": "create a milestone",
@@ -6734,6 +6787,31 @@
       },
       "description": "Account Balance History\nThis message is used to represent the balance history of an account."
     },
+    "AccountStatements": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "plaidStatementId": {
+          "type": "string"
+        },
+        "month": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "year": {
+          "type": "string",
+          "format": "uint64"
+        },
+        "statementPdfUrl": {
+          "type": "string",
+          "title": "statement pdf url as stored in s3"
+        }
+      },
+      "title": "AccountStatements is a set of statements tied to an account"
+    },
     "ActionableInsight": {
       "type": "object",
       "properties": {
@@ -6923,6 +7001,52 @@
       },
       "title": "AddNoteToTransactionResponse is the responsed obtained after we add a note to a transaction"
     },
+    "AddTransactionsToManuallyLinkedAccountRequest": {
+      "type": "object",
+      "properties": {
+        "accountId": {
+          "type": "string",
+          "format": "uint64",
+          "title": "The account id.\nValidations:\n- account_id must be greater than 0"
+        },
+        "transactions": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/PlaidAccountTransaction"
+          },
+          "title": "The transactions to add.\nValidations:\n- cannot be nil hence required\n- must have at least 1 item and at most 400 items"
+        },
+        "profileType": {
+          "$ref": "#/definitions/FinancialUserProfileType",
+          "description": "The financial user profile type.\nRequired field."
+        },
+        "financialAccountType": {
+          "$ref": "#/definitions/FinancialAccountType",
+          "description": "The financial account type."
+        },
+        "userId": {
+          "type": "string",
+          "title": "The user id.\nValidations:\n- user_id must have a minimum length of 1 character"
+        }
+      },
+      "description": "Add transactions to an account.",
+      "required": [
+        "accountId",
+        "transactions",
+        "profileType",
+        "userId"
+      ]
+    },
+    "AddTransactionsToManuallyLinkedAccountResponse": {
+      "type": "object",
+      "properties": {
+        "succes": {
+          "type": "boolean",
+          "title": "The account"
+        }
+      }
+    },
     "Any": {
       "type": "object",
       "properties": {
@@ -7028,6 +7152,14 @@
             "$ref": "#/definitions/PlaidAccountRecurringTransaction"
           },
           "title": "the set of subscriptions tied to this account"
+        },
+        "statements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/AccountStatements"
+          },
+          "title": "the set of statements tied to this account"
         }
       },
       "required": [
@@ -7632,6 +7764,14 @@
             "$ref": "#/definitions/Pocket"
           },
           "title": "set of pockets tied to this account"
+        },
+        "statements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/AccountStatements"
+          },
+          "title": "the set of statements tied to this account"
         }
       }
     },
@@ -8985,6 +9125,14 @@
             "$ref": "#/definitions/PlaidAccountInvestmentTransaction"
           },
           "title": "the set of transactions tied to this account"
+        },
+        "statements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/AccountStatements"
+          },
+          "title": "the set of statements tied to this account"
         }
       }
     },
@@ -9744,6 +9892,14 @@
         "status": {
           "$ref": "#/definitions/BankAccountStatus",
           "title": "the bank account status"
+        },
+        "statements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/AccountStatements"
+          },
+          "title": "the set of statements tied to this account"
         }
       }
     },
@@ -11027,6 +11183,14 @@
         "status": {
           "$ref": "#/definitions/BankAccountStatus",
           "title": "the bank account status"
+        },
+        "statements": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/AccountStatements"
+          },
+          "title": "the set of statements tied to this account"
         }
       }
     },

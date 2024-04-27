@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -32,9 +32,7 @@ export interface Any {
  * Check if a given object implements the Any interface.
  */
 export function instanceOfAny(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function AnyFromJSON(json: any): Any {
@@ -42,27 +40,24 @@ export function AnyFromJSON(json: any): Any {
 }
 
 export function AnyFromJSONTyped(json: any, ignoreDiscriminator: boolean): Any {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
             ...json,
-        'type': !exists(json, '@type') ? undefined : json['@type'],
+        'type': json['@type'] == null ? undefined : json['@type'],
     };
 }
 
 export function AnyToJSON(value?: Any | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
             ...value,
-        '@type': value.type,
+        '@type': value['type'],
     };
 }
 

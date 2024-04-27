@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PocketType } from './PocketType';
 import {
     PocketTypeFromJSON,
@@ -62,9 +62,7 @@ export interface Pocket {
  * Check if a given object implements the Pocket interface.
  */
 export function instanceOfPocket(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PocketFromJSON(json: any): Pocket {
@@ -72,31 +70,28 @@ export function PocketFromJSON(json: any): Pocket {
 }
 
 export function PocketFromJSONTyped(json: any, ignoreDiscriminator: boolean): Pocket {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'goals': !exists(json, 'goals') ? undefined : ((json['goals'] as Array<any>).map(SmartGoalFromJSON)),
-        'type': !exists(json, 'type') ? undefined : PocketTypeFromJSON(json['type']),
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'goals': json['goals'] == null ? undefined : ((json['goals'] as Array<any>).map(SmartGoalFromJSON)),
+        'type': json['type'] == null ? undefined : PocketTypeFromJSON(json['type']),
+        'tags': json['tags'] == null ? undefined : json['tags'],
     };
 }
 
 export function PocketToJSON(value?: Pocket | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'goals': value.goals === undefined ? undefined : ((value.goals as Array<any>).map(SmartGoalToJSON)),
-        'type': PocketTypeToJSON(value.type),
-        'tags': value.tags,
+        'id': value['id'],
+        'goals': value['goals'] == null ? undefined : ((value['goals'] as Array<any>).map(SmartGoalToJSON)),
+        'type': PocketTypeToJSON(value['type']),
+        'tags': value['tags'],
     };
 }
 

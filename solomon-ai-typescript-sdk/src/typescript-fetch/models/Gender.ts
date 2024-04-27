@@ -30,6 +30,10 @@ export const Gender = {
 export type Gender = typeof Gender[keyof typeof Gender];
 
 
+export function instanceOfGender(value: any): boolean {
+    return Object.values(Gender).includes(value);
+}
+
 export function GenderFromJSON(json: any): Gender {
     return GenderFromJSONTyped(json, false);
 }

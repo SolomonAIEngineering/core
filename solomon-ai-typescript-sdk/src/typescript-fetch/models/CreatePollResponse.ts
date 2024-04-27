@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface CreatePollResponse {
  * Check if a given object implements the CreatePollResponse interface.
  */
 export function instanceOfCreatePollResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreatePollResponseFromJSON(json: any): CreatePollResponse {
@@ -41,25 +39,22 @@ export function CreatePollResponseFromJSON(json: any): CreatePollResponse {
 }
 
 export function CreatePollResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreatePollResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'pollId': !exists(json, 'pollId') ? undefined : json['pollId'],
+        'pollId': json['pollId'] == null ? undefined : json['pollId'],
     };
 }
 
 export function CreatePollResponseToJSON(value?: CreatePollResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'pollId': value.pollId,
+        'pollId': value['pollId'],
     };
 }
 

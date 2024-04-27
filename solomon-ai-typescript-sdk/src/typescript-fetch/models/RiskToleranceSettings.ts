@@ -26,6 +26,10 @@ export const RiskToleranceSettings = {
 export type RiskToleranceSettings = typeof RiskToleranceSettings[keyof typeof RiskToleranceSettings];
 
 
+export function instanceOfRiskToleranceSettings(value: any): boolean {
+    return Object.values(RiskToleranceSettings).includes(value);
+}
+
 export function RiskToleranceSettingsFromJSON(json: any): RiskToleranceSettings {
     return RiskToleranceSettingsFromJSONTyped(json, false);
 }

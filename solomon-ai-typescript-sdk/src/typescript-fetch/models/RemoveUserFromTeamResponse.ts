@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Team } from './Team';
 import {
     TeamFromJSON,
@@ -38,9 +38,7 @@ export interface RemoveUserFromTeamResponse {
  * Check if a given object implements the RemoveUserFromTeamResponse interface.
  */
 export function instanceOfRemoveUserFromTeamResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function RemoveUserFromTeamResponseFromJSON(json: any): RemoveUserFromTeamResponse {
@@ -48,25 +46,22 @@ export function RemoveUserFromTeamResponseFromJSON(json: any): RemoveUserFromTea
 }
 
 export function RemoveUserFromTeamResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): RemoveUserFromTeamResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'team': !exists(json, 'team') ? undefined : TeamFromJSON(json['team']),
+        'team': json['team'] == null ? undefined : TeamFromJSON(json['team']),
     };
 }
 
 export function RemoveUserFromTeamResponseToJSON(value?: RemoveUserFromTeamResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'team': TeamToJSON(value.team),
+        'team': TeamToJSON(value['team']),
     };
 }
 

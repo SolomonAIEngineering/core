@@ -26,6 +26,10 @@ export const MediaResize = {
 export type MediaResize = typeof MediaResize[keyof typeof MediaResize];
 
 
+export function instanceOfMediaResize(value: any): boolean {
+    return Object.values(MediaResize).includes(value);
+}
+
 export function MediaResizeFromJSON(json: any): MediaResize {
     return MediaResizeFromJSONTyped(json, false);
 }

@@ -35,6 +35,10 @@ export const PayPeriod = {
 export type PayPeriod = typeof PayPeriod[keyof typeof PayPeriod];
 
 
+export function instanceOfPayPeriod(value: any): boolean {
+    return Object.values(PayPeriod).includes(value);
+}
+
 export function PayPeriodFromJSON(json: any): PayPeriod {
     return PayPeriodFromJSONTyped(json, false);
 }

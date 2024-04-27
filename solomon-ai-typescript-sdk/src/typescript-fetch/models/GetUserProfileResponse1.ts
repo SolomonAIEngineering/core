@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfile } from './FinancialUserProfile';
 import {
     FinancialUserProfileFromJSON,
@@ -50,10 +50,8 @@ export interface GetUserProfileResponse1 {
  * Check if a given object implements the GetUserProfileResponse1 interface.
  */
 export function instanceOfGetUserProfileResponse1(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "financialContext" in value;
-
-    return isInstance;
+    if (!('financialContext' in value)) return false;
+    return true;
 }
 
 export function GetUserProfileResponse1FromJSON(json: any): GetUserProfileResponse1 {
@@ -61,27 +59,24 @@ export function GetUserProfileResponse1FromJSON(json: any): GetUserProfileRespon
 }
 
 export function GetUserProfileResponse1FromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUserProfileResponse1 {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'profile': !exists(json, 'profile') ? undefined : FinancialUserProfileFromJSON(json['profile']),
+        'profile': json['profile'] == null ? undefined : FinancialUserProfileFromJSON(json['profile']),
         'financialContext': MelodyFinancialContextFromJSON(json['financialContext']),
     };
 }
 
 export function GetUserProfileResponse1ToJSON(value?: GetUserProfileResponse1 | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'profile': FinancialUserProfileToJSON(value.profile),
-        'financialContext': MelodyFinancialContextToJSON(value.financialContext),
+        'profile': FinancialUserProfileToJSON(value['profile']),
+        'financialContext': MelodyFinancialContextToJSON(value['financialContext']),
     };
 }
 

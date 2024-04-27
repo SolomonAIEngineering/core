@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -63,9 +63,7 @@ export interface CategoryMonthlyIncome {
  * Check if a given object implements the CategoryMonthlyIncome interface.
  */
 export function instanceOfCategoryMonthlyIncome(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CategoryMonthlyIncomeFromJSON(json: any): CategoryMonthlyIncome {
@@ -73,33 +71,30 @@ export function CategoryMonthlyIncomeFromJSON(json: any): CategoryMonthlyIncome 
 }
 
 export function CategoryMonthlyIncomeFromJSONTyped(json: any, ignoreDiscriminator: boolean): CategoryMonthlyIncome {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'month': !exists(json, 'month') ? undefined : json['month'],
-        'personalFinanceCategoryPrimary': !exists(json, 'personalFinanceCategoryPrimary') ? undefined : json['personalFinanceCategoryPrimary'],
-        'totalIncome': !exists(json, 'totalIncome') ? undefined : json['totalIncome'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'month': json['month'] == null ? undefined : json['month'],
+        'personalFinanceCategoryPrimary': json['personalFinanceCategoryPrimary'] == null ? undefined : json['personalFinanceCategoryPrimary'],
+        'totalIncome': json['totalIncome'] == null ? undefined : json['totalIncome'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function CategoryMonthlyIncomeToJSON(value?: CategoryMonthlyIncome | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'month': value.month,
-        'personalFinanceCategoryPrimary': value.personalFinanceCategoryPrimary,
-        'totalIncome': value.totalIncome,
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'month': value['month'],
+        'personalFinanceCategoryPrimary': value['personalFinanceCategoryPrimary'],
+        'totalIncome': value['totalIncome'],
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CommentReply } from './CommentReply';
 import {
     CommentReplyFromJSON,
@@ -50,10 +50,8 @@ export interface CreateCommentReplyBody {
  * Check if a given object implements the CreateCommentReplyBody interface.
  */
 export function instanceOfCreateCommentReplyBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "postType" in value;
-
-    return isInstance;
+    if (!('postType' in value)) return false;
+    return true;
 }
 
 export function CreateCommentReplyBodyFromJSON(json: any): CreateCommentReplyBody {
@@ -61,27 +59,24 @@ export function CreateCommentReplyBodyFromJSON(json: any): CreateCommentReplyBod
 }
 
 export function CreateCommentReplyBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateCommentReplyBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'reply': !exists(json, 'reply') ? undefined : CommentReplyFromJSON(json['reply']),
+        'reply': json['reply'] == null ? undefined : CommentReplyFromJSON(json['reply']),
         'postType': PostTypeFromJSON(json['postType']),
     };
 }
 
 export function CreateCommentReplyBodyToJSON(value?: CreateCommentReplyBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'reply': CommentReplyToJSON(value.reply),
-        'postType': PostTypeToJSON(value.postType),
+        'reply': CommentReplyToJSON(value['reply']),
+        'postType': PostTypeToJSON(value['postType']),
     };
 }
 

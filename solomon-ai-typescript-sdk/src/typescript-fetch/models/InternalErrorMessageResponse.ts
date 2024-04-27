@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { InternalErrorCode } from './InternalErrorCode';
 import {
     InternalErrorCodeFromJSON,
@@ -44,9 +44,7 @@ export interface InternalErrorMessageResponse {
  * Check if a given object implements the InternalErrorMessageResponse interface.
  */
 export function instanceOfInternalErrorMessageResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function InternalErrorMessageResponseFromJSON(json: any): InternalErrorMessageResponse {
@@ -54,27 +52,24 @@ export function InternalErrorMessageResponseFromJSON(json: any): InternalErrorMe
 }
 
 export function InternalErrorMessageResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): InternalErrorMessageResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'code': !exists(json, 'code') ? undefined : InternalErrorCodeFromJSON(json['code']),
-        'message': !exists(json, 'message') ? undefined : json['message'],
+        'code': json['code'] == null ? undefined : InternalErrorCodeFromJSON(json['code']),
+        'message': json['message'] == null ? undefined : json['message'],
     };
 }
 
 export function InternalErrorMessageResponseToJSON(value?: InternalErrorMessageResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'code': InternalErrorCodeToJSON(value.code),
-        'message': value.message,
+        'code': InternalErrorCodeToJSON(value['code']),
+        'message': value['message'],
     };
 }
 

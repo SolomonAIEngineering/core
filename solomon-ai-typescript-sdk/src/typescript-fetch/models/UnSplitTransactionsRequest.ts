@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,10 +31,8 @@ export interface UnSplitTransactionsRequest {
  * Check if a given object implements the UnSplitTransactionsRequest interface.
  */
 export function instanceOfUnSplitTransactionsRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "transactionId" in value;
-
-    return isInstance;
+    if (!('transactionId' in value)) return false;
+    return true;
 }
 
 export function UnSplitTransactionsRequestFromJSON(json: any): UnSplitTransactionsRequest {
@@ -42,7 +40,7 @@ export function UnSplitTransactionsRequestFromJSON(json: any): UnSplitTransactio
 }
 
 export function UnSplitTransactionsRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): UnSplitTransactionsRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -52,15 +50,12 @@ export function UnSplitTransactionsRequestFromJSONTyped(json: any, ignoreDiscrim
 }
 
 export function UnSplitTransactionsRequestToJSON(value?: UnSplitTransactionsRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transactionId': value.transactionId,
+        'transactionId': value['transactionId'],
     };
 }
 

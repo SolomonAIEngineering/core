@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { AccountType } from './AccountType';
 import {
     AccountTypeFromJSON,
@@ -104,12 +104,10 @@ export interface Note {
  * Check if a given object implements the Note interface.
  */
 export function instanceOfNote(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "content" in value;
-    isInstance = isInstance && "authorUserName" in value;
-    isInstance = isInstance && "authorProfileImage" in value;
-
-    return isInstance;
+    if (!('content' in value)) return false;
+    if (!('authorUserName' in value)) return false;
+    if (!('authorProfileImage' in value)) return false;
+    return true;
 }
 
 export function NoteFromJSON(json: any): Note {
@@ -117,45 +115,42 @@ export function NoteFromJSON(json: any): Note {
 }
 
 export function NoteFromJSONTyped(json: any, ignoreDiscriminator: boolean): Note {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'backendPlatformUserId': !exists(json, 'backendPlatformUserId') ? undefined : json['backendPlatformUserId'],
-        'profileId': !exists(json, 'profileId') ? undefined : json['profileId'],
-        'media': !exists(json, 'media') ? undefined : MediaFromJSON(json['media']),
-        'mentions': !exists(json, 'mentions') ? undefined : json['mentions'],
-        'hashtags': !exists(json, 'hashtags') ? undefined : json['hashtags'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : json['createdAt'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'backendPlatformUserId': json['backendPlatformUserId'] == null ? undefined : json['backendPlatformUserId'],
+        'profileId': json['profileId'] == null ? undefined : json['profileId'],
+        'media': json['media'] == null ? undefined : MediaFromJSON(json['media']),
+        'mentions': json['mentions'] == null ? undefined : json['mentions'],
+        'hashtags': json['hashtags'] == null ? undefined : json['hashtags'],
+        'createdAt': json['createdAt'] == null ? undefined : json['createdAt'],
         'content': json['content'],
-        'authorAccountType': !exists(json, 'authorAccountType') ? undefined : AccountTypeFromJSON(json['authorAccountType']),
+        'authorAccountType': json['authorAccountType'] == null ? undefined : AccountTypeFromJSON(json['authorAccountType']),
         'authorUserName': json['authorUserName'],
         'authorProfileImage': json['authorProfileImage'],
     };
 }
 
 export function NoteToJSON(value?: Note | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'backendPlatformUserId': value.backendPlatformUserId,
-        'profileId': value.profileId,
-        'media': MediaToJSON(value.media),
-        'mentions': value.mentions,
-        'hashtags': value.hashtags,
-        'createdAt': value.createdAt,
-        'content': value.content,
-        'authorAccountType': AccountTypeToJSON(value.authorAccountType),
-        'authorUserName': value.authorUserName,
-        'authorProfileImage': value.authorProfileImage,
+        'id': value['id'],
+        'backendPlatformUserId': value['backendPlatformUserId'],
+        'profileId': value['profileId'],
+        'media': MediaToJSON(value['media']),
+        'mentions': value['mentions'],
+        'hashtags': value['hashtags'],
+        'createdAt': value['createdAt'],
+        'content': value['content'],
+        'authorAccountType': AccountTypeToJSON(value['authorAccountType']),
+        'authorUserName': value['authorUserName'],
+        'authorProfileImage': value['authorProfileImage'],
     };
 }
 

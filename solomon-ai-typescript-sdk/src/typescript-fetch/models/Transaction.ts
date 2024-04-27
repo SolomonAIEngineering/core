@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Any1 } from './Any1';
 import {
     Any1FromJSON,
@@ -302,9 +302,7 @@ export interface Transaction {
  * Check if a given object implements the Transaction interface.
  */
 export function instanceOfTransaction(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function TransactionFromJSON(json: any): Transaction {
@@ -312,111 +310,108 @@ export function TransactionFromJSON(json: any): Transaction {
 }
 
 export function TransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Transaction {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'accountId': !exists(json, 'accountId') ? undefined : json['accountId'],
-        'amount': !exists(json, 'amount') ? undefined : json['amount'],
-        'isoCurrencyCode': !exists(json, 'isoCurrencyCode') ? undefined : json['isoCurrencyCode'],
-        'unofficialCurrencyCode': !exists(json, 'unofficialCurrencyCode') ? undefined : json['unofficialCurrencyCode'],
-        'categoryId': !exists(json, 'categoryId') ? undefined : json['categoryId'],
-        'checkNumber': !exists(json, 'checkNumber') ? undefined : json['checkNumber'],
-        'currentDate': !exists(json, 'currentDate') ? undefined : json['currentDate'],
-        'currentDatetime': !exists(json, 'currentDatetime') ? undefined : json['currentDatetime'],
-        'authorizedDate': !exists(json, 'authorizedDate') ? undefined : json['authorizedDate'],
-        'authorizedDatetime': !exists(json, 'authorizedDatetime') ? undefined : json['authorizedDatetime'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'merchantName': !exists(json, 'merchantName') ? undefined : json['merchantName'],
-        'paymentChannel': !exists(json, 'paymentChannel') ? undefined : json['paymentChannel'],
-        'pending': !exists(json, 'pending') ? undefined : json['pending'],
-        'pendingTransactionId': !exists(json, 'pendingTransactionId') ? undefined : json['pendingTransactionId'],
-        'accountOwner': !exists(json, 'accountOwner') ? undefined : json['accountOwner'],
-        'transactionId': !exists(json, 'transactionId') ? undefined : json['transactionId'],
-        'transactionCode': !exists(json, 'transactionCode') ? undefined : json['transactionCode'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'linkId': !exists(json, 'linkId') ? undefined : json['linkId'],
-        'sign': !exists(json, 'sign') ? undefined : json['sign'],
-        'personalFinanceCategoryPrimary': !exists(json, 'personalFinanceCategoryPrimary') ? undefined : json['personalFinanceCategoryPrimary'],
-        'personalFinanceCategoryDetailed': !exists(json, 'personalFinanceCategoryDetailed') ? undefined : json['personalFinanceCategoryDetailed'],
-        'locationAddress': !exists(json, 'locationAddress') ? undefined : json['locationAddress'],
-        'locationCity': !exists(json, 'locationCity') ? undefined : json['locationCity'],
-        'locationRegion': !exists(json, 'locationRegion') ? undefined : json['locationRegion'],
-        'locationPostalCode': !exists(json, 'locationPostalCode') ? undefined : json['locationPostalCode'],
-        'locationCountry': !exists(json, 'locationCountry') ? undefined : json['locationCountry'],
-        'locationLat': !exists(json, 'locationLat') ? undefined : json['locationLat'],
-        'locationLon': !exists(json, 'locationLon') ? undefined : json['locationLon'],
-        'locationStoreNumber': !exists(json, 'locationStoreNumber') ? undefined : json['locationStoreNumber'],
-        'paymentMetaByOrderOf': !exists(json, 'paymentMetaByOrderOf') ? undefined : json['paymentMetaByOrderOf'],
-        'paymentMetaPayee': !exists(json, 'paymentMetaPayee') ? undefined : json['paymentMetaPayee'],
-        'paymentMetaPayer': !exists(json, 'paymentMetaPayer') ? undefined : json['paymentMetaPayer'],
-        'paymentMetaPaymentMethod': !exists(json, 'paymentMetaPaymentMethod') ? undefined : json['paymentMetaPaymentMethod'],
-        'paymentMetaPaymentProcessor': !exists(json, 'paymentMetaPaymentProcessor') ? undefined : json['paymentMetaPaymentProcessor'],
-        'paymentMetaPpdId': !exists(json, 'paymentMetaPpdId') ? undefined : json['paymentMetaPpdId'],
-        'paymentMetaReason': !exists(json, 'paymentMetaReason') ? undefined : json['paymentMetaReason'],
-        'paymentMetaReferenceNumber': !exists(json, 'paymentMetaReferenceNumber') ? undefined : json['paymentMetaReferenceNumber'],
-        'time': !exists(json, 'time') ? undefined : (new Date(json['time'])),
-        'additionalProperties': !exists(json, 'additionalProperties') ? undefined : Any1FromJSON(json['additionalProperties']),
-        'categories': !exists(json, 'categories') ? undefined : json['categories'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'accountId': json['accountId'] == null ? undefined : json['accountId'],
+        'amount': json['amount'] == null ? undefined : json['amount'],
+        'isoCurrencyCode': json['isoCurrencyCode'] == null ? undefined : json['isoCurrencyCode'],
+        'unofficialCurrencyCode': json['unofficialCurrencyCode'] == null ? undefined : json['unofficialCurrencyCode'],
+        'categoryId': json['categoryId'] == null ? undefined : json['categoryId'],
+        'checkNumber': json['checkNumber'] == null ? undefined : json['checkNumber'],
+        'currentDate': json['currentDate'] == null ? undefined : json['currentDate'],
+        'currentDatetime': json['currentDatetime'] == null ? undefined : json['currentDatetime'],
+        'authorizedDate': json['authorizedDate'] == null ? undefined : json['authorizedDate'],
+        'authorizedDatetime': json['authorizedDatetime'] == null ? undefined : json['authorizedDatetime'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'merchantName': json['merchantName'] == null ? undefined : json['merchantName'],
+        'paymentChannel': json['paymentChannel'] == null ? undefined : json['paymentChannel'],
+        'pending': json['pending'] == null ? undefined : json['pending'],
+        'pendingTransactionId': json['pendingTransactionId'] == null ? undefined : json['pendingTransactionId'],
+        'accountOwner': json['accountOwner'] == null ? undefined : json['accountOwner'],
+        'transactionId': json['transactionId'] == null ? undefined : json['transactionId'],
+        'transactionCode': json['transactionCode'] == null ? undefined : json['transactionCode'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'linkId': json['linkId'] == null ? undefined : json['linkId'],
+        'sign': json['sign'] == null ? undefined : json['sign'],
+        'personalFinanceCategoryPrimary': json['personalFinanceCategoryPrimary'] == null ? undefined : json['personalFinanceCategoryPrimary'],
+        'personalFinanceCategoryDetailed': json['personalFinanceCategoryDetailed'] == null ? undefined : json['personalFinanceCategoryDetailed'],
+        'locationAddress': json['locationAddress'] == null ? undefined : json['locationAddress'],
+        'locationCity': json['locationCity'] == null ? undefined : json['locationCity'],
+        'locationRegion': json['locationRegion'] == null ? undefined : json['locationRegion'],
+        'locationPostalCode': json['locationPostalCode'] == null ? undefined : json['locationPostalCode'],
+        'locationCountry': json['locationCountry'] == null ? undefined : json['locationCountry'],
+        'locationLat': json['locationLat'] == null ? undefined : json['locationLat'],
+        'locationLon': json['locationLon'] == null ? undefined : json['locationLon'],
+        'locationStoreNumber': json['locationStoreNumber'] == null ? undefined : json['locationStoreNumber'],
+        'paymentMetaByOrderOf': json['paymentMetaByOrderOf'] == null ? undefined : json['paymentMetaByOrderOf'],
+        'paymentMetaPayee': json['paymentMetaPayee'] == null ? undefined : json['paymentMetaPayee'],
+        'paymentMetaPayer': json['paymentMetaPayer'] == null ? undefined : json['paymentMetaPayer'],
+        'paymentMetaPaymentMethod': json['paymentMetaPaymentMethod'] == null ? undefined : json['paymentMetaPaymentMethod'],
+        'paymentMetaPaymentProcessor': json['paymentMetaPaymentProcessor'] == null ? undefined : json['paymentMetaPaymentProcessor'],
+        'paymentMetaPpdId': json['paymentMetaPpdId'] == null ? undefined : json['paymentMetaPpdId'],
+        'paymentMetaReason': json['paymentMetaReason'] == null ? undefined : json['paymentMetaReason'],
+        'paymentMetaReferenceNumber': json['paymentMetaReferenceNumber'] == null ? undefined : json['paymentMetaReferenceNumber'],
+        'time': json['time'] == null ? undefined : (new Date(json['time'])),
+        'additionalProperties': json['additionalProperties'] == null ? undefined : Any1FromJSON(json['additionalProperties']),
+        'categories': json['categories'] == null ? undefined : json['categories'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function TransactionToJSON(value?: Transaction | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'accountId': value.accountId,
-        'amount': value.amount,
-        'isoCurrencyCode': value.isoCurrencyCode,
-        'unofficialCurrencyCode': value.unofficialCurrencyCode,
-        'categoryId': value.categoryId,
-        'checkNumber': value.checkNumber,
-        'currentDate': value.currentDate,
-        'currentDatetime': value.currentDatetime,
-        'authorizedDate': value.authorizedDate,
-        'authorizedDatetime': value.authorizedDatetime,
-        'name': value.name,
-        'merchantName': value.merchantName,
-        'paymentChannel': value.paymentChannel,
-        'pending': value.pending,
-        'pendingTransactionId': value.pendingTransactionId,
-        'accountOwner': value.accountOwner,
-        'transactionId': value.transactionId,
-        'transactionCode': value.transactionCode,
-        'id': value.id,
-        'userId': value.userId,
-        'linkId': value.linkId,
-        'sign': value.sign,
-        'personalFinanceCategoryPrimary': value.personalFinanceCategoryPrimary,
-        'personalFinanceCategoryDetailed': value.personalFinanceCategoryDetailed,
-        'locationAddress': value.locationAddress,
-        'locationCity': value.locationCity,
-        'locationRegion': value.locationRegion,
-        'locationPostalCode': value.locationPostalCode,
-        'locationCountry': value.locationCountry,
-        'locationLat': value.locationLat,
-        'locationLon': value.locationLon,
-        'locationStoreNumber': value.locationStoreNumber,
-        'paymentMetaByOrderOf': value.paymentMetaByOrderOf,
-        'paymentMetaPayee': value.paymentMetaPayee,
-        'paymentMetaPayer': value.paymentMetaPayer,
-        'paymentMetaPaymentMethod': value.paymentMetaPaymentMethod,
-        'paymentMetaPaymentProcessor': value.paymentMetaPaymentProcessor,
-        'paymentMetaPpdId': value.paymentMetaPpdId,
-        'paymentMetaReason': value.paymentMetaReason,
-        'paymentMetaReferenceNumber': value.paymentMetaReferenceNumber,
-        'time': value.time === undefined ? undefined : (value.time.toISOString()),
-        'additionalProperties': Any1ToJSON(value.additionalProperties),
-        'categories': value.categories,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'accountId': value['accountId'],
+        'amount': value['amount'],
+        'isoCurrencyCode': value['isoCurrencyCode'],
+        'unofficialCurrencyCode': value['unofficialCurrencyCode'],
+        'categoryId': value['categoryId'],
+        'checkNumber': value['checkNumber'],
+        'currentDate': value['currentDate'],
+        'currentDatetime': value['currentDatetime'],
+        'authorizedDate': value['authorizedDate'],
+        'authorizedDatetime': value['authorizedDatetime'],
+        'name': value['name'],
+        'merchantName': value['merchantName'],
+        'paymentChannel': value['paymentChannel'],
+        'pending': value['pending'],
+        'pendingTransactionId': value['pendingTransactionId'],
+        'accountOwner': value['accountOwner'],
+        'transactionId': value['transactionId'],
+        'transactionCode': value['transactionCode'],
+        'id': value['id'],
+        'userId': value['userId'],
+        'linkId': value['linkId'],
+        'sign': value['sign'],
+        'personalFinanceCategoryPrimary': value['personalFinanceCategoryPrimary'],
+        'personalFinanceCategoryDetailed': value['personalFinanceCategoryDetailed'],
+        'locationAddress': value['locationAddress'],
+        'locationCity': value['locationCity'],
+        'locationRegion': value['locationRegion'],
+        'locationPostalCode': value['locationPostalCode'],
+        'locationCountry': value['locationCountry'],
+        'locationLat': value['locationLat'],
+        'locationLon': value['locationLon'],
+        'locationStoreNumber': value['locationStoreNumber'],
+        'paymentMetaByOrderOf': value['paymentMetaByOrderOf'],
+        'paymentMetaPayee': value['paymentMetaPayee'],
+        'paymentMetaPayer': value['paymentMetaPayer'],
+        'paymentMetaPaymentMethod': value['paymentMetaPaymentMethod'],
+        'paymentMetaPaymentProcessor': value['paymentMetaPaymentProcessor'],
+        'paymentMetaPpdId': value['paymentMetaPpdId'],
+        'paymentMetaReason': value['paymentMetaReason'],
+        'paymentMetaReferenceNumber': value['paymentMetaReferenceNumber'],
+        'time': value['time'] == null ? undefined : ((value['time']).toISOString()),
+        'additionalProperties': Any1ToJSON(value['additionalProperties']),
+        'categories': value['categories'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

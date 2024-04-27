@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -43,10 +43,8 @@ export interface PlaidExchangeTokenResponse {
  * Check if a given object implements the PlaidExchangeTokenResponse interface.
  */
 export function instanceOfPlaidExchangeTokenResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "success" in value;
-
-    return isInstance;
+    if (!('success' in value)) return false;
+    return true;
 }
 
 export function PlaidExchangeTokenResponseFromJSON(json: any): PlaidExchangeTokenResponse {
@@ -54,29 +52,26 @@ export function PlaidExchangeTokenResponseFromJSON(json: any): PlaidExchangeToke
 }
 
 export function PlaidExchangeTokenResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlaidExchangeTokenResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'success': json['success'],
-        'workflowId': !exists(json, 'workflowId') ? undefined : json['workflowId'],
-        'runId': !exists(json, 'runId') ? undefined : json['runId'],
+        'workflowId': json['workflowId'] == null ? undefined : json['workflowId'],
+        'runId': json['runId'] == null ? undefined : json['runId'],
     };
 }
 
 export function PlaidExchangeTokenResponseToJSON(value?: PlaidExchangeTokenResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'success': value.success,
-        'workflowId': value.workflowId,
-        'runId': value.runId,
+        'success': value['success'],
+        'workflowId': value['workflowId'],
+        'runId': value['runId'],
     };
 }
 

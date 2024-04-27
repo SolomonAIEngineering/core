@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ReportItem } from './ReportItem';
 import {
     ReportItemFromJSON,
@@ -128,9 +128,7 @@ export interface BalanceSheet {
  * Check if a given object implements the BalanceSheet interface.
  */
 export function instanceOfBalanceSheet(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function BalanceSheetFromJSON(json: any): BalanceSheet {
@@ -138,53 +136,50 @@ export function BalanceSheetFromJSON(json: any): BalanceSheet {
 }
 
 export function BalanceSheetFromJSONTyped(json: any, ignoreDiscriminator: boolean): BalanceSheet {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'currency': !exists(json, 'currency') ? undefined : json['currency'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'date': !exists(json, 'date') ? undefined : (new Date(json['date'])),
-        'netAssets': !exists(json, 'netAssets') ? undefined : json['netAssets'],
-        'assets': !exists(json, 'assets') ? undefined : ((json['assets'] as Array<any>).map(ReportItemFromJSON)),
-        'liabilities': !exists(json, 'liabilities') ? undefined : ((json['liabilities'] as Array<any>).map(ReportItemFromJSON)),
-        'equity': !exists(json, 'equity') ? undefined : ((json['equity'] as Array<any>).map(ReportItemFromJSON)),
-        'remoteGeneratedAt': !exists(json, 'remoteGeneratedAt') ? undefined : (new Date(json['remoteGeneratedAt'])),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeRecordId': !exists(json, 'mergeRecordId') ? undefined : json['mergeRecordId'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'date': json['date'] == null ? undefined : (new Date(json['date'])),
+        'netAssets': json['netAssets'] == null ? undefined : json['netAssets'],
+        'assets': json['assets'] == null ? undefined : ((json['assets'] as Array<any>).map(ReportItemFromJSON)),
+        'liabilities': json['liabilities'] == null ? undefined : ((json['liabilities'] as Array<any>).map(ReportItemFromJSON)),
+        'equity': json['equity'] == null ? undefined : ((json['equity'] as Array<any>).map(ReportItemFromJSON)),
+        'remoteGeneratedAt': json['remoteGeneratedAt'] == null ? undefined : (new Date(json['remoteGeneratedAt'])),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeRecordId': json['mergeRecordId'] == null ? undefined : json['mergeRecordId'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
     };
 }
 
 export function BalanceSheetToJSON(value?: BalanceSheet | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'name': value.name,
-        'currency': value.currency,
-        'company': value.company,
-        'date': value.date === undefined ? undefined : (value.date.toISOString()),
-        'netAssets': value.netAssets,
-        'assets': value.assets === undefined ? undefined : ((value.assets as Array<any>).map(ReportItemToJSON)),
-        'liabilities': value.liabilities === undefined ? undefined : ((value.liabilities as Array<any>).map(ReportItemToJSON)),
-        'equity': value.equity === undefined ? undefined : ((value.equity as Array<any>).map(ReportItemToJSON)),
-        'remoteGeneratedAt': value.remoteGeneratedAt === undefined ? undefined : (value.remoteGeneratedAt.toISOString()),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeRecordId': value.mergeRecordId,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'name': value['name'],
+        'currency': value['currency'],
+        'company': value['company'],
+        'date': value['date'] == null ? undefined : ((value['date']).toISOString()),
+        'netAssets': value['netAssets'],
+        'assets': value['assets'] == null ? undefined : ((value['assets'] as Array<any>).map(ReportItemToJSON)),
+        'liabilities': value['liabilities'] == null ? undefined : ((value['liabilities'] as Array<any>).map(ReportItemToJSON)),
+        'equity': value['equity'] == null ? undefined : ((value['equity'] as Array<any>).map(ReportItemToJSON)),
+        'remoteGeneratedAt': value['remoteGeneratedAt'] == null ? undefined : ((value['remoteGeneratedAt']).toISOString()),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeRecordId': value['mergeRecordId'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
     };
 }
 

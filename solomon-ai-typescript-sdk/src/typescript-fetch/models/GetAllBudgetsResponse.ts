@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Budget } from './Budget';
 import {
     BudgetFromJSON,
@@ -38,9 +38,7 @@ export interface GetAllBudgetsResponse {
  * Check if a given object implements the GetAllBudgetsResponse interface.
  */
 export function instanceOfGetAllBudgetsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetAllBudgetsResponseFromJSON(json: any): GetAllBudgetsResponse {
@@ -48,25 +46,22 @@ export function GetAllBudgetsResponseFromJSON(json: any): GetAllBudgetsResponse 
 }
 
 export function GetAllBudgetsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetAllBudgetsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'budgets': !exists(json, 'budgets') ? undefined : ((json['budgets'] as Array<any>).map(BudgetFromJSON)),
+        'budgets': json['budgets'] == null ? undefined : ((json['budgets'] as Array<any>).map(BudgetFromJSON)),
     };
 }
 
 export function GetAllBudgetsResponseToJSON(value?: GetAllBudgetsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'budgets': value.budgets === undefined ? undefined : ((value.budgets as Array<any>).map(BudgetToJSON)),
+        'budgets': value['budgets'] == null ? undefined : ((value['budgets'] as Array<any>).map(BudgetToJSON)),
     };
 }
 

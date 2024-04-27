@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BusinessTransaction } from './BusinessTransaction';
 import {
     BusinessTransactionFromJSON,
@@ -44,9 +44,7 @@ export interface ReadBusinessTransactionsResponse {
  * Check if a given object implements the ReadBusinessTransactionsResponse interface.
  */
 export function instanceOfReadBusinessTransactionsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ReadBusinessTransactionsResponseFromJSON(json: any): ReadBusinessTransactionsResponse {
@@ -54,27 +52,24 @@ export function ReadBusinessTransactionsResponseFromJSON(json: any): ReadBusines
 }
 
 export function ReadBusinessTransactionsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReadBusinessTransactionsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'transactions': !exists(json, 'transactions') ? undefined : ((json['transactions'] as Array<any>).map(BusinessTransactionFromJSON)),
-        'nextPage': !exists(json, 'nextPage') ? undefined : json['nextPage'],
+        'transactions': json['transactions'] == null ? undefined : ((json['transactions'] as Array<any>).map(BusinessTransactionFromJSON)),
+        'nextPage': json['nextPage'] == null ? undefined : json['nextPage'],
     };
 }
 
 export function ReadBusinessTransactionsResponseToJSON(value?: ReadBusinessTransactionsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transactions': value.transactions === undefined ? undefined : ((value.transactions as Array<any>).map(BusinessTransactionToJSON)),
-        'nextPage': value.nextPage,
+        'transactions': value['transactions'] == null ? undefined : ((value['transactions'] as Array<any>).map(BusinessTransactionToJSON)),
+        'nextPage': value['nextPage'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * CreditNoteLineItem is used to represent a credit note's line items.
  * @export
@@ -115,9 +115,7 @@ export interface CreditNoteLineItem {
  * Check if a given object implements the CreditNoteLineItem interface.
  */
 export function instanceOfCreditNoteLineItem(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreditNoteLineItemFromJSON(json: any): CreditNoteLineItem {
@@ -125,53 +123,50 @@ export function CreditNoteLineItemFromJSON(json: any): CreditNoteLineItem {
 }
 
 export function CreditNoteLineItemFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreditNoteLineItem {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'quantity': !exists(json, 'quantity') ? undefined : json['quantity'],
-        'unitPrice': !exists(json, 'unitPrice') ? undefined : json['unitPrice'],
-        'taxRate': !exists(json, 'taxRate') ? undefined : json['taxRate'],
-        'totalLineAmount': !exists(json, 'totalLineAmount') ? undefined : json['totalLineAmount'],
-        'trackingCategory': !exists(json, 'trackingCategory') ? undefined : json['trackingCategory'],
-        'trackingCategories': !exists(json, 'trackingCategories') ? undefined : json['trackingCategories'],
-        'account': !exists(json, 'account') ? undefined : json['account'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'item': !exists(json, 'item') ? undefined : json['item'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'memo': !exists(json, 'memo') ? undefined : json['memo'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'quantity': json['quantity'] == null ? undefined : json['quantity'],
+        'unitPrice': json['unitPrice'] == null ? undefined : json['unitPrice'],
+        'taxRate': json['taxRate'] == null ? undefined : json['taxRate'],
+        'totalLineAmount': json['totalLineAmount'] == null ? undefined : json['totalLineAmount'],
+        'trackingCategory': json['trackingCategory'] == null ? undefined : json['trackingCategory'],
+        'trackingCategories': json['trackingCategories'] == null ? undefined : json['trackingCategories'],
+        'account': json['account'] == null ? undefined : json['account'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'item': json['item'] == null ? undefined : json['item'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'memo': json['memo'] == null ? undefined : json['memo'],
     };
 }
 
 export function CreditNoteLineItemToJSON(value?: CreditNoteLineItem | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'description': value.description,
-        'quantity': value.quantity,
-        'unitPrice': value.unitPrice,
-        'taxRate': value.taxRate,
-        'totalLineAmount': value.totalLineAmount,
-        'trackingCategory': value.trackingCategory,
-        'trackingCategories': value.trackingCategories,
-        'account': value.account,
-        'company': value.company,
-        'remoteId': value.remoteId,
-        'item': value.item,
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'memo': value.memo,
+        'id': value['id'],
+        'name': value['name'],
+        'description': value['description'],
+        'quantity': value['quantity'],
+        'unitPrice': value['unitPrice'],
+        'taxRate': value['taxRate'],
+        'totalLineAmount': value['totalLineAmount'],
+        'trackingCategory': value['trackingCategory'],
+        'trackingCategories': value['trackingCategories'],
+        'account': value['account'],
+        'company': value['company'],
+        'remoteId': value['remoteId'],
+        'item': value['item'],
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'memo': value['memo'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { StripeSubscriptionStatus } from './StripeSubscriptionStatus';
 import {
     StripeSubscriptionStatusFromJSON,
@@ -68,9 +68,7 @@ export interface StripeSubscription {
  * Check if a given object implements the StripeSubscription interface.
  */
 export function instanceOfStripeSubscription(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function StripeSubscriptionFromJSON(json: any): StripeSubscription {
@@ -78,35 +76,32 @@ export function StripeSubscriptionFromJSON(json: any): StripeSubscription {
 }
 
 export function StripeSubscriptionFromJSONTyped(json: any, ignoreDiscriminator: boolean): StripeSubscription {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'stripeSubscriptionId': !exists(json, 'stripeSubscriptionId') ? undefined : json['stripeSubscriptionId'],
-        'stripeSubscriptionStatus': !exists(json, 'stripeSubscriptionStatus') ? undefined : StripeSubscriptionStatusFromJSON(json['stripeSubscriptionStatus']),
-        'stripeSubscriptionActiveUntil': !exists(json, 'stripeSubscriptionActiveUntil') ? undefined : json['stripeSubscriptionActiveUntil'],
-        'stripeWebhookLatestTimestamp': !exists(json, 'stripeWebhookLatestTimestamp') ? undefined : json['stripeWebhookLatestTimestamp'],
-        'isTrialing': !exists(json, 'isTrialing') ? undefined : json['isTrialing'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'stripeSubscriptionId': json['stripeSubscriptionId'] == null ? undefined : json['stripeSubscriptionId'],
+        'stripeSubscriptionStatus': json['stripeSubscriptionStatus'] == null ? undefined : StripeSubscriptionStatusFromJSON(json['stripeSubscriptionStatus']),
+        'stripeSubscriptionActiveUntil': json['stripeSubscriptionActiveUntil'] == null ? undefined : json['stripeSubscriptionActiveUntil'],
+        'stripeWebhookLatestTimestamp': json['stripeWebhookLatestTimestamp'] == null ? undefined : json['stripeWebhookLatestTimestamp'],
+        'isTrialing': json['isTrialing'] == null ? undefined : json['isTrialing'],
     };
 }
 
 export function StripeSubscriptionToJSON(value?: StripeSubscription | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'stripeSubscriptionId': value.stripeSubscriptionId,
-        'stripeSubscriptionStatus': StripeSubscriptionStatusToJSON(value.stripeSubscriptionStatus),
-        'stripeSubscriptionActiveUntil': value.stripeSubscriptionActiveUntil,
-        'stripeWebhookLatestTimestamp': value.stripeWebhookLatestTimestamp,
-        'isTrialing': value.isTrialing,
+        'id': value['id'],
+        'stripeSubscriptionId': value['stripeSubscriptionId'],
+        'stripeSubscriptionStatus': StripeSubscriptionStatusToJSON(value['stripeSubscriptionStatus']),
+        'stripeSubscriptionActiveUntil': value['stripeSubscriptionActiveUntil'],
+        'stripeWebhookLatestTimestamp': value['stripeWebhookLatestTimestamp'],
+        'isTrialing': value['isTrialing'],
     };
 }
 

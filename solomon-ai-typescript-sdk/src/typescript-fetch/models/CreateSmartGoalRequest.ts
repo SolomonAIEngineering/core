@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SmartGoal } from './SmartGoal';
 import {
     SmartGoalFromJSON,
@@ -44,11 +44,9 @@ export interface CreateSmartGoalRequest {
  * Check if a given object implements the CreateSmartGoalRequest interface.
  */
 export function instanceOfCreateSmartGoalRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "pocketId" in value;
-    isInstance = isInstance && "smartGoal" in value;
-
-    return isInstance;
+    if (!('pocketId' in value)) return false;
+    if (!('smartGoal' in value)) return false;
+    return true;
 }
 
 export function CreateSmartGoalRequestFromJSON(json: any): CreateSmartGoalRequest {
@@ -56,7 +54,7 @@ export function CreateSmartGoalRequestFromJSON(json: any): CreateSmartGoalReques
 }
 
 export function CreateSmartGoalRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateSmartGoalRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function CreateSmartGoalRequestFromJSONTyped(json: any, ignoreDiscriminat
 }
 
 export function CreateSmartGoalRequestToJSON(value?: CreateSmartGoalRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'pocketId': value.pocketId,
-        'smartGoal': SmartGoalToJSON(value.smartGoal),
+        'pocketId': value['pocketId'],
+        'smartGoal': SmartGoalToJSON(value['smartGoal']),
     };
 }
 

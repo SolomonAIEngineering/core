@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface CreateBankAccountResponse {
  * Check if a given object implements the CreateBankAccountResponse interface.
  */
 export function instanceOfCreateBankAccountResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreateBankAccountResponseFromJSON(json: any): CreateBankAccountResponse {
@@ -41,25 +39,22 @@ export function CreateBankAccountResponseFromJSON(json: any): CreateBankAccountR
 }
 
 export function CreateBankAccountResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateBankAccountResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'bankAccountId': !exists(json, 'bankAccountId') ? undefined : json['bankAccountId'],
+        'bankAccountId': json['bankAccountId'] == null ? undefined : json['bankAccountId'],
     };
 }
 
 export function CreateBankAccountResponseToJSON(value?: CreateBankAccountResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'bankAccountId': value.bankAccountId,
+        'bankAccountId': value['bankAccountId'],
     };
 }
 

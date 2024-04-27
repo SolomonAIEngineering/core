@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { IncomeMetrics } from './IncomeMetrics';
 import {
     IncomeMetricsFromJSON,
@@ -44,9 +44,7 @@ export interface GetIncomeMetricsResponse {
  * Check if a given object implements the GetIncomeMetricsResponse interface.
  */
 export function instanceOfGetIncomeMetricsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetIncomeMetricsResponseFromJSON(json: any): GetIncomeMetricsResponse {
@@ -54,27 +52,24 @@ export function GetIncomeMetricsResponseFromJSON(json: any): GetIncomeMetricsRes
 }
 
 export function GetIncomeMetricsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetIncomeMetricsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'incomeMetrics': !exists(json, 'incomeMetrics') ? undefined : ((json['incomeMetrics'] as Array<any>).map(IncomeMetricsFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'incomeMetrics': json['incomeMetrics'] == null ? undefined : ((json['incomeMetrics'] as Array<any>).map(IncomeMetricsFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetIncomeMetricsResponseToJSON(value?: GetIncomeMetricsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'incomeMetrics': value.incomeMetrics === undefined ? undefined : ((value.incomeMetrics as Array<any>).map(IncomeMetricsToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'incomeMetrics': value['incomeMetrics'] == null ? undefined : ((value['incomeMetrics'] as Array<any>).map(IncomeMetricsToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ErrorCode1 } from './ErrorCode1';
 import {
     ErrorCode1FromJSON,
@@ -44,9 +44,7 @@ export interface ValidationErrorMessageResponse1 {
  * Check if a given object implements the ValidationErrorMessageResponse1 interface.
  */
 export function instanceOfValidationErrorMessageResponse1(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ValidationErrorMessageResponse1FromJSON(json: any): ValidationErrorMessageResponse1 {
@@ -54,27 +52,24 @@ export function ValidationErrorMessageResponse1FromJSON(json: any): ValidationEr
 }
 
 export function ValidationErrorMessageResponse1FromJSONTyped(json: any, ignoreDiscriminator: boolean): ValidationErrorMessageResponse1 {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'code': !exists(json, 'code') ? undefined : ErrorCode1FromJSON(json['code']),
-        'message': !exists(json, 'message') ? undefined : json['message'],
+        'code': json['code'] == null ? undefined : ErrorCode1FromJSON(json['code']),
+        'message': json['message'] == null ? undefined : json['message'],
     };
 }
 
 export function ValidationErrorMessageResponse1ToJSON(value?: ValidationErrorMessageResponse1 | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'code': ErrorCode1ToJSON(value.code),
-        'message': value.message,
+        'code': ErrorCode1ToJSON(value['code']),
+        'message': value['message'],
     };
 }
 

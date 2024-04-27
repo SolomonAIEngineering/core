@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Settings } from './Settings';
 import {
     SettingsFromJSON,
@@ -38,9 +38,7 @@ export interface GetBusinessSettingsResponse {
  * Check if a given object implements the GetBusinessSettingsResponse interface.
  */
 export function instanceOfGetBusinessSettingsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetBusinessSettingsResponseFromJSON(json: any): GetBusinessSettingsResponse {
@@ -48,25 +46,22 @@ export function GetBusinessSettingsResponseFromJSON(json: any): GetBusinessSetti
 }
 
 export function GetBusinessSettingsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetBusinessSettingsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'settings': !exists(json, 'settings') ? undefined : SettingsFromJSON(json['settings']),
+        'settings': json['settings'] == null ? undefined : SettingsFromJSON(json['settings']),
     };
 }
 
 export function GetBusinessSettingsResponseToJSON(value?: GetBusinessSettingsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'settings': SettingsToJSON(value.settings),
+        'settings': SettingsToJSON(value['settings']),
     };
 }
 

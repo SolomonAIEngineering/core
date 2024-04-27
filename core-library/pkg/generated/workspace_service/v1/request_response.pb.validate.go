@@ -4112,3 +4112,221 @@ var _ interface {
 	Cause() error
 	ErrorName() string
 } = DeleteWorkspaceResponseValidationError{}
+
+// Validate checks the field values on CreateMarkdownFileRequest with the rules
+// defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *CreateMarkdownFileRequest) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on CreateMarkdownFileRequest with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// CreateMarkdownFileRequestMultiError, or nil if none found.
+func (m *CreateMarkdownFileRequest) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *CreateMarkdownFileRequest) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for WorkspaceId
+
+	// no validation rules for FolderId
+
+	// no validation rules for Filename
+
+	// no validation rules for UserId
+
+	// no validation rules for Content
+
+	if len(errors) > 0 {
+		return CreateMarkdownFileRequestMultiError(errors)
+	}
+
+	return nil
+}
+
+// CreateMarkdownFileRequestMultiError is an error wrapping multiple validation
+// errors returned by CreateMarkdownFileRequest.ValidateAll() if the
+// designated constraints aren't met.
+type CreateMarkdownFileRequestMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m CreateMarkdownFileRequestMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m CreateMarkdownFileRequestMultiError) AllErrors() []error { return m }
+
+// CreateMarkdownFileRequestValidationError is the validation error returned by
+// CreateMarkdownFileRequest.Validate if the designated constraints aren't met.
+type CreateMarkdownFileRequestValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateMarkdownFileRequestValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateMarkdownFileRequestValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateMarkdownFileRequestValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateMarkdownFileRequestValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateMarkdownFileRequestValidationError) ErrorName() string {
+	return "CreateMarkdownFileRequestValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateMarkdownFileRequestValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateMarkdownFileRequest.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateMarkdownFileRequestValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateMarkdownFileRequestValidationError{}
+
+// Validate checks the field values on CreateMarkdownFileResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the first error encountered is returned, or nil if there are no violations.
+func (m *CreateMarkdownFileResponse) Validate() error {
+	return m.validate(false)
+}
+
+// ValidateAll checks the field values on CreateMarkdownFileResponse with the
+// rules defined in the proto definition for this message. If any rules are
+// violated, the result is a list of violation errors wrapped in
+// CreateMarkdownFileResponseMultiError, or nil if none found.
+func (m *CreateMarkdownFileResponse) ValidateAll() error {
+	return m.validate(true)
+}
+
+func (m *CreateMarkdownFileResponse) validate(all bool) error {
+	if m == nil {
+		return nil
+	}
+
+	var errors []error
+
+	// no validation rules for FileId
+
+	// no validation rules for FileUrl
+
+	if len(errors) > 0 {
+		return CreateMarkdownFileResponseMultiError(errors)
+	}
+
+	return nil
+}
+
+// CreateMarkdownFileResponseMultiError is an error wrapping multiple
+// validation errors returned by CreateMarkdownFileResponse.ValidateAll() if
+// the designated constraints aren't met.
+type CreateMarkdownFileResponseMultiError []error
+
+// Error returns a concatenation of all the error messages it wraps.
+func (m CreateMarkdownFileResponseMultiError) Error() string {
+	var msgs []string
+	for _, err := range m {
+		msgs = append(msgs, err.Error())
+	}
+	return strings.Join(msgs, "; ")
+}
+
+// AllErrors returns a list of validation violation errors.
+func (m CreateMarkdownFileResponseMultiError) AllErrors() []error { return m }
+
+// CreateMarkdownFileResponseValidationError is the validation error returned
+// by CreateMarkdownFileResponse.Validate if the designated constraints aren't met.
+type CreateMarkdownFileResponseValidationError struct {
+	field  string
+	reason string
+	cause  error
+	key    bool
+}
+
+// Field function returns field value.
+func (e CreateMarkdownFileResponseValidationError) Field() string { return e.field }
+
+// Reason function returns reason value.
+func (e CreateMarkdownFileResponseValidationError) Reason() string { return e.reason }
+
+// Cause function returns cause value.
+func (e CreateMarkdownFileResponseValidationError) Cause() error { return e.cause }
+
+// Key function returns key value.
+func (e CreateMarkdownFileResponseValidationError) Key() bool { return e.key }
+
+// ErrorName returns error name.
+func (e CreateMarkdownFileResponseValidationError) ErrorName() string {
+	return "CreateMarkdownFileResponseValidationError"
+}
+
+// Error satisfies the builtin error interface
+func (e CreateMarkdownFileResponseValidationError) Error() string {
+	cause := ""
+	if e.cause != nil {
+		cause = fmt.Sprintf(" | caused by: %v", e.cause)
+	}
+
+	key := ""
+	if e.key {
+		key = "key for "
+	}
+
+	return fmt.Sprintf(
+		"invalid %sCreateMarkdownFileResponse.%s: %s%s",
+		key,
+		e.field,
+		e.reason,
+		cause)
+}
+
+var _ error = CreateMarkdownFileResponseValidationError{}
+
+var _ interface {
+	Field() string
+	Reason() string
+	Key() bool
+	Cause() error
+	ErrorName() string
+} = CreateMarkdownFileResponseValidationError{}

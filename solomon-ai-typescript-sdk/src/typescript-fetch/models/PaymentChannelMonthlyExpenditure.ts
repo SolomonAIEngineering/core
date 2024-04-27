@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -63,9 +63,7 @@ export interface PaymentChannelMonthlyExpenditure {
  * Check if a given object implements the PaymentChannelMonthlyExpenditure interface.
  */
 export function instanceOfPaymentChannelMonthlyExpenditure(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PaymentChannelMonthlyExpenditureFromJSON(json: any): PaymentChannelMonthlyExpenditure {
@@ -73,33 +71,30 @@ export function PaymentChannelMonthlyExpenditureFromJSON(json: any): PaymentChan
 }
 
 export function PaymentChannelMonthlyExpenditureFromJSONTyped(json: any, ignoreDiscriminator: boolean): PaymentChannelMonthlyExpenditure {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'month': !exists(json, 'month') ? undefined : json['month'],
-        'paymentChannel': !exists(json, 'paymentChannel') ? undefined : json['paymentChannel'],
-        'totalSpending': !exists(json, 'totalSpending') ? undefined : json['totalSpending'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'month': json['month'] == null ? undefined : json['month'],
+        'paymentChannel': json['paymentChannel'] == null ? undefined : json['paymentChannel'],
+        'totalSpending': json['totalSpending'] == null ? undefined : json['totalSpending'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function PaymentChannelMonthlyExpenditureToJSON(value?: PaymentChannelMonthlyExpenditure | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'month': value.month,
-        'paymentChannel': value.paymentChannel,
-        'totalSpending': value.totalSpending,
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'month': value['month'],
+        'paymentChannel': value['paymentChannel'],
+        'totalSpending': value['totalSpending'],
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

@@ -61,7 +61,6 @@ message FileMetadata {
     // Type of the file (e.g., 'text', 'image', 'video').
     string file_type = 7;
 
-
     // Tags associated with the file.
     repeated string tags = 9;
 
@@ -122,6 +121,9 @@ message FileMetadata {
 
     // location of the file
     string location = 28;
+
+    // markdown content of the file which is used for markdown files
+    string markdown_content = 29;
 }
 
 // Folder Metadata

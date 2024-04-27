@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Address } from './Address';
 import {
     AddressFromJSON,
@@ -176,9 +176,7 @@ export interface UserAccount {
  * Check if a given object implements the UserAccount interface.
  */
 export function instanceOfUserAccount(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UserAccountFromJSON(json: any): UserAccount {
@@ -186,65 +184,62 @@ export function UserAccountFromJSON(json: any): UserAccount {
 }
 
 export function UserAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): UserAccount {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'email': !exists(json, 'email') ? undefined : json['email'],
-        'address': !exists(json, 'address') ? undefined : AddressFromJSON(json['address']),
-        'bio': !exists(json, 'bio') ? undefined : json['bio'],
-        'headline': !exists(json, 'headline') ? undefined : json['headline'],
-        'phoneNumber': !exists(json, 'phoneNumber') ? undefined : json['phoneNumber'],
-        'tags': !exists(json, 'tags') ? undefined : ((json['tags'] as Array<any>).map(TagsFromJSON)),
-        'authnAccountId': !exists(json, 'authnAccountId') ? undefined : json['authnAccountId'],
-        'isActive': !exists(json, 'isActive') ? undefined : json['isActive'],
-        'firstname': !exists(json, 'firstname') ? undefined : json['firstname'],
-        'lastname': !exists(json, 'lastname') ? undefined : json['lastname'],
-        'username': !exists(json, 'username') ? undefined : json['username'],
-        'isPrivate': !exists(json, 'isPrivate') ? undefined : json['isPrivate'],
-        'isEmailVerified': !exists(json, 'isEmailVerified') ? undefined : json['isEmailVerified'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'verifiedAt': !exists(json, 'verifiedAt') ? undefined : (new Date(json['verifiedAt'])),
-        'settings': !exists(json, 'settings') ? undefined : SettingsFromJSON(json['settings']),
-        'accountType': !exists(json, 'accountType') ? undefined : ProfileTypeFromJSON(json['accountType']),
-        'profileImageUrl': !exists(json, 'profileImageUrl') ? undefined : json['profileImageUrl'],
-        'auth0UserId': !exists(json, 'auth0UserId') ? undefined : json['auth0UserId'],
-        'algoliaUserId': !exists(json, 'algoliaUserId') ? undefined : json['algoliaUserId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'email': json['email'] == null ? undefined : json['email'],
+        'address': json['address'] == null ? undefined : AddressFromJSON(json['address']),
+        'bio': json['bio'] == null ? undefined : json['bio'],
+        'headline': json['headline'] == null ? undefined : json['headline'],
+        'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
+        'tags': json['tags'] == null ? undefined : ((json['tags'] as Array<any>).map(TagsFromJSON)),
+        'authnAccountId': json['authnAccountId'] == null ? undefined : json['authnAccountId'],
+        'isActive': json['isActive'] == null ? undefined : json['isActive'],
+        'firstname': json['firstname'] == null ? undefined : json['firstname'],
+        'lastname': json['lastname'] == null ? undefined : json['lastname'],
+        'username': json['username'] == null ? undefined : json['username'],
+        'isPrivate': json['isPrivate'] == null ? undefined : json['isPrivate'],
+        'isEmailVerified': json['isEmailVerified'] == null ? undefined : json['isEmailVerified'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'verifiedAt': json['verifiedAt'] == null ? undefined : (new Date(json['verifiedAt'])),
+        'settings': json['settings'] == null ? undefined : SettingsFromJSON(json['settings']),
+        'accountType': json['accountType'] == null ? undefined : ProfileTypeFromJSON(json['accountType']),
+        'profileImageUrl': json['profileImageUrl'] == null ? undefined : json['profileImageUrl'],
+        'auth0UserId': json['auth0UserId'] == null ? undefined : json['auth0UserId'],
+        'algoliaUserId': json['algoliaUserId'] == null ? undefined : json['algoliaUserId'],
     };
 }
 
 export function UserAccountToJSON(value?: UserAccount | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'email': value.email,
-        'address': AddressToJSON(value.address),
-        'bio': value.bio,
-        'headline': value.headline,
-        'phoneNumber': value.phoneNumber,
-        'tags': value.tags === undefined ? undefined : ((value.tags as Array<any>).map(TagsToJSON)),
-        'authnAccountId': value.authnAccountId,
-        'isActive': value.isActive,
-        'firstname': value.firstname,
-        'lastname': value.lastname,
-        'username': value.username,
-        'isPrivate': value.isPrivate,
-        'isEmailVerified': value.isEmailVerified,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'verifiedAt': value.verifiedAt === undefined ? undefined : (value.verifiedAt.toISOString()),
-        'settings': SettingsToJSON(value.settings),
-        'accountType': ProfileTypeToJSON(value.accountType),
-        'profileImageUrl': value.profileImageUrl,
-        'auth0UserId': value.auth0UserId,
-        'algoliaUserId': value.algoliaUserId,
+        'id': value['id'],
+        'email': value['email'],
+        'address': AddressToJSON(value['address']),
+        'bio': value['bio'],
+        'headline': value['headline'],
+        'phoneNumber': value['phoneNumber'],
+        'tags': value['tags'] == null ? undefined : ((value['tags'] as Array<any>).map(TagsToJSON)),
+        'authnAccountId': value['authnAccountId'],
+        'isActive': value['isActive'],
+        'firstname': value['firstname'],
+        'lastname': value['lastname'],
+        'username': value['username'],
+        'isPrivate': value['isPrivate'],
+        'isEmailVerified': value['isEmailVerified'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'verifiedAt': value['verifiedAt'] == null ? undefined : ((value['verifiedAt']).toISOString()),
+        'settings': SettingsToJSON(value['settings']),
+        'accountType': ProfileTypeToJSON(value['accountType']),
+        'profileImageUrl': value['profileImageUrl'],
+        'auth0UserId': value['auth0UserId'],
+        'algoliaUserId': value['algoliaUserId'],
     };
 }
 

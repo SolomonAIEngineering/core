@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -73,9 +73,7 @@ export interface Token {
  * Check if a given object implements the Token interface.
  */
 export function instanceOfToken(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function TokenFromJSON(json: any): Token {
@@ -83,39 +81,36 @@ export function TokenFromJSON(json: any): Token {
 }
 
 export function TokenFromJSONTyped(json: any, ignoreDiscriminator: boolean): Token {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'itemId': !exists(json, 'itemId') ? undefined : json['itemId'],
-        'keyId': !exists(json, 'keyId') ? undefined : json['keyId'],
-        'accessToken': !exists(json, 'accessToken') ? undefined : json['accessToken'],
-        'version': !exists(json, 'version') ? undefined : json['version'],
-        'mergeEndUserOriginId': !exists(json, 'mergeEndUserOriginId') ? undefined : json['mergeEndUserOriginId'],
-        'mergeIntegrationSlug': !exists(json, 'mergeIntegrationSlug') ? undefined : json['mergeIntegrationSlug'],
-        'lastMergeCreatedAt': !exists(json, 'lastMergeCreatedAt') ? undefined : (new Date(json['lastMergeCreatedAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'itemId': json['itemId'] == null ? undefined : json['itemId'],
+        'keyId': json['keyId'] == null ? undefined : json['keyId'],
+        'accessToken': json['accessToken'] == null ? undefined : json['accessToken'],
+        'version': json['version'] == null ? undefined : json['version'],
+        'mergeEndUserOriginId': json['mergeEndUserOriginId'] == null ? undefined : json['mergeEndUserOriginId'],
+        'mergeIntegrationSlug': json['mergeIntegrationSlug'] == null ? undefined : json['mergeIntegrationSlug'],
+        'lastMergeCreatedAt': json['lastMergeCreatedAt'] == null ? undefined : (new Date(json['lastMergeCreatedAt'])),
     };
 }
 
 export function TokenToJSON(value?: Token | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'itemId': value.itemId,
-        'keyId': value.keyId,
-        'accessToken': value.accessToken,
-        'version': value.version,
-        'mergeEndUserOriginId': value.mergeEndUserOriginId,
-        'mergeIntegrationSlug': value.mergeIntegrationSlug,
-        'lastMergeCreatedAt': value.lastMergeCreatedAt === undefined ? undefined : (value.lastMergeCreatedAt.toISOString()),
+        'id': value['id'],
+        'itemId': value['itemId'],
+        'keyId': value['keyId'],
+        'accessToken': value['accessToken'],
+        'version': value['version'],
+        'mergeEndUserOriginId': value['mergeEndUserOriginId'],
+        'mergeIntegrationSlug': value['mergeIntegrationSlug'],
+        'lastMergeCreatedAt': value['lastMergeCreatedAt'] == null ? undefined : ((value['lastMergeCreatedAt']).toISOString()),
     };
 }
 

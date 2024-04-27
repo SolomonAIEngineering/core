@@ -18,6 +18,7 @@
 | **status** | [**BankAccountStatus**](BankAccountStatus.md) |  | [optional] [default to null] |
 | **transactions** | [**List**](PlaidAccountTransaction.md) |  | [optional] [default to null] |
 | **recurringTransactions** | [**List**](PlaidAccountRecurringTransaction.md) |  | [optional] [default to null] |
+| **statements** | [**List**](AccountStatements.md) |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

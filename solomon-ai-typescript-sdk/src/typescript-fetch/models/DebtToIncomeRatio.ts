@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -57,9 +57,7 @@ export interface DebtToIncomeRatio {
  * Check if a given object implements the DebtToIncomeRatio interface.
  */
 export function instanceOfDebtToIncomeRatio(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DebtToIncomeRatioFromJSON(json: any): DebtToIncomeRatio {
@@ -67,31 +65,28 @@ export function DebtToIncomeRatioFromJSON(json: any): DebtToIncomeRatio {
 }
 
 export function DebtToIncomeRatioFromJSONTyped(json: any, ignoreDiscriminator: boolean): DebtToIncomeRatio {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'month': !exists(json, 'month') ? undefined : json['month'],
-        'ratio': !exists(json, 'ratio') ? undefined : json['ratio'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'month': json['month'] == null ? undefined : json['month'],
+        'ratio': json['ratio'] == null ? undefined : json['ratio'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function DebtToIncomeRatioToJSON(value?: DebtToIncomeRatio | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'month': value.month,
-        'ratio': value.ratio,
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'month': value['month'],
+        'ratio': value['ratio'],
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

@@ -100,6 +100,9 @@ func newFinancialUserProfileORM(db *gorm.DB, opts ...gen.DOOption) financialUser
 					field.RelationField
 				}
 			}
+			Statements struct {
+				field.RelationField
+			}
 			Transactions struct {
 				field.RelationField
 				Notes struct {
@@ -201,6 +204,11 @@ func newFinancialUserProfileORM(db *gorm.DB, opts ...gen.DOOption) financialUser
 					RelationField: field.NewRelation("Link.BankAccounts.RecurringTransactions.Notes", "financial_servicev1.SmartNoteORM"),
 				},
 			},
+			Statements: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Link.BankAccounts.Statements", "financial_servicev1.AccountStatementsORM"),
+			},
 			Transactions: struct {
 				field.RelationField
 				Notes struct {
@@ -234,6 +242,9 @@ func newFinancialUserProfileORM(db *gorm.DB, opts ...gen.DOOption) financialUser
 			RecurringTransactions struct {
 				field.RelationField
 			}
+			Statements struct {
+				field.RelationField
+			}
 			Transactions struct {
 				field.RelationField
 			}
@@ -254,6 +265,11 @@ func newFinancialUserProfileORM(db *gorm.DB, opts ...gen.DOOption) financialUser
 			}{
 				RelationField: field.NewRelation("Link.CreditAccounts.RecurringTransactions", "financial_servicev1.PlaidAccountRecurringTransactionORM"),
 			},
+			Statements: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Link.CreditAccounts.Statements", "financial_servicev1.AccountStatementsORM"),
+			},
 			Transactions: struct {
 				field.RelationField
 			}{
@@ -266,6 +282,9 @@ func newFinancialUserProfileORM(db *gorm.DB, opts ...gen.DOOption) financialUser
 				field.RelationField
 			}
 			Securities struct {
+				field.RelationField
+			}
+			Statements struct {
 				field.RelationField
 			}
 			Transactions struct {
@@ -286,6 +305,11 @@ func newFinancialUserProfileORM(db *gorm.DB, opts ...gen.DOOption) financialUser
 			}{
 				RelationField: field.NewRelation("Link.InvestmentAccounts.Securities", "financial_servicev1.InvestmentSecurityORM"),
 			},
+			Statements: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Link.InvestmentAccounts.Statements", "financial_servicev1.AccountStatementsORM"),
+			},
 			Transactions: struct {
 				field.RelationField
 				Notes struct {
@@ -302,13 +326,29 @@ func newFinancialUserProfileORM(db *gorm.DB, opts ...gen.DOOption) financialUser
 		},
 		MortgageAccounts: struct {
 			field.RelationField
+			Statements struct {
+				field.RelationField
+			}
 		}{
 			RelationField: field.NewRelation("Link.MortgageAccounts", "financial_servicev1.MortgageAccountORM"),
+			Statements: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Link.MortgageAccounts.Statements", "financial_servicev1.AccountStatementsORM"),
+			},
 		},
 		StudentLoanAccounts: struct {
 			field.RelationField
+			Statements struct {
+				field.RelationField
+			}
 		}{
 			RelationField: field.NewRelation("Link.StudentLoanAccounts", "financial_servicev1.StudentLoanAccountORM"),
+			Statements: struct {
+				field.RelationField
+			}{
+				RelationField: field.NewRelation("Link.StudentLoanAccounts.Statements", "financial_servicev1.AccountStatementsORM"),
+			},
 		},
 	}
 
@@ -653,6 +693,9 @@ type financialUserProfileORMHasManyLink struct {
 				field.RelationField
 			}
 		}
+		Statements struct {
+			field.RelationField
+		}
 		Transactions struct {
 			field.RelationField
 			Notes struct {
@@ -674,6 +717,9 @@ type financialUserProfileORMHasManyLink struct {
 		RecurringTransactions struct {
 			field.RelationField
 		}
+		Statements struct {
+			field.RelationField
+		}
 		Transactions struct {
 			field.RelationField
 		}
@@ -686,6 +732,9 @@ type financialUserProfileORMHasManyLink struct {
 		Securities struct {
 			field.RelationField
 		}
+		Statements struct {
+			field.RelationField
+		}
 		Transactions struct {
 			field.RelationField
 			Notes struct {
@@ -695,9 +744,15 @@ type financialUserProfileORMHasManyLink struct {
 	}
 	MortgageAccounts struct {
 		field.RelationField
+		Statements struct {
+			field.RelationField
+		}
 	}
 	StudentLoanAccounts struct {
 		field.RelationField
+		Statements struct {
+			field.RelationField
+		}
 	}
 }
 

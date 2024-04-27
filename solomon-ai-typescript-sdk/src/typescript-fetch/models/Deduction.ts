@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The Deduction object is used to represent an array of the wages
  * withheld from total earnings for the purpose of paying taxes.
@@ -86,9 +86,7 @@ export interface Deduction {
  * Check if a given object implements the Deduction interface.
  */
 export function instanceOfDeduction(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DeductionFromJSON(json: any): Deduction {
@@ -96,43 +94,40 @@ export function DeductionFromJSON(json: any): Deduction {
 }
 
 export function DeductionFromJSONTyped(json: any, ignoreDiscriminator: boolean): Deduction {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'employeeDeduction': !exists(json, 'employeeDeduction') ? undefined : json['employeeDeduction'],
-        'companyDeduction': !exists(json, 'companyDeduction') ? undefined : json['companyDeduction'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'payrollRunMergeAccountId': !exists(json, 'payrollRunMergeAccountId') ? undefined : json['payrollRunMergeAccountId'],
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'employeeDeduction': json['employeeDeduction'] == null ? undefined : json['employeeDeduction'],
+        'companyDeduction': json['companyDeduction'] == null ? undefined : json['companyDeduction'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'payrollRunMergeAccountId': json['payrollRunMergeAccountId'] == null ? undefined : json['payrollRunMergeAccountId'],
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
     };
 }
 
 export function DeductionToJSON(value?: Deduction | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'name': value.name,
-        'employeeDeduction': value.employeeDeduction,
-        'companyDeduction': value.companyDeduction,
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'payrollRunMergeAccountId': value.payrollRunMergeAccountId,
-        'mergeAccountId': value.mergeAccountId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'name': value['name'],
+        'employeeDeduction': value['employeeDeduction'],
+        'companyDeduction': value['companyDeduction'],
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'payrollRunMergeAccountId': value['payrollRunMergeAccountId'],
+        'mergeAccountId': value['mergeAccountId'],
     };
 }
 

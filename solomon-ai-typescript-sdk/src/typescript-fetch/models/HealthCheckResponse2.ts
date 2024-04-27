@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Defines a message named HealthCheckResponse.
  * @export
@@ -31,9 +31,7 @@ export interface HealthCheckResponse2 {
  * Check if a given object implements the HealthCheckResponse2 interface.
  */
 export function instanceOfHealthCheckResponse2(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function HealthCheckResponse2FromJSON(json: any): HealthCheckResponse2 {
@@ -41,25 +39,22 @@ export function HealthCheckResponse2FromJSON(json: any): HealthCheckResponse2 {
 }
 
 export function HealthCheckResponse2FromJSONTyped(json: any, ignoreDiscriminator: boolean): HealthCheckResponse2 {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'healthy': !exists(json, 'healthy') ? undefined : json['healthy'],
+        'healthy': json['healthy'] == null ? undefined : json['healthy'],
     };
 }
 
 export function HealthCheckResponse2ToJSON(value?: HealthCheckResponse2 | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'healthy': value.healthy,
+        'healthy': value['healthy'],
     };
 }
 

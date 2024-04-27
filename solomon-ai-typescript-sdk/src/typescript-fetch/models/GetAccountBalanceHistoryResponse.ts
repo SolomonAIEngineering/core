@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { AccountBalanceHistory } from './AccountBalanceHistory';
 import {
     AccountBalanceHistoryFromJSON,
@@ -38,9 +38,7 @@ export interface GetAccountBalanceHistoryResponse {
  * Check if a given object implements the GetAccountBalanceHistoryResponse interface.
  */
 export function instanceOfGetAccountBalanceHistoryResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetAccountBalanceHistoryResponseFromJSON(json: any): GetAccountBalanceHistoryResponse {
@@ -48,25 +46,22 @@ export function GetAccountBalanceHistoryResponseFromJSON(json: any): GetAccountB
 }
 
 export function GetAccountBalanceHistoryResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetAccountBalanceHistoryResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'accountBalanceHistory': !exists(json, 'accountBalanceHistory') ? undefined : ((json['accountBalanceHistory'] as Array<any>).map(AccountBalanceHistoryFromJSON)),
+        'accountBalanceHistory': json['accountBalanceHistory'] == null ? undefined : ((json['accountBalanceHistory'] as Array<any>).map(AccountBalanceHistoryFromJSON)),
     };
 }
 
 export function GetAccountBalanceHistoryResponseToJSON(value?: GetAccountBalanceHistoryResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'accountBalanceHistory': value.accountBalanceHistory === undefined ? undefined : ((value.accountBalanceHistory as Array<any>).map(AccountBalanceHistoryToJSON)),
+        'accountBalanceHistory': value['accountBalanceHistory'] == null ? undefined : ((value['accountBalanceHistory'] as Array<any>).map(AccountBalanceHistoryToJSON)),
     };
 }
 

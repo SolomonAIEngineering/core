@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface DeleteWorkspaceResponse {
  * Check if a given object implements the DeleteWorkspaceResponse interface.
  */
 export function instanceOfDeleteWorkspaceResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DeleteWorkspaceResponseFromJSON(json: any): DeleteWorkspaceResponse {
@@ -41,25 +39,22 @@ export function DeleteWorkspaceResponseFromJSON(json: any): DeleteWorkspaceRespo
 }
 
 export function DeleteWorkspaceResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteWorkspaceResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'isDeleted': !exists(json, 'isDeleted') ? undefined : json['isDeleted'],
+        'isDeleted': json['isDeleted'] == null ? undefined : json['isDeleted'],
     };
 }
 
 export function DeleteWorkspaceResponseToJSON(value?: DeleteWorkspaceResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'isDeleted': value.isDeleted,
+        'isDeleted': value['isDeleted'],
     };
 }
 

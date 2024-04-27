@@ -28,6 +28,10 @@ export const MediaCrop = {
 export type MediaCrop = typeof MediaCrop[keyof typeof MediaCrop];
 
 
+export function instanceOfMediaCrop(value: any): boolean {
+    return Object.values(MediaCrop).includes(value);
+}
+
 export function MediaCropFromJSON(json: any): MediaCrop {
     return MediaCropFromJSONTyped(json, false);
 }

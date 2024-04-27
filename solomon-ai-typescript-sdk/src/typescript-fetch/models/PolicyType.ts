@@ -29,6 +29,10 @@ export const PolicyType = {
 export type PolicyType = typeof PolicyType[keyof typeof PolicyType];
 
 
+export function instanceOfPolicyType(value: any): boolean {
+    return Object.values(PolicyType).includes(value);
+}
+
 export function PolicyTypeFromJSON(json: any): PolicyType {
     return PolicyTypeFromJSONTyped(json, false);
 }

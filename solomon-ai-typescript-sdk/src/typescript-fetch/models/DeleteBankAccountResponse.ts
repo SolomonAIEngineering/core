@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface DeleteBankAccountResponse {
  * Check if a given object implements the DeleteBankAccountResponse interface.
  */
 export function instanceOfDeleteBankAccountResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DeleteBankAccountResponseFromJSON(json: any): DeleteBankAccountResponse {
@@ -41,25 +39,22 @@ export function DeleteBankAccountResponseFromJSON(json: any): DeleteBankAccountR
 }
 
 export function DeleteBankAccountResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteBankAccountResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'deleted': !exists(json, 'deleted') ? undefined : json['deleted'],
+        'deleted': json['deleted'] == null ? undefined : json['deleted'],
     };
 }
 
 export function DeleteBankAccountResponseToJSON(value?: DeleteBankAccountResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'deleted': value.deleted,
+        'deleted': value['deleted'],
     };
 }
 

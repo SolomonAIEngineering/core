@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface DeleteFolderResponse {
  * Check if a given object implements the DeleteFolderResponse interface.
  */
 export function instanceOfDeleteFolderResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DeleteFolderResponseFromJSON(json: any): DeleteFolderResponse {
@@ -41,25 +39,22 @@ export function DeleteFolderResponseFromJSON(json: any): DeleteFolderResponse {
 }
 
 export function DeleteFolderResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteFolderResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'isDeleted': !exists(json, 'isDeleted') ? undefined : json['isDeleted'],
+        'isDeleted': json['isDeleted'] == null ? undefined : json['isDeleted'],
     };
 }
 
 export function DeleteFolderResponseToJSON(value?: DeleteFolderResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'isDeleted': value.isDeleted,
+        'isDeleted': value['isDeleted'],
     };
 }
 

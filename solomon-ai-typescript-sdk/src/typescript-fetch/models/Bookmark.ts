@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Publication } from './Publication';
 import {
     PublicationFromJSON,
@@ -50,9 +50,7 @@ export interface Bookmark {
  * Check if a given object implements the Bookmark interface.
  */
 export function instanceOfBookmark(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function BookmarkFromJSON(json: any): Bookmark {
@@ -60,29 +58,26 @@ export function BookmarkFromJSON(json: any): Bookmark {
 }
 
 export function BookmarkFromJSONTyped(json: any, ignoreDiscriminator: boolean): Bookmark {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'postIds': !exists(json, 'postIds') ? undefined : json['postIds'],
-        'publications': !exists(json, 'publications') ? undefined : ((json['publications'] as Array<any>).map(PublicationFromJSON)),
+        'id': json['id'] == null ? undefined : json['id'],
+        'postIds': json['postIds'] == null ? undefined : json['postIds'],
+        'publications': json['publications'] == null ? undefined : ((json['publications'] as Array<any>).map(PublicationFromJSON)),
     };
 }
 
 export function BookmarkToJSON(value?: Bookmark | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'postIds': value.postIds,
-        'publications': value.publications === undefined ? undefined : ((value.publications as Array<any>).map(PublicationToJSON)),
+        'id': value['id'],
+        'postIds': value['postIds'],
+        'publications': value['publications'] == null ? undefined : ((value['publications'] as Array<any>).map(PublicationToJSON)),
     };
 }
 

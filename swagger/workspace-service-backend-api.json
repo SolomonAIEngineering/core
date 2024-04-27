@@ -243,6 +243,77 @@
             }
         },
         "/workspace-microservice/api/v1/files": {
+            "post": {
+                "summary": "Create a markdown file",
+                "description": "This endpoint creates a new file",
+                "operationId": "CreateMarkdownFile",
+                "responses": {
+                    "200": {
+                        "description": "Folder creation successful",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/CreateMarkdownFileResponse"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Request failed due to invalid input.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ValidationErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "404": {
+                        "description": "Request failed due to incorrect path.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/PathUnknownErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Request failed due to internal server error.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/InternalErrorMessageResponse"
+                                }
+                            }
+                        }
+                    },
+                    "default": {
+                        "description": "An unexpected error response.",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Status"
+                                }
+                            }
+                        }
+                    }
+                },
+                "requestBody": {
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/CreateMarkdownFileRequest"
+                            }
+                        }
+                    },
+                    "description": "Request to create a Markdown file.",
+                    "required": true
+                },
+                "tags": [
+                    "workspace-service"
+                ]
+            },
             "put": {
                 "summary": "Update a file",
                 "description": "This endpoint updates a file by ID",
@@ -1127,6 +1198,46 @@
                     }
                 }
             },
+            "CreateMarkdownFileRequest": {
+                "type": "object",
+                "properties": {
+                    "workspaceId": {
+                        "type": "string",
+                        "title": "Workspace ID"
+                    },
+                    "folderId": {
+                        "type": "string",
+                        "title": "Folder ID"
+                    },
+                    "filename": {
+                        "type": "string",
+                        "title": "Filename"
+                    },
+                    "userId": {
+                        "type": "string",
+                        "title": "User ID"
+                    },
+                    "content": {
+                        "type": "string",
+                        "title": "File content"
+                    }
+                },
+                "description": "Request to create a Markdown file."
+            },
+            "CreateMarkdownFileResponse": {
+                "type": "object",
+                "properties": {
+                    "fileId": {
+                        "type": "string",
+                        "title": "File ID"
+                    },
+                    "fileUrl": {
+                        "type": "string",
+                        "title": "File URL"
+                    }
+                },
+                "description": "Response from creating a Markdown file."
+            },
             "CreateWorkspaceRequest": {
                 "type": "object",
                 "properties": {
@@ -1353,6 +1464,10 @@
                     "location": {
                         "type": "string",
                         "title": "location of the file"
+                    },
+                    "markdownContent": {
+                        "type": "string",
+                        "title": "markdown content of the file which is used for markdown files"
                     }
                 },
                 "title": "File Metadata"

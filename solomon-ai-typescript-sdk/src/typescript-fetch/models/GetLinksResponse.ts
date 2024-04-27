@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Link } from './Link';
 import {
     LinkFromJSON,
@@ -38,9 +38,7 @@ export interface GetLinksResponse {
  * Check if a given object implements the GetLinksResponse interface.
  */
 export function instanceOfGetLinksResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetLinksResponseFromJSON(json: any): GetLinksResponse {
@@ -48,25 +46,22 @@ export function GetLinksResponseFromJSON(json: any): GetLinksResponse {
 }
 
 export function GetLinksResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetLinksResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'links': !exists(json, 'links') ? undefined : ((json['links'] as Array<any>).map(LinkFromJSON)),
+        'links': json['links'] == null ? undefined : ((json['links'] as Array<any>).map(LinkFromJSON)),
     };
 }
 
 export function GetLinksResponseToJSON(value?: GetLinksResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'links': value.links === undefined ? undefined : ((value.links as Array<any>).map(LinkToJSON)),
+        'links': value['links'] == null ? undefined : ((value['links'] as Array<any>).map(LinkToJSON)),
     };
 }
 

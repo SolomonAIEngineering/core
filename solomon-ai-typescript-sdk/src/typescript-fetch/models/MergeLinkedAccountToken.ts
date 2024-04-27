@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -67,9 +67,7 @@ export interface MergeLinkedAccountToken {
  * Check if a given object implements the MergeLinkedAccountToken interface.
  */
 export function instanceOfMergeLinkedAccountToken(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function MergeLinkedAccountTokenFromJSON(json: any): MergeLinkedAccountToken {
@@ -77,37 +75,34 @@ export function MergeLinkedAccountTokenFromJSON(json: any): MergeLinkedAccountTo
 }
 
 export function MergeLinkedAccountTokenFromJSONTyped(json: any, ignoreDiscriminator: boolean): MergeLinkedAccountToken {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'itemId': !exists(json, 'itemId') ? undefined : json['itemId'],
-        'keyId': !exists(json, 'keyId') ? undefined : json['keyId'],
-        'accessToken': !exists(json, 'accessToken') ? undefined : json['accessToken'],
-        'version': !exists(json, 'version') ? undefined : json['version'],
-        'mergeEndUserOriginId': !exists(json, 'mergeEndUserOriginId') ? undefined : json['mergeEndUserOriginId'],
-        'mergeIntegrationSlug': !exists(json, 'mergeIntegrationSlug') ? undefined : json['mergeIntegrationSlug'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'itemId': json['itemId'] == null ? undefined : json['itemId'],
+        'keyId': json['keyId'] == null ? undefined : json['keyId'],
+        'accessToken': json['accessToken'] == null ? undefined : json['accessToken'],
+        'version': json['version'] == null ? undefined : json['version'],
+        'mergeEndUserOriginId': json['mergeEndUserOriginId'] == null ? undefined : json['mergeEndUserOriginId'],
+        'mergeIntegrationSlug': json['mergeIntegrationSlug'] == null ? undefined : json['mergeIntegrationSlug'],
     };
 }
 
 export function MergeLinkedAccountTokenToJSON(value?: MergeLinkedAccountToken | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'itemId': value.itemId,
-        'keyId': value.keyId,
-        'accessToken': value.accessToken,
-        'version': value.version,
-        'mergeEndUserOriginId': value.mergeEndUserOriginId,
-        'mergeIntegrationSlug': value.mergeIntegrationSlug,
+        'id': value['id'],
+        'itemId': value['itemId'],
+        'keyId': value['keyId'],
+        'accessToken': value['accessToken'],
+        'version': value['version'],
+        'mergeEndUserOriginId': value['mergeEndUserOriginId'],
+        'mergeIntegrationSlug': value['mergeIntegrationSlug'],
     };
 }
 

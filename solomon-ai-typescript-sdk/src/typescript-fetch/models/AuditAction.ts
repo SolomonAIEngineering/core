@@ -26,6 +26,10 @@ export const AuditAction = {
 export type AuditAction = typeof AuditAction[keyof typeof AuditAction];
 
 
+export function instanceOfAuditAction(value: any): boolean {
+    return Object.values(AuditAction).includes(value);
+}
+
 export function AuditActionFromJSON(json: any): AuditAction {
     return AuditActionFromJSONTyped(json, false);
 }

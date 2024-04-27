@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Comment } from './Comment';
 import {
     CommentFromJSON,
@@ -38,9 +38,7 @@ export interface ReactToCommentResponse {
  * Check if a given object implements the ReactToCommentResponse interface.
  */
 export function instanceOfReactToCommentResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ReactToCommentResponseFromJSON(json: any): ReactToCommentResponse {
@@ -48,25 +46,22 @@ export function ReactToCommentResponseFromJSON(json: any): ReactToCommentRespons
 }
 
 export function ReactToCommentResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReactToCommentResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'comment': !exists(json, 'comment') ? undefined : CommentFromJSON(json['comment']),
+        'comment': json['comment'] == null ? undefined : CommentFromJSON(json['comment']),
     };
 }
 
 export function ReactToCommentResponseToJSON(value?: ReactToCommentResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'comment': CommentToJSON(value.comment),
+        'comment': CommentToJSON(value['comment']),
     };
 }
 

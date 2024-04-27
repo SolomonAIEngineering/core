@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * PlaidAccountTransactionSplit represents a split of a PlaidAccountTransaction.
  * @export
@@ -97,9 +97,7 @@ export interface TransactionSplit {
  * Check if a given object implements the TransactionSplit interface.
  */
 export function instanceOfTransactionSplit(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function TransactionSplitFromJSON(json: any): TransactionSplit {
@@ -107,47 +105,44 @@ export function TransactionSplitFromJSON(json: any): TransactionSplit {
 }
 
 export function TransactionSplitFromJSONTyped(json: any, ignoreDiscriminator: boolean): TransactionSplit {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'linkId': !exists(json, 'linkId') ? undefined : json['linkId'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'amount': !exists(json, 'amount') ? undefined : json['amount'],
-        'categories': !exists(json, 'categories') ? undefined : json['categories'],
-        'personalFinanceCategoryPrimary': !exists(json, 'personalFinanceCategoryPrimary') ? undefined : json['personalFinanceCategoryPrimary'],
-        'personalFinanceCategoryDetailed': !exists(json, 'personalFinanceCategoryDetailed') ? undefined : json['personalFinanceCategoryDetailed'],
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
-        'authorizedDate': !exists(json, 'authorizedDate') ? undefined : (new Date(json['authorizedDate'])),
-        'authorizedDatetime': !exists(json, 'authorizedDatetime') ? undefined : (new Date(json['authorizedDatetime'])),
-        'timeOfSplit': !exists(json, 'timeOfSplit') ? undefined : (new Date(json['timeOfSplit'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'linkId': json['linkId'] == null ? undefined : json['linkId'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'amount': json['amount'] == null ? undefined : json['amount'],
+        'categories': json['categories'] == null ? undefined : json['categories'],
+        'personalFinanceCategoryPrimary': json['personalFinanceCategoryPrimary'] == null ? undefined : json['personalFinanceCategoryPrimary'],
+        'personalFinanceCategoryDetailed': json['personalFinanceCategoryDetailed'] == null ? undefined : json['personalFinanceCategoryDetailed'],
+        'tags': json['tags'] == null ? undefined : json['tags'],
+        'authorizedDate': json['authorizedDate'] == null ? undefined : (new Date(json['authorizedDate'])),
+        'authorizedDatetime': json['authorizedDatetime'] == null ? undefined : (new Date(json['authorizedDatetime'])),
+        'timeOfSplit': json['timeOfSplit'] == null ? undefined : (new Date(json['timeOfSplit'])),
     };
 }
 
 export function TransactionSplitToJSON(value?: TransactionSplit | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'userId': value.userId,
-        'linkId': value.linkId,
-        'description': value.description,
-        'amount': value.amount,
-        'categories': value.categories,
-        'personalFinanceCategoryPrimary': value.personalFinanceCategoryPrimary,
-        'personalFinanceCategoryDetailed': value.personalFinanceCategoryDetailed,
-        'tags': value.tags,
-        'authorizedDate': value.authorizedDate === undefined ? undefined : (value.authorizedDate.toISOString()),
-        'authorizedDatetime': value.authorizedDatetime === undefined ? undefined : (value.authorizedDatetime.toISOString()),
-        'timeOfSplit': value.timeOfSplit === undefined ? undefined : (value.timeOfSplit.toISOString()),
+        'id': value['id'],
+        'userId': value['userId'],
+        'linkId': value['linkId'],
+        'description': value['description'],
+        'amount': value['amount'],
+        'categories': value['categories'],
+        'personalFinanceCategoryPrimary': value['personalFinanceCategoryPrimary'],
+        'personalFinanceCategoryDetailed': value['personalFinanceCategoryDetailed'],
+        'tags': value['tags'],
+        'authorizedDate': value['authorizedDate'] == null ? undefined : ((value['authorizedDate']).toISOString()),
+        'authorizedDatetime': value['authorizedDatetime'] == null ? undefined : ((value['authorizedDatetime']).toISOString()),
+        'timeOfSplit': value['timeOfSplit'] == null ? undefined : ((value['timeOfSplit']).toISOString()),
     };
 }
 

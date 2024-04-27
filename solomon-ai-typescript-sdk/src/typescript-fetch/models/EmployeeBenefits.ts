@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The Benefit object is used to represent a benefit that an employee has enrolled in.
  * @export
@@ -103,9 +103,7 @@ export interface EmployeeBenefits {
  * Check if a given object implements the EmployeeBenefits interface.
  */
 export function instanceOfEmployeeBenefits(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function EmployeeBenefitsFromJSON(json: any): EmployeeBenefits {
@@ -113,49 +111,46 @@ export function EmployeeBenefitsFromJSON(json: any): EmployeeBenefits {
 }
 
 export function EmployeeBenefitsFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmployeeBenefits {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'providerName': !exists(json, 'providerName') ? undefined : json['providerName'],
-        'employeeMergeAccountId': !exists(json, 'employeeMergeAccountId') ? undefined : json['employeeMergeAccountId'],
-        'benefitPlanMergeAccountId': !exists(json, 'benefitPlanMergeAccountId') ? undefined : json['benefitPlanMergeAccountId'],
-        'employeeContribution': !exists(json, 'employeeContribution') ? undefined : json['employeeContribution'],
-        'companyContribution': !exists(json, 'companyContribution') ? undefined : json['companyContribution'],
-        'startDate': !exists(json, 'startDate') ? undefined : (new Date(json['startDate'])),
-        'endDate': !exists(json, 'endDate') ? undefined : (new Date(json['endDate'])),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'providerName': json['providerName'] == null ? undefined : json['providerName'],
+        'employeeMergeAccountId': json['employeeMergeAccountId'] == null ? undefined : json['employeeMergeAccountId'],
+        'benefitPlanMergeAccountId': json['benefitPlanMergeAccountId'] == null ? undefined : json['benefitPlanMergeAccountId'],
+        'employeeContribution': json['employeeContribution'] == null ? undefined : json['employeeContribution'],
+        'companyContribution': json['companyContribution'] == null ? undefined : json['companyContribution'],
+        'startDate': json['startDate'] == null ? undefined : (new Date(json['startDate'])),
+        'endDate': json['endDate'] == null ? undefined : (new Date(json['endDate'])),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
     };
 }
 
 export function EmployeeBenefitsToJSON(value?: EmployeeBenefits | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'providerName': value.providerName,
-        'employeeMergeAccountId': value.employeeMergeAccountId,
-        'benefitPlanMergeAccountId': value.benefitPlanMergeAccountId,
-        'employeeContribution': value.employeeContribution,
-        'companyContribution': value.companyContribution,
-        'startDate': value.startDate === undefined ? undefined : (value.startDate.toISOString()),
-        'endDate': value.endDate === undefined ? undefined : (value.endDate.toISOString()),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeAccountId': value.mergeAccountId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'providerName': value['providerName'],
+        'employeeMergeAccountId': value['employeeMergeAccountId'],
+        'benefitPlanMergeAccountId': value['benefitPlanMergeAccountId'],
+        'employeeContribution': value['employeeContribution'],
+        'companyContribution': value['companyContribution'],
+        'startDate': value['startDate'] == null ? undefined : ((value['startDate']).toISOString()),
+        'endDate': value['endDate'] == null ? undefined : ((value['endDate']).toISOString()),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeAccountId': value['mergeAccountId'],
     };
 }
 

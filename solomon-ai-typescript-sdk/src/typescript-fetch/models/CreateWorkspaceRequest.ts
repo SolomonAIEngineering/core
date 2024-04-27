@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,11 +37,9 @@ export interface CreateWorkspaceRequest {
  * Check if a given object implements the CreateWorkspaceRequest interface.
  */
 export function instanceOfCreateWorkspaceRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "authZeroUserId" in value;
-    isInstance = isInstance && "name" in value;
-
-    return isInstance;
+    if (!('authZeroUserId' in value)) return false;
+    if (!('name' in value)) return false;
+    return true;
 }
 
 export function CreateWorkspaceRequestFromJSON(json: any): CreateWorkspaceRequest {
@@ -49,7 +47,7 @@ export function CreateWorkspaceRequestFromJSON(json: any): CreateWorkspaceReques
 }
 
 export function CreateWorkspaceRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateWorkspaceRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -60,16 +58,13 @@ export function CreateWorkspaceRequestFromJSONTyped(json: any, ignoreDiscriminat
 }
 
 export function CreateWorkspaceRequestToJSON(value?: CreateWorkspaceRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'authZeroUserId': value.authZeroUserId,
-        'name': value.name,
+        'authZeroUserId': value['authZeroUserId'],
+        'name': value['name'],
     };
 }
 

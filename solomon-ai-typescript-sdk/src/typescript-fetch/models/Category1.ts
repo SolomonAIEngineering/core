@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The Categories table stores information about the different categories of expenses or income,
  * such as "Housing", "Food", "Transportation", and "Entertainment". Each category has one or more
@@ -53,9 +53,7 @@ export interface Category1 {
  * Check if a given object implements the Category1 interface.
  */
 export function instanceOfCategory1(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function Category1FromJSON(json: any): Category1 {
@@ -63,31 +61,28 @@ export function Category1FromJSON(json: any): Category1 {
 }
 
 export function Category1FromJSONTyped(json: any, ignoreDiscriminator: boolean): Category1 {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'subcategories': !exists(json, 'subcategories') ? undefined : json['subcategories'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'subcategories': json['subcategories'] == null ? undefined : json['subcategories'],
     };
 }
 
 export function Category1ToJSON(value?: Category1 | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'description': value.description,
-        'subcategories': value.subcategories,
+        'id': value['id'],
+        'name': value['name'],
+        'description': value['description'],
+        'subcategories': value['subcategories'],
     };
 }
 

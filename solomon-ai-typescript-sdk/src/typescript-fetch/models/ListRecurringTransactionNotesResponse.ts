@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SmartNote } from './SmartNote';
 import {
     SmartNoteFromJSON,
@@ -38,9 +38,7 @@ export interface ListRecurringTransactionNotesResponse {
  * Check if a given object implements the ListRecurringTransactionNotesResponse interface.
  */
 export function instanceOfListRecurringTransactionNotesResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListRecurringTransactionNotesResponseFromJSON(json: any): ListRecurringTransactionNotesResponse {
@@ -48,25 +46,22 @@ export function ListRecurringTransactionNotesResponseFromJSON(json: any): ListRe
 }
 
 export function ListRecurringTransactionNotesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListRecurringTransactionNotesResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'notes': !exists(json, 'notes') ? undefined : ((json['notes'] as Array<any>).map(SmartNoteFromJSON)),
+        'notes': json['notes'] == null ? undefined : ((json['notes'] as Array<any>).map(SmartNoteFromJSON)),
     };
 }
 
 export function ListRecurringTransactionNotesResponseToJSON(value?: ListRecurringTransactionNotesResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'notes': value.notes === undefined ? undefined : ((value.notes as Array<any>).map(SmartNoteToJSON)),
+        'notes': value['notes'] == null ? undefined : ((value['notes'] as Array<any>).map(SmartNoteToJSON)),
     };
 }
 

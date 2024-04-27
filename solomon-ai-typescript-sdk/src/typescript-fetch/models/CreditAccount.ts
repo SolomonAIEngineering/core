@@ -12,7 +12,13 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
+import type { AccountStatements } from './AccountStatements';
+import {
+    AccountStatementsFromJSON,
+    AccountStatementsFromJSONTyped,
+    AccountStatementsToJSON,
+} from './AccountStatements';
 import type { Apr } from './Apr';
 import {
     AprFromJSON,
@@ -194,15 +200,19 @@ export interface CreditAccount {
      * @memberof CreditAccount
      */
     pockets?: Array<Pocket>;
+    /**
+     * 
+     * @type {Array<AccountStatements>}
+     * @memberof CreditAccount
+     */
+    statements?: Array<AccountStatements>;
 }
 
 /**
  * Check if a given object implements the CreditAccount interface.
  */
 export function instanceOfCreditAccount(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreditAccountFromJSON(json: any): CreditAccount {
@@ -210,71 +220,70 @@ export function CreditAccountFromJSON(json: any): CreditAccount {
 }
 
 export function CreditAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreditAccount {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'number': !exists(json, 'number') ? undefined : json['number'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'balance': !exists(json, 'balance') ? undefined : json['balance'],
-        'currentFunds': !exists(json, 'currentFunds') ? undefined : json['currentFunds'],
-        'balanceLimit': !exists(json, 'balanceLimit') ? undefined : json['balanceLimit'],
-        'plaidAccountId': !exists(json, 'plaidAccountId') ? undefined : json['plaidAccountId'],
-        'subtype': !exists(json, 'subtype') ? undefined : json['subtype'],
-        'isOverdue': !exists(json, 'isOverdue') ? undefined : json['isOverdue'],
-        'lastPaymentAmount': !exists(json, 'lastPaymentAmount') ? undefined : json['lastPaymentAmount'],
-        'lastPaymentDate': !exists(json, 'lastPaymentDate') ? undefined : json['lastPaymentDate'],
-        'lastStatementIssueDate': !exists(json, 'lastStatementIssueDate') ? undefined : json['lastStatementIssueDate'],
-        'minimumAmountDueDate': !exists(json, 'minimumAmountDueDate') ? undefined : json['minimumAmountDueDate'],
-        'nextPaymentDate': !exists(json, 'nextPaymentDate') ? undefined : json['nextPaymentDate'],
-        'aprs': !exists(json, 'aprs') ? undefined : ((json['aprs'] as Array<any>).map(AprFromJSON)),
-        'lastStatementBalance': !exists(json, 'lastStatementBalance') ? undefined : json['lastStatementBalance'],
-        'minimumPaymentAmount': !exists(json, 'minimumPaymentAmount') ? undefined : json['minimumPaymentAmount'],
-        'nextPaymentDueDate': !exists(json, 'nextPaymentDueDate') ? undefined : json['nextPaymentDueDate'],
-        'status': !exists(json, 'status') ? undefined : BankAccountStatusFromJSON(json['status']),
-        'transactions': !exists(json, 'transactions') ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountTransactionFromJSON)),
-        'recurringTransactions': !exists(json, 'recurringTransactions') ? undefined : ((json['recurringTransactions'] as Array<any>).map(PlaidAccountRecurringTransactionFromJSON)),
-        'pockets': !exists(json, 'pockets') ? undefined : ((json['pockets'] as Array<any>).map(PocketFromJSON)),
+        'id': json['id'] == null ? undefined : json['id'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'number': json['number'] == null ? undefined : json['number'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'balance': json['balance'] == null ? undefined : json['balance'],
+        'currentFunds': json['currentFunds'] == null ? undefined : json['currentFunds'],
+        'balanceLimit': json['balanceLimit'] == null ? undefined : json['balanceLimit'],
+        'plaidAccountId': json['plaidAccountId'] == null ? undefined : json['plaidAccountId'],
+        'subtype': json['subtype'] == null ? undefined : json['subtype'],
+        'isOverdue': json['isOverdue'] == null ? undefined : json['isOverdue'],
+        'lastPaymentAmount': json['lastPaymentAmount'] == null ? undefined : json['lastPaymentAmount'],
+        'lastPaymentDate': json['lastPaymentDate'] == null ? undefined : json['lastPaymentDate'],
+        'lastStatementIssueDate': json['lastStatementIssueDate'] == null ? undefined : json['lastStatementIssueDate'],
+        'minimumAmountDueDate': json['minimumAmountDueDate'] == null ? undefined : json['minimumAmountDueDate'],
+        'nextPaymentDate': json['nextPaymentDate'] == null ? undefined : json['nextPaymentDate'],
+        'aprs': json['aprs'] == null ? undefined : ((json['aprs'] as Array<any>).map(AprFromJSON)),
+        'lastStatementBalance': json['lastStatementBalance'] == null ? undefined : json['lastStatementBalance'],
+        'minimumPaymentAmount': json['minimumPaymentAmount'] == null ? undefined : json['minimumPaymentAmount'],
+        'nextPaymentDueDate': json['nextPaymentDueDate'] == null ? undefined : json['nextPaymentDueDate'],
+        'status': json['status'] == null ? undefined : BankAccountStatusFromJSON(json['status']),
+        'transactions': json['transactions'] == null ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountTransactionFromJSON)),
+        'recurringTransactions': json['recurringTransactions'] == null ? undefined : ((json['recurringTransactions'] as Array<any>).map(PlaidAccountRecurringTransactionFromJSON)),
+        'pockets': json['pockets'] == null ? undefined : ((json['pockets'] as Array<any>).map(PocketFromJSON)),
+        'statements': json['statements'] == null ? undefined : ((json['statements'] as Array<any>).map(AccountStatementsFromJSON)),
     };
 }
 
 export function CreditAccountToJSON(value?: CreditAccount | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'userId': value.userId,
-        'name': value.name,
-        'number': value.number,
-        'type': value.type,
-        'balance': value.balance,
-        'currentFunds': value.currentFunds,
-        'balanceLimit': value.balanceLimit,
-        'plaidAccountId': value.plaidAccountId,
-        'subtype': value.subtype,
-        'isOverdue': value.isOverdue,
-        'lastPaymentAmount': value.lastPaymentAmount,
-        'lastPaymentDate': value.lastPaymentDate,
-        'lastStatementIssueDate': value.lastStatementIssueDate,
-        'minimumAmountDueDate': value.minimumAmountDueDate,
-        'nextPaymentDate': value.nextPaymentDate,
-        'aprs': value.aprs === undefined ? undefined : ((value.aprs as Array<any>).map(AprToJSON)),
-        'lastStatementBalance': value.lastStatementBalance,
-        'minimumPaymentAmount': value.minimumPaymentAmount,
-        'nextPaymentDueDate': value.nextPaymentDueDate,
-        'status': BankAccountStatusToJSON(value.status),
-        'transactions': value.transactions === undefined ? undefined : ((value.transactions as Array<any>).map(PlaidAccountTransactionToJSON)),
-        'recurringTransactions': value.recurringTransactions === undefined ? undefined : ((value.recurringTransactions as Array<any>).map(PlaidAccountRecurringTransactionToJSON)),
-        'pockets': value.pockets === undefined ? undefined : ((value.pockets as Array<any>).map(PocketToJSON)),
+        'id': value['id'],
+        'userId': value['userId'],
+        'name': value['name'],
+        'number': value['number'],
+        'type': value['type'],
+        'balance': value['balance'],
+        'currentFunds': value['currentFunds'],
+        'balanceLimit': value['balanceLimit'],
+        'plaidAccountId': value['plaidAccountId'],
+        'subtype': value['subtype'],
+        'isOverdue': value['isOverdue'],
+        'lastPaymentAmount': value['lastPaymentAmount'],
+        'lastPaymentDate': value['lastPaymentDate'],
+        'lastStatementIssueDate': value['lastStatementIssueDate'],
+        'minimumAmountDueDate': value['minimumAmountDueDate'],
+        'nextPaymentDate': value['nextPaymentDate'],
+        'aprs': value['aprs'] == null ? undefined : ((value['aprs'] as Array<any>).map(AprToJSON)),
+        'lastStatementBalance': value['lastStatementBalance'],
+        'minimumPaymentAmount': value['minimumPaymentAmount'],
+        'nextPaymentDueDate': value['nextPaymentDueDate'],
+        'status': BankAccountStatusToJSON(value['status']),
+        'transactions': value['transactions'] == null ? undefined : ((value['transactions'] as Array<any>).map(PlaidAccountTransactionToJSON)),
+        'recurringTransactions': value['recurringTransactions'] == null ? undefined : ((value['recurringTransactions'] as Array<any>).map(PlaidAccountRecurringTransactionToJSON)),
+        'pockets': value['pockets'] == null ? undefined : ((value['pockets'] as Array<any>).map(PocketToJSON)),
+        'statements': value['statements'] == null ? undefined : ((value['statements'] as Array<any>).map(AccountStatementsToJSON)),
     };
 }
 

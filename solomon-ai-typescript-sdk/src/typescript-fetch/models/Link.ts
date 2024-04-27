@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BankAccount } from './BankAccount';
 import {
     BankAccountFromJSON,
@@ -230,9 +230,7 @@ export interface Link {
  * Check if a given object implements the Link interface.
  */
 export function instanceOfLink(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function LinkFromJSON(json: any): Link {
@@ -240,69 +238,66 @@ export function LinkFromJSON(json: any): Link {
 }
 
 export function LinkFromJSONTyped(json: any, ignoreDiscriminator: boolean): Link {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'plaidSync': !exists(json, 'plaidSync') ? undefined : PlaidSyncFromJSON(json['plaidSync']),
-        'linkStatus': !exists(json, 'linkStatus') ? undefined : LinkStatusFromJSON(json['linkStatus']),
-        'plaidLink': !exists(json, 'plaidLink') ? undefined : PlaidLinkFromJSON(json['plaidLink']),
-        'plaidNewAccountsAvailable': !exists(json, 'plaidNewAccountsAvailable') ? undefined : json['plaidNewAccountsAvailable'],
-        'expirationDate': !exists(json, 'expirationDate') ? undefined : json['expirationDate'],
-        'institutionName': !exists(json, 'institutionName') ? undefined : json['institutionName'],
-        'customInstitutionName': !exists(json, 'customInstitutionName') ? undefined : json['customInstitutionName'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'lastManualSync': !exists(json, 'lastManualSync') ? undefined : json['lastManualSync'],
-        'lastSuccessfulUpdate': !exists(json, 'lastSuccessfulUpdate') ? undefined : json['lastSuccessfulUpdate'],
-        'token': !exists(json, 'token') ? undefined : TokenFromJSON(json['token']),
-        'bankAccounts': !exists(json, 'bankAccounts') ? undefined : ((json['bankAccounts'] as Array<any>).map(BankAccountFromJSON)),
-        'investmentAccounts': !exists(json, 'investmentAccounts') ? undefined : ((json['investmentAccounts'] as Array<any>).map(InvestmentAccountFromJSON)),
-        'creditAccounts': !exists(json, 'creditAccounts') ? undefined : ((json['creditAccounts'] as Array<any>).map(CreditAccountFromJSON)),
-        'mortgageAccounts': !exists(json, 'mortgageAccounts') ? undefined : ((json['mortgageAccounts'] as Array<any>).map(MortgageAccountFromJSON)),
-        'studentLoanAccounts': !exists(json, 'studentLoanAccounts') ? undefined : ((json['studentLoanAccounts'] as Array<any>).map(StudentLoanAccountFromJSON)),
-        'plaidInstitutionId': !exists(json, 'plaidInstitutionId') ? undefined : json['plaidInstitutionId'],
-        'linkType': !exists(json, 'linkType') ? undefined : LinkTypeFromJSON(json['linkType']),
-        'errorCode': !exists(json, 'errorCode') ? undefined : json['errorCode'],
-        'updatedAt': !exists(json, 'updatedAt') ? undefined : json['updatedAt'],
-        'newAccountsAvailable': !exists(json, 'newAccountsAvailable') ? undefined : json['newAccountsAvailable'],
-        'shouldBeUpdated': !exists(json, 'shouldBeUpdated') ? undefined : json['shouldBeUpdated'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'plaidSync': json['plaidSync'] == null ? undefined : PlaidSyncFromJSON(json['plaidSync']),
+        'linkStatus': json['linkStatus'] == null ? undefined : LinkStatusFromJSON(json['linkStatus']),
+        'plaidLink': json['plaidLink'] == null ? undefined : PlaidLinkFromJSON(json['plaidLink']),
+        'plaidNewAccountsAvailable': json['plaidNewAccountsAvailable'] == null ? undefined : json['plaidNewAccountsAvailable'],
+        'expirationDate': json['expirationDate'] == null ? undefined : json['expirationDate'],
+        'institutionName': json['institutionName'] == null ? undefined : json['institutionName'],
+        'customInstitutionName': json['customInstitutionName'] == null ? undefined : json['customInstitutionName'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'lastManualSync': json['lastManualSync'] == null ? undefined : json['lastManualSync'],
+        'lastSuccessfulUpdate': json['lastSuccessfulUpdate'] == null ? undefined : json['lastSuccessfulUpdate'],
+        'token': json['token'] == null ? undefined : TokenFromJSON(json['token']),
+        'bankAccounts': json['bankAccounts'] == null ? undefined : ((json['bankAccounts'] as Array<any>).map(BankAccountFromJSON)),
+        'investmentAccounts': json['investmentAccounts'] == null ? undefined : ((json['investmentAccounts'] as Array<any>).map(InvestmentAccountFromJSON)),
+        'creditAccounts': json['creditAccounts'] == null ? undefined : ((json['creditAccounts'] as Array<any>).map(CreditAccountFromJSON)),
+        'mortgageAccounts': json['mortgageAccounts'] == null ? undefined : ((json['mortgageAccounts'] as Array<any>).map(MortgageAccountFromJSON)),
+        'studentLoanAccounts': json['studentLoanAccounts'] == null ? undefined : ((json['studentLoanAccounts'] as Array<any>).map(StudentLoanAccountFromJSON)),
+        'plaidInstitutionId': json['plaidInstitutionId'] == null ? undefined : json['plaidInstitutionId'],
+        'linkType': json['linkType'] == null ? undefined : LinkTypeFromJSON(json['linkType']),
+        'errorCode': json['errorCode'] == null ? undefined : json['errorCode'],
+        'updatedAt': json['updatedAt'] == null ? undefined : json['updatedAt'],
+        'newAccountsAvailable': json['newAccountsAvailable'] == null ? undefined : json['newAccountsAvailable'],
+        'shouldBeUpdated': json['shouldBeUpdated'] == null ? undefined : json['shouldBeUpdated'],
     };
 }
 
 export function LinkToJSON(value?: Link | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'plaidSync': PlaidSyncToJSON(value.plaidSync),
-        'linkStatus': LinkStatusToJSON(value.linkStatus),
-        'plaidLink': PlaidLinkToJSON(value.plaidLink),
-        'plaidNewAccountsAvailable': value.plaidNewAccountsAvailable,
-        'expirationDate': value.expirationDate,
-        'institutionName': value.institutionName,
-        'customInstitutionName': value.customInstitutionName,
-        'description': value.description,
-        'lastManualSync': value.lastManualSync,
-        'lastSuccessfulUpdate': value.lastSuccessfulUpdate,
-        'token': TokenToJSON(value.token),
-        'bankAccounts': value.bankAccounts === undefined ? undefined : ((value.bankAccounts as Array<any>).map(BankAccountToJSON)),
-        'investmentAccounts': value.investmentAccounts === undefined ? undefined : ((value.investmentAccounts as Array<any>).map(InvestmentAccountToJSON)),
-        'creditAccounts': value.creditAccounts === undefined ? undefined : ((value.creditAccounts as Array<any>).map(CreditAccountToJSON)),
-        'mortgageAccounts': value.mortgageAccounts === undefined ? undefined : ((value.mortgageAccounts as Array<any>).map(MortgageAccountToJSON)),
-        'studentLoanAccounts': value.studentLoanAccounts === undefined ? undefined : ((value.studentLoanAccounts as Array<any>).map(StudentLoanAccountToJSON)),
-        'plaidInstitutionId': value.plaidInstitutionId,
-        'linkType': LinkTypeToJSON(value.linkType),
-        'errorCode': value.errorCode,
-        'updatedAt': value.updatedAt,
-        'newAccountsAvailable': value.newAccountsAvailable,
-        'shouldBeUpdated': value.shouldBeUpdated,
+        'id': value['id'],
+        'plaidSync': PlaidSyncToJSON(value['plaidSync']),
+        'linkStatus': LinkStatusToJSON(value['linkStatus']),
+        'plaidLink': PlaidLinkToJSON(value['plaidLink']),
+        'plaidNewAccountsAvailable': value['plaidNewAccountsAvailable'],
+        'expirationDate': value['expirationDate'],
+        'institutionName': value['institutionName'],
+        'customInstitutionName': value['customInstitutionName'],
+        'description': value['description'],
+        'lastManualSync': value['lastManualSync'],
+        'lastSuccessfulUpdate': value['lastSuccessfulUpdate'],
+        'token': TokenToJSON(value['token']),
+        'bankAccounts': value['bankAccounts'] == null ? undefined : ((value['bankAccounts'] as Array<any>).map(BankAccountToJSON)),
+        'investmentAccounts': value['investmentAccounts'] == null ? undefined : ((value['investmentAccounts'] as Array<any>).map(InvestmentAccountToJSON)),
+        'creditAccounts': value['creditAccounts'] == null ? undefined : ((value['creditAccounts'] as Array<any>).map(CreditAccountToJSON)),
+        'mortgageAccounts': value['mortgageAccounts'] == null ? undefined : ((value['mortgageAccounts'] as Array<any>).map(MortgageAccountToJSON)),
+        'studentLoanAccounts': value['studentLoanAccounts'] == null ? undefined : ((value['studentLoanAccounts'] as Array<any>).map(StudentLoanAccountToJSON)),
+        'plaidInstitutionId': value['plaidInstitutionId'],
+        'linkType': LinkTypeToJSON(value['linkType']),
+        'errorCode': value['errorCode'],
+        'updatedAt': value['updatedAt'],
+        'newAccountsAvailable': value['newAccountsAvailable'],
+        'shouldBeUpdated': value['shouldBeUpdated'],
     };
 }
 

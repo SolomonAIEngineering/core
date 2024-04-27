@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -37,9 +37,7 @@ export interface TriggerSyncResponse {
  * Check if a given object implements the TriggerSyncResponse interface.
  */
 export function instanceOfTriggerSyncResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function TriggerSyncResponseFromJSON(json: any): TriggerSyncResponse {
@@ -47,27 +45,24 @@ export function TriggerSyncResponseFromJSON(json: any): TriggerSyncResponse {
 }
 
 export function TriggerSyncResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): TriggerSyncResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'workflowId': !exists(json, 'workflowId') ? undefined : json['workflowId'],
-        'runId': !exists(json, 'runId') ? undefined : json['runId'],
+        'workflowId': json['workflowId'] == null ? undefined : json['workflowId'],
+        'runId': json['runId'] == null ? undefined : json['runId'],
     };
 }
 
 export function TriggerSyncResponseToJSON(value?: TriggerSyncResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'workflowId': value.workflowId,
-        'runId': value.runId,
+        'workflowId': value['workflowId'],
+        'runId': value['runId'],
     };
 }
 

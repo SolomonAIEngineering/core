@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The CompanyAddress object is used to represent a contact's or company's address.
  * @export
@@ -85,9 +85,7 @@ export interface CompanyAddress {
  * Check if a given object implements the CompanyAddress interface.
  */
 export function instanceOfCompanyAddress(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CompanyAddressFromJSON(json: any): CompanyAddress {
@@ -95,43 +93,40 @@ export function CompanyAddressFromJSON(json: any): CompanyAddress {
 }
 
 export function CompanyAddressFromJSONTyped(json: any, ignoreDiscriminator: boolean): CompanyAddress {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'street1': !exists(json, 'street1') ? undefined : json['street1'],
-        'street2': !exists(json, 'street2') ? undefined : json['street2'],
-        'city': !exists(json, 'city') ? undefined : json['city'],
-        'state': !exists(json, 'state') ? undefined : json['state'],
-        'countrySubdivision': !exists(json, 'countrySubdivision') ? undefined : json['countrySubdivision'],
-        'country': !exists(json, 'country') ? undefined : json['country'],
-        'zipCode': !exists(json, 'zipCode') ? undefined : json['zipCode'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'street1': json['street1'] == null ? undefined : json['street1'],
+        'street2': json['street2'] == null ? undefined : json['street2'],
+        'city': json['city'] == null ? undefined : json['city'],
+        'state': json['state'] == null ? undefined : json['state'],
+        'countrySubdivision': json['countrySubdivision'] == null ? undefined : json['countrySubdivision'],
+        'country': json['country'] == null ? undefined : json['country'],
+        'zipCode': json['zipCode'] == null ? undefined : json['zipCode'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
     };
 }
 
 export function CompanyAddressToJSON(value?: CompanyAddress | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'type': value.type,
-        'street1': value.street1,
-        'street2': value.street2,
-        'city': value.city,
-        'state': value.state,
-        'countrySubdivision': value.countrySubdivision,
-        'country': value.country,
-        'zipCode': value.zipCode,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
+        'id': value['id'],
+        'type': value['type'],
+        'street1': value['street1'],
+        'street2': value['street2'],
+        'city': value['city'],
+        'state': value['state'],
+        'countrySubdivision': value['countrySubdivision'],
+        'country': value['country'],
+        'zipCode': value['zipCode'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
     };
 }
 

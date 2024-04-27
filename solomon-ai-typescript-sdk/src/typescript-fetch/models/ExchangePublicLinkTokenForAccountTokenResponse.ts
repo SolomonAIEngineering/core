@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Defines a message named ExchangePublicLinkTokenForAccountTokenResponse.
  * @export
@@ -43,10 +43,8 @@ export interface ExchangePublicLinkTokenForAccountTokenResponse {
  * Check if a given object implements the ExchangePublicLinkTokenForAccountTokenResponse interface.
  */
 export function instanceOfExchangePublicLinkTokenForAccountTokenResponse(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "success" in value;
-
-    return isInstance;
+    if (!('success' in value)) return false;
+    return true;
 }
 
 export function ExchangePublicLinkTokenForAccountTokenResponseFromJSON(json: any): ExchangePublicLinkTokenForAccountTokenResponse {
@@ -54,29 +52,26 @@ export function ExchangePublicLinkTokenForAccountTokenResponseFromJSON(json: any
 }
 
 export function ExchangePublicLinkTokenForAccountTokenResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ExchangePublicLinkTokenForAccountTokenResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'success': json['success'],
-        'workflowId': !exists(json, 'workflowId') ? undefined : json['workflowId'],
-        'workflowRunId': !exists(json, 'workflowRunId') ? undefined : json['workflowRunId'],
+        'workflowId': json['workflowId'] == null ? undefined : json['workflowId'],
+        'workflowRunId': json['workflowRunId'] == null ? undefined : json['workflowRunId'],
     };
 }
 
 export function ExchangePublicLinkTokenForAccountTokenResponseToJSON(value?: ExchangePublicLinkTokenForAccountTokenResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'success': value.success,
-        'workflowId': value.workflowId,
-        'workflowRunId': value.workflowRunId,
+        'success': value['success'],
+        'workflowId': value['workflowId'],
+        'workflowRunId': value['workflowRunId'],
     };
 }
 

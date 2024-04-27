@@ -25,6 +25,10 @@ export const ProfileType = {
 export type ProfileType = typeof ProfileType[keyof typeof ProfileType];
 
 
+export function instanceOfProfileType(value: any): boolean {
+    return Object.values(ProfileType).includes(value);
+}
+
 export function ProfileTypeFromJSON(json: any): ProfileType {
     return ProfileTypeFromJSONTyped(json, false);
 }

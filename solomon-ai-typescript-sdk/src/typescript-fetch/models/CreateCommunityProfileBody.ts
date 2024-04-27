@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CommunityProfile } from './CommunityProfile';
 import {
     CommunityProfileFromJSON,
@@ -38,10 +38,8 @@ export interface CreateCommunityProfileBody {
  * Check if a given object implements the CreateCommunityProfileBody interface.
  */
 export function instanceOfCreateCommunityProfileBody(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "profile" in value;
-
-    return isInstance;
+    if (!('profile' in value)) return false;
+    return true;
 }
 
 export function CreateCommunityProfileBodyFromJSON(json: any): CreateCommunityProfileBody {
@@ -49,7 +47,7 @@ export function CreateCommunityProfileBodyFromJSON(json: any): CreateCommunityPr
 }
 
 export function CreateCommunityProfileBodyFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateCommunityProfileBody {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -59,15 +57,12 @@ export function CreateCommunityProfileBodyFromJSONTyped(json: any, ignoreDiscrim
 }
 
 export function CreateCommunityProfileBodyToJSON(value?: CreateCommunityProfileBody | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'profile': CommunityProfileToJSON(value.profile),
+        'profile': CommunityProfileToJSON(value['profile']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { SmartNote } from './SmartNote';
 import {
     SmartNoteFromJSON,
@@ -44,11 +44,9 @@ export interface AddNoteToTransactionRequest {
  * Check if a given object implements the AddNoteToTransactionRequest interface.
  */
 export function instanceOfAddNoteToTransactionRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "transactionId" in value;
-    isInstance = isInstance && "note" in value;
-
-    return isInstance;
+    if (!('transactionId' in value)) return false;
+    if (!('note' in value)) return false;
+    return true;
 }
 
 export function AddNoteToTransactionRequestFromJSON(json: any): AddNoteToTransactionRequest {
@@ -56,7 +54,7 @@ export function AddNoteToTransactionRequestFromJSON(json: any): AddNoteToTransac
 }
 
 export function AddNoteToTransactionRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddNoteToTransactionRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function AddNoteToTransactionRequestFromJSONTyped(json: any, ignoreDiscri
 }
 
 export function AddNoteToTransactionRequestToJSON(value?: AddNoteToTransactionRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transactionId': value.transactionId,
-        'note': SmartNoteToJSON(value.note),
+        'transactionId': value['transactionId'],
+        'note': SmartNoteToJSON(value['note']),
     };
 }
 

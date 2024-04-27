@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -49,9 +49,7 @@ export interface Tags {
  * Check if a given object implements the Tags interface.
  */
 export function instanceOfTags(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function TagsFromJSON(json: any): Tags {
@@ -59,31 +57,28 @@ export function TagsFromJSON(json: any): Tags {
 }
 
 export function TagsFromJSONTyped(json: any, ignoreDiscriminator: boolean): Tags {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'tagName': !exists(json, 'tagName') ? undefined : json['tagName'],
-        'tagDescription': !exists(json, 'tagDescription') ? undefined : json['tagDescription'],
-        'metadata': !exists(json, 'metadata') ? undefined : json['metadata'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'tagName': json['tagName'] == null ? undefined : json['tagName'],
+        'tagDescription': json['tagDescription'] == null ? undefined : json['tagDescription'],
+        'metadata': json['metadata'] == null ? undefined : json['metadata'],
     };
 }
 
 export function TagsToJSON(value?: Tags | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'tagName': value.tagName,
-        'tagDescription': value.tagDescription,
-        'metadata': value.metadata,
+        'id': value['id'],
+        'tagName': value['tagName'],
+        'tagDescription': value['tagDescription'],
+        'metadata': value['metadata'],
     };
 }
 

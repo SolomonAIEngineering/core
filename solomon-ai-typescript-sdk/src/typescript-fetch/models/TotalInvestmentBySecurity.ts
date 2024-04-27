@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -57,9 +57,7 @@ export interface TotalInvestmentBySecurity {
  * Check if a given object implements the TotalInvestmentBySecurity interface.
  */
 export function instanceOfTotalInvestmentBySecurity(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function TotalInvestmentBySecurityFromJSON(json: any): TotalInvestmentBySecurity {
@@ -67,31 +65,28 @@ export function TotalInvestmentBySecurityFromJSON(json: any): TotalInvestmentByS
 }
 
 export function TotalInvestmentBySecurityFromJSONTyped(json: any, ignoreDiscriminator: boolean): TotalInvestmentBySecurity {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'securityId': !exists(json, 'securityId') ? undefined : json['securityId'],
-        'totalInvestment': !exists(json, 'totalInvestment') ? undefined : json['totalInvestment'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'profileType': !exists(json, 'profileType') ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
+        'securityId': json['securityId'] == null ? undefined : json['securityId'],
+        'totalInvestment': json['totalInvestment'] == null ? undefined : json['totalInvestment'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'profileType': json['profileType'] == null ? undefined : FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function TotalInvestmentBySecurityToJSON(value?: TotalInvestmentBySecurity | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'securityId': value.securityId,
-        'totalInvestment': value.totalInvestment,
-        'userId': value.userId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'securityId': value['securityId'],
+        'totalInvestment': value['totalInvestment'],
+        'userId': value['userId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

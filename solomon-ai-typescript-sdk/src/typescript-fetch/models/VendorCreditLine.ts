@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The VendorCreditLine object represents individual line items in a VendorCredit transaction, detailing specific elements of the credit.
  * @export
@@ -85,9 +85,7 @@ export interface VendorCreditLine {
  * Check if a given object implements the VendorCreditLine interface.
  */
 export function instanceOfVendorCreditLine(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function VendorCreditLineFromJSON(json: any): VendorCreditLine {
@@ -95,43 +93,40 @@ export function VendorCreditLineFromJSON(json: any): VendorCreditLine {
 }
 
 export function VendorCreditLineFromJSONTyped(json: any, ignoreDiscriminator: boolean): VendorCreditLine {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'netAmount': !exists(json, 'netAmount') ? undefined : json['netAmount'],
-        'trackingCategory': !exists(json, 'trackingCategory') ? undefined : json['trackingCategory'],
-        'trackingCategories': !exists(json, 'trackingCategories') ? undefined : json['trackingCategories'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'account': !exists(json, 'account') ? undefined : json['account'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'exchangeRate': !exists(json, 'exchangeRate') ? undefined : json['exchangeRate'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'netAmount': json['netAmount'] == null ? undefined : json['netAmount'],
+        'trackingCategory': json['trackingCategory'] == null ? undefined : json['trackingCategory'],
+        'trackingCategories': json['trackingCategories'] == null ? undefined : json['trackingCategories'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'account': json['account'] == null ? undefined : json['account'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'exchangeRate': json['exchangeRate'] == null ? undefined : json['exchangeRate'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
     };
 }
 
 export function VendorCreditLineToJSON(value?: VendorCreditLine | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'remoteId': value.remoteId,
-        'netAmount': value.netAmount,
-        'trackingCategory': value.trackingCategory,
-        'trackingCategories': value.trackingCategories,
-        'description': value.description,
-        'account': value.account,
-        'company': value.company,
-        'exchangeRate': value.exchangeRate,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'id': value.id,
+        'remoteId': value['remoteId'],
+        'netAmount': value['netAmount'],
+        'trackingCategory': value['trackingCategory'],
+        'trackingCategories': value['trackingCategories'],
+        'description': value['description'],
+        'account': value['account'],
+        'company': value['company'],
+        'exchangeRate': value['exchangeRate'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'id': value['id'],
     };
 }
 

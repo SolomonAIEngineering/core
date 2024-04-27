@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CompanyProfile } from './CompanyProfile';
 import {
     CompanyProfileFromJSON,
@@ -80,9 +80,7 @@ export interface HrisLinkedAccount {
  * Check if a given object implements the HrisLinkedAccount interface.
  */
 export function instanceOfHrisLinkedAccount(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function HrisLinkedAccountFromJSON(json: any): HrisLinkedAccount {
@@ -90,33 +88,30 @@ export function HrisLinkedAccountFromJSON(json: any): HrisLinkedAccount {
 }
 
 export function HrisLinkedAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): HrisLinkedAccount {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'profile': !exists(json, 'profile') ? undefined : CompanyProfileFromJSON(json['profile']),
-        'benefitPlans': !exists(json, 'benefitPlans') ? undefined : ((json['benefitPlans'] as Array<any>).map(EmployerBenefitsFromJSON)),
-        'employees': !exists(json, 'employees') ? undefined : ((json['employees'] as Array<any>).map(EmployeeFromJSON)),
-        'payrollRuns': !exists(json, 'payrollRuns') ? undefined : ((json['payrollRuns'] as Array<any>).map(EmployerPayrollRunFromJSON)),
+        'id': json['id'] == null ? undefined : json['id'],
+        'profile': json['profile'] == null ? undefined : CompanyProfileFromJSON(json['profile']),
+        'benefitPlans': json['benefitPlans'] == null ? undefined : ((json['benefitPlans'] as Array<any>).map(EmployerBenefitsFromJSON)),
+        'employees': json['employees'] == null ? undefined : ((json['employees'] as Array<any>).map(EmployeeFromJSON)),
+        'payrollRuns': json['payrollRuns'] == null ? undefined : ((json['payrollRuns'] as Array<any>).map(EmployerPayrollRunFromJSON)),
     };
 }
 
 export function HrisLinkedAccountToJSON(value?: HrisLinkedAccount | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'profile': CompanyProfileToJSON(value.profile),
-        'benefitPlans': value.benefitPlans === undefined ? undefined : ((value.benefitPlans as Array<any>).map(EmployerBenefitsToJSON)),
-        'employees': value.employees === undefined ? undefined : ((value.employees as Array<any>).map(EmployeeToJSON)),
-        'payrollRuns': value.payrollRuns === undefined ? undefined : ((value.payrollRuns as Array<any>).map(EmployerPayrollRunToJSON)),
+        'id': value['id'],
+        'profile': CompanyProfileToJSON(value['profile']),
+        'benefitPlans': value['benefitPlans'] == null ? undefined : ((value['benefitPlans'] as Array<any>).map(EmployerBenefitsToJSON)),
+        'employees': value['employees'] == null ? undefined : ((value['employees'] as Array<any>).map(EmployeeToJSON)),
+        'payrollRuns': value['payrollRuns'] == null ? undefined : ((value['payrollRuns'] as Array<any>).map(EmployerPayrollRunToJSON)),
     };
 }
 

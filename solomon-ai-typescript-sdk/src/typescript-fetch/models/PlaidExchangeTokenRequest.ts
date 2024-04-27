@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialUserProfileType } from './FinancialUserProfileType';
 import {
     FinancialUserProfileTypeFromJSON,
@@ -62,12 +62,10 @@ export interface PlaidExchangeTokenRequest {
  * Check if a given object implements the PlaidExchangeTokenRequest interface.
  */
 export function instanceOfPlaidExchangeTokenRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "publicToken" in value;
-    isInstance = isInstance && "profileType" in value;
-
-    return isInstance;
+    if (!('userId' in value)) return false;
+    if (!('publicToken' in value)) return false;
+    if (!('profileType' in value)) return false;
+    return true;
 }
 
 export function PlaidExchangeTokenRequestFromJSON(json: any): PlaidExchangeTokenRequest {
@@ -75,33 +73,30 @@ export function PlaidExchangeTokenRequestFromJSON(json: any): PlaidExchangeToken
 }
 
 export function PlaidExchangeTokenRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlaidExchangeTokenRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'userId': json['userId'],
         'publicToken': json['publicToken'],
-        'institutionId': !exists(json, 'institutionId') ? undefined : json['institutionId'],
-        'institutionName': !exists(json, 'institutionName') ? undefined : json['institutionName'],
+        'institutionId': json['institutionId'] == null ? undefined : json['institutionId'],
+        'institutionName': json['institutionName'] == null ? undefined : json['institutionName'],
         'profileType': FinancialUserProfileTypeFromJSON(json['profileType']),
     };
 }
 
 export function PlaidExchangeTokenRequestToJSON(value?: PlaidExchangeTokenRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userId': value.userId,
-        'publicToken': value.publicToken,
-        'institutionId': value.institutionId,
-        'institutionName': value.institutionName,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
+        'userId': value['userId'],
+        'publicToken': value['publicToken'],
+        'institutionId': value['institutionId'],
+        'institutionName': value['institutionName'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
     };
 }
 

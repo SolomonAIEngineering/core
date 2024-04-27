@@ -123,6 +123,7 @@ const (
 	FinancialService_TriggerSync_FullMethodName                                = "/financial_service.v1.FinancialService/TriggerSync"
 	FinancialService_AddNoteToFinancialUserProfile_FullMethodName              = "/financial_service.v1.FinancialService/AddNoteToFinancialUserProfile"
 	FinancialService_GetNotesFromFinancialUserProfile_FullMethodName           = "/financial_service.v1.FinancialService/GetNotesFromFinancialUserProfile"
+	FinancialService_AddTransactionsToManuallyLinkedAccount_FullMethodName     = "/financial_service.v1.FinancialService/AddTransactionsToManuallyLinkedAccount"
 )
 
 // FinancialServiceClient is the client API for FinancialService service.
@@ -333,6 +334,8 @@ type FinancialServiceClient interface {
 	AddNoteToFinancialUserProfile(ctx context.Context, in *AddNoteToFinancialUserProfileRequest, opts ...grpc.CallOption) (*AddNoteToFinancialUserProfileResponse, error)
 	// this is useful for the admin to update notes to customer profiles for business accounts
 	GetNotesFromFinancialUserProfile(ctx context.Context, in *GetNotesFromFinancialUserProfileRequest, opts ...grpc.CallOption) (*GetNotesFromFinancialUserProfileResponse, error)
+	// this is useful for the admin to add transactions to manually linked accounts
+	AddTransactionsToManuallyLinkedAccount(ctx context.Context, in *AddTransactionsToManuallyLinkedAccountRequest, opts ...grpc.CallOption) (*AddTransactionsToManuallyLinkedAccountResponse, error)
 }
 
 type financialServiceClient struct {
@@ -1279,6 +1282,15 @@ func (c *financialServiceClient) GetNotesFromFinancialUserProfile(ctx context.Co
 	return out, nil
 }
 
+func (c *financialServiceClient) AddTransactionsToManuallyLinkedAccount(ctx context.Context, in *AddTransactionsToManuallyLinkedAccountRequest, opts ...grpc.CallOption) (*AddTransactionsToManuallyLinkedAccountResponse, error) {
+	out := new(AddTransactionsToManuallyLinkedAccountResponse)
+	err := c.cc.Invoke(ctx, FinancialService_AddTransactionsToManuallyLinkedAccount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
 // FinancialServiceServer is the server API for FinancialService service.
 // All implementations must embed UnimplementedFinancialServiceServer
 // for forward compatibility
@@ -1487,6 +1499,8 @@ type FinancialServiceServer interface {
 	AddNoteToFinancialUserProfile(context.Context, *AddNoteToFinancialUserProfileRequest) (*AddNoteToFinancialUserProfileResponse, error)
 	// this is useful for the admin to update notes to customer profiles for business accounts
 	GetNotesFromFinancialUserProfile(context.Context, *GetNotesFromFinancialUserProfileRequest) (*GetNotesFromFinancialUserProfileResponse, error)
+	// this is useful for the admin to add transactions to manually linked accounts
+	AddTransactionsToManuallyLinkedAccount(context.Context, *AddTransactionsToManuallyLinkedAccountRequest) (*AddTransactionsToManuallyLinkedAccountResponse, error)
 	mustEmbedUnimplementedFinancialServiceServer()
 }
 
@@ -1805,6 +1819,9 @@ func (UnimplementedFinancialServiceServer) AddNoteToFinancialUserProfile(context
 }
 func (UnimplementedFinancialServiceServer) GetNotesFromFinancialUserProfile(context.Context, *GetNotesFromFinancialUserProfileRequest) (*GetNotesFromFinancialUserProfileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetNotesFromFinancialUserProfile not implemented")
+}
+func (UnimplementedFinancialServiceServer) AddTransactionsToManuallyLinkedAccount(context.Context, *AddTransactionsToManuallyLinkedAccountRequest) (*AddTransactionsToManuallyLinkedAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method AddTransactionsToManuallyLinkedAccount not implemented")
 }
 func (UnimplementedFinancialServiceServer) mustEmbedUnimplementedFinancialServiceServer() {}
 
@@ -3691,6 +3708,24 @@ func _FinancialService_GetNotesFromFinancialUserProfile_Handler(srv interface{},
 	return interceptor(ctx, in, info, handler)
 }
 
+func _FinancialService_AddTransactionsToManuallyLinkedAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(AddTransactionsToManuallyLinkedAccountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FinancialServiceServer).AddTransactionsToManuallyLinkedAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FinancialService_AddTransactionsToManuallyLinkedAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FinancialServiceServer).AddTransactionsToManuallyLinkedAccount(ctx, req.(*AddTransactionsToManuallyLinkedAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
 // FinancialService_ServiceDesc is the grpc.ServiceDesc for FinancialService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -4113,6 +4148,10 @@ var FinancialService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "GetNotesFromFinancialUserProfile",
 			Handler:    _FinancialService_GetNotesFromFinancialUserProfile_Handler,
+		},
+		{
+			MethodName: "AddTransactionsToManuallyLinkedAccount",
+			Handler:    _FinancialService_AddTransactionsToManuallyLinkedAccount_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

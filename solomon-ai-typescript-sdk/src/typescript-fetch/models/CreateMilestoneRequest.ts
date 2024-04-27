@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Milestone } from './Milestone';
 import {
     MilestoneFromJSON,
@@ -44,11 +44,9 @@ export interface CreateMilestoneRequest {
  * Check if a given object implements the CreateMilestoneRequest interface.
  */
 export function instanceOfCreateMilestoneRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "smartGoalId" in value;
-    isInstance = isInstance && "milestone" in value;
-
-    return isInstance;
+    if (!('smartGoalId' in value)) return false;
+    if (!('milestone' in value)) return false;
+    return true;
 }
 
 export function CreateMilestoneRequestFromJSON(json: any): CreateMilestoneRequest {
@@ -56,7 +54,7 @@ export function CreateMilestoneRequestFromJSON(json: any): CreateMilestoneReques
 }
 
 export function CreateMilestoneRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateMilestoneRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -67,16 +65,13 @@ export function CreateMilestoneRequestFromJSONTyped(json: any, ignoreDiscriminat
 }
 
 export function CreateMilestoneRequestToJSON(value?: CreateMilestoneRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'smartGoalId': value.smartGoalId,
-        'milestone': MilestoneToJSON(value.milestone),
+        'smartGoalId': value['smartGoalId'],
+        'milestone': MilestoneToJSON(value['milestone']),
     };
 }
 

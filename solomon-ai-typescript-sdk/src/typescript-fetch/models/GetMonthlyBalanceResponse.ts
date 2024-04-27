@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MonthlyBalance } from './MonthlyBalance';
 import {
     MonthlyBalanceFromJSON,
@@ -44,9 +44,7 @@ export interface GetMonthlyBalanceResponse {
  * Check if a given object implements the GetMonthlyBalanceResponse interface.
  */
 export function instanceOfGetMonthlyBalanceResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetMonthlyBalanceResponseFromJSON(json: any): GetMonthlyBalanceResponse {
@@ -54,27 +52,24 @@ export function GetMonthlyBalanceResponseFromJSON(json: any): GetMonthlyBalanceR
 }
 
 export function GetMonthlyBalanceResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetMonthlyBalanceResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'monthlyBalances': !exists(json, 'monthlyBalances') ? undefined : ((json['monthlyBalances'] as Array<any>).map(MonthlyBalanceFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'monthlyBalances': json['monthlyBalances'] == null ? undefined : ((json['monthlyBalances'] as Array<any>).map(MonthlyBalanceFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetMonthlyBalanceResponseToJSON(value?: GetMonthlyBalanceResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'monthlyBalances': value.monthlyBalances === undefined ? undefined : ((value.monthlyBalances as Array<any>).map(MonthlyBalanceToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'monthlyBalances': value['monthlyBalances'] == null ? undefined : ((value['monthlyBalances'] as Array<any>).map(MonthlyBalanceToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

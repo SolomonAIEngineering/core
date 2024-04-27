@@ -28,6 +28,10 @@ export const DependentRelationship = {
 export type DependentRelationship = typeof DependentRelationship[keyof typeof DependentRelationship];
 
 
+export function instanceOfDependentRelationship(value: any): boolean {
+    return Object.values(DependentRelationship).includes(value);
+}
+
 export function DependentRelationshipFromJSON(json: any): DependentRelationship {
     return DependentRelationshipFromJSONTyped(json, false);
 }

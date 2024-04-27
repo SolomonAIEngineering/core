@@ -26,6 +26,10 @@ export const EmploymentStatus = {
 export type EmploymentStatus = typeof EmploymentStatus[keyof typeof EmploymentStatus];
 
 
+export function instanceOfEmploymentStatus(value: any): boolean {
+    return Object.values(EmploymentStatus).includes(value);
+}
+
 export function EmploymentStatusFromJSON(json: any): EmploymentStatus {
     return EmploymentStatusFromJSONTyped(json, false);
 }

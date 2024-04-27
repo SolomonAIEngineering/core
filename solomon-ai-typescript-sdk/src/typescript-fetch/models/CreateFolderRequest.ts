@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -43,11 +43,9 @@ export interface CreateFolderRequest {
  * Check if a given object implements the CreateFolderRequest interface.
  */
 export function instanceOfCreateFolderRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "authZeroUserId" in value;
-    isInstance = isInstance && "name" in value;
-
-    return isInstance;
+    if (!('authZeroUserId' in value)) return false;
+    if (!('name' in value)) return false;
+    return true;
 }
 
 export function CreateFolderRequestFromJSON(json: any): CreateFolderRequest {
@@ -55,29 +53,26 @@ export function CreateFolderRequestFromJSON(json: any): CreateFolderRequest {
 }
 
 export function CreateFolderRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateFolderRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
         'authZeroUserId': json['authZeroUserId'],
-        'workspaceId': !exists(json, 'workspaceId') ? undefined : json['workspaceId'],
+        'workspaceId': json['workspaceId'] == null ? undefined : json['workspaceId'],
         'name': json['name'],
     };
 }
 
 export function CreateFolderRequestToJSON(value?: CreateFolderRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'authZeroUserId': value.authZeroUserId,
-        'workspaceId': value.workspaceId,
-        'name': value.name,
+        'authZeroUserId': value['authZeroUserId'],
+        'workspaceId': value['workspaceId'],
+        'name': value['name'],
     };
 }
 

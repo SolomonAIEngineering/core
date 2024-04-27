@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { MelodyFinancialContext } from './MelodyFinancialContext';
 import {
     MelodyFinancialContextFromJSON,
@@ -38,9 +38,7 @@ export interface GetMelodyFinancialContextResponse {
  * Check if a given object implements the GetMelodyFinancialContextResponse interface.
  */
 export function instanceOfGetMelodyFinancialContextResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetMelodyFinancialContextResponseFromJSON(json: any): GetMelodyFinancialContextResponse {
@@ -48,25 +46,22 @@ export function GetMelodyFinancialContextResponseFromJSON(json: any): GetMelodyF
 }
 
 export function GetMelodyFinancialContextResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetMelodyFinancialContextResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'melodyFinancialContext': !exists(json, 'melodyFinancialContext') ? undefined : MelodyFinancialContextFromJSON(json['melodyFinancialContext']),
+        'melodyFinancialContext': json['melodyFinancialContext'] == null ? undefined : MelodyFinancialContextFromJSON(json['melodyFinancialContext']),
     };
 }
 
 export function GetMelodyFinancialContextResponseToJSON(value?: GetMelodyFinancialContextResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'melodyFinancialContext': MelodyFinancialContextToJSON(value.melodyFinancialContext),
+        'melodyFinancialContext': MelodyFinancialContextToJSON(value['melodyFinancialContext']),
     };
 }
 

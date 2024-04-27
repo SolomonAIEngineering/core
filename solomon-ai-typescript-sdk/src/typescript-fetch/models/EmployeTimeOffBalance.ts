@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PolicyType } from './PolicyType';
 import {
     PolicyTypeFromJSON,
@@ -86,9 +86,7 @@ export interface EmployeTimeOffBalance {
  * Check if a given object implements the EmployeTimeOffBalance interface.
  */
 export function instanceOfEmployeTimeOffBalance(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function EmployeTimeOffBalanceFromJSON(json: any): EmployeTimeOffBalance {
@@ -96,41 +94,38 @@ export function EmployeTimeOffBalanceFromJSON(json: any): EmployeTimeOffBalance 
 }
 
 export function EmployeTimeOffBalanceFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmployeTimeOffBalance {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'balance': !exists(json, 'balance') ? undefined : json['balance'],
-        'used': !exists(json, 'used') ? undefined : json['used'],
-        'policyType': !exists(json, 'policyType') ? undefined : PolicyTypeFromJSON(json['policyType']),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'balance': json['balance'] == null ? undefined : json['balance'],
+        'used': json['used'] == null ? undefined : json['used'],
+        'policyType': json['policyType'] == null ? undefined : PolicyTypeFromJSON(json['policyType']),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
     };
 }
 
 export function EmployeTimeOffBalanceToJSON(value?: EmployeTimeOffBalance | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'balance': value.balance,
-        'used': value.used,
-        'policyType': PolicyTypeToJSON(value.policyType),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeAccountId': value.mergeAccountId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'balance': value['balance'],
+        'used': value['used'],
+        'policyType': PolicyTypeToJSON(value['policyType']),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeAccountId': value['mergeAccountId'],
     };
 }
 

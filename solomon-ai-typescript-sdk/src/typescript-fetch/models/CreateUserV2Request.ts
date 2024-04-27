@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BusinessAccount } from './BusinessAccount';
 import {
     BusinessAccountFromJSON,
@@ -68,11 +68,9 @@ export interface CreateUserV2Request {
  * Check if a given object implements the CreateUserV2Request interface.
  */
 export function instanceOfCreateUserV2Request(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "profileImageUrl" in value;
-    isInstance = isInstance && "auth0UserId" in value;
-
-    return isInstance;
+    if (!('profileImageUrl' in value)) return false;
+    if (!('auth0UserId' in value)) return false;
+    return true;
 }
 
 export function CreateUserV2RequestFromJSON(json: any): CreateUserV2Request {
@@ -80,33 +78,30 @@ export function CreateUserV2RequestFromJSON(json: any): CreateUserV2Request {
 }
 
 export function CreateUserV2RequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateUserV2Request {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'userAccount': !exists(json, 'userAccount') ? undefined : UserAccountFromJSON(json['userAccount']),
-        'businessAccount': !exists(json, 'businessAccount') ? undefined : BusinessAccountFromJSON(json['businessAccount']),
-        'communityIdsToFollow': !exists(json, 'communityIdsToFollow') ? undefined : json['communityIdsToFollow'],
+        'userAccount': json['userAccount'] == null ? undefined : UserAccountFromJSON(json['userAccount']),
+        'businessAccount': json['businessAccount'] == null ? undefined : BusinessAccountFromJSON(json['businessAccount']),
+        'communityIdsToFollow': json['communityIdsToFollow'] == null ? undefined : json['communityIdsToFollow'],
         'profileImageUrl': json['profileImageUrl'],
         'auth0UserId': json['auth0UserId'],
     };
 }
 
 export function CreateUserV2RequestToJSON(value?: CreateUserV2Request | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userAccount': UserAccountToJSON(value.userAccount),
-        'businessAccount': BusinessAccountToJSON(value.businessAccount),
-        'communityIdsToFollow': value.communityIdsToFollow,
-        'profileImageUrl': value.profileImageUrl,
-        'auth0UserId': value.auth0UserId,
+        'userAccount': UserAccountToJSON(value['userAccount']),
+        'businessAccount': BusinessAccountToJSON(value['businessAccount']),
+        'communityIdsToFollow': value['communityIdsToFollow'],
+        'profileImageUrl': value['profileImageUrl'],
+        'auth0UserId': value['auth0UserId'],
     };
 }
 

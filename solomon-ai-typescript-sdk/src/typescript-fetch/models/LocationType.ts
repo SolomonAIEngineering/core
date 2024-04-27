@@ -26,6 +26,10 @@ export const LocationType = {
 export type LocationType = typeof LocationType[keyof typeof LocationType];
 
 
+export function instanceOfLocationType(value: any): boolean {
+    return Object.values(LocationType).includes(value);
+}
+
 export function LocationTypeFromJSON(json: any): LocationType {
     return LocationTypeFromJSONTyped(json, false);
 }

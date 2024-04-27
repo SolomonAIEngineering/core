@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface DeleteNoteFromRecurringTransactionResponse {
  * Check if a given object implements the DeleteNoteFromRecurringTransactionResponse interface.
  */
 export function instanceOfDeleteNoteFromRecurringTransactionResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DeleteNoteFromRecurringTransactionResponseFromJSON(json: any): DeleteNoteFromRecurringTransactionResponse {
@@ -41,25 +39,22 @@ export function DeleteNoteFromRecurringTransactionResponseFromJSON(json: any): D
 }
 
 export function DeleteNoteFromRecurringTransactionResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteNoteFromRecurringTransactionResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'deleted': !exists(json, 'deleted') ? undefined : json['deleted'],
+        'deleted': json['deleted'] == null ? undefined : json['deleted'],
     };
 }
 
 export function DeleteNoteFromRecurringTransactionResponseToJSON(value?: DeleteNoteFromRecurringTransactionResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'deleted': value.deleted,
+        'deleted': value['deleted'],
     };
 }
 

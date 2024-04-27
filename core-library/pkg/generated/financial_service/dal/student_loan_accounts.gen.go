@@ -65,6 +65,11 @@ func newStudentLoanAccountORM(db *gorm.DB, opts ...gen.DOOption) studentLoanAcco
 	_studentLoanAccountORM.UserId = field.NewString(tableName, "user_id")
 	_studentLoanAccountORM.YtdInterestPaid = field.NewFloat64(tableName, "ytd_interest_paid")
 	_studentLoanAccountORM.YtdPrincipalPaid = field.NewFloat64(tableName, "ytd_principal_paid")
+	_studentLoanAccountORM.Statements = studentLoanAccountORMHasManyStatements{
+		db: db.Session(&gorm.Session{}),
+
+		RelationField: field.NewRelation("Statements", "financial_servicev1.AccountStatementsORM"),
+	}
 
 	_studentLoanAccountORM.fillFieldMap()
 
@@ -112,6 +117,7 @@ type studentLoanAccountORM struct {
 	UserId                             field.String
 	YtdInterestPaid                    field.Float64
 	YtdPrincipalPaid                   field.Float64
+	Statements                         studentLoanAccountORMHasManyStatements
 
 	fieldMap map[string]field.Expr
 }
@@ -181,7 +187,7 @@ func (s *studentLoanAccountORM) GetFieldByName(fieldName string) (field.OrderExp
 }
 
 func (s *studentLoanAccountORM) fillFieldMap() {
-	s.fieldMap = make(map[string]field.Expr, 37)
+	s.fieldMap = make(map[string]field.Expr, 38)
 	s.fieldMap["disbursement_dates"] = s.DisbursementDates
 	s.fieldMap["expected_payoff_date"] = s.ExpectedPayoffDate
 	s.fieldMap["guarantor"] = s.Guarantor
@@ -219,6 +225,7 @@ func (s *studentLoanAccountORM) fillFieldMap() {
 	s.fieldMap["user_id"] = s.UserId
 	s.fieldMap["ytd_interest_paid"] = s.YtdInterestPaid
 	s.fieldMap["ytd_principal_paid"] = s.YtdPrincipalPaid
+
 }
 
 func (s studentLoanAccountORM) clone(db *gorm.DB) studentLoanAccountORM {
@@ -229,6 +236,77 @@ func (s studentLoanAccountORM) clone(db *gorm.DB) studentLoanAccountORM {
 func (s studentLoanAccountORM) replaceDB(db *gorm.DB) studentLoanAccountORM {
 	s.studentLoanAccountORMDo.ReplaceDB(db)
 	return s
+}
+
+type studentLoanAccountORMHasManyStatements struct {
+	db *gorm.DB
+
+	field.RelationField
+}
+
+func (a studentLoanAccountORMHasManyStatements) Where(conds ...field.Expr) *studentLoanAccountORMHasManyStatements {
+	if len(conds) == 0 {
+		return &a
+	}
+
+	exprs := make([]clause.Expression, 0, len(conds))
+	for _, cond := range conds {
+		exprs = append(exprs, cond.BeCond().(clause.Expression))
+	}
+	a.db = a.db.Clauses(clause.Where{Exprs: exprs})
+	return &a
+}
+
+func (a studentLoanAccountORMHasManyStatements) WithContext(ctx context.Context) *studentLoanAccountORMHasManyStatements {
+	a.db = a.db.WithContext(ctx)
+	return &a
+}
+
+func (a studentLoanAccountORMHasManyStatements) Session(session *gorm.Session) *studentLoanAccountORMHasManyStatements {
+	a.db = a.db.Session(session)
+	return &a
+}
+
+func (a studentLoanAccountORMHasManyStatements) Model(m *financial_servicev1.StudentLoanAccountORM) *studentLoanAccountORMHasManyStatementsTx {
+	return &studentLoanAccountORMHasManyStatementsTx{a.db.Model(m).Association(a.Name())}
+}
+
+type studentLoanAccountORMHasManyStatementsTx struct{ tx *gorm.Association }
+
+func (a studentLoanAccountORMHasManyStatementsTx) Find() (result []*financial_servicev1.AccountStatementsORM, err error) {
+	return result, a.tx.Find(&result)
+}
+
+func (a studentLoanAccountORMHasManyStatementsTx) Append(values ...*financial_servicev1.AccountStatementsORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Append(targetValues...)
+}
+
+func (a studentLoanAccountORMHasManyStatementsTx) Replace(values ...*financial_servicev1.AccountStatementsORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Replace(targetValues...)
+}
+
+func (a studentLoanAccountORMHasManyStatementsTx) Delete(values ...*financial_servicev1.AccountStatementsORM) (err error) {
+	targetValues := make([]interface{}, len(values))
+	for i, v := range values {
+		targetValues[i] = v
+	}
+	return a.tx.Delete(targetValues...)
+}
+
+func (a studentLoanAccountORMHasManyStatementsTx) Clear() error {
+	return a.tx.Clear()
+}
+
+func (a studentLoanAccountORMHasManyStatementsTx) Count() int64 {
+	return a.tx.Count()
 }
 
 type studentLoanAccountORMDo struct{ gen.DO }

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { InvoiceLineItem } from './InvoiceLineItem';
 import {
     InvoiceLineItemFromJSON,
@@ -196,9 +196,7 @@ export interface Invoice {
  * Check if a given object implements the Invoice interface.
  */
 export function instanceOfInvoice(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function InvoiceFromJSON(json: any): Invoice {
@@ -206,77 +204,74 @@ export function InvoiceFromJSON(json: any): Invoice {
 }
 
 export function InvoiceFromJSONTyped(json: any, ignoreDiscriminator: boolean): Invoice {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'contact': !exists(json, 'contact') ? undefined : json['contact'],
-        'number': !exists(json, 'number') ? undefined : json['number'],
-        'issueDate': !exists(json, 'issueDate') ? undefined : (new Date(json['issueDate'])),
-        'dueDate': !exists(json, 'dueDate') ? undefined : (new Date(json['dueDate'])),
-        'paidOnDate': !exists(json, 'paidOnDate') ? undefined : (new Date(json['paidOnDate'])),
-        'memo': !exists(json, 'memo') ? undefined : json['memo'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'currency': !exists(json, 'currency') ? undefined : json['currency'],
-        'exchangeRate': !exists(json, 'exchangeRate') ? undefined : json['exchangeRate'],
-        'totalDiscount': !exists(json, 'totalDiscount') ? undefined : json['totalDiscount'],
-        'subTotal': !exists(json, 'subTotal') ? undefined : json['subTotal'],
-        'status': !exists(json, 'status') ? undefined : json['status'],
-        'totalTaxAmount': !exists(json, 'totalTaxAmount') ? undefined : json['totalTaxAmount'],
-        'totalAmount': !exists(json, 'totalAmount') ? undefined : json['totalAmount'],
-        'balance': !exists(json, 'balance') ? undefined : json['balance'],
-        'remoteUpdatedAt': !exists(json, 'remoteUpdatedAt') ? undefined : (new Date(json['remoteUpdatedAt'])),
-        'trackingCategories': !exists(json, 'trackingCategories') ? undefined : json['trackingCategories'],
-        'payments': !exists(json, 'payments') ? undefined : json['payments'],
-        'lineItems': !exists(json, 'lineItems') ? undefined : ((json['lineItems'] as Array<any>).map(InvoiceLineItemFromJSON)),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'accountingPeriod': !exists(json, 'accountingPeriod') ? undefined : json['accountingPeriod'],
-        'purchaseOrders': !exists(json, 'purchaseOrders') ? undefined : json['purchaseOrders'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeRecordId': !exists(json, 'mergeRecordId') ? undefined : json['mergeRecordId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'contact': json['contact'] == null ? undefined : json['contact'],
+        'number': json['number'] == null ? undefined : json['number'],
+        'issueDate': json['issueDate'] == null ? undefined : (new Date(json['issueDate'])),
+        'dueDate': json['dueDate'] == null ? undefined : (new Date(json['dueDate'])),
+        'paidOnDate': json['paidOnDate'] == null ? undefined : (new Date(json['paidOnDate'])),
+        'memo': json['memo'] == null ? undefined : json['memo'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'exchangeRate': json['exchangeRate'] == null ? undefined : json['exchangeRate'],
+        'totalDiscount': json['totalDiscount'] == null ? undefined : json['totalDiscount'],
+        'subTotal': json['subTotal'] == null ? undefined : json['subTotal'],
+        'status': json['status'] == null ? undefined : json['status'],
+        'totalTaxAmount': json['totalTaxAmount'] == null ? undefined : json['totalTaxAmount'],
+        'totalAmount': json['totalAmount'] == null ? undefined : json['totalAmount'],
+        'balance': json['balance'] == null ? undefined : json['balance'],
+        'remoteUpdatedAt': json['remoteUpdatedAt'] == null ? undefined : (new Date(json['remoteUpdatedAt'])),
+        'trackingCategories': json['trackingCategories'] == null ? undefined : json['trackingCategories'],
+        'payments': json['payments'] == null ? undefined : json['payments'],
+        'lineItems': json['lineItems'] == null ? undefined : ((json['lineItems'] as Array<any>).map(InvoiceLineItemFromJSON)),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'accountingPeriod': json['accountingPeriod'] == null ? undefined : json['accountingPeriod'],
+        'purchaseOrders': json['purchaseOrders'] == null ? undefined : json['purchaseOrders'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeRecordId': json['mergeRecordId'] == null ? undefined : json['mergeRecordId'],
     };
 }
 
 export function InvoiceToJSON(value?: Invoice | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'type': value.type,
-        'contact': value.contact,
-        'number': value.number,
-        'issueDate': value.issueDate === undefined ? undefined : (value.issueDate.toISOString()),
-        'dueDate': value.dueDate === undefined ? undefined : (value.dueDate.toISOString()),
-        'paidOnDate': value.paidOnDate === undefined ? undefined : (value.paidOnDate.toISOString()),
-        'memo': value.memo,
-        'company': value.company,
-        'currency': value.currency,
-        'exchangeRate': value.exchangeRate,
-        'totalDiscount': value.totalDiscount,
-        'subTotal': value.subTotal,
-        'status': value.status,
-        'totalTaxAmount': value.totalTaxAmount,
-        'totalAmount': value.totalAmount,
-        'balance': value.balance,
-        'remoteUpdatedAt': value.remoteUpdatedAt === undefined ? undefined : (value.remoteUpdatedAt.toISOString()),
-        'trackingCategories': value.trackingCategories,
-        'payments': value.payments,
-        'lineItems': value.lineItems === undefined ? undefined : ((value.lineItems as Array<any>).map(InvoiceLineItemToJSON)),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'accountingPeriod': value.accountingPeriod,
-        'purchaseOrders': value.purchaseOrders,
-        'remoteId': value.remoteId,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeRecordId': value.mergeRecordId,
+        'id': value['id'],
+        'type': value['type'],
+        'contact': value['contact'],
+        'number': value['number'],
+        'issueDate': value['issueDate'] == null ? undefined : ((value['issueDate']).toISOString()),
+        'dueDate': value['dueDate'] == null ? undefined : ((value['dueDate']).toISOString()),
+        'paidOnDate': value['paidOnDate'] == null ? undefined : ((value['paidOnDate']).toISOString()),
+        'memo': value['memo'],
+        'company': value['company'],
+        'currency': value['currency'],
+        'exchangeRate': value['exchangeRate'],
+        'totalDiscount': value['totalDiscount'],
+        'subTotal': value['subTotal'],
+        'status': value['status'],
+        'totalTaxAmount': value['totalTaxAmount'],
+        'totalAmount': value['totalAmount'],
+        'balance': value['balance'],
+        'remoteUpdatedAt': value['remoteUpdatedAt'] == null ? undefined : ((value['remoteUpdatedAt']).toISOString()),
+        'trackingCategories': value['trackingCategories'],
+        'payments': value['payments'],
+        'lineItems': value['lineItems'] == null ? undefined : ((value['lineItems'] as Array<any>).map(InvoiceLineItemToJSON)),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'accountingPeriod': value['accountingPeriod'],
+        'purchaseOrders': value['purchaseOrders'],
+        'remoteId': value['remoteId'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeRecordId': value['mergeRecordId'],
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The Account object is what companies use to track transactions. 
  * They can be both bank accounts or a general ledger account (also called a chart of accounts).
@@ -127,10 +127,8 @@ export interface BusinessChartOfAccount {
  * Check if a given object implements the BusinessChartOfAccount interface.
  */
 export function instanceOfBusinessChartOfAccount(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "mergeRecordId" in value;
-
-    return isInstance;
+    if (!('mergeRecordId' in value)) return false;
+    return true;
 }
 
 export function BusinessChartOfAccountFromJSON(json: any): BusinessChartOfAccount {
@@ -138,55 +136,52 @@ export function BusinessChartOfAccountFromJSON(json: any): BusinessChartOfAccoun
 }
 
 export function BusinessChartOfAccountFromJSONTyped(json: any, ignoreDiscriminator: boolean): BusinessChartOfAccount {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'mergeRecordId': json['mergeRecordId'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'classification': !exists(json, 'classification') ? undefined : json['classification'],
-        'type': !exists(json, 'type') ? undefined : json['type'],
-        'status': !exists(json, 'status') ? undefined : json['status'],
-        'currentBalance': !exists(json, 'currentBalance') ? undefined : json['currentBalance'],
-        'currency': !exists(json, 'currency') ? undefined : json['currency'],
-        'accountNumber': !exists(json, 'accountNumber') ? undefined : json['accountNumber'],
-        'parentAccountId': !exists(json, 'parentAccountId') ? undefined : json['parentAccountId'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'classification': json['classification'] == null ? undefined : json['classification'],
+        'type': json['type'] == null ? undefined : json['type'],
+        'status': json['status'] == null ? undefined : json['status'],
+        'currentBalance': json['currentBalance'] == null ? undefined : json['currentBalance'],
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'accountNumber': json['accountNumber'] == null ? undefined : json['accountNumber'],
+        'parentAccountId': json['parentAccountId'] == null ? undefined : json['parentAccountId'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
     };
 }
 
 export function BusinessChartOfAccountToJSON(value?: BusinessChartOfAccount | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'mergeRecordId': value.mergeRecordId,
-        'remoteId': value.remoteId,
-        'name': value.name,
-        'description': value.description,
-        'classification': value.classification,
-        'type': value.type,
-        'status': value.status,
-        'currentBalance': value.currentBalance,
-        'currency': value.currency,
-        'accountNumber': value.accountNumber,
-        'parentAccountId': value.parentAccountId,
-        'company': value.company,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'id': value['id'],
+        'mergeRecordId': value['mergeRecordId'],
+        'remoteId': value['remoteId'],
+        'name': value['name'],
+        'description': value['description'],
+        'classification': value['classification'],
+        'type': value['type'],
+        'status': value['status'],
+        'currentBalance': value['currentBalance'],
+        'currency': value['currency'],
+        'accountNumber': value['accountNumber'],
+        'parentAccountId': value['parentAccountId'],
+        'company': value['company'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
     };
 }
 

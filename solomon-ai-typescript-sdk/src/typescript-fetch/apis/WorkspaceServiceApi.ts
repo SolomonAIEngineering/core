@@ -19,6 +19,8 @@ import type {
   CreateAccountResponse,
   CreateFolderRequest,
   CreateFolderResponse,
+  CreateMarkdownFileRequest,
+  CreateMarkdownFileResponse,
   CreateWorkspaceRequest,
   CreateWorkspaceResponse,
   DeleteAccountResponse,
@@ -48,6 +50,10 @@ import {
     CreateFolderRequestToJSON,
     CreateFolderResponseFromJSON,
     CreateFolderResponseToJSON,
+    CreateMarkdownFileRequestFromJSON,
+    CreateMarkdownFileRequestToJSON,
+    CreateMarkdownFileResponseFromJSON,
+    CreateMarkdownFileResponseToJSON,
     CreateWorkspaceRequestFromJSON,
     CreateWorkspaceRequestToJSON,
     CreateWorkspaceResponseFromJSON,
@@ -94,6 +100,10 @@ export interface CreateAccountOperationRequest {
 
 export interface CreateFolderOperationRequest {
     createFolderRequest: CreateFolderRequest;
+}
+
+export interface CreateMarkdownFileOperationRequest {
+    createMarkdownFileRequest: CreateMarkdownFileRequest;
 }
 
 export interface CreateWorkspaceOperationRequest {
@@ -159,8 +169,11 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      * Create a new account
      */
     async createAccountRaw(requestParameters: CreateAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateAccountResponse>> {
-        if (requestParameters.createAccountRequest === null || requestParameters.createAccountRequest === undefined) {
-            throw new runtime.RequiredError('createAccountRequest','Required parameter requestParameters.createAccountRequest was null or undefined when calling createAccount.');
+        if (requestParameters['createAccountRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createAccountRequest',
+                'Required parameter "createAccountRequest" was null or undefined when calling createAccount().'
+            );
         }
 
         const queryParameters: any = {};
@@ -174,7 +187,7 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateAccountRequestToJSON(requestParameters.createAccountRequest),
+            body: CreateAccountRequestToJSON(requestParameters['createAccountRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateAccountResponseFromJSON(jsonValue));
@@ -194,8 +207,11 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      * Create a folder
      */
     async createFolderRaw(requestParameters: CreateFolderOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateFolderResponse>> {
-        if (requestParameters.createFolderRequest === null || requestParameters.createFolderRequest === undefined) {
-            throw new runtime.RequiredError('createFolderRequest','Required parameter requestParameters.createFolderRequest was null or undefined when calling createFolder.');
+        if (requestParameters['createFolderRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createFolderRequest',
+                'Required parameter "createFolderRequest" was null or undefined when calling createFolder().'
+            );
         }
 
         const queryParameters: any = {};
@@ -209,7 +225,7 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateFolderRequestToJSON(requestParameters.createFolderRequest),
+            body: CreateFolderRequestToJSON(requestParameters['createFolderRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateFolderResponseFromJSON(jsonValue));
@@ -225,12 +241,53 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint creates a new file
+     * Create a markdown file
+     */
+    async createMarkdownFileRaw(requestParameters: CreateMarkdownFileOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateMarkdownFileResponse>> {
+        if (requestParameters['createMarkdownFileRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createMarkdownFileRequest',
+                'Required parameter "createMarkdownFileRequest" was null or undefined when calling createMarkdownFile().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/workspace-microservice/api/v1/files`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateMarkdownFileRequestToJSON(requestParameters['createMarkdownFileRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateMarkdownFileResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint creates a new file
+     * Create a markdown file
+     */
+    async createMarkdownFile(requestParameters: CreateMarkdownFileOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateMarkdownFileResponse> {
+        const response = await this.createMarkdownFileRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * This endpoint creates a new workspace
      * Create a workspace
      */
     async createWorkspaceRaw(requestParameters: CreateWorkspaceOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateWorkspaceResponse>> {
-        if (requestParameters.createWorkspaceRequest === null || requestParameters.createWorkspaceRequest === undefined) {
-            throw new runtime.RequiredError('createWorkspaceRequest','Required parameter requestParameters.createWorkspaceRequest was null or undefined when calling createWorkspace.');
+        if (requestParameters['createWorkspaceRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createWorkspaceRequest',
+                'Required parameter "createWorkspaceRequest" was null or undefined when calling createWorkspace().'
+            );
         }
 
         const queryParameters: any = {};
@@ -244,7 +301,7 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateWorkspaceRequestToJSON(requestParameters.createWorkspaceRequest),
+            body: CreateWorkspaceRequestToJSON(requestParameters['createWorkspaceRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateWorkspaceResponseFromJSON(jsonValue));
@@ -264,8 +321,11 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      * Delete an account
      */
     async deleteAccountRaw(requestParameters: DeleteAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteAccountResponse>> {
-        if (requestParameters.authZeroUserId === null || requestParameters.authZeroUserId === undefined) {
-            throw new runtime.RequiredError('authZeroUserId','Required parameter requestParameters.authZeroUserId was null or undefined when calling deleteAccount.');
+        if (requestParameters['authZeroUserId'] == null) {
+            throw new runtime.RequiredError(
+                'authZeroUserId',
+                'Required parameter "authZeroUserId" was null or undefined when calling deleteAccount().'
+            );
         }
 
         const queryParameters: any = {};
@@ -273,7 +333,7 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/workspace-microservice/api/v1/accounts/{authZeroUserId}`.replace(`{${"authZeroUserId"}}`, encodeURIComponent(String(requestParameters.authZeroUserId))),
+            path: `/workspace-microservice/api/v1/accounts/{authZeroUserId}`.replace(`{${"authZeroUserId"}}`, encodeURIComponent(String(requestParameters['authZeroUserId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -296,32 +356,38 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      * Delete a file
      */
     async deleteFileRaw(requestParameters: DeleteFileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFileResponse>> {
-        if (requestParameters.fileId === null || requestParameters.fileId === undefined) {
-            throw new runtime.RequiredError('fileId','Required parameter requestParameters.fileId was null or undefined when calling deleteFile.');
+        if (requestParameters['fileId'] == null) {
+            throw new runtime.RequiredError(
+                'fileId',
+                'Required parameter "fileId" was null or undefined when calling deleteFile().'
+            );
         }
 
-        if (requestParameters.authZeroUserId === null || requestParameters.authZeroUserId === undefined) {
-            throw new runtime.RequiredError('authZeroUserId','Required parameter requestParameters.authZeroUserId was null or undefined when calling deleteFile.');
+        if (requestParameters['authZeroUserId'] == null) {
+            throw new runtime.RequiredError(
+                'authZeroUserId',
+                'Required parameter "authZeroUserId" was null or undefined when calling deleteFile().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.authZeroUserId !== undefined) {
-            queryParameters['authZeroUserId'] = requestParameters.authZeroUserId;
+        if (requestParameters['authZeroUserId'] != null) {
+            queryParameters['authZeroUserId'] = requestParameters['authZeroUserId'];
         }
 
-        if (requestParameters.folderId !== undefined) {
-            queryParameters['folderId'] = requestParameters.folderId;
+        if (requestParameters['folderId'] != null) {
+            queryParameters['folderId'] = requestParameters['folderId'];
         }
 
-        if (requestParameters.workspaceId !== undefined) {
-            queryParameters['workspaceId'] = requestParameters.workspaceId;
+        if (requestParameters['workspaceId'] != null) {
+            queryParameters['workspaceId'] = requestParameters['workspaceId'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/workspace-microservice/api/v1/files/{fileId}`.replace(`{${"fileId"}}`, encodeURIComponent(String(requestParameters.fileId))),
+            path: `/workspace-microservice/api/v1/files/{fileId}`.replace(`{${"fileId"}}`, encodeURIComponent(String(requestParameters['fileId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -344,28 +410,34 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      * Delete a folder
      */
     async deleteFolderRaw(requestParameters: DeleteFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteFolderResponse>> {
-        if (requestParameters.folderId === null || requestParameters.folderId === undefined) {
-            throw new runtime.RequiredError('folderId','Required parameter requestParameters.folderId was null or undefined when calling deleteFolder.');
+        if (requestParameters['folderId'] == null) {
+            throw new runtime.RequiredError(
+                'folderId',
+                'Required parameter "folderId" was null or undefined when calling deleteFolder().'
+            );
         }
 
-        if (requestParameters.authZeroUserId === null || requestParameters.authZeroUserId === undefined) {
-            throw new runtime.RequiredError('authZeroUserId','Required parameter requestParameters.authZeroUserId was null or undefined when calling deleteFolder.');
+        if (requestParameters['authZeroUserId'] == null) {
+            throw new runtime.RequiredError(
+                'authZeroUserId',
+                'Required parameter "authZeroUserId" was null or undefined when calling deleteFolder().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.authZeroUserId !== undefined) {
-            queryParameters['authZeroUserId'] = requestParameters.authZeroUserId;
+        if (requestParameters['authZeroUserId'] != null) {
+            queryParameters['authZeroUserId'] = requestParameters['authZeroUserId'];
         }
 
-        if (requestParameters.workspaceId !== undefined) {
-            queryParameters['workspaceId'] = requestParameters.workspaceId;
+        if (requestParameters['workspaceId'] != null) {
+            queryParameters['workspaceId'] = requestParameters['workspaceId'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/workspace-microservice/api/v1/folders/{folderId}`.replace(`{${"folderId"}}`, encodeURIComponent(String(requestParameters.folderId))),
+            path: `/workspace-microservice/api/v1/folders/{folderId}`.replace(`{${"folderId"}}`, encodeURIComponent(String(requestParameters['folderId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -388,24 +460,30 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      * Delete a workspace
      */
     async deleteWorkspaceRaw(requestParameters: DeleteWorkspaceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteWorkspaceResponse>> {
-        if (requestParameters.workspaceId === null || requestParameters.workspaceId === undefined) {
-            throw new runtime.RequiredError('workspaceId','Required parameter requestParameters.workspaceId was null or undefined when calling deleteWorkspace.');
+        if (requestParameters['workspaceId'] == null) {
+            throw new runtime.RequiredError(
+                'workspaceId',
+                'Required parameter "workspaceId" was null or undefined when calling deleteWorkspace().'
+            );
         }
 
-        if (requestParameters.authZeroUserId === null || requestParameters.authZeroUserId === undefined) {
-            throw new runtime.RequiredError('authZeroUserId','Required parameter requestParameters.authZeroUserId was null or undefined when calling deleteWorkspace.');
+        if (requestParameters['authZeroUserId'] == null) {
+            throw new runtime.RequiredError(
+                'authZeroUserId',
+                'Required parameter "authZeroUserId" was null or undefined when calling deleteWorkspace().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.authZeroUserId !== undefined) {
-            queryParameters['authZeroUserId'] = requestParameters.authZeroUserId;
+        if (requestParameters['authZeroUserId'] != null) {
+            queryParameters['authZeroUserId'] = requestParameters['authZeroUserId'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/workspace-microservice/api/v1/workspaces/{workspaceId}`.replace(`{${"workspaceId"}}`, encodeURIComponent(String(requestParameters.workspaceId))),
+            path: `/workspace-microservice/api/v1/workspaces/{workspaceId}`.replace(`{${"workspaceId"}}`, encodeURIComponent(String(requestParameters['workspaceId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -428,20 +506,23 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      * Get account by ID
      */
     async getAccountRaw(requestParameters: GetAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAccountResponse>> {
-        if (requestParameters.authZeroUserId === null || requestParameters.authZeroUserId === undefined) {
-            throw new runtime.RequiredError('authZeroUserId','Required parameter requestParameters.authZeroUserId was null or undefined when calling getAccount.');
+        if (requestParameters['authZeroUserId'] == null) {
+            throw new runtime.RequiredError(
+                'authZeroUserId',
+                'Required parameter "authZeroUserId" was null or undefined when calling getAccount().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.createIfNotExists !== undefined) {
-            queryParameters['createIfNotExists'] = requestParameters.createIfNotExists;
+        if (requestParameters['createIfNotExists'] != null) {
+            queryParameters['createIfNotExists'] = requestParameters['createIfNotExists'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/workspace-microservice/api/v1/accounts/{authZeroUserId}`.replace(`{${"authZeroUserId"}}`, encodeURIComponent(String(requestParameters.authZeroUserId))),
+            path: `/workspace-microservice/api/v1/accounts/{authZeroUserId}`.replace(`{${"authZeroUserId"}}`, encodeURIComponent(String(requestParameters['authZeroUserId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -464,22 +545,25 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      * List folders
      */
     async listFolderRaw(requestParameters: ListFolderRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListFolderResponse>> {
-        if (requestParameters.authZeroUserId === null || requestParameters.authZeroUserId === undefined) {
-            throw new runtime.RequiredError('authZeroUserId','Required parameter requestParameters.authZeroUserId was null or undefined when calling listFolder.');
+        if (requestParameters['authZeroUserId'] == null) {
+            throw new runtime.RequiredError(
+                'authZeroUserId',
+                'Required parameter "authZeroUserId" was null or undefined when calling listFolder().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.authZeroUserId !== undefined) {
-            queryParameters['authZeroUserId'] = requestParameters.authZeroUserId;
+        if (requestParameters['authZeroUserId'] != null) {
+            queryParameters['authZeroUserId'] = requestParameters['authZeroUserId'];
         }
 
-        if (requestParameters.folderId !== undefined) {
-            queryParameters['folderId'] = requestParameters.folderId;
+        if (requestParameters['folderId'] != null) {
+            queryParameters['folderId'] = requestParameters['folderId'];
         }
 
-        if (requestParameters.workspaceId !== undefined) {
-            queryParameters['workspaceId'] = requestParameters.workspaceId;
+        if (requestParameters['workspaceId'] != null) {
+            queryParameters['workspaceId'] = requestParameters['workspaceId'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -508,14 +592,17 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      * List workspaces
      */
     async listWorkspaceRaw(requestParameters: ListWorkspaceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListWorkspaceResponse>> {
-        if (requestParameters.authZeroUserId === null || requestParameters.authZeroUserId === undefined) {
-            throw new runtime.RequiredError('authZeroUserId','Required parameter requestParameters.authZeroUserId was null or undefined when calling listWorkspace.');
+        if (requestParameters['authZeroUserId'] == null) {
+            throw new runtime.RequiredError(
+                'authZeroUserId',
+                'Required parameter "authZeroUserId" was null or undefined when calling listWorkspace().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.authZeroUserId !== undefined) {
-            queryParameters['authZeroUserId'] = requestParameters.authZeroUserId;
+        if (requestParameters['authZeroUserId'] != null) {
+            queryParameters['authZeroUserId'] = requestParameters['authZeroUserId'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -544,8 +631,11 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      * Update a file
      */
     async updateFileRaw(requestParameters: UpdateFileOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFileResponse>> {
-        if (requestParameters.updateFileRequest === null || requestParameters.updateFileRequest === undefined) {
-            throw new runtime.RequiredError('updateFileRequest','Required parameter requestParameters.updateFileRequest was null or undefined when calling updateFile.');
+        if (requestParameters['updateFileRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateFileRequest',
+                'Required parameter "updateFileRequest" was null or undefined when calling updateFile().'
+            );
         }
 
         const queryParameters: any = {};
@@ -559,7 +649,7 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateFileRequestToJSON(requestParameters.updateFileRequest),
+            body: UpdateFileRequestToJSON(requestParameters['updateFileRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateFileResponseFromJSON(jsonValue));
@@ -579,8 +669,11 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      * Update a folder
      */
     async updateFolderRaw(requestParameters: UpdateFolderOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateFolderResponse>> {
-        if (requestParameters.updateFolderRequest === null || requestParameters.updateFolderRequest === undefined) {
-            throw new runtime.RequiredError('updateFolderRequest','Required parameter requestParameters.updateFolderRequest was null or undefined when calling updateFolder.');
+        if (requestParameters['updateFolderRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateFolderRequest',
+                'Required parameter "updateFolderRequest" was null or undefined when calling updateFolder().'
+            );
         }
 
         const queryParameters: any = {};
@@ -594,7 +687,7 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateFolderRequestToJSON(requestParameters.updateFolderRequest),
+            body: UpdateFolderRequestToJSON(requestParameters['updateFolderRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateFolderResponseFromJSON(jsonValue));
@@ -614,8 +707,11 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
      * Update a workspace
      */
     async updateWorkspaceRaw(requestParameters: UpdateWorkspaceOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateWorkspaceResponse>> {
-        if (requestParameters.updateWorkspaceRequest === null || requestParameters.updateWorkspaceRequest === undefined) {
-            throw new runtime.RequiredError('updateWorkspaceRequest','Required parameter requestParameters.updateWorkspaceRequest was null or undefined when calling updateWorkspace.');
+        if (requestParameters['updateWorkspaceRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateWorkspaceRequest',
+                'Required parameter "updateWorkspaceRequest" was null or undefined when calling updateWorkspace().'
+            );
         }
 
         const queryParameters: any = {};
@@ -629,7 +725,7 @@ export class WorkspaceServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateWorkspaceRequestToJSON(requestParameters.updateWorkspaceRequest),
+            body: UpdateWorkspaceRequestToJSON(requestParameters['updateWorkspaceRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateWorkspaceResponseFromJSON(jsonValue));

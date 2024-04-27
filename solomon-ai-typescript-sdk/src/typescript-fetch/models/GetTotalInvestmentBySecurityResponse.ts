@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { TotalInvestmentBySecurity } from './TotalInvestmentBySecurity';
 import {
     TotalInvestmentBySecurityFromJSON,
@@ -44,9 +44,7 @@ export interface GetTotalInvestmentBySecurityResponse {
  * Check if a given object implements the GetTotalInvestmentBySecurityResponse interface.
  */
 export function instanceOfGetTotalInvestmentBySecurityResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetTotalInvestmentBySecurityResponseFromJSON(json: any): GetTotalInvestmentBySecurityResponse {
@@ -54,27 +52,24 @@ export function GetTotalInvestmentBySecurityResponseFromJSON(json: any): GetTota
 }
 
 export function GetTotalInvestmentBySecurityResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetTotalInvestmentBySecurityResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'totalInvestmentBySecurity': !exists(json, 'totalInvestmentBySecurity') ? undefined : ((json['totalInvestmentBySecurity'] as Array<any>).map(TotalInvestmentBySecurityFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'totalInvestmentBySecurity': json['totalInvestmentBySecurity'] == null ? undefined : ((json['totalInvestmentBySecurity'] as Array<any>).map(TotalInvestmentBySecurityFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetTotalInvestmentBySecurityResponseToJSON(value?: GetTotalInvestmentBySecurityResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'totalInvestmentBySecurity': value.totalInvestmentBySecurity === undefined ? undefined : ((value.totalInvestmentBySecurity as Array<any>).map(TotalInvestmentBySecurityToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'totalInvestmentBySecurity': value['totalInvestmentBySecurity'] == null ? undefined : ((value['totalInvestmentBySecurity'] as Array<any>).map(TotalInvestmentBySecurityToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

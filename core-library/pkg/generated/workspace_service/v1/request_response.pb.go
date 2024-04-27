@@ -1805,6 +1805,142 @@ func (x *DeleteWorkspaceResponse) GetIsDeleted() bool {
 	return false
 }
 
+// Request to create a Markdown file.
+type CreateMarkdownFileRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	WorkspaceId string `protobuf:"bytes,1,opt,name=workspace_id,json=workspaceId,proto3" json:"workspace_id,omitempty"` // Workspace ID
+	FolderId    string `protobuf:"bytes,2,opt,name=folder_id,json=folderId,proto3" json:"folder_id,omitempty"`          // Folder ID
+	Filename    string `protobuf:"bytes,3,opt,name=filename,proto3" json:"filename,omitempty"`                          // Filename
+	UserId      string `protobuf:"bytes,4,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`                // User ID
+	Content     string `protobuf:"bytes,5,opt,name=content,proto3" json:"content,omitempty"`                            // File content
+}
+
+func (x *CreateMarkdownFileRequest) Reset() {
+	*x = CreateMarkdownFileRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_workspace_service_v1_request_response_proto_msgTypes[34]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateMarkdownFileRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateMarkdownFileRequest) ProtoMessage() {}
+
+func (x *CreateMarkdownFileRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_workspace_service_v1_request_response_proto_msgTypes[34]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateMarkdownFileRequest.ProtoReflect.Descriptor instead.
+func (*CreateMarkdownFileRequest) Descriptor() ([]byte, []int) {
+	return file_workspace_service_v1_request_response_proto_rawDescGZIP(), []int{34}
+}
+
+func (x *CreateMarkdownFileRequest) GetWorkspaceId() string {
+	if x != nil {
+		return x.WorkspaceId
+	}
+	return ""
+}
+
+func (x *CreateMarkdownFileRequest) GetFolderId() string {
+	if x != nil {
+		return x.FolderId
+	}
+	return ""
+}
+
+func (x *CreateMarkdownFileRequest) GetFilename() string {
+	if x != nil {
+		return x.Filename
+	}
+	return ""
+}
+
+func (x *CreateMarkdownFileRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *CreateMarkdownFileRequest) GetContent() string {
+	if x != nil {
+		return x.Content
+	}
+	return ""
+}
+
+// Response from creating a Markdown file.
+type CreateMarkdownFileResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	FileId  string `protobuf:"bytes,1,opt,name=file_id,json=fileId,proto3" json:"file_id,omitempty"`    // File ID
+	FileUrl string `protobuf:"bytes,2,opt,name=file_url,json=fileUrl,proto3" json:"file_url,omitempty"` // File URL
+}
+
+func (x *CreateMarkdownFileResponse) Reset() {
+	*x = CreateMarkdownFileResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_workspace_service_v1_request_response_proto_msgTypes[35]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *CreateMarkdownFileResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*CreateMarkdownFileResponse) ProtoMessage() {}
+
+func (x *CreateMarkdownFileResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_workspace_service_v1_request_response_proto_msgTypes[35]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use CreateMarkdownFileResponse.ProtoReflect.Descriptor instead.
+func (*CreateMarkdownFileResponse) Descriptor() ([]byte, []int) {
+	return file_workspace_service_v1_request_response_proto_rawDescGZIP(), []int{35}
+}
+
+func (x *CreateMarkdownFileResponse) GetFileId() string {
+	if x != nil {
+		return x.FileId
+	}
+	return ""
+}
+
+func (x *CreateMarkdownFileResponse) GetFileUrl() string {
+	if x != nil {
+		return x.FileUrl
+	}
+	return ""
+}
+
 var File_workspace_service_v1_request_response_proto protoreflect.FileDescriptor
 
 var file_workspace_service_v1_request_response_proto_rawDesc = []byte{
@@ -2020,25 +2156,41 @@ var file_workspace_service_v1_request_response_proto_rawDesc = []byte{
 	0x44, 0x65, 0x6c, 0x65, 0x74, 0x65, 0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x52,
 	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x1d, 0x0a, 0x0a, 0x69, 0x73, 0x5f, 0x64, 0x65,
 	0x6c, 0x65, 0x74, 0x65, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x08, 0x52, 0x09, 0x69, 0x73, 0x44,
-	0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x42, 0x9c, 0x02, 0x0a, 0x18, 0x63, 0x6f, 0x6d, 0x2e, 0x77,
-	0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
-	0x2e, 0x76, 0x31, 0x42, 0x14, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70,
-	0x6f, 0x6e, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x7d, 0x67, 0x69, 0x74,
-	0x68, 0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x53, 0x6f, 0x6c, 0x6f, 0x6d, 0x6f, 0x6e, 0x41,
-	0x49, 0x45, 0x6e, 0x67, 0x69, 0x6e, 0x65, 0x65, 0x72, 0x69, 0x6e, 0x67, 0x2f, 0x63, 0x6f, 0x72,
-	0x65, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2d, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x2f, 0x70,
-	0x6b, 0x67, 0x2f, 0x67, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x64, 0x2f, 0x77, 0x6f, 0x72,
-	0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x2d, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x76,
-	0x31, 0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f, 0x73, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x2f, 0x76, 0x31, 0x3b, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65,
-	0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x57, 0x58, 0x58,
-	0xaa, 0x02, 0x13, 0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x53, 0x65, 0x72, 0x76,
-	0x69, 0x63, 0x65, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x13, 0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61,
-	0x63, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x1f, 0x57,
-	0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5c,
-	0x56, 0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02,
-	0x14, 0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x6c, 0x65, 0x74, 0x65, 0x64, 0x22, 0xaa, 0x01, 0x0a, 0x19, 0x43, 0x72, 0x65, 0x61, 0x74,
+	0x65, 0x4d, 0x61, 0x72, 0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x21, 0x0a, 0x0c, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63,
+	0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0b, 0x77, 0x6f, 0x72, 0x6b,
+	0x73, 0x70, 0x61, 0x63, 0x65, 0x49, 0x64, 0x12, 0x1b, 0x0a, 0x09, 0x66, 0x6f, 0x6c, 0x64, 0x65,
+	0x72, 0x5f, 0x69, 0x64, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x66, 0x6f, 0x6c, 0x64,
+	0x65, 0x72, 0x49, 0x64, 0x12, 0x1a, 0x0a, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x6e, 0x61, 0x6d, 0x65,
+	0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x08, 0x66, 0x69, 0x6c, 0x65, 0x6e, 0x61, 0x6d, 0x65,
+	0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x04, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x18, 0x0a, 0x07, 0x63, 0x6f, 0x6e,
+	0x74, 0x65, 0x6e, 0x74, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x63, 0x6f, 0x6e, 0x74,
+	0x65, 0x6e, 0x74, 0x22, 0x50, 0x0a, 0x1a, 0x43, 0x72, 0x65, 0x61, 0x74, 0x65, 0x4d, 0x61, 0x72,
+	0x6b, 0x64, 0x6f, 0x77, 0x6e, 0x46, 0x69, 0x6c, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73,
+	0x65, 0x12, 0x17, 0x0a, 0x07, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01,
+	0x28, 0x09, 0x52, 0x06, 0x66, 0x69, 0x6c, 0x65, 0x49, 0x64, 0x12, 0x19, 0x0a, 0x08, 0x66, 0x69,
+	0x6c, 0x65, 0x5f, 0x75, 0x72, 0x6c, 0x18, 0x02, 0x20, 0x01, 0x28, 0x09, 0x52, 0x07, 0x66, 0x69,
+	0x6c, 0x65, 0x55, 0x72, 0x6c, 0x42, 0x9c, 0x02, 0x0a, 0x18, 0x63, 0x6f, 0x6d, 0x2e, 0x77, 0x6f,
+	0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
+	0x76, 0x31, 0x42, 0x14, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52, 0x65, 0x73, 0x70, 0x6f,
+	0x6e, 0x73, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x7d, 0x67, 0x69, 0x74, 0x68,
+	0x75, 0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x53, 0x6f, 0x6c, 0x6f, 0x6d, 0x6f, 0x6e, 0x41, 0x49,
+	0x45, 0x6e, 0x67, 0x69, 0x6e, 0x65, 0x65, 0x72, 0x69, 0x6e, 0x67, 0x2f, 0x63, 0x6f, 0x72, 0x65,
+	0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2d, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x2f, 0x70, 0x6b,
+	0x67, 0x2f, 0x67, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x64, 0x2f, 0x77, 0x6f, 0x72, 0x6b,
+	0x73, 0x70, 0x61, 0x63, 0x65, 0x2d, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x76, 0x31,
+	0x2f, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x2f, 0x76, 0x31, 0x3b, 0x77, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x5f,
+	0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x57, 0x58, 0x58, 0xaa,
+	0x02, 0x13, 0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x13, 0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63,
+	0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x1f, 0x57, 0x6f,
+	0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5c, 0x56,
+	0x31, 0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x14,
+	0x57, 0x6f, 0x72, 0x6b, 0x73, 0x70, 0x61, 0x63, 0x65, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x3a, 0x3a, 0x56, 0x31, 0x62, 0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -2053,61 +2205,63 @@ func file_workspace_service_v1_request_response_proto_rawDescGZIP() []byte {
 	return file_workspace_service_v1_request_response_proto_rawDescData
 }
 
-var file_workspace_service_v1_request_response_proto_msgTypes = make([]protoimpl.MessageInfo, 34)
+var file_workspace_service_v1_request_response_proto_msgTypes = make([]protoimpl.MessageInfo, 36)
 var file_workspace_service_v1_request_response_proto_goTypes = []interface{}{
-	(*FileUploadRequest)(nil),       // 0: workspace_service.v1.FileUploadRequest
-	(*FileUploadResponse)(nil),      // 1: workspace_service.v1.FileUploadResponse
-	(*FileDownloadRequest)(nil),     // 2: workspace_service.v1.FileDownloadRequest
-	(*FileDownloadResponse)(nil),    // 3: workspace_service.v1.FileDownloadResponse
-	(*CreateAccountRequest)(nil),    // 4: workspace_service.v1.CreateAccountRequest
-	(*CreateAccountResponse)(nil),   // 5: workspace_service.v1.CreateAccountResponse
-	(*GetAccountRequest)(nil),       // 6: workspace_service.v1.GetAccountRequest
-	(*GetAccountResponse)(nil),      // 7: workspace_service.v1.GetAccountResponse
-	(*DeleteAccountRequest)(nil),    // 8: workspace_service.v1.DeleteAccountRequest
-	(*DeleteAccountResponse)(nil),   // 9: workspace_service.v1.DeleteAccountResponse
-	(*UploadFileRequest)(nil),       // 10: workspace_service.v1.UploadFileRequest
-	(*UploadFileResponse)(nil),      // 11: workspace_service.v1.UploadFileResponse
-	(*DownloadFileRequest)(nil),     // 12: workspace_service.v1.DownloadFileRequest
-	(*DownloadFileResponse)(nil),    // 13: workspace_service.v1.DownloadFileResponse
-	(*DeleteFileRequest)(nil),       // 14: workspace_service.v1.DeleteFileRequest
-	(*DeleteFileResponse)(nil),      // 15: workspace_service.v1.DeleteFileResponse
-	(*UpdateFileRequest)(nil),       // 16: workspace_service.v1.UpdateFileRequest
-	(*UpdateFileResponse)(nil),      // 17: workspace_service.v1.UpdateFileResponse
-	(*CreateFolderRequest)(nil),     // 18: workspace_service.v1.CreateFolderRequest
-	(*CreateFolderResponse)(nil),    // 19: workspace_service.v1.CreateFolderResponse
-	(*ListFolderRequest)(nil),       // 20: workspace_service.v1.ListFolderRequest
-	(*ListFolderResponse)(nil),      // 21: workspace_service.v1.ListFolderResponse
-	(*UpdateFolderRequest)(nil),     // 22: workspace_service.v1.UpdateFolderRequest
-	(*UpdateFolderResponse)(nil),    // 23: workspace_service.v1.UpdateFolderResponse
-	(*DeleteFolderRequest)(nil),     // 24: workspace_service.v1.DeleteFolderRequest
-	(*DeleteFolderResponse)(nil),    // 25: workspace_service.v1.DeleteFolderResponse
-	(*CreateWorkspaceRequest)(nil),  // 26: workspace_service.v1.CreateWorkspaceRequest
-	(*CreateWorkspaceResponse)(nil), // 27: workspace_service.v1.CreateWorkspaceResponse
-	(*ListWorkspaceRequest)(nil),    // 28: workspace_service.v1.ListWorkspaceRequest
-	(*ListWorkspaceResponse)(nil),   // 29: workspace_service.v1.ListWorkspaceResponse
-	(*UpdateWorkspaceRequest)(nil),  // 30: workspace_service.v1.UpdateWorkspaceRequest
-	(*UpdateWorkspaceResponse)(nil), // 31: workspace_service.v1.UpdateWorkspaceResponse
-	(*DeleteWorkspaceRequest)(nil),  // 32: workspace_service.v1.DeleteWorkspaceRequest
-	(*DeleteWorkspaceResponse)(nil), // 33: workspace_service.v1.DeleteWorkspaceResponse
-	(*Account)(nil),                 // 34: workspace_service.v1.Account
-	(*FileMetadata)(nil),            // 35: workspace_service.v1.FileMetadata
-	(*FolderMetadata)(nil),          // 36: workspace_service.v1.FolderMetadata
-	(*Workspace)(nil),               // 37: workspace_service.v1.Workspace
+	(*FileUploadRequest)(nil),          // 0: workspace_service.v1.FileUploadRequest
+	(*FileUploadResponse)(nil),         // 1: workspace_service.v1.FileUploadResponse
+	(*FileDownloadRequest)(nil),        // 2: workspace_service.v1.FileDownloadRequest
+	(*FileDownloadResponse)(nil),       // 3: workspace_service.v1.FileDownloadResponse
+	(*CreateAccountRequest)(nil),       // 4: workspace_service.v1.CreateAccountRequest
+	(*CreateAccountResponse)(nil),      // 5: workspace_service.v1.CreateAccountResponse
+	(*GetAccountRequest)(nil),          // 6: workspace_service.v1.GetAccountRequest
+	(*GetAccountResponse)(nil),         // 7: workspace_service.v1.GetAccountResponse
+	(*DeleteAccountRequest)(nil),       // 8: workspace_service.v1.DeleteAccountRequest
+	(*DeleteAccountResponse)(nil),      // 9: workspace_service.v1.DeleteAccountResponse
+	(*UploadFileRequest)(nil),          // 10: workspace_service.v1.UploadFileRequest
+	(*UploadFileResponse)(nil),         // 11: workspace_service.v1.UploadFileResponse
+	(*DownloadFileRequest)(nil),        // 12: workspace_service.v1.DownloadFileRequest
+	(*DownloadFileResponse)(nil),       // 13: workspace_service.v1.DownloadFileResponse
+	(*DeleteFileRequest)(nil),          // 14: workspace_service.v1.DeleteFileRequest
+	(*DeleteFileResponse)(nil),         // 15: workspace_service.v1.DeleteFileResponse
+	(*UpdateFileRequest)(nil),          // 16: workspace_service.v1.UpdateFileRequest
+	(*UpdateFileResponse)(nil),         // 17: workspace_service.v1.UpdateFileResponse
+	(*CreateFolderRequest)(nil),        // 18: workspace_service.v1.CreateFolderRequest
+	(*CreateFolderResponse)(nil),       // 19: workspace_service.v1.CreateFolderResponse
+	(*ListFolderRequest)(nil),          // 20: workspace_service.v1.ListFolderRequest
+	(*ListFolderResponse)(nil),         // 21: workspace_service.v1.ListFolderResponse
+	(*UpdateFolderRequest)(nil),        // 22: workspace_service.v1.UpdateFolderRequest
+	(*UpdateFolderResponse)(nil),       // 23: workspace_service.v1.UpdateFolderResponse
+	(*DeleteFolderRequest)(nil),        // 24: workspace_service.v1.DeleteFolderRequest
+	(*DeleteFolderResponse)(nil),       // 25: workspace_service.v1.DeleteFolderResponse
+	(*CreateWorkspaceRequest)(nil),     // 26: workspace_service.v1.CreateWorkspaceRequest
+	(*CreateWorkspaceResponse)(nil),    // 27: workspace_service.v1.CreateWorkspaceResponse
+	(*ListWorkspaceRequest)(nil),       // 28: workspace_service.v1.ListWorkspaceRequest
+	(*ListWorkspaceResponse)(nil),      // 29: workspace_service.v1.ListWorkspaceResponse
+	(*UpdateWorkspaceRequest)(nil),     // 30: workspace_service.v1.UpdateWorkspaceRequest
+	(*UpdateWorkspaceResponse)(nil),    // 31: workspace_service.v1.UpdateWorkspaceResponse
+	(*DeleteWorkspaceRequest)(nil),     // 32: workspace_service.v1.DeleteWorkspaceRequest
+	(*DeleteWorkspaceResponse)(nil),    // 33: workspace_service.v1.DeleteWorkspaceResponse
+	(*CreateMarkdownFileRequest)(nil),  // 34: workspace_service.v1.CreateMarkdownFileRequest
+	(*CreateMarkdownFileResponse)(nil), // 35: workspace_service.v1.CreateMarkdownFileResponse
+	(*Account)(nil),                    // 36: workspace_service.v1.Account
+	(*FileMetadata)(nil),               // 37: workspace_service.v1.FileMetadata
+	(*FolderMetadata)(nil),             // 38: workspace_service.v1.FolderMetadata
+	(*Workspace)(nil),                  // 39: workspace_service.v1.Workspace
 }
 var file_workspace_service_v1_request_response_proto_depIdxs = []int32{
-	34, // 0: workspace_service.v1.CreateAccountResponse.account:type_name -> workspace_service.v1.Account
-	34, // 1: workspace_service.v1.GetAccountResponse.account:type_name -> workspace_service.v1.Account
-	35, // 2: workspace_service.v1.UploadFileResponse.metadata:type_name -> workspace_service.v1.FileMetadata
-	35, // 3: workspace_service.v1.UpdateFileRequest.metadata:type_name -> workspace_service.v1.FileMetadata
-	35, // 4: workspace_service.v1.UpdateFileResponse.metadata:type_name -> workspace_service.v1.FileMetadata
-	36, // 5: workspace_service.v1.CreateFolderResponse.folder:type_name -> workspace_service.v1.FolderMetadata
-	36, // 6: workspace_service.v1.ListFolderResponse.folder:type_name -> workspace_service.v1.FolderMetadata
-	36, // 7: workspace_service.v1.UpdateFolderRequest.folder:type_name -> workspace_service.v1.FolderMetadata
-	36, // 8: workspace_service.v1.UpdateFolderResponse.folder:type_name -> workspace_service.v1.FolderMetadata
-	37, // 9: workspace_service.v1.CreateWorkspaceResponse.workspace:type_name -> workspace_service.v1.Workspace
-	37, // 10: workspace_service.v1.ListWorkspaceResponse.workspace:type_name -> workspace_service.v1.Workspace
-	37, // 11: workspace_service.v1.UpdateWorkspaceRequest.workspace:type_name -> workspace_service.v1.Workspace
-	37, // 12: workspace_service.v1.UpdateWorkspaceResponse.workspace:type_name -> workspace_service.v1.Workspace
+	36, // 0: workspace_service.v1.CreateAccountResponse.account:type_name -> workspace_service.v1.Account
+	36, // 1: workspace_service.v1.GetAccountResponse.account:type_name -> workspace_service.v1.Account
+	37, // 2: workspace_service.v1.UploadFileResponse.metadata:type_name -> workspace_service.v1.FileMetadata
+	37, // 3: workspace_service.v1.UpdateFileRequest.metadata:type_name -> workspace_service.v1.FileMetadata
+	37, // 4: workspace_service.v1.UpdateFileResponse.metadata:type_name -> workspace_service.v1.FileMetadata
+	38, // 5: workspace_service.v1.CreateFolderResponse.folder:type_name -> workspace_service.v1.FolderMetadata
+	38, // 6: workspace_service.v1.ListFolderResponse.folder:type_name -> workspace_service.v1.FolderMetadata
+	38, // 7: workspace_service.v1.UpdateFolderRequest.folder:type_name -> workspace_service.v1.FolderMetadata
+	38, // 8: workspace_service.v1.UpdateFolderResponse.folder:type_name -> workspace_service.v1.FolderMetadata
+	39, // 9: workspace_service.v1.CreateWorkspaceResponse.workspace:type_name -> workspace_service.v1.Workspace
+	39, // 10: workspace_service.v1.ListWorkspaceResponse.workspace:type_name -> workspace_service.v1.Workspace
+	39, // 11: workspace_service.v1.UpdateWorkspaceRequest.workspace:type_name -> workspace_service.v1.Workspace
+	39, // 12: workspace_service.v1.UpdateWorkspaceResponse.workspace:type_name -> workspace_service.v1.Workspace
 	13, // [13:13] is the sub-list for method output_type
 	13, // [13:13] is the sub-list for method input_type
 	13, // [13:13] is the sub-list for extension type_name
@@ -2530,6 +2684,30 @@ func file_workspace_service_v1_request_response_proto_init() {
 				return nil
 			}
 		}
+		file_workspace_service_v1_request_response_proto_msgTypes[34].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateMarkdownFileRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_workspace_service_v1_request_response_proto_msgTypes[35].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*CreateMarkdownFileResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -2537,7 +2715,7 @@ func file_workspace_service_v1_request_response_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_workspace_service_v1_request_response_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   34,
+			NumMessages:   36,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

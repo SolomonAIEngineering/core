@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface CreateTopicResponse {
  * Check if a given object implements the CreateTopicResponse interface.
  */
 export function instanceOfCreateTopicResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CreateTopicResponseFromJSON(json: any): CreateTopicResponse {
@@ -41,25 +39,22 @@ export function CreateTopicResponseFromJSON(json: any): CreateTopicResponse {
 }
 
 export function CreateTopicResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): CreateTopicResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'topicId': !exists(json, 'topicId') ? undefined : json['topicId'],
+        'topicId': json['topicId'] == null ? undefined : json['topicId'],
     };
 }
 
 export function CreateTopicResponseToJSON(value?: CreateTopicResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'topicId': value.topicId,
+        'topicId': value['topicId'],
     };
 }
 

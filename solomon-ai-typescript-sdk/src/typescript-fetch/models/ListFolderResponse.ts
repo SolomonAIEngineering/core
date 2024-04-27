@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FolderMetadata } from './FolderMetadata';
 import {
     FolderMetadataFromJSON,
@@ -38,9 +38,7 @@ export interface ListFolderResponse {
  * Check if a given object implements the ListFolderResponse interface.
  */
 export function instanceOfListFolderResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function ListFolderResponseFromJSON(json: any): ListFolderResponse {
@@ -48,25 +46,22 @@ export function ListFolderResponseFromJSON(json: any): ListFolderResponse {
 }
 
 export function ListFolderResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): ListFolderResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'folder': !exists(json, 'folder') ? undefined : ((json['folder'] as Array<any>).map(FolderMetadataFromJSON)),
+        'folder': json['folder'] == null ? undefined : ((json['folder'] as Array<any>).map(FolderMetadataFromJSON)),
     };
 }
 
 export function ListFolderResponseToJSON(value?: ListFolderResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'folder': value.folder === undefined ? undefined : ((value.folder as Array<any>).map(FolderMetadataToJSON)),
+        'folder': value['folder'] == null ? undefined : ((value['folder'] as Array<any>).map(FolderMetadataToJSON)),
     };
 }
 

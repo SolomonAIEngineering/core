@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BankAccount } from './BankAccount';
 import {
     BankAccountFromJSON,
@@ -50,9 +50,7 @@ export interface AddDefaultPocketsToBankAccountResponse {
  * Check if a given object implements the AddDefaultPocketsToBankAccountResponse interface.
  */
 export function instanceOfAddDefaultPocketsToBankAccountResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function AddDefaultPocketsToBankAccountResponseFromJSON(json: any): AddDefaultPocketsToBankAccountResponse {
@@ -60,27 +58,24 @@ export function AddDefaultPocketsToBankAccountResponseFromJSON(json: any): AddDe
 }
 
 export function AddDefaultPocketsToBankAccountResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddDefaultPocketsToBankAccountResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'bankAccount': !exists(json, 'bankAccount') ? undefined : BankAccountFromJSON(json['bankAccount']),
-        'creditAccount': !exists(json, 'creditAccount') ? undefined : CreditAccountFromJSON(json['creditAccount']),
+        'bankAccount': json['bankAccount'] == null ? undefined : BankAccountFromJSON(json['bankAccount']),
+        'creditAccount': json['creditAccount'] == null ? undefined : CreditAccountFromJSON(json['creditAccount']),
     };
 }
 
 export function AddDefaultPocketsToBankAccountResponseToJSON(value?: AddDefaultPocketsToBankAccountResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'bankAccount': BankAccountToJSON(value.bankAccount),
-        'creditAccount': CreditAccountToJSON(value.creditAccount),
+        'bankAccount': BankAccountToJSON(value['bankAccount']),
+        'creditAccount': CreditAccountToJSON(value['creditAccount']),
     };
 }
 

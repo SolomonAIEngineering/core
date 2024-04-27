@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FileMetadata } from './FileMetadata';
 import {
     FileMetadataFromJSON,
@@ -117,9 +117,7 @@ export interface FolderMetadata {
  * Check if a given object implements the FolderMetadata interface.
  */
 export function instanceOfFolderMetadata(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function FolderMetadataFromJSON(json: any): FolderMetadata {
@@ -127,51 +125,48 @@ export function FolderMetadataFromJSON(json: any): FolderMetadata {
 }
 
 export function FolderMetadataFromJSONTyped(json: any, ignoreDiscriminator: boolean): FolderMetadata {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'childFolder': !exists(json, 'childFolder') ? undefined : ((json['childFolder'] as Array<any>).map(FolderMetadataFromJSON)),
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'updatedAt': !exists(json, 'updatedAt') ? undefined : (new Date(json['updatedAt'])),
-        'files': !exists(json, 'files') ? undefined : ((json['files'] as Array<any>).map(FileMetadataFromJSON)),
-        'isDeleted': !exists(json, 'isDeleted') ? undefined : json['isDeleted'],
-        's3BucketName': !exists(json, 's3BucketName') ? undefined : json['s3BucketName'],
-        's3FolderPath': !exists(json, 's3FolderPath') ? undefined : json['s3FolderPath'],
-        's3Region': !exists(json, 's3Region') ? undefined : json['s3Region'],
-        's3Metadata': !exists(json, 's3Metadata') ? undefined : json['s3Metadata'],
-        's3Acl': !exists(json, 's3Acl') ? undefined : json['s3Acl'],
-        's3LastModified': !exists(json, 's3LastModified') ? undefined : (new Date(json['s3LastModified'])),
-        'versionId': !exists(json, 'versionId') ? undefined : json['versionId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'childFolder': json['childFolder'] == null ? undefined : ((json['childFolder'] as Array<any>).map(FolderMetadataFromJSON)),
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'updatedAt': json['updatedAt'] == null ? undefined : (new Date(json['updatedAt'])),
+        'files': json['files'] == null ? undefined : ((json['files'] as Array<any>).map(FileMetadataFromJSON)),
+        'isDeleted': json['isDeleted'] == null ? undefined : json['isDeleted'],
+        's3BucketName': json['s3BucketName'] == null ? undefined : json['s3BucketName'],
+        's3FolderPath': json['s3FolderPath'] == null ? undefined : json['s3FolderPath'],
+        's3Region': json['s3Region'] == null ? undefined : json['s3Region'],
+        's3Metadata': json['s3Metadata'] == null ? undefined : json['s3Metadata'],
+        's3Acl': json['s3Acl'] == null ? undefined : json['s3Acl'],
+        's3LastModified': json['s3LastModified'] == null ? undefined : (new Date(json['s3LastModified'])),
+        'versionId': json['versionId'] == null ? undefined : json['versionId'],
     };
 }
 
 export function FolderMetadataToJSON(value?: FolderMetadata | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'childFolder': value.childFolder === undefined ? undefined : ((value.childFolder as Array<any>).map(FolderMetadataToJSON)),
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'updatedAt': value.updatedAt === undefined ? undefined : (value.updatedAt.toISOString()),
-        'files': value.files === undefined ? undefined : ((value.files as Array<any>).map(FileMetadataToJSON)),
-        'isDeleted': value.isDeleted,
-        's3BucketName': value.s3BucketName,
-        's3FolderPath': value.s3FolderPath,
-        's3Region': value.s3Region,
-        's3Metadata': value.s3Metadata,
-        's3Acl': value.s3Acl,
-        's3LastModified': value.s3LastModified === undefined ? undefined : (value.s3LastModified.toISOString()),
-        'versionId': value.versionId,
+        'id': value['id'],
+        'name': value['name'],
+        'childFolder': value['childFolder'] == null ? undefined : ((value['childFolder'] as Array<any>).map(FolderMetadataToJSON)),
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'updatedAt': value['updatedAt'] == null ? undefined : ((value['updatedAt']).toISOString()),
+        'files': value['files'] == null ? undefined : ((value['files'] as Array<any>).map(FileMetadataToJSON)),
+        'isDeleted': value['isDeleted'],
+        's3BucketName': value['s3BucketName'],
+        's3FolderPath': value['s3FolderPath'],
+        's3Region': value['s3Region'],
+        's3Metadata': value['s3Metadata'],
+        's3Acl': value['s3Acl'],
+        's3LastModified': value['s3LastModified'] == null ? undefined : ((value['s3LastModified']).toISOString()),
+        'versionId': value['versionId'],
     };
 }
 

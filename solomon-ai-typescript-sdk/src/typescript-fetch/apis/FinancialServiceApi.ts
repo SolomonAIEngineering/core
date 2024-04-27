@@ -25,6 +25,8 @@ import type {
   AddNoteToSmartGoalResponse,
   AddNoteToTransactionRequest,
   AddNoteToTransactionResponse,
+  AddTransactionsToManuallyLinkedAccountRequest,
+  AddTransactionsToManuallyLinkedAccountResponse,
   BulkUpdateRecurringTransactionRequest,
   BulkUpdateRecurringTransactionResponse,
   BulkUpdateTransactionRequest,
@@ -178,6 +180,10 @@ import {
     AddNoteToTransactionRequestToJSON,
     AddNoteToTransactionResponseFromJSON,
     AddNoteToTransactionResponseToJSON,
+    AddTransactionsToManuallyLinkedAccountRequestFromJSON,
+    AddTransactionsToManuallyLinkedAccountRequestToJSON,
+    AddTransactionsToManuallyLinkedAccountResponseFromJSON,
+    AddTransactionsToManuallyLinkedAccountResponseToJSON,
     BulkUpdateRecurringTransactionRequestFromJSON,
     BulkUpdateRecurringTransactionRequestToJSON,
     BulkUpdateRecurringTransactionResponseFromJSON,
@@ -460,6 +466,10 @@ export interface AddNoteToSmartGoalOperationRequest {
 
 export interface AddNoteToTransactionOperationRequest {
     addNoteToTransactionRequest: AddNoteToTransactionRequest;
+}
+
+export interface AddTransactionsToManuallyLinkedAccountOperationRequest {
+    addTransactionsToManuallyLinkedAccountRequest: AddTransactionsToManuallyLinkedAccountRequest;
 }
 
 export interface AskCopilotQuestionRequest {
@@ -1019,8 +1029,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * adds a default set of pockets to a specific bank account of interest
      */
     async addDefaultPocketsToBankAccountRaw(requestParameters: AddDefaultPocketsToBankAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddDefaultPocketsToBankAccountResponse>> {
-        if (requestParameters.addDefaultPocketsToBankAccountRequest === null || requestParameters.addDefaultPocketsToBankAccountRequest === undefined) {
-            throw new runtime.RequiredError('addDefaultPocketsToBankAccountRequest','Required parameter requestParameters.addDefaultPocketsToBankAccountRequest was null or undefined when calling addDefaultPocketsToBankAccount.');
+        if (requestParameters['addDefaultPocketsToBankAccountRequest'] == null) {
+            throw new runtime.RequiredError(
+                'addDefaultPocketsToBankAccountRequest',
+                'Required parameter "addDefaultPocketsToBankAccountRequest" was null or undefined when calling addDefaultPocketsToBankAccount().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1034,7 +1047,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AddDefaultPocketsToBankAccountRequestToJSON(requestParameters.addDefaultPocketsToBankAccountRequest),
+            body: AddDefaultPocketsToBankAccountRequestToJSON(requestParameters['addDefaultPocketsToBankAccountRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AddDefaultPocketsToBankAccountResponseFromJSON(jsonValue));
@@ -1054,8 +1067,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Adds a note to a business account
      */
     async addNoteToFinancialUserProfileRaw(requestParameters: AddNoteToFinancialUserProfileOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddNoteToFinancialUserProfileResponse>> {
-        if (requestParameters.addNoteToFinancialUserProfileRequest === null || requestParameters.addNoteToFinancialUserProfileRequest === undefined) {
-            throw new runtime.RequiredError('addNoteToFinancialUserProfileRequest','Required parameter requestParameters.addNoteToFinancialUserProfileRequest was null or undefined when calling addNoteToFinancialUserProfile.');
+        if (requestParameters['addNoteToFinancialUserProfileRequest'] == null) {
+            throw new runtime.RequiredError(
+                'addNoteToFinancialUserProfileRequest',
+                'Required parameter "addNoteToFinancialUserProfileRequest" was null or undefined when calling addNoteToFinancialUserProfile().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1069,7 +1085,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AddNoteToFinancialUserProfileRequestToJSON(requestParameters.addNoteToFinancialUserProfileRequest),
+            body: AddNoteToFinancialUserProfileRequestToJSON(requestParameters['addNoteToFinancialUserProfileRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AddNoteToFinancialUserProfileResponseFromJSON(jsonValue));
@@ -1089,8 +1105,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * adds a note to a transaction
      */
     async addNoteToRecurringTransactionRaw(requestParameters: AddNoteToRecurringTransactionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddNoteToRecurringTransactionResponse>> {
-        if (requestParameters.addNoteToRecurringTransactionRequest === null || requestParameters.addNoteToRecurringTransactionRequest === undefined) {
-            throw new runtime.RequiredError('addNoteToRecurringTransactionRequest','Required parameter requestParameters.addNoteToRecurringTransactionRequest was null or undefined when calling addNoteToRecurringTransaction.');
+        if (requestParameters['addNoteToRecurringTransactionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'addNoteToRecurringTransactionRequest',
+                'Required parameter "addNoteToRecurringTransactionRequest" was null or undefined when calling addNoteToRecurringTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1104,7 +1123,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AddNoteToRecurringTransactionRequestToJSON(requestParameters.addNoteToRecurringTransactionRequest),
+            body: AddNoteToRecurringTransactionRequestToJSON(requestParameters['addNoteToRecurringTransactionRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AddNoteToRecurringTransactionResponseFromJSON(jsonValue));
@@ -1124,8 +1143,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * adds a note to a smart goal
      */
     async addNoteToSmartGoalRaw(requestParameters: AddNoteToSmartGoalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddNoteToSmartGoalResponse>> {
-        if (requestParameters.addNoteToSmartGoalRequest === null || requestParameters.addNoteToSmartGoalRequest === undefined) {
-            throw new runtime.RequiredError('addNoteToSmartGoalRequest','Required parameter requestParameters.addNoteToSmartGoalRequest was null or undefined when calling addNoteToSmartGoal.');
+        if (requestParameters['addNoteToSmartGoalRequest'] == null) {
+            throw new runtime.RequiredError(
+                'addNoteToSmartGoalRequest',
+                'Required parameter "addNoteToSmartGoalRequest" was null or undefined when calling addNoteToSmartGoal().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1139,7 +1161,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AddNoteToSmartGoalRequestToJSON(requestParameters.addNoteToSmartGoalRequest),
+            body: AddNoteToSmartGoalRequestToJSON(requestParameters['addNoteToSmartGoalRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AddNoteToSmartGoalResponseFromJSON(jsonValue));
@@ -1159,8 +1181,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * adds a note to a transaction
      */
     async addNoteToTransactionRaw(requestParameters: AddNoteToTransactionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddNoteToTransactionResponse>> {
-        if (requestParameters.addNoteToTransactionRequest === null || requestParameters.addNoteToTransactionRequest === undefined) {
-            throw new runtime.RequiredError('addNoteToTransactionRequest','Required parameter requestParameters.addNoteToTransactionRequest was null or undefined when calling addNoteToTransaction.');
+        if (requestParameters['addNoteToTransactionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'addNoteToTransactionRequest',
+                'Required parameter "addNoteToTransactionRequest" was null or undefined when calling addNoteToTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1174,7 +1199,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: AddNoteToTransactionRequestToJSON(requestParameters.addNoteToTransactionRequest),
+            body: AddNoteToTransactionRequestToJSON(requestParameters['addNoteToTransactionRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => AddNoteToTransactionResponseFromJSON(jsonValue));
@@ -1190,12 +1215,53 @@ export class FinancialServiceApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint adds transactions to a manually linked account
+     * Adds transactions to a manually linked account
+     */
+    async addTransactionsToManuallyLinkedAccountRaw(requestParameters: AddTransactionsToManuallyLinkedAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<AddTransactionsToManuallyLinkedAccountResponse>> {
+        if (requestParameters['addTransactionsToManuallyLinkedAccountRequest'] == null) {
+            throw new runtime.RequiredError(
+                'addTransactionsToManuallyLinkedAccountRequest',
+                'Required parameter "addTransactionsToManuallyLinkedAccountRequest" was null or undefined when calling addTransactionsToManuallyLinkedAccount().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/financial-microservice/api/v1/manual-linked-account/transactions`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: AddTransactionsToManuallyLinkedAccountRequestToJSON(requestParameters['addTransactionsToManuallyLinkedAccountRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => AddTransactionsToManuallyLinkedAccountResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint adds transactions to a manually linked account
+     * Adds transactions to a manually linked account
+     */
+    async addTransactionsToManuallyLinkedAccount(requestParameters: AddTransactionsToManuallyLinkedAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<AddTransactionsToManuallyLinkedAccountResponse> {
+        const response = await this.addTransactionsToManuallyLinkedAccountRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * This endpoint checks if a user can ask his/her copilot a question
      * Ask a question to copilot
      */
     async askCopilotQuestionRaw(requestParameters: AskCopilotQuestionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<RecordAskCopilotQuestionResponse>> {
-        if (requestParameters.recordAskCopilotQuestionRequest === null || requestParameters.recordAskCopilotQuestionRequest === undefined) {
-            throw new runtime.RequiredError('recordAskCopilotQuestionRequest','Required parameter requestParameters.recordAskCopilotQuestionRequest was null or undefined when calling askCopilotQuestion.');
+        if (requestParameters['recordAskCopilotQuestionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'recordAskCopilotQuestionRequest',
+                'Required parameter "recordAskCopilotQuestionRequest" was null or undefined when calling askCopilotQuestion().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1209,7 +1275,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: RecordAskCopilotQuestionRequestToJSON(requestParameters.recordAskCopilotQuestionRequest),
+            body: RecordAskCopilotQuestionRequestToJSON(requestParameters['recordAskCopilotQuestionRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => RecordAskCopilotQuestionResponseFromJSON(jsonValue));
@@ -1229,8 +1295,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * update a transaction
      */
     async bulkUpdateRecurringTransactionRaw(requestParameters: BulkUpdateRecurringTransactionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BulkUpdateRecurringTransactionResponse>> {
-        if (requestParameters.bulkUpdateRecurringTransactionRequest === null || requestParameters.bulkUpdateRecurringTransactionRequest === undefined) {
-            throw new runtime.RequiredError('bulkUpdateRecurringTransactionRequest','Required parameter requestParameters.bulkUpdateRecurringTransactionRequest was null or undefined when calling bulkUpdateRecurringTransaction.');
+        if (requestParameters['bulkUpdateRecurringTransactionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'bulkUpdateRecurringTransactionRequest',
+                'Required parameter "bulkUpdateRecurringTransactionRequest" was null or undefined when calling bulkUpdateRecurringTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1244,7 +1313,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: BulkUpdateRecurringTransactionRequestToJSON(requestParameters.bulkUpdateRecurringTransactionRequest),
+            body: BulkUpdateRecurringTransactionRequestToJSON(requestParameters['bulkUpdateRecurringTransactionRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BulkUpdateRecurringTransactionResponseFromJSON(jsonValue));
@@ -1264,8 +1333,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * update a transaction
      */
     async bulkUpdateTransactionRaw(requestParameters: BulkUpdateTransactionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<BulkUpdateTransactionResponse>> {
-        if (requestParameters.bulkUpdateTransactionRequest === null || requestParameters.bulkUpdateTransactionRequest === undefined) {
-            throw new runtime.RequiredError('bulkUpdateTransactionRequest','Required parameter requestParameters.bulkUpdateTransactionRequest was null or undefined when calling bulkUpdateTransaction.');
+        if (requestParameters['bulkUpdateTransactionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'bulkUpdateTransactionRequest',
+                'Required parameter "bulkUpdateTransactionRequest" was null or undefined when calling bulkUpdateTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1279,7 +1351,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: BulkUpdateTransactionRequestToJSON(requestParameters.bulkUpdateTransactionRequest),
+            body: BulkUpdateTransactionRequestToJSON(requestParameters['bulkUpdateTransactionRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => BulkUpdateTransactionResponseFromJSON(jsonValue));
@@ -1299,24 +1371,30 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Checks if the question quota has been exceeded
      */
     async checkIfQuotaExceededRaw(requestParameters: CheckIfQuotaExceededRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckIfQuotaExceededResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling checkIfQuotaExceeded.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling checkIfQuotaExceeded().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling checkIfQuotaExceeded.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling checkIfQuotaExceeded().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/copilot/quota/exceeded/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/copilot/quota/exceeded/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -1339,8 +1417,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * create a bank account for a given user profile
      */
     async createBankAccountRaw(requestParameters: CreateBankAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateBankAccountResponse>> {
-        if (requestParameters.createBankAccountRequest === null || requestParameters.createBankAccountRequest === undefined) {
-            throw new runtime.RequiredError('createBankAccountRequest','Required parameter requestParameters.createBankAccountRequest was null or undefined when calling createBankAccount.');
+        if (requestParameters['createBankAccountRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createBankAccountRequest',
+                'Required parameter "createBankAccountRequest" was null or undefined when calling createBankAccount().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1354,7 +1435,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateBankAccountRequestToJSON(requestParameters.createBankAccountRequest),
+            body: CreateBankAccountRequestToJSON(requestParameters['createBankAccountRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateBankAccountResponseFromJSON(jsonValue));
@@ -1374,8 +1455,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * create a budget
      */
     async createBudgetRaw(requestParameters: CreateBudgetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateBudgetResponse>> {
-        if (requestParameters.createBudgetRequest === null || requestParameters.createBudgetRequest === undefined) {
-            throw new runtime.RequiredError('createBudgetRequest','Required parameter requestParameters.createBudgetRequest was null or undefined when calling createBudget.');
+        if (requestParameters['createBudgetRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createBudgetRequest',
+                'Required parameter "createBudgetRequest" was null or undefined when calling createBudget().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1389,7 +1473,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateBudgetRequestToJSON(requestParameters.createBudgetRequest),
+            body: CreateBudgetRequestToJSON(requestParameters['createBudgetRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateBudgetResponseFromJSON(jsonValue));
@@ -1409,8 +1493,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * create link
      */
     async createLinkRaw(requestParameters: CreateLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateManualLinkResponse>> {
-        if (requestParameters.createManualLinkRequest === null || requestParameters.createManualLinkRequest === undefined) {
-            throw new runtime.RequiredError('createManualLinkRequest','Required parameter requestParameters.createManualLinkRequest was null or undefined when calling createLink.');
+        if (requestParameters['createManualLinkRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createManualLinkRequest',
+                'Required parameter "createManualLinkRequest" was null or undefined when calling createLink().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1424,7 +1511,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateManualLinkRequestToJSON(requestParameters.createManualLinkRequest),
+            body: CreateManualLinkRequestToJSON(requestParameters['createManualLinkRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateManualLinkResponseFromJSON(jsonValue));
@@ -1444,8 +1531,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * create a milestone
      */
     async createMilestoneRaw(requestParameters: CreateMilestoneOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateMilestoneResponse>> {
-        if (requestParameters.createMilestoneRequest === null || requestParameters.createMilestoneRequest === undefined) {
-            throw new runtime.RequiredError('createMilestoneRequest','Required parameter requestParameters.createMilestoneRequest was null or undefined when calling createMilestone.');
+        if (requestParameters['createMilestoneRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createMilestoneRequest',
+                'Required parameter "createMilestoneRequest" was null or undefined when calling createMilestone().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1459,7 +1549,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateMilestoneRequestToJSON(requestParameters.createMilestoneRequest),
+            body: CreateMilestoneRequestToJSON(requestParameters['createMilestoneRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateMilestoneResponseFromJSON(jsonValue));
@@ -1479,8 +1569,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * create a smart goal
      */
     async createSmartGoalRaw(requestParameters: CreateSmartGoalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSmartGoalResponse>> {
-        if (requestParameters.createSmartGoalRequest === null || requestParameters.createSmartGoalRequest === undefined) {
-            throw new runtime.RequiredError('createSmartGoalRequest','Required parameter requestParameters.createSmartGoalRequest was null or undefined when calling createSmartGoal.');
+        if (requestParameters['createSmartGoalRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createSmartGoalRequest',
+                'Required parameter "createSmartGoalRequest" was null or undefined when calling createSmartGoal().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1494,7 +1587,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateSmartGoalRequestToJSON(requestParameters.createSmartGoalRequest),
+            body: CreateSmartGoalRequestToJSON(requestParameters['createSmartGoalRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateSmartGoalResponseFromJSON(jsonValue));
@@ -1514,8 +1607,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Creates a new subscription for a given customer against stripe
      */
     async createSubscriptionRaw(requestParameters: CreateSubscriptionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateSubscriptionResponse>> {
-        if (requestParameters.createSubscriptionRequest === null || requestParameters.createSubscriptionRequest === undefined) {
-            throw new runtime.RequiredError('createSubscriptionRequest','Required parameter requestParameters.createSubscriptionRequest was null or undefined when calling createSubscription.');
+        if (requestParameters['createSubscriptionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createSubscriptionRequest',
+                'Required parameter "createSubscriptionRequest" was null or undefined when calling createSubscription().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1529,7 +1625,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateSubscriptionRequestToJSON(requestParameters.createSubscriptionRequest),
+            body: CreateSubscriptionRequestToJSON(requestParameters['createSubscriptionRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateSubscriptionResponseFromJSON(jsonValue));
@@ -1549,8 +1645,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * create a user profile
      */
     async createUserProfile1Raw(requestParameters: CreateUserProfile1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateUserProfileResponse1>> {
-        if (requestParameters.createUserProfileRequest1 === null || requestParameters.createUserProfileRequest1 === undefined) {
-            throw new runtime.RequiredError('createUserProfileRequest1','Required parameter requestParameters.createUserProfileRequest1 was null or undefined when calling createUserProfile1.');
+        if (requestParameters['createUserProfileRequest1'] == null) {
+            throw new runtime.RequiredError(
+                'createUserProfileRequest1',
+                'Required parameter "createUserProfileRequest1" was null or undefined when calling createUserProfile1().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1564,7 +1663,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: CreateUserProfileRequest1ToJSON(requestParameters.createUserProfileRequest1),
+            body: CreateUserProfileRequest1ToJSON(requestParameters['createUserProfileRequest1']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => CreateUserProfileResponse1FromJSON(jsonValue));
@@ -1584,8 +1683,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * delete a budget
      */
     async deleteBudgetRaw(requestParameters: DeleteBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteBudgetResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling deleteBudget.');
+        if (requestParameters['budgetId'] == null) {
+            throw new runtime.RequiredError(
+                'budgetId',
+                'Required parameter "budgetId" was null or undefined when calling deleteBudget().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1593,7 +1695,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/budget/{budgetId}`.replace(`{${"budgetId"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/financial-microservice/api/v1/budget/{budgetId}`.replace(`{${"budgetId"}}`, encodeURIComponent(String(requestParameters['budgetId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1616,28 +1718,37 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * delete link by id
      */
     async deleteLinkRaw(requestParameters: DeleteLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteLinkResponse>> {
-        if (requestParameters.linkId === null || requestParameters.linkId === undefined) {
-            throw new runtime.RequiredError('linkId','Required parameter requestParameters.linkId was null or undefined when calling deleteLink.');
+        if (requestParameters['linkId'] == null) {
+            throw new runtime.RequiredError(
+                'linkId',
+                'Required parameter "linkId" was null or undefined when calling deleteLink().'
+            );
         }
 
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling deleteLink.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling deleteLink().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling deleteLink.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling deleteLink().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/link/{linkId}/user/{userId}`.replace(`{${"linkId"}}`, encodeURIComponent(String(requestParameters.linkId))).replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/link/{linkId}/user/{userId}`.replace(`{${"linkId"}}`, encodeURIComponent(String(requestParameters['linkId']))).replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1660,8 +1771,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * delete a milestone
      */
     async deleteMilestoneRaw(requestParameters: DeleteMilestoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteMilestoneResponse>> {
-        if (requestParameters.milestoneId === null || requestParameters.milestoneId === undefined) {
-            throw new runtime.RequiredError('milestoneId','Required parameter requestParameters.milestoneId was null or undefined when calling deleteMilestone.');
+        if (requestParameters['milestoneId'] == null) {
+            throw new runtime.RequiredError(
+                'milestoneId',
+                'Required parameter "milestoneId" was null or undefined when calling deleteMilestone().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1669,7 +1783,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/milestone/{milestoneId}`.replace(`{${"milestoneId"}}`, encodeURIComponent(String(requestParameters.milestoneId))),
+            path: `/financial-microservice/api/v1/milestone/{milestoneId}`.replace(`{${"milestoneId"}}`, encodeURIComponent(String(requestParameters['milestoneId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1692,12 +1806,18 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * deletes a note from a transaction
      */
     async deleteNoteFromRecurringTransactionRaw(requestParameters: DeleteNoteFromRecurringTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteNoteFromRecurringTransactionResponse>> {
-        if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
-            throw new runtime.RequiredError('transactionId','Required parameter requestParameters.transactionId was null or undefined when calling deleteNoteFromRecurringTransaction.');
+        if (requestParameters['transactionId'] == null) {
+            throw new runtime.RequiredError(
+                'transactionId',
+                'Required parameter "transactionId" was null or undefined when calling deleteNoteFromRecurringTransaction().'
+            );
         }
 
-        if (requestParameters.noteId === null || requestParameters.noteId === undefined) {
-            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling deleteNoteFromRecurringTransaction.');
+        if (requestParameters['noteId'] == null) {
+            throw new runtime.RequiredError(
+                'noteId',
+                'Required parameter "noteId" was null or undefined when calling deleteNoteFromRecurringTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1705,7 +1825,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/recurring/{transactionId}/note/{noteId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters.transactionId))).replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters.noteId))),
+            path: `/financial-microservice/api/v1/transactions/recurring/{transactionId}/note/{noteId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters['transactionId']))).replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters['noteId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1728,24 +1848,30 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * deletes a note from a smart goal
      */
     async deleteNoteFromSmartGoalRaw(requestParameters: DeleteNoteFromSmartGoalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteNoteFromSmartGoalResponse>> {
-        if (requestParameters.noteId === null || requestParameters.noteId === undefined) {
-            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling deleteNoteFromSmartGoal.');
+        if (requestParameters['noteId'] == null) {
+            throw new runtime.RequiredError(
+                'noteId',
+                'Required parameter "noteId" was null or undefined when calling deleteNoteFromSmartGoal().'
+            );
         }
 
-        if (requestParameters.smartGoalId === null || requestParameters.smartGoalId === undefined) {
-            throw new runtime.RequiredError('smartGoalId','Required parameter requestParameters.smartGoalId was null or undefined when calling deleteNoteFromSmartGoal.');
+        if (requestParameters['smartGoalId'] == null) {
+            throw new runtime.RequiredError(
+                'smartGoalId',
+                'Required parameter "smartGoalId" was null or undefined when calling deleteNoteFromSmartGoal().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.smartGoalId !== undefined) {
-            queryParameters['smartGoalId'] = requestParameters.smartGoalId;
+        if (requestParameters['smartGoalId'] != null) {
+            queryParameters['smartGoalId'] = requestParameters['smartGoalId'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/smart-goal/note/{noteId}`.replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters.noteId))),
+            path: `/financial-microservice/api/v1/smart-goal/note/{noteId}`.replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters['noteId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1768,12 +1894,18 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * deletes a note from a transaction
      */
     async deleteNoteFromTransactionRaw(requestParameters: DeleteNoteFromTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteNoteFromTransactionResponse>> {
-        if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
-            throw new runtime.RequiredError('transactionId','Required parameter requestParameters.transactionId was null or undefined when calling deleteNoteFromTransaction.');
+        if (requestParameters['transactionId'] == null) {
+            throw new runtime.RequiredError(
+                'transactionId',
+                'Required parameter "transactionId" was null or undefined when calling deleteNoteFromTransaction().'
+            );
         }
 
-        if (requestParameters.noteId === null || requestParameters.noteId === undefined) {
-            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling deleteNoteFromTransaction.');
+        if (requestParameters['noteId'] == null) {
+            throw new runtime.RequiredError(
+                'noteId',
+                'Required parameter "noteId" was null or undefined when calling deleteNoteFromTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1781,7 +1913,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters.transactionId))).replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters.noteId))),
+            path: `/financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters['transactionId']))).replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters['noteId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1804,8 +1936,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * deletes a pocket
      */
     async deletePocketRaw(requestParameters: DeletePocketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeletePocketResponse>> {
-        if (requestParameters.pocketId === null || requestParameters.pocketId === undefined) {
-            throw new runtime.RequiredError('pocketId','Required parameter requestParameters.pocketId was null or undefined when calling deletePocket.');
+        if (requestParameters['pocketId'] == null) {
+            throw new runtime.RequiredError(
+                'pocketId',
+                'Required parameter "pocketId" was null or undefined when calling deletePocket().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1813,7 +1948,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/pocket/{pocketId}`.replace(`{${"pocketId"}}`, encodeURIComponent(String(requestParameters.pocketId))),
+            path: `/financial-microservice/api/v1/pocket/{pocketId}`.replace(`{${"pocketId"}}`, encodeURIComponent(String(requestParameters['pocketId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1836,8 +1971,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * delete a smart goal
      */
     async deleteSmartGoalRaw(requestParameters: DeleteSmartGoalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteSmartGoalResponse>> {
-        if (requestParameters.smartGoalId === null || requestParameters.smartGoalId === undefined) {
-            throw new runtime.RequiredError('smartGoalId','Required parameter requestParameters.smartGoalId was null or undefined when calling deleteSmartGoal.');
+        if (requestParameters['smartGoalId'] == null) {
+            throw new runtime.RequiredError(
+                'smartGoalId',
+                'Required parameter "smartGoalId" was null or undefined when calling deleteSmartGoal().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1845,7 +1983,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/smart-goal/{smartGoalId}`.replace(`{${"smartGoalId"}}`, encodeURIComponent(String(requestParameters.smartGoalId))),
+            path: `/financial-microservice/api/v1/smart-goal/{smartGoalId}`.replace(`{${"smartGoalId"}}`, encodeURIComponent(String(requestParameters['smartGoalId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1868,8 +2006,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * deletes a transaction by id
      */
     async deleteTransactionRaw(requestParameters: DeleteTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteRecurringTransactionResponse>> {
-        if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
-            throw new runtime.RequiredError('transactionId','Required parameter requestParameters.transactionId was null or undefined when calling deleteTransaction.');
+        if (requestParameters['transactionId'] == null) {
+            throw new runtime.RequiredError(
+                'transactionId',
+                'Required parameter "transactionId" was null or undefined when calling deleteTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1877,7 +2018,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/recurring/{transactionId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/financial-microservice/api/v1/transactions/recurring/{transactionId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters['transactionId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1900,8 +2041,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * deletes a transaction by id
      */
     async deleteTransaction1Raw(requestParameters: DeleteTransaction1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteTransactionResponse>> {
-        if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
-            throw new runtime.RequiredError('transactionId','Required parameter requestParameters.transactionId was null or undefined when calling deleteTransaction1.');
+        if (requestParameters['transactionId'] == null) {
+            throw new runtime.RequiredError(
+                'transactionId',
+                'Required parameter "transactionId" was null or undefined when calling deleteTransaction1().'
+            );
         }
 
         const queryParameters: any = {};
@@ -1909,7 +2053,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/transaction/{transactionId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/financial-microservice/api/v1/transactions/transaction/{transactionId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters['transactionId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1932,32 +2076,41 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * deletes a bank account for a given user profile
      */
     async deleteUserProfile1Raw(requestParameters: DeleteUserProfile1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteBankAccountResponse>> {
-        if (requestParameters.bankAccountId === null || requestParameters.bankAccountId === undefined) {
-            throw new runtime.RequiredError('bankAccountId','Required parameter requestParameters.bankAccountId was null or undefined when calling deleteUserProfile1.');
+        if (requestParameters['bankAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'bankAccountId',
+                'Required parameter "bankAccountId" was null or undefined when calling deleteUserProfile1().'
+            );
         }
 
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling deleteUserProfile1.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling deleteUserProfile1().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling deleteUserProfile1.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling deleteUserProfile1().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.userId !== undefined) {
-            queryParameters['userId'] = requestParameters.userId;
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/bank-account/{bankAccountId}`.replace(`{${"bankAccountId"}}`, encodeURIComponent(String(requestParameters.bankAccountId))),
+            path: `/financial-microservice/api/v1/bank-account/{bankAccountId}`.replace(`{${"bankAccountId"}}`, encodeURIComponent(String(requestParameters['bankAccountId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -1980,24 +2133,30 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * deletes a user profile
      */
     async deleteUserProfile2Raw(requestParameters: DeleteUserProfile2Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteUserProfileResponse1>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling deleteUserProfile2.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling deleteUserProfile2().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling deleteUserProfile2.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling deleteUserProfile2().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/profile/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/profile/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -2020,8 +2179,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * exchange plaid token
      */
     async exchangePlaidTokenRaw(requestParameters: ExchangePlaidTokenRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlaidExchangeTokenResponse>> {
-        if (requestParameters.plaidExchangeTokenRequest === null || requestParameters.plaidExchangeTokenRequest === undefined) {
-            throw new runtime.RequiredError('plaidExchangeTokenRequest','Required parameter requestParameters.plaidExchangeTokenRequest was null or undefined when calling exchangePlaidToken.');
+        if (requestParameters['plaidExchangeTokenRequest'] == null) {
+            throw new runtime.RequiredError(
+                'plaidExchangeTokenRequest',
+                'Required parameter "plaidExchangeTokenRequest" was null or undefined when calling exchangePlaidToken().'
+            );
         }
 
         const queryParameters: any = {};
@@ -2035,7 +2197,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PlaidExchangeTokenRequestToJSON(requestParameters.plaidExchangeTokenRequest),
+            body: PlaidExchangeTokenRequestToJSON(requestParameters['plaidExchangeTokenRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PlaidExchangeTokenResponseFromJSON(jsonValue));
@@ -2055,24 +2217,30 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * gets account balance of an account
      */
     async getAccountBalanceRaw(requestParameters: GetAccountBalanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetHistoricalAccountBalanceResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getAccountBalance.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getAccountBalance().'
+            );
         }
 
-        if (requestParameters.plaidAccountId === null || requestParameters.plaidAccountId === undefined) {
-            throw new runtime.RequiredError('plaidAccountId','Required parameter requestParameters.plaidAccountId was null or undefined when calling getAccountBalance.');
+        if (requestParameters['plaidAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'plaidAccountId',
+                'Required parameter "plaidAccountId" was null or undefined when calling getAccountBalance().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/historical-account-balance/user/{userId}/plaid-account-id/{plaidAccountId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"plaidAccountId"}}`, encodeURIComponent(String(requestParameters.plaidAccountId))),
+            path: `/financial-microservice/api/v1/historical-account-balance/user/{userId}/plaid-account-id/{plaidAccountId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"plaidAccountId"}}`, encodeURIComponent(String(requestParameters['plaidAccountId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2095,16 +2263,25 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Returns the account balance history for an account
      */
     async getAccountBalanceHistoryRaw(requestParameters: GetAccountBalanceHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAccountBalanceHistoryResponse>> {
-        if (requestParameters.plaidAccountId === null || requestParameters.plaidAccountId === undefined) {
-            throw new runtime.RequiredError('plaidAccountId','Required parameter requestParameters.plaidAccountId was null or undefined when calling getAccountBalanceHistory.');
+        if (requestParameters['plaidAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'plaidAccountId',
+                'Required parameter "plaidAccountId" was null or undefined when calling getAccountBalanceHistory().'
+            );
         }
 
-        if (requestParameters.pageNumber === null || requestParameters.pageNumber === undefined) {
-            throw new runtime.RequiredError('pageNumber','Required parameter requestParameters.pageNumber was null or undefined when calling getAccountBalanceHistory.');
+        if (requestParameters['pageNumber'] == null) {
+            throw new runtime.RequiredError(
+                'pageNumber',
+                'Required parameter "pageNumber" was null or undefined when calling getAccountBalanceHistory().'
+            );
         }
 
-        if (requestParameters.pageSize === null || requestParameters.pageSize === undefined) {
-            throw new runtime.RequiredError('pageSize','Required parameter requestParameters.pageSize was null or undefined when calling getAccountBalanceHistory.');
+        if (requestParameters['pageSize'] == null) {
+            throw new runtime.RequiredError(
+                'pageSize',
+                'Required parameter "pageSize" was null or undefined when calling getAccountBalanceHistory().'
+            );
         }
 
         const queryParameters: any = {};
@@ -2112,7 +2289,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/balance-history/account/{plaidAccountId}/pagenumber/{pageNumber}/pagesize/{pageSize}`.replace(`{${"plaidAccountId"}}`, encodeURIComponent(String(requestParameters.plaidAccountId))).replace(`{${"pageNumber"}}`, encodeURIComponent(String(requestParameters.pageNumber))).replace(`{${"pageSize"}}`, encodeURIComponent(String(requestParameters.pageSize))),
+            path: `/financial-microservice/api/v1/analytics/balance-history/account/{plaidAccountId}/pagenumber/{pageNumber}/pagesize/{pageSize}`.replace(`{${"plaidAccountId"}}`, encodeURIComponent(String(requestParameters['plaidAccountId']))).replace(`{${"pageNumber"}}`, encodeURIComponent(String(requestParameters['pageNumber']))).replace(`{${"pageSize"}}`, encodeURIComponent(String(requestParameters['pageSize']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2135,30 +2312,39 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get all budgets
      */
     async getAllBudgetsRaw(requestParameters: GetAllBudgetsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetAllBudgetsResponse>> {
-        if (requestParameters.pocketId === null || requestParameters.pocketId === undefined) {
-            throw new runtime.RequiredError('pocketId','Required parameter requestParameters.pocketId was null or undefined when calling getAllBudgets.');
+        if (requestParameters['pocketId'] == null) {
+            throw new runtime.RequiredError(
+                'pocketId',
+                'Required parameter "pocketId" was null or undefined when calling getAllBudgets().'
+            );
         }
 
-        if (requestParameters.smartGoalId === null || requestParameters.smartGoalId === undefined) {
-            throw new runtime.RequiredError('smartGoalId','Required parameter requestParameters.smartGoalId was null or undefined when calling getAllBudgets.');
+        if (requestParameters['smartGoalId'] == null) {
+            throw new runtime.RequiredError(
+                'smartGoalId',
+                'Required parameter "smartGoalId" was null or undefined when calling getAllBudgets().'
+            );
         }
 
-        if (requestParameters.milestoneId === null || requestParameters.milestoneId === undefined) {
-            throw new runtime.RequiredError('milestoneId','Required parameter requestParameters.milestoneId was null or undefined when calling getAllBudgets.');
+        if (requestParameters['milestoneId'] == null) {
+            throw new runtime.RequiredError(
+                'milestoneId',
+                'Required parameter "milestoneId" was null or undefined when calling getAllBudgets().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.pocketId !== undefined) {
-            queryParameters['pocketId'] = requestParameters.pocketId;
+        if (requestParameters['pocketId'] != null) {
+            queryParameters['pocketId'] = requestParameters['pocketId'];
         }
 
-        if (requestParameters.smartGoalId !== undefined) {
-            queryParameters['smartGoalId'] = requestParameters.smartGoalId;
+        if (requestParameters['smartGoalId'] != null) {
+            queryParameters['smartGoalId'] = requestParameters['smartGoalId'];
         }
 
-        if (requestParameters.milestoneId !== undefined) {
-            queryParameters['milestoneId'] = requestParameters.milestoneId;
+        if (requestParameters['milestoneId'] != null) {
+            queryParameters['milestoneId'] = requestParameters['milestoneId'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -2187,8 +2373,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get a bank account for a given user profile
      */
     async getBankAccountRaw(requestParameters: GetBankAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBankAccountResponse>> {
-        if (requestParameters.bankAccountId === null || requestParameters.bankAccountId === undefined) {
-            throw new runtime.RequiredError('bankAccountId','Required parameter requestParameters.bankAccountId was null or undefined when calling getBankAccount.');
+        if (requestParameters['bankAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'bankAccountId',
+                'Required parameter "bankAccountId" was null or undefined when calling getBankAccount().'
+            );
         }
 
         const queryParameters: any = {};
@@ -2196,7 +2385,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/bank-account/{bankAccountId}`.replace(`{${"bankAccountId"}}`, encodeURIComponent(String(requestParameters.bankAccountId))),
+            path: `/financial-microservice/api/v1/bank-account/{bankAccountId}`.replace(`{${"bankAccountId"}}`, encodeURIComponent(String(requestParameters['bankAccountId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2219,8 +2408,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get budget by id
      */
     async getBudgetRaw(requestParameters: GetBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetBudgetResponse>> {
-        if (requestParameters.budgetId === null || requestParameters.budgetId === undefined) {
-            throw new runtime.RequiredError('budgetId','Required parameter requestParameters.budgetId was null or undefined when calling getBudget.');
+        if (requestParameters['budgetId'] == null) {
+            throw new runtime.RequiredError(
+                'budgetId',
+                'Required parameter "budgetId" was null or undefined when calling getBudget().'
+            );
         }
 
         const queryParameters: any = {};
@@ -2228,7 +2420,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/budget/{budgetId}`.replace(`{${"budgetId"}}`, encodeURIComponent(String(requestParameters.budgetId))),
+            path: `/financial-microservice/api/v1/budget/{budgetId}`.replace(`{${"budgetId"}}`, encodeURIComponent(String(requestParameters['budgetId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2250,36 +2442,39 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get monthly transaction count by user, month, and category
      */
     async getCategoryMonthlyTransactionCountRaw(requestParameters: GetCategoryMonthlyTransactionCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCategoryMonthlyTransactionCountResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getCategoryMonthlyTransactionCount.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getCategoryMonthlyTransactionCount().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.personalFinanceCategoryPrimary !== undefined) {
-            queryParameters['personalFinanceCategoryPrimary'] = requestParameters.personalFinanceCategoryPrimary;
+        if (requestParameters['personalFinanceCategoryPrimary'] != null) {
+            queryParameters['personalFinanceCategoryPrimary'] = requestParameters['personalFinanceCategoryPrimary'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/category-monthly-transaction-count/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/category-monthly-transaction-count/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2300,32 +2495,35 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Debt-to-Income ratio by user and month
      */
     async getDebtToIncomeRatioRaw(requestParameters: GetDebtToIncomeRatioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetDebtToIncomeRatioResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getDebtToIncomeRatio.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getDebtToIncomeRatio().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/debt-to-income-ratio/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/debt-to-income-ratio/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2346,36 +2544,39 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Expense Metrics by user, month and category
      */
     async getExpenseMetricsRaw(requestParameters: GetExpenseMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetExpenseMetricsResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getExpenseMetrics.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getExpenseMetrics().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.personalFinanceCategoryPrimary !== undefined) {
-            queryParameters['personalFinanceCategoryPrimary'] = requestParameters.personalFinanceCategoryPrimary;
+        if (requestParameters['personalFinanceCategoryPrimary'] != null) {
+            queryParameters['personalFinanceCategoryPrimary'] = requestParameters['personalFinanceCategoryPrimary'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/expenses/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/expenses/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2396,32 +2597,35 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Financial Profile by user and month
      */
     async getFinancialProfileRaw(requestParameters: GetFinancialProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetFinancialProfileResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getFinancialProfile.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getFinancialProfile().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/finance-profile/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/finance-profile/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2443,8 +2647,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get forecast by id
      */
     async getForecastRaw(requestParameters: GetForecastRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetForecastResponse>> {
-        if (requestParameters.smartGoalId === null || requestParameters.smartGoalId === undefined) {
-            throw new runtime.RequiredError('smartGoalId','Required parameter requestParameters.smartGoalId was null or undefined when calling getForecast.');
+        if (requestParameters['smartGoalId'] == null) {
+            throw new runtime.RequiredError(
+                'smartGoalId',
+                'Required parameter "smartGoalId" was null or undefined when calling getForecast().'
+            );
         }
 
         const queryParameters: any = {};
@@ -2452,7 +2659,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/forecast/{smartGoalId}`.replace(`{${"smartGoalId"}}`, encodeURIComponent(String(requestParameters.smartGoalId))),
+            path: `/financial-microservice/api/v1/forecast/{smartGoalId}`.replace(`{${"smartGoalId"}}`, encodeURIComponent(String(requestParameters['smartGoalId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2474,32 +2681,35 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Income Expense Ratio by user and month
      */
     async getIncomeExpenseRatioRaw(requestParameters: GetIncomeExpenseRatioRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetIncomeExpenseRatioResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getIncomeExpenseRatio.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getIncomeExpenseRatio().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/income-expense-ratio/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/income-expense-ratio/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2520,36 +2730,39 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Income Metrics by user, month and category
      */
     async getIncomeMetricsRaw(requestParameters: GetIncomeMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetIncomeMetricsResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getIncomeMetrics.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getIncomeMetrics().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.personalFinanceCategoryPrimary !== undefined) {
-            queryParameters['personalFinanceCategoryPrimary'] = requestParameters.personalFinanceCategoryPrimary;
+        if (requestParameters['personalFinanceCategoryPrimary'] != null) {
+            queryParameters['personalFinanceCategoryPrimary'] = requestParameters['personalFinanceCategoryPrimary'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/income/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/income/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2571,28 +2784,37 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get investment account by id
      */
     async getInvestmentAccountRaw(requestParameters: GetInvestmentAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetInvestmentAcccountResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getInvestmentAccount.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getInvestmentAccount().'
+            );
         }
 
-        if (requestParameters.investmentAccountId === null || requestParameters.investmentAccountId === undefined) {
-            throw new runtime.RequiredError('investmentAccountId','Required parameter requestParameters.investmentAccountId was null or undefined when calling getInvestmentAccount.');
+        if (requestParameters['investmentAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'investmentAccountId',
+                'Required parameter "investmentAccountId" was null or undefined when calling getInvestmentAccount().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getInvestmentAccount.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getInvestmentAccount().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/account/{userId}/investment/{investmentAccountId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"investmentAccountId"}}`, encodeURIComponent(String(requestParameters.investmentAccountId))),
+            path: `/financial-microservice/api/v1/account/{userId}/investment/{investmentAccountId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"investmentAccountId"}}`, encodeURIComponent(String(requestParameters['investmentAccountId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2615,28 +2837,37 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get liability account by id
      */
     async getLiabilityAccountRaw(requestParameters: GetLiabilityAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLiabilityAccountResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getLiabilityAccount.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getLiabilityAccount().'
+            );
         }
 
-        if (requestParameters.liabilityAccountId === null || requestParameters.liabilityAccountId === undefined) {
-            throw new runtime.RequiredError('liabilityAccountId','Required parameter requestParameters.liabilityAccountId was null or undefined when calling getLiabilityAccount.');
+        if (requestParameters['liabilityAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'liabilityAccountId',
+                'Required parameter "liabilityAccountId" was null or undefined when calling getLiabilityAccount().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getLiabilityAccount.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getLiabilityAccount().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/account/{userId}/liability/{liabilityAccountId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"liabilityAccountId"}}`, encodeURIComponent(String(requestParameters.liabilityAccountId))),
+            path: `/financial-microservice/api/v1/account/{userId}/liability/{liabilityAccountId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"liabilityAccountId"}}`, encodeURIComponent(String(requestParameters['liabilityAccountId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2659,32 +2890,41 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get link by id
      */
     async getLinkRaw(requestParameters: GetLinkRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLinkResponse>> {
-        if (requestParameters.linkId === null || requestParameters.linkId === undefined) {
-            throw new runtime.RequiredError('linkId','Required parameter requestParameters.linkId was null or undefined when calling getLink.');
+        if (requestParameters['linkId'] == null) {
+            throw new runtime.RequiredError(
+                'linkId',
+                'Required parameter "linkId" was null or undefined when calling getLink().'
+            );
         }
 
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getLink.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getLink().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getLink.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getLink().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.userId !== undefined) {
-            queryParameters['userId'] = requestParameters.userId;
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/link/{linkId}`.replace(`{${"linkId"}}`, encodeURIComponent(String(requestParameters.linkId))),
+            path: `/financial-microservice/api/v1/link/{linkId}`.replace(`{${"linkId"}}`, encodeURIComponent(String(requestParameters['linkId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2707,24 +2947,30 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get links
      */
     async getLinksRaw(requestParameters: GetLinksRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLinksResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getLinks.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getLinks().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getLinks.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getLinks().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/links/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/links/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2746,20 +2992,23 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Melody Financial Context
      */
     async getMelodyFinancialContextRaw(requestParameters: GetMelodyFinancialContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMelodyFinancialContextResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getMelodyFinancialContext.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getMelodyFinancialContext().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/melody-financial-context/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/melody-financial-context/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2780,36 +3029,39 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Merchant Monthly Expenditure by user, month and merchant name
      */
     async getMerchantMonthlyExpenditureRaw(requestParameters: GetMerchantMonthlyExpenditureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMerchantMonthlyExpenditureResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getMerchantMonthlyExpenditure.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getMerchantMonthlyExpenditure().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.merchantName !== undefined) {
-            queryParameters['merchantName'] = requestParameters.merchantName;
+        if (requestParameters['merchantName'] != null) {
+            queryParameters['merchantName'] = requestParameters['merchantName'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/merchant-monthly-expenditure/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/merchant-monthly-expenditure/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2831,8 +3083,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get milestone by id
      */
     async getMilestoneRaw(requestParameters: GetMilestoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMilestoneResponse>> {
-        if (requestParameters.milestoneId === null || requestParameters.milestoneId === undefined) {
-            throw new runtime.RequiredError('milestoneId','Required parameter requestParameters.milestoneId was null or undefined when calling getMilestone.');
+        if (requestParameters['milestoneId'] == null) {
+            throw new runtime.RequiredError(
+                'milestoneId',
+                'Required parameter "milestoneId" was null or undefined when calling getMilestone().'
+            );
         }
 
         const queryParameters: any = {};
@@ -2840,7 +3095,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/milestone/{milestoneId}`.replace(`{${"milestoneId"}}`, encodeURIComponent(String(requestParameters.milestoneId))),
+            path: `/financial-microservice/api/v1/milestone/{milestoneId}`.replace(`{${"milestoneId"}}`, encodeURIComponent(String(requestParameters['milestoneId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2863,8 +3118,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get milestones by smart goal id
      */
     async getMilestonesRaw(requestParameters: GetMilestonesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMilestonesBySmartGoalIdResponse>> {
-        if (requestParameters.smartGoalId === null || requestParameters.smartGoalId === undefined) {
-            throw new runtime.RequiredError('smartGoalId','Required parameter requestParameters.smartGoalId was null or undefined when calling getMilestones.');
+        if (requestParameters['smartGoalId'] == null) {
+            throw new runtime.RequiredError(
+                'smartGoalId',
+                'Required parameter "smartGoalId" was null or undefined when calling getMilestones().'
+            );
         }
 
         const queryParameters: any = {};
@@ -2872,7 +3130,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/milestone/smart-goal/{smartGoalId}`.replace(`{${"smartGoalId"}}`, encodeURIComponent(String(requestParameters.smartGoalId))),
+            path: `/financial-microservice/api/v1/milestone/smart-goal/{smartGoalId}`.replace(`{${"smartGoalId"}}`, encodeURIComponent(String(requestParameters['smartGoalId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2894,32 +3152,35 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Monthly Balance by user and month
      */
     async getMonthlyBalanceRaw(requestParameters: GetMonthlyBalanceRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMonthlyBalanceResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getMonthlyBalance.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getMonthlyBalance().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/monthly-balance/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/monthly-balance/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2940,32 +3201,35 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Monthly Expenditure by user and month
      */
     async getMonthlyExpenditureRaw(requestParameters: GetMonthlyExpenditureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMonthlyExpenditureResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getMonthlyExpenditure.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getMonthlyExpenditure().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/monthly-expenditure/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/monthly-expenditure/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -2986,32 +3250,35 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Monthly Income by user and month
      */
     async getMonthlyIncomeRaw(requestParameters: GetMonthlyIncomeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMonthlyIncomeResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getMonthlyIncome.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getMonthlyIncome().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/monthly-income/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/monthly-income/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3032,32 +3299,35 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Monthly Savings by user and month
      */
     async getMonthlySavingsRaw(requestParameters: GetMonthlySavingsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMonthlySavingsResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getMonthlySavings.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getMonthlySavings().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/monthly-savings/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/monthly-savings/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3078,36 +3348,39 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Monthly Total Quantity of Security by user, month and security
      */
     async getMonthlyTotalQuantityBySecurityAndUserRaw(requestParameters: GetMonthlyTotalQuantityBySecurityAndUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMonthlyTotalQuantityBySecurityAndUserResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getMonthlyTotalQuantityBySecurityAndUser.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getMonthlyTotalQuantityBySecurityAndUser().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.securityId !== undefined) {
-            queryParameters['securityId'] = requestParameters.securityId;
+        if (requestParameters['securityId'] != null) {
+            queryParameters['securityId'] = requestParameters['securityId'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/monthly-total-quantity-by-security-and-user/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/monthly-total-quantity-by-security-and-user/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3128,32 +3401,35 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Monthly Transaction Count by user and month
      */
     async getMonthlyTransactionCountRaw(requestParameters: GetMonthlyTransactionCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMonthlyTransactionCountResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getMonthlyTransactionCount.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getMonthlyTransactionCount().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/monthly-transaction-count/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/monthly-transaction-count/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3175,28 +3451,37 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get mortgage account by id
      */
     async getMortageAccountRaw(requestParameters: GetMortageAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMortgageAccountResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getMortageAccount.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getMortageAccount().'
+            );
         }
 
-        if (requestParameters.mortgageAccountId === null || requestParameters.mortgageAccountId === undefined) {
-            throw new runtime.RequiredError('mortgageAccountId','Required parameter requestParameters.mortgageAccountId was null or undefined when calling getMortageAccount.');
+        if (requestParameters['mortgageAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'mortgageAccountId',
+                'Required parameter "mortgageAccountId" was null or undefined when calling getMortageAccount().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getMortageAccount.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getMortageAccount().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/account/{userId}/mortgage/{mortgageAccountId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"mortgageAccountId"}}`, encodeURIComponent(String(requestParameters.mortgageAccountId))),
+            path: `/financial-microservice/api/v1/account/{userId}/mortgage/{mortgageAccountId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"mortgageAccountId"}}`, encodeURIComponent(String(requestParameters['mortgageAccountId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3219,8 +3504,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * gets a note from a smart goal
      */
     async getNoteFromSmartGoalRaw(requestParameters: GetNoteFromSmartGoalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNoteFromSmartGoalResponse>> {
-        if (requestParameters.noteId === null || requestParameters.noteId === undefined) {
-            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling getNoteFromSmartGoal.');
+        if (requestParameters['noteId'] == null) {
+            throw new runtime.RequiredError(
+                'noteId',
+                'Required parameter "noteId" was null or undefined when calling getNoteFromSmartGoal().'
+            );
         }
 
         const queryParameters: any = {};
@@ -3228,7 +3516,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/smart-goal/note/{noteId}`.replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters.noteId))),
+            path: `/financial-microservice/api/v1/smart-goal/note/{noteId}`.replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters['noteId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3251,12 +3539,18 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * gets a note from a transaction
      */
     async getNoteFromTransactionRaw(requestParameters: GetNoteFromTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNoteFromTransactionResponse>> {
-        if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
-            throw new runtime.RequiredError('transactionId','Required parameter requestParameters.transactionId was null or undefined when calling getNoteFromTransaction.');
+        if (requestParameters['transactionId'] == null) {
+            throw new runtime.RequiredError(
+                'transactionId',
+                'Required parameter "transactionId" was null or undefined when calling getNoteFromTransaction().'
+            );
         }
 
-        if (requestParameters.noteId === null || requestParameters.noteId === undefined) {
-            throw new runtime.RequiredError('noteId','Required parameter requestParameters.noteId was null or undefined when calling getNoteFromTransaction.');
+        if (requestParameters['noteId'] == null) {
+            throw new runtime.RequiredError(
+                'noteId',
+                'Required parameter "noteId" was null or undefined when calling getNoteFromTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -3264,7 +3558,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters.transactionId))).replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters.noteId))),
+            path: `/financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters['transactionId']))).replace(`{${"noteId"}}`, encodeURIComponent(String(requestParameters['noteId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3287,12 +3581,18 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Gets notes from a business account
      */
     async getNotesFromFinancialUserProfileRaw(requestParameters: GetNotesFromFinancialUserProfileRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNotesFromFinancialUserProfileResponse>> {
-        if (requestParameters.businessAccountUserId === null || requestParameters.businessAccountUserId === undefined) {
-            throw new runtime.RequiredError('businessAccountUserId','Required parameter requestParameters.businessAccountUserId was null or undefined when calling getNotesFromFinancialUserProfile.');
+        if (requestParameters['businessAccountUserId'] == null) {
+            throw new runtime.RequiredError(
+                'businessAccountUserId',
+                'Required parameter "businessAccountUserId" was null or undefined when calling getNotesFromFinancialUserProfile().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getNotesFromFinancialUserProfile.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getNotesFromFinancialUserProfile().'
+            );
         }
 
         const queryParameters: any = {};
@@ -3300,7 +3600,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/financial-profile/business/{businessAccountUserId}/{profileType}/note`.replace(`{${"businessAccountUserId"}}`, encodeURIComponent(String(requestParameters.businessAccountUserId))).replace(`{${"profileType"}}`, encodeURIComponent(String(requestParameters.profileType))),
+            path: `/financial-microservice/api/v1/financial-profile/business/{businessAccountUserId}/{profileType}/note`.replace(`{${"businessAccountUserId"}}`, encodeURIComponent(String(requestParameters['businessAccountUserId']))).replace(`{${"profileType"}}`, encodeURIComponent(String(requestParameters['profileType']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3323,8 +3623,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * gets notes from a smart goal
      */
     async getNotesFromSmartGoalRaw(requestParameters: GetNotesFromSmartGoalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetNotesFromSmartGoalResponse>> {
-        if (requestParameters.smartGoalId === null || requestParameters.smartGoalId === undefined) {
-            throw new runtime.RequiredError('smartGoalId','Required parameter requestParameters.smartGoalId was null or undefined when calling getNotesFromSmartGoal.');
+        if (requestParameters['smartGoalId'] == null) {
+            throw new runtime.RequiredError(
+                'smartGoalId',
+                'Required parameter "smartGoalId" was null or undefined when calling getNotesFromSmartGoal().'
+            );
         }
 
         const queryParameters: any = {};
@@ -3332,7 +3635,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/smart-goal/{smartGoalId}/note`.replace(`{${"smartGoalId"}}`, encodeURIComponent(String(requestParameters.smartGoalId))),
+            path: `/financial-microservice/api/v1/smart-goal/{smartGoalId}/note`.replace(`{${"smartGoalId"}}`, encodeURIComponent(String(requestParameters['smartGoalId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3354,36 +3657,39 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Payment Channel Monthly Expenditure by user, month, and payment channel
      */
     async getPaymentChannelMonthlyExpenditureRaw(requestParameters: GetPaymentChannelMonthlyExpenditureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPaymentChannelMonthlyExpenditureResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getPaymentChannelMonthlyExpenditure.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getPaymentChannelMonthlyExpenditure().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.paymentChannel !== undefined) {
-            queryParameters['paymentChannel'] = requestParameters.paymentChannel;
+        if (requestParameters['paymentChannel'] != null) {
+            queryParameters['paymentChannel'] = requestParameters['paymentChannel'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3405,8 +3711,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get a pocket
      */
     async getPocketRaw(requestParameters: GetPocketRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPocketResponse>> {
-        if (requestParameters.pocketId === null || requestParameters.pocketId === undefined) {
-            throw new runtime.RequiredError('pocketId','Required parameter requestParameters.pocketId was null or undefined when calling getPocket.');
+        if (requestParameters['pocketId'] == null) {
+            throw new runtime.RequiredError(
+                'pocketId',
+                'Required parameter "pocketId" was null or undefined when calling getPocket().'
+            );
         }
 
         const queryParameters: any = {};
@@ -3414,7 +3723,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/pocket/{pocketId}`.replace(`{${"pocketId"}}`, encodeURIComponent(String(requestParameters.pocketId))),
+            path: `/financial-microservice/api/v1/pocket/{pocketId}`.replace(`{${"pocketId"}}`, encodeURIComponent(String(requestParameters['pocketId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3437,8 +3746,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * lists a set of transactions against a given account of interest
      */
     async getRecurringTransactionRaw(requestParameters: GetRecurringTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSingleRecurringTransactionResponse>> {
-        if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
-            throw new runtime.RequiredError('transactionId','Required parameter requestParameters.transactionId was null or undefined when calling getRecurringTransaction.');
+        if (requestParameters['transactionId'] == null) {
+            throw new runtime.RequiredError(
+                'transactionId',
+                'Required parameter "transactionId" was null or undefined when calling getRecurringTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -3446,7 +3758,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/recurring/{transactionId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/financial-microservice/api/v1/transactions/recurring/{transactionId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters['transactionId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3469,32 +3781,38 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get recurring transactions
      */
     async getRecurringTransactionsForUserRaw(requestParameters: GetRecurringTransactionsForUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetRecurringTransactionsForUserResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getRecurringTransactionsForUser.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getRecurringTransactionsForUser().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getRecurringTransactionsForUser.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getRecurringTransactionsForUser().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/recurring-transactions/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/transactions/recurring-transactions/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3517,8 +3835,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get smart goals by pocket id
      */
     async getSmartGoalsByPocketIdRaw(requestParameters: GetSmartGoalsByPocketIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSmartGoalsByPocketIdResponse>> {
-        if (requestParameters.pocketId === null || requestParameters.pocketId === undefined) {
-            throw new runtime.RequiredError('pocketId','Required parameter requestParameters.pocketId was null or undefined when calling getSmartGoalsByPocketId.');
+        if (requestParameters['pocketId'] == null) {
+            throw new runtime.RequiredError(
+                'pocketId',
+                'Required parameter "pocketId" was null or undefined when calling getSmartGoalsByPocketId().'
+            );
         }
 
         const queryParameters: any = {};
@@ -3526,7 +3847,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/smart-goal/pocket/{pocketId}`.replace(`{${"pocketId"}}`, encodeURIComponent(String(requestParameters.pocketId))),
+            path: `/financial-microservice/api/v1/smart-goal/pocket/{pocketId}`.replace(`{${"pocketId"}}`, encodeURIComponent(String(requestParameters['pocketId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3549,8 +3870,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * gets a split transaction
      */
     async getSplitTransactionRaw(requestParameters: GetSplitTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetSplitTransactionResponse>> {
-        if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
-            throw new runtime.RequiredError('transactionId','Required parameter requestParameters.transactionId was null or undefined when calling getSplitTransaction.');
+        if (requestParameters['transactionId'] == null) {
+            throw new runtime.RequiredError(
+                'transactionId',
+                'Required parameter "transactionId" was null or undefined when calling getSplitTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -3558,7 +3882,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/transaction/{transactionId}/split`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/financial-microservice/api/v1/transactions/transaction/{transactionId}/split`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters['transactionId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3581,28 +3905,37 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get student loan account by id
      */
     async getStudentLoanAccountRaw(requestParameters: GetStudentLoanAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetStudentLoanAccountResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getStudentLoanAccount.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getStudentLoanAccount().'
+            );
         }
 
-        if (requestParameters.studentLoanAccountId === null || requestParameters.studentLoanAccountId === undefined) {
-            throw new runtime.RequiredError('studentLoanAccountId','Required parameter requestParameters.studentLoanAccountId was null or undefined when calling getStudentLoanAccount.');
+        if (requestParameters['studentLoanAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'studentLoanAccountId',
+                'Required parameter "studentLoanAccountId" was null or undefined when calling getStudentLoanAccount().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getStudentLoanAccount.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getStudentLoanAccount().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/account/{userId}/student-loan/{studentLoanAccountId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"studentLoanAccountId"}}`, encodeURIComponent(String(requestParameters.studentLoanAccountId))),
+            path: `/financial-microservice/api/v1/account/{userId}/student-loan/{studentLoanAccountId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"studentLoanAccountId"}}`, encodeURIComponent(String(requestParameters['studentLoanAccountId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3624,32 +3957,35 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get Total Investment by user and security
      */
     async getTotalInvestmentBySecurityRaw(requestParameters: GetTotalInvestmentBySecurityRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTotalInvestmentBySecurityResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getTotalInvestmentBySecurity.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getTotalInvestmentBySecurity().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.securityId !== undefined) {
-            queryParameters['securityId'] = requestParameters.securityId;
+        if (requestParameters['securityId'] != null) {
+            queryParameters['securityId'] = requestParameters['securityId'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/total-investment/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/total-investment/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3671,8 +4007,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * lists a set of transactions against a given account of interest
      */
     async getTransactionRaw(requestParameters: GetTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTransactionResponse>> {
-        if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
-            throw new runtime.RequiredError('transactionId','Required parameter requestParameters.transactionId was null or undefined when calling getTransaction.');
+        if (requestParameters['transactionId'] == null) {
+            throw new runtime.RequiredError(
+                'transactionId',
+                'Required parameter "transactionId" was null or undefined when calling getTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -3680,7 +4019,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/transaction/{transactionId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/financial-microservice/api/v1/transactions/transaction/{transactionId}`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters['transactionId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3703,36 +4042,51 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get transactions tied to a bank account and account id
      */
     async getTransactionsRaw(requestParameters: GetTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTransactionsForBankAccountResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getTransactions.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getTransactions().'
+            );
         }
 
-        if (requestParameters.plaidAccountId === null || requestParameters.plaidAccountId === undefined) {
-            throw new runtime.RequiredError('plaidAccountId','Required parameter requestParameters.plaidAccountId was null or undefined when calling getTransactions.');
+        if (requestParameters['plaidAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'plaidAccountId',
+                'Required parameter "plaidAccountId" was null or undefined when calling getTransactions().'
+            );
         }
 
-        if (requestParameters.pageNumber === null || requestParameters.pageNumber === undefined) {
-            throw new runtime.RequiredError('pageNumber','Required parameter requestParameters.pageNumber was null or undefined when calling getTransactions.');
+        if (requestParameters['pageNumber'] == null) {
+            throw new runtime.RequiredError(
+                'pageNumber',
+                'Required parameter "pageNumber" was null or undefined when calling getTransactions().'
+            );
         }
 
-        if (requestParameters.pageSize === null || requestParameters.pageSize === undefined) {
-            throw new runtime.RequiredError('pageSize','Required parameter requestParameters.pageSize was null or undefined when calling getTransactions.');
+        if (requestParameters['pageSize'] == null) {
+            throw new runtime.RequiredError(
+                'pageSize',
+                'Required parameter "pageSize" was null or undefined when calling getTransactions().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getTransactions.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getTransactions().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/user/{userId}/plaid-account-id/{plaidAccountId}/pageNumber/{pageNumber}/pageSize/{pageSize}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"plaidAccountId"}}`, encodeURIComponent(String(requestParameters.plaidAccountId))).replace(`{${"pageNumber"}}`, encodeURIComponent(String(requestParameters.pageNumber))).replace(`{${"pageSize"}}`, encodeURIComponent(String(requestParameters.pageSize))),
+            path: `/financial-microservice/api/v1/transactions/user/{userId}/plaid-account-id/{plaidAccountId}/pageNumber/{pageNumber}/pageSize/{pageSize}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"plaidAccountId"}}`, encodeURIComponent(String(requestParameters['plaidAccountId']))).replace(`{${"pageNumber"}}`, encodeURIComponent(String(requestParameters['pageNumber']))).replace(`{${"pageSize"}}`, encodeURIComponent(String(requestParameters['pageSize']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3755,32 +4109,44 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get transactions
      */
     async getTransactions1Raw(requestParameters: GetTransactions1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTransactionsResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getTransactions1.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getTransactions1().'
+            );
         }
 
-        if (requestParameters.pageNumber === null || requestParameters.pageNumber === undefined) {
-            throw new runtime.RequiredError('pageNumber','Required parameter requestParameters.pageNumber was null or undefined when calling getTransactions1.');
+        if (requestParameters['pageNumber'] == null) {
+            throw new runtime.RequiredError(
+                'pageNumber',
+                'Required parameter "pageNumber" was null or undefined when calling getTransactions1().'
+            );
         }
 
-        if (requestParameters.pageSize === null || requestParameters.pageSize === undefined) {
-            throw new runtime.RequiredError('pageSize','Required parameter requestParameters.pageSize was null or undefined when calling getTransactions1.');
+        if (requestParameters['pageSize'] == null) {
+            throw new runtime.RequiredError(
+                'pageSize',
+                'Required parameter "pageSize" was null or undefined when calling getTransactions1().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getTransactions1.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getTransactions1().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/{userId}/pageNumber/{pageNumber}/pageSize/{pageSize}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"pageNumber"}}`, encodeURIComponent(String(requestParameters.pageNumber))).replace(`{${"pageSize"}}`, encodeURIComponent(String(requestParameters.pageSize))),
+            path: `/financial-microservice/api/v1/transactions/{userId}/pageNumber/{pageNumber}/pageSize/{pageSize}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"pageNumber"}}`, encodeURIComponent(String(requestParameters['pageNumber']))).replace(`{${"pageSize"}}`, encodeURIComponent(String(requestParameters['pageSize']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3803,48 +4169,57 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get transactions by time
      */
     async getTransactionsByTimeRaw(requestParameters: GetTransactionsByTimeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTransactionsBetweenTimeRangesResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getTransactionsByTime.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getTransactionsByTime().'
+            );
         }
 
-        if (requestParameters.plaidAccountId === null || requestParameters.plaidAccountId === undefined) {
-            throw new runtime.RequiredError('plaidAccountId','Required parameter requestParameters.plaidAccountId was null or undefined when calling getTransactionsByTime.');
+        if (requestParameters['plaidAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'plaidAccountId',
+                'Required parameter "plaidAccountId" was null or undefined when calling getTransactionsByTime().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getTransactionsByTime.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getTransactionsByTime().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.startDate !== undefined) {
-            queryParameters['startDate'] = (requestParameters.startDate as any).toISOString();
+        if (requestParameters['startDate'] != null) {
+            queryParameters['startDate'] = (requestParameters['startDate'] as any).toISOString();
         }
 
-        if (requestParameters.endDate !== undefined) {
-            queryParameters['endDate'] = (requestParameters.endDate as any).toISOString();
+        if (requestParameters['endDate'] != null) {
+            queryParameters['endDate'] = (requestParameters['endDate'] as any).toISOString();
         }
 
-        if (requestParameters.page !== undefined) {
-            queryParameters['page'] = requestParameters.page;
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
-        if (requestParameters.financialAccountType !== undefined) {
-            queryParameters['financialAccountType'] = requestParameters.financialAccountType;
+        if (requestParameters['financialAccountType'] != null) {
+            queryParameters['financialAccountType'] = requestParameters['financialAccountType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/users/{userId}/accounts/{plaidAccountId}/transactions/range`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"plaidAccountId"}}`, encodeURIComponent(String(requestParameters.plaidAccountId))),
+            path: `/financial-microservice/api/v1/users/{userId}/accounts/{plaidAccountId}/transactions/range`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"plaidAccountId"}}`, encodeURIComponent(String(requestParameters['plaidAccountId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3867,40 +4242,49 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get transactions for the past month
      */
     async getTransactionsForPastMonthRaw(requestParameters: GetTransactionsForPastMonthRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTransactionsForPastMonthResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getTransactionsForPastMonth.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getTransactionsForPastMonth().'
+            );
         }
 
-        if (requestParameters.plaidAccountId === null || requestParameters.plaidAccountId === undefined) {
-            throw new runtime.RequiredError('plaidAccountId','Required parameter requestParameters.plaidAccountId was null or undefined when calling getTransactionsForPastMonth.');
+        if (requestParameters['plaidAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'plaidAccountId',
+                'Required parameter "plaidAccountId" was null or undefined when calling getTransactionsForPastMonth().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getTransactionsForPastMonth.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getTransactionsForPastMonth().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.page !== undefined) {
-            queryParameters['page'] = requestParameters.page;
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
-        if (requestParameters.financialAccountType !== undefined) {
-            queryParameters['financialAccountType'] = requestParameters.financialAccountType;
+        if (requestParameters['financialAccountType'] != null) {
+            queryParameters['financialAccountType'] = requestParameters['financialAccountType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/users/{userId}/accounts/{plaidAccountId}/transactions/month`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"plaidAccountId"}}`, encodeURIComponent(String(requestParameters.plaidAccountId))),
+            path: `/financial-microservice/api/v1/users/{userId}/accounts/{plaidAccountId}/transactions/month`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"plaidAccountId"}}`, encodeURIComponent(String(requestParameters['plaidAccountId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3923,40 +4307,49 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * get transactions for the past week
      */
     async getTransactionsForPastWeekRaw(requestParameters: GetTransactionsForPastWeekRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTransactionsForPastWeekResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getTransactionsForPastWeek.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getTransactionsForPastWeek().'
+            );
         }
 
-        if (requestParameters.plaidAccountId === null || requestParameters.plaidAccountId === undefined) {
-            throw new runtime.RequiredError('plaidAccountId','Required parameter requestParameters.plaidAccountId was null or undefined when calling getTransactionsForPastWeek.');
+        if (requestParameters['plaidAccountId'] == null) {
+            throw new runtime.RequiredError(
+                'plaidAccountId',
+                'Required parameter "plaidAccountId" was null or undefined when calling getTransactionsForPastWeek().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getTransactionsForPastWeek.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getTransactionsForPastWeek().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.page !== undefined) {
-            queryParameters['page'] = requestParameters.page;
+        if (requestParameters['page'] != null) {
+            queryParameters['page'] = requestParameters['page'];
         }
 
-        if (requestParameters.limit !== undefined) {
-            queryParameters['limit'] = requestParameters.limit;
+        if (requestParameters['limit'] != null) {
+            queryParameters['limit'] = requestParameters['limit'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
-        if (requestParameters.financialAccountType !== undefined) {
-            queryParameters['financialAccountType'] = requestParameters.financialAccountType;
+        if (requestParameters['financialAccountType'] != null) {
+            queryParameters['financialAccountType'] = requestParameters['financialAccountType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/users/{userId}/accounts/{plaidAccountId}/transactions/week`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"plaidAccountId"}}`, encodeURIComponent(String(requestParameters.plaidAccountId))),
+            path: `/financial-microservice/api/v1/users/{userId}/accounts/{plaidAccountId}/transactions/week`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"plaidAccountId"}}`, encodeURIComponent(String(requestParameters['plaidAccountId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -3979,28 +4372,37 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Returns the account balance history for a user
      */
     async getUserAccountBalanceHistoryRaw(requestParameters: GetUserAccountBalanceHistoryRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserAccountBalanceHistoryResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUserAccountBalanceHistory.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getUserAccountBalanceHistory().'
+            );
         }
 
-        if (requestParameters.pageNumber === null || requestParameters.pageNumber === undefined) {
-            throw new runtime.RequiredError('pageNumber','Required parameter requestParameters.pageNumber was null or undefined when calling getUserAccountBalanceHistory.');
+        if (requestParameters['pageNumber'] == null) {
+            throw new runtime.RequiredError(
+                'pageNumber',
+                'Required parameter "pageNumber" was null or undefined when calling getUserAccountBalanceHistory().'
+            );
         }
 
-        if (requestParameters.pageSize === null || requestParameters.pageSize === undefined) {
-            throw new runtime.RequiredError('pageSize','Required parameter requestParameters.pageSize was null or undefined when calling getUserAccountBalanceHistory.');
+        if (requestParameters['pageSize'] == null) {
+            throw new runtime.RequiredError(
+                'pageSize',
+                'Required parameter "pageSize" was null or undefined when calling getUserAccountBalanceHistory().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/balance-history/user/{userId}/pagenumber/{pageNumber}/pagesize/{pageSize}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))).replace(`{${"pageNumber"}}`, encodeURIComponent(String(requestParameters.pageNumber))).replace(`{${"pageSize"}}`, encodeURIComponent(String(requestParameters.pageSize))),
+            path: `/financial-microservice/api/v1/analytics/balance-history/user/{userId}/pagenumber/{pageNumber}/pagesize/{pageSize}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))).replace(`{${"pageNumber"}}`, encodeURIComponent(String(requestParameters['pageNumber']))).replace(`{${"pageSize"}}`, encodeURIComponent(String(requestParameters['pageSize']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -4023,36 +4425,39 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Returns the monthly category expenditure for a user
      */
     async getUserCategoryMonthlyExpenditureRaw(requestParameters: GetUserCategoryMonthlyExpenditureRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserCategoryMonthlyExpenditureResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUserCategoryMonthlyExpenditure.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getUserCategoryMonthlyExpenditure().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.personalFinanceCategoryPrimary !== undefined) {
-            queryParameters['personalFinanceCategoryPrimary'] = requestParameters.personalFinanceCategoryPrimary;
+        if (requestParameters['personalFinanceCategoryPrimary'] != null) {
+            queryParameters['personalFinanceCategoryPrimary'] = requestParameters['personalFinanceCategoryPrimary'];
         }
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/category-monthly-expenditure/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/category-monthly-expenditure/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -4074,36 +4479,39 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Get monthly income by user for a specific category
      */
     async getUserCategoryMonthlyIncomeRaw(requestParameters: GetUserCategoryMonthlyIncomeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserCategoryMonthlyIncomeResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUserCategoryMonthlyIncome.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getUserCategoryMonthlyIncome().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.personalFinanceCategoryPrimary !== undefined) {
-            queryParameters['personalFinanceCategoryPrimary'] = requestParameters.personalFinanceCategoryPrimary;
+        if (requestParameters['personalFinanceCategoryPrimary'] != null) {
+            queryParameters['personalFinanceCategoryPrimary'] = requestParameters['personalFinanceCategoryPrimary'];
         }
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/category-monthly-income/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/category-monthly-income/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -4125,28 +4533,34 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Gets a user profile
      */
     async getUserProfile1Raw(requestParameters: GetUserProfile1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserProfileResponse1>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUserProfile1.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getUserProfile1().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling getUserProfile1.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling getUserProfile1().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
-        if (requestParameters.bypassCache !== undefined) {
-            queryParameters['bypassCache'] = requestParameters.bypassCache;
+        if (requestParameters['bypassCache'] != null) {
+            queryParameters['bypassCache'] = requestParameters['bypassCache'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/profile/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/profile/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -4197,8 +4611,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * initiate plaid setup
      */
     async initiatePlaidSetupRaw(requestParameters: InitiatePlaidSetupRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlaidInitiateTokenExchangeResponse>> {
-        if (requestParameters.plaidInitiateTokenExchangeRequest === null || requestParameters.plaidInitiateTokenExchangeRequest === undefined) {
-            throw new runtime.RequiredError('plaidInitiateTokenExchangeRequest','Required parameter requestParameters.plaidInitiateTokenExchangeRequest was null or undefined when calling initiatePlaidSetup.');
+        if (requestParameters['plaidInitiateTokenExchangeRequest'] == null) {
+            throw new runtime.RequiredError(
+                'plaidInitiateTokenExchangeRequest',
+                'Required parameter "plaidInitiateTokenExchangeRequest" was null or undefined when calling initiatePlaidSetup().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4212,7 +4629,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PlaidInitiateTokenExchangeRequestToJSON(requestParameters.plaidInitiateTokenExchangeRequest),
+            body: PlaidInitiateTokenExchangeRequestToJSON(requestParameters['plaidInitiateTokenExchangeRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PlaidInitiateTokenExchangeResponseFromJSON(jsonValue));
@@ -4232,8 +4649,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * initiate plaid link token update
      */
     async initiatePlaidTokenUpdateRaw(requestParameters: InitiatePlaidTokenUpdateRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PlaidInitiateTokenUpdateResponse>> {
-        if (requestParameters.plaidInitiateTokenUpdateRequest === null || requestParameters.plaidInitiateTokenUpdateRequest === undefined) {
-            throw new runtime.RequiredError('plaidInitiateTokenUpdateRequest','Required parameter requestParameters.plaidInitiateTokenUpdateRequest was null or undefined when calling initiatePlaidTokenUpdate.');
+        if (requestParameters['plaidInitiateTokenUpdateRequest'] == null) {
+            throw new runtime.RequiredError(
+                'plaidInitiateTokenUpdateRequest',
+                'Required parameter "plaidInitiateTokenUpdateRequest" was null or undefined when calling initiatePlaidTokenUpdate().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4247,7 +4667,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: PlaidInitiateTokenUpdateRequestToJSON(requestParameters.plaidInitiateTokenUpdateRequest),
+            body: PlaidInitiateTokenUpdateRequestToJSON(requestParameters['plaidInitiateTokenUpdateRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => PlaidInitiateTokenUpdateResponseFromJSON(jsonValue));
@@ -4267,8 +4687,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * lists notes from a transaction
      */
     async listRecurringTransactionNotesRaw(requestParameters: ListRecurringTransactionNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListRecurringTransactionNotesResponse>> {
-        if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
-            throw new runtime.RequiredError('transactionId','Required parameter requestParameters.transactionId was null or undefined when calling listRecurringTransactionNotes.');
+        if (requestParameters['transactionId'] == null) {
+            throw new runtime.RequiredError(
+                'transactionId',
+                'Required parameter "transactionId" was null or undefined when calling listRecurringTransactionNotes().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4276,7 +4699,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/recurring/{transactionId}/notes`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/financial-microservice/api/v1/transactions/recurring/{transactionId}/notes`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters['transactionId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -4299,42 +4722,51 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * lists a set of transactions against a given account of interest
      */
     async listRecurringTransactionsForUserAndAccountRaw(requestParameters: ListRecurringTransactionsForUserAndAccountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListRecurringTransactionsForUserAndAccountResponse>> {
-        if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
-            throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling listRecurringTransactionsForUserAndAccount.');
+        if (requestParameters['accountId'] == null) {
+            throw new runtime.RequiredError(
+                'accountId',
+                'Required parameter "accountId" was null or undefined when calling listRecurringTransactionsForUserAndAccount().'
+            );
         }
 
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling listRecurringTransactionsForUserAndAccount.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling listRecurringTransactionsForUserAndAccount().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling listRecurringTransactionsForUserAndAccount.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling listRecurringTransactionsForUserAndAccount().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.accountId !== undefined) {
-            queryParameters['accountId'] = requestParameters.accountId;
+        if (requestParameters['accountId'] != null) {
+            queryParameters['accountId'] = requestParameters['accountId'];
         }
 
-        if (requestParameters.userId !== undefined) {
-            queryParameters['userId'] = requestParameters.userId;
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
-        if (requestParameters.financialAccountType !== undefined) {
-            queryParameters['financialAccountType'] = requestParameters.financialAccountType;
+        if (requestParameters['financialAccountType'] != null) {
+            queryParameters['financialAccountType'] = requestParameters['financialAccountType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -4363,8 +4795,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * lists notes from a transaction
      */
     async listTransactionNotesRaw(requestParameters: ListTransactionNotesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListTransactionNotesResponse>> {
-        if (requestParameters.transactionId === null || requestParameters.transactionId === undefined) {
-            throw new runtime.RequiredError('transactionId','Required parameter requestParameters.transactionId was null or undefined when calling listTransactionNotes.');
+        if (requestParameters['transactionId'] == null) {
+            throw new runtime.RequiredError(
+                'transactionId',
+                'Required parameter "transactionId" was null or undefined when calling listTransactionNotes().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4372,7 +4807,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/transactions/transaction/{transactionId}/notes`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters.transactionId))),
+            path: `/financial-microservice/api/v1/transactions/transaction/{transactionId}/notes`.replace(`{${"transactionId"}}`, encodeURIComponent(String(requestParameters['transactionId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -4395,42 +4830,51 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * lists a set of transactions against a given account of interest
      */
     async listTransactionsRaw(requestParameters: ListTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListTransactionsResponse>> {
-        if (requestParameters.accountId === null || requestParameters.accountId === undefined) {
-            throw new runtime.RequiredError('accountId','Required parameter requestParameters.accountId was null or undefined when calling listTransactions.');
+        if (requestParameters['accountId'] == null) {
+            throw new runtime.RequiredError(
+                'accountId',
+                'Required parameter "accountId" was null or undefined when calling listTransactions().'
+            );
         }
 
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling listTransactions.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling listTransactions().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling listTransactions.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling listTransactions().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.accountId !== undefined) {
-            queryParameters['accountId'] = requestParameters.accountId;
+        if (requestParameters['accountId'] != null) {
+            queryParameters['accountId'] = requestParameters['accountId'];
         }
 
-        if (requestParameters.userId !== undefined) {
-            queryParameters['userId'] = requestParameters.userId;
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
-        if (requestParameters.financialAccountType !== undefined) {
-            queryParameters['financialAccountType'] = requestParameters.financialAccountType;
+        if (requestParameters['financialAccountType'] != null) {
+            queryParameters['financialAccountType'] = requestParameters['financialAccountType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -4459,30 +4903,36 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * lists a set of transactions across all connected accounts
      */
     async listTransactions1Raw(requestParameters: ListTransactions1Request, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<ListTransactionsAcrossAllAccountsResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling listTransactions1.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling listTransactions1().'
+            );
         }
 
-        if (requestParameters.profileType === null || requestParameters.profileType === undefined) {
-            throw new runtime.RequiredError('profileType','Required parameter requestParameters.profileType was null or undefined when calling listTransactions1.');
+        if (requestParameters['profileType'] == null) {
+            throw new runtime.RequiredError(
+                'profileType',
+                'Required parameter "profileType" was null or undefined when calling listTransactions1().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.userId !== undefined) {
-            queryParameters['userId'] = requestParameters.userId;
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -4511,12 +4961,18 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * polls the status of an async task
      */
     async pollAsyncTaskExecutionStatusRaw(requestParameters: PollAsyncTaskExecutionStatusRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PollAsyncTaskExecutionStatusResponse>> {
-        if (requestParameters.workflowId === null || requestParameters.workflowId === undefined) {
-            throw new runtime.RequiredError('workflowId','Required parameter requestParameters.workflowId was null or undefined when calling pollAsyncTaskExecutionStatus.');
+        if (requestParameters['workflowId'] == null) {
+            throw new runtime.RequiredError(
+                'workflowId',
+                'Required parameter "workflowId" was null or undefined when calling pollAsyncTaskExecutionStatus().'
+            );
         }
 
-        if (requestParameters.runId === null || requestParameters.runId === undefined) {
-            throw new runtime.RequiredError('runId','Required parameter requestParameters.runId was null or undefined when calling pollAsyncTaskExecutionStatus.');
+        if (requestParameters['runId'] == null) {
+            throw new runtime.RequiredError(
+                'runId',
+                'Required parameter "runId" was null or undefined when calling pollAsyncTaskExecutionStatus().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4524,7 +4980,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/async-task/{workflowId}/run/{runId}`.replace(`{${"workflowId"}}`, encodeURIComponent(String(requestParameters.workflowId))).replace(`{${"runId"}}`, encodeURIComponent(String(requestParameters.runId))),
+            path: `/financial-microservice/api/v1/async-task/{workflowId}/run/{runId}`.replace(`{${"workflowId"}}`, encodeURIComponent(String(requestParameters['workflowId']))).replace(`{${"runId"}}`, encodeURIComponent(String(requestParameters['runId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -4575,8 +5031,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * searches transactions
      */
     async searchTransactionsRaw(requestParameters: SearchTransactionsOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SearchTransactionsResponse>> {
-        if (requestParameters.searchTransactionsRequest === null || requestParameters.searchTransactionsRequest === undefined) {
-            throw new runtime.RequiredError('searchTransactionsRequest','Required parameter requestParameters.searchTransactionsRequest was null or undefined when calling searchTransactions.');
+        if (requestParameters['searchTransactionsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'searchTransactionsRequest',
+                'Required parameter "searchTransactionsRequest" was null or undefined when calling searchTransactions().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4590,7 +5049,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SearchTransactionsRequestToJSON(requestParameters.searchTransactionsRequest),
+            body: SearchTransactionsRequestToJSON(requestParameters['searchTransactionsRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SearchTransactionsResponseFromJSON(jsonValue));
@@ -4610,8 +5069,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * splits a transaction
      */
     async splitTransactionRaw(requestParameters: SplitTransactionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<SplitTransactionResponse>> {
-        if (requestParameters.splitTransactionRequest === null || requestParameters.splitTransactionRequest === undefined) {
-            throw new runtime.RequiredError('splitTransactionRequest','Required parameter requestParameters.splitTransactionRequest was null or undefined when calling splitTransaction.');
+        if (requestParameters['splitTransactionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'splitTransactionRequest',
+                'Required parameter "splitTransactionRequest" was null or undefined when calling splitTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4625,7 +5087,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: SplitTransactionRequestToJSON(requestParameters.splitTransactionRequest),
+            body: SplitTransactionRequestToJSON(requestParameters['splitTransactionRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => SplitTransactionResponseFromJSON(jsonValue));
@@ -4645,48 +5107,51 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Returns the aggregated transactions for a user and month
      */
     async transactionAggregatesRaw(requestParameters: TransactionAggregatesRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetTransactionAggregatesResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling transactionAggregates.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling transactionAggregates().'
+            );
         }
 
         const queryParameters: any = {};
 
-        if (requestParameters.month !== undefined) {
-            queryParameters['month'] = requestParameters.month;
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
         }
 
-        if (requestParameters.personalFinanceCategoryPrimary !== undefined) {
-            queryParameters['personalFinanceCategoryPrimary'] = requestParameters.personalFinanceCategoryPrimary;
+        if (requestParameters['personalFinanceCategoryPrimary'] != null) {
+            queryParameters['personalFinanceCategoryPrimary'] = requestParameters['personalFinanceCategoryPrimary'];
         }
 
-        if (requestParameters.locationCity !== undefined) {
-            queryParameters['locationCity'] = requestParameters.locationCity;
+        if (requestParameters['locationCity'] != null) {
+            queryParameters['locationCity'] = requestParameters['locationCity'];
         }
 
-        if (requestParameters.paymentChannel !== undefined) {
-            queryParameters['paymentChannel'] = requestParameters.paymentChannel;
+        if (requestParameters['paymentChannel'] != null) {
+            queryParameters['paymentChannel'] = requestParameters['paymentChannel'];
         }
 
-        if (requestParameters.merchantName !== undefined) {
-            queryParameters['merchantName'] = requestParameters.merchantName;
+        if (requestParameters['merchantName'] != null) {
+            queryParameters['merchantName'] = requestParameters['merchantName'];
         }
 
-        if (requestParameters.pageNumber !== undefined) {
-            queryParameters['pageNumber'] = requestParameters.pageNumber;
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
         }
 
-        if (requestParameters.pageSize !== undefined) {
-            queryParameters['pageSize'] = requestParameters.pageSize;
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
         }
 
-        if (requestParameters.profileType !== undefined) {
-            queryParameters['profileType'] = requestParameters.profileType;
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/financial-microservice/api/v1/analytics/transaction-aggregates/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/financial-microservice/api/v1/analytics/transaction-aggregates/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -4709,8 +5174,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Triggers a sync
      */
     async triggerSyncRaw(requestParameters: TriggerSyncOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<TriggerSyncResponse>> {
-        if (requestParameters.triggerSyncRequest === null || requestParameters.triggerSyncRequest === undefined) {
-            throw new runtime.RequiredError('triggerSyncRequest','Required parameter requestParameters.triggerSyncRequest was null or undefined when calling triggerSync.');
+        if (requestParameters['triggerSyncRequest'] == null) {
+            throw new runtime.RequiredError(
+                'triggerSyncRequest',
+                'Required parameter "triggerSyncRequest" was null or undefined when calling triggerSync().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4724,7 +5192,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: TriggerSyncRequestToJSON(requestParameters.triggerSyncRequest),
+            body: TriggerSyncRequestToJSON(requestParameters['triggerSyncRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => TriggerSyncResponseFromJSON(jsonValue));
@@ -4744,8 +5212,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * unsplit a transaction
      */
     async unsplitTransactionsRaw(requestParameters: UnsplitTransactionsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UnSplitTransactionsResponse>> {
-        if (requestParameters.unSplitTransactionsRequest === null || requestParameters.unSplitTransactionsRequest === undefined) {
-            throw new runtime.RequiredError('unSplitTransactionsRequest','Required parameter requestParameters.unSplitTransactionsRequest was null or undefined when calling unsplitTransactions.');
+        if (requestParameters['unSplitTransactionsRequest'] == null) {
+            throw new runtime.RequiredError(
+                'unSplitTransactionsRequest',
+                'Required parameter "unSplitTransactionsRequest" was null or undefined when calling unsplitTransactions().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4759,7 +5230,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,
-            body: UnSplitTransactionsRequestToJSON(requestParameters.unSplitTransactionsRequest),
+            body: UnSplitTransactionsRequestToJSON(requestParameters['unSplitTransactionsRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UnSplitTransactionsResponseFromJSON(jsonValue));
@@ -4779,8 +5250,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * update a bank account for a given user profile
      */
     async updateBankAccountRaw(requestParameters: UpdateBankAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateBankAccountResponse>> {
-        if (requestParameters.updateBankAccountRequest === null || requestParameters.updateBankAccountRequest === undefined) {
-            throw new runtime.RequiredError('updateBankAccountRequest','Required parameter requestParameters.updateBankAccountRequest was null or undefined when calling updateBankAccount.');
+        if (requestParameters['updateBankAccountRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateBankAccountRequest',
+                'Required parameter "updateBankAccountRequest" was null or undefined when calling updateBankAccount().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4794,7 +5268,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateBankAccountRequestToJSON(requestParameters.updateBankAccountRequest),
+            body: UpdateBankAccountRequestToJSON(requestParameters['updateBankAccountRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateBankAccountResponseFromJSON(jsonValue));
@@ -4814,8 +5288,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Updates a note to a transaction
      */
     async updateNoteToRecurringTransactionRaw(requestParameters: UpdateNoteToRecurringTransactionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateNoteToRecurringTransactionResponse>> {
-        if (requestParameters.updateNoteToRecurringTransactionRequest === null || requestParameters.updateNoteToRecurringTransactionRequest === undefined) {
-            throw new runtime.RequiredError('updateNoteToRecurringTransactionRequest','Required parameter requestParameters.updateNoteToRecurringTransactionRequest was null or undefined when calling updateNoteToRecurringTransaction.');
+        if (requestParameters['updateNoteToRecurringTransactionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateNoteToRecurringTransactionRequest',
+                'Required parameter "updateNoteToRecurringTransactionRequest" was null or undefined when calling updateNoteToRecurringTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4829,7 +5306,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateNoteToRecurringTransactionRequestToJSON(requestParameters.updateNoteToRecurringTransactionRequest),
+            body: UpdateNoteToRecurringTransactionRequestToJSON(requestParameters['updateNoteToRecurringTransactionRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateNoteToRecurringTransactionResponseFromJSON(jsonValue));
@@ -4849,8 +5326,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * updates a note to a smart goal
      */
     async updateNoteToSmartGoalRaw(requestParameters: UpdateNoteToSmartGoalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateNoteToSmartGoalResponse>> {
-        if (requestParameters.updateNoteToSmartGoalRequest === null || requestParameters.updateNoteToSmartGoalRequest === undefined) {
-            throw new runtime.RequiredError('updateNoteToSmartGoalRequest','Required parameter requestParameters.updateNoteToSmartGoalRequest was null or undefined when calling updateNoteToSmartGoal.');
+        if (requestParameters['updateNoteToSmartGoalRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateNoteToSmartGoalRequest',
+                'Required parameter "updateNoteToSmartGoalRequest" was null or undefined when calling updateNoteToSmartGoal().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4864,7 +5344,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateNoteToSmartGoalRequestToJSON(requestParameters.updateNoteToSmartGoalRequest),
+            body: UpdateNoteToSmartGoalRequestToJSON(requestParameters['updateNoteToSmartGoalRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateNoteToSmartGoalResponseFromJSON(jsonValue));
@@ -4884,8 +5364,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * Updates a note to a transaction
      */
     async updateNoteToTransactionRaw(requestParameters: UpdateNoteToTransactionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateNoteToTransactionResponse>> {
-        if (requestParameters.updateNoteToTransactionRequest === null || requestParameters.updateNoteToTransactionRequest === undefined) {
-            throw new runtime.RequiredError('updateNoteToTransactionRequest','Required parameter requestParameters.updateNoteToTransactionRequest was null or undefined when calling updateNoteToTransaction.');
+        if (requestParameters['updateNoteToTransactionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateNoteToTransactionRequest',
+                'Required parameter "updateNoteToTransactionRequest" was null or undefined when calling updateNoteToTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4899,7 +5382,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateNoteToTransactionRequestToJSON(requestParameters.updateNoteToTransactionRequest),
+            body: UpdateNoteToTransactionRequestToJSON(requestParameters['updateNoteToTransactionRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateNoteToTransactionResponseFromJSON(jsonValue));
@@ -4919,8 +5402,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * updates a pocket
      */
     async updatePocketRaw(requestParameters: UpdatePocketOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdatePocketResponse>> {
-        if (requestParameters.updatePocketRequest === null || requestParameters.updatePocketRequest === undefined) {
-            throw new runtime.RequiredError('updatePocketRequest','Required parameter requestParameters.updatePocketRequest was null or undefined when calling updatePocket.');
+        if (requestParameters['updatePocketRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updatePocketRequest',
+                'Required parameter "updatePocketRequest" was null or undefined when calling updatePocket().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4934,7 +5420,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdatePocketRequestToJSON(requestParameters.updatePocketRequest),
+            body: UpdatePocketRequestToJSON(requestParameters['updatePocketRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdatePocketResponseFromJSON(jsonValue));
@@ -4954,8 +5440,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * update a transaction
      */
     async updateSingleTransactionRaw(requestParameters: UpdateSingleTransactionOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateSingleTransactionResponse>> {
-        if (requestParameters.updateSingleTransactionRequest === null || requestParameters.updateSingleTransactionRequest === undefined) {
-            throw new runtime.RequiredError('updateSingleTransactionRequest','Required parameter requestParameters.updateSingleTransactionRequest was null or undefined when calling updateSingleTransaction.');
+        if (requestParameters['updateSingleTransactionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateSingleTransactionRequest',
+                'Required parameter "updateSingleTransactionRequest" was null or undefined when calling updateSingleTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -4969,7 +5458,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateSingleTransactionRequestToJSON(requestParameters.updateSingleTransactionRequest),
+            body: UpdateSingleTransactionRequestToJSON(requestParameters['updateSingleTransactionRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateSingleTransactionResponseFromJSON(jsonValue));
@@ -4989,8 +5478,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * update a smart goal
      */
     async updateSmartGoalRaw(requestParameters: UpdateSmartGoalOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateSmartGoalResponse>> {
-        if (requestParameters.updateSmartGoalRequest === null || requestParameters.updateSmartGoalRequest === undefined) {
-            throw new runtime.RequiredError('updateSmartGoalRequest','Required parameter requestParameters.updateSmartGoalRequest was null or undefined when calling updateSmartGoal.');
+        if (requestParameters['updateSmartGoalRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateSmartGoalRequest',
+                'Required parameter "updateSmartGoalRequest" was null or undefined when calling updateSmartGoal().'
+            );
         }
 
         const queryParameters: any = {};
@@ -5004,7 +5496,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateSmartGoalRequestToJSON(requestParameters.updateSmartGoalRequest),
+            body: UpdateSmartGoalRequestToJSON(requestParameters['updateSmartGoalRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateSmartGoalResponseFromJSON(jsonValue));
@@ -5024,8 +5516,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * update a transaction
      */
     async updateTransactionRaw(requestParameters: UpdateTransactionRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateRecurringTransactionResponse>> {
-        if (requestParameters.updateRecurringTransactionRequest === null || requestParameters.updateRecurringTransactionRequest === undefined) {
-            throw new runtime.RequiredError('updateRecurringTransactionRequest','Required parameter requestParameters.updateRecurringTransactionRequest was null or undefined when calling updateTransaction.');
+        if (requestParameters['updateRecurringTransactionRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateRecurringTransactionRequest',
+                'Required parameter "updateRecurringTransactionRequest" was null or undefined when calling updateTransaction().'
+            );
         }
 
         const queryParameters: any = {};
@@ -5039,7 +5534,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateRecurringTransactionRequestToJSON(requestParameters.updateRecurringTransactionRequest),
+            body: UpdateRecurringTransactionRequestToJSON(requestParameters['updateRecurringTransactionRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateRecurringTransactionResponseFromJSON(jsonValue));
@@ -5059,8 +5554,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * update a user profile
      */
     async updateUserProfileRaw(requestParameters: UpdateUserProfileOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateUserProfileResponse>> {
-        if (requestParameters.updateUserProfileRequest === null || requestParameters.updateUserProfileRequest === undefined) {
-            throw new runtime.RequiredError('updateUserProfileRequest','Required parameter requestParameters.updateUserProfileRequest was null or undefined when calling updateUserProfile.');
+        if (requestParameters['updateUserProfileRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateUserProfileRequest',
+                'Required parameter "updateUserProfileRequest" was null or undefined when calling updateUserProfile().'
+            );
         }
 
         const queryParameters: any = {};
@@ -5074,7 +5572,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateUserProfileRequestToJSON(requestParameters.updateUserProfileRequest),
+            body: UpdateUserProfileRequestToJSON(requestParameters['updateUserProfileRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateUserProfileResponseFromJSON(jsonValue));
@@ -5094,8 +5592,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * updates a budget
      */
     async updatesBudgetRaw(requestParameters: UpdatesBudgetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateBudgetResponse>> {
-        if (requestParameters.updateBudgetRequest === null || requestParameters.updateBudgetRequest === undefined) {
-            throw new runtime.RequiredError('updateBudgetRequest','Required parameter requestParameters.updateBudgetRequest was null or undefined when calling updatesBudget.');
+        if (requestParameters['updateBudgetRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateBudgetRequest',
+                'Required parameter "updateBudgetRequest" was null or undefined when calling updatesBudget().'
+            );
         }
 
         const queryParameters: any = {};
@@ -5109,7 +5610,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateBudgetRequestToJSON(requestParameters.updateBudgetRequest),
+            body: UpdateBudgetRequestToJSON(requestParameters['updateBudgetRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateBudgetResponseFromJSON(jsonValue));
@@ -5129,8 +5630,11 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      * updates a milestone
      */
     async updatesMilestoneRaw(requestParameters: UpdatesMilestoneRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateMilestoneResponse>> {
-        if (requestParameters.updateMilestoneRequest === null || requestParameters.updateMilestoneRequest === undefined) {
-            throw new runtime.RequiredError('updateMilestoneRequest','Required parameter requestParameters.updateMilestoneRequest was null or undefined when calling updatesMilestone.');
+        if (requestParameters['updateMilestoneRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateMilestoneRequest',
+                'Required parameter "updateMilestoneRequest" was null or undefined when calling updatesMilestone().'
+            );
         }
 
         const queryParameters: any = {};
@@ -5144,7 +5648,7 @@ export class FinancialServiceApi extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateMilestoneRequestToJSON(requestParameters.updateMilestoneRequest),
+            body: UpdateMilestoneRequestToJSON(requestParameters['updateMilestoneRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateMilestoneResponseFromJSON(jsonValue));

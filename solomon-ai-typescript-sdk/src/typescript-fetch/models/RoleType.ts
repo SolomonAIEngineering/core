@@ -26,6 +26,10 @@ export const RoleType = {
 export type RoleType = typeof RoleType[keyof typeof RoleType];
 
 
+export function instanceOfRoleType(value: any): boolean {
+    return Object.values(RoleType).includes(value);
+}
+
 export function RoleTypeFromJSON(json: any): RoleType {
     return RoleTypeFromJSONTyped(json, false);
 }

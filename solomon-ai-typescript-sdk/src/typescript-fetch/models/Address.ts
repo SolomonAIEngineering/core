@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -73,9 +73,7 @@ export interface Address {
  * Check if a given object implements the Address interface.
  */
 export function instanceOfAddress(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function AddressFromJSON(json: any): Address {
@@ -83,39 +81,36 @@ export function AddressFromJSON(json: any): Address {
 }
 
 export function AddressFromJSONTyped(json: any, ignoreDiscriminator: boolean): Address {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'address': !exists(json, 'address') ? undefined : json['address'],
-        'unit': !exists(json, 'unit') ? undefined : json['unit'],
-        'zipcode': !exists(json, 'zipcode') ? undefined : json['zipcode'],
-        'city': !exists(json, 'city') ? undefined : json['city'],
-        'state': !exists(json, 'state') ? undefined : json['state'],
-        'longitude': !exists(json, 'longitude') ? undefined : json['longitude'],
-        'lattitude': !exists(json, 'lattitude') ? undefined : json['lattitude'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'address': json['address'] == null ? undefined : json['address'],
+        'unit': json['unit'] == null ? undefined : json['unit'],
+        'zipcode': json['zipcode'] == null ? undefined : json['zipcode'],
+        'city': json['city'] == null ? undefined : json['city'],
+        'state': json['state'] == null ? undefined : json['state'],
+        'longitude': json['longitude'] == null ? undefined : json['longitude'],
+        'lattitude': json['lattitude'] == null ? undefined : json['lattitude'],
     };
 }
 
 export function AddressToJSON(value?: Address | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'address': value.address,
-        'unit': value.unit,
-        'zipcode': value.zipcode,
-        'city': value.city,
-        'state': value.state,
-        'longitude': value.longitude,
-        'lattitude': value.lattitude,
+        'id': value['id'],
+        'address': value['address'],
+        'unit': value['unit'],
+        'zipcode': value['zipcode'],
+        'city': value['city'],
+        'state': value['state'],
+        'longitude': value['longitude'],
+        'lattitude': value['lattitude'],
     };
 }
 

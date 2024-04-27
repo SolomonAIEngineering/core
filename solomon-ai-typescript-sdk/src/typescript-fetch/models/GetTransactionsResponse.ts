@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Transaction } from './Transaction';
 import {
     TransactionFromJSON,
@@ -44,9 +44,7 @@ export interface GetTransactionsResponse {
  * Check if a given object implements the GetTransactionsResponse interface.
  */
 export function instanceOfGetTransactionsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetTransactionsResponseFromJSON(json: any): GetTransactionsResponse {
@@ -54,27 +52,24 @@ export function GetTransactionsResponseFromJSON(json: any): GetTransactionsRespo
 }
 
 export function GetTransactionsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetTransactionsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'transactions': !exists(json, 'transactions') ? undefined : ((json['transactions'] as Array<any>).map(TransactionFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'transactions': json['transactions'] == null ? undefined : ((json['transactions'] as Array<any>).map(TransactionFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetTransactionsResponseToJSON(value?: GetTransactionsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transactions': value.transactions === undefined ? undefined : ((value.transactions as Array<any>).map(TransactionToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'transactions': value['transactions'] == null ? undefined : ((value['transactions'] as Array<any>).map(TransactionToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

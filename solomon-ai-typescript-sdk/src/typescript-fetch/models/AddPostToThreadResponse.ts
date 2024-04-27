@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PollPost } from './PollPost';
 import {
     PollPostFromJSON,
@@ -62,9 +62,7 @@ export interface AddPostToThreadResponse {
  * Check if a given object implements the AddPostToThreadResponse interface.
  */
 export function instanceOfAddPostToThreadResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function AddPostToThreadResponseFromJSON(json: any): AddPostToThreadResponse {
@@ -72,29 +70,26 @@ export function AddPostToThreadResponseFromJSON(json: any): AddPostToThreadRespo
 }
 
 export function AddPostToThreadResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddPostToThreadResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'regularPost': !exists(json, 'regularPost') ? undefined : PostFromJSON(json['regularPost']),
-        'sharedPost': !exists(json, 'sharedPost') ? undefined : SharedPostFromJSON(json['sharedPost']),
-        'pollPost': !exists(json, 'pollPost') ? undefined : PollPostFromJSON(json['pollPost']),
+        'regularPost': json['regularPost'] == null ? undefined : PostFromJSON(json['regularPost']),
+        'sharedPost': json['sharedPost'] == null ? undefined : SharedPostFromJSON(json['sharedPost']),
+        'pollPost': json['pollPost'] == null ? undefined : PollPostFromJSON(json['pollPost']),
     };
 }
 
 export function AddPostToThreadResponseToJSON(value?: AddPostToThreadResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'regularPost': PostToJSON(value.regularPost),
-        'sharedPost': SharedPostToJSON(value.sharedPost),
-        'pollPost': PollPostToJSON(value.pollPost),
+        'regularPost': PostToJSON(value['regularPost']),
+        'sharedPost': SharedPostToJSON(value['sharedPost']),
+        'pollPost': PollPostToJSON(value['pollPost']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * Request for reading business transactions with pagination and time filtering.
  * @export
@@ -49,13 +49,11 @@ export interface ReadBusinessTransactionsRequest {
  * Check if a given object implements the ReadBusinessTransactionsRequest interface.
  */
 export function instanceOfReadBusinessTransactionsRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "authZeroUserId" in value;
-    isInstance = isInstance && "linkedAccountingAccountId" in value;
-    isInstance = isInstance && "pageNumber" in value;
-    isInstance = isInstance && "pageSize" in value;
-
-    return isInstance;
+    if (!('authZeroUserId' in value)) return false;
+    if (!('linkedAccountingAccountId' in value)) return false;
+    if (!('pageNumber' in value)) return false;
+    if (!('pageSize' in value)) return false;
+    return true;
 }
 
 export function ReadBusinessTransactionsRequestFromJSON(json: any): ReadBusinessTransactionsRequest {
@@ -63,7 +61,7 @@ export function ReadBusinessTransactionsRequestFromJSON(json: any): ReadBusiness
 }
 
 export function ReadBusinessTransactionsRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): ReadBusinessTransactionsRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -76,18 +74,15 @@ export function ReadBusinessTransactionsRequestFromJSONTyped(json: any, ignoreDi
 }
 
 export function ReadBusinessTransactionsRequestToJSON(value?: ReadBusinessTransactionsRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'authZeroUserId': value.authZeroUserId,
-        'linkedAccountingAccountId': value.linkedAccountingAccountId,
-        'pageNumber': value.pageNumber,
-        'pageSize': value.pageSize,
+        'authZeroUserId': value['authZeroUserId'],
+        'linkedAccountingAccountId': value['linkedAccountingAccountId'],
+        'pageNumber': value['pageNumber'],
+        'pageSize': value['pageSize'],
     };
 }
 

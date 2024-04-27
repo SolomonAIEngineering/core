@@ -20,6 +20,10 @@ spec:
     name: DeleteAccount
   - condition:
       method: POST
+      pathRegex: /workspace_service\.v1\.WorkspaceService/CreateMarkdownFile
+    name: CreateMarkdownFile
+  - condition:
+      method: POST
       pathRegex: /workspace_service\.v1\.WorkspaceService/DeleteFile
     name: DeleteFile
   - condition:

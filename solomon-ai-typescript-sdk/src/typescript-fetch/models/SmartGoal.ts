@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Forecast } from './Forecast';
 import {
     ForecastFromJSON,
@@ -140,9 +140,7 @@ export interface SmartGoal {
  * Check if a given object implements the SmartGoal interface.
  */
 export function instanceOfSmartGoal(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function SmartGoalFromJSON(json: any): SmartGoal {
@@ -150,51 +148,48 @@ export function SmartGoalFromJSON(json: any): SmartGoal {
 }
 
 export function SmartGoalFromJSONTyped(json: any, ignoreDiscriminator: boolean): SmartGoal {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'isCompleted': !exists(json, 'isCompleted') ? undefined : json['isCompleted'],
-        'goalType': !exists(json, 'goalType') ? undefined : GoalTypeFromJSON(json['goalType']),
-        'duration': !exists(json, 'duration') ? undefined : json['duration'],
-        'startDate': !exists(json, 'startDate') ? undefined : json['startDate'],
-        'endDate': !exists(json, 'endDate') ? undefined : json['endDate'],
-        'targetAmount': !exists(json, 'targetAmount') ? undefined : json['targetAmount'],
-        'currentAmount': !exists(json, 'currentAmount') ? undefined : json['currentAmount'],
-        'milestones': !exists(json, 'milestones') ? undefined : ((json['milestones'] as Array<any>).map(MilestoneFromJSON)),
-        'forecasts': !exists(json, 'forecasts') ? undefined : ForecastFromJSON(json['forecasts']),
-        'notes': !exists(json, 'notes') ? undefined : ((json['notes'] as Array<any>).map(SmartNoteFromJSON)),
+        'id': json['id'] == null ? undefined : json['id'],
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'isCompleted': json['isCompleted'] == null ? undefined : json['isCompleted'],
+        'goalType': json['goalType'] == null ? undefined : GoalTypeFromJSON(json['goalType']),
+        'duration': json['duration'] == null ? undefined : json['duration'],
+        'startDate': json['startDate'] == null ? undefined : json['startDate'],
+        'endDate': json['endDate'] == null ? undefined : json['endDate'],
+        'targetAmount': json['targetAmount'] == null ? undefined : json['targetAmount'],
+        'currentAmount': json['currentAmount'] == null ? undefined : json['currentAmount'],
+        'milestones': json['milestones'] == null ? undefined : ((json['milestones'] as Array<any>).map(MilestoneFromJSON)),
+        'forecasts': json['forecasts'] == null ? undefined : ForecastFromJSON(json['forecasts']),
+        'notes': json['notes'] == null ? undefined : ((json['notes'] as Array<any>).map(SmartNoteFromJSON)),
     };
 }
 
 export function SmartGoalToJSON(value?: SmartGoal | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'userId': value.userId,
-        'name': value.name,
-        'description': value.description,
-        'isCompleted': value.isCompleted,
-        'goalType': GoalTypeToJSON(value.goalType),
-        'duration': value.duration,
-        'startDate': value.startDate,
-        'endDate': value.endDate,
-        'targetAmount': value.targetAmount,
-        'currentAmount': value.currentAmount,
-        'milestones': value.milestones === undefined ? undefined : ((value.milestones as Array<any>).map(MilestoneToJSON)),
-        'forecasts': ForecastToJSON(value.forecasts),
-        'notes': value.notes === undefined ? undefined : ((value.notes as Array<any>).map(SmartNoteToJSON)),
+        'id': value['id'],
+        'userId': value['userId'],
+        'name': value['name'],
+        'description': value['description'],
+        'isCompleted': value['isCompleted'],
+        'goalType': GoalTypeToJSON(value['goalType']),
+        'duration': value['duration'],
+        'startDate': value['startDate'],
+        'endDate': value['endDate'],
+        'targetAmount': value['targetAmount'],
+        'currentAmount': value['currentAmount'],
+        'milestones': value['milestones'] == null ? undefined : ((value['milestones'] as Array<any>).map(MilestoneToJSON)),
+        'forecasts': ForecastToJSON(value['forecasts']),
+        'notes': value['notes'] == null ? undefined : ((value['notes'] as Array<any>).map(SmartNoteToJSON)),
     };
 }
 

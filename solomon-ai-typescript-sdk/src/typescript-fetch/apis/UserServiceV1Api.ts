@@ -130,8 +130,11 @@ export class UserServiceV1Api extends runtime.BaseAPI {
      * Checks that an email exists or not
      */
     async checkEmailExistsRaw(requestParameters: CheckEmailExistsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckEmailExistsResponse>> {
-        if (requestParameters.email === null || requestParameters.email === undefined) {
-            throw new runtime.RequiredError('email','Required parameter requestParameters.email was null or undefined when calling checkEmailExists.');
+        if (requestParameters['email'] == null) {
+            throw new runtime.RequiredError(
+                'email',
+                'Required parameter "email" was null or undefined when calling checkEmailExists().'
+            );
         }
 
         const queryParameters: any = {};
@@ -139,7 +142,7 @@ export class UserServiceV1Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v1/user-service/user/email/{email}/exists`.replace(`{${"email"}}`, encodeURIComponent(String(requestParameters.email))),
+            path: `/user-microservice/api/v1/user-service/user/email/{email}/exists`.replace(`{${"email"}}`, encodeURIComponent(String(requestParameters['email']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -162,8 +165,11 @@ export class UserServiceV1Api extends runtime.BaseAPI {
      * Checks that a username exists or not
      */
     async checkUsernameExistsRaw(requestParameters: CheckUsernameExistsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CheckUsernameExistsResponse>> {
-        if (requestParameters.username === null || requestParameters.username === undefined) {
-            throw new runtime.RequiredError('username','Required parameter requestParameters.username was null or undefined when calling checkUsernameExists.');
+        if (requestParameters['username'] == null) {
+            throw new runtime.RequiredError(
+                'username',
+                'Required parameter "username" was null or undefined when calling checkUsernameExists().'
+            );
         }
 
         const queryParameters: any = {};
@@ -171,7 +177,7 @@ export class UserServiceV1Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v1/user-service/user/username/{username}/exists`.replace(`{${"username"}}`, encodeURIComponent(String(requestParameters.username))),
+            path: `/user-microservice/api/v1/user-service/user/username/{username}/exists`.replace(`{${"username"}}`, encodeURIComponent(String(requestParameters['username']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -194,8 +200,11 @@ export class UserServiceV1Api extends runtime.BaseAPI {
      * deletes a user account
      */
     async deleteUserRaw(requestParameters: DeleteUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<DeleteUserResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling deleteUser.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling deleteUser().'
+            );
         }
 
         const queryParameters: any = {};
@@ -203,7 +212,7 @@ export class UserServiceV1Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v1/user-service/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/user-microservice/api/v1/user-service/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'DELETE',
             headers: headerParameters,
             query: queryParameters,
@@ -226,8 +235,11 @@ export class UserServiceV1Api extends runtime.BaseAPI {
      * Gets a user account
      */
     async getUserRaw(requestParameters: GetUserRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling getUser.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling getUser().'
+            );
         }
 
         const queryParameters: any = {};
@@ -235,7 +247,7 @@ export class UserServiceV1Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v1/user-service/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/user-microservice/api/v1/user-service/user/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -258,8 +270,11 @@ export class UserServiceV1Api extends runtime.BaseAPI {
      * Gets a user account by email
      */
     async getUserByEmailRaw(requestParameters: GetUserByEmailRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserByEmailResponse>> {
-        if (requestParameters.email === null || requestParameters.email === undefined) {
-            throw new runtime.RequiredError('email','Required parameter requestParameters.email was null or undefined when calling getUserByEmail.');
+        if (requestParameters['email'] == null) {
+            throw new runtime.RequiredError(
+                'email',
+                'Required parameter "email" was null or undefined when calling getUserByEmail().'
+            );
         }
 
         const queryParameters: any = {};
@@ -267,7 +282,7 @@ export class UserServiceV1Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v1/user-service/user/email/{email}`.replace(`{${"email"}}`, encodeURIComponent(String(requestParameters.email))),
+            path: `/user-microservice/api/v1/user-service/user/email/{email}`.replace(`{${"email"}}`, encodeURIComponent(String(requestParameters['email']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -292,12 +307,12 @@ export class UserServiceV1Api extends runtime.BaseAPI {
     async getUserByEmailOrUsernameRaw(requestParameters: GetUserByEmailOrUsernameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserByEmailOrUsernameResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.email !== undefined) {
-            queryParameters['email'] = requestParameters.email;
+        if (requestParameters['email'] != null) {
+            queryParameters['email'] = requestParameters['email'];
         }
 
-        if (requestParameters.username !== undefined) {
-            queryParameters['username'] = requestParameters.username;
+        if (requestParameters['username'] != null) {
+            queryParameters['username'] = requestParameters['username'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -326,8 +341,11 @@ export class UserServiceV1Api extends runtime.BaseAPI {
      * Gets a user account by user name
      */
     async getUserByUsernameRaw(requestParameters: GetUserByUsernameRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserByUsernameResponse>> {
-        if (requestParameters.username === null || requestParameters.username === undefined) {
-            throw new runtime.RequiredError('username','Required parameter requestParameters.username was null or undefined when calling getUserByUsername.');
+        if (requestParameters['username'] == null) {
+            throw new runtime.RequiredError(
+                'username',
+                'Required parameter "username" was null or undefined when calling getUserByUsername().'
+            );
         }
 
         const queryParameters: any = {};
@@ -335,7 +353,7 @@ export class UserServiceV1Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v1/user-service/user/username/{username}`.replace(`{${"username"}}`, encodeURIComponent(String(requestParameters.username))),
+            path: `/user-microservice/api/v1/user-service/user/username/{username}`.replace(`{${"username"}}`, encodeURIComponent(String(requestParameters['username']))),
             method: 'GET',
             headers: headerParameters,
             query: queryParameters,
@@ -360,12 +378,12 @@ export class UserServiceV1Api extends runtime.BaseAPI {
     async getUserIdRaw(requestParameters: GetUserIdRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetUserIdResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.email !== undefined) {
-            queryParameters['email'] = requestParameters.email;
+        if (requestParameters['email'] != null) {
+            queryParameters['email'] = requestParameters['email'];
         }
 
-        if (requestParameters.username !== undefined) {
-            queryParameters['username'] = requestParameters.username;
+        if (requestParameters['username'] != null) {
+            queryParameters['username'] = requestParameters['username'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -424,12 +442,12 @@ export class UserServiceV1Api extends runtime.BaseAPI {
     async passwordResetRaw(requestParameters: PasswordResetRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<PasswordResetWebhookResponse>> {
         const queryParameters: any = {};
 
-        if (requestParameters.accountId !== undefined) {
-            queryParameters['accountId'] = requestParameters.accountId;
+        if (requestParameters['accountId'] != null) {
+            queryParameters['accountId'] = requestParameters['accountId'];
         }
 
-        if (requestParameters.token !== undefined) {
-            queryParameters['token'] = requestParameters.token;
+        if (requestParameters['token'] != null) {
+            queryParameters['token'] = requestParameters['token'];
         }
 
         const headerParameters: runtime.HTTPHeaders = {};
@@ -486,8 +504,11 @@ export class UserServiceV1Api extends runtime.BaseAPI {
      * update a user account
      */
     async updateUserRaw(requestParameters: UpdateUserOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<UpdateUserResponse>> {
-        if (requestParameters.updateUserRequest === null || requestParameters.updateUserRequest === undefined) {
-            throw new runtime.RequiredError('updateUserRequest','Required parameter requestParameters.updateUserRequest was null or undefined when calling updateUser.');
+        if (requestParameters['updateUserRequest'] == null) {
+            throw new runtime.RequiredError(
+                'updateUserRequest',
+                'Required parameter "updateUserRequest" was null or undefined when calling updateUser().'
+            );
         }
 
         const queryParameters: any = {};
@@ -501,7 +522,7 @@ export class UserServiceV1Api extends runtime.BaseAPI {
             method: 'PUT',
             headers: headerParameters,
             query: queryParameters,
-            body: UpdateUserRequestToJSON(requestParameters.updateUserRequest),
+            body: UpdateUserRequestToJSON(requestParameters['updateUserRequest']),
         }, initOverrides);
 
         return new runtime.JSONApiResponse(response, (jsonValue) => UpdateUserResponseFromJSON(jsonValue));
@@ -521,8 +542,11 @@ export class UserServiceV1Api extends runtime.BaseAPI {
      * user verification
      */
     async verificationRaw(requestParameters: VerificationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<VerifyUserResponse>> {
-        if (requestParameters.userId === null || requestParameters.userId === undefined) {
-            throw new runtime.RequiredError('userId','Required parameter requestParameters.userId was null or undefined when calling verification.');
+        if (requestParameters['userId'] == null) {
+            throw new runtime.RequiredError(
+                'userId',
+                'Required parameter "userId" was null or undefined when calling verification().'
+            );
         }
 
         const queryParameters: any = {};
@@ -530,7 +554,7 @@ export class UserServiceV1Api extends runtime.BaseAPI {
         const headerParameters: runtime.HTTPHeaders = {};
 
         const response = await this.request({
-            path: `/user-microservice/api/v1/user-service/user/verification/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters.userId))),
+            path: `/user-microservice/api/v1/user-service/user/verification/{userId}`.replace(`{${"userId"}}`, encodeURIComponent(String(requestParameters['userId']))),
             method: 'POST',
             headers: headerParameters,
             query: queryParameters,

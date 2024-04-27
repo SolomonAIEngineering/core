@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { FinancialAccountType } from './FinancialAccountType';
 import {
     FinancialAccountTypeFromJSON,
@@ -62,13 +62,11 @@ export interface AddDefaultPocketsToBankAccountRequest {
  * Check if a given object implements the AddDefaultPocketsToBankAccountRequest interface.
  */
 export function instanceOfAddDefaultPocketsToBankAccountRequest(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "userId" in value;
-    isInstance = isInstance && "plaidAccountId" in value;
-    isInstance = isInstance && "profileType" in value;
-    isInstance = isInstance && "financialAccountType" in value;
-
-    return isInstance;
+    if (!('userId' in value)) return false;
+    if (!('plaidAccountId' in value)) return false;
+    if (!('profileType' in value)) return false;
+    if (!('financialAccountType' in value)) return false;
+    return true;
 }
 
 export function AddDefaultPocketsToBankAccountRequestFromJSON(json: any): AddDefaultPocketsToBankAccountRequest {
@@ -76,7 +74,7 @@ export function AddDefaultPocketsToBankAccountRequestFromJSON(json: any): AddDef
 }
 
 export function AddDefaultPocketsToBankAccountRequestFromJSONTyped(json: any, ignoreDiscriminator: boolean): AddDefaultPocketsToBankAccountRequest {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
@@ -89,18 +87,15 @@ export function AddDefaultPocketsToBankAccountRequestFromJSONTyped(json: any, ig
 }
 
 export function AddDefaultPocketsToBankAccountRequestToJSON(value?: AddDefaultPocketsToBankAccountRequest | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'userId': value.userId,
-        'plaidAccountId': value.plaidAccountId,
-        'profileType': FinancialUserProfileTypeToJSON(value.profileType),
-        'financialAccountType': FinancialAccountTypeToJSON(value.financialAccountType),
+        'userId': value['userId'],
+        'plaidAccountId': value['plaidAccountId'],
+        'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
+        'financialAccountType': FinancialAccountTypeToJSON(value['financialAccountType']),
     };
 }
 

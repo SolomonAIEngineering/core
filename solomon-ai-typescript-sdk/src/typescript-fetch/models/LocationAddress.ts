@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { LocationType } from './LocationType';
 import {
     LocationTypeFromJSON,
@@ -122,9 +122,7 @@ export interface LocationAddress {
  * Check if a given object implements the LocationAddress interface.
  */
 export function instanceOfLocationAddress(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function LocationAddressFromJSON(json: any): LocationAddress {
@@ -132,53 +130,50 @@ export function LocationAddressFromJSON(json: any): LocationAddress {
 }
 
 export function LocationAddressFromJSONTyped(json: any, ignoreDiscriminator: boolean): LocationAddress {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'phoneNumber': !exists(json, 'phoneNumber') ? undefined : json['phoneNumber'],
-        'street1': !exists(json, 'street1') ? undefined : json['street1'],
-        'street2': !exists(json, 'street2') ? undefined : json['street2'],
-        'city': !exists(json, 'city') ? undefined : json['city'],
-        'state': !exists(json, 'state') ? undefined : json['state'],
-        'zipCode': !exists(json, 'zipCode') ? undefined : json['zipCode'],
-        'country': !exists(json, 'country') ? undefined : json['country'],
-        'locationType': !exists(json, 'locationType') ? undefined : LocationTypeFromJSON(json['locationType']),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'phoneNumber': json['phoneNumber'] == null ? undefined : json['phoneNumber'],
+        'street1': json['street1'] == null ? undefined : json['street1'],
+        'street2': json['street2'] == null ? undefined : json['street2'],
+        'city': json['city'] == null ? undefined : json['city'],
+        'state': json['state'] == null ? undefined : json['state'],
+        'zipCode': json['zipCode'] == null ? undefined : json['zipCode'],
+        'country': json['country'] == null ? undefined : json['country'],
+        'locationType': json['locationType'] == null ? undefined : LocationTypeFromJSON(json['locationType']),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
     };
 }
 
 export function LocationAddressToJSON(value?: LocationAddress | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'name': value.name,
-        'phoneNumber': value.phoneNumber,
-        'street1': value.street1,
-        'street2': value.street2,
-        'city': value.city,
-        'state': value.state,
-        'zipCode': value.zipCode,
-        'country': value.country,
-        'locationType': LocationTypeToJSON(value.locationType),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeAccountId': value.mergeAccountId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'name': value['name'],
+        'phoneNumber': value['phoneNumber'],
+        'street1': value['street1'],
+        'street2': value['street2'],
+        'city': value['city'],
+        'state': value['state'],
+        'zipCode': value['zipCode'],
+        'country': value['country'],
+        'locationType': LocationTypeToJSON(value['locationType']),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeAccountId': value['mergeAccountId'],
     };
 }
 

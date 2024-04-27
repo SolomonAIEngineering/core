@@ -31,6 +31,7 @@ func GetDatabaseSchemas() []interface{} {
 		PlaidAccountRecurringTransactionORM{},
 		SmartNoteORM{},
 		TransactionSplitORM{},
+		AccountStatementsORM{},
 	}
 
 	return models

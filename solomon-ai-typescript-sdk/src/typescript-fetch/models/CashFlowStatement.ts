@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { ReportItem } from './ReportItem';
 import {
     ReportItemFromJSON,
@@ -135,9 +135,7 @@ export interface CashFlowStatement {
  * Check if a given object implements the CashFlowStatement interface.
  */
 export function instanceOfCashFlowStatement(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function CashFlowStatementFromJSON(json: any): CashFlowStatement {
@@ -145,55 +143,52 @@ export function CashFlowStatementFromJSON(json: any): CashFlowStatement {
 }
 
 export function CashFlowStatementFromJSONTyped(json: any, ignoreDiscriminator: boolean): CashFlowStatement {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'currency': !exists(json, 'currency') ? undefined : json['currency'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'startPeriod': !exists(json, 'startPeriod') ? undefined : (new Date(json['startPeriod'])),
-        'endPeriod': !exists(json, 'endPeriod') ? undefined : (new Date(json['endPeriod'])),
-        'cashAtBeginningOfPeriod': !exists(json, 'cashAtBeginningOfPeriod') ? undefined : json['cashAtBeginningOfPeriod'],
-        'cashAtEndOfPeriod': !exists(json, 'cashAtEndOfPeriod') ? undefined : json['cashAtEndOfPeriod'],
-        'operatingActivities': !exists(json, 'operatingActivities') ? undefined : ((json['operatingActivities'] as Array<any>).map(ReportItemFromJSON)),
-        'investingActivities': !exists(json, 'investingActivities') ? undefined : ((json['investingActivities'] as Array<any>).map(ReportItemFromJSON)),
-        'financingActivities': !exists(json, 'financingActivities') ? undefined : ((json['financingActivities'] as Array<any>).map(ReportItemFromJSON)),
-        'remoteGeneratedAt': !exists(json, 'remoteGeneratedAt') ? undefined : (new Date(json['remoteGeneratedAt'])),
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeRecordId': !exists(json, 'mergeRecordId') ? undefined : json['mergeRecordId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'currency': json['currency'] == null ? undefined : json['currency'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'startPeriod': json['startPeriod'] == null ? undefined : (new Date(json['startPeriod'])),
+        'endPeriod': json['endPeriod'] == null ? undefined : (new Date(json['endPeriod'])),
+        'cashAtBeginningOfPeriod': json['cashAtBeginningOfPeriod'] == null ? undefined : json['cashAtBeginningOfPeriod'],
+        'cashAtEndOfPeriod': json['cashAtEndOfPeriod'] == null ? undefined : json['cashAtEndOfPeriod'],
+        'operatingActivities': json['operatingActivities'] == null ? undefined : ((json['operatingActivities'] as Array<any>).map(ReportItemFromJSON)),
+        'investingActivities': json['investingActivities'] == null ? undefined : ((json['investingActivities'] as Array<any>).map(ReportItemFromJSON)),
+        'financingActivities': json['financingActivities'] == null ? undefined : ((json['financingActivities'] as Array<any>).map(ReportItemFromJSON)),
+        'remoteGeneratedAt': json['remoteGeneratedAt'] == null ? undefined : (new Date(json['remoteGeneratedAt'])),
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeRecordId': json['mergeRecordId'] == null ? undefined : json['mergeRecordId'],
     };
 }
 
 export function CashFlowStatementToJSON(value?: CashFlowStatement | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'name': value.name,
-        'currency': value.currency,
-        'company': value.company,
-        'startPeriod': value.startPeriod === undefined ? undefined : (value.startPeriod.toISOString()),
-        'endPeriod': value.endPeriod === undefined ? undefined : (value.endPeriod.toISOString()),
-        'cashAtBeginningOfPeriod': value.cashAtBeginningOfPeriod,
-        'cashAtEndOfPeriod': value.cashAtEndOfPeriod,
-        'operatingActivities': value.operatingActivities === undefined ? undefined : ((value.operatingActivities as Array<any>).map(ReportItemToJSON)),
-        'investingActivities': value.investingActivities === undefined ? undefined : ((value.investingActivities as Array<any>).map(ReportItemToJSON)),
-        'financingActivities': value.financingActivities === undefined ? undefined : ((value.financingActivities as Array<any>).map(ReportItemToJSON)),
-        'remoteGeneratedAt': value.remoteGeneratedAt === undefined ? undefined : (value.remoteGeneratedAt.toISOString()),
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeRecordId': value.mergeRecordId,
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'name': value['name'],
+        'currency': value['currency'],
+        'company': value['company'],
+        'startPeriod': value['startPeriod'] == null ? undefined : ((value['startPeriod']).toISOString()),
+        'endPeriod': value['endPeriod'] == null ? undefined : ((value['endPeriod']).toISOString()),
+        'cashAtBeginningOfPeriod': value['cashAtBeginningOfPeriod'],
+        'cashAtEndOfPeriod': value['cashAtEndOfPeriod'],
+        'operatingActivities': value['operatingActivities'] == null ? undefined : ((value['operatingActivities'] as Array<any>).map(ReportItemToJSON)),
+        'investingActivities': value['investingActivities'] == null ? undefined : ((value['investingActivities'] as Array<any>).map(ReportItemToJSON)),
+        'financingActivities': value['financingActivities'] == null ? undefined : ((value['financingActivities'] as Array<any>).map(ReportItemToJSON)),
+        'remoteGeneratedAt': value['remoteGeneratedAt'] == null ? undefined : ((value['remoteGeneratedAt']).toISOString()),
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeRecordId': value['mergeRecordId'],
     };
 }
 

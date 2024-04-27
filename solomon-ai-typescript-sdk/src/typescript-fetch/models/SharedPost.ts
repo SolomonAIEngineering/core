@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { AccountType } from './AccountType';
 import {
     AccountTypeFromJSON,
@@ -225,13 +225,11 @@ export interface SharedPost {
  * Check if a given object implements the SharedPost interface.
  */
 export function instanceOfSharedPost(value: object): boolean {
-    let isInstance = true;
-    isInstance = isInstance && "originalPostId" in value;
-    isInstance = isInstance && "content" in value;
-    isInstance = isInstance && "action" in value;
-    isInstance = isInstance && "originalPostAction" in value;
-
-    return isInstance;
+    if (!('originalPostId' in value)) return false;
+    if (!('content' in value)) return false;
+    if (!('action' in value)) return false;
+    if (!('originalPostAction' in value)) return false;
+    return true;
 }
 
 export function SharedPostFromJSON(json: any): SharedPost {
@@ -239,75 +237,72 @@ export function SharedPostFromJSON(json: any): SharedPost {
 }
 
 export function SharedPostFromJSONTyped(json: any, ignoreDiscriminator: boolean): SharedPost {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
+        'id': json['id'] == null ? undefined : json['id'],
         'originalPostId': json['originalPostId'],
-        'originalAuthorUsername': !exists(json, 'originalAuthorUsername') ? undefined : json['originalAuthorUsername'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : json['createdAt'],
+        'originalAuthorUsername': json['originalAuthorUsername'] == null ? undefined : json['originalAuthorUsername'],
+        'createdAt': json['createdAt'] == null ? undefined : json['createdAt'],
         'content': json['content'],
-        'mentions': !exists(json, 'mentions') ? undefined : json['mentions'],
-        'hashtags': !exists(json, 'hashtags') ? undefined : json['hashtags'],
-        'extra': !exists(json, 'extra') ? undefined : json['extra'],
-        'comments': !exists(json, 'comments') ? undefined : ((json['comments'] as Array<any>).map(CommentFromJSON)),
-        'backendPlatformUserId': !exists(json, 'backendPlatformUserId') ? undefined : json['backendPlatformUserId'],
-        'profileId': !exists(json, 'profileId') ? undefined : json['profileId'],
-        'tags': !exists(json, 'tags') ? undefined : json['tags'],
-        'authorUsername': !exists(json, 'authorUsername') ? undefined : json['authorUsername'],
-        'affinityScore': !exists(json, 'affinityScore') ? undefined : json['affinityScore'],
-        'qualityScore': !exists(json, 'qualityScore') ? undefined : json['qualityScore'],
-        'userIdToAffinityScoreMap': !exists(json, 'userIdToAffinityScoreMap') ? undefined : json['userIdToAffinityScoreMap'],
-        'userIdToReportsMap': !exists(json, 'userIdToReportsMap') ? undefined : json['userIdToReportsMap'],
-        'notes': !exists(json, 'notes') ? undefined : ((json['notes'] as Array<any>).map(NoteFromJSON)),
-        'thread': !exists(json, 'thread') ? undefined : ThreadFromJSON(json['thread']),
-        'authorAccountType': !exists(json, 'authorAccountType') ? undefined : AccountTypeFromJSON(json['authorAccountType']),
-        'userIdToReactionMap': !exists(json, 'userIdToReactionMap') ? undefined : (mapValues(json['userIdToReactionMap'], ReactionFromJSON)),
+        'mentions': json['mentions'] == null ? undefined : json['mentions'],
+        'hashtags': json['hashtags'] == null ? undefined : json['hashtags'],
+        'extra': json['extra'] == null ? undefined : json['extra'],
+        'comments': json['comments'] == null ? undefined : ((json['comments'] as Array<any>).map(CommentFromJSON)),
+        'backendPlatformUserId': json['backendPlatformUserId'] == null ? undefined : json['backendPlatformUserId'],
+        'profileId': json['profileId'] == null ? undefined : json['profileId'],
+        'tags': json['tags'] == null ? undefined : json['tags'],
+        'authorUsername': json['authorUsername'] == null ? undefined : json['authorUsername'],
+        'affinityScore': json['affinityScore'] == null ? undefined : json['affinityScore'],
+        'qualityScore': json['qualityScore'] == null ? undefined : json['qualityScore'],
+        'userIdToAffinityScoreMap': json['userIdToAffinityScoreMap'] == null ? undefined : json['userIdToAffinityScoreMap'],
+        'userIdToReportsMap': json['userIdToReportsMap'] == null ? undefined : json['userIdToReportsMap'],
+        'notes': json['notes'] == null ? undefined : ((json['notes'] as Array<any>).map(NoteFromJSON)),
+        'thread': json['thread'] == null ? undefined : ThreadFromJSON(json['thread']),
+        'authorAccountType': json['authorAccountType'] == null ? undefined : AccountTypeFromJSON(json['authorAccountType']),
+        'userIdToReactionMap': json['userIdToReactionMap'] == null ? undefined : (mapValues(json['userIdToReactionMap'], ReactionFromJSON)),
         'action': PostTypeFromJSON(json['action']),
-        'originalPostUserProfileId': !exists(json, 'originalPostUserProfileId') ? undefined : json['originalPostUserProfileId'],
-        'originalPostUserbackendPlaformId': !exists(json, 'originalPostUserbackendPlaformId') ? undefined : json['originalPostUserbackendPlaformId'],
+        'originalPostUserProfileId': json['originalPostUserProfileId'] == null ? undefined : json['originalPostUserProfileId'],
+        'originalPostUserbackendPlaformId': json['originalPostUserbackendPlaformId'] == null ? undefined : json['originalPostUserbackendPlaformId'],
         'originalPostAction': PostTypeFromJSON(json['originalPostAction']),
-        'category': !exists(json, 'category') ? undefined : CategoryFromJSON(json['category']),
+        'category': json['category'] == null ? undefined : CategoryFromJSON(json['category']),
     };
 }
 
 export function SharedPostToJSON(value?: SharedPost | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'originalPostId': value.originalPostId,
-        'originalAuthorUsername': value.originalAuthorUsername,
-        'createdAt': value.createdAt,
-        'content': value.content,
-        'mentions': value.mentions,
-        'hashtags': value.hashtags,
-        'extra': value.extra,
-        'comments': value.comments === undefined ? undefined : ((value.comments as Array<any>).map(CommentToJSON)),
-        'backendPlatformUserId': value.backendPlatformUserId,
-        'profileId': value.profileId,
-        'tags': value.tags,
-        'authorUsername': value.authorUsername,
-        'affinityScore': value.affinityScore,
-        'qualityScore': value.qualityScore,
-        'userIdToAffinityScoreMap': value.userIdToAffinityScoreMap,
-        'userIdToReportsMap': value.userIdToReportsMap,
-        'notes': value.notes === undefined ? undefined : ((value.notes as Array<any>).map(NoteToJSON)),
-        'thread': ThreadToJSON(value.thread),
-        'authorAccountType': AccountTypeToJSON(value.authorAccountType),
-        'userIdToReactionMap': value.userIdToReactionMap === undefined ? undefined : (mapValues(value.userIdToReactionMap, ReactionToJSON)),
-        'action': PostTypeToJSON(value.action),
-        'originalPostUserProfileId': value.originalPostUserProfileId,
-        'originalPostUserbackendPlaformId': value.originalPostUserbackendPlaformId,
-        'originalPostAction': PostTypeToJSON(value.originalPostAction),
-        'category': CategoryToJSON(value.category),
+        'id': value['id'],
+        'originalPostId': value['originalPostId'],
+        'originalAuthorUsername': value['originalAuthorUsername'],
+        'createdAt': value['createdAt'],
+        'content': value['content'],
+        'mentions': value['mentions'],
+        'hashtags': value['hashtags'],
+        'extra': value['extra'],
+        'comments': value['comments'] == null ? undefined : ((value['comments'] as Array<any>).map(CommentToJSON)),
+        'backendPlatformUserId': value['backendPlatformUserId'],
+        'profileId': value['profileId'],
+        'tags': value['tags'],
+        'authorUsername': value['authorUsername'],
+        'affinityScore': value['affinityScore'],
+        'qualityScore': value['qualityScore'],
+        'userIdToAffinityScoreMap': value['userIdToAffinityScoreMap'],
+        'userIdToReportsMap': value['userIdToReportsMap'],
+        'notes': value['notes'] == null ? undefined : ((value['notes'] as Array<any>).map(NoteToJSON)),
+        'thread': ThreadToJSON(value['thread']),
+        'authorAccountType': AccountTypeToJSON(value['authorAccountType']),
+        'userIdToReactionMap': value['userIdToReactionMap'] == null ? undefined : (mapValues(value['userIdToReactionMap'], ReactionToJSON)),
+        'action': PostTypeToJSON(value['action']),
+        'originalPostUserProfileId': value['originalPostUserProfileId'],
+        'originalPostUserbackendPlaformId': value['originalPostUserbackendPlaformId'],
+        'originalPostAction': PostTypeToJSON(value['originalPostAction']),
+        'category': CategoryToJSON(value['category']),
     };
 }
 

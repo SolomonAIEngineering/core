@@ -25,6 +25,10 @@ export const LinkType = {
 export type LinkType = typeof LinkType[keyof typeof LinkType];
 
 
+export function instanceOfLinkType(value: any): boolean {
+    return Object.values(LinkType).includes(value);
+}
+
 export function LinkTypeFromJSON(json: any): LinkType {
     return LinkTypeFromJSONTyped(json, false);
 }

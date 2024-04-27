@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The AccountingAttachment object is used to represent a company's attachments.
  * @export
@@ -79,9 +79,7 @@ export interface AccountingAttachment {
  * Check if a given object implements the AccountingAttachment interface.
  */
 export function instanceOfAccountingAttachment(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function AccountingAttachmentFromJSON(json: any): AccountingAttachment {
@@ -89,41 +87,38 @@ export function AccountingAttachmentFromJSON(json: any): AccountingAttachment {
 }
 
 export function AccountingAttachmentFromJSONTyped(json: any, ignoreDiscriminator: boolean): AccountingAttachment {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'fileName': !exists(json, 'fileName') ? undefined : json['fileName'],
-        'fileUrl': !exists(json, 'fileUrl') ? undefined : json['fileUrl'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeRecordId': !exists(json, 'mergeRecordId') ? undefined : json['mergeRecordId'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'fileName': json['fileName'] == null ? undefined : json['fileName'],
+        'fileUrl': json['fileUrl'] == null ? undefined : json['fileUrl'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeRecordId': json['mergeRecordId'] == null ? undefined : json['mergeRecordId'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
     };
 }
 
 export function AccountingAttachmentToJSON(value?: AccountingAttachment | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'fileName': value.fileName,
-        'fileUrl': value.fileUrl,
-        'company': value.company,
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeRecordId': value.mergeRecordId,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'fileName': value['fileName'],
+        'fileUrl': value['fileUrl'],
+        'company': value['company'],
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeRecordId': value['mergeRecordId'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -31,9 +31,7 @@ export interface DeleteNoteResponse {
  * Check if a given object implements the DeleteNoteResponse interface.
  */
 export function instanceOfDeleteNoteResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function DeleteNoteResponseFromJSON(json: any): DeleteNoteResponse {
@@ -41,25 +39,22 @@ export function DeleteNoteResponseFromJSON(json: any): DeleteNoteResponse {
 }
 
 export function DeleteNoteResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): DeleteNoteResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'success': !exists(json, 'success') ? undefined : json['success'],
+        'success': json['success'] == null ? undefined : json['success'],
     };
 }
 
 export function DeleteNoteResponseToJSON(value?: DeleteNoteResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'success': value.success,
+        'success': value['success'],
     };
 }
 

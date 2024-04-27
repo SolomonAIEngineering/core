@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * 
  * @export
@@ -43,9 +43,7 @@ export interface GetWorkflowExecutionStatusResponse {
  * Check if a given object implements the GetWorkflowExecutionStatusResponse interface.
  */
 export function instanceOfGetWorkflowExecutionStatusResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetWorkflowExecutionStatusResponseFromJSON(json: any): GetWorkflowExecutionStatusResponse {
@@ -53,29 +51,26 @@ export function GetWorkflowExecutionStatusResponseFromJSON(json: any): GetWorkfl
 }
 
 export function GetWorkflowExecutionStatusResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetWorkflowExecutionStatusResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'workflowId': !exists(json, 'workflowId') ? undefined : json['workflowId'],
-        'status': !exists(json, 'status') ? undefined : json['status'],
-        'runId': !exists(json, 'runId') ? undefined : json['runId'],
+        'workflowId': json['workflowId'] == null ? undefined : json['workflowId'],
+        'status': json['status'] == null ? undefined : json['status'],
+        'runId': json['runId'] == null ? undefined : json['runId'],
     };
 }
 
 export function GetWorkflowExecutionStatusResponseToJSON(value?: GetWorkflowExecutionStatusResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'workflowId': value.workflowId,
-        'status': value.status,
-        'runId': value.runId,
+        'workflowId': value['workflowId'],
+        'status': value['status'],
+        'runId': value['runId'],
     };
 }
 

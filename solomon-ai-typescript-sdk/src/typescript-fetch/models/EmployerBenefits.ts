@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BenefitPlanType } from './BenefitPlanType';
 import {
     BenefitPlanTypeFromJSON,
@@ -114,9 +114,7 @@ export interface EmployerBenefits {
  * Check if a given object implements the EmployerBenefits interface.
  */
 export function instanceOfEmployerBenefits(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function EmployerBenefitsFromJSON(json: any): EmployerBenefits {
@@ -124,45 +122,42 @@ export function EmployerBenefitsFromJSON(json: any): EmployerBenefits {
 }
 
 export function EmployerBenefitsFromJSONTyped(json: any, ignoreDiscriminator: boolean): EmployerBenefits {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'benefitPlanType': !exists(json, 'benefitPlanType') ? undefined : BenefitPlanTypeFromJSON(json['benefitPlanType']),
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'deductionCode': !exists(json, 'deductionCode') ? undefined : json['deductionCode'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : (new Date(json['remoteWasDeleted'])),
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
-        'employeeBenefits': !exists(json, 'employeeBenefits') ? undefined : ((json['employeeBenefits'] as Array<any>).map(EmployeeBenefitsFromJSON)),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'benefitPlanType': json['benefitPlanType'] == null ? undefined : BenefitPlanTypeFromJSON(json['benefitPlanType']),
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'deductionCode': json['deductionCode'] == null ? undefined : json['deductionCode'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : (new Date(json['remoteWasDeleted'])),
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
+        'employeeBenefits': json['employeeBenefits'] == null ? undefined : ((json['employeeBenefits'] as Array<any>).map(EmployeeBenefitsFromJSON)),
     };
 }
 
 export function EmployerBenefitsToJSON(value?: EmployerBenefits | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'benefitPlanType': BenefitPlanTypeToJSON(value.benefitPlanType),
-        'name': value.name,
-        'description': value.description,
-        'deductionCode': value.deductionCode,
-        'remoteWasDeleted': value.remoteWasDeleted === undefined ? undefined : (value.remoteWasDeleted.toISOString()),
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeAccountId': value.mergeAccountId,
-        'employeeBenefits': value.employeeBenefits === undefined ? undefined : ((value.employeeBenefits as Array<any>).map(EmployeeBenefitsToJSON)),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'benefitPlanType': BenefitPlanTypeToJSON(value['benefitPlanType']),
+        'name': value['name'],
+        'description': value['description'],
+        'deductionCode': value['deductionCode'],
+        'remoteWasDeleted': value['remoteWasDeleted'] == null ? undefined : ((value['remoteWasDeleted']).toISOString()),
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeAccountId': value['mergeAccountId'],
+        'employeeBenefits': value['employeeBenefits'] == null ? undefined : ((value['employeeBenefits'] as Array<any>).map(EmployeeBenefitsToJSON)),
     };
 }
 

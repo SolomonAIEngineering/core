@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { PlaidAccountRecurringTransaction } from './PlaidAccountRecurringTransaction';
 import {
     PlaidAccountRecurringTransactionFromJSON,
@@ -44,9 +44,7 @@ export interface GetRecurringTransactionsForUserResponse {
  * Check if a given object implements the GetRecurringTransactionsForUserResponse interface.
  */
 export function instanceOfGetRecurringTransactionsForUserResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetRecurringTransactionsForUserResponseFromJSON(json: any): GetRecurringTransactionsForUserResponse {
@@ -54,27 +52,24 @@ export function GetRecurringTransactionsForUserResponseFromJSON(json: any): GetR
 }
 
 export function GetRecurringTransactionsForUserResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetRecurringTransactionsForUserResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'transactions': !exists(json, 'transactions') ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountRecurringTransactionFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'transactions': json['transactions'] == null ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountRecurringTransactionFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetRecurringTransactionsForUserResponseToJSON(value?: GetRecurringTransactionsForUserResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'transactions': value.transactions === undefined ? undefined : ((value.transactions as Array<any>).map(PlaidAccountRecurringTransactionToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'transactions': value['transactions'] == null ? undefined : ((value['transactions'] as Array<any>).map(PlaidAccountRecurringTransactionToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

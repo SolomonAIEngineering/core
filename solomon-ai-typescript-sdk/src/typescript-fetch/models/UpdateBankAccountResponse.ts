@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BankAccount } from './BankAccount';
 import {
     BankAccountFromJSON,
@@ -44,9 +44,7 @@ export interface UpdateBankAccountResponse {
  * Check if a given object implements the UpdateBankAccountResponse interface.
  */
 export function instanceOfUpdateBankAccountResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function UpdateBankAccountResponseFromJSON(json: any): UpdateBankAccountResponse {
@@ -54,27 +52,24 @@ export function UpdateBankAccountResponseFromJSON(json: any): UpdateBankAccountR
 }
 
 export function UpdateBankAccountResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): UpdateBankAccountResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'updated': !exists(json, 'updated') ? undefined : json['updated'],
-        'bankAccount': !exists(json, 'bankAccount') ? undefined : BankAccountFromJSON(json['bankAccount']),
+        'updated': json['updated'] == null ? undefined : json['updated'],
+        'bankAccount': json['bankAccount'] == null ? undefined : BankAccountFromJSON(json['bankAccount']),
     };
 }
 
 export function UpdateBankAccountResponseToJSON(value?: UpdateBankAccountResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'updated': value.updated,
-        'bankAccount': BankAccountToJSON(value.bankAccount),
+        'updated': value['updated'],
+        'bankAccount': BankAccountToJSON(value['bankAccount']),
     };
 }
 

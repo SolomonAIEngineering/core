@@ -19,19 +19,20 @@ import (
 const _ = grpc.SupportPackageIsVersion7
 
 const (
-	WorkspaceService_CreateAccount_FullMethodName   = "/workspace_service.v1.WorkspaceService/CreateAccount"
-	WorkspaceService_GetAccount_FullMethodName      = "/workspace_service.v1.WorkspaceService/GetAccount"
-	WorkspaceService_DeleteAccount_FullMethodName   = "/workspace_service.v1.WorkspaceService/DeleteAccount"
-	WorkspaceService_DeleteFile_FullMethodName      = "/workspace_service.v1.WorkspaceService/DeleteFile"
-	WorkspaceService_UpdateFile_FullMethodName      = "/workspace_service.v1.WorkspaceService/UpdateFile"
-	WorkspaceService_CreateFolder_FullMethodName    = "/workspace_service.v1.WorkspaceService/CreateFolder"
-	WorkspaceService_ListFolder_FullMethodName      = "/workspace_service.v1.WorkspaceService/ListFolder"
-	WorkspaceService_UpdateFolder_FullMethodName    = "/workspace_service.v1.WorkspaceService/UpdateFolder"
-	WorkspaceService_DeleteFolder_FullMethodName    = "/workspace_service.v1.WorkspaceService/DeleteFolder"
-	WorkspaceService_CreateWorkspace_FullMethodName = "/workspace_service.v1.WorkspaceService/CreateWorkspace"
-	WorkspaceService_ListWorkspace_FullMethodName   = "/workspace_service.v1.WorkspaceService/ListWorkspace"
-	WorkspaceService_DeleteWorkspace_FullMethodName = "/workspace_service.v1.WorkspaceService/DeleteWorkspace"
-	WorkspaceService_UpdateWorkspace_FullMethodName = "/workspace_service.v1.WorkspaceService/UpdateWorkspace"
+	WorkspaceService_CreateAccount_FullMethodName      = "/workspace_service.v1.WorkspaceService/CreateAccount"
+	WorkspaceService_GetAccount_FullMethodName         = "/workspace_service.v1.WorkspaceService/GetAccount"
+	WorkspaceService_DeleteAccount_FullMethodName      = "/workspace_service.v1.WorkspaceService/DeleteAccount"
+	WorkspaceService_CreateMarkdownFile_FullMethodName = "/workspace_service.v1.WorkspaceService/CreateMarkdownFile"
+	WorkspaceService_DeleteFile_FullMethodName         = "/workspace_service.v1.WorkspaceService/DeleteFile"
+	WorkspaceService_UpdateFile_FullMethodName         = "/workspace_service.v1.WorkspaceService/UpdateFile"
+	WorkspaceService_CreateFolder_FullMethodName       = "/workspace_service.v1.WorkspaceService/CreateFolder"
+	WorkspaceService_ListFolder_FullMethodName         = "/workspace_service.v1.WorkspaceService/ListFolder"
+	WorkspaceService_UpdateFolder_FullMethodName       = "/workspace_service.v1.WorkspaceService/UpdateFolder"
+	WorkspaceService_DeleteFolder_FullMethodName       = "/workspace_service.v1.WorkspaceService/DeleteFolder"
+	WorkspaceService_CreateWorkspace_FullMethodName    = "/workspace_service.v1.WorkspaceService/CreateWorkspace"
+	WorkspaceService_ListWorkspace_FullMethodName      = "/workspace_service.v1.WorkspaceService/ListWorkspace"
+	WorkspaceService_DeleteWorkspace_FullMethodName    = "/workspace_service.v1.WorkspaceService/DeleteWorkspace"
+	WorkspaceService_UpdateWorkspace_FullMethodName    = "/workspace_service.v1.WorkspaceService/UpdateWorkspace"
 )
 
 // WorkspaceServiceClient is the client API for WorkspaceService service.
@@ -42,6 +43,8 @@ type WorkspaceServiceClient interface {
 	GetAccount(ctx context.Context, in *GetAccountRequest, opts ...grpc.CallOption) (*GetAccountResponse, error)
 	// Delete an Account
 	DeleteAccount(ctx context.Context, in *DeleteAccountRequest, opts ...grpc.CallOption) (*DeleteAccountResponse, error)
+	// Create Markdown File
+	CreateMarkdownFile(ctx context.Context, in *CreateMarkdownFileRequest, opts ...grpc.CallOption) (*CreateMarkdownFileResponse, error)
 	// Delete a File
 	DeleteFile(ctx context.Context, in *DeleteFileRequest, opts ...grpc.CallOption) (*DeleteFileResponse, error)
 	// Update a File
@@ -93,6 +96,15 @@ func (c *workspaceServiceClient) GetAccount(ctx context.Context, in *GetAccountR
 func (c *workspaceServiceClient) DeleteAccount(ctx context.Context, in *DeleteAccountRequest, opts ...grpc.CallOption) (*DeleteAccountResponse, error) {
 	out := new(DeleteAccountResponse)
 	err := c.cc.Invoke(ctx, WorkspaceService_DeleteAccount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *workspaceServiceClient) CreateMarkdownFile(ctx context.Context, in *CreateMarkdownFileRequest, opts ...grpc.CallOption) (*CreateMarkdownFileResponse, error) {
+	out := new(CreateMarkdownFileResponse)
+	err := c.cc.Invoke(ctx, WorkspaceService_CreateMarkdownFile_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -197,6 +209,8 @@ type WorkspaceServiceServer interface {
 	GetAccount(context.Context, *GetAccountRequest) (*GetAccountResponse, error)
 	// Delete an Account
 	DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error)
+	// Create Markdown File
+	CreateMarkdownFile(context.Context, *CreateMarkdownFileRequest) (*CreateMarkdownFileResponse, error)
 	// Delete a File
 	DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error)
 	// Update a File
@@ -232,6 +246,9 @@ func (UnimplementedWorkspaceServiceServer) GetAccount(context.Context, *GetAccou
 }
 func (UnimplementedWorkspaceServiceServer) DeleteAccount(context.Context, *DeleteAccountRequest) (*DeleteAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteAccount not implemented")
+}
+func (UnimplementedWorkspaceServiceServer) CreateMarkdownFile(context.Context, *CreateMarkdownFileRequest) (*CreateMarkdownFileResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateMarkdownFile not implemented")
 }
 func (UnimplementedWorkspaceServiceServer) DeleteFile(context.Context, *DeleteFileRequest) (*DeleteFileResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method DeleteFile not implemented")
@@ -326,6 +343,24 @@ func _WorkspaceService_DeleteAccount_Handler(srv interface{}, ctx context.Contex
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(WorkspaceServiceServer).DeleteAccount(ctx, req.(*DeleteAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _WorkspaceService_CreateMarkdownFile_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateMarkdownFileRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(WorkspaceServiceServer).CreateMarkdownFile(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: WorkspaceService_CreateMarkdownFile_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(WorkspaceServiceServer).CreateMarkdownFile(ctx, req.(*CreateMarkdownFileRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -528,6 +563,10 @@ var WorkspaceService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "DeleteAccount",
 			Handler:    _WorkspaceService_DeleteAccount_Handler,
+		},
+		{
+			MethodName: "CreateMarkdownFile",
+			Handler:    _WorkspaceService_CreateMarkdownFile_Handler,
 		},
 		{
 			MethodName: "DeleteFile",

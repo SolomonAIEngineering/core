@@ -33,6 +33,10 @@ export const StripeSubscriptionStatus = {
 export type StripeSubscriptionStatus = typeof StripeSubscriptionStatus[keyof typeof StripeSubscriptionStatus];
 
 
+export function instanceOfStripeSubscriptionStatus(value: any): boolean {
+    return Object.values(StripeSubscriptionStatus).includes(value);
+}
+
 export function StripeSubscriptionStatusFromJSON(json: any): StripeSubscriptionStatus {
     return StripeSubscriptionStatusFromJSONTyped(json, false);
 }

@@ -8,6 +8,7 @@ Apis/WorkspaceServiceRestApi.md
 Models/AcceptFollowProfileResponse.md
 Models/Account.md
 Models/AccountBalanceHistory.md
+Models/AccountStatements.md
 Models/AccountType.md
 Models/AccountingAttachment.md
 Models/AccountingIntegrationMergeLink.md
@@ -28,6 +29,8 @@ Models/AddPostQualityScoreResponse.md
 Models/AddPostToPublicationResponse.md
 Models/AddPostToThreadResponse.md
 Models/AddPublicationEditorResponse.md
+Models/AddTransactionsToManuallyLinkedAccountRequest.md
+Models/AddTransactionsToManuallyLinkedAccountResponse.md
 Models/AddUserToTeamBody.md
 Models/AddUserToTeamResponse.md
 Models/Address.md
@@ -96,6 +99,8 @@ Models/CreateFolderRequest.md
 Models/CreateFolderResponse.md
 Models/CreateManualLinkRequest.md
 Models/CreateManualLinkResponse.md
+Models/CreateMarkdownFileRequest.md
+Models/CreateMarkdownFileResponse.md
 Models/CreateMilestoneRequest.md
 Models/CreateMilestoneResponse.md
 Models/CreateNoteBody.md

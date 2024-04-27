@@ -25,6 +25,10 @@ export const MediaType = {
 export type MediaType = typeof MediaType[keyof typeof MediaType];
 
 
+export function instanceOfMediaType(value: any): boolean {
+    return Object.values(MediaType).includes(value);
+}
+
 export function MediaTypeFromJSON(json: any): MediaType {
     return MediaTypeFromJSONTyped(json, false);
 }

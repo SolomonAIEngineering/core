@@ -17,6 +17,7 @@ import (
 
 var (
 	Q                                    = new(Query)
+	AccountStatementsORM                 *accountStatementsORM
 	ActionableInsightORM                 *actionableInsightORM
 	AddressORM                           *addressORM
 	AprORM                               *aprORM
@@ -49,6 +50,7 @@ var (
 
 func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 	*Q = *Use(db, opts...)
+	AccountStatementsORM = &Q.AccountStatementsORM
 	ActionableInsightORM = &Q.ActionableInsightORM
 	AddressORM = &Q.AddressORM
 	AprORM = &Q.AprORM
@@ -82,6 +84,7 @@ func SetDefault(db *gorm.DB, opts ...gen.DOOption) {
 func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 	return &Query{
 		db:                                   db,
+		AccountStatementsORM:                 newAccountStatementsORM(db, opts...),
 		ActionableInsightORM:                 newActionableInsightORM(db, opts...),
 		AddressORM:                           newAddressORM(db, opts...),
 		AprORM:                               newAprORM(db, opts...),
@@ -116,6 +119,7 @@ func Use(db *gorm.DB, opts ...gen.DOOption) *Query {
 type Query struct {
 	db *gorm.DB
 
+	AccountStatementsORM                 accountStatementsORM
 	ActionableInsightORM                 actionableInsightORM
 	AddressORM                           addressORM
 	AprORM                               aprORM
@@ -151,6 +155,7 @@ func (q *Query) Available() bool { return q.db != nil }
 func (q *Query) clone(db *gorm.DB) *Query {
 	return &Query{
 		db:                                   db,
+		AccountStatementsORM:                 q.AccountStatementsORM.clone(db),
 		ActionableInsightORM:                 q.ActionableInsightORM.clone(db),
 		AddressORM:                           q.AddressORM.clone(db),
 		AprORM:                               q.AprORM.clone(db),
@@ -193,6 +198,7 @@ func (q *Query) WriteDB() *Query {
 func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 	return &Query{
 		db:                                   db,
+		AccountStatementsORM:                 q.AccountStatementsORM.replaceDB(db),
 		ActionableInsightORM:                 q.ActionableInsightORM.replaceDB(db),
 		AddressORM:                           q.AddressORM.replaceDB(db),
 		AprORM:                               q.AprORM.replaceDB(db),
@@ -225,6 +231,7 @@ func (q *Query) ReplaceDB(db *gorm.DB) *Query {
 }
 
 type queryCtx struct {
+	AccountStatementsORM                 IAccountStatementsORMDo
 	ActionableInsightORM                 IActionableInsightORMDo
 	AddressORM                           IAddressORMDo
 	AprORM                               IAprORMDo
@@ -257,6 +264,7 @@ type queryCtx struct {
 
 func (q *Query) WithContext(ctx context.Context) *queryCtx {
 	return &queryCtx{
+		AccountStatementsORM:                 q.AccountStatementsORM.WithContext(ctx),
 		ActionableInsightORM:                 q.ActionableInsightORM.WithContext(ctx),
 		AddressORM:                           q.AddressORM.WithContext(ctx),
 		AprORM:                               q.AprORM.WithContext(ctx),

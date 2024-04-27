@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Category1 } from './Category1';
 import {
     Category1FromJSON,
@@ -69,9 +69,7 @@ export interface Budget {
  * Check if a given object implements the Budget interface.
  */
 export function instanceOfBudget(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function BudgetFromJSON(json: any): Budget {
@@ -79,35 +77,32 @@ export function BudgetFromJSON(json: any): Budget {
 }
 
 export function BudgetFromJSONTyped(json: any, ignoreDiscriminator: boolean): Budget {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'name': !exists(json, 'name') ? undefined : json['name'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'startDate': !exists(json, 'startDate') ? undefined : json['startDate'],
-        'endDate': !exists(json, 'endDate') ? undefined : json['endDate'],
-        'category': !exists(json, 'category') ? undefined : Category1FromJSON(json['category']),
+        'id': json['id'] == null ? undefined : json['id'],
+        'name': json['name'] == null ? undefined : json['name'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'startDate': json['startDate'] == null ? undefined : json['startDate'],
+        'endDate': json['endDate'] == null ? undefined : json['endDate'],
+        'category': json['category'] == null ? undefined : Category1FromJSON(json['category']),
     };
 }
 
 export function BudgetToJSON(value?: Budget | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'name': value.name,
-        'description': value.description,
-        'startDate': value.startDate,
-        'endDate': value.endDate,
-        'category': Category1ToJSON(value.category),
+        'id': value['id'],
+        'name': value['name'],
+        'description': value['description'],
+        'startDate': value['startDate'],
+        'endDate': value['endDate'],
+        'category': Category1ToJSON(value['category']),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BankAccountType1 } from './BankAccountType1';
 import {
     BankAccountType1FromJSON,
@@ -92,9 +92,7 @@ export interface BankInfo {
  * Check if a given object implements the BankInfo interface.
  */
 export function instanceOfBankInfo(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function BankInfoFromJSON(json: any): BankInfo {
@@ -102,43 +100,40 @@ export function BankInfoFromJSON(json: any): BankInfo {
 }
 
 export function BankInfoFromJSONTyped(json: any, ignoreDiscriminator: boolean): BankInfo {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'accountNumber': !exists(json, 'accountNumber') ? undefined : json['accountNumber'],
-        'routingNumber': !exists(json, 'routingNumber') ? undefined : json['routingNumber'],
-        'bankName': !exists(json, 'bankName') ? undefined : json['bankName'],
-        'accountType': !exists(json, 'accountType') ? undefined : BankAccountType1FromJSON(json['accountType']),
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
-        'mergeAccountId': !exists(json, 'mergeAccountId') ? undefined : json['mergeAccountId'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'accountNumber': json['accountNumber'] == null ? undefined : json['accountNumber'],
+        'routingNumber': json['routingNumber'] == null ? undefined : json['routingNumber'],
+        'bankName': json['bankName'] == null ? undefined : json['bankName'],
+        'accountType': json['accountType'] == null ? undefined : BankAccountType1FromJSON(json['accountType']),
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
+        'mergeAccountId': json['mergeAccountId'] == null ? undefined : json['mergeAccountId'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
     };
 }
 
 export function BankInfoToJSON(value?: BankInfo | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'accountNumber': value.accountNumber,
-        'routingNumber': value.routingNumber,
-        'bankName': value.bankName,
-        'accountType': BankAccountType1ToJSON(value.accountType),
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
-        'mergeAccountId': value.mergeAccountId,
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'accountNumber': value['accountNumber'],
+        'routingNumber': value['routingNumber'],
+        'bankName': value['bankName'],
+        'accountType': BankAccountType1ToJSON(value['accountType']),
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
+        'mergeAccountId': value['mergeAccountId'],
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
     };
 }
 

@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Any1 } from './Any1';
 import {
     Any1FromJSON,
@@ -188,9 +188,7 @@ export interface PlaidAccountRecurringTransaction {
  * Check if a given object implements the PlaidAccountRecurringTransaction interface.
  */
 export function instanceOfPlaidAccountRecurringTransaction(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function PlaidAccountRecurringTransactionFromJSON(json: any): PlaidAccountRecurringTransaction {
@@ -198,73 +196,70 @@ export function PlaidAccountRecurringTransactionFromJSON(json: any): PlaidAccoun
 }
 
 export function PlaidAccountRecurringTransactionFromJSONTyped(json: any, ignoreDiscriminator: boolean): PlaidAccountRecurringTransaction {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'accountId': !exists(json, 'accountId') ? undefined : json['accountId'],
-        'streamId': !exists(json, 'streamId') ? undefined : json['streamId'],
-        'categoryId': !exists(json, 'categoryId') ? undefined : json['categoryId'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'merchantName': !exists(json, 'merchantName') ? undefined : json['merchantName'],
-        'personalFinanceCategoryPrimary': !exists(json, 'personalFinanceCategoryPrimary') ? undefined : json['personalFinanceCategoryPrimary'],
-        'personalFinanceCategoryDetailed': !exists(json, 'personalFinanceCategoryDetailed') ? undefined : json['personalFinanceCategoryDetailed'],
-        'firstDate': !exists(json, 'firstDate') ? undefined : (new Date(json['firstDate'])),
-        'lastDate': !exists(json, 'lastDate') ? undefined : (new Date(json['lastDate'])),
-        'frequency': !exists(json, 'frequency') ? undefined : json['frequency'],
-        'transactionIds': !exists(json, 'transactionIds') ? undefined : json['transactionIds'],
-        'averageAmount': !exists(json, 'averageAmount') ? undefined : json['averageAmount'],
-        'averageAmountIsoCurrencyCode': !exists(json, 'averageAmountIsoCurrencyCode') ? undefined : json['averageAmountIsoCurrencyCode'],
-        'lastAmount': !exists(json, 'lastAmount') ? undefined : json['lastAmount'],
-        'lastAmountIsoCurrencyCode': !exists(json, 'lastAmountIsoCurrencyCode') ? undefined : json['lastAmountIsoCurrencyCode'],
-        'isActive': !exists(json, 'isActive') ? undefined : json['isActive'],
-        'status': !exists(json, 'status') ? undefined : json['status'],
-        'updatedTime': !exists(json, 'updatedTime') ? undefined : (new Date(json['updatedTime'])),
-        'userId': !exists(json, 'userId') ? undefined : json['userId'],
-        'linkId': !exists(json, 'linkId') ? undefined : json['linkId'],
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'flow': !exists(json, 'flow') ? undefined : json['flow'],
-        'time': !exists(json, 'time') ? undefined : (new Date(json['time'])),
-        'additionalProperties': !exists(json, 'additionalProperties') ? undefined : Any1FromJSON(json['additionalProperties']),
-        'notes': !exists(json, 'notes') ? undefined : ((json['notes'] as Array<any>).map(SmartNoteFromJSON)),
+        'accountId': json['accountId'] == null ? undefined : json['accountId'],
+        'streamId': json['streamId'] == null ? undefined : json['streamId'],
+        'categoryId': json['categoryId'] == null ? undefined : json['categoryId'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'merchantName': json['merchantName'] == null ? undefined : json['merchantName'],
+        'personalFinanceCategoryPrimary': json['personalFinanceCategoryPrimary'] == null ? undefined : json['personalFinanceCategoryPrimary'],
+        'personalFinanceCategoryDetailed': json['personalFinanceCategoryDetailed'] == null ? undefined : json['personalFinanceCategoryDetailed'],
+        'firstDate': json['firstDate'] == null ? undefined : (new Date(json['firstDate'])),
+        'lastDate': json['lastDate'] == null ? undefined : (new Date(json['lastDate'])),
+        'frequency': json['frequency'] == null ? undefined : json['frequency'],
+        'transactionIds': json['transactionIds'] == null ? undefined : json['transactionIds'],
+        'averageAmount': json['averageAmount'] == null ? undefined : json['averageAmount'],
+        'averageAmountIsoCurrencyCode': json['averageAmountIsoCurrencyCode'] == null ? undefined : json['averageAmountIsoCurrencyCode'],
+        'lastAmount': json['lastAmount'] == null ? undefined : json['lastAmount'],
+        'lastAmountIsoCurrencyCode': json['lastAmountIsoCurrencyCode'] == null ? undefined : json['lastAmountIsoCurrencyCode'],
+        'isActive': json['isActive'] == null ? undefined : json['isActive'],
+        'status': json['status'] == null ? undefined : json['status'],
+        'updatedTime': json['updatedTime'] == null ? undefined : (new Date(json['updatedTime'])),
+        'userId': json['userId'] == null ? undefined : json['userId'],
+        'linkId': json['linkId'] == null ? undefined : json['linkId'],
+        'id': json['id'] == null ? undefined : json['id'],
+        'flow': json['flow'] == null ? undefined : json['flow'],
+        'time': json['time'] == null ? undefined : (new Date(json['time'])),
+        'additionalProperties': json['additionalProperties'] == null ? undefined : Any1FromJSON(json['additionalProperties']),
+        'notes': json['notes'] == null ? undefined : ((json['notes'] as Array<any>).map(SmartNoteFromJSON)),
     };
 }
 
 export function PlaidAccountRecurringTransactionToJSON(value?: PlaidAccountRecurringTransaction | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'accountId': value.accountId,
-        'streamId': value.streamId,
-        'categoryId': value.categoryId,
-        'description': value.description,
-        'merchantName': value.merchantName,
-        'personalFinanceCategoryPrimary': value.personalFinanceCategoryPrimary,
-        'personalFinanceCategoryDetailed': value.personalFinanceCategoryDetailed,
-        'firstDate': value.firstDate === undefined ? undefined : (value.firstDate.toISOString()),
-        'lastDate': value.lastDate === undefined ? undefined : (value.lastDate.toISOString()),
-        'frequency': value.frequency,
-        'transactionIds': value.transactionIds,
-        'averageAmount': value.averageAmount,
-        'averageAmountIsoCurrencyCode': value.averageAmountIsoCurrencyCode,
-        'lastAmount': value.lastAmount,
-        'lastAmountIsoCurrencyCode': value.lastAmountIsoCurrencyCode,
-        'isActive': value.isActive,
-        'status': value.status,
-        'updatedTime': value.updatedTime === undefined ? undefined : (value.updatedTime.toISOString()),
-        'userId': value.userId,
-        'linkId': value.linkId,
-        'id': value.id,
-        'flow': value.flow,
-        'time': value.time === undefined ? undefined : (value.time.toISOString()),
-        'additionalProperties': Any1ToJSON(value.additionalProperties),
-        'notes': value.notes === undefined ? undefined : ((value.notes as Array<any>).map(SmartNoteToJSON)),
+        'accountId': value['accountId'],
+        'streamId': value['streamId'],
+        'categoryId': value['categoryId'],
+        'description': value['description'],
+        'merchantName': value['merchantName'],
+        'personalFinanceCategoryPrimary': value['personalFinanceCategoryPrimary'],
+        'personalFinanceCategoryDetailed': value['personalFinanceCategoryDetailed'],
+        'firstDate': value['firstDate'] == null ? undefined : ((value['firstDate']).toISOString()),
+        'lastDate': value['lastDate'] == null ? undefined : ((value['lastDate']).toISOString()),
+        'frequency': value['frequency'],
+        'transactionIds': value['transactionIds'],
+        'averageAmount': value['averageAmount'],
+        'averageAmountIsoCurrencyCode': value['averageAmountIsoCurrencyCode'],
+        'lastAmount': value['lastAmount'],
+        'lastAmountIsoCurrencyCode': value['lastAmountIsoCurrencyCode'],
+        'isActive': value['isActive'],
+        'status': value['status'],
+        'updatedTime': value['updatedTime'] == null ? undefined : ((value['updatedTime']).toISOString()),
+        'userId': value['userId'],
+        'linkId': value['linkId'],
+        'id': value['id'],
+        'flow': value['flow'],
+        'time': value['time'] == null ? undefined : ((value['time']).toISOString()),
+        'additionalProperties': Any1ToJSON(value['additionalProperties']),
+        'notes': value['notes'] == null ? undefined : ((value['notes'] as Array<any>).map(SmartNoteToJSON)),
     };
 }
 

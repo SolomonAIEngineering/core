@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { BaseTimeline } from './BaseTimeline';
 import {
     BaseTimelineFromJSON,
@@ -56,9 +56,7 @@ export interface GetCommunityFeedResponse {
  * Check if a given object implements the GetCommunityFeedResponse interface.
  */
 export function instanceOfGetCommunityFeedResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetCommunityFeedResponseFromJSON(json: any): GetCommunityFeedResponse {
@@ -66,29 +64,26 @@ export function GetCommunityFeedResponseFromJSON(json: any): GetCommunityFeedRes
 }
 
 export function GetCommunityFeedResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCommunityFeedResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'baseTimeline': !exists(json, 'baseTimeline') ? undefined : BaseTimelineFromJSON(json['baseTimeline']),
-        'notificationTimeline': !exists(json, 'notificationTimeline') ? undefined : NotificationTimelineFromJSON(json['notificationTimeline']),
-        'nextPageToken': !exists(json, 'nextPageToken') ? undefined : json['nextPageToken'],
+        'baseTimeline': json['baseTimeline'] == null ? undefined : BaseTimelineFromJSON(json['baseTimeline']),
+        'notificationTimeline': json['notificationTimeline'] == null ? undefined : NotificationTimelineFromJSON(json['notificationTimeline']),
+        'nextPageToken': json['nextPageToken'] == null ? undefined : json['nextPageToken'],
     };
 }
 
 export function GetCommunityFeedResponseToJSON(value?: GetCommunityFeedResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'baseTimeline': BaseTimelineToJSON(value.baseTimeline),
-        'notificationTimeline': NotificationTimelineToJSON(value.notificationTimeline),
-        'nextPageToken': value.nextPageToken,
+        'baseTimeline': BaseTimelineToJSON(value['baseTimeline']),
+        'notificationTimeline': NotificationTimelineToJSON(value['notificationTimeline']),
+        'nextPageToken': value['nextPageToken'],
     };
 }
 

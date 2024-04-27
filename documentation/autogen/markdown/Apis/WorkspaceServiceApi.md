@@ -6,6 +6,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 |------------- | ------------- | -------------|
 | [**createAccount**](WorkspaceServiceApi.md#createAccount) | **POST** /workspace-microservice/api/v1/accounts | Create a new account |
 | [**createFolder**](WorkspaceServiceApi.md#createFolder) | **POST** /workspace-microservice/api/v1/folders | Create a folder |
+| [**createMarkdownFile**](WorkspaceServiceApi.md#createMarkdownFile) | **POST** /workspace-microservice/api/v1/files | Create a markdown file |
 | [**createWorkspace**](WorkspaceServiceApi.md#createWorkspace) | **POST** /workspace-microservice/api/v1/workspaces | Create a workspace |
 | [**deleteAccount**](WorkspaceServiceApi.md#deleteAccount) | **DELETE** /workspace-microservice/api/v1/accounts/{authZeroUserId} | Delete an account |
 | [**deleteFile**](WorkspaceServiceApi.md#deleteFile) | **DELETE** /workspace-microservice/api/v1/files/{fileId} | Delete a file |
@@ -63,6 +64,33 @@ Create a folder
 ### Return type
 
 [**CreateFolderResponse**](../Models/CreateFolderResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="createMarkdownFile"></a>
+# **createMarkdownFile**
+> CreateMarkdownFileResponse createMarkdownFile(CreateMarkdownFileRequest)
+
+Create a markdown file
+
+    This endpoint creates a new file
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **CreateMarkdownFileRequest** | [**CreateMarkdownFileRequest**](../Models/CreateMarkdownFileRequest.md)| Request to create a Markdown file. | |
+
+### Return type
+
+[**CreateMarkdownFileResponse**](../Models/CreateMarkdownFileResponse.md)
 
 ### Authorization
 

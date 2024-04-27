@@ -2987,6 +2987,796 @@ func (x *GetHistoricalAccountBalanceResponse) GetHistoricalAccountBalance() []*A
 	return nil
 }
 
+// financial sub-profile analytics endpoints
+type GetCategoryMetricsFinancialSubProfileOverTimeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId                         string                   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProfileType                    FinancialUserProfileType `protobuf:"varint,2,opt,name=profile_type,json=profileType,proto3,enum=financial_service.v1.FinancialUserProfileType" json:"profile_type,omitempty"`
+	PersonalFinanceCategoryPrimary string                   `protobuf:"bytes,3,opt,name=personal_finance_category_primary,json=personalFinanceCategoryPrimary,proto3" json:"personal_finance_category_primary,omitempty"`
+	Month                          uint32                   `protobuf:"varint,4,opt,name=month,proto3" json:"month,omitempty"`
+	PageNumber                     int64                    `protobuf:"varint,7,opt,name=page_number,json=pageNumber,proto3" json:"page_number,omitempty"`
+	PageSize                       int64                    `protobuf:"varint,8,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"` // Number of items to return per page.
+}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeRequest) Reset() {
+	*x = GetCategoryMetricsFinancialSubProfileOverTimeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[44]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCategoryMetricsFinancialSubProfileOverTimeRequest) ProtoMessage() {}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[44]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCategoryMetricsFinancialSubProfileOverTimeRequest.ProtoReflect.Descriptor instead.
+func (*GetCategoryMetricsFinancialSubProfileOverTimeRequest) Descriptor() ([]byte, []int) {
+	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescGZIP(), []int{44}
+}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeRequest) GetProfileType() FinancialUserProfileType {
+	if x != nil {
+		return x.ProfileType
+	}
+	return FinancialUserProfileType_FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeRequest) GetPersonalFinanceCategoryPrimary() string {
+	if x != nil {
+		return x.PersonalFinanceCategoryPrimary
+	}
+	return ""
+}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeRequest) GetMonth() uint32 {
+	if x != nil {
+		return x.Month
+	}
+	return 0
+}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeRequest) GetPageNumber() int64 {
+	if x != nil {
+		return x.PageNumber
+	}
+	return 0
+}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeRequest) GetPageSize() int64 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+type GetCategoryMetricsFinancialSubProfileOverTimeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data []*CategoryMetricsFinancialSubProfile `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeResponse) Reset() {
+	*x = GetCategoryMetricsFinancialSubProfileOverTimeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[45]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetCategoryMetricsFinancialSubProfileOverTimeResponse) ProtoMessage() {}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[45]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetCategoryMetricsFinancialSubProfileOverTimeResponse.ProtoReflect.Descriptor instead.
+func (*GetCategoryMetricsFinancialSubProfileOverTimeResponse) Descriptor() ([]byte, []int) {
+	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescGZIP(), []int{45}
+}
+
+func (x *GetCategoryMetricsFinancialSubProfileOverTimeResponse) GetData() []*CategoryMetricsFinancialSubProfile {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+// financial sub-profile analytics endpoints (expense metrics)
+type GetExpenseMetricsFinancialSubProfileOverTimeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId      string                   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProfileType FinancialUserProfileType `protobuf:"varint,2,opt,name=profile_type,json=profileType,proto3,enum=financial_service.v1.FinancialUserProfileType" json:"profile_type,omitempty"`
+	Month       uint32                   `protobuf:"varint,4,opt,name=month,proto3" json:"month,omitempty"`
+	PageNumber  int64                    `protobuf:"varint,7,opt,name=page_number,json=pageNumber,proto3" json:"page_number,omitempty"`
+	PageSize    int64                    `protobuf:"varint,8,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"` // Number of items to return per page.
+}
+
+func (x *GetExpenseMetricsFinancialSubProfileOverTimeRequest) Reset() {
+	*x = GetExpenseMetricsFinancialSubProfileOverTimeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[46]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetExpenseMetricsFinancialSubProfileOverTimeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetExpenseMetricsFinancialSubProfileOverTimeRequest) ProtoMessage() {}
+
+func (x *GetExpenseMetricsFinancialSubProfileOverTimeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[46]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetExpenseMetricsFinancialSubProfileOverTimeRequest.ProtoReflect.Descriptor instead.
+func (*GetExpenseMetricsFinancialSubProfileOverTimeRequest) Descriptor() ([]byte, []int) {
+	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescGZIP(), []int{46}
+}
+
+func (x *GetExpenseMetricsFinancialSubProfileOverTimeRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetExpenseMetricsFinancialSubProfileOverTimeRequest) GetProfileType() FinancialUserProfileType {
+	if x != nil {
+		return x.ProfileType
+	}
+	return FinancialUserProfileType_FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+}
+
+func (x *GetExpenseMetricsFinancialSubProfileOverTimeRequest) GetMonth() uint32 {
+	if x != nil {
+		return x.Month
+	}
+	return 0
+}
+
+func (x *GetExpenseMetricsFinancialSubProfileOverTimeRequest) GetPageNumber() int64 {
+	if x != nil {
+		return x.PageNumber
+	}
+	return 0
+}
+
+func (x *GetExpenseMetricsFinancialSubProfileOverTimeRequest) GetPageSize() int64 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+type GetExpenseMetricsFinancialSubProfileOverTimeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data []*ExpenseMetricsFinancialSubProfileMetrics `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *GetExpenseMetricsFinancialSubProfileOverTimeResponse) Reset() {
+	*x = GetExpenseMetricsFinancialSubProfileOverTimeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[47]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetExpenseMetricsFinancialSubProfileOverTimeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetExpenseMetricsFinancialSubProfileOverTimeResponse) ProtoMessage() {}
+
+func (x *GetExpenseMetricsFinancialSubProfileOverTimeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[47]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetExpenseMetricsFinancialSubProfileOverTimeResponse.ProtoReflect.Descriptor instead.
+func (*GetExpenseMetricsFinancialSubProfileOverTimeResponse) Descriptor() ([]byte, []int) {
+	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescGZIP(), []int{47}
+}
+
+func (x *GetExpenseMetricsFinancialSubProfileOverTimeResponse) GetData() []*ExpenseMetricsFinancialSubProfileMetrics {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type GetIncomeMetricsFinancialSubProfileOverTimeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId      string                   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProfileType FinancialUserProfileType `protobuf:"varint,2,opt,name=profile_type,json=profileType,proto3,enum=financial_service.v1.FinancialUserProfileType" json:"profile_type,omitempty"`
+	Month       uint32                   `protobuf:"varint,4,opt,name=month,proto3" json:"month,omitempty"`
+	PageNumber  int64                    `protobuf:"varint,7,opt,name=page_number,json=pageNumber,proto3" json:"page_number,omitempty"`
+	PageSize    int64                    `protobuf:"varint,8,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"` // Number of items to return per page.
+}
+
+func (x *GetIncomeMetricsFinancialSubProfileOverTimeRequest) Reset() {
+	*x = GetIncomeMetricsFinancialSubProfileOverTimeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[48]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetIncomeMetricsFinancialSubProfileOverTimeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetIncomeMetricsFinancialSubProfileOverTimeRequest) ProtoMessage() {}
+
+func (x *GetIncomeMetricsFinancialSubProfileOverTimeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[48]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetIncomeMetricsFinancialSubProfileOverTimeRequest.ProtoReflect.Descriptor instead.
+func (*GetIncomeMetricsFinancialSubProfileOverTimeRequest) Descriptor() ([]byte, []int) {
+	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescGZIP(), []int{48}
+}
+
+func (x *GetIncomeMetricsFinancialSubProfileOverTimeRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetIncomeMetricsFinancialSubProfileOverTimeRequest) GetProfileType() FinancialUserProfileType {
+	if x != nil {
+		return x.ProfileType
+	}
+	return FinancialUserProfileType_FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+}
+
+func (x *GetIncomeMetricsFinancialSubProfileOverTimeRequest) GetMonth() uint32 {
+	if x != nil {
+		return x.Month
+	}
+	return 0
+}
+
+func (x *GetIncomeMetricsFinancialSubProfileOverTimeRequest) GetPageNumber() int64 {
+	if x != nil {
+		return x.PageNumber
+	}
+	return 0
+}
+
+func (x *GetIncomeMetricsFinancialSubProfileOverTimeRequest) GetPageSize() int64 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+type GetIncomeMetricsFinancialSubProfileOverTimeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data []*IncomeMetricsFinancialSubProfile `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *GetIncomeMetricsFinancialSubProfileOverTimeResponse) Reset() {
+	*x = GetIncomeMetricsFinancialSubProfileOverTimeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[49]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetIncomeMetricsFinancialSubProfileOverTimeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetIncomeMetricsFinancialSubProfileOverTimeResponse) ProtoMessage() {}
+
+func (x *GetIncomeMetricsFinancialSubProfileOverTimeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[49]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetIncomeMetricsFinancialSubProfileOverTimeResponse.ProtoReflect.Descriptor instead.
+func (*GetIncomeMetricsFinancialSubProfileOverTimeResponse) Descriptor() ([]byte, []int) {
+	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescGZIP(), []int{49}
+}
+
+func (x *GetIncomeMetricsFinancialSubProfileOverTimeResponse) GetData() []*IncomeMetricsFinancialSubProfile {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type GetLocationMetricsFinancialSubProfileOverTimeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId       string                   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProfileType  FinancialUserProfileType `protobuf:"varint,2,opt,name=profile_type,json=profileType,proto3,enum=financial_service.v1.FinancialUserProfileType" json:"profile_type,omitempty"`
+	Month        uint32                   `protobuf:"varint,4,opt,name=month,proto3" json:"month,omitempty"`
+	LocationCity string                   `protobuf:"bytes,5,opt,name=location_city,json=locationCity,proto3" json:"location_city,omitempty"`
+	PageNumber   int64                    `protobuf:"varint,7,opt,name=page_number,json=pageNumber,proto3" json:"page_number,omitempty"`
+	PageSize     int64                    `protobuf:"varint,8,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"` // Number of items to return per page.
+}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeRequest) Reset() {
+	*x = GetLocationMetricsFinancialSubProfileOverTimeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[50]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetLocationMetricsFinancialSubProfileOverTimeRequest) ProtoMessage() {}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[50]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetLocationMetricsFinancialSubProfileOverTimeRequest.ProtoReflect.Descriptor instead.
+func (*GetLocationMetricsFinancialSubProfileOverTimeRequest) Descriptor() ([]byte, []int) {
+	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescGZIP(), []int{50}
+}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeRequest) GetProfileType() FinancialUserProfileType {
+	if x != nil {
+		return x.ProfileType
+	}
+	return FinancialUserProfileType_FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeRequest) GetMonth() uint32 {
+	if x != nil {
+		return x.Month
+	}
+	return 0
+}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeRequest) GetLocationCity() string {
+	if x != nil {
+		return x.LocationCity
+	}
+	return ""
+}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeRequest) GetPageNumber() int64 {
+	if x != nil {
+		return x.PageNumber
+	}
+	return 0
+}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeRequest) GetPageSize() int64 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+type GetLocationMetricsFinancialSubProfileOverTimeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data []*LocationFinancialSubProfile `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeResponse) Reset() {
+	*x = GetLocationMetricsFinancialSubProfileOverTimeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[51]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetLocationMetricsFinancialSubProfileOverTimeResponse) ProtoMessage() {}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[51]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetLocationMetricsFinancialSubProfileOverTimeResponse.ProtoReflect.Descriptor instead.
+func (*GetLocationMetricsFinancialSubProfileOverTimeResponse) Descriptor() ([]byte, []int) {
+	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescGZIP(), []int{51}
+}
+
+func (x *GetLocationMetricsFinancialSubProfileOverTimeResponse) GetData() []*LocationFinancialSubProfile {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type GetMerchantMetricsFinancialSubProfileOverTimeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId       string                   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProfileType  FinancialUserProfileType `protobuf:"varint,2,opt,name=profile_type,json=profileType,proto3,enum=financial_service.v1.FinancialUserProfileType" json:"profile_type,omitempty"`
+	Month        uint32                   `protobuf:"varint,4,opt,name=month,proto3" json:"month,omitempty"`
+	MerchantName string                   `protobuf:"bytes,5,opt,name=merchant_name,json=merchantName,proto3" json:"merchant_name,omitempty"`
+	PageNumber   int64                    `protobuf:"varint,7,opt,name=page_number,json=pageNumber,proto3" json:"page_number,omitempty"`
+	PageSize     int64                    `protobuf:"varint,8,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"` // Number of items to return per page.
+}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeRequest) Reset() {
+	*x = GetMerchantMetricsFinancialSubProfileOverTimeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[52]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetMerchantMetricsFinancialSubProfileOverTimeRequest) ProtoMessage() {}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[52]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetMerchantMetricsFinancialSubProfileOverTimeRequest.ProtoReflect.Descriptor instead.
+func (*GetMerchantMetricsFinancialSubProfileOverTimeRequest) Descriptor() ([]byte, []int) {
+	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescGZIP(), []int{52}
+}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeRequest) GetProfileType() FinancialUserProfileType {
+	if x != nil {
+		return x.ProfileType
+	}
+	return FinancialUserProfileType_FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeRequest) GetMonth() uint32 {
+	if x != nil {
+		return x.Month
+	}
+	return 0
+}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeRequest) GetMerchantName() string {
+	if x != nil {
+		return x.MerchantName
+	}
+	return ""
+}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeRequest) GetPageNumber() int64 {
+	if x != nil {
+		return x.PageNumber
+	}
+	return 0
+}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeRequest) GetPageSize() int64 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+type GetMerchantMetricsFinancialSubProfileOverTimeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data []*MerchantMetricsFinancialSubProfile `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeResponse) Reset() {
+	*x = GetMerchantMetricsFinancialSubProfileOverTimeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[53]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetMerchantMetricsFinancialSubProfileOverTimeResponse) ProtoMessage() {}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[53]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetMerchantMetricsFinancialSubProfileOverTimeResponse.ProtoReflect.Descriptor instead.
+func (*GetMerchantMetricsFinancialSubProfileOverTimeResponse) Descriptor() ([]byte, []int) {
+	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescGZIP(), []int{53}
+}
+
+func (x *GetMerchantMetricsFinancialSubProfileOverTimeResponse) GetData() []*MerchantMetricsFinancialSubProfile {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
+type GetPaymentChannelFinancialSubProfileOverTimeRequest struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	UserId         string                   `protobuf:"bytes,1,opt,name=user_id,json=userId,proto3" json:"user_id,omitempty"`
+	ProfileType    FinancialUserProfileType `protobuf:"varint,2,opt,name=profile_type,json=profileType,proto3,enum=financial_service.v1.FinancialUserProfileType" json:"profile_type,omitempty"`
+	Month          uint32                   `protobuf:"varint,4,opt,name=month,proto3" json:"month,omitempty"`
+	PaymentChannel string                   `protobuf:"bytes,5,opt,name=payment_channel,json=paymentChannel,proto3" json:"payment_channel,omitempty"`
+	PageNumber     int64                    `protobuf:"varint,7,opt,name=page_number,json=pageNumber,proto3" json:"page_number,omitempty"`
+	PageSize       int64                    `protobuf:"varint,8,opt,name=page_size,json=pageSize,proto3" json:"page_size,omitempty"` // Number of items to return per page.
+}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeRequest) Reset() {
+	*x = GetPaymentChannelFinancialSubProfileOverTimeRequest{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[54]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPaymentChannelFinancialSubProfileOverTimeRequest) ProtoMessage() {}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[54]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPaymentChannelFinancialSubProfileOverTimeRequest.ProtoReflect.Descriptor instead.
+func (*GetPaymentChannelFinancialSubProfileOverTimeRequest) Descriptor() ([]byte, []int) {
+	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescGZIP(), []int{54}
+}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeRequest) GetUserId() string {
+	if x != nil {
+		return x.UserId
+	}
+	return ""
+}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeRequest) GetProfileType() FinancialUserProfileType {
+	if x != nil {
+		return x.ProfileType
+	}
+	return FinancialUserProfileType_FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeRequest) GetMonth() uint32 {
+	if x != nil {
+		return x.Month
+	}
+	return 0
+}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeRequest) GetPaymentChannel() string {
+	if x != nil {
+		return x.PaymentChannel
+	}
+	return ""
+}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeRequest) GetPageNumber() int64 {
+	if x != nil {
+		return x.PageNumber
+	}
+	return 0
+}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeRequest) GetPageSize() int64 {
+	if x != nil {
+		return x.PageSize
+	}
+	return 0
+}
+
+type GetPaymentChannelFinancialSubProfileOverTimeResponse struct {
+	state         protoimpl.MessageState
+	sizeCache     protoimpl.SizeCache
+	unknownFields protoimpl.UnknownFields
+
+	Data []*PaymentChannelMetricsFinancialSubProfile `protobuf:"bytes,1,rep,name=data,proto3" json:"data,omitempty"`
+}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeResponse) Reset() {
+	*x = GetPaymentChannelFinancialSubProfileOverTimeResponse{}
+	if protoimpl.UnsafeEnabled {
+		mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[55]
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		ms.StoreMessageInfo(mi)
+	}
+}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*GetPaymentChannelFinancialSubProfileOverTimeResponse) ProtoMessage() {}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[55]
+	if protoimpl.UnsafeEnabled && x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use GetPaymentChannelFinancialSubProfileOverTimeResponse.ProtoReflect.Descriptor instead.
+func (*GetPaymentChannelFinancialSubProfileOverTimeResponse) Descriptor() ([]byte, []int) {
+	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescGZIP(), []int{55}
+}
+
+func (x *GetPaymentChannelFinancialSubProfileOverTimeResponse) GetData() []*PaymentChannelMetricsFinancialSubProfile {
+	if x != nil {
+		return x.Data
+	}
+	return nil
+}
+
 var File_financial_service_v1_request_response_financial_analytics_service_proto protoreflect.FileDescriptor
 
 var file_financial_service_v1_request_response_financial_analytics_service_proto_rawDesc = []byte{
@@ -3608,30 +4398,186 @@ var file_financial_service_v1_request_response_financial_analytics_service_proto
 	0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x41, 0x63, 0x63, 0x6f,
 	0x75, 0x6e, 0x74, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x48, 0x69, 0x73, 0x74, 0x6f, 0x72,
 	0x79, 0x52, 0x18, 0x68, 0x69, 0x73, 0x74, 0x6f, 0x72, 0x69, 0x63, 0x61, 0x6c, 0x41, 0x63, 0x63,
-	0x6f, 0x75, 0x6e, 0x74, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x42, 0xe1, 0x02, 0x0a, 0x18,
-	0x63, 0x6f, 0x6d, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65,
-	0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x42, 0x2d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73,
-	0x74, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69,
-	0x61, 0x6c, 0x41, 0x6e, 0x61, 0x6c, 0x79, 0x74, 0x69, 0x63, 0x73, 0x53, 0x65, 0x72, 0x76, 0x69,
-	0x63, 0x65, 0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x7d, 0x67, 0x69, 0x74, 0x68, 0x75,
-	0x62, 0x2e, 0x63, 0x6f, 0x6d, 0x2f, 0x53, 0x6f, 0x6c, 0x6f, 0x6d, 0x6f, 0x6e, 0x41, 0x49, 0x45,
-	0x6e, 0x67, 0x69, 0x6e, 0x65, 0x65, 0x72, 0x69, 0x6e, 0x67, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2f,
-	0x63, 0x6f, 0x72, 0x65, 0x2d, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x2f, 0x70, 0x6b, 0x67,
-	0x2f, 0x67, 0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x64, 0x2f, 0x66, 0x69, 0x6e, 0x61, 0x6e,
-	0x63, 0x69, 0x61, 0x6c, 0x2d, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x76, 0x31, 0x2f,
+	0x6f, 0x75, 0x6e, 0x74, 0x42, 0x61, 0x6c, 0x61, 0x6e, 0x63, 0x65, 0x22, 0xc1, 0x02, 0x0a, 0x34,
+	0x47, 0x65, 0x74, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x4d, 0x65, 0x74, 0x72, 0x69,
+	0x63, 0x73, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72,
+	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x4f, 0x76, 0x65, 0x72, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x71,
+	0x75, 0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18,
+	0x01, 0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x51, 0x0a,
+	0x0c, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20,
+	0x01, 0x28, 0x0e, 0x32, 0x2e, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f,
+	0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6e,
+	0x63, 0x69, 0x61, 0x6c, 0x55, 0x73, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54,
+	0x79, 0x70, 0x65, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65,
+	0x12, 0x49, 0x0a, 0x21, 0x70, 0x65, 0x72, 0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x5f, 0x66, 0x69, 0x6e,
+	0x61, 0x6e, 0x63, 0x65, 0x5f, 0x63, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x5f, 0x70, 0x72,
+	0x69, 0x6d, 0x61, 0x72, 0x79, 0x18, 0x03, 0x20, 0x01, 0x28, 0x09, 0x52, 0x1e, 0x70, 0x65, 0x72,
+	0x73, 0x6f, 0x6e, 0x61, 0x6c, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x65, 0x43, 0x61, 0x74, 0x65,
+	0x67, 0x6f, 0x72, 0x79, 0x50, 0x72, 0x69, 0x6d, 0x61, 0x72, 0x79, 0x12, 0x14, 0x0a, 0x05, 0x6d,
+	0x6f, 0x6e, 0x74, 0x68, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x6d, 0x6f, 0x6e, 0x74,
+	0x68, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72,
+	0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x65, 0x4e, 0x75, 0x6d, 0x62,
+	0x65, 0x72, 0x12, 0x1b, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18,
+	0x08, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x22,
+	0x85, 0x01, 0x0a, 0x35, 0x47, 0x65, 0x74, 0x43, 0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x4d,
+	0x65, 0x74, 0x72, 0x69, 0x63, 0x73, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53,
+	0x75, 0x62, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x4f, 0x76, 0x65, 0x72, 0x54, 0x69, 0x6d,
+	0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4c, 0x0a, 0x04, 0x64, 0x61, 0x74,
+	0x61, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x38, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63,
+	0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x43,
+	0x61, 0x74, 0x65, 0x67, 0x6f, 0x72, 0x79, 0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x73, 0x46, 0x69,
+	0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c,
+	0x65, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0xf5, 0x01, 0x0a, 0x33, 0x47, 0x65, 0x74, 0x45,
+	0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x73, 0x46, 0x69, 0x6e,
+	0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65,
+	0x4f, 0x76, 0x65, 0x72, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12,
+	0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09,
+	0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x51, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x66,
+	0x69, 0x6c, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x2e,
+	0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69,
+	0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x55,
+	0x73, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x52, 0x0b,
+	0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x6d,
+	0x6f, 0x6e, 0x74, 0x68, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x6d, 0x6f, 0x6e, 0x74,
+	0x68, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72,
+	0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x65, 0x4e, 0x75, 0x6d, 0x62,
+	0x65, 0x72, 0x12, 0x1b, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18,
+	0x08, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x22,
+	0x8a, 0x01, 0x0a, 0x34, 0x47, 0x65, 0x74, 0x45, 0x78, 0x70, 0x65, 0x6e, 0x73, 0x65, 0x4d, 0x65,
+	0x74, 0x72, 0x69, 0x63, 0x73, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75,
+	0x62, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x4f, 0x76, 0x65, 0x72, 0x54, 0x69, 0x6d, 0x65,
+	0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x52, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61,
+	0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x3e, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69,
+	0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x45, 0x78,
+	0x70, 0x65, 0x6e, 0x73, 0x65, 0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x73, 0x46, 0x69, 0x6e, 0x61,
+	0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x4d,
+	0x65, 0x74, 0x72, 0x69, 0x63, 0x73, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0xf4, 0x01, 0x0a,
+	0x32, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x63, 0x6f, 0x6d, 0x65, 0x4d, 0x65, 0x74, 0x72, 0x69, 0x63,
+	0x73, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f,
+	0x66, 0x69, 0x6c, 0x65, 0x4f, 0x76, 0x65, 0x72, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x51, 0x0a, 0x0c,
+	0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0e, 0x32, 0x2e, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63,
+	0x69, 0x61, 0x6c, 0x55, 0x73, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79,
+	0x70, 0x65, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12,
+	0x14, 0x0a, 0x05, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05,
+	0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x6e, 0x75,
+	0x6d, 0x62, 0x65, 0x72, 0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x65,
+	0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x1b, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73,
+	0x69, 0x7a, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53,
+	0x69, 0x7a, 0x65, 0x22, 0x81, 0x01, 0x0a, 0x33, 0x47, 0x65, 0x74, 0x49, 0x6e, 0x63, 0x6f, 0x6d,
+	0x65, 0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x73, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61,
+	0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x4f, 0x76, 0x65, 0x72, 0x54,
+	0x69, 0x6d, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4a, 0x0a, 0x04, 0x64,
+	0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x36, 0x2e, 0x66, 0x69, 0x6e, 0x61,
+	0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31,
+	0x2e, 0x49, 0x6e, 0x63, 0x6f, 0x6d, 0x65, 0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x73, 0x46, 0x69,
+	0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c,
+	0x65, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x9b, 0x02, 0x0a, 0x34, 0x47, 0x65, 0x74, 0x4c,
+	0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x73, 0x46, 0x69,
+	0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c,
+	0x65, 0x4f, 0x76, 0x65, 0x72, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74,
+	0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28,
+	0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x51, 0x0a, 0x0c, 0x70, 0x72, 0x6f,
+	0x66, 0x69, 0x6c, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32,
+	0x2e, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c,
+	0x55, 0x73, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x52,
+	0x0b, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x14, 0x0a, 0x05,
+	0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x6d, 0x6f, 0x6e,
+	0x74, 0x68, 0x12, 0x23, 0x0a, 0x0d, 0x6c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x5f, 0x63,
+	0x69, 0x74, 0x79, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6c, 0x6f, 0x63, 0x61, 0x74,
+	0x69, 0x6f, 0x6e, 0x43, 0x69, 0x74, 0x79, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x61, 0x67, 0x65, 0x5f,
+	0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x70, 0x61,
+	0x67, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x1b, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65,
+	0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x70, 0x61, 0x67,
+	0x65, 0x53, 0x69, 0x7a, 0x65, 0x22, 0x7e, 0x0a, 0x35, 0x47, 0x65, 0x74, 0x4c, 0x6f, 0x63, 0x61,
+	0x74, 0x69, 0x6f, 0x6e, 0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x73, 0x46, 0x69, 0x6e, 0x61, 0x6e,
+	0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x4f, 0x76,
+	0x65, 0x72, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x45,
+	0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x31, 0x2e, 0x66,
+	0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x2e, 0x76, 0x31, 0x2e, 0x4c, 0x6f, 0x63, 0x61, 0x74, 0x69, 0x6f, 0x6e, 0x46, 0x69, 0x6e, 0x61,
+	0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52,
+	0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x9b, 0x02, 0x0a, 0x34, 0x47, 0x65, 0x74, 0x4d, 0x65, 0x72,
+	0x63, 0x68, 0x61, 0x6e, 0x74, 0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x73, 0x46, 0x69, 0x6e, 0x61,
+	0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x4f,
+	0x76, 0x65, 0x72, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x12, 0x17,
+	0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x09, 0x52,
+	0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x51, 0x0a, 0x0c, 0x70, 0x72, 0x6f, 0x66, 0x69,
+	0x6c, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x2e, 0x2e,
 	0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x2f, 0x76, 0x31, 0x3b, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73,
-	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x46, 0x58, 0x58, 0xaa, 0x02,
-	0x13, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63,
-	0x65, 0x2e, 0x56, 0x31, 0xca, 0x02, 0x13, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c,
-	0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x1f, 0x46, 0x69, 0x6e,
-	0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5c, 0x56, 0x31,
-	0x5c, 0x47, 0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x14, 0x46,
-	0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x3a,
-	0x3a, 0x56, 0x31, 0xd8, 0xe1, 0x1e, 0x00, 0xe0, 0xe1, 0x1e, 0x01, 0xf0, 0xe1, 0x1e, 0x01, 0xf8,
-	0xe1, 0x1e, 0x01, 0x80, 0xe2, 0x1e, 0x01, 0xa8, 0xe2, 0x1e, 0x01, 0xb8, 0xe2, 0x1e, 0x01, 0xc0,
-	0xe2, 0x1e, 0x01, 0xc8, 0xe2, 0x1e, 0x01, 0xd0, 0xe2, 0x1e, 0x01, 0xe0, 0xe2, 0x1e, 0x01, 0x62,
-	0x06, 0x70, 0x72, 0x6f, 0x74, 0x6f, 0x33,
+	0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x55, 0x73,
+	0x65, 0x72, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x52, 0x0b, 0x70,
+	0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12, 0x14, 0x0a, 0x05, 0x6d, 0x6f,
+	0x6e, 0x74, 0x68, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05, 0x6d, 0x6f, 0x6e, 0x74, 0x68,
+	0x12, 0x23, 0x0a, 0x0d, 0x6d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x5f, 0x6e, 0x61, 0x6d,
+	0x65, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0c, 0x6d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e,
+	0x74, 0x4e, 0x61, 0x6d, 0x65, 0x12, 0x1f, 0x0a, 0x0b, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x6e, 0x75,
+	0x6d, 0x62, 0x65, 0x72, 0x18, 0x07, 0x20, 0x01, 0x28, 0x03, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x65,
+	0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12, 0x1b, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73,
+	0x69, 0x7a, 0x65, 0x18, 0x08, 0x20, 0x01, 0x28, 0x03, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53,
+	0x69, 0x7a, 0x65, 0x22, 0x85, 0x01, 0x0a, 0x35, 0x47, 0x65, 0x74, 0x4d, 0x65, 0x72, 0x63, 0x68,
+	0x61, 0x6e, 0x74, 0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x73, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63,
+	0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x4f, 0x76, 0x65,
+	0x72, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x4c, 0x0a,
+	0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20, 0x03, 0x28, 0x0b, 0x32, 0x38, 0x2e, 0x66, 0x69,
+	0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x4d, 0x65, 0x72, 0x63, 0x68, 0x61, 0x6e, 0x74, 0x4d, 0x65, 0x74, 0x72, 0x69,
+	0x63, 0x73, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72,
+	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x22, 0x9e, 0x02, 0x0a, 0x33,
+	0x47, 0x65, 0x74, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65,
+	0x6c, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f,
+	0x66, 0x69, 0x6c, 0x65, 0x4f, 0x76, 0x65, 0x72, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x71, 0x75,
+	0x65, 0x73, 0x74, 0x12, 0x17, 0x0a, 0x07, 0x75, 0x73, 0x65, 0x72, 0x5f, 0x69, 0x64, 0x18, 0x01,
+	0x20, 0x01, 0x28, 0x09, 0x52, 0x06, 0x75, 0x73, 0x65, 0x72, 0x49, 0x64, 0x12, 0x51, 0x0a, 0x0c,
+	0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x5f, 0x74, 0x79, 0x70, 0x65, 0x18, 0x02, 0x20, 0x01,
+	0x28, 0x0e, 0x32, 0x2e, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73,
+	0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63,
+	0x69, 0x61, 0x6c, 0x55, 0x73, 0x65, 0x72, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79,
+	0x70, 0x65, 0x52, 0x0b, 0x70, 0x72, 0x6f, 0x66, 0x69, 0x6c, 0x65, 0x54, 0x79, 0x70, 0x65, 0x12,
+	0x14, 0x0a, 0x05, 0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x18, 0x04, 0x20, 0x01, 0x28, 0x0d, 0x52, 0x05,
+	0x6d, 0x6f, 0x6e, 0x74, 0x68, 0x12, 0x27, 0x0a, 0x0f, 0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74,
+	0x5f, 0x63, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x18, 0x05, 0x20, 0x01, 0x28, 0x09, 0x52, 0x0e,
+	0x70, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x12, 0x1f,
+	0x0a, 0x0b, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x6e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x18, 0x07, 0x20,
+	0x01, 0x28, 0x03, 0x52, 0x0a, 0x70, 0x61, 0x67, 0x65, 0x4e, 0x75, 0x6d, 0x62, 0x65, 0x72, 0x12,
+	0x1b, 0x0a, 0x09, 0x70, 0x61, 0x67, 0x65, 0x5f, 0x73, 0x69, 0x7a, 0x65, 0x18, 0x08, 0x20, 0x01,
+	0x28, 0x03, 0x52, 0x08, 0x70, 0x61, 0x67, 0x65, 0x53, 0x69, 0x7a, 0x65, 0x22, 0x8a, 0x01, 0x0a,
+	0x34, 0x47, 0x65, 0x74, 0x50, 0x61, 0x79, 0x6d, 0x65, 0x6e, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e,
+	0x65, 0x6c, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72,
+	0x6f, 0x66, 0x69, 0x6c, 0x65, 0x4f, 0x76, 0x65, 0x72, 0x54, 0x69, 0x6d, 0x65, 0x52, 0x65, 0x73,
+	0x70, 0x6f, 0x6e, 0x73, 0x65, 0x12, 0x52, 0x0a, 0x04, 0x64, 0x61, 0x74, 0x61, 0x18, 0x01, 0x20,
+	0x03, 0x28, 0x0b, 0x32, 0x3e, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f,
+	0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x2e, 0x50, 0x61, 0x79, 0x6d, 0x65,
+	0x6e, 0x74, 0x43, 0x68, 0x61, 0x6e, 0x6e, 0x65, 0x6c, 0x4d, 0x65, 0x74, 0x72, 0x69, 0x63, 0x73,
+	0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x75, 0x62, 0x50, 0x72, 0x6f, 0x66,
+	0x69, 0x6c, 0x65, 0x52, 0x04, 0x64, 0x61, 0x74, 0x61, 0x42, 0xe1, 0x02, 0x0a, 0x18, 0x63, 0x6f,
+	0x6d, 0x2e, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76,
+	0x69, 0x63, 0x65, 0x2e, 0x76, 0x31, 0x42, 0x2d, 0x52, 0x65, 0x71, 0x75, 0x65, 0x73, 0x74, 0x52,
+	0x65, 0x73, 0x70, 0x6f, 0x6e, 0x73, 0x65, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c,
+	0x41, 0x6e, 0x61, 0x6c, 0x79, 0x74, 0x69, 0x63, 0x73, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65,
+	0x50, 0x72, 0x6f, 0x74, 0x6f, 0x50, 0x01, 0x5a, 0x7d, 0x67, 0x69, 0x74, 0x68, 0x75, 0x62, 0x2e,
+	0x63, 0x6f, 0x6d, 0x2f, 0x53, 0x6f, 0x6c, 0x6f, 0x6d, 0x6f, 0x6e, 0x41, 0x49, 0x45, 0x6e, 0x67,
+	0x69, 0x6e, 0x65, 0x65, 0x72, 0x69, 0x6e, 0x67, 0x2f, 0x63, 0x6f, 0x72, 0x65, 0x2f, 0x63, 0x6f,
+	0x72, 0x65, 0x2d, 0x6c, 0x69, 0x62, 0x72, 0x61, 0x72, 0x79, 0x2f, 0x70, 0x6b, 0x67, 0x2f, 0x67,
+	0x65, 0x6e, 0x65, 0x72, 0x61, 0x74, 0x65, 0x64, 0x2f, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69,
+	0x61, 0x6c, 0x2d, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f, 0x76, 0x31, 0x2f, 0x66, 0x69,
+	0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2f,
+	0x76, 0x31, 0x3b, 0x66, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72,
+	0x76, 0x69, 0x63, 0x65, 0x76, 0x31, 0xa2, 0x02, 0x03, 0x46, 0x58, 0x58, 0xaa, 0x02, 0x13, 0x46,
+	0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
+	0x56, 0x31, 0xca, 0x02, 0x13, 0x46, 0x69, 0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x65,
+	0x72, 0x76, 0x69, 0x63, 0x65, 0x5c, 0x56, 0x31, 0xe2, 0x02, 0x1f, 0x46, 0x69, 0x6e, 0x61, 0x6e,
+	0x63, 0x69, 0x61, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x5c, 0x56, 0x31, 0x5c, 0x47,
+	0x50, 0x42, 0x4d, 0x65, 0x74, 0x61, 0x64, 0x61, 0x74, 0x61, 0xea, 0x02, 0x14, 0x46, 0x69, 0x6e,
+	0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x53, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x3a, 0x3a, 0x56,
+	0x31, 0xd8, 0xe1, 0x1e, 0x00, 0xe0, 0xe1, 0x1e, 0x01, 0xf0, 0xe1, 0x1e, 0x01, 0xf8, 0xe1, 0x1e,
+	0x01, 0x80, 0xe2, 0x1e, 0x01, 0xa8, 0xe2, 0x1e, 0x01, 0xb8, 0xe2, 0x1e, 0x01, 0xc0, 0xe2, 0x1e,
+	0x01, 0xc8, 0xe2, 0x1e, 0x01, 0xd0, 0xe2, 0x1e, 0x01, 0xe0, 0xe2, 0x1e, 0x01, 0x62, 0x06, 0x70,
+	0x72, 0x6f, 0x74, 0x6f, 0x33,
 }
 
 var (
@@ -3646,123 +4592,153 @@ func file_financial_service_v1_request_response_financial_analytics_service_prot
 	return file_financial_service_v1_request_response_financial_analytics_service_proto_rawDescData
 }
 
-var file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes = make([]protoimpl.MessageInfo, 44)
+var file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes = make([]protoimpl.MessageInfo, 56)
 var file_financial_service_v1_request_response_financial_analytics_service_proto_goTypes = []interface{}{
-	(*GetTransactionAggregatesRequest)(nil),                  // 0: financial_service.v1.GetTransactionAggregatesRequest
-	(*GetTransactionAggregatesResponse)(nil),                 // 1: financial_service.v1.GetTransactionAggregatesResponse
-	(*GetUserAccountBalanceHistoryRequest)(nil),              // 2: financial_service.v1.GetUserAccountBalanceHistoryRequest
-	(*GetUserAccountBalanceHistoryResponse)(nil),             // 3: financial_service.v1.GetUserAccountBalanceHistoryResponse
-	(*GetAccountBalanceHistoryRequest)(nil),                  // 4: financial_service.v1.GetAccountBalanceHistoryRequest
-	(*GetAccountBalanceHistoryResponse)(nil),                 // 5: financial_service.v1.GetAccountBalanceHistoryResponse
-	(*GetUserCategoryMonthlyExpenditureRequest)(nil),         // 6: financial_service.v1.GetUserCategoryMonthlyExpenditureRequest
-	(*GetUserCategoryMonthlyExpenditureResponse)(nil),        // 7: financial_service.v1.GetUserCategoryMonthlyExpenditureResponse
-	(*GetUserCategoryMonthlyIncomeRequest)(nil),              // 8: financial_service.v1.GetUserCategoryMonthlyIncomeRequest
-	(*GetUserCategoryMonthlyIncomeResponse)(nil),             // 9: financial_service.v1.GetUserCategoryMonthlyIncomeResponse
-	(*GetCategoryMonthlyTransactionCountRequest)(nil),        // 10: financial_service.v1.GetCategoryMonthlyTransactionCountRequest
-	(*GetCategoryMonthlyTransactionCountResponse)(nil),       // 11: financial_service.v1.GetCategoryMonthlyTransactionCountResponse
-	(*GetDebtToIncomeRatioRequest)(nil),                      // 12: financial_service.v1.GetDebtToIncomeRatioRequest
-	(*GetDebtToIncomeRatioResponse)(nil),                     // 13: financial_service.v1.GetDebtToIncomeRatioResponse
-	(*GetExpenseMetricsRequest)(nil),                         // 14: financial_service.v1.GetExpenseMetricsRequest
-	(*GetExpenseMetricsResponse)(nil),                        // 15: financial_service.v1.GetExpenseMetricsResponse
-	(*GetFinancialProfileRequest)(nil),                       // 16: financial_service.v1.GetFinancialProfileRequest
-	(*GetFinancialProfileResponse)(nil),                      // 17: financial_service.v1.GetFinancialProfileResponse
-	(*GetIncomeExpenseRatioRequest)(nil),                     // 18: financial_service.v1.GetIncomeExpenseRatioRequest
-	(*GetIncomeExpenseRatioResponse)(nil),                    // 19: financial_service.v1.GetIncomeExpenseRatioResponse
-	(*GetIncomeMetricsRequest)(nil),                          // 20: financial_service.v1.GetIncomeMetricsRequest
-	(*GetIncomeMetricsResponse)(nil),                         // 21: financial_service.v1.GetIncomeMetricsResponse
-	(*GetMerchantMonthlyExpenditureRequest)(nil),             // 22: financial_service.v1.GetMerchantMonthlyExpenditureRequest
-	(*GetMerchantMonthlyExpenditureResponse)(nil),            // 23: financial_service.v1.GetMerchantMonthlyExpenditureResponse
-	(*GetMonthlyBalanceRequest)(nil),                         // 24: financial_service.v1.GetMonthlyBalanceRequest
-	(*GetMonthlyBalanceResponse)(nil),                        // 25: financial_service.v1.GetMonthlyBalanceResponse
-	(*GetMonthlyExpenditureRequest)(nil),                     // 26: financial_service.v1.GetMonthlyExpenditureRequest
-	(*GetMonthlyExpenditureResponse)(nil),                    // 27: financial_service.v1.GetMonthlyExpenditureResponse
-	(*GetMonthlyIncomeRequest)(nil),                          // 28: financial_service.v1.GetMonthlyIncomeRequest
-	(*GetMonthlyIncomeResponse)(nil),                         // 29: financial_service.v1.GetMonthlyIncomeResponse
-	(*GetMonthlySavingsRequest)(nil),                         // 30: financial_service.v1.GetMonthlySavingsRequest
-	(*GetMonthlySavingsResponse)(nil),                        // 31: financial_service.v1.GetMonthlySavingsResponse
-	(*GetMonthlyTotalQuantityBySecurityAndUserRequest)(nil),  // 32: financial_service.v1.GetMonthlyTotalQuantityBySecurityAndUserRequest
-	(*GetMonthlyTotalQuantityBySecurityAndUserResponse)(nil), // 33: financial_service.v1.GetMonthlyTotalQuantityBySecurityAndUserResponse
-	(*GetMonthlyTransactionCountRequest)(nil),                // 34: financial_service.v1.GetMonthlyTransactionCountRequest
-	(*GetMonthlyTransactionCountResponse)(nil),               // 35: financial_service.v1.GetMonthlyTransactionCountResponse
-	(*GetPaymentChannelMonthlyExpenditureRequest)(nil),       // 36: financial_service.v1.GetPaymentChannelMonthlyExpenditureRequest
-	(*GetPaymentChannelMonthlyExpenditureResponse)(nil),      // 37: financial_service.v1.GetPaymentChannelMonthlyExpenditureResponse
-	(*GetTotalInvestmentBySecurityRequest)(nil),              // 38: financial_service.v1.GetTotalInvestmentBySecurityRequest
-	(*GetTotalInvestmentBySecurityResponse)(nil),             // 39: financial_service.v1.GetTotalInvestmentBySecurityResponse
-	(*GetMelodyFinancialContextRequest)(nil),                 // 40: financial_service.v1.GetMelodyFinancialContextRequest
-	(*GetMelodyFinancialContextResponse)(nil),                // 41: financial_service.v1.GetMelodyFinancialContextResponse
-	(*GetHistoricalAccountBalanceRequest)(nil),               // 42: financial_service.v1.GetHistoricalAccountBalanceRequest
-	(*GetHistoricalAccountBalanceResponse)(nil),              // 43: financial_service.v1.GetHistoricalAccountBalanceResponse
-	(FinancialUserProfileType)(0),                            // 44: financial_service.v1.FinancialUserProfileType
-	(*TransactionAggregatesByMonth)(nil),                     // 45: financial_service.v1.TransactionAggregatesByMonth
-	(*AccountBalanceHistory)(nil),                            // 46: financial_service.v1.AccountBalanceHistory
-	(*CategoryMonthlyExpenditure)(nil),                       // 47: financial_service.v1.CategoryMonthlyExpenditure
-	(*CategoryMonthlyIncome)(nil),                            // 48: financial_service.v1.CategoryMonthlyIncome
-	(*CategoryMonthlyTransactionCount)(nil),                  // 49: financial_service.v1.CategoryMonthlyTransactionCount
-	(*DebtToIncomeRatio)(nil),                                // 50: financial_service.v1.DebtToIncomeRatio
-	(*ExpenseMetrics)(nil),                                   // 51: financial_service.v1.ExpenseMetrics
-	(*FinancialProfile)(nil),                                 // 52: financial_service.v1.FinancialProfile
-	(*IncomeExpenseRatio)(nil),                               // 53: financial_service.v1.IncomeExpenseRatio
-	(*IncomeMetrics)(nil),                                    // 54: financial_service.v1.IncomeMetrics
-	(*MerchantMonthlyExpenditure)(nil),                       // 55: financial_service.v1.MerchantMonthlyExpenditure
-	(*MonthlyBalance)(nil),                                   // 56: financial_service.v1.MonthlyBalance
-	(*MonthlyExpenditure)(nil),                               // 57: financial_service.v1.MonthlyExpenditure
-	(*MonthlyIncome)(nil),                                    // 58: financial_service.v1.MonthlyIncome
-	(*MonthlySavings)(nil),                                   // 59: financial_service.v1.MonthlySavings
-	(*MonthlyTotalQuantityBySecurityAndUser)(nil),            // 60: financial_service.v1.MonthlyTotalQuantityBySecurityAndUser
-	(*MonthlyTransactionCount)(nil),                          // 61: financial_service.v1.MonthlyTransactionCount
-	(*PaymentChannelMonthlyExpenditure)(nil),                 // 62: financial_service.v1.PaymentChannelMonthlyExpenditure
-	(*TotalInvestmentBySecurity)(nil),                        // 63: financial_service.v1.TotalInvestmentBySecurity
-	(*MelodyFinancialContext)(nil),                           // 64: financial_service.v1.MelodyFinancialContext
+	(*GetTransactionAggregatesRequest)(nil),                       // 0: financial_service.v1.GetTransactionAggregatesRequest
+	(*GetTransactionAggregatesResponse)(nil),                      // 1: financial_service.v1.GetTransactionAggregatesResponse
+	(*GetUserAccountBalanceHistoryRequest)(nil),                   // 2: financial_service.v1.GetUserAccountBalanceHistoryRequest
+	(*GetUserAccountBalanceHistoryResponse)(nil),                  // 3: financial_service.v1.GetUserAccountBalanceHistoryResponse
+	(*GetAccountBalanceHistoryRequest)(nil),                       // 4: financial_service.v1.GetAccountBalanceHistoryRequest
+	(*GetAccountBalanceHistoryResponse)(nil),                      // 5: financial_service.v1.GetAccountBalanceHistoryResponse
+	(*GetUserCategoryMonthlyExpenditureRequest)(nil),              // 6: financial_service.v1.GetUserCategoryMonthlyExpenditureRequest
+	(*GetUserCategoryMonthlyExpenditureResponse)(nil),             // 7: financial_service.v1.GetUserCategoryMonthlyExpenditureResponse
+	(*GetUserCategoryMonthlyIncomeRequest)(nil),                   // 8: financial_service.v1.GetUserCategoryMonthlyIncomeRequest
+	(*GetUserCategoryMonthlyIncomeResponse)(nil),                  // 9: financial_service.v1.GetUserCategoryMonthlyIncomeResponse
+	(*GetCategoryMonthlyTransactionCountRequest)(nil),             // 10: financial_service.v1.GetCategoryMonthlyTransactionCountRequest
+	(*GetCategoryMonthlyTransactionCountResponse)(nil),            // 11: financial_service.v1.GetCategoryMonthlyTransactionCountResponse
+	(*GetDebtToIncomeRatioRequest)(nil),                           // 12: financial_service.v1.GetDebtToIncomeRatioRequest
+	(*GetDebtToIncomeRatioResponse)(nil),                          // 13: financial_service.v1.GetDebtToIncomeRatioResponse
+	(*GetExpenseMetricsRequest)(nil),                              // 14: financial_service.v1.GetExpenseMetricsRequest
+	(*GetExpenseMetricsResponse)(nil),                             // 15: financial_service.v1.GetExpenseMetricsResponse
+	(*GetFinancialProfileRequest)(nil),                            // 16: financial_service.v1.GetFinancialProfileRequest
+	(*GetFinancialProfileResponse)(nil),                           // 17: financial_service.v1.GetFinancialProfileResponse
+	(*GetIncomeExpenseRatioRequest)(nil),                          // 18: financial_service.v1.GetIncomeExpenseRatioRequest
+	(*GetIncomeExpenseRatioResponse)(nil),                         // 19: financial_service.v1.GetIncomeExpenseRatioResponse
+	(*GetIncomeMetricsRequest)(nil),                               // 20: financial_service.v1.GetIncomeMetricsRequest
+	(*GetIncomeMetricsResponse)(nil),                              // 21: financial_service.v1.GetIncomeMetricsResponse
+	(*GetMerchantMonthlyExpenditureRequest)(nil),                  // 22: financial_service.v1.GetMerchantMonthlyExpenditureRequest
+	(*GetMerchantMonthlyExpenditureResponse)(nil),                 // 23: financial_service.v1.GetMerchantMonthlyExpenditureResponse
+	(*GetMonthlyBalanceRequest)(nil),                              // 24: financial_service.v1.GetMonthlyBalanceRequest
+	(*GetMonthlyBalanceResponse)(nil),                             // 25: financial_service.v1.GetMonthlyBalanceResponse
+	(*GetMonthlyExpenditureRequest)(nil),                          // 26: financial_service.v1.GetMonthlyExpenditureRequest
+	(*GetMonthlyExpenditureResponse)(nil),                         // 27: financial_service.v1.GetMonthlyExpenditureResponse
+	(*GetMonthlyIncomeRequest)(nil),                               // 28: financial_service.v1.GetMonthlyIncomeRequest
+	(*GetMonthlyIncomeResponse)(nil),                              // 29: financial_service.v1.GetMonthlyIncomeResponse
+	(*GetMonthlySavingsRequest)(nil),                              // 30: financial_service.v1.GetMonthlySavingsRequest
+	(*GetMonthlySavingsResponse)(nil),                             // 31: financial_service.v1.GetMonthlySavingsResponse
+	(*GetMonthlyTotalQuantityBySecurityAndUserRequest)(nil),       // 32: financial_service.v1.GetMonthlyTotalQuantityBySecurityAndUserRequest
+	(*GetMonthlyTotalQuantityBySecurityAndUserResponse)(nil),      // 33: financial_service.v1.GetMonthlyTotalQuantityBySecurityAndUserResponse
+	(*GetMonthlyTransactionCountRequest)(nil),                     // 34: financial_service.v1.GetMonthlyTransactionCountRequest
+	(*GetMonthlyTransactionCountResponse)(nil),                    // 35: financial_service.v1.GetMonthlyTransactionCountResponse
+	(*GetPaymentChannelMonthlyExpenditureRequest)(nil),            // 36: financial_service.v1.GetPaymentChannelMonthlyExpenditureRequest
+	(*GetPaymentChannelMonthlyExpenditureResponse)(nil),           // 37: financial_service.v1.GetPaymentChannelMonthlyExpenditureResponse
+	(*GetTotalInvestmentBySecurityRequest)(nil),                   // 38: financial_service.v1.GetTotalInvestmentBySecurityRequest
+	(*GetTotalInvestmentBySecurityResponse)(nil),                  // 39: financial_service.v1.GetTotalInvestmentBySecurityResponse
+	(*GetMelodyFinancialContextRequest)(nil),                      // 40: financial_service.v1.GetMelodyFinancialContextRequest
+	(*GetMelodyFinancialContextResponse)(nil),                     // 41: financial_service.v1.GetMelodyFinancialContextResponse
+	(*GetHistoricalAccountBalanceRequest)(nil),                    // 42: financial_service.v1.GetHistoricalAccountBalanceRequest
+	(*GetHistoricalAccountBalanceResponse)(nil),                   // 43: financial_service.v1.GetHistoricalAccountBalanceResponse
+	(*GetCategoryMetricsFinancialSubProfileOverTimeRequest)(nil),  // 44: financial_service.v1.GetCategoryMetricsFinancialSubProfileOverTimeRequest
+	(*GetCategoryMetricsFinancialSubProfileOverTimeResponse)(nil), // 45: financial_service.v1.GetCategoryMetricsFinancialSubProfileOverTimeResponse
+	(*GetExpenseMetricsFinancialSubProfileOverTimeRequest)(nil),   // 46: financial_service.v1.GetExpenseMetricsFinancialSubProfileOverTimeRequest
+	(*GetExpenseMetricsFinancialSubProfileOverTimeResponse)(nil),  // 47: financial_service.v1.GetExpenseMetricsFinancialSubProfileOverTimeResponse
+	(*GetIncomeMetricsFinancialSubProfileOverTimeRequest)(nil),    // 48: financial_service.v1.GetIncomeMetricsFinancialSubProfileOverTimeRequest
+	(*GetIncomeMetricsFinancialSubProfileOverTimeResponse)(nil),   // 49: financial_service.v1.GetIncomeMetricsFinancialSubProfileOverTimeResponse
+	(*GetLocationMetricsFinancialSubProfileOverTimeRequest)(nil),  // 50: financial_service.v1.GetLocationMetricsFinancialSubProfileOverTimeRequest
+	(*GetLocationMetricsFinancialSubProfileOverTimeResponse)(nil), // 51: financial_service.v1.GetLocationMetricsFinancialSubProfileOverTimeResponse
+	(*GetMerchantMetricsFinancialSubProfileOverTimeRequest)(nil),  // 52: financial_service.v1.GetMerchantMetricsFinancialSubProfileOverTimeRequest
+	(*GetMerchantMetricsFinancialSubProfileOverTimeResponse)(nil), // 53: financial_service.v1.GetMerchantMetricsFinancialSubProfileOverTimeResponse
+	(*GetPaymentChannelFinancialSubProfileOverTimeRequest)(nil),   // 54: financial_service.v1.GetPaymentChannelFinancialSubProfileOverTimeRequest
+	(*GetPaymentChannelFinancialSubProfileOverTimeResponse)(nil),  // 55: financial_service.v1.GetPaymentChannelFinancialSubProfileOverTimeResponse
+	(FinancialUserProfileType)(0),                                 // 56: financial_service.v1.FinancialUserProfileType
+	(*TransactionAggregatesByMonth)(nil),                          // 57: financial_service.v1.TransactionAggregatesByMonth
+	(*AccountBalanceHistory)(nil),                                 // 58: financial_service.v1.AccountBalanceHistory
+	(*CategoryMonthlyExpenditure)(nil),                            // 59: financial_service.v1.CategoryMonthlyExpenditure
+	(*CategoryMonthlyIncome)(nil),                                 // 60: financial_service.v1.CategoryMonthlyIncome
+	(*CategoryMonthlyTransactionCount)(nil),                       // 61: financial_service.v1.CategoryMonthlyTransactionCount
+	(*DebtToIncomeRatio)(nil),                                     // 62: financial_service.v1.DebtToIncomeRatio
+	(*ExpenseMetrics)(nil),                                        // 63: financial_service.v1.ExpenseMetrics
+	(*FinancialProfile)(nil),                                      // 64: financial_service.v1.FinancialProfile
+	(*IncomeExpenseRatio)(nil),                                    // 65: financial_service.v1.IncomeExpenseRatio
+	(*IncomeMetrics)(nil),                                         // 66: financial_service.v1.IncomeMetrics
+	(*MerchantMonthlyExpenditure)(nil),                            // 67: financial_service.v1.MerchantMonthlyExpenditure
+	(*MonthlyBalance)(nil),                                        // 68: financial_service.v1.MonthlyBalance
+	(*MonthlyExpenditure)(nil),                                    // 69: financial_service.v1.MonthlyExpenditure
+	(*MonthlyIncome)(nil),                                         // 70: financial_service.v1.MonthlyIncome
+	(*MonthlySavings)(nil),                                        // 71: financial_service.v1.MonthlySavings
+	(*MonthlyTotalQuantityBySecurityAndUser)(nil),                 // 72: financial_service.v1.MonthlyTotalQuantityBySecurityAndUser
+	(*MonthlyTransactionCount)(nil),                               // 73: financial_service.v1.MonthlyTransactionCount
+	(*PaymentChannelMonthlyExpenditure)(nil),                      // 74: financial_service.v1.PaymentChannelMonthlyExpenditure
+	(*TotalInvestmentBySecurity)(nil),                             // 75: financial_service.v1.TotalInvestmentBySecurity
+	(*MelodyFinancialContext)(nil),                                // 76: financial_service.v1.MelodyFinancialContext
+	(*CategoryMetricsFinancialSubProfile)(nil),                    // 77: financial_service.v1.CategoryMetricsFinancialSubProfile
+	(*ExpenseMetricsFinancialSubProfileMetrics)(nil),              // 78: financial_service.v1.ExpenseMetricsFinancialSubProfileMetrics
+	(*IncomeMetricsFinancialSubProfile)(nil),                      // 79: financial_service.v1.IncomeMetricsFinancialSubProfile
+	(*LocationFinancialSubProfile)(nil),                           // 80: financial_service.v1.LocationFinancialSubProfile
+	(*MerchantMetricsFinancialSubProfile)(nil),                    // 81: financial_service.v1.MerchantMetricsFinancialSubProfile
+	(*PaymentChannelMetricsFinancialSubProfile)(nil),              // 82: financial_service.v1.PaymentChannelMetricsFinancialSubProfile
 }
 var file_financial_service_v1_request_response_financial_analytics_service_proto_depIdxs = []int32{
-	44, // 0: financial_service.v1.GetTransactionAggregatesRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	45, // 1: financial_service.v1.GetTransactionAggregatesResponse.transaction_aggregates:type_name -> financial_service.v1.TransactionAggregatesByMonth
-	44, // 2: financial_service.v1.GetUserAccountBalanceHistoryRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	46, // 3: financial_service.v1.GetUserAccountBalanceHistoryResponse.account_balance_history:type_name -> financial_service.v1.AccountBalanceHistory
-	46, // 4: financial_service.v1.GetAccountBalanceHistoryResponse.account_balance_history:type_name -> financial_service.v1.AccountBalanceHistory
-	44, // 5: financial_service.v1.GetUserCategoryMonthlyExpenditureRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	47, // 6: financial_service.v1.GetUserCategoryMonthlyExpenditureResponse.category_monthly_expenditure:type_name -> financial_service.v1.CategoryMonthlyExpenditure
-	44, // 7: financial_service.v1.GetUserCategoryMonthlyIncomeRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	48, // 8: financial_service.v1.GetUserCategoryMonthlyIncomeResponse.category_monthly_income:type_name -> financial_service.v1.CategoryMonthlyIncome
-	44, // 9: financial_service.v1.GetCategoryMonthlyTransactionCountRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	49, // 10: financial_service.v1.GetCategoryMonthlyTransactionCountResponse.category_monthly_transaction_count:type_name -> financial_service.v1.CategoryMonthlyTransactionCount
-	44, // 11: financial_service.v1.GetDebtToIncomeRatioRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	50, // 12: financial_service.v1.GetDebtToIncomeRatioResponse.debt_to_income_ratios:type_name -> financial_service.v1.DebtToIncomeRatio
-	44, // 13: financial_service.v1.GetExpenseMetricsRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	51, // 14: financial_service.v1.GetExpenseMetricsResponse.expense_metrics:type_name -> financial_service.v1.ExpenseMetrics
-	44, // 15: financial_service.v1.GetFinancialProfileRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	52, // 16: financial_service.v1.GetFinancialProfileResponse.financial_profiles:type_name -> financial_service.v1.FinancialProfile
-	44, // 17: financial_service.v1.GetIncomeExpenseRatioRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	53, // 18: financial_service.v1.GetIncomeExpenseRatioResponse.income_expense_ratios:type_name -> financial_service.v1.IncomeExpenseRatio
-	44, // 19: financial_service.v1.GetIncomeMetricsRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	54, // 20: financial_service.v1.GetIncomeMetricsResponse.income_metrics:type_name -> financial_service.v1.IncomeMetrics
-	44, // 21: financial_service.v1.GetMerchantMonthlyExpenditureRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	55, // 22: financial_service.v1.GetMerchantMonthlyExpenditureResponse.merchant_monthly_expenditures:type_name -> financial_service.v1.MerchantMonthlyExpenditure
-	44, // 23: financial_service.v1.GetMonthlyBalanceRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	56, // 24: financial_service.v1.GetMonthlyBalanceResponse.monthly_balances:type_name -> financial_service.v1.MonthlyBalance
-	44, // 25: financial_service.v1.GetMonthlyExpenditureRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	57, // 26: financial_service.v1.GetMonthlyExpenditureResponse.monthly_expenditures:type_name -> financial_service.v1.MonthlyExpenditure
-	44, // 27: financial_service.v1.GetMonthlyIncomeRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	58, // 28: financial_service.v1.GetMonthlyIncomeResponse.monthly_incomes:type_name -> financial_service.v1.MonthlyIncome
-	44, // 29: financial_service.v1.GetMonthlySavingsRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	59, // 30: financial_service.v1.GetMonthlySavingsResponse.monthly_savings:type_name -> financial_service.v1.MonthlySavings
-	44, // 31: financial_service.v1.GetMonthlyTotalQuantityBySecurityAndUserRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	60, // 32: financial_service.v1.GetMonthlyTotalQuantityBySecurityAndUserResponse.monthly_total_quantity_by_security_and_user:type_name -> financial_service.v1.MonthlyTotalQuantityBySecurityAndUser
-	44, // 33: financial_service.v1.GetMonthlyTransactionCountRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	61, // 34: financial_service.v1.GetMonthlyTransactionCountResponse.monthly_transaction_counts:type_name -> financial_service.v1.MonthlyTransactionCount
-	44, // 35: financial_service.v1.GetPaymentChannelMonthlyExpenditureRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	62, // 36: financial_service.v1.GetPaymentChannelMonthlyExpenditureResponse.payment_channel_monthly_expenditure:type_name -> financial_service.v1.PaymentChannelMonthlyExpenditure
-	44, // 37: financial_service.v1.GetTotalInvestmentBySecurityRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	63, // 38: financial_service.v1.GetTotalInvestmentBySecurityResponse.total_investment_by_security:type_name -> financial_service.v1.TotalInvestmentBySecurity
-	44, // 39: financial_service.v1.GetMelodyFinancialContextRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	64, // 40: financial_service.v1.GetMelodyFinancialContextResponse.melody_financial_context:type_name -> financial_service.v1.MelodyFinancialContext
-	44, // 41: financial_service.v1.GetHistoricalAccountBalanceRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
-	46, // 42: financial_service.v1.GetHistoricalAccountBalanceResponse.historical_account_balance:type_name -> financial_service.v1.AccountBalanceHistory
-	43, // [43:43] is the sub-list for method output_type
-	43, // [43:43] is the sub-list for method input_type
-	43, // [43:43] is the sub-list for extension type_name
-	43, // [43:43] is the sub-list for extension extendee
-	0,  // [0:43] is the sub-list for field type_name
+	56, // 0: financial_service.v1.GetTransactionAggregatesRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	57, // 1: financial_service.v1.GetTransactionAggregatesResponse.transaction_aggregates:type_name -> financial_service.v1.TransactionAggregatesByMonth
+	56, // 2: financial_service.v1.GetUserAccountBalanceHistoryRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	58, // 3: financial_service.v1.GetUserAccountBalanceHistoryResponse.account_balance_history:type_name -> financial_service.v1.AccountBalanceHistory
+	58, // 4: financial_service.v1.GetAccountBalanceHistoryResponse.account_balance_history:type_name -> financial_service.v1.AccountBalanceHistory
+	56, // 5: financial_service.v1.GetUserCategoryMonthlyExpenditureRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	59, // 6: financial_service.v1.GetUserCategoryMonthlyExpenditureResponse.category_monthly_expenditure:type_name -> financial_service.v1.CategoryMonthlyExpenditure
+	56, // 7: financial_service.v1.GetUserCategoryMonthlyIncomeRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	60, // 8: financial_service.v1.GetUserCategoryMonthlyIncomeResponse.category_monthly_income:type_name -> financial_service.v1.CategoryMonthlyIncome
+	56, // 9: financial_service.v1.GetCategoryMonthlyTransactionCountRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	61, // 10: financial_service.v1.GetCategoryMonthlyTransactionCountResponse.category_monthly_transaction_count:type_name -> financial_service.v1.CategoryMonthlyTransactionCount
+	56, // 11: financial_service.v1.GetDebtToIncomeRatioRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	62, // 12: financial_service.v1.GetDebtToIncomeRatioResponse.debt_to_income_ratios:type_name -> financial_service.v1.DebtToIncomeRatio
+	56, // 13: financial_service.v1.GetExpenseMetricsRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	63, // 14: financial_service.v1.GetExpenseMetricsResponse.expense_metrics:type_name -> financial_service.v1.ExpenseMetrics
+	56, // 15: financial_service.v1.GetFinancialProfileRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	64, // 16: financial_service.v1.GetFinancialProfileResponse.financial_profiles:type_name -> financial_service.v1.FinancialProfile
+	56, // 17: financial_service.v1.GetIncomeExpenseRatioRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	65, // 18: financial_service.v1.GetIncomeExpenseRatioResponse.income_expense_ratios:type_name -> financial_service.v1.IncomeExpenseRatio
+	56, // 19: financial_service.v1.GetIncomeMetricsRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	66, // 20: financial_service.v1.GetIncomeMetricsResponse.income_metrics:type_name -> financial_service.v1.IncomeMetrics
+	56, // 21: financial_service.v1.GetMerchantMonthlyExpenditureRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	67, // 22: financial_service.v1.GetMerchantMonthlyExpenditureResponse.merchant_monthly_expenditures:type_name -> financial_service.v1.MerchantMonthlyExpenditure
+	56, // 23: financial_service.v1.GetMonthlyBalanceRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	68, // 24: financial_service.v1.GetMonthlyBalanceResponse.monthly_balances:type_name -> financial_service.v1.MonthlyBalance
+	56, // 25: financial_service.v1.GetMonthlyExpenditureRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	69, // 26: financial_service.v1.GetMonthlyExpenditureResponse.monthly_expenditures:type_name -> financial_service.v1.MonthlyExpenditure
+	56, // 27: financial_service.v1.GetMonthlyIncomeRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	70, // 28: financial_service.v1.GetMonthlyIncomeResponse.monthly_incomes:type_name -> financial_service.v1.MonthlyIncome
+	56, // 29: financial_service.v1.GetMonthlySavingsRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	71, // 30: financial_service.v1.GetMonthlySavingsResponse.monthly_savings:type_name -> financial_service.v1.MonthlySavings
+	56, // 31: financial_service.v1.GetMonthlyTotalQuantityBySecurityAndUserRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	72, // 32: financial_service.v1.GetMonthlyTotalQuantityBySecurityAndUserResponse.monthly_total_quantity_by_security_and_user:type_name -> financial_service.v1.MonthlyTotalQuantityBySecurityAndUser
+	56, // 33: financial_service.v1.GetMonthlyTransactionCountRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	73, // 34: financial_service.v1.GetMonthlyTransactionCountResponse.monthly_transaction_counts:type_name -> financial_service.v1.MonthlyTransactionCount
+	56, // 35: financial_service.v1.GetPaymentChannelMonthlyExpenditureRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	74, // 36: financial_service.v1.GetPaymentChannelMonthlyExpenditureResponse.payment_channel_monthly_expenditure:type_name -> financial_service.v1.PaymentChannelMonthlyExpenditure
+	56, // 37: financial_service.v1.GetTotalInvestmentBySecurityRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	75, // 38: financial_service.v1.GetTotalInvestmentBySecurityResponse.total_investment_by_security:type_name -> financial_service.v1.TotalInvestmentBySecurity
+	56, // 39: financial_service.v1.GetMelodyFinancialContextRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	76, // 40: financial_service.v1.GetMelodyFinancialContextResponse.melody_financial_context:type_name -> financial_service.v1.MelodyFinancialContext
+	56, // 41: financial_service.v1.GetHistoricalAccountBalanceRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	58, // 42: financial_service.v1.GetHistoricalAccountBalanceResponse.historical_account_balance:type_name -> financial_service.v1.AccountBalanceHistory
+	56, // 43: financial_service.v1.GetCategoryMetricsFinancialSubProfileOverTimeRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	77, // 44: financial_service.v1.GetCategoryMetricsFinancialSubProfileOverTimeResponse.data:type_name -> financial_service.v1.CategoryMetricsFinancialSubProfile
+	56, // 45: financial_service.v1.GetExpenseMetricsFinancialSubProfileOverTimeRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	78, // 46: financial_service.v1.GetExpenseMetricsFinancialSubProfileOverTimeResponse.data:type_name -> financial_service.v1.ExpenseMetricsFinancialSubProfileMetrics
+	56, // 47: financial_service.v1.GetIncomeMetricsFinancialSubProfileOverTimeRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	79, // 48: financial_service.v1.GetIncomeMetricsFinancialSubProfileOverTimeResponse.data:type_name -> financial_service.v1.IncomeMetricsFinancialSubProfile
+	56, // 49: financial_service.v1.GetLocationMetricsFinancialSubProfileOverTimeRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	80, // 50: financial_service.v1.GetLocationMetricsFinancialSubProfileOverTimeResponse.data:type_name -> financial_service.v1.LocationFinancialSubProfile
+	56, // 51: financial_service.v1.GetMerchantMetricsFinancialSubProfileOverTimeRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	81, // 52: financial_service.v1.GetMerchantMetricsFinancialSubProfileOverTimeResponse.data:type_name -> financial_service.v1.MerchantMetricsFinancialSubProfile
+	56, // 53: financial_service.v1.GetPaymentChannelFinancialSubProfileOverTimeRequest.profile_type:type_name -> financial_service.v1.FinancialUserProfileType
+	82, // 54: financial_service.v1.GetPaymentChannelFinancialSubProfileOverTimeResponse.data:type_name -> financial_service.v1.PaymentChannelMetricsFinancialSubProfile
+	55, // [55:55] is the sub-list for method output_type
+	55, // [55:55] is the sub-list for method input_type
+	55, // [55:55] is the sub-list for extension type_name
+	55, // [55:55] is the sub-list for extension extendee
+	0,  // [0:55] is the sub-list for field type_name
 }
 
 func init() { file_financial_service_v1_request_response_financial_analytics_service_proto_init() }
@@ -4301,6 +5277,150 @@ func file_financial_service_v1_request_response_financial_analytics_service_prot
 				return nil
 			}
 		}
+		file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[44].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCategoryMetricsFinancialSubProfileOverTimeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[45].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetCategoryMetricsFinancialSubProfileOverTimeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[46].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetExpenseMetricsFinancialSubProfileOverTimeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[47].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetExpenseMetricsFinancialSubProfileOverTimeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[48].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetIncomeMetricsFinancialSubProfileOverTimeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[49].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetIncomeMetricsFinancialSubProfileOverTimeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[50].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetLocationMetricsFinancialSubProfileOverTimeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[51].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetLocationMetricsFinancialSubProfileOverTimeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[52].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetMerchantMetricsFinancialSubProfileOverTimeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[53].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetMerchantMetricsFinancialSubProfileOverTimeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[54].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetPaymentChannelFinancialSubProfileOverTimeRequest); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
+		file_financial_service_v1_request_response_financial_analytics_service_proto_msgTypes[55].Exporter = func(v interface{}, i int) interface{} {
+			switch v := v.(*GetPaymentChannelFinancialSubProfileOverTimeResponse); i {
+			case 0:
+				return &v.state
+			case 1:
+				return &v.sizeCache
+			case 2:
+				return &v.unknownFields
+			default:
+				return nil
+			}
+		}
 	}
 	type x struct{}
 	out := protoimpl.TypeBuilder{
@@ -4308,7 +5428,7 @@ func file_financial_service_v1_request_response_financial_analytics_service_prot
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: file_financial_service_v1_request_response_financial_analytics_service_proto_rawDesc,
 			NumEnums:      0,
-			NumMessages:   44,
+			NumMessages:   56,
 			NumExtensions: 0,
 			NumServices:   0,
 		},

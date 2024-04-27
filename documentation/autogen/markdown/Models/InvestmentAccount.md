@@ -17,6 +17,7 @@
 | **securities** | [**List**](InvestmentSecurity.md) |  | [optional] [default to null] |
 | **status** | [**BankAccountStatus**](BankAccountStatus.md) |  | [optional] [default to null] |
 | **transactions** | [**List**](PlaidAccountInvestmentTransaction.md) |  | [optional] [default to null] |
+| **statements** | [**List**](AccountStatements.md) |  | [optional] [default to null] |
 
 [[Back to Model list]](../README.md#documentation-for-models) [[Back to API list]](../README.md#documentation-for-api-endpoints) [[Back to README]](../README.md)
 

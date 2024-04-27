@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 /**
  * The TaxRate object is used to represent a tax rate.
  * @export
@@ -85,9 +85,7 @@ export interface TaxRate {
  * Check if a given object implements the TaxRate interface.
  */
 export function instanceOfTaxRate(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function TaxRateFromJSON(json: any): TaxRate {
@@ -95,43 +93,40 @@ export function TaxRateFromJSON(json: any): TaxRate {
 }
 
 export function TaxRateFromJSONTyped(json: any, ignoreDiscriminator: boolean): TaxRate {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'id': !exists(json, 'id') ? undefined : json['id'],
-        'remoteId': !exists(json, 'remoteId') ? undefined : json['remoteId'],
-        'description': !exists(json, 'description') ? undefined : json['description'],
-        'totalTaxRate': !exists(json, 'totalTaxRate') ? undefined : json['totalTaxRate'],
-        'effectiveTaxRate': !exists(json, 'effectiveTaxRate') ? undefined : json['effectiveTaxRate'],
-        'company': !exists(json, 'company') ? undefined : json['company'],
-        'remoteWasDeleted': !exists(json, 'remoteWasDeleted') ? undefined : json['remoteWasDeleted'],
-        'modifiedAt': !exists(json, 'modifiedAt') ? undefined : (new Date(json['modifiedAt'])),
-        'mergeRecordId': !exists(json, 'mergeRecordId') ? undefined : json['mergeRecordId'],
-        'createdAt': !exists(json, 'createdAt') ? undefined : (new Date(json['createdAt'])),
+        'id': json['id'] == null ? undefined : json['id'],
+        'remoteId': json['remoteId'] == null ? undefined : json['remoteId'],
+        'description': json['description'] == null ? undefined : json['description'],
+        'totalTaxRate': json['totalTaxRate'] == null ? undefined : json['totalTaxRate'],
+        'effectiveTaxRate': json['effectiveTaxRate'] == null ? undefined : json['effectiveTaxRate'],
+        'company': json['company'] == null ? undefined : json['company'],
+        'remoteWasDeleted': json['remoteWasDeleted'] == null ? undefined : json['remoteWasDeleted'],
+        'modifiedAt': json['modifiedAt'] == null ? undefined : (new Date(json['modifiedAt'])),
+        'mergeRecordId': json['mergeRecordId'] == null ? undefined : json['mergeRecordId'],
+        'createdAt': json['createdAt'] == null ? undefined : (new Date(json['createdAt'])),
     };
 }
 
 export function TaxRateToJSON(value?: TaxRate | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'id': value.id,
-        'remoteId': value.remoteId,
-        'description': value.description,
-        'totalTaxRate': value.totalTaxRate,
-        'effectiveTaxRate': value.effectiveTaxRate,
-        'company': value.company,
-        'remoteWasDeleted': value.remoteWasDeleted,
-        'modifiedAt': value.modifiedAt === undefined ? undefined : (value.modifiedAt.toISOString()),
-        'mergeRecordId': value.mergeRecordId,
-        'createdAt': value.createdAt === undefined ? undefined : (value.createdAt.toISOString()),
+        'id': value['id'],
+        'remoteId': value['remoteId'],
+        'description': value['description'],
+        'totalTaxRate': value['totalTaxRate'],
+        'effectiveTaxRate': value['effectiveTaxRate'],
+        'company': value['company'],
+        'remoteWasDeleted': value['remoteWasDeleted'],
+        'modifiedAt': value['modifiedAt'] == null ? undefined : ((value['modifiedAt']).toISOString()),
+        'mergeRecordId': value['mergeRecordId'],
+        'createdAt': value['createdAt'] == null ? undefined : ((value['createdAt']).toISOString()),
     };
 }
 

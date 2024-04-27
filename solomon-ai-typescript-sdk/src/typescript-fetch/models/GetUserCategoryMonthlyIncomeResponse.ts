@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CategoryMonthlyIncome } from './CategoryMonthlyIncome';
 import {
     CategoryMonthlyIncomeFromJSON,
@@ -44,9 +44,7 @@ export interface GetUserCategoryMonthlyIncomeResponse {
  * Check if a given object implements the GetUserCategoryMonthlyIncomeResponse interface.
  */
 export function instanceOfGetUserCategoryMonthlyIncomeResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetUserCategoryMonthlyIncomeResponseFromJSON(json: any): GetUserCategoryMonthlyIncomeResponse {
@@ -54,27 +52,24 @@ export function GetUserCategoryMonthlyIncomeResponseFromJSON(json: any): GetUser
 }
 
 export function GetUserCategoryMonthlyIncomeResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetUserCategoryMonthlyIncomeResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'categoryMonthlyIncome': !exists(json, 'categoryMonthlyIncome') ? undefined : ((json['categoryMonthlyIncome'] as Array<any>).map(CategoryMonthlyIncomeFromJSON)),
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
+        'categoryMonthlyIncome': json['categoryMonthlyIncome'] == null ? undefined : ((json['categoryMonthlyIncome'] as Array<any>).map(CategoryMonthlyIncomeFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
     };
 }
 
 export function GetUserCategoryMonthlyIncomeResponseToJSON(value?: GetUserCategoryMonthlyIncomeResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'categoryMonthlyIncome': value.categoryMonthlyIncome === undefined ? undefined : ((value.categoryMonthlyIncome as Array<any>).map(CategoryMonthlyIncomeToJSON)),
-        'nextPageNumber': value.nextPageNumber,
+        'categoryMonthlyIncome': value['categoryMonthlyIncome'] == null ? undefined : ((value['categoryMonthlyIncome'] as Array<any>).map(CategoryMonthlyIncomeToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
     };
 }
 

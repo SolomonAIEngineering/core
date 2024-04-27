@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { CommunityProfile } from './CommunityProfile';
 import {
     CommunityProfileFromJSON,
@@ -44,9 +44,7 @@ export interface GetCommunityProfilesResponse {
  * Check if a given object implements the GetCommunityProfilesResponse interface.
  */
 export function instanceOfGetCommunityProfilesResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetCommunityProfilesResponseFromJSON(json: any): GetCommunityProfilesResponse {
@@ -54,27 +52,24 @@ export function GetCommunityProfilesResponseFromJSON(json: any): GetCommunityPro
 }
 
 export function GetCommunityProfilesResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetCommunityProfilesResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'nextPageNumber': !exists(json, 'nextPageNumber') ? undefined : json['nextPageNumber'],
-        'profiles': !exists(json, 'profiles') ? undefined : ((json['profiles'] as Array<any>).map(CommunityProfileFromJSON)),
+        'nextPageNumber': json['nextPageNumber'] == null ? undefined : json['nextPageNumber'],
+        'profiles': json['profiles'] == null ? undefined : ((json['profiles'] as Array<any>).map(CommunityProfileFromJSON)),
     };
 }
 
 export function GetCommunityProfilesResponseToJSON(value?: GetCommunityProfilesResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'nextPageNumber': value.nextPageNumber,
-        'profiles': value.profiles === undefined ? undefined : ((value.profiles as Array<any>).map(CommunityProfileToJSON)),
+        'nextPageNumber': value['nextPageNumber'],
+        'profiles': value['profiles'] == null ? undefined : ((value['profiles'] as Array<any>).map(CommunityProfileToJSON)),
     };
 }
 

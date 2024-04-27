@@ -29,6 +29,10 @@ export const FlsaStatus = {
 export type FlsaStatus = typeof FlsaStatus[keyof typeof FlsaStatus];
 
 
+export function instanceOfFlsaStatus(value: any): boolean {
+    return Object.values(FlsaStatus).includes(value);
+}
+
 export function FlsaStatusFromJSON(json: any): FlsaStatus {
     return FlsaStatusFromJSONTyped(json, false);
 }

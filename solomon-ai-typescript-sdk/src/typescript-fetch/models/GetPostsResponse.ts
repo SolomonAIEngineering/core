@@ -12,7 +12,7 @@
  * Do not edit the class manually.
  */
 
-import { exists, mapValues } from '../runtime';
+import { mapValues } from '../runtime';
 import type { Post } from './Post';
 import {
     PostFromJSON,
@@ -38,9 +38,7 @@ export interface GetPostsResponse {
  * Check if a given object implements the GetPostsResponse interface.
  */
 export function instanceOfGetPostsResponse(value: object): boolean {
-    let isInstance = true;
-
-    return isInstance;
+    return true;
 }
 
 export function GetPostsResponseFromJSON(json: any): GetPostsResponse {
@@ -48,25 +46,22 @@ export function GetPostsResponseFromJSON(json: any): GetPostsResponse {
 }
 
 export function GetPostsResponseFromJSONTyped(json: any, ignoreDiscriminator: boolean): GetPostsResponse {
-    if ((json === undefined) || (json === null)) {
+    if (json == null) {
         return json;
     }
     return {
         
-        'posts': !exists(json, 'posts') ? undefined : ((json['posts'] as Array<any>).map(PostFromJSON)),
+        'posts': json['posts'] == null ? undefined : ((json['posts'] as Array<any>).map(PostFromJSON)),
     };
 }
 
 export function GetPostsResponseToJSON(value?: GetPostsResponse | null): any {
-    if (value === undefined) {
-        return undefined;
-    }
-    if (value === null) {
-        return null;
+    if (value == null) {
+        return value;
     }
     return {
         
-        'posts': value.posts === undefined ? undefined : ((value.posts as Array<any>).map(PostToJSON)),
+        'posts': value['posts'] == null ? undefined : ((value['posts'] as Array<any>).map(PostToJSON)),
     };
 }
 
