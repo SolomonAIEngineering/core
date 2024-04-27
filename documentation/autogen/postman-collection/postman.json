@@ -9023,6 +9023,492 @@
                             ]
                         },
 	                        {
+    "name": "/financial-microservice/api/v1/financial-profile/category-metrics",
+                "description": "This endpoint gets category metrics for a financial sub profile over time",
+                 "item": [
+                            {
+                                "name": "Gets category metrics for a financial sub profile over time",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/financial-profile/category-metrics",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "financial-microservice",
+                                            "api",
+                                            "v1",
+                                            "financial-profile",
+                                            "category-metrics"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "userId",
+                                                "value": "userId_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "profileType",
+                                                "value": "profileType_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "personalFinanceCategoryPrimary",
+                                                "value": "personalFinanceCategoryPrimary_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "month",
+                                                "value": "789",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "pageNumber",
+                                                "value": "pageNumber_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "pageSize",
+                                                "value": "pageSize_example",
+                                                "description": "Number of items to return per page.",
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    "description": "This endpoint gets category metrics for a financial sub profile over time"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/financial-microservice/api/v1/financial-profile/expense-metrics",
+                "description": "This endpoint gets expense metrics for a financial sub profile over time",
+                 "item": [
+                            {
+                                "name": "Gets expense metrics for a financial sub profile over time",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/financial-profile/expense-metrics",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "financial-microservice",
+                                            "api",
+                                            "v1",
+                                            "financial-profile",
+                                            "expense-metrics"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "userId",
+                                                "value": "userId_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "profileType",
+                                                "value": "profileType_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "month",
+                                                "value": "789",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "pageNumber",
+                                                "value": "pageNumber_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "pageSize",
+                                                "value": "pageSize_example",
+                                                "description": "Number of items to return per page.",
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    "description": "This endpoint gets expense metrics for a financial sub profile over time"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/financial-microservice/api/v1/financial-profile/income-metrics",
+                "description": "This endpoint gets expense metrics for a financial sub profile over time",
+                 "item": [
+                            {
+                                "name": "Gets income metrics for a financial sub profile over time",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/financial-profile/income-metrics",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "financial-microservice",
+                                            "api",
+                                            "v1",
+                                            "financial-profile",
+                                            "income-metrics"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "userId",
+                                                "value": "userId_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "profileType",
+                                                "value": "profileType_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "month",
+                                                "value": "789",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "pageNumber",
+                                                "value": "pageNumber_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "pageSize",
+                                                "value": "pageSize_example",
+                                                "description": "Number of items to return per page.",
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    "description": "This endpoint gets expense metrics for a financial sub profile over time"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/financial-microservice/api/v1/financial-profile/location-metrics",
+                "description": "This endpoint gets location metrics for a financial sub profile over time",
+                 "item": [
+                            {
+                                "name": "Gets income metrics for a financial sub profile over time",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/financial-profile/location-metrics",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "financial-microservice",
+                                            "api",
+                                            "v1",
+                                            "financial-profile",
+                                            "location-metrics"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "userId",
+                                                "value": "userId_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "profileType",
+                                                "value": "profileType_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "month",
+                                                "value": "789",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "locationCity",
+                                                "value": "locationCity_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "pageNumber",
+                                                "value": "pageNumber_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "pageSize",
+                                                "value": "pageSize_example",
+                                                "description": "Number of items to return per page.",
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    "description": "This endpoint gets location metrics for a financial sub profile over time"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/financial-microservice/api/v1/financial-profile/merchant-metrics",
+                "description": "This endpoint gets merchant metrics for a financial sub profile over time",
+                 "item": [
+                            {
+                                "name": "Gets merchant metrics for a financial sub profile over time",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/financial-profile/merchant-metrics",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "financial-microservice",
+                                            "api",
+                                            "v1",
+                                            "financial-profile",
+                                            "merchant-metrics"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "userId",
+                                                "value": "userId_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "profileType",
+                                                "value": "profileType_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "month",
+                                                "value": "789",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "merchantName",
+                                                "value": "merchantName_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "pageNumber",
+                                                "value": "pageNumber_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "pageSize",
+                                                "value": "pageSize_example",
+                                                "description": "Number of items to return per page.",
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    "description": "This endpoint gets merchant metrics for a financial sub profile over time"
+                                }
+                            }
+                            ]
+                        },
+	                        {
+    "name": "/financial-microservice/api/v1/financial-profile/payment-channel-metrics",
+                "description": "This endpoint gets payment metrics for a financial sub profile over time",
+                 "item": [
+                            {
+                                "name": "Gets payment metrics for a financial sub profile over time",
+                                "request": {
+                                    "method": "GET",
+                                    "header": [
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/financial-profile/payment-channel-metrics",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "financial-microservice",
+                                            "api",
+                                            "v1",
+                                            "financial-profile",
+                                            "payment-channel-metrics"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                            {
+                                                "key": "userId",
+                                                "value": "userId_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "profileType",
+                                                "value": "profileType_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "month",
+                                                "value": "789",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "paymentChannel",
+                                                "value": "paymentChannel_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "pageNumber",
+                                                "value": "pageNumber_example",
+                                                "description": "",
+                                                "disabled": true
+                                            },
+                                            {
+                                                "key": "pageSize",
+                                                "value": "pageSize_example",
+                                                "description": "Number of items to return per page.",
+                                                "disabled": true
+                                            }
+                                        ]
+                                    },
+                                    "description": "This endpoint gets payment metrics for a financial sub profile over time"
+                                }
+                            }
+                            ]
+                        },
+	                        {
     "name": "/financial-microservice/api/v1/forecast/:smartGoalId",
                 "description": "This endpoint returns the forecast if the forecast exists",
                  "item": [

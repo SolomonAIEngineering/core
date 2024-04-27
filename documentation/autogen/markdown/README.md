@@ -56,18 +56,23 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *FinancialServiceApi* | [**getAllBudgets**](Apis/FinancialServiceApi.md#getallbudgets) | **GET** /financial-microservice/api/v1/budget | get all budgets |
 *FinancialServiceApi* | [**getBankAccount**](Apis/FinancialServiceApi.md#getbankaccount) | **GET** /financial-microservice/api/v1/bank-account/{bankAccountId} | get a bank account for a given user profile |
 *FinancialServiceApi* | [**getBudget**](Apis/FinancialServiceApi.md#getbudget) | **GET** /financial-microservice/api/v1/budget/{budgetId} | get budget by id |
+*FinancialServiceApi* | [**getCategoryMetricsFinancialSubProfileOverTime**](Apis/FinancialServiceApi.md#getcategorymetricsfinancialsubprofileovertime) | **GET** /financial-microservice/api/v1/financial-profile/category-metrics | Gets category metrics for a financial sub profile over time |
 *FinancialServiceApi* | [**getCategoryMonthlyTransactionCount**](Apis/FinancialServiceApi.md#getcategorymonthlytransactioncount) | **GET** /financial-microservice/api/v1/analytics/category-monthly-transaction-count/user/{userId} | Get monthly transaction count by user, month, and category |
 *FinancialServiceApi* | [**getDebtToIncomeRatio**](Apis/FinancialServiceApi.md#getdebttoincomeratio) | **GET** /financial-microservice/api/v1/analytics/debt-to-income-ratio/user/{userId} | Get Debt-to-Income ratio by user and month |
 *FinancialServiceApi* | [**getExpenseMetrics**](Apis/FinancialServiceApi.md#getexpensemetrics) | **GET** /financial-microservice/api/v1/analytics/expenses/user/{userId} | Get Expense Metrics by user, month and category |
+*FinancialServiceApi* | [**getExpenseMetricsFinancialSubProfileOverTime**](Apis/FinancialServiceApi.md#getexpensemetricsfinancialsubprofileovertime) | **GET** /financial-microservice/api/v1/financial-profile/expense-metrics | Gets expense metrics for a financial sub profile over time |
 *FinancialServiceApi* | [**getFinancialProfile**](Apis/FinancialServiceApi.md#getfinancialprofile) | **GET** /financial-microservice/api/v1/analytics/finance-profile/user/{userId} | Get Financial Profile by user and month |
 *FinancialServiceApi* | [**getForecast**](Apis/FinancialServiceApi.md#getforecast) | **GET** /financial-microservice/api/v1/forecast/{smartGoalId} | get forecast by id |
 *FinancialServiceApi* | [**getIncomeExpenseRatio**](Apis/FinancialServiceApi.md#getincomeexpenseratio) | **GET** /financial-microservice/api/v1/analytics/income-expense-ratio/user/{userId} | Get Income Expense Ratio by user and month |
 *FinancialServiceApi* | [**getIncomeMetrics**](Apis/FinancialServiceApi.md#getincomemetrics) | **GET** /financial-microservice/api/v1/analytics/income/user/{userId} | Get Income Metrics by user, month and category |
+*FinancialServiceApi* | [**getIncomeMetricsFinancialSubProfileOverTime**](Apis/FinancialServiceApi.md#getincomemetricsfinancialsubprofileovertime) | **GET** /financial-microservice/api/v1/financial-profile/income-metrics | Gets income metrics for a financial sub profile over time |
 *FinancialServiceApi* | [**getInvestmentAccount**](Apis/FinancialServiceApi.md#getinvestmentaccount) | **GET** /financial-microservice/api/v1/account/{userId}/investment/{investmentAccountId} | get investment account by id |
 *FinancialServiceApi* | [**getLiabilityAccount**](Apis/FinancialServiceApi.md#getliabilityaccount) | **GET** /financial-microservice/api/v1/account/{userId}/liability/{liabilityAccountId} | get liability account by id |
 *FinancialServiceApi* | [**getLink**](Apis/FinancialServiceApi.md#getlink) | **GET** /financial-microservice/api/v1/link/{linkId} | get link by id |
 *FinancialServiceApi* | [**getLinks**](Apis/FinancialServiceApi.md#getlinks) | **GET** /financial-microservice/api/v1/links/{userId} | get links |
+*FinancialServiceApi* | [**getLocationMetricsFinancialSubProfileOverTime**](Apis/FinancialServiceApi.md#getlocationmetricsfinancialsubprofileovertime) | **GET** /financial-microservice/api/v1/financial-profile/location-metrics | Gets income metrics for a financial sub profile over time |
 *FinancialServiceApi* | [**getMelodyFinancialContext**](Apis/FinancialServiceApi.md#getmelodyfinancialcontext) | **GET** /financial-microservice/api/v1/analytics/melody-financial-context/user/{userId} | Get Melody Financial Context |
+*FinancialServiceApi* | [**getMerchantMetricsFinancialSubProfileOverTime**](Apis/FinancialServiceApi.md#getmerchantmetricsfinancialsubprofileovertime) | **GET** /financial-microservice/api/v1/financial-profile/merchant-metrics | Gets merchant metrics for a financial sub profile over time |
 *FinancialServiceApi* | [**getMerchantMonthlyExpenditure**](Apis/FinancialServiceApi.md#getmerchantmonthlyexpenditure) | **GET** /financial-microservice/api/v1/analytics/merchant-monthly-expenditure/user/{userId} | Get Merchant Monthly Expenditure by user, month and merchant name |
 *FinancialServiceApi* | [**getMilestone**](Apis/FinancialServiceApi.md#getmilestone) | **GET** /financial-microservice/api/v1/milestone/{milestoneId} | get milestone by id |
 *FinancialServiceApi* | [**getMilestones**](Apis/FinancialServiceApi.md#getmilestones) | **GET** /financial-microservice/api/v1/milestone/smart-goal/{smartGoalId} | get milestones by smart goal id |
@@ -82,6 +87,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *FinancialServiceApi* | [**getNoteFromTransaction**](Apis/FinancialServiceApi.md#getnotefromtransaction) | **GET** /financial-microservice/api/v1/transactions/transaction/{transactionId}/note/{noteId} | gets a note from a transaction |
 *FinancialServiceApi* | [**getNotesFromFinancialUserProfile**](Apis/FinancialServiceApi.md#getnotesfromfinancialuserprofile) | **GET** /financial-microservice/api/v1/financial-profile/business/{businessAccountUserId}/{profileType}/note | Gets notes from a business account |
 *FinancialServiceApi* | [**getNotesFromSmartGoal**](Apis/FinancialServiceApi.md#getnotesfromsmartgoal) | **GET** /financial-microservice/api/v1/smart-goal/{smartGoalId}/note | gets notes from a smart goal |
+*FinancialServiceApi* | [**getPaymentChannelFinancialSubProfileOverTime**](Apis/FinancialServiceApi.md#getpaymentchannelfinancialsubprofileovertime) | **GET** /financial-microservice/api/v1/financial-profile/payment-channel-metrics | Gets payment metrics for a financial sub profile over time |
 *FinancialServiceApi* | [**getPaymentChannelMonthlyExpenditure**](Apis/FinancialServiceApi.md#getpaymentchannelmonthlyexpenditure) | **GET** /financial-microservice/api/v1/analytics/payment-channel-expenditure/user/{userId} | Get Payment Channel Monthly Expenditure by user, month, and payment channel |
 *FinancialServiceApi* | [**getPocket**](Apis/FinancialServiceApi.md#getpocket) | **GET** /financial-microservice/api/v1/pocket/{pocketId} | get a pocket |
 *FinancialServiceApi* | [**getRecurringTransaction**](Apis/FinancialServiceApi.md#getrecurringtransaction) | **GET** /financial-microservice/api/v1/transactions/recurring/{transactionId} | lists a set of transactions against a given account of interest |
@@ -470,6 +476,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [GetBudgetResponse](./Models/GetBudgetResponse.md)
  - [GetBusinessSettingsResponse](./Models/GetBusinessSettingsResponse.md)
  - [GetCannyUserSSOTokenResponse](./Models/GetCannyUserSSOTokenResponse.md)
+ - [GetCategoryMetricsFinancialSubProfileOverTimeResponse](./Models/GetCategoryMetricsFinancialSubProfileOverTimeResponse.md)
  - [GetCategoryMonthlyTransactionCountResponse](./Models/GetCategoryMonthlyTransactionCountResponse.md)
  - [GetCommentRepliesResponse](./Models/GetCommentRepliesResponse.md)
  - [GetCommunitiesUserFollowsResponse](./Models/GetCommunitiesUserFollowsResponse.md)
@@ -478,18 +485,22 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [GetCommunityProfileResponse](./Models/GetCommunityProfileResponse.md)
  - [GetCommunityProfilesResponse](./Models/GetCommunityProfilesResponse.md)
  - [GetDebtToIncomeRatioResponse](./Models/GetDebtToIncomeRatioResponse.md)
+ - [GetExpenseMetricsFinancialSubProfileOverTimeResponse](./Models/GetExpenseMetricsFinancialSubProfileOverTimeResponse.md)
  - [GetExpenseMetricsResponse](./Models/GetExpenseMetricsResponse.md)
  - [GetFinancialProfileResponse](./Models/GetFinancialProfileResponse.md)
  - [GetFollowersResponse](./Models/GetFollowersResponse.md)
  - [GetForecastResponse](./Models/GetForecastResponse.md)
  - [GetHistoricalAccountBalanceResponse](./Models/GetHistoricalAccountBalanceResponse.md)
  - [GetIncomeExpenseRatioResponse](./Models/GetIncomeExpenseRatioResponse.md)
+ - [GetIncomeMetricsFinancialSubProfileOverTimeResponse](./Models/GetIncomeMetricsFinancialSubProfileOverTimeResponse.md)
  - [GetIncomeMetricsResponse](./Models/GetIncomeMetricsResponse.md)
  - [GetInvestmentAcccountResponse](./Models/GetInvestmentAcccountResponse.md)
  - [GetLiabilityAccountResponse](./Models/GetLiabilityAccountResponse.md)
  - [GetLinkResponse](./Models/GetLinkResponse.md)
  - [GetLinksResponse](./Models/GetLinksResponse.md)
+ - [GetLocationMetricsFinancialSubProfileOverTimeResponse](./Models/GetLocationMetricsFinancialSubProfileOverTimeResponse.md)
  - [GetMelodyFinancialContextResponse](./Models/GetMelodyFinancialContextResponse.md)
+ - [GetMerchantMetricsFinancialSubProfileOverTimeResponse](./Models/GetMerchantMetricsFinancialSubProfileOverTimeResponse.md)
  - [GetMerchantMonthlyExpenditureResponse](./Models/GetMerchantMonthlyExpenditureResponse.md)
  - [GetMergeLinkTokenRequest](./Models/GetMergeLinkTokenRequest.md)
  - [GetMergeLinkTokenResponse](./Models/GetMergeLinkTokenResponse.md)
@@ -506,6 +517,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [GetNoteFromTransactionResponse](./Models/GetNoteFromTransactionResponse.md)
  - [GetNotesFromFinancialUserProfileResponse](./Models/GetNotesFromFinancialUserProfileResponse.md)
  - [GetNotesFromSmartGoalResponse](./Models/GetNotesFromSmartGoalResponse.md)
+ - [GetPaymentChannelFinancialSubProfileOverTimeResponse](./Models/GetPaymentChannelFinancialSubProfileOverTimeResponse.md)
  - [GetPaymentChannelMonthlyExpenditureResponse](./Models/GetPaymentChannelMonthlyExpenditureResponse.md)
  - [GetPendingFollowsResponse](./Models/GetPendingFollowsResponse.md)
  - [GetPocketResponse](./Models/GetPocketResponse.md)
