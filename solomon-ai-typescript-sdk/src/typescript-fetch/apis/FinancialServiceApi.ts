@@ -62,19 +62,24 @@ import type {
   GetAllBudgetsResponse,
   GetBankAccountResponse,
   GetBudgetResponse,
+  GetCategoryMetricsFinancialSubProfileOverTimeResponse,
   GetCategoryMonthlyTransactionCountResponse,
   GetDebtToIncomeRatioResponse,
+  GetExpenseMetricsFinancialSubProfileOverTimeResponse,
   GetExpenseMetricsResponse,
   GetFinancialProfileResponse,
   GetForecastResponse,
   GetHistoricalAccountBalanceResponse,
   GetIncomeExpenseRatioResponse,
+  GetIncomeMetricsFinancialSubProfileOverTimeResponse,
   GetIncomeMetricsResponse,
   GetInvestmentAcccountResponse,
   GetLiabilityAccountResponse,
   GetLinkResponse,
   GetLinksResponse,
+  GetLocationMetricsFinancialSubProfileOverTimeResponse,
   GetMelodyFinancialContextResponse,
+  GetMerchantMetricsFinancialSubProfileOverTimeResponse,
   GetMerchantMonthlyExpenditureResponse,
   GetMilestoneResponse,
   GetMilestonesBySmartGoalIdResponse,
@@ -89,6 +94,7 @@ import type {
   GetNoteFromTransactionResponse,
   GetNotesFromFinancialUserProfileResponse,
   GetNotesFromSmartGoalResponse,
+  GetPaymentChannelFinancialSubProfileOverTimeResponse,
   GetPaymentChannelMonthlyExpenditureResponse,
   GetPocketResponse,
   GetRecurringTransactionsForUserResponse,
@@ -254,10 +260,14 @@ import {
     GetBankAccountResponseToJSON,
     GetBudgetResponseFromJSON,
     GetBudgetResponseToJSON,
+    GetCategoryMetricsFinancialSubProfileOverTimeResponseFromJSON,
+    GetCategoryMetricsFinancialSubProfileOverTimeResponseToJSON,
     GetCategoryMonthlyTransactionCountResponseFromJSON,
     GetCategoryMonthlyTransactionCountResponseToJSON,
     GetDebtToIncomeRatioResponseFromJSON,
     GetDebtToIncomeRatioResponseToJSON,
+    GetExpenseMetricsFinancialSubProfileOverTimeResponseFromJSON,
+    GetExpenseMetricsFinancialSubProfileOverTimeResponseToJSON,
     GetExpenseMetricsResponseFromJSON,
     GetExpenseMetricsResponseToJSON,
     GetFinancialProfileResponseFromJSON,
@@ -268,6 +278,8 @@ import {
     GetHistoricalAccountBalanceResponseToJSON,
     GetIncomeExpenseRatioResponseFromJSON,
     GetIncomeExpenseRatioResponseToJSON,
+    GetIncomeMetricsFinancialSubProfileOverTimeResponseFromJSON,
+    GetIncomeMetricsFinancialSubProfileOverTimeResponseToJSON,
     GetIncomeMetricsResponseFromJSON,
     GetIncomeMetricsResponseToJSON,
     GetInvestmentAcccountResponseFromJSON,
@@ -278,8 +290,12 @@ import {
     GetLinkResponseToJSON,
     GetLinksResponseFromJSON,
     GetLinksResponseToJSON,
+    GetLocationMetricsFinancialSubProfileOverTimeResponseFromJSON,
+    GetLocationMetricsFinancialSubProfileOverTimeResponseToJSON,
     GetMelodyFinancialContextResponseFromJSON,
     GetMelodyFinancialContextResponseToJSON,
+    GetMerchantMetricsFinancialSubProfileOverTimeResponseFromJSON,
+    GetMerchantMetricsFinancialSubProfileOverTimeResponseToJSON,
     GetMerchantMonthlyExpenditureResponseFromJSON,
     GetMerchantMonthlyExpenditureResponseToJSON,
     GetMilestoneResponseFromJSON,
@@ -308,6 +324,8 @@ import {
     GetNotesFromFinancialUserProfileResponseToJSON,
     GetNotesFromSmartGoalResponseFromJSON,
     GetNotesFromSmartGoalResponseToJSON,
+    GetPaymentChannelFinancialSubProfileOverTimeResponseFromJSON,
+    GetPaymentChannelFinancialSubProfileOverTimeResponseToJSON,
     GetPaymentChannelMonthlyExpenditureResponseFromJSON,
     GetPaymentChannelMonthlyExpenditureResponseToJSON,
     GetPocketResponseFromJSON,
@@ -603,6 +621,15 @@ export interface GetBudgetRequest {
     budgetId: string;
 }
 
+export interface GetCategoryMetricsFinancialSubProfileOverTimeRequest {
+    userId?: string;
+    profileType?: GetCategoryMetricsFinancialSubProfileOverTimeProfileTypeEnum;
+    personalFinanceCategoryPrimary?: string;
+    month?: number;
+    pageNumber?: string;
+    pageSize?: string;
+}
+
 export interface GetCategoryMonthlyTransactionCountRequest {
     userId: string;
     month?: number;
@@ -627,6 +654,14 @@ export interface GetExpenseMetricsRequest {
     pageNumber?: string;
     pageSize?: string;
     profileType?: GetExpenseMetricsProfileTypeEnum;
+}
+
+export interface GetExpenseMetricsFinancialSubProfileOverTimeRequest {
+    userId?: string;
+    profileType?: GetExpenseMetricsFinancialSubProfileOverTimeProfileTypeEnum;
+    month?: number;
+    pageNumber?: string;
+    pageSize?: string;
 }
 
 export interface GetFinancialProfileRequest {
@@ -658,6 +693,14 @@ export interface GetIncomeMetricsRequest {
     profileType?: GetIncomeMetricsProfileTypeEnum;
 }
 
+export interface GetIncomeMetricsFinancialSubProfileOverTimeRequest {
+    userId?: string;
+    profileType?: GetIncomeMetricsFinancialSubProfileOverTimeProfileTypeEnum;
+    month?: number;
+    pageNumber?: string;
+    pageSize?: string;
+}
+
 export interface GetInvestmentAccountRequest {
     userId: string;
     investmentAccountId: string;
@@ -681,9 +724,27 @@ export interface GetLinksRequest {
     profileType: GetLinksProfileTypeEnum;
 }
 
+export interface GetLocationMetricsFinancialSubProfileOverTimeRequest {
+    userId?: string;
+    profileType?: GetLocationMetricsFinancialSubProfileOverTimeProfileTypeEnum;
+    month?: number;
+    locationCity?: string;
+    pageNumber?: string;
+    pageSize?: string;
+}
+
 export interface GetMelodyFinancialContextRequest {
     userId: string;
     profileType?: GetMelodyFinancialContextProfileTypeEnum;
+}
+
+export interface GetMerchantMetricsFinancialSubProfileOverTimeRequest {
+    userId?: string;
+    profileType?: GetMerchantMetricsFinancialSubProfileOverTimeProfileTypeEnum;
+    month?: number;
+    merchantName?: string;
+    pageNumber?: string;
+    pageSize?: string;
 }
 
 export interface GetMerchantMonthlyExpenditureRequest {
@@ -774,6 +835,15 @@ export interface GetNotesFromFinancialUserProfileRequest {
 
 export interface GetNotesFromSmartGoalRequest {
     smartGoalId: string;
+}
+
+export interface GetPaymentChannelFinancialSubProfileOverTimeRequest {
+    userId?: string;
+    profileType?: GetPaymentChannelFinancialSubProfileOverTimeProfileTypeEnum;
+    month?: number;
+    paymentChannel?: string;
+    pageNumber?: string;
+    pageSize?: string;
 }
 
 export interface GetPaymentChannelMonthlyExpenditureRequest {
@@ -2439,6 +2509,58 @@ export class FinancialServiceApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint gets category metrics for a financial sub profile over time
+     * Gets category metrics for a financial sub profile over time
+     */
+    async getCategoryMetricsFinancialSubProfileOverTimeRaw(requestParameters: GetCategoryMetricsFinancialSubProfileOverTimeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCategoryMetricsFinancialSubProfileOverTimeResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
+        }
+
+        if (requestParameters['personalFinanceCategoryPrimary'] != null) {
+            queryParameters['personalFinanceCategoryPrimary'] = requestParameters['personalFinanceCategoryPrimary'];
+        }
+
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
+        }
+
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/financial-microservice/api/v1/financial-profile/category-metrics`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetCategoryMetricsFinancialSubProfileOverTimeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint gets category metrics for a financial sub profile over time
+     * Gets category metrics for a financial sub profile over time
+     */
+    async getCategoryMetricsFinancialSubProfileOverTime(requestParameters: GetCategoryMetricsFinancialSubProfileOverTimeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetCategoryMetricsFinancialSubProfileOverTimeResponse> {
+        const response = await this.getCategoryMetricsFinancialSubProfileOverTimeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get monthly transaction count by user, month, and category
      */
     async getCategoryMonthlyTransactionCountRaw(requestParameters: GetCategoryMonthlyTransactionCountRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetCategoryMonthlyTransactionCountResponse>> {
@@ -2590,6 +2712,54 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      */
     async getExpenseMetrics(requestParameters: GetExpenseMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetExpenseMetricsResponse> {
         const response = await this.getExpenseMetricsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This endpoint gets expense metrics for a financial sub profile over time
+     * Gets expense metrics for a financial sub profile over time
+     */
+    async getExpenseMetricsFinancialSubProfileOverTimeRaw(requestParameters: GetExpenseMetricsFinancialSubProfileOverTimeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetExpenseMetricsFinancialSubProfileOverTimeResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
+        }
+
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
+        }
+
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/financial-microservice/api/v1/financial-profile/expense-metrics`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetExpenseMetricsFinancialSubProfileOverTimeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint gets expense metrics for a financial sub profile over time
+     * Gets expense metrics for a financial sub profile over time
+     */
+    async getExpenseMetricsFinancialSubProfileOverTime(requestParameters: GetExpenseMetricsFinancialSubProfileOverTimeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetExpenseMetricsFinancialSubProfileOverTimeResponse> {
+        const response = await this.getExpenseMetricsFinancialSubProfileOverTimeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2776,6 +2946,54 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      */
     async getIncomeMetrics(requestParameters: GetIncomeMetricsRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetIncomeMetricsResponse> {
         const response = await this.getIncomeMetricsRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This endpoint gets expense metrics for a financial sub profile over time
+     * Gets income metrics for a financial sub profile over time
+     */
+    async getIncomeMetricsFinancialSubProfileOverTimeRaw(requestParameters: GetIncomeMetricsFinancialSubProfileOverTimeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetIncomeMetricsFinancialSubProfileOverTimeResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
+        }
+
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
+        }
+
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/financial-microservice/api/v1/financial-profile/income-metrics`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetIncomeMetricsFinancialSubProfileOverTimeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint gets expense metrics for a financial sub profile over time
+     * Gets income metrics for a financial sub profile over time
+     */
+    async getIncomeMetricsFinancialSubProfileOverTime(requestParameters: GetIncomeMetricsFinancialSubProfileOverTimeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetIncomeMetricsFinancialSubProfileOverTimeResponse> {
+        const response = await this.getIncomeMetricsFinancialSubProfileOverTimeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -2989,6 +3207,58 @@ export class FinancialServiceApi extends runtime.BaseAPI {
     }
 
     /**
+     * This endpoint gets location metrics for a financial sub profile over time
+     * Gets income metrics for a financial sub profile over time
+     */
+    async getLocationMetricsFinancialSubProfileOverTimeRaw(requestParameters: GetLocationMetricsFinancialSubProfileOverTimeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetLocationMetricsFinancialSubProfileOverTimeResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
+        }
+
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
+        }
+
+        if (requestParameters['locationCity'] != null) {
+            queryParameters['locationCity'] = requestParameters['locationCity'];
+        }
+
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/financial-microservice/api/v1/financial-profile/location-metrics`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetLocationMetricsFinancialSubProfileOverTimeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint gets location metrics for a financial sub profile over time
+     * Gets income metrics for a financial sub profile over time
+     */
+    async getLocationMetricsFinancialSubProfileOverTime(requestParameters: GetLocationMetricsFinancialSubProfileOverTimeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetLocationMetricsFinancialSubProfileOverTimeResponse> {
+        const response = await this.getLocationMetricsFinancialSubProfileOverTimeRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
      * Get Melody Financial Context
      */
     async getMelodyFinancialContextRaw(requestParameters: GetMelodyFinancialContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMelodyFinancialContextResponse>> {
@@ -3022,6 +3292,58 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      */
     async getMelodyFinancialContext(requestParameters: GetMelodyFinancialContextRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMelodyFinancialContextResponse> {
         const response = await this.getMelodyFinancialContextRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This endpoint gets merchant metrics for a financial sub profile over time
+     * Gets merchant metrics for a financial sub profile over time
+     */
+    async getMerchantMetricsFinancialSubProfileOverTimeRaw(requestParameters: GetMerchantMetricsFinancialSubProfileOverTimeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetMerchantMetricsFinancialSubProfileOverTimeResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
+        }
+
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
+        }
+
+        if (requestParameters['merchantName'] != null) {
+            queryParameters['merchantName'] = requestParameters['merchantName'];
+        }
+
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/financial-microservice/api/v1/financial-profile/merchant-metrics`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetMerchantMetricsFinancialSubProfileOverTimeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint gets merchant metrics for a financial sub profile over time
+     * Gets merchant metrics for a financial sub profile over time
+     */
+    async getMerchantMetricsFinancialSubProfileOverTime(requestParameters: GetMerchantMetricsFinancialSubProfileOverTimeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetMerchantMetricsFinancialSubProfileOverTimeResponse> {
+        const response = await this.getMerchantMetricsFinancialSubProfileOverTimeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -3650,6 +3972,58 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      */
     async getNotesFromSmartGoal(requestParameters: GetNotesFromSmartGoalRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetNotesFromSmartGoalResponse> {
         const response = await this.getNotesFromSmartGoalRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This endpoint gets payment metrics for a financial sub profile over time
+     * Gets payment metrics for a financial sub profile over time
+     */
+    async getPaymentChannelFinancialSubProfileOverTimeRaw(requestParameters: GetPaymentChannelFinancialSubProfileOverTimeRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<GetPaymentChannelFinancialSubProfileOverTimeResponse>> {
+        const queryParameters: any = {};
+
+        if (requestParameters['userId'] != null) {
+            queryParameters['userId'] = requestParameters['userId'];
+        }
+
+        if (requestParameters['profileType'] != null) {
+            queryParameters['profileType'] = requestParameters['profileType'];
+        }
+
+        if (requestParameters['month'] != null) {
+            queryParameters['month'] = requestParameters['month'];
+        }
+
+        if (requestParameters['paymentChannel'] != null) {
+            queryParameters['paymentChannel'] = requestParameters['paymentChannel'];
+        }
+
+        if (requestParameters['pageNumber'] != null) {
+            queryParameters['pageNumber'] = requestParameters['pageNumber'];
+        }
+
+        if (requestParameters['pageSize'] != null) {
+            queryParameters['pageSize'] = requestParameters['pageSize'];
+        }
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        const response = await this.request({
+            path: `/financial-microservice/api/v1/financial-profile/payment-channel-metrics`,
+            method: 'GET',
+            headers: headerParameters,
+            query: queryParameters,
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => GetPaymentChannelFinancialSubProfileOverTimeResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint gets payment metrics for a financial sub profile over time
+     * Gets payment metrics for a financial sub profile over time
+     */
+    async getPaymentChannelFinancialSubProfileOverTime(requestParameters: GetPaymentChannelFinancialSubProfileOverTimeRequest = {}, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<GetPaymentChannelFinancialSubProfileOverTimeResponse> {
+        const response = await this.getPaymentChannelFinancialSubProfileOverTimeRaw(requestParameters, initOverrides);
         return await response.value();
     }
 
@@ -5713,6 +6087,15 @@ export type GetAccountBalanceProfileTypeEnum = typeof GetAccountBalanceProfileTy
 /**
  * @export
  */
+export const GetCategoryMetricsFinancialSubProfileOverTimeProfileTypeEnum = {
+    Unspecified: 'FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED',
+    User: 'FINANCIAL_USER_PROFILE_TYPE_USER',
+    Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
+} as const;
+export type GetCategoryMetricsFinancialSubProfileOverTimeProfileTypeEnum = typeof GetCategoryMetricsFinancialSubProfileOverTimeProfileTypeEnum[keyof typeof GetCategoryMetricsFinancialSubProfileOverTimeProfileTypeEnum];
+/**
+ * @export
+ */
 export const GetCategoryMonthlyTransactionCountProfileTypeEnum = {
     Unspecified: 'FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED',
     User: 'FINANCIAL_USER_PROFILE_TYPE_USER',
@@ -5740,6 +6123,15 @@ export type GetExpenseMetricsProfileTypeEnum = typeof GetExpenseMetricsProfileTy
 /**
  * @export
  */
+export const GetExpenseMetricsFinancialSubProfileOverTimeProfileTypeEnum = {
+    Unspecified: 'FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED',
+    User: 'FINANCIAL_USER_PROFILE_TYPE_USER',
+    Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
+} as const;
+export type GetExpenseMetricsFinancialSubProfileOverTimeProfileTypeEnum = typeof GetExpenseMetricsFinancialSubProfileOverTimeProfileTypeEnum[keyof typeof GetExpenseMetricsFinancialSubProfileOverTimeProfileTypeEnum];
+/**
+ * @export
+ */
 export const GetFinancialProfileProfileTypeEnum = {
     Unspecified: 'FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED',
     User: 'FINANCIAL_USER_PROFILE_TYPE_USER',
@@ -5764,6 +6156,15 @@ export const GetIncomeMetricsProfileTypeEnum = {
     Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
 } as const;
 export type GetIncomeMetricsProfileTypeEnum = typeof GetIncomeMetricsProfileTypeEnum[keyof typeof GetIncomeMetricsProfileTypeEnum];
+/**
+ * @export
+ */
+export const GetIncomeMetricsFinancialSubProfileOverTimeProfileTypeEnum = {
+    Unspecified: 'FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED',
+    User: 'FINANCIAL_USER_PROFILE_TYPE_USER',
+    Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
+} as const;
+export type GetIncomeMetricsFinancialSubProfileOverTimeProfileTypeEnum = typeof GetIncomeMetricsFinancialSubProfileOverTimeProfileTypeEnum[keyof typeof GetIncomeMetricsFinancialSubProfileOverTimeProfileTypeEnum];
 /**
  * @export
  */
@@ -5803,12 +6204,30 @@ export type GetLinksProfileTypeEnum = typeof GetLinksProfileTypeEnum[keyof typeo
 /**
  * @export
  */
+export const GetLocationMetricsFinancialSubProfileOverTimeProfileTypeEnum = {
+    Unspecified: 'FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED',
+    User: 'FINANCIAL_USER_PROFILE_TYPE_USER',
+    Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
+} as const;
+export type GetLocationMetricsFinancialSubProfileOverTimeProfileTypeEnum = typeof GetLocationMetricsFinancialSubProfileOverTimeProfileTypeEnum[keyof typeof GetLocationMetricsFinancialSubProfileOverTimeProfileTypeEnum];
+/**
+ * @export
+ */
 export const GetMelodyFinancialContextProfileTypeEnum = {
     Unspecified: 'FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED',
     User: 'FINANCIAL_USER_PROFILE_TYPE_USER',
     Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
 } as const;
 export type GetMelodyFinancialContextProfileTypeEnum = typeof GetMelodyFinancialContextProfileTypeEnum[keyof typeof GetMelodyFinancialContextProfileTypeEnum];
+/**
+ * @export
+ */
+export const GetMerchantMetricsFinancialSubProfileOverTimeProfileTypeEnum = {
+    Unspecified: 'FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED',
+    User: 'FINANCIAL_USER_PROFILE_TYPE_USER',
+    Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
+} as const;
+export type GetMerchantMetricsFinancialSubProfileOverTimeProfileTypeEnum = typeof GetMerchantMetricsFinancialSubProfileOverTimeProfileTypeEnum[keyof typeof GetMerchantMetricsFinancialSubProfileOverTimeProfileTypeEnum];
 /**
  * @export
  */
@@ -5890,6 +6309,15 @@ export const GetNotesFromFinancialUserProfileProfileTypeEnum = {
     Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
 } as const;
 export type GetNotesFromFinancialUserProfileProfileTypeEnum = typeof GetNotesFromFinancialUserProfileProfileTypeEnum[keyof typeof GetNotesFromFinancialUserProfileProfileTypeEnum];
+/**
+ * @export
+ */
+export const GetPaymentChannelFinancialSubProfileOverTimeProfileTypeEnum = {
+    Unspecified: 'FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED',
+    User: 'FINANCIAL_USER_PROFILE_TYPE_USER',
+    Business: 'FINANCIAL_USER_PROFILE_TYPE_BUSINESS'
+} as const;
+export type GetPaymentChannelFinancialSubProfileOverTimeProfileTypeEnum = typeof GetPaymentChannelFinancialSubProfileOverTimeProfileTypeEnum[keyof typeof GetPaymentChannelFinancialSubProfileOverTimeProfileTypeEnum];
 /**
  * @export
  */

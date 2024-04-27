@@ -2337,4 +2337,136 @@ service FinancialService {
           }
       };
     }
+
+     rpc GetCategoryMetricsFinancialSubProfileOverTime(GetCategoryMetricsFinancialSubProfileOverTimeRequest) returns (GetCategoryMetricsFinancialSubProfileOverTimeResponse) {
+        option (google.api.http) = {
+            get: "/financial-microservice/api/v1/financial-profile/category-metrics"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          summary: "Gets category metrics for a financial sub profile over time"
+          tags: ["financial-service"]
+          operation_id: "GetCategoryMetricsFinancialSubProfileOverTime"
+          description: 
+              "This endpoint gets category metrics for a financial sub profile over time"
+          responses: {
+              key: "200"
+              value: {
+                  description: "A successful response."
+                  schema: {
+                      json_schema: {ref: ".financial_service.v1.GetCategoryMetricsFinancialSubProfileOverTimeResponse"}
+                  }
+              }
+          }
+        };
+    }
+
+    rpc GetExpenseMetricsFinancialSubProfileOverTime(GetExpenseMetricsFinancialSubProfileOverTimeRequest) returns (GetExpenseMetricsFinancialSubProfileOverTimeResponse) {
+        option (google.api.http) = {
+            get: "/financial-microservice/api/v1/financial-profile/expense-metrics"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          summary: "Gets expense metrics for a financial sub profile over time"
+          tags: ["financial-service"]
+          operation_id: "GetExpenseMetricsFinancialSubProfileOverTime"
+          description: 
+              "This endpoint gets expense metrics for a financial sub profile over time"
+          responses: {
+              key: "200"
+              value: {
+                  description: "A successful response."
+                  schema: {
+                      json_schema: {ref: ".financial_service.v1.GetExpenseMetricsFinancialSubProfileOverTimeResponse"}
+                  }
+              }
+          }
+        };
+    }
+
+    rpc GetIncomeMetricsFinancialSubProfileOverTime(GetIncomeMetricsFinancialSubProfileOverTimeRequest) returns (GetIncomeMetricsFinancialSubProfileOverTimeResponse) {
+        option (google.api.http) = {
+            get: "/financial-microservice/api/v1/financial-profile/income-metrics"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          summary: "Gets income metrics for a financial sub profile over time"
+          tags: ["financial-service"]
+          operation_id: "GetIncomeMetricsFinancialSubProfileOverTime"
+          description: 
+              "This endpoint gets expense metrics for a financial sub profile over time"
+          responses: {
+              key: "200"
+              value: {
+                  description: "A successful response."
+                  schema: {
+                      json_schema: {ref: ".financial_service.v1.GetIncomeMetricsFinancialSubProfileOverTimeResponse"}
+                  }
+              }
+          }
+        };
+    }
+
+    rpc GetLocationMetricsFinancialSubProfileOverTime(GetLocationMetricsFinancialSubProfileOverTimeRequest) returns (GetLocationMetricsFinancialSubProfileOverTimeResponse) {
+        option (google.api.http) = {
+            get: "/financial-microservice/api/v1/financial-profile/location-metrics"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          summary: "Gets income metrics for a financial sub profile over time"
+          tags: ["financial-service"]
+          operation_id: "GetLocationMetricsFinancialSubProfileOverTime"
+          description: 
+              "This endpoint gets location metrics for a financial sub profile over time"
+          responses: {
+              key: "200"
+              value: {
+                  description: "A successful response."
+                  schema: {
+                      json_schema: {ref: ".financial_service.v1.GetLocationMetricsFinancialSubProfileOverTimeResponse"}
+                  }
+              }
+          }
+        };
+    }
+
+    rpc GetMerchantMetricsFinancialSubProfileOverTime(GetMerchantMetricsFinancialSubProfileOverTimeRequest) returns (GetMerchantMetricsFinancialSubProfileOverTimeResponse) {
+        option (google.api.http) = {
+            get: "/financial-microservice/api/v1/financial-profile/merchant-metrics"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          summary: "Gets merchant metrics for a financial sub profile over time"
+          tags: ["financial-service"]
+          operation_id: "GetMerchantMetricsFinancialSubProfileOverTime"
+          description: 
+              "This endpoint gets merchant metrics for a financial sub profile over time"
+          responses: {
+              key: "200"
+              value: {
+                  description: "A successful response."
+                  schema: {
+                      json_schema: {ref: ".financial_service.v1.GetMerchantMetricsFinancialSubProfileOverTimeResponse"}
+                  }
+              }
+          }
+        };
+    }
+
+    rpc GetPaymentChannelFinancialSubProfileOverTime(GetPaymentChannelFinancialSubProfileOverTimeRequest) returns (GetPaymentChannelFinancialSubProfileOverTimeResponse) {
+        option (google.api.http) = {
+            get: "/financial-microservice/api/v1/financial-profile/payment-channel-metrics"
+        };
+        option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+          summary: "Gets payment metrics for a financial sub profile over time"
+          tags: ["financial-service"]
+          operation_id: "GetPaymentChannelFinancialSubProfileOverTime"
+          description: 
+              "This endpoint gets payment metrics for a financial sub profile over time"
+          responses: {
+              key: "200"
+              value: {
+                  description: "A successful response."
+                  schema: {
+                      json_schema: {ref: ".financial_service.v1.GetPaymentChannelFinancialSubProfileOverTimeResponse"}
+                  }
+              }
+          }
+        };
+    }
 }

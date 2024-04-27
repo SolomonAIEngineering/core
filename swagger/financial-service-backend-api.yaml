@@ -2570,6 +2570,469 @@ paths:
               - FINANCIAL_USER_PROFILE_TYPE_BUSINESS
       tags:
         - financial-service
+  /financial-microservice/api/v1/financial-profile/category-metrics:
+    get:
+      summary: Gets category metrics for a financial sub profile over time
+      description: This endpoint gets category metrics for a financial sub profile over time
+      operationId: GetCategoryMetricsFinancialSubProfileOverTime
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetCategoryMetricsFinancialSubProfileOverTimeRespon\
+                  se"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: profileType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+              - FINANCIAL_USER_PROFILE_TYPE_USER
+              - FINANCIAL_USER_PROFILE_TYPE_BUSINESS
+            default: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+        - name: personalFinanceCategoryPrimary
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: month
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+            format: int64
+        - name: pageSize
+          description: Number of items to return per page.
+          in: query
+          required: false
+          schema:
+            type: string
+            format: int64
+      tags:
+        - financial-service
+  /financial-microservice/api/v1/financial-profile/expense-metrics:
+    get:
+      summary: Gets expense metrics for a financial sub profile over time
+      description: This endpoint gets expense metrics for a financial sub profile over time
+      operationId: GetExpenseMetricsFinancialSubProfileOverTime
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetExpenseMetricsFinancialSubProfileOverTimeRespons\
+                  e"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: profileType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+              - FINANCIAL_USER_PROFILE_TYPE_USER
+              - FINANCIAL_USER_PROFILE_TYPE_BUSINESS
+            default: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+        - name: month
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+            format: int64
+        - name: pageSize
+          description: Number of items to return per page.
+          in: query
+          required: false
+          schema:
+            type: string
+            format: int64
+      tags:
+        - financial-service
+  /financial-microservice/api/v1/financial-profile/income-metrics:
+    get:
+      summary: Gets income metrics for a financial sub profile over time
+      description: This endpoint gets expense metrics for a financial sub profile over time
+      operationId: GetIncomeMetricsFinancialSubProfileOverTime
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetIncomeMetricsFinancialSubProfileOverTimeResponse"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: profileType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+              - FINANCIAL_USER_PROFILE_TYPE_USER
+              - FINANCIAL_USER_PROFILE_TYPE_BUSINESS
+            default: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+        - name: month
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+            format: int64
+        - name: pageSize
+          description: Number of items to return per page.
+          in: query
+          required: false
+          schema:
+            type: string
+            format: int64
+      tags:
+        - financial-service
+  /financial-microservice/api/v1/financial-profile/location-metrics:
+    get:
+      summary: Gets income metrics for a financial sub profile over time
+      description: This endpoint gets location metrics for a financial sub profile over time
+      operationId: GetLocationMetricsFinancialSubProfileOverTime
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetLocationMetricsFinancialSubProfileOverTimeRespon\
+                  se"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: profileType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+              - FINANCIAL_USER_PROFILE_TYPE_USER
+              - FINANCIAL_USER_PROFILE_TYPE_BUSINESS
+            default: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+        - name: month
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: locationCity
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+            format: int64
+        - name: pageSize
+          description: Number of items to return per page.
+          in: query
+          required: false
+          schema:
+            type: string
+            format: int64
+      tags:
+        - financial-service
+  /financial-microservice/api/v1/financial-profile/merchant-metrics:
+    get:
+      summary: Gets merchant metrics for a financial sub profile over time
+      description: This endpoint gets merchant metrics for a financial sub profile over time
+      operationId: GetMerchantMetricsFinancialSubProfileOverTime
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetMerchantMetricsFinancialSubProfileOverTimeRespon\
+                  se"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: profileType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+              - FINANCIAL_USER_PROFILE_TYPE_USER
+              - FINANCIAL_USER_PROFILE_TYPE_BUSINESS
+            default: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+        - name: month
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: merchantName
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+            format: int64
+        - name: pageSize
+          description: Number of items to return per page.
+          in: query
+          required: false
+          schema:
+            type: string
+            format: int64
+      tags:
+        - financial-service
+  /financial-microservice/api/v1/financial-profile/payment-channel-metrics:
+    get:
+      summary: Gets payment metrics for a financial sub profile over time
+      description: This endpoint gets payment metrics for a financial sub profile over time
+      operationId: GetPaymentChannelFinancialSubProfileOverTime
+      responses:
+        "200":
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/GetPaymentChannelFinancialSubProfileOverTimeRespons\
+                  e"
+        "400":
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ValidationErrorMessageResponse"
+        "404":
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/PathUnknownErrorMessageResponse"
+        "500":
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/InternalErrorMessageResponse"
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/Status"
+      parameters:
+        - name: userId
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: profileType
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+              - FINANCIAL_USER_PROFILE_TYPE_USER
+              - FINANCIAL_USER_PROFILE_TYPE_BUSINESS
+            default: FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED
+        - name: month
+          in: query
+          required: false
+          schema:
+            type: integer
+            format: int64
+        - name: paymentChannel
+          in: query
+          required: false
+          schema:
+            type: string
+        - name: pageNumber
+          in: query
+          required: false
+          schema:
+            type: string
+            format: int64
+        - name: pageSize
+          description: Number of items to return per page.
+          in: query
+          required: false
+          schema:
+            type: string
+            format: int64
+      tags:
+        - financial-service
   "/financial-microservice/api/v1/forecast/{smartGoalId}":
     get:
       summary: get forecast by id
@@ -7344,6 +7807,13 @@ components:
       properties:
         budget:
           $ref: "#/components/schemas/Budget"
+    GetCategoryMetricsFinancialSubProfileOverTimeResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/CategoryMetricsFinancialSubProfile"
     GetCategoryMonthlyTransactionCountResponse:
       type: object
       properties:
@@ -7364,6 +7834,13 @@ components:
         nextPageNumber:
           type: string
           format: int64
+    GetExpenseMetricsFinancialSubProfileOverTimeResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/ExpenseMetricsFinancialSubProfileMetrics"
     GetExpenseMetricsResponse:
       type: object
       properties:
@@ -7406,6 +7883,13 @@ components:
         nextPageNumber:
           type: string
           format: int64
+    GetIncomeMetricsFinancialSubProfileOverTimeResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/IncomeMetricsFinancialSubProfile"
     GetIncomeMetricsResponse:
       type: object
       properties:
@@ -7439,11 +7923,25 @@ components:
           items:
             $ref: "#/components/schemas/Link"
           title: The links
+    GetLocationMetricsFinancialSubProfileOverTimeResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/LocationFinancialSubProfile"
     GetMelodyFinancialContextResponse:
       type: object
       properties:
         melodyFinancialContext:
           $ref: "#/components/schemas/MelodyFinancialContext"
+    GetMerchantMetricsFinancialSubProfileOverTimeResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/MerchantMetricsFinancialSubProfile"
     GetMerchantMonthlyExpenditureResponse:
       type: object
       properties:
@@ -7558,6 +8056,13 @@ components:
           items:
             $ref: "#/components/schemas/SmartNote"
           title: The notes
+    GetPaymentChannelFinancialSubProfileOverTimeResponse:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: "#/components/schemas/PaymentChannelMetricsFinancialSubProfile"
     GetPaymentChannelMonthlyExpenditureResponse:
       type: object
       properties:

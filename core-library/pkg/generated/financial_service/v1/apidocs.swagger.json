@@ -2884,6 +2884,534 @@
         ]
       }
     },
+    "/financial-microservice/api/v1/financial-profile/category-metrics": {
+      "get": {
+        "summary": "Gets category metrics for a financial sub profile over time",
+        "description": "This endpoint gets category metrics for a financial sub profile over time",
+        "operationId": "GetCategoryMetricsFinancialSubProfileOverTime",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetCategoryMetricsFinancialSubProfileOverTimeResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "profileType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED",
+              "FINANCIAL_USER_PROFILE_TYPE_USER",
+              "FINANCIAL_USER_PROFILE_TYPE_BUSINESS"
+            ],
+            "default": "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED"
+          },
+          {
+            "name": "personalFinanceCategoryPrimary",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "pageSize",
+            "description": "Number of items to return per page.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "financial-service"
+        ]
+      }
+    },
+    "/financial-microservice/api/v1/financial-profile/expense-metrics": {
+      "get": {
+        "summary": "Gets expense metrics for a financial sub profile over time",
+        "description": "This endpoint gets expense metrics for a financial sub profile over time",
+        "operationId": "GetExpenseMetricsFinancialSubProfileOverTime",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetExpenseMetricsFinancialSubProfileOverTimeResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "profileType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED",
+              "FINANCIAL_USER_PROFILE_TYPE_USER",
+              "FINANCIAL_USER_PROFILE_TYPE_BUSINESS"
+            ],
+            "default": "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED"
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "pageSize",
+            "description": "Number of items to return per page.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "financial-service"
+        ]
+      }
+    },
+    "/financial-microservice/api/v1/financial-profile/income-metrics": {
+      "get": {
+        "summary": "Gets income metrics for a financial sub profile over time",
+        "description": "This endpoint gets expense metrics for a financial sub profile over time",
+        "operationId": "GetIncomeMetricsFinancialSubProfileOverTime",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetIncomeMetricsFinancialSubProfileOverTimeResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "profileType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED",
+              "FINANCIAL_USER_PROFILE_TYPE_USER",
+              "FINANCIAL_USER_PROFILE_TYPE_BUSINESS"
+            ],
+            "default": "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED"
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "pageSize",
+            "description": "Number of items to return per page.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "financial-service"
+        ]
+      }
+    },
+    "/financial-microservice/api/v1/financial-profile/location-metrics": {
+      "get": {
+        "summary": "Gets income metrics for a financial sub profile over time",
+        "description": "This endpoint gets location metrics for a financial sub profile over time",
+        "operationId": "GetLocationMetricsFinancialSubProfileOverTime",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetLocationMetricsFinancialSubProfileOverTimeResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "profileType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED",
+              "FINANCIAL_USER_PROFILE_TYPE_USER",
+              "FINANCIAL_USER_PROFILE_TYPE_BUSINESS"
+            ],
+            "default": "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED"
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "locationCity",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "pageSize",
+            "description": "Number of items to return per page.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "financial-service"
+        ]
+      }
+    },
+    "/financial-microservice/api/v1/financial-profile/merchant-metrics": {
+      "get": {
+        "summary": "Gets merchant metrics for a financial sub profile over time",
+        "description": "This endpoint gets merchant metrics for a financial sub profile over time",
+        "operationId": "GetMerchantMetricsFinancialSubProfileOverTime",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetMerchantMetricsFinancialSubProfileOverTimeResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "profileType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED",
+              "FINANCIAL_USER_PROFILE_TYPE_USER",
+              "FINANCIAL_USER_PROFILE_TYPE_BUSINESS"
+            ],
+            "default": "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED"
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "merchantName",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "pageSize",
+            "description": "Number of items to return per page.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "financial-service"
+        ]
+      }
+    },
+    "/financial-microservice/api/v1/financial-profile/payment-channel-metrics": {
+      "get": {
+        "summary": "Gets payment metrics for a financial sub profile over time",
+        "description": "This endpoint gets payment metrics for a financial sub profile over time",
+        "operationId": "GetPaymentChannelFinancialSubProfileOverTime",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/GetPaymentChannelFinancialSubProfileOverTimeResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "userId",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "profileType",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "enum": [
+              "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED",
+              "FINANCIAL_USER_PROFILE_TYPE_USER",
+              "FINANCIAL_USER_PROFILE_TYPE_BUSINESS"
+            ],
+            "default": "FINANCIAL_USER_PROFILE_TYPE_UNSPECIFIED"
+          },
+          {
+            "name": "month",
+            "in": "query",
+            "required": false,
+            "type": "integer",
+            "format": "int64"
+          },
+          {
+            "name": "paymentChannel",
+            "in": "query",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "pageNumber",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          },
+          {
+            "name": "pageSize",
+            "description": "Number of items to return per page.",
+            "in": "query",
+            "required": false,
+            "type": "string",
+            "format": "int64"
+          }
+        ],
+        "tags": [
+          "financial-service"
+        ]
+      }
+    },
     "/financial-microservice/api/v1/forecast/{smartGoalId}": {
       "get": {
         "summary": "get forecast by id",
@@ -8204,6 +8732,18 @@
         }
       }
     },
+    "GetCategoryMetricsFinancialSubProfileOverTimeResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/CategoryMetricsFinancialSubProfile"
+          }
+        }
+      }
+    },
     "GetCategoryMonthlyTransactionCountResponse": {
       "type": "object",
       "properties": {
@@ -8233,6 +8773,18 @@
         "nextPageNumber": {
           "type": "string",
           "format": "int64"
+        }
+      }
+    },
+    "GetExpenseMetricsFinancialSubProfileOverTimeResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/ExpenseMetricsFinancialSubProfileMetrics"
+          }
         }
       }
     },
@@ -8305,6 +8857,18 @@
         }
       }
     },
+    "GetIncomeMetricsFinancialSubProfileOverTimeResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/IncomeMetricsFinancialSubProfile"
+          }
+        }
+      }
+    },
     "GetIncomeMetricsResponse": {
       "type": "object",
       "properties": {
@@ -8361,11 +8925,35 @@
         }
       }
     },
+    "GetLocationMetricsFinancialSubProfileOverTimeResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/LocationFinancialSubProfile"
+          }
+        }
+      }
+    },
     "GetMelodyFinancialContextResponse": {
       "type": "object",
       "properties": {
         "melodyFinancialContext": {
           "$ref": "#/definitions/MelodyFinancialContext"
+        }
+      }
+    },
+    "GetMerchantMetricsFinancialSubProfileOverTimeResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/MerchantMetricsFinancialSubProfile"
+          }
         }
       }
     },
@@ -8553,6 +9141,18 @@
             "$ref": "#/definitions/SmartNote"
           },
           "title": "The notes"
+        }
+      }
+    },
+    "GetPaymentChannelFinancialSubProfileOverTimeResponse": {
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "$ref": "#/definitions/PaymentChannelMetricsFinancialSubProfile"
+          }
         }
       }
     },
