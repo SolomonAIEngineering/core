@@ -1267,7 +1267,7 @@ func (m *CreditAccount) ToORM(ctx context.Context) (CreditAccountORM, error) {
 	to.UserId = m.UserId
 	to.Name = m.Name
 	to.Number = m.Number
-	to.Type = m.Type
+	to.Type = BankAccountType_name[int32(m.Type)]
 	to.Balance = m.Balance
 	to.CurrentFunds = m.CurrentFunds
 	to.BalanceLimit = m.BalanceLimit
@@ -1358,7 +1358,7 @@ func (m *CreditAccountORM) ToPB(ctx context.Context) (CreditAccount, error) {
 	to.UserId = m.UserId
 	to.Name = m.Name
 	to.Number = m.Number
-	to.Type = m.Type
+	to.Type = BankAccountType(BankAccountType_value[m.Type])
 	to.Balance = m.Balance
 	to.CurrentFunds = m.CurrentFunds
 	to.BalanceLimit = m.BalanceLimit
@@ -1492,6 +1492,7 @@ type MortgageAccountORM struct {
 	PropertyRegion              string
 	Statements                  []*AccountStatementsORM `gorm:"foreignkey:MortgageAccountId;association_foreignkey:Id;preload:true"`
 	Status                      string
+	Type                        string
 	YtdInterestPaid             float64
 	YtdPrincipalPaid            float64
 }
@@ -1555,6 +1556,7 @@ func (m *MortgageAccount) ToORM(ctx context.Context) (MortgageAccountORM, error)
 			to.Statements = append(to.Statements, nil)
 		}
 	}
+	to.Type = BankAccountType_name[int32(m.Type)]
 	if posthook, ok := interface{}(m).(MortgageAccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -1615,6 +1617,7 @@ func (m *MortgageAccountORM) ToPB(ctx context.Context) (MortgageAccount, error) 
 			to.Statements = append(to.Statements, nil)
 		}
 	}
+	to.Type = BankAccountType(BankAccountType_value[m.Type])
 	if posthook, ok := interface{}(m).(MortgageAccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -1682,7 +1685,7 @@ func (m *InvestmentAccount) ToORM(ctx context.Context) (InvestmentAccountORM, er
 	to.UserId = m.UserId
 	to.Name = m.Name
 	to.Number = m.Number
-	to.Type = m.Type
+	to.Type = BankAccountType_name[int32(m.Type)]
 	to.Balance = m.Balance
 	to.CurrentFunds = m.CurrentFunds
 	to.BalanceLimit = m.BalanceLimit
@@ -1753,7 +1756,7 @@ func (m *InvestmentAccountORM) ToPB(ctx context.Context) (InvestmentAccount, err
 	to.UserId = m.UserId
 	to.Name = m.Name
 	to.Number = m.Number
-	to.Type = m.Type
+	to.Type = BankAccountType(BankAccountType_value[m.Type])
 	to.Balance = m.Balance
 	to.CurrentFunds = m.CurrentFunds
 	to.BalanceLimit = m.BalanceLimit
@@ -8615,6 +8618,10 @@ func DefaultApplyFieldMaskMortgageAccount(ctx context.Context, patchee *Mortgage
 		}
 		if f == prefix+"Statements" {
 			patchee.Statements = patcher.Statements
+			continue
+		}
+		if f == prefix+"Type" {
+			patchee.Type = patcher.Type
 			continue
 		}
 	}
