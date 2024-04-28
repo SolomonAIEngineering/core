@@ -7,7 +7,7 @@
 | **userId** | **String** |  | [optional] [default to null] |
 | **name** | **String** |  | [optional] [default to null] |
 | **number** | **String** |  | [optional] [default to null] |
-| **type** | **String** |  | [optional] [default to null] |
+| **type** | [**BankAccountType**](BankAccountType.md) |  | [optional] [default to null] |
 | **balance** | **Float** |  | [optional] [default to null] |
 | **currentFunds** | **Double** |  | [optional] [default to null] |
 | **balanceLimit** | **String** |  | [optional] [default to null] |

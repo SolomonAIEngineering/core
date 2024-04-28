@@ -26973,8 +26973,7 @@
                         "type": "string"
                     },
                     "type": {
-                        "type": "string",
-                        "title": "the bank account type"
+                        "$ref": "#/components/schemas/BankAccountType"
                     },
                     "balance": {
                         "type": "number",
@@ -28297,8 +28296,7 @@
                         "type": "string"
                     },
                     "type": {
-                        "type": "string",
-                        "title": "the bank account type"
+                        "$ref": "#/components/schemas/BankAccountType"
                     },
                     "balance": {
                         "type": "number",
@@ -29091,6 +29089,9 @@
                             "$ref": "#/components/schemas/AccountStatements"
                         },
                         "title": "the set of statements tied to this account"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/BankAccountType"
                     }
                 }
             },
