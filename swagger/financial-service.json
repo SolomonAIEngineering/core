@@ -8287,7 +8287,7 @@
           "type": "string"
         },
         "type": {
-          "type": "string",
+          "$ref": "#/definitions/BankAccountType",
           "title": "the bank account type"
         },
         "balance": {
@@ -9771,7 +9771,7 @@
           "type": "string"
         },
         "type": {
-          "type": "string",
+          "$ref": "#/definitions/BankAccountType",
           "title": "the bank account type"
         },
         "balance": {
@@ -10596,6 +10596,9 @@
             "$ref": "#/definitions/AccountStatements"
           },
           "title": "the set of statements tied to this account"
+        },
+        "type": {
+          "$ref": "#/definitions/BankAccountType"
         }
       }
     },

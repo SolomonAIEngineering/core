@@ -31,6 +31,12 @@ import {
     BankAccountStatusFromJSONTyped,
     BankAccountStatusToJSON,
 } from './BankAccountStatus';
+import type { BankAccountType } from './BankAccountType';
+import {
+    BankAccountTypeFromJSON,
+    BankAccountTypeFromJSONTyped,
+    BankAccountTypeToJSON,
+} from './BankAccountType';
 import type { PlaidAccountRecurringTransaction } from './PlaidAccountRecurringTransaction';
 import {
     PlaidAccountRecurringTransactionFromJSON,
@@ -82,10 +88,10 @@ export interface CreditAccount {
     number?: string;
     /**
      * 
-     * @type {string}
+     * @type {BankAccountType}
      * @memberof CreditAccount
      */
-    type?: string;
+    type?: BankAccountType;
     /**
      * 
      * @type {number}
@@ -229,7 +235,7 @@ export function CreditAccountFromJSONTyped(json: any, ignoreDiscriminator: boole
         'userId': json['userId'] == null ? undefined : json['userId'],
         'name': json['name'] == null ? undefined : json['name'],
         'number': json['number'] == null ? undefined : json['number'],
-        'type': json['type'] == null ? undefined : json['type'],
+        'type': json['type'] == null ? undefined : BankAccountTypeFromJSON(json['type']),
         'balance': json['balance'] == null ? undefined : json['balance'],
         'currentFunds': json['currentFunds'] == null ? undefined : json['currentFunds'],
         'balanceLimit': json['balanceLimit'] == null ? undefined : json['balanceLimit'],
@@ -263,7 +269,7 @@ export function CreditAccountToJSON(value?: CreditAccount | null): any {
         'userId': value['userId'],
         'name': value['name'],
         'number': value['number'],
-        'type': value['type'],
+        'type': BankAccountTypeToJSON(value['type']),
         'balance': value['balance'],
         'currentFunds': value['currentFunds'],
         'balanceLimit': value['balanceLimit'],

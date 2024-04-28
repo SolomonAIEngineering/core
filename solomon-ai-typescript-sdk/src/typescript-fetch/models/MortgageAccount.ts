@@ -25,6 +25,12 @@ import {
     BankAccountStatusFromJSONTyped,
     BankAccountStatusToJSON,
 } from './BankAccountStatus';
+import type { BankAccountType } from './BankAccountType';
+import {
+    BankAccountTypeFromJSON,
+    BankAccountTypeFromJSONTyped,
+    BankAccountTypeToJSON,
+} from './BankAccountType';
 
 /**
  * 
@@ -236,6 +242,12 @@ export interface MortgageAccount {
      * @memberof MortgageAccount
      */
     statements?: Array<AccountStatements>;
+    /**
+     * 
+     * @type {BankAccountType}
+     * @memberof MortgageAccount
+     */
+    type?: BankAccountType;
 }
 
 /**
@@ -289,6 +301,7 @@ export function MortgageAccountFromJSONTyped(json: any, ignoreDiscriminator: boo
         'interestRateType': json['interestRateType'] == null ? undefined : json['interestRateType'],
         'status': json['status'] == null ? undefined : BankAccountStatusFromJSON(json['status']),
         'statements': json['statements'] == null ? undefined : ((json['statements'] as Array<any>).map(AccountStatementsFromJSON)),
+        'type': json['type'] == null ? undefined : BankAccountTypeFromJSON(json['type']),
     };
 }
 
@@ -332,6 +345,7 @@ export function MortgageAccountToJSON(value?: MortgageAccount | null): any {
         'interestRateType': value['interestRateType'],
         'status': BankAccountStatusToJSON(value['status']),
         'statements': value['statements'] == null ? undefined : ((value['statements'] as Array<any>).map(AccountStatementsToJSON)),
+        'type': BankAccountTypeToJSON(value['type']),
     };
 }
 

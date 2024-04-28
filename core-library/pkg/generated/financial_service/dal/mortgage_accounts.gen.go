@@ -60,6 +60,7 @@ func newMortgageAccountORM(db *gorm.DB, opts ...gen.DOOption) mortgageAccountORM
 	_mortgageAccountORM.PropertyCountry = field.NewString(tableName, "property_country")
 	_mortgageAccountORM.PropertyRegion = field.NewString(tableName, "property_region")
 	_mortgageAccountORM.Status = field.NewString(tableName, "status")
+	_mortgageAccountORM.Type = field.NewString(tableName, "type")
 	_mortgageAccountORM.YtdInterestPaid = field.NewFloat64(tableName, "ytd_interest_paid")
 	_mortgageAccountORM.YtdPrincipalPaid = field.NewFloat64(tableName, "ytd_principal_paid")
 	_mortgageAccountORM.Statements = mortgageAccountORMHasManyStatements{
@@ -109,6 +110,7 @@ type mortgageAccountORM struct {
 	PropertyCountry             field.String
 	PropertyRegion              field.String
 	Status                      field.String
+	Type                        field.String
 	YtdInterestPaid             field.Float64
 	YtdPrincipalPaid            field.Float64
 	Statements                  mortgageAccountORMHasManyStatements
@@ -160,6 +162,7 @@ func (m *mortgageAccountORM) updateTableName(table string) *mortgageAccountORM {
 	m.PropertyCountry = field.NewString(table, "property_country")
 	m.PropertyRegion = field.NewString(table, "property_region")
 	m.Status = field.NewString(table, "status")
+	m.Type = field.NewString(table, "type")
 	m.YtdInterestPaid = field.NewFloat64(table, "ytd_interest_paid")
 	m.YtdPrincipalPaid = field.NewFloat64(table, "ytd_principal_paid")
 
@@ -178,7 +181,7 @@ func (m *mortgageAccountORM) GetFieldByName(fieldName string) (field.OrderExpr, 
 }
 
 func (m *mortgageAccountORM) fillFieldMap() {
-	m.fieldMap = make(map[string]field.Expr, 35)
+	m.fieldMap = make(map[string]field.Expr, 36)
 	m.fieldMap["account_number"] = m.AccountNumber
 	m.fieldMap["current_late_fee"] = m.CurrentLateFee
 	m.fieldMap["escrow_balance"] = m.EscrowBalance
@@ -211,6 +214,7 @@ func (m *mortgageAccountORM) fillFieldMap() {
 	m.fieldMap["property_country"] = m.PropertyCountry
 	m.fieldMap["property_region"] = m.PropertyRegion
 	m.fieldMap["status"] = m.Status
+	m.fieldMap["type"] = m.Type
 	m.fieldMap["ytd_interest_paid"] = m.YtdInterestPaid
 	m.fieldMap["ytd_principal_paid"] = m.YtdPrincipalPaid
 
