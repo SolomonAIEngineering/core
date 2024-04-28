@@ -36,6 +36,7 @@ func newInvestmentAccountORM(db *gorm.DB, opts ...gen.DOOption) investmentAccoun
 	_investmentAccountORM.Name = field.NewString(tableName, "name")
 	_investmentAccountORM.Number = field.NewString(tableName, "number")
 	_investmentAccountORM.PlaidAccountId = field.NewString(tableName, "plaid_account_id")
+	_investmentAccountORM.PlaidAccountType = field.NewString(tableName, "plaid_account_type")
 	_investmentAccountORM.Status = field.NewString(tableName, "status")
 	_investmentAccountORM.Subtype = field.NewString(tableName, "subtype")
 	_investmentAccountORM.Type = field.NewString(tableName, "type")
@@ -77,20 +78,21 @@ func newInvestmentAccountORM(db *gorm.DB, opts ...gen.DOOption) investmentAccoun
 type investmentAccountORM struct {
 	investmentAccountORMDo
 
-	ALL            field.Asterisk
-	Balance        field.Float32
-	BalanceLimit   field.Uint64
-	CurrentFunds   field.Float64
-	Id             field.Uint64
-	LinkId         field.Uint64
-	Name           field.String
-	Number         field.String
-	PlaidAccountId field.String
-	Status         field.String
-	Subtype        field.String
-	Type           field.String
-	UserId         field.String
-	Holdings       investmentAccountORMHasManyHoldings
+	ALL              field.Asterisk
+	Balance          field.Float32
+	BalanceLimit     field.Uint64
+	CurrentFunds     field.Float64
+	Id               field.Uint64
+	LinkId           field.Uint64
+	Name             field.String
+	Number           field.String
+	PlaidAccountId   field.String
+	PlaidAccountType field.String
+	Status           field.String
+	Subtype          field.String
+	Type             field.String
+	UserId           field.String
+	Holdings         investmentAccountORMHasManyHoldings
 
 	Securities investmentAccountORMHasManySecurities
 
@@ -121,6 +123,7 @@ func (i *investmentAccountORM) updateTableName(table string) *investmentAccountO
 	i.Name = field.NewString(table, "name")
 	i.Number = field.NewString(table, "number")
 	i.PlaidAccountId = field.NewString(table, "plaid_account_id")
+	i.PlaidAccountType = field.NewString(table, "plaid_account_type")
 	i.Status = field.NewString(table, "status")
 	i.Subtype = field.NewString(table, "subtype")
 	i.Type = field.NewString(table, "type")
@@ -141,7 +144,7 @@ func (i *investmentAccountORM) GetFieldByName(fieldName string) (field.OrderExpr
 }
 
 func (i *investmentAccountORM) fillFieldMap() {
-	i.fieldMap = make(map[string]field.Expr, 16)
+	i.fieldMap = make(map[string]field.Expr, 17)
 	i.fieldMap["balance"] = i.Balance
 	i.fieldMap["balance_limit"] = i.BalanceLimit
 	i.fieldMap["current_funds"] = i.CurrentFunds
@@ -150,6 +153,7 @@ func (i *investmentAccountORM) fillFieldMap() {
 	i.fieldMap["name"] = i.Name
 	i.fieldMap["number"] = i.Number
 	i.fieldMap["plaid_account_id"] = i.PlaidAccountId
+	i.fieldMap["plaid_account_type"] = i.PlaidAccountType
 	i.fieldMap["status"] = i.Status
 	i.fieldMap["subtype"] = i.Subtype
 	i.fieldMap["type"] = i.Type

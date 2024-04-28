@@ -10486,6 +10486,9 @@
                             "$ref": "#/components/schemas/AccountStatements"
                         },
                         "title": "the set of statements tied to this account"
+                    },
+                    "plaidAccountType": {
+                        "type": "string"
                     }
                 },
                 "required": [
@@ -11118,6 +11121,9 @@
                             "$ref": "#/components/schemas/AccountStatements"
                         },
                         "title": "the set of statements tied to this account"
+                    },
+                    "plaidAccountType": {
+                        "type": "string"
                     }
                 }
             },
@@ -12485,6 +12491,9 @@
                             "$ref": "#/components/schemas/AccountStatements"
                         },
                         "title": "the set of statements tied to this account"
+                    },
+                    "plaidAccountType": {
+                        "type": "string"
                     }
                 }
             },
@@ -13229,6 +13238,9 @@
                     },
                     "type": {
                         "$ref": "#/components/schemas/BankAccountType"
+                    },
+                    "plaidAccountType": {
+                        "type": "string"
                     }
                 }
             },
@@ -14498,6 +14510,9 @@
                             "$ref": "#/components/schemas/AccountStatements"
                         },
                         "title": "the set of statements tied to this account"
+                    },
+                    "plaidAccountType": {
+                        "type": "string"
                     }
                 }
             },

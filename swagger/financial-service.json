@@ -7745,6 +7745,9 @@
             "$ref": "#/definitions/AccountStatements"
           },
           "title": "the set of statements tied to this account"
+        },
+        "plaidAccountType": {
+          "type": "string"
         }
       },
       "required": [
@@ -8396,6 +8399,9 @@
             "$ref": "#/definitions/AccountStatements"
           },
           "title": "the set of statements tied to this account"
+        },
+        "plaidAccountType": {
+          "type": "string"
         }
       }
     },
@@ -9829,6 +9835,9 @@
             "$ref": "#/definitions/AccountStatements"
           },
           "title": "the set of statements tied to this account"
+        },
+        "plaidAccountType": {
+          "type": "string"
         }
       }
     },
@@ -10599,6 +10608,9 @@
         },
         "type": {
           "$ref": "#/definitions/BankAccountType"
+        },
+        "plaidAccountType": {
+          "type": "string"
         }
       }
     },
@@ -11890,6 +11902,9 @@
             "$ref": "#/definitions/AccountStatements"
           },
           "title": "the set of statements tied to this account"
+        },
+        "plaidAccountType": {
+          "type": "string"
         }
       }
     },

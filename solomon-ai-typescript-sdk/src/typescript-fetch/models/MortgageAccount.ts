@@ -248,6 +248,12 @@ export interface MortgageAccount {
      * @memberof MortgageAccount
      */
     type?: BankAccountType;
+    /**
+     * 
+     * @type {string}
+     * @memberof MortgageAccount
+     */
+    plaidAccountType?: string;
 }
 
 /**
@@ -302,6 +308,7 @@ export function MortgageAccountFromJSONTyped(json: any, ignoreDiscriminator: boo
         'status': json['status'] == null ? undefined : BankAccountStatusFromJSON(json['status']),
         'statements': json['statements'] == null ? undefined : ((json['statements'] as Array<any>).map(AccountStatementsFromJSON)),
         'type': json['type'] == null ? undefined : BankAccountTypeFromJSON(json['type']),
+        'plaidAccountType': json['plaidAccountType'] == null ? undefined : json['plaidAccountType'],
     };
 }
 
@@ -346,6 +353,7 @@ export function MortgageAccountToJSON(value?: MortgageAccount | null): any {
         'status': BankAccountStatusToJSON(value['status']),
         'statements': value['statements'] == null ? undefined : ((value['statements'] as Array<any>).map(AccountStatementsToJSON)),
         'type': BankAccountTypeToJSON(value['type']),
+        'plaidAccountType': value['plaidAccountType'],
     };
 }
 

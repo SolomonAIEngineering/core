@@ -146,6 +146,12 @@ export interface InvestmentAccount {
      * @memberof InvestmentAccount
      */
     statements?: Array<AccountStatements>;
+    /**
+     * 
+     * @type {string}
+     * @memberof InvestmentAccount
+     */
+    plaidAccountType?: string;
 }
 
 /**
@@ -180,6 +186,7 @@ export function InvestmentAccountFromJSONTyped(json: any, ignoreDiscriminator: b
         'status': json['status'] == null ? undefined : BankAccountStatusFromJSON(json['status']),
         'transactions': json['transactions'] == null ? undefined : ((json['transactions'] as Array<any>).map(PlaidAccountInvestmentTransactionFromJSON)),
         'statements': json['statements'] == null ? undefined : ((json['statements'] as Array<any>).map(AccountStatementsFromJSON)),
+        'plaidAccountType': json['plaidAccountType'] == null ? undefined : json['plaidAccountType'],
     };
 }
 
@@ -204,6 +211,7 @@ export function InvestmentAccountToJSON(value?: InvestmentAccount | null): any {
         'status': BankAccountStatusToJSON(value['status']),
         'transactions': value['transactions'] == null ? undefined : ((value['transactions'] as Array<any>).map(PlaidAccountInvestmentTransactionToJSON)),
         'statements': value['statements'] == null ? undefined : ((value['statements'] as Array<any>).map(AccountStatementsToJSON)),
+        'plaidAccountType': value['plaidAccountType'],
     };
 }
 
