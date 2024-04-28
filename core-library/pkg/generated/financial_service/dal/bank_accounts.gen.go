@@ -37,6 +37,7 @@ func newBankAccountORM(db *gorm.DB, opts ...gen.DOOption) bankAccountORM {
 	_bankAccountORM.Name = field.NewString(tableName, "name")
 	_bankAccountORM.Number = field.NewString(tableName, "number")
 	_bankAccountORM.PlaidAccountId = field.NewString(tableName, "plaid_account_id")
+	_bankAccountORM.PlaidAccountType = field.NewString(tableName, "plaid_account_type")
 	_bankAccountORM.Status = field.NewString(tableName, "status")
 	_bankAccountORM.Subtype = field.NewString(tableName, "subtype")
 	_bankAccountORM.Type = field.NewString(tableName, "type")
@@ -142,21 +143,22 @@ func newBankAccountORM(db *gorm.DB, opts ...gen.DOOption) bankAccountORM {
 type bankAccountORM struct {
 	bankAccountORMDo
 
-	ALL            field.Asterisk
-	Balance        field.Float32
-	BalanceLimit   field.Uint64
-	Currency       field.String
-	CurrentFunds   field.Float64
-	Id             field.Uint64
-	LinkId         field.Uint64
-	Name           field.String
-	Number         field.String
-	PlaidAccountId field.String
-	Status         field.String
-	Subtype        field.String
-	Type           field.String
-	UserId         field.String
-	Pockets        bankAccountORMHasManyPockets
+	ALL              field.Asterisk
+	Balance          field.Float32
+	BalanceLimit     field.Uint64
+	Currency         field.String
+	CurrentFunds     field.Float64
+	Id               field.Uint64
+	LinkId           field.Uint64
+	Name             field.String
+	Number           field.String
+	PlaidAccountId   field.String
+	PlaidAccountType field.String
+	Status           field.String
+	Subtype          field.String
+	Type             field.String
+	UserId           field.String
+	Pockets          bankAccountORMHasManyPockets
 
 	RecurringTransactions bankAccountORMHasManyRecurringTransactions
 
@@ -188,6 +190,7 @@ func (b *bankAccountORM) updateTableName(table string) *bankAccountORM {
 	b.Name = field.NewString(table, "name")
 	b.Number = field.NewString(table, "number")
 	b.PlaidAccountId = field.NewString(table, "plaid_account_id")
+	b.PlaidAccountType = field.NewString(table, "plaid_account_type")
 	b.Status = field.NewString(table, "status")
 	b.Subtype = field.NewString(table, "subtype")
 	b.Type = field.NewString(table, "type")
@@ -208,7 +211,7 @@ func (b *bankAccountORM) GetFieldByName(fieldName string) (field.OrderExpr, bool
 }
 
 func (b *bankAccountORM) fillFieldMap() {
-	b.fieldMap = make(map[string]field.Expr, 17)
+	b.fieldMap = make(map[string]field.Expr, 18)
 	b.fieldMap["balance"] = b.Balance
 	b.fieldMap["balance_limit"] = b.BalanceLimit
 	b.fieldMap["currency"] = b.Currency
@@ -218,6 +221,7 @@ func (b *bankAccountORM) fillFieldMap() {
 	b.fieldMap["name"] = b.Name
 	b.fieldMap["number"] = b.Number
 	b.fieldMap["plaid_account_id"] = b.PlaidAccountId
+	b.fieldMap["plaid_account_type"] = b.PlaidAccountType
 	b.fieldMap["status"] = b.Status
 	b.fieldMap["subtype"] = b.Subtype
 	b.fieldMap["type"] = b.Type

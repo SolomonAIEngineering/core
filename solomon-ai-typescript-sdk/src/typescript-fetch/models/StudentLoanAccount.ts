@@ -254,6 +254,12 @@ export interface StudentLoanAccount {
      * @memberof StudentLoanAccount
      */
     statements?: Array<AccountStatements>;
+    /**
+     * 
+     * @type {string}
+     * @memberof StudentLoanAccount
+     */
+    plaidAccountType?: string;
 }
 
 /**
@@ -310,6 +316,7 @@ export function StudentLoanAccountFromJSONTyped(json: any, ignoreDiscriminator: 
         'name': json['name'] == null ? undefined : json['name'],
         'status': json['status'] == null ? undefined : BankAccountStatusFromJSON(json['status']),
         'statements': json['statements'] == null ? undefined : ((json['statements'] as Array<any>).map(AccountStatementsFromJSON)),
+        'plaidAccountType': json['plaidAccountType'] == null ? undefined : json['plaidAccountType'],
     };
 }
 
@@ -356,6 +363,7 @@ export function StudentLoanAccountToJSON(value?: StudentLoanAccount | null): any
         'name': value['name'],
         'status': BankAccountStatusToJSON(value['status']),
         'statements': value['statements'] == null ? undefined : ((value['statements'] as Array<any>).map(AccountStatementsToJSON)),
+        'plaidAccountType': value['plaidAccountType'],
     };
 }
 

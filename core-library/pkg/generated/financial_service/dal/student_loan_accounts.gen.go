@@ -49,6 +49,7 @@ func newStudentLoanAccountORM(db *gorm.DB, opts ...gen.DOOption) studentLoanAcco
 	_studentLoanAccountORM.OutstandingInterestAmount = field.NewFloat64(tableName, "outstanding_interest_amount")
 	_studentLoanAccountORM.PaymentReferenceNumber = field.NewString(tableName, "payment_reference_number")
 	_studentLoanAccountORM.PlaidAccountId = field.NewString(tableName, "plaid_account_id")
+	_studentLoanAccountORM.PlaidAccountType = field.NewString(tableName, "plaid_account_type")
 	_studentLoanAccountORM.PslfStatusEstimatedEligibilityDate = field.NewString(tableName, "pslf_status_estimated_eligibility_date")
 	_studentLoanAccountORM.PslfStatusPaymentsMade = field.NewInt32(tableName, "pslf_status_payments_made")
 	_studentLoanAccountORM.PslfStatusPaymentsRemaining = field.NewInt32(tableName, "pslf_status_payments_remaining")
@@ -101,6 +102,7 @@ type studentLoanAccountORM struct {
 	OutstandingInterestAmount          field.Float64
 	PaymentReferenceNumber             field.String
 	PlaidAccountId                     field.String
+	PlaidAccountType                   field.String
 	PslfStatusEstimatedEligibilityDate field.String
 	PslfStatusPaymentsMade             field.Int32
 	PslfStatusPaymentsRemaining        field.Int32
@@ -155,6 +157,7 @@ func (s *studentLoanAccountORM) updateTableName(table string) *studentLoanAccoun
 	s.OutstandingInterestAmount = field.NewFloat64(table, "outstanding_interest_amount")
 	s.PaymentReferenceNumber = field.NewString(table, "payment_reference_number")
 	s.PlaidAccountId = field.NewString(table, "plaid_account_id")
+	s.PlaidAccountType = field.NewString(table, "plaid_account_type")
 	s.PslfStatusEstimatedEligibilityDate = field.NewString(table, "pslf_status_estimated_eligibility_date")
 	s.PslfStatusPaymentsMade = field.NewInt32(table, "pslf_status_payments_made")
 	s.PslfStatusPaymentsRemaining = field.NewInt32(table, "pslf_status_payments_remaining")
@@ -187,7 +190,7 @@ func (s *studentLoanAccountORM) GetFieldByName(fieldName string) (field.OrderExp
 }
 
 func (s *studentLoanAccountORM) fillFieldMap() {
-	s.fieldMap = make(map[string]field.Expr, 38)
+	s.fieldMap = make(map[string]field.Expr, 39)
 	s.fieldMap["disbursement_dates"] = s.DisbursementDates
 	s.fieldMap["expected_payoff_date"] = s.ExpectedPayoffDate
 	s.fieldMap["guarantor"] = s.Guarantor
@@ -209,6 +212,7 @@ func (s *studentLoanAccountORM) fillFieldMap() {
 	s.fieldMap["outstanding_interest_amount"] = s.OutstandingInterestAmount
 	s.fieldMap["payment_reference_number"] = s.PaymentReferenceNumber
 	s.fieldMap["plaid_account_id"] = s.PlaidAccountId
+	s.fieldMap["plaid_account_type"] = s.PlaidAccountType
 	s.fieldMap["pslf_status_estimated_eligibility_date"] = s.PslfStatusEstimatedEligibilityDate
 	s.fieldMap["pslf_status_payments_made"] = s.PslfStatusPaymentsMade
 	s.fieldMap["pslf_status_payments_remaining"] = s.PslfStatusPaymentsRemaining

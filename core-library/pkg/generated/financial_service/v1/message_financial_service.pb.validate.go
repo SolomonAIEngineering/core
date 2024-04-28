@@ -1591,6 +1591,8 @@ func (m *StudentLoanAccount) validate(all bool) error {
 
 	}
 
+	// no validation rules for PlaidAccountType
+
 	if len(errors) > 0 {
 		return StudentLoanAccountMultiError(errors)
 	}
@@ -1903,6 +1905,8 @@ func (m *CreditAccount) validate(all bool) error {
 
 	}
 
+	// no validation rules for PlaidAccountType
+
 	if len(errors) > 0 {
 		return CreditAccountMultiError(errors)
 	}
@@ -2104,6 +2108,8 @@ func (m *MortgageAccount) validate(all bool) error {
 	}
 
 	// no validation rules for Type
+
+	// no validation rules for PlaidAccountType
 
 	if len(errors) > 0 {
 		return MortgageAccountMultiError(errors)
@@ -2362,6 +2368,8 @@ func (m *InvestmentAccount) validate(all bool) error {
 		}
 
 	}
+
+	// no validation rules for PlaidAccountType
 
 	if len(errors) > 0 {
 		return InvestmentAccountMultiError(errors)
@@ -2624,6 +2632,8 @@ func (m *BankAccount) validate(all bool) error {
 		}
 
 	}
+
+	// no validation rules for PlaidAccountType
 
 	if len(errors) > 0 {
 		return BankAccountMultiError(errors)

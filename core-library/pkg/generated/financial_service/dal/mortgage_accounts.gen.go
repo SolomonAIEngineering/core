@@ -53,6 +53,7 @@ func newMortgageAccountORM(db *gorm.DB, opts ...gen.DOOption) mortgageAccountORM
 	_mortgageAccountORM.PaymentAmount = field.NewFloat64(tableName, "payment_amount")
 	_mortgageAccountORM.PaymentDate = field.NewString(tableName, "payment_date")
 	_mortgageAccountORM.PlaidAccountId = field.NewString(tableName, "plaid_account_id")
+	_mortgageAccountORM.PlaidAccountType = field.NewString(tableName, "plaid_account_type")
 	_mortgageAccountORM.PropertyAddressCity = field.NewString(tableName, "property_address_city")
 	_mortgageAccountORM.PropertyAddressPostalCode = field.NewString(tableName, "property_address_postal_code")
 	_mortgageAccountORM.PropertyAddressState = field.NewString(tableName, "property_address_state")
@@ -103,6 +104,7 @@ type mortgageAccountORM struct {
 	PaymentAmount               field.Float64
 	PaymentDate                 field.String
 	PlaidAccountId              field.String
+	PlaidAccountType            field.String
 	PropertyAddressCity         field.String
 	PropertyAddressPostalCode   field.String
 	PropertyAddressState        field.String
@@ -155,6 +157,7 @@ func (m *mortgageAccountORM) updateTableName(table string) *mortgageAccountORM {
 	m.PaymentAmount = field.NewFloat64(table, "payment_amount")
 	m.PaymentDate = field.NewString(table, "payment_date")
 	m.PlaidAccountId = field.NewString(table, "plaid_account_id")
+	m.PlaidAccountType = field.NewString(table, "plaid_account_type")
 	m.PropertyAddressCity = field.NewString(table, "property_address_city")
 	m.PropertyAddressPostalCode = field.NewString(table, "property_address_postal_code")
 	m.PropertyAddressState = field.NewString(table, "property_address_state")
@@ -181,7 +184,7 @@ func (m *mortgageAccountORM) GetFieldByName(fieldName string) (field.OrderExpr, 
 }
 
 func (m *mortgageAccountORM) fillFieldMap() {
-	m.fieldMap = make(map[string]field.Expr, 36)
+	m.fieldMap = make(map[string]field.Expr, 37)
 	m.fieldMap["account_number"] = m.AccountNumber
 	m.fieldMap["current_late_fee"] = m.CurrentLateFee
 	m.fieldMap["escrow_balance"] = m.EscrowBalance
@@ -207,6 +210,7 @@ func (m *mortgageAccountORM) fillFieldMap() {
 	m.fieldMap["payment_amount"] = m.PaymentAmount
 	m.fieldMap["payment_date"] = m.PaymentDate
 	m.fieldMap["plaid_account_id"] = m.PlaidAccountId
+	m.fieldMap["plaid_account_type"] = m.PlaidAccountType
 	m.fieldMap["property_address_city"] = m.PropertyAddressCity
 	m.fieldMap["property_address_postal_code"] = m.PropertyAddressPostalCode
 	m.fieldMap["property_address_state"] = m.PropertyAddressState

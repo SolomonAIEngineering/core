@@ -45,6 +45,7 @@ func newCreditAccountORM(db *gorm.DB, opts ...gen.DOOption) creditAccountORM {
 	_creditAccountORM.NextPaymentDueDate = field.NewString(tableName, "next_payment_due_date")
 	_creditAccountORM.Number = field.NewString(tableName, "number")
 	_creditAccountORM.PlaidAccountId = field.NewString(tableName, "plaid_account_id")
+	_creditAccountORM.PlaidAccountType = field.NewString(tableName, "plaid_account_type")
 	_creditAccountORM.Status = field.NewString(tableName, "status")
 	_creditAccountORM.Subtype = field.NewString(tableName, "subtype")
 	_creditAccountORM.Type = field.NewString(tableName, "type")
@@ -174,6 +175,7 @@ type creditAccountORM struct {
 	NextPaymentDueDate     field.String
 	Number                 field.String
 	PlaidAccountId         field.String
+	PlaidAccountType       field.String
 	Status                 field.String
 	Subtype                field.String
 	Type                   field.String
@@ -220,6 +222,7 @@ func (c *creditAccountORM) updateTableName(table string) *creditAccountORM {
 	c.NextPaymentDueDate = field.NewString(table, "next_payment_due_date")
 	c.Number = field.NewString(table, "number")
 	c.PlaidAccountId = field.NewString(table, "plaid_account_id")
+	c.PlaidAccountType = field.NewString(table, "plaid_account_type")
 	c.Status = field.NewString(table, "status")
 	c.Subtype = field.NewString(table, "subtype")
 	c.Type = field.NewString(table, "type")
@@ -240,7 +243,7 @@ func (c *creditAccountORM) GetFieldByName(fieldName string) (field.OrderExpr, bo
 }
 
 func (c *creditAccountORM) fillFieldMap() {
-	c.fieldMap = make(map[string]field.Expr, 26)
+	c.fieldMap = make(map[string]field.Expr, 27)
 	c.fieldMap["balance"] = c.Balance
 	c.fieldMap["balance_limit"] = c.BalanceLimit
 	c.fieldMap["current_funds"] = c.CurrentFunds
@@ -258,6 +261,7 @@ func (c *creditAccountORM) fillFieldMap() {
 	c.fieldMap["next_payment_due_date"] = c.NextPaymentDueDate
 	c.fieldMap["number"] = c.Number
 	c.fieldMap["plaid_account_id"] = c.PlaidAccountId
+	c.fieldMap["plaid_account_type"] = c.PlaidAccountType
 	c.fieldMap["status"] = c.Status
 	c.fieldMap["subtype"] = c.Subtype
 	c.fieldMap["type"] = c.Type

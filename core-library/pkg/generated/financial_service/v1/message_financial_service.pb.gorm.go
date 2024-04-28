@@ -1040,6 +1040,7 @@ type StudentLoanAccountORM struct {
 	OutstandingInterestAmount          float64
 	PaymentReferenceNumber             string
 	PlaidAccountId                     string `gorm:"index:idx_student_loan_plaid_account_id"`
+	PlaidAccountType                   string
 	PslfStatusEstimatedEligibilityDate string
 	PslfStatusPaymentsMade             int32
 	PslfStatusPaymentsRemaining        int32
@@ -1124,6 +1125,7 @@ func (m *StudentLoanAccount) ToORM(ctx context.Context) (StudentLoanAccountORM, 
 			to.Statements = append(to.Statements, nil)
 		}
 	}
+	to.PlaidAccountType = m.PlaidAccountType
 	if posthook, ok := interface{}(m).(StudentLoanAccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -1190,6 +1192,7 @@ func (m *StudentLoanAccountORM) ToPB(ctx context.Context) (StudentLoanAccount, e
 			to.Statements = append(to.Statements, nil)
 		}
 	}
+	to.PlaidAccountType = m.PlaidAccountType
 	if posthook, ok := interface{}(m).(StudentLoanAccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -1236,8 +1239,9 @@ type CreditAccountORM struct {
 	Name                   string `gorm:"index:idx_credit_account_name"`
 	NextPaymentDate        string
 	NextPaymentDueDate     string
-	Number                 string                                 `gorm:"index:idx_credit_account_number"`
-	PlaidAccountId         string                                 `gorm:"index:idx_credit_account_plaid_account_id"`
+	Number                 string `gorm:"index:idx_credit_account_number"`
+	PlaidAccountId         string `gorm:"index:idx_credit_account_plaid_account_id"`
+	PlaidAccountType       string
 	Pockets                []*PocketORM                           `gorm:"foreignkey:CreditAccountId;association_foreignkey:Id;preload:true"`
 	RecurringTransactions  []*PlaidAccountRecurringTransactionORM `gorm:"foreignkey:CreditAccountId;association_foreignkey:Id;preload:true"`
 	Statements             []*AccountStatementsORM                `gorm:"foreignkey:CreditAccountId;association_foreignkey:Id;preload:true"`
@@ -1338,6 +1342,7 @@ func (m *CreditAccount) ToORM(ctx context.Context) (CreditAccountORM, error) {
 			to.Statements = append(to.Statements, nil)
 		}
 	}
+	to.PlaidAccountType = m.PlaidAccountType
 	if posthook, ok := interface{}(m).(CreditAccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -1429,6 +1434,7 @@ func (m *CreditAccountORM) ToPB(ctx context.Context) (CreditAccount, error) {
 			to.Statements = append(to.Statements, nil)
 		}
 	}
+	to.PlaidAccountType = m.PlaidAccountType
 	if posthook, ok := interface{}(m).(CreditAccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -1484,6 +1490,7 @@ type MortgageAccountORM struct {
 	PaymentAmount               float64
 	PaymentDate                 string
 	PlaidAccountId              string `gorm:"index:idx_mortgage_account_plaid_account_id"`
+	PlaidAccountType            string
 	PropertyAddressCity         string
 	PropertyAddressPostalCode   string
 	PropertyAddressState        string
@@ -1557,6 +1564,7 @@ func (m *MortgageAccount) ToORM(ctx context.Context) (MortgageAccountORM, error)
 		}
 	}
 	to.Type = BankAccountType_name[int32(m.Type)]
+	to.PlaidAccountType = m.PlaidAccountType
 	if posthook, ok := interface{}(m).(MortgageAccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -1618,6 +1626,7 @@ func (m *MortgageAccountORM) ToPB(ctx context.Context) (MortgageAccount, error) 
 		}
 	}
 	to.Type = BankAccountType(BankAccountType_value[m.Type])
+	to.PlaidAccountType = m.PlaidAccountType
 	if posthook, ok := interface{}(m).(MortgageAccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -1648,22 +1657,23 @@ type MortgageAccountWithAfterToPB interface {
 }
 
 type InvestmentAccountORM struct {
-	Balance        float32
-	BalanceLimit   uint64
-	CurrentFunds   float64
-	Holdings       []*InvesmentHoldingORM `gorm:"foreignkey:InvestmentAccountId;association_foreignkey:Id;preload:true"`
-	Id             uint64                 `gorm:"unique_index:idx_investment_account_id"`
-	LinkId         *uint64
-	Name           string                   `gorm:"index:idx_investment_account_name"`
-	Number         string                   `gorm:"index:idx_investment_account_number"`
-	PlaidAccountId string                   `gorm:"index:idx_investment_account_plaid_account_id"`
-	Securities     []*InvestmentSecurityORM `gorm:"foreignkey:InvestmentAccountId;association_foreignkey:Id;preload:true"`
-	Statements     []*AccountStatementsORM  `gorm:"foreignkey:InvestmentAccountId;association_foreignkey:Id;preload:true"`
-	Status         string
-	Subtype        string                                  `gorm:"index:idx_investment_account_subtype"`
-	Transactions   []*PlaidAccountInvestmentTransactionORM `gorm:"foreignkey:InvestmentAccountId;association_foreignkey:Id;preload:true"`
-	Type           string
-	UserId         string `gorm:"index:idx_investment_account_user_id"`
+	Balance          float32
+	BalanceLimit     uint64
+	CurrentFunds     float64
+	Holdings         []*InvesmentHoldingORM `gorm:"foreignkey:InvestmentAccountId;association_foreignkey:Id;preload:true"`
+	Id               uint64                 `gorm:"unique_index:idx_investment_account_id"`
+	LinkId           *uint64
+	Name             string `gorm:"index:idx_investment_account_name"`
+	Number           string `gorm:"index:idx_investment_account_number"`
+	PlaidAccountId   string `gorm:"index:idx_investment_account_plaid_account_id"`
+	PlaidAccountType string
+	Securities       []*InvestmentSecurityORM `gorm:"foreignkey:InvestmentAccountId;association_foreignkey:Id;preload:true"`
+	Statements       []*AccountStatementsORM  `gorm:"foreignkey:InvestmentAccountId;association_foreignkey:Id;preload:true"`
+	Status           string
+	Subtype          string                                  `gorm:"index:idx_investment_account_subtype"`
+	Transactions     []*PlaidAccountInvestmentTransactionORM `gorm:"foreignkey:InvestmentAccountId;association_foreignkey:Id;preload:true"`
+	Type             string
+	UserId           string `gorm:"index:idx_investment_account_user_id"`
 }
 
 // TableName overrides the default tablename generated by GORM
@@ -1736,6 +1746,7 @@ func (m *InvestmentAccount) ToORM(ctx context.Context) (InvestmentAccountORM, er
 			to.Statements = append(to.Statements, nil)
 		}
 	}
+	to.PlaidAccountType = m.PlaidAccountType
 	if posthook, ok := interface{}(m).(InvestmentAccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -1807,6 +1818,7 @@ func (m *InvestmentAccountORM) ToPB(ctx context.Context) (InvestmentAccount, err
 			to.Statements = append(to.Statements, nil)
 		}
 	}
+	to.PlaidAccountType = m.PlaidAccountType
 	if posthook, ok := interface{}(m).(InvestmentAccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -1843,9 +1855,10 @@ type BankAccountORM struct {
 	CurrentFunds          float64
 	Id                    uint64 `gorm:"unique_index:idx_bank_account_id"`
 	LinkId                *uint64
-	Name                  string                                 `gorm:"index:idx_bank_account_name"`
-	Number                string                                 `gorm:"index:idx_bank_account_number"`
-	PlaidAccountId        string                                 `gorm:"index:idx_bank_account_plaid_account_id"`
+	Name                  string `gorm:"index:idx_bank_account_name"`
+	Number                string `gorm:"index:idx_bank_account_number"`
+	PlaidAccountId        string `gorm:"index:idx_bank_account_plaid_account_id"`
+	PlaidAccountType      string
 	Pockets               []*PocketORM                           `gorm:"foreignkey:BankAccountId;association_foreignkey:Id;preload:true"`
 	RecurringTransactions []*PlaidAccountRecurringTransactionORM `gorm:"foreignkey:BankAccountId;association_foreignkey:Id;preload:true"`
 	Statements            []*AccountStatementsORM                `gorm:"foreignkey:BankAccountId;association_foreignkey:Id;preload:true"`
@@ -1927,6 +1940,7 @@ func (m *BankAccount) ToORM(ctx context.Context) (BankAccountORM, error) {
 			to.Statements = append(to.Statements, nil)
 		}
 	}
+	to.PlaidAccountType = m.PlaidAccountType
 	if posthook, ok := interface{}(m).(BankAccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -1999,6 +2013,7 @@ func (m *BankAccountORM) ToPB(ctx context.Context) (BankAccount, error) {
 			to.Statements = append(to.Statements, nil)
 		}
 	}
+	to.PlaidAccountType = m.PlaidAccountType
 	if posthook, ok := interface{}(m).(BankAccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -7650,6 +7665,10 @@ func DefaultApplyFieldMaskStudentLoanAccount(ctx context.Context, patchee *Stude
 			patchee.Statements = patcher.Statements
 			continue
 		}
+		if f == prefix+"PlaidAccountType" {
+			patchee.PlaidAccountType = patcher.PlaidAccountType
+			continue
+		}
 	}
 	if err != nil {
 		return nil, err
@@ -8133,6 +8152,10 @@ func DefaultApplyFieldMaskCreditAccount(ctx context.Context, patchee *CreditAcco
 		}
 		if f == prefix+"Statements" {
 			patchee.Statements = patcher.Statements
+			continue
+		}
+		if f == prefix+"PlaidAccountType" {
+			patchee.PlaidAccountType = patcher.PlaidAccountType
 			continue
 		}
 	}
@@ -8624,6 +8647,10 @@ func DefaultApplyFieldMaskMortgageAccount(ctx context.Context, patchee *Mortgage
 			patchee.Type = patcher.Type
 			continue
 		}
+		if f == prefix+"PlaidAccountType" {
+			patchee.PlaidAccountType = patcher.PlaidAccountType
+			continue
+		}
 	}
 	if err != nil {
 		return nil, err
@@ -9058,6 +9085,10 @@ func DefaultApplyFieldMaskInvestmentAccount(ctx context.Context, patchee *Invest
 		}
 		if f == prefix+"Statements" {
 			patchee.Statements = patcher.Statements
+			continue
+		}
+		if f == prefix+"PlaidAccountType" {
+			patchee.PlaidAccountType = patcher.PlaidAccountType
 			continue
 		}
 	}
@@ -9498,6 +9529,10 @@ func DefaultApplyFieldMaskBankAccount(ctx context.Context, patchee *BankAccount,
 		}
 		if f == prefix+"Statements" {
 			patchee.Statements = patcher.Statements
+			continue
+		}
+		if f == prefix+"PlaidAccountType" {
+			patchee.PlaidAccountType = patcher.PlaidAccountType
 			continue
 		}
 	}

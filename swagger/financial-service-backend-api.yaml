@@ -7028,6 +7028,8 @@ components:
           items:
             $ref: "#/components/schemas/AccountStatements"
           title: the set of statements tied to this account
+        plaidAccountType:
+          type: string
       required:
         - type
         - balance
@@ -7554,6 +7556,8 @@ components:
           items:
             $ref: "#/components/schemas/AccountStatements"
           title: the set of statements tied to this account
+        plaidAccountType:
+          type: string
     DebtToIncomeRatio:
       type: object
       properties:
@@ -8553,6 +8557,8 @@ components:
           items:
             $ref: "#/components/schemas/AccountStatements"
           title: the set of statements tied to this account
+        plaidAccountType:
+          type: string
     InvestmentSecurity:
       type: object
       properties:
@@ -9143,6 +9149,8 @@ components:
           title: the set of statements tied to this account
         type:
           $ref: "#/components/schemas/BankAccountType"
+        plaidAccountType:
+          type: string
     NotFoundErrorCode:
       type: string
       enum:
@@ -10312,6 +10320,8 @@ components:
           items:
             $ref: "#/components/schemas/AccountStatements"
           title: the set of statements tied to this account
+        plaidAccountType:
+          type: string
     TaskState:
       type: string
       enum:

@@ -212,6 +212,12 @@ export interface CreditAccount {
      * @memberof CreditAccount
      */
     statements?: Array<AccountStatements>;
+    /**
+     * 
+     * @type {string}
+     * @memberof CreditAccount
+     */
+    plaidAccountType?: string;
 }
 
 /**
@@ -256,6 +262,7 @@ export function CreditAccountFromJSONTyped(json: any, ignoreDiscriminator: boole
         'recurringTransactions': json['recurringTransactions'] == null ? undefined : ((json['recurringTransactions'] as Array<any>).map(PlaidAccountRecurringTransactionFromJSON)),
         'pockets': json['pockets'] == null ? undefined : ((json['pockets'] as Array<any>).map(PocketFromJSON)),
         'statements': json['statements'] == null ? undefined : ((json['statements'] as Array<any>).map(AccountStatementsFromJSON)),
+        'plaidAccountType': json['plaidAccountType'] == null ? undefined : json['plaidAccountType'],
     };
 }
 
@@ -290,6 +297,7 @@ export function CreditAccountToJSON(value?: CreditAccount | null): any {
         'recurringTransactions': value['recurringTransactions'] == null ? undefined : ((value['recurringTransactions'] as Array<any>).map(PlaidAccountRecurringTransactionToJSON)),
         'pockets': value['pockets'] == null ? undefined : ((value['pockets'] as Array<any>).map(PocketToJSON)),
         'statements': value['statements'] == null ? undefined : ((value['statements'] as Array<any>).map(AccountStatementsToJSON)),
+        'plaidAccountType': value['plaidAccountType'],
     };
 }
 
