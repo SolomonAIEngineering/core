@@ -97,6 +97,8 @@ models/CreateCommentReplyResponse.ts
 models/CreateCommentResponse.ts
 models/CreateCommunityProfileBody.ts
 models/CreateCommunityProfileResponse.ts
+models/CreateCreditAccountRequest.ts
+models/CreateCreditAccountResponse.ts
 models/CreateFolderRequest.ts
 models/CreateFolderResponse.ts
 models/CreateManualLinkRequest.ts

@@ -8909,6 +8909,59 @@
                             ]
                         },
 	                        {
+    "name": "/financial-microservice/api/v1/credit-account/profile",
+                "description": "This endpoint creates a credit account for a given user profile",
+                 "item": [
+                            {
+                                "name": "create a credit account for a given user profile",
+                                "request": {
+                                    "method": "POST",
+                                    "header": [
+                                        {
+                                            "key": "Content-Type",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "disabled": false
+                                        },
+                                        {
+                                            "key": "Accept",
+                                            "value": "application/json",
+                                            "description": "",
+                                            "disabled": false
+                                        }
+                                    ],
+                                    "body": {
+                                        "mode": "raw",
+                                        "raw": "{\n \"userId\": \"<string>\",\n \"creditAccount\": \"<string>\",\n \"profileType\": \"<string>\",\n \"linkId\": \"<string>\"\n}",
+                                        "options": {
+                                            "raw": {
+                                                "language": "json"
+                                            }
+                                        }
+                                    },
+                                    "url": {
+                                        "raw": "{{baseUrl}}/financial-microservice/api/v1/credit-account/profile",
+                                        "host": [
+                                            "{{baseUrl}}"
+                                        ],
+                                        "path": [
+                                            "financial-microservice",
+                                            "api",
+                                            "v1",
+                                            "credit-account",
+                                            "profile"
+                                        ],
+                                        "variable": [
+                                        ],
+                                        "query": [
+                                        ]
+                                    },
+                                    "description": "This endpoint creates a credit account for a given user profile"
+                                }
+                            }
+                            ]
+                        },
+	                        {
     "name": "/financial-microservice/api/v1/financial-profile/business/:businessAccountUserId/:profileType/note",
                 "description": "This endpoint gets notes from a business account",
                  "item": [
@@ -9935,7 +9988,7 @@
                                     ],
                                     "body": {
                                         "mode": "raw",
-                                        "raw": "{\n \"accountId\": \"<string>\",\n \"transactions\": \"<string>\",\n \"profileType\": \"<string>\",\n \"financialAccountType\": \"<string>\",\n \"userId\": \"<string>\"\n}",
+                                        "raw": "{\n \"accountId\": \"<string>\",\n \"transactions\": \"<string>\",\n \"profileType\": \"<string>\",\n \"financialAccountType\": \"<string>\",\n \"userId\": \"<string>\",\n \"linkId\": \"<string>\"\n}",
                                         "options": {
                                             "raw": {
                                                 "language": "json"

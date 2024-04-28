@@ -36,6 +36,8 @@ import type {
   CreateBankAccountResponse,
   CreateBudgetRequest,
   CreateBudgetResponse,
+  CreateCreditAccountRequest,
+  CreateCreditAccountResponse,
   CreateManualLinkRequest,
   CreateManualLinkResponse,
   CreateMilestoneRequest,
@@ -208,6 +210,10 @@ import {
     CreateBudgetRequestToJSON,
     CreateBudgetResponseFromJSON,
     CreateBudgetResponseToJSON,
+    CreateCreditAccountRequestFromJSON,
+    CreateCreditAccountRequestToJSON,
+    CreateCreditAccountResponseFromJSON,
+    CreateCreditAccountResponseToJSON,
     CreateManualLinkRequestFromJSON,
     CreateManualLinkRequestToJSON,
     CreateManualLinkResponseFromJSON,
@@ -513,6 +519,10 @@ export interface CreateBankAccountOperationRequest {
 
 export interface CreateBudgetOperationRequest {
     createBudgetRequest: CreateBudgetRequest;
+}
+
+export interface CreateCreditAccountOperationRequest {
+    createCreditAccountRequest: CreateCreditAccountRequest;
 }
 
 export interface CreateLinkRequest {
@@ -1555,6 +1565,44 @@ export class FinancialServiceApi extends runtime.BaseAPI {
      */
     async createBudget(requestParameters: CreateBudgetOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateBudgetResponse> {
         const response = await this.createBudgetRaw(requestParameters, initOverrides);
+        return await response.value();
+    }
+
+    /**
+     * This endpoint creates a credit account for a given user profile
+     * create a credit account for a given user profile
+     */
+    async createCreditAccountRaw(requestParameters: CreateCreditAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<runtime.ApiResponse<CreateCreditAccountResponse>> {
+        if (requestParameters['createCreditAccountRequest'] == null) {
+            throw new runtime.RequiredError(
+                'createCreditAccountRequest',
+                'Required parameter "createCreditAccountRequest" was null or undefined when calling createCreditAccount().'
+            );
+        }
+
+        const queryParameters: any = {};
+
+        const headerParameters: runtime.HTTPHeaders = {};
+
+        headerParameters['Content-Type'] = 'application/json';
+
+        const response = await this.request({
+            path: `/financial-microservice/api/v1/credit-account/profile`,
+            method: 'POST',
+            headers: headerParameters,
+            query: queryParameters,
+            body: CreateCreditAccountRequestToJSON(requestParameters['createCreditAccountRequest']),
+        }, initOverrides);
+
+        return new runtime.JSONApiResponse(response, (jsonValue) => CreateCreditAccountResponseFromJSON(jsonValue));
+    }
+
+    /**
+     * This endpoint creates a credit account for a given user profile
+     * create a credit account for a given user profile
+     */
+    async createCreditAccount(requestParameters: CreateCreditAccountOperationRequest, initOverrides?: RequestInit | runtime.InitOverrideFunction): Promise<CreateCreditAccountResponse> {
+        const response = await this.createCreditAccountRaw(requestParameters, initOverrides);
         return await response.value();
     }
 

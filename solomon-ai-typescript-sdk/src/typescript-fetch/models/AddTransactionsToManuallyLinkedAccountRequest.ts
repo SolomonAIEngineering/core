@@ -68,6 +68,12 @@ export interface AddTransactionsToManuallyLinkedAccountRequest {
      * @memberof AddTransactionsToManuallyLinkedAccountRequest
      */
     userId: string;
+    /**
+     * 
+     * @type {string}
+     * @memberof AddTransactionsToManuallyLinkedAccountRequest
+     */
+    linkId: string;
 }
 
 /**
@@ -78,6 +84,7 @@ export function instanceOfAddTransactionsToManuallyLinkedAccountRequest(value: o
     if (!('transactions' in value)) return false;
     if (!('profileType' in value)) return false;
     if (!('userId' in value)) return false;
+    if (!('linkId' in value)) return false;
     return true;
 }
 
@@ -96,6 +103,7 @@ export function AddTransactionsToManuallyLinkedAccountRequestFromJSONTyped(json:
         'profileType': FinancialUserProfileTypeFromJSON(json['profileType']),
         'financialAccountType': json['financialAccountType'] == null ? undefined : FinancialAccountTypeFromJSON(json['financialAccountType']),
         'userId': json['userId'],
+        'linkId': json['linkId'],
     };
 }
 
@@ -110,6 +118,7 @@ export function AddTransactionsToManuallyLinkedAccountRequestToJSON(value?: AddT
         'profileType': FinancialUserProfileTypeToJSON(value['profileType']),
         'financialAccountType': FinancialAccountTypeToJSON(value['financialAccountType']),
         'userId': value['userId'],
+        'linkId': value['linkId'],
     };
 }
 

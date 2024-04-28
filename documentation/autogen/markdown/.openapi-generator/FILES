@@ -95,6 +95,8 @@ Models/CreateCommentReplyResponse.md
 Models/CreateCommentResponse.md
 Models/CreateCommunityProfileBody.md
 Models/CreateCommunityProfileResponse.md
+Models/CreateCreditAccountRequest.md
+Models/CreateCreditAccountResponse.md
 Models/CreateFolderRequest.md
 Models/CreateFolderResponse.md
 Models/CreateManualLinkRequest.md

@@ -156,6 +156,41 @@ message CreateBankAccountResponse {
   uint64 bank_account_id = 1;
 }
 
+// CreateCreditAccountRequest: Represents the request object invoked against the financial
+// service to create a credit account for a given user
+message CreateCreditAccountRequest {
+  // The account ID associated with the user
+  // Validations:
+  // - user_id must be greater than 0
+  string user_id = 1 [
+    (validate.rules).string.min_len = 1,
+    (google.api.field_behavior) = REQUIRED
+  ];
+  // The bank account to create
+  // Validations:
+  // - cannot be nil hence required
+  CreditAccount credit_account = 2 [
+    (validate.rules).message.required = true,
+    (google.api.field_behavior) = REQUIRED
+  ];
+  FinancialUserProfileType profile_type = 9 [
+    (google.api.field_behavior) = REQUIRED
+  ];
+
+  // The linkId to associate this bank account with
+  uint64 link_id = 4  [
+    (validate.rules).uint64.gt = 0,
+    (google.api.field_behavior) = REQUIRED
+  ];
+}
+
+// CreateCreditAccountResponse: Represents the response object returned as a response to
+// the `create bank account` request
+message CreateCreditAccountResponse {
+  // The bank account id
+  uint64 credit_account_id = 1;
+}
+
 // GetBankAccountRequest: Represents the request object invoked against the financial
 // service to get a bank account for a given user and bank account id
 message GetBankAccountRequest {
@@ -1801,6 +1836,8 @@ message AddTransactionsToManuallyLinkedAccountRequest {
         (validate.rules).string.min_len = 1,
         (google.api.field_behavior) = REQUIRED
     ];
+
+    uint64 link_id = 6 [(validate.rules).uint64.gt = 0,(google.api.field_behavior) = REQUIRED];
 }
 
 message AddTransactionsToManuallyLinkedAccountResponse {
