@@ -199,6 +199,29 @@ service FinancialService {
     };
   }
 
+  // CreateCreditAccount creates a credit account for a given user profile
+  rpc CreateCreditAccount(CreateCreditAccountRequest) returns (CreateCreditAccountResponse) {
+    option (google.api.http) = {
+      post: "/financial-microservice/api/v1/credit-account/profile"
+      body: "*"
+    };
+    option (grpc.gateway.protoc_gen_openapiv2.options.openapiv2_operation) = {
+      summary: "create a credit account for a given user profile"
+      tags: ["financial-service"]
+      operation_id: "CreateCreditAccount"
+      description: "This endpoint creates a credit account for a given user profile"
+      responses: {
+        key: "200"
+        value: {
+          description: "A successful response."
+          schema: {
+            json_schema: {ref: ".financial_service.v1.CreateCreditAccountResponse"}
+          }
+        }
+      }
+    };
+  }
+
   // GetBankAccount gets a bank account for a given user
   rpc GetBankAccount(GetBankAccountRequest) returns (GetBankAccountResponse) {
     option (google.api.http) = {get: "/financial-microservice/api/v1/bank-account/{bank_account_id}"};

@@ -40,6 +40,10 @@ spec:
     name: CreateBankAccount
   - condition:
       method: POST
+      pathRegex: /financial_service\.v1\.FinancialService/CreateCreditAccount
+    name: CreateCreditAccount
+  - condition:
+      method: POST
       pathRegex: /financial_service\.v1\.FinancialService/GetBankAccount
     name: GetBankAccount
   - condition:

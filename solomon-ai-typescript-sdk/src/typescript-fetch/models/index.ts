@@ -90,6 +90,8 @@ export * from './CreateCommentReplyResponse';
 export * from './CreateCommentResponse';
 export * from './CreateCommunityProfileBody';
 export * from './CreateCommunityProfileResponse';
+export * from './CreateCreditAccountRequest';
+export * from './CreateCreditAccountResponse';
 export * from './CreateFolderRequest';
 export * from './CreateFolderResponse';
 export * from './CreateManualLinkRequest';

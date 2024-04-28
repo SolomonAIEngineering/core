@@ -33,6 +33,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 *FinancialServiceApi* | [**checkIfQuotaExceeded**](Apis/FinancialServiceApi.md#checkifquotaexceeded) | **GET** /financial-microservice/api/v1/copilot/quota/exceeded/{userId} | Checks if the question quota has been exceeded |
 *FinancialServiceApi* | [**createBankAccount**](Apis/FinancialServiceApi.md#createbankaccount) | **POST** /financial-microservice/api/v1/bank-account/profile | create a bank account for a given user profile |
 *FinancialServiceApi* | [**createBudget**](Apis/FinancialServiceApi.md#createbudget) | **POST** /financial-microservice/api/v1/budget | create a budget |
+*FinancialServiceApi* | [**createCreditAccount**](Apis/FinancialServiceApi.md#createcreditaccount) | **POST** /financial-microservice/api/v1/credit-account/profile | create a credit account for a given user profile |
 *FinancialServiceApi* | [**createLink**](Apis/FinancialServiceApi.md#createlink) | **POST** /financial-microservice/api/v1/link | create link |
 *FinancialServiceApi* | [**createMilestone**](Apis/FinancialServiceApi.md#createmilestone) | **POST** /financial-microservice/api/v1/milestone | create a milestone |
 *FinancialServiceApi* | [**createSmartGoal**](Apis/FinancialServiceApi.md#createsmartgoal) | **POST** /financial-microservice/api/v1/smart-goal | create a smart goal |
@@ -356,6 +357,8 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
  - [CreateCommentResponse](./Models/CreateCommentResponse.md)
  - [CreateCommunityProfileBody](./Models/CreateCommunityProfileBody.md)
  - [CreateCommunityProfileResponse](./Models/CreateCommunityProfileResponse.md)
+ - [CreateCreditAccountRequest](./Models/CreateCreditAccountRequest.md)
+ - [CreateCreditAccountResponse](./Models/CreateCreditAccountResponse.md)
  - [CreateFolderRequest](./Models/CreateFolderRequest.md)
  - [CreateFolderResponse](./Models/CreateFolderResponse.md)
  - [CreateManualLinkRequest](./Models/CreateManualLinkRequest.md)

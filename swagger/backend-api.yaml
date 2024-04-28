@@ -9218,6 +9218,50 @@ paths:
         required: true
       tags:
         - financial-service
+  /financial-microservice/api/v1/credit-account/profile:
+    post:
+      summary: create a credit account for a given user profile
+      description: This endpoint creates a credit account for a given user profile
+      operationId: CreateCreditAccount
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/CreateCreditAccountResponse'
+        '400':
+          description: Request failed due to invalid input.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidationErrorMessageResponse'
+        '404':
+          description: Request failed due to incorrect path.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PathUnknownErrorMessageResponse'
+        '500':
+          description: Request failed due to internal server error.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InternalErrorMessageResponse'
+        default:
+          description: An unexpected error response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Status1'
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateCreditAccountRequest'
+        required: true
+      tags:
+        - financial-service
   /financial-microservice/api/v1/financial-profile/business/note:
     post:
       summary: Adds a note to a business account
@@ -18228,12 +18272,16 @@ components:
             The user id.
             Validations:
             - user_id must have a minimum length of 1 character
+        linkId:
+          type: string
+          format: uint64
       description: Add transactions to an account.
       required:
         - accountId
         - transactions
         - profileType
         - userId
+        - linkId
     AddTransactionsToManuallyLinkedAccountResponse:
       type: object
       properties:
@@ -18756,6 +18804,45 @@ components:
           type: string
           format: uint64
           title: The budget id
+    CreateCreditAccountRequest:
+      type: object
+      properties:
+        userId:
+          type: string
+          title: |-
+            The account ID associated with the user
+            Validations:
+            - user_id must be greater than 0
+        creditAccount:
+          $ref: '#/components/schemas/CreditAccount'
+        profileType:
+          $ref: '#/components/schemas/FinancialUserProfileType'
+        linkId:
+          type: string
+          format: uint64
+          title: The linkId to associate this bank account with
+      title: >-
+        CreateCreditAccountRequest: Represents the request object invoked
+        against the financial
+
+        service to create a credit account for a given user
+      required:
+        - userId
+        - creditAccount
+        - profileType
+        - linkId
+    CreateCreditAccountResponse:
+      type: object
+      properties:
+        creditAccountId:
+          type: string
+          format: uint64
+          title: The bank account id
+      title: >-
+        CreateCreditAccountResponse: Represents the response object returned as
+        a response to
+
+        the `create bank account` request
     CreateManualLinkRequest:
       type: object
       properties:
