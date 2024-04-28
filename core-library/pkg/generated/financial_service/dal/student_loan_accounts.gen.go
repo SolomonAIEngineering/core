@@ -63,6 +63,7 @@ func newStudentLoanAccountORM(db *gorm.DB, opts ...gen.DOOption) studentLoanAcco
 	_studentLoanAccountORM.ServicerAddressState = field.NewString(tableName, "servicer_address_state")
 	_studentLoanAccountORM.ServicerAddressStreet = field.NewString(tableName, "servicer_address_street")
 	_studentLoanAccountORM.Status = field.NewString(tableName, "status")
+	_studentLoanAccountORM.Type = field.NewString(tableName, "type")
 	_studentLoanAccountORM.UserId = field.NewString(tableName, "user_id")
 	_studentLoanAccountORM.YtdInterestPaid = field.NewFloat64(tableName, "ytd_interest_paid")
 	_studentLoanAccountORM.YtdPrincipalPaid = field.NewFloat64(tableName, "ytd_principal_paid")
@@ -116,6 +117,7 @@ type studentLoanAccountORM struct {
 	ServicerAddressState               field.String
 	ServicerAddressStreet              field.String
 	Status                             field.String
+	Type                               field.String
 	UserId                             field.String
 	YtdInterestPaid                    field.Float64
 	YtdPrincipalPaid                   field.Float64
@@ -171,6 +173,7 @@ func (s *studentLoanAccountORM) updateTableName(table string) *studentLoanAccoun
 	s.ServicerAddressState = field.NewString(table, "servicer_address_state")
 	s.ServicerAddressStreet = field.NewString(table, "servicer_address_street")
 	s.Status = field.NewString(table, "status")
+	s.Type = field.NewString(table, "type")
 	s.UserId = field.NewString(table, "user_id")
 	s.YtdInterestPaid = field.NewFloat64(table, "ytd_interest_paid")
 	s.YtdPrincipalPaid = field.NewFloat64(table, "ytd_principal_paid")
@@ -190,7 +193,7 @@ func (s *studentLoanAccountORM) GetFieldByName(fieldName string) (field.OrderExp
 }
 
 func (s *studentLoanAccountORM) fillFieldMap() {
-	s.fieldMap = make(map[string]field.Expr, 39)
+	s.fieldMap = make(map[string]field.Expr, 40)
 	s.fieldMap["disbursement_dates"] = s.DisbursementDates
 	s.fieldMap["expected_payoff_date"] = s.ExpectedPayoffDate
 	s.fieldMap["guarantor"] = s.Guarantor
@@ -226,6 +229,7 @@ func (s *studentLoanAccountORM) fillFieldMap() {
 	s.fieldMap["servicer_address_state"] = s.ServicerAddressState
 	s.fieldMap["servicer_address_street"] = s.ServicerAddressStreet
 	s.fieldMap["status"] = s.Status
+	s.fieldMap["type"] = s.Type
 	s.fieldMap["user_id"] = s.UserId
 	s.fieldMap["ytd_interest_paid"] = s.YtdInterestPaid
 	s.fieldMap["ytd_principal_paid"] = s.YtdPrincipalPaid

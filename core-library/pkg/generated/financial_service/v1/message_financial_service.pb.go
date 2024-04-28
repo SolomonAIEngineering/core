@@ -1731,6 +1731,7 @@ type StudentLoanAccount struct {
 	// the set of statements tied to this account
 	Statements       []*AccountStatements `protobuf:"bytes,40,rep,name=statements,proto3" json:"statements,omitempty"`
 	PlaidAccountType string               `protobuf:"bytes,41,opt,name=plaid_account_type,json=plaidAccountType,proto3" json:"plaid_account_type,omitempty"`
+	Type             BankAccountType      `protobuf:"varint,42,opt,name=type,proto3,enum=financial_service.v1.BankAccountType" json:"type,omitempty"`
 }
 
 func (x *StudentLoanAccount) Reset() {
@@ -2029,6 +2030,13 @@ func (x *StudentLoanAccount) GetPlaidAccountType() string {
 		return x.PlaidAccountType
 	}
 	return ""
+}
+
+func (x *StudentLoanAccount) GetType() BankAccountType {
+	if x != nil {
+		return x.Type
+	}
+	return BankAccountType_BANK_ACCOUNT_TYPE_UNSPECIFIED
 }
 
 type CreditAccount struct {
@@ -5758,7 +5766,7 @@ var file_financial_service_v1_message_financial_service_proto_rawDesc = []byte{
 	0x69, 0x64, 0x18, 0x07, 0x20, 0x01, 0x28, 0x09, 0x42, 0x21, 0x92, 0x41, 0x00, 0xba, 0xb9, 0x19,
 	0x1a, 0x0a, 0x18, 0x52, 0x16, 0x69, 0x64, 0x78, 0x5f, 0x70, 0x6c, 0x61, 0x69, 0x64, 0x5f, 0x6c,
 	0x69, 0x6e, 0x6b, 0x5f, 0x69, 0x74, 0x65, 0x6d, 0x5f, 0x69, 0x64, 0x52, 0x06, 0x69, 0x74, 0x65,
-	0x6d, 0x49, 0x64, 0x3a, 0x06, 0xba, 0xb9, 0x19, 0x02, 0x08, 0x01, 0x22, 0xf7, 0x10, 0x0a, 0x12,
+	0x6d, 0x49, 0x64, 0x3a, 0x06, 0xba, 0xb9, 0x19, 0x02, 0x08, 0x01, 0x22, 0xb7, 0x11, 0x0a, 0x12,
 	0x53, 0x74, 0x75, 0x64, 0x65, 0x6e, 0x74, 0x4c, 0x6f, 0x61, 0x6e, 0x41, 0x63, 0x63, 0x6f, 0x75,
 	0x6e, 0x74, 0x12, 0x31, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20, 0x01, 0x28, 0x04, 0x42, 0x21,
 	0x92, 0x41, 0x00, 0xba, 0xb9, 0x19, 0x1a, 0x0a, 0x18, 0x5a, 0x16, 0x69, 0x64, 0x78, 0x5f, 0x73,
@@ -5893,7 +5901,11 @@ var file_financial_service_v1_message_financial_service_proto_rawDesc = []byte{
 	0x73, 0x74, 0x61, 0x74, 0x65, 0x6d, 0x65, 0x6e, 0x74, 0x73, 0x12, 0x31, 0x0a, 0x12, 0x70, 0x6c,
 	0x61, 0x69, 0x64, 0x5f, 0x61, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x5f, 0x74, 0x79, 0x70, 0x65,
 	0x18, 0x29, 0x20, 0x01, 0x28, 0x09, 0x42, 0x03, 0x92, 0x41, 0x00, 0x52, 0x10, 0x70, 0x6c, 0x61,
-	0x69, 0x64, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x3a, 0x06, 0xba,
+	0x69, 0x64, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x79, 0x70, 0x65, 0x12, 0x3e, 0x0a,
+	0x04, 0x74, 0x79, 0x70, 0x65, 0x18, 0x2a, 0x20, 0x01, 0x28, 0x0e, 0x32, 0x25, 0x2e, 0x66, 0x69,
+	0x6e, 0x61, 0x6e, 0x63, 0x69, 0x61, 0x6c, 0x5f, 0x73, 0x65, 0x72, 0x76, 0x69, 0x63, 0x65, 0x2e,
+	0x76, 0x31, 0x2e, 0x42, 0x61, 0x6e, 0x6b, 0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x54, 0x79,
+	0x70, 0x65, 0x42, 0x03, 0x92, 0x41, 0x00, 0x52, 0x04, 0x74, 0x79, 0x70, 0x65, 0x3a, 0x06, 0xba,
 	0xb9, 0x19, 0x02, 0x08, 0x01, 0x22, 0xf4, 0x0b, 0x0a, 0x0d, 0x43, 0x72, 0x65, 0x64, 0x69, 0x74,
 	0x41, 0x63, 0x63, 0x6f, 0x75, 0x6e, 0x74, 0x12, 0x30, 0x0a, 0x02, 0x69, 0x64, 0x18, 0x01, 0x20,
 	0x01, 0x28, 0x04, 0x42, 0x20, 0x92, 0x41, 0x00, 0xba, 0xb9, 0x19, 0x19, 0x0a, 0x17, 0x5a, 0x15,
@@ -7171,65 +7183,66 @@ var file_financial_service_v1_message_financial_service_proto_depIdxs = []int32{
 	41, // 20: financial_service.v1.Token.last_merge_created_at:type_name -> google.protobuf.Timestamp
 	1,  // 21: financial_service.v1.StudentLoanAccount.status:type_name -> financial_service.v1.BankAccountStatus
 	25, // 22: financial_service.v1.StudentLoanAccount.statements:type_name -> financial_service.v1.AccountStatements
-	5,  // 23: financial_service.v1.CreditAccount.type:type_name -> financial_service.v1.BankAccountType
-	35, // 24: financial_service.v1.CreditAccount.aprs:type_name -> financial_service.v1.Apr
-	1,  // 25: financial_service.v1.CreditAccount.status:type_name -> financial_service.v1.BankAccountStatus
-	39, // 26: financial_service.v1.CreditAccount.transactions:type_name -> financial_service.v1.PlaidAccountTransaction
-	38, // 27: financial_service.v1.CreditAccount.recurring_transactions:type_name -> financial_service.v1.PlaidAccountRecurringTransaction
-	26, // 28: financial_service.v1.CreditAccount.pockets:type_name -> financial_service.v1.Pocket
-	25, // 29: financial_service.v1.CreditAccount.statements:type_name -> financial_service.v1.AccountStatements
-	1,  // 30: financial_service.v1.MortgageAccount.status:type_name -> financial_service.v1.BankAccountStatus
-	25, // 31: financial_service.v1.MortgageAccount.statements:type_name -> financial_service.v1.AccountStatements
-	5,  // 32: financial_service.v1.MortgageAccount.type:type_name -> financial_service.v1.BankAccountType
-	5,  // 33: financial_service.v1.InvestmentAccount.type:type_name -> financial_service.v1.BankAccountType
-	33, // 34: financial_service.v1.InvestmentAccount.holdings:type_name -> financial_service.v1.InvesmentHolding
-	34, // 35: financial_service.v1.InvestmentAccount.securities:type_name -> financial_service.v1.InvestmentSecurity
-	1,  // 36: financial_service.v1.InvestmentAccount.status:type_name -> financial_service.v1.BankAccountStatus
-	37, // 37: financial_service.v1.InvestmentAccount.transactions:type_name -> financial_service.v1.PlaidAccountInvestmentTransaction
-	25, // 38: financial_service.v1.InvestmentAccount.statements:type_name -> financial_service.v1.AccountStatements
-	5,  // 39: financial_service.v1.BankAccount.type:type_name -> financial_service.v1.BankAccountType
-	26, // 40: financial_service.v1.BankAccount.pockets:type_name -> financial_service.v1.Pocket
-	1,  // 41: financial_service.v1.BankAccount.status:type_name -> financial_service.v1.BankAccountStatus
-	39, // 42: financial_service.v1.BankAccount.transactions:type_name -> financial_service.v1.PlaidAccountTransaction
-	38, // 43: financial_service.v1.BankAccount.recurring_transactions:type_name -> financial_service.v1.PlaidAccountRecurringTransaction
-	25, // 44: financial_service.v1.BankAccount.statements:type_name -> financial_service.v1.AccountStatements
-	27, // 45: financial_service.v1.Pocket.goals:type_name -> financial_service.v1.SmartGoal
-	4,  // 46: financial_service.v1.Pocket.type:type_name -> financial_service.v1.PocketType
-	3,  // 47: financial_service.v1.SmartGoal.goal_type:type_name -> financial_service.v1.GoalType
-	30, // 48: financial_service.v1.SmartGoal.milestones:type_name -> financial_service.v1.Milestone
-	29, // 49: financial_service.v1.SmartGoal.forecasts:type_name -> financial_service.v1.Forecast
-	28, // 50: financial_service.v1.SmartGoal.notes:type_name -> financial_service.v1.SmartNote
-	41, // 51: financial_service.v1.SmartNote.created_at:type_name -> google.protobuf.Timestamp
-	41, // 52: financial_service.v1.SmartNote.updated_at:type_name -> google.protobuf.Timestamp
-	31, // 53: financial_service.v1.Milestone.budget:type_name -> financial_service.v1.Budget
-	32, // 54: financial_service.v1.Budget.category:type_name -> financial_service.v1.Category
-	41, // 55: financial_service.v1.Address.modified_at:type_name -> google.protobuf.Timestamp
-	41, // 56: financial_service.v1.PlaidAccountInvestmentTransaction.created_at:type_name -> google.protobuf.Timestamp
-	41, // 57: financial_service.v1.PlaidAccountInvestmentTransaction.time:type_name -> google.protobuf.Timestamp
-	42, // 58: financial_service.v1.PlaidAccountInvestmentTransaction.additional_properties:type_name -> google.protobuf.Any
-	28, // 59: financial_service.v1.PlaidAccountInvestmentTransaction.notes:type_name -> financial_service.v1.SmartNote
-	41, // 60: financial_service.v1.PlaidAccountRecurringTransaction.first_date:type_name -> google.protobuf.Timestamp
-	41, // 61: financial_service.v1.PlaidAccountRecurringTransaction.last_date:type_name -> google.protobuf.Timestamp
-	41, // 62: financial_service.v1.PlaidAccountRecurringTransaction.updated_time:type_name -> google.protobuf.Timestamp
-	41, // 63: financial_service.v1.PlaidAccountRecurringTransaction.time:type_name -> google.protobuf.Timestamp
-	42, // 64: financial_service.v1.PlaidAccountRecurringTransaction.additional_properties:type_name -> google.protobuf.Any
-	28, // 65: financial_service.v1.PlaidAccountRecurringTransaction.notes:type_name -> financial_service.v1.SmartNote
-	41, // 66: financial_service.v1.PlaidAccountTransaction.current_date:type_name -> google.protobuf.Timestamp
-	41, // 67: financial_service.v1.PlaidAccountTransaction.current_datetime:type_name -> google.protobuf.Timestamp
-	41, // 68: financial_service.v1.PlaidAccountTransaction.authorized_date:type_name -> google.protobuf.Timestamp
-	41, // 69: financial_service.v1.PlaidAccountTransaction.authorized_datetime:type_name -> google.protobuf.Timestamp
-	41, // 70: financial_service.v1.PlaidAccountTransaction.time:type_name -> google.protobuf.Timestamp
-	42, // 71: financial_service.v1.PlaidAccountTransaction.additional_properties:type_name -> google.protobuf.Any
-	28, // 72: financial_service.v1.PlaidAccountTransaction.notes:type_name -> financial_service.v1.SmartNote
-	40, // 73: financial_service.v1.PlaidAccountTransaction.splits:type_name -> financial_service.v1.TransactionSplit
-	41, // 74: financial_service.v1.TransactionSplit.authorized_date:type_name -> google.protobuf.Timestamp
-	41, // 75: financial_service.v1.TransactionSplit.authorized_datetime:type_name -> google.protobuf.Timestamp
-	41, // 76: financial_service.v1.TransactionSplit.time_of_split:type_name -> google.protobuf.Timestamp
-	77, // [77:77] is the sub-list for method output_type
-	77, // [77:77] is the sub-list for method input_type
-	77, // [77:77] is the sub-list for extension type_name
-	77, // [77:77] is the sub-list for extension extendee
-	0,  // [0:77] is the sub-list for field type_name
+	5,  // 23: financial_service.v1.StudentLoanAccount.type:type_name -> financial_service.v1.BankAccountType
+	5,  // 24: financial_service.v1.CreditAccount.type:type_name -> financial_service.v1.BankAccountType
+	35, // 25: financial_service.v1.CreditAccount.aprs:type_name -> financial_service.v1.Apr
+	1,  // 26: financial_service.v1.CreditAccount.status:type_name -> financial_service.v1.BankAccountStatus
+	39, // 27: financial_service.v1.CreditAccount.transactions:type_name -> financial_service.v1.PlaidAccountTransaction
+	38, // 28: financial_service.v1.CreditAccount.recurring_transactions:type_name -> financial_service.v1.PlaidAccountRecurringTransaction
+	26, // 29: financial_service.v1.CreditAccount.pockets:type_name -> financial_service.v1.Pocket
+	25, // 30: financial_service.v1.CreditAccount.statements:type_name -> financial_service.v1.AccountStatements
+	1,  // 31: financial_service.v1.MortgageAccount.status:type_name -> financial_service.v1.BankAccountStatus
+	25, // 32: financial_service.v1.MortgageAccount.statements:type_name -> financial_service.v1.AccountStatements
+	5,  // 33: financial_service.v1.MortgageAccount.type:type_name -> financial_service.v1.BankAccountType
+	5,  // 34: financial_service.v1.InvestmentAccount.type:type_name -> financial_service.v1.BankAccountType
+	33, // 35: financial_service.v1.InvestmentAccount.holdings:type_name -> financial_service.v1.InvesmentHolding
+	34, // 36: financial_service.v1.InvestmentAccount.securities:type_name -> financial_service.v1.InvestmentSecurity
+	1,  // 37: financial_service.v1.InvestmentAccount.status:type_name -> financial_service.v1.BankAccountStatus
+	37, // 38: financial_service.v1.InvestmentAccount.transactions:type_name -> financial_service.v1.PlaidAccountInvestmentTransaction
+	25, // 39: financial_service.v1.InvestmentAccount.statements:type_name -> financial_service.v1.AccountStatements
+	5,  // 40: financial_service.v1.BankAccount.type:type_name -> financial_service.v1.BankAccountType
+	26, // 41: financial_service.v1.BankAccount.pockets:type_name -> financial_service.v1.Pocket
+	1,  // 42: financial_service.v1.BankAccount.status:type_name -> financial_service.v1.BankAccountStatus
+	39, // 43: financial_service.v1.BankAccount.transactions:type_name -> financial_service.v1.PlaidAccountTransaction
+	38, // 44: financial_service.v1.BankAccount.recurring_transactions:type_name -> financial_service.v1.PlaidAccountRecurringTransaction
+	25, // 45: financial_service.v1.BankAccount.statements:type_name -> financial_service.v1.AccountStatements
+	27, // 46: financial_service.v1.Pocket.goals:type_name -> financial_service.v1.SmartGoal
+	4,  // 47: financial_service.v1.Pocket.type:type_name -> financial_service.v1.PocketType
+	3,  // 48: financial_service.v1.SmartGoal.goal_type:type_name -> financial_service.v1.GoalType
+	30, // 49: financial_service.v1.SmartGoal.milestones:type_name -> financial_service.v1.Milestone
+	29, // 50: financial_service.v1.SmartGoal.forecasts:type_name -> financial_service.v1.Forecast
+	28, // 51: financial_service.v1.SmartGoal.notes:type_name -> financial_service.v1.SmartNote
+	41, // 52: financial_service.v1.SmartNote.created_at:type_name -> google.protobuf.Timestamp
+	41, // 53: financial_service.v1.SmartNote.updated_at:type_name -> google.protobuf.Timestamp
+	31, // 54: financial_service.v1.Milestone.budget:type_name -> financial_service.v1.Budget
+	32, // 55: financial_service.v1.Budget.category:type_name -> financial_service.v1.Category
+	41, // 56: financial_service.v1.Address.modified_at:type_name -> google.protobuf.Timestamp
+	41, // 57: financial_service.v1.PlaidAccountInvestmentTransaction.created_at:type_name -> google.protobuf.Timestamp
+	41, // 58: financial_service.v1.PlaidAccountInvestmentTransaction.time:type_name -> google.protobuf.Timestamp
+	42, // 59: financial_service.v1.PlaidAccountInvestmentTransaction.additional_properties:type_name -> google.protobuf.Any
+	28, // 60: financial_service.v1.PlaidAccountInvestmentTransaction.notes:type_name -> financial_service.v1.SmartNote
+	41, // 61: financial_service.v1.PlaidAccountRecurringTransaction.first_date:type_name -> google.protobuf.Timestamp
+	41, // 62: financial_service.v1.PlaidAccountRecurringTransaction.last_date:type_name -> google.protobuf.Timestamp
+	41, // 63: financial_service.v1.PlaidAccountRecurringTransaction.updated_time:type_name -> google.protobuf.Timestamp
+	41, // 64: financial_service.v1.PlaidAccountRecurringTransaction.time:type_name -> google.protobuf.Timestamp
+	42, // 65: financial_service.v1.PlaidAccountRecurringTransaction.additional_properties:type_name -> google.protobuf.Any
+	28, // 66: financial_service.v1.PlaidAccountRecurringTransaction.notes:type_name -> financial_service.v1.SmartNote
+	41, // 67: financial_service.v1.PlaidAccountTransaction.current_date:type_name -> google.protobuf.Timestamp
+	41, // 68: financial_service.v1.PlaidAccountTransaction.current_datetime:type_name -> google.protobuf.Timestamp
+	41, // 69: financial_service.v1.PlaidAccountTransaction.authorized_date:type_name -> google.protobuf.Timestamp
+	41, // 70: financial_service.v1.PlaidAccountTransaction.authorized_datetime:type_name -> google.protobuf.Timestamp
+	41, // 71: financial_service.v1.PlaidAccountTransaction.time:type_name -> google.protobuf.Timestamp
+	42, // 72: financial_service.v1.PlaidAccountTransaction.additional_properties:type_name -> google.protobuf.Any
+	28, // 73: financial_service.v1.PlaidAccountTransaction.notes:type_name -> financial_service.v1.SmartNote
+	40, // 74: financial_service.v1.PlaidAccountTransaction.splits:type_name -> financial_service.v1.TransactionSplit
+	41, // 75: financial_service.v1.TransactionSplit.authorized_date:type_name -> google.protobuf.Timestamp
+	41, // 76: financial_service.v1.TransactionSplit.authorized_datetime:type_name -> google.protobuf.Timestamp
+	41, // 77: financial_service.v1.TransactionSplit.time_of_split:type_name -> google.protobuf.Timestamp
+	78, // [78:78] is the sub-list for method output_type
+	78, // [78:78] is the sub-list for method input_type
+	78, // [78:78] is the sub-list for extension type_name
+	78, // [78:78] is the sub-list for extension extendee
+	0,  // [0:78] is the sub-list for field type_name
 }
 
 func init() { file_financial_service_v1_message_financial_service_proto_init() }

@@ -30343,6 +30343,9 @@
                     },
                     "plaidAccountType": {
                         "type": "string"
+                    },
+                    "type": {
+                        "$ref": "#/components/schemas/BankAccountType"
                     }
                 }
             },

@@ -10322,6 +10322,8 @@ components:
           title: the set of statements tied to this account
         plaidAccountType:
           type: string
+        type:
+          $ref: "#/components/schemas/BankAccountType"
     TaskState:
       type: string
       enum:
