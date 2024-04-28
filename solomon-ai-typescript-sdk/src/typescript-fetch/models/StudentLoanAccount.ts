@@ -25,6 +25,12 @@ import {
     BankAccountStatusFromJSONTyped,
     BankAccountStatusToJSON,
 } from './BankAccountStatus';
+import type { BankAccountType } from './BankAccountType';
+import {
+    BankAccountTypeFromJSON,
+    BankAccountTypeFromJSONTyped,
+    BankAccountTypeToJSON,
+} from './BankAccountType';
 
 /**
  * 
@@ -260,6 +266,12 @@ export interface StudentLoanAccount {
      * @memberof StudentLoanAccount
      */
     plaidAccountType?: string;
+    /**
+     * 
+     * @type {BankAccountType}
+     * @memberof StudentLoanAccount
+     */
+    type?: BankAccountType;
 }
 
 /**
@@ -317,6 +329,7 @@ export function StudentLoanAccountFromJSONTyped(json: any, ignoreDiscriminator: 
         'status': json['status'] == null ? undefined : BankAccountStatusFromJSON(json['status']),
         'statements': json['statements'] == null ? undefined : ((json['statements'] as Array<any>).map(AccountStatementsFromJSON)),
         'plaidAccountType': json['plaidAccountType'] == null ? undefined : json['plaidAccountType'],
+        'type': json['type'] == null ? undefined : BankAccountTypeFromJSON(json['type']),
     };
 }
 
@@ -364,6 +377,7 @@ export function StudentLoanAccountToJSON(value?: StudentLoanAccount | null): any
         'status': BankAccountStatusToJSON(value['status']),
         'statements': value['statements'] == null ? undefined : ((value['statements'] as Array<any>).map(AccountStatementsToJSON)),
         'plaidAccountType': value['plaidAccountType'],
+        'type': BankAccountTypeToJSON(value['type']),
     };
 }
 

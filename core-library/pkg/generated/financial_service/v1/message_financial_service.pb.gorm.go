@@ -1055,6 +1055,7 @@ type StudentLoanAccountORM struct {
 	ServicerAddressStreet              string
 	Statements                         []*AccountStatementsORM `gorm:"foreignkey:StudentLoanAccountId;association_foreignkey:Id;preload:true"`
 	Status                             string
+	Type                               string
 	UserId                             string
 	YtdInterestPaid                    float64
 	YtdPrincipalPaid                   float64
@@ -1126,6 +1127,7 @@ func (m *StudentLoanAccount) ToORM(ctx context.Context) (StudentLoanAccountORM, 
 		}
 	}
 	to.PlaidAccountType = m.PlaidAccountType
+	to.Type = BankAccountType_name[int32(m.Type)]
 	if posthook, ok := interface{}(m).(StudentLoanAccountWithAfterToORM); ok {
 		err = posthook.AfterToORM(ctx, &to)
 	}
@@ -1193,6 +1195,7 @@ func (m *StudentLoanAccountORM) ToPB(ctx context.Context) (StudentLoanAccount, e
 		}
 	}
 	to.PlaidAccountType = m.PlaidAccountType
+	to.Type = BankAccountType(BankAccountType_value[m.Type])
 	if posthook, ok := interface{}(m).(StudentLoanAccountWithAfterToPB); ok {
 		err = posthook.AfterToPB(ctx, &to)
 	}
@@ -7667,6 +7670,10 @@ func DefaultApplyFieldMaskStudentLoanAccount(ctx context.Context, patchee *Stude
 		}
 		if f == prefix+"PlaidAccountType" {
 			patchee.PlaidAccountType = patcher.PlaidAccountType
+			continue
+		}
+		if f == prefix+"Type" {
+			patchee.Type = patcher.Type
 			continue
 		}
 	}
