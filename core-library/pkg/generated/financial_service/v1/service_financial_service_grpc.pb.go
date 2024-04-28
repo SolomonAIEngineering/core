@@ -27,6 +27,7 @@ const (
 	FinancialService_DeleteUserProfile_FullMethodName                             = "/financial_service.v1.FinancialService/DeleteUserProfile"
 	FinancialService_UpdateUserProfile_FullMethodName                             = "/financial_service.v1.FinancialService/UpdateUserProfile"
 	FinancialService_CreateBankAccount_FullMethodName                             = "/financial_service.v1.FinancialService/CreateBankAccount"
+	FinancialService_CreateCreditAccount_FullMethodName                           = "/financial_service.v1.FinancialService/CreateCreditAccount"
 	FinancialService_GetBankAccount_FullMethodName                                = "/financial_service.v1.FinancialService/GetBankAccount"
 	FinancialService_UpdateBankAccount_FullMethodName                             = "/financial_service.v1.FinancialService/UpdateBankAccount"
 	FinancialService_DeleteBankAccount_FullMethodName                             = "/financial_service.v1.FinancialService/DeleteBankAccount"
@@ -153,6 +154,8 @@ type FinancialServiceClient interface {
 	UpdateUserProfile(ctx context.Context, in *UpdateUserProfileRequest, opts ...grpc.CallOption) (*UpdateUserProfileResponse, error)
 	// CreateBankAccount creates a bank account for a given user profile
 	CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*CreateBankAccountResponse, error)
+	// CreateCreditAccount creates a credit account for a given user profile
+	CreateCreditAccount(ctx context.Context, in *CreateCreditAccountRequest, opts ...grpc.CallOption) (*CreateCreditAccountResponse, error)
 	// GetBankAccount gets a bank account for a given user
 	GetBankAccount(ctx context.Context, in *GetBankAccountRequest, opts ...grpc.CallOption) (*GetBankAccountResponse, error)
 	// UpdateBankAccount updates the bank account for a given user profile
@@ -424,6 +427,15 @@ func (c *financialServiceClient) UpdateUserProfile(ctx context.Context, in *Upda
 func (c *financialServiceClient) CreateBankAccount(ctx context.Context, in *CreateBankAccountRequest, opts ...grpc.CallOption) (*CreateBankAccountResponse, error) {
 	out := new(CreateBankAccountResponse)
 	err := c.cc.Invoke(ctx, FinancialService_CreateBankAccount_FullMethodName, in, out, opts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+func (c *financialServiceClient) CreateCreditAccount(ctx context.Context, in *CreateCreditAccountRequest, opts ...grpc.CallOption) (*CreateCreditAccountResponse, error) {
+	out := new(CreateCreditAccountResponse)
+	err := c.cc.Invoke(ctx, FinancialService_CreateCreditAccount_FullMethodName, in, out, opts...)
 	if err != nil {
 		return nil, err
 	}
@@ -1378,6 +1390,8 @@ type FinancialServiceServer interface {
 	UpdateUserProfile(context.Context, *UpdateUserProfileRequest) (*UpdateUserProfileResponse, error)
 	// CreateBankAccount creates a bank account for a given user profile
 	CreateBankAccount(context.Context, *CreateBankAccountRequest) (*CreateBankAccountResponse, error)
+	// CreateCreditAccount creates a credit account for a given user profile
+	CreateCreditAccount(context.Context, *CreateCreditAccountRequest) (*CreateCreditAccountResponse, error)
 	// GetBankAccount gets a bank account for a given user
 	GetBankAccount(context.Context, *GetBankAccountRequest) (*GetBankAccountResponse, error)
 	// UpdateBankAccount updates the bank account for a given user profile
@@ -1603,6 +1617,9 @@ func (UnimplementedFinancialServiceServer) UpdateUserProfile(context.Context, *U
 }
 func (UnimplementedFinancialServiceServer) CreateBankAccount(context.Context, *CreateBankAccountRequest) (*CreateBankAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateBankAccount not implemented")
+}
+func (UnimplementedFinancialServiceServer) CreateCreditAccount(context.Context, *CreateCreditAccountRequest) (*CreateCreditAccountResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method CreateCreditAccount not implemented")
 }
 func (UnimplementedFinancialServiceServer) GetBankAccount(context.Context, *GetBankAccountRequest) (*GetBankAccountResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method GetBankAccount not implemented")
@@ -2066,6 +2083,24 @@ func _FinancialService_CreateBankAccount_Handler(srv interface{}, ctx context.Co
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
 		return srv.(FinancialServiceServer).CreateBankAccount(ctx, req.(*CreateBankAccountRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _FinancialService_CreateCreditAccount_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(CreateCreditAccountRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(FinancialServiceServer).CreateCreditAccount(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: FinancialService_CreateCreditAccount_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(FinancialServiceServer).CreateCreditAccount(ctx, req.(*CreateCreditAccountRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
@@ -3962,6 +3997,10 @@ var FinancialService_ServiceDesc = grpc.ServiceDesc{
 		{
 			MethodName: "CreateBankAccount",
 			Handler:    _FinancialService_CreateBankAccount_Handler,
+		},
+		{
+			MethodName: "CreateCreditAccount",
+			Handler:    _FinancialService_CreateCreditAccount_Handler,
 		},
 		{
 			MethodName: "GetBankAccount",

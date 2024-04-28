@@ -2770,6 +2770,58 @@
         ]
       }
     },
+    "/financial-microservice/api/v1/credit-account/profile": {
+      "post": {
+        "summary": "create a credit account for a given user profile",
+        "description": "This endpoint creates a credit account for a given user profile",
+        "operationId": "CreateCreditAccount",
+        "responses": {
+          "200": {
+            "description": "A successful response.",
+            "schema": {
+              "$ref": "#/definitions/CreateCreditAccountResponse"
+            }
+          },
+          "400": {
+            "description": "Request failed due to invalid input.",
+            "schema": {
+              "$ref": "#/definitions/ValidationErrorMessageResponse"
+            }
+          },
+          "404": {
+            "description": "Request failed due to incorrect path.",
+            "schema": {
+              "$ref": "#/definitions/PathUnknownErrorMessageResponse"
+            }
+          },
+          "500": {
+            "description": "Request failed due to internal server error.",
+            "schema": {
+              "$ref": "#/definitions/InternalErrorMessageResponse"
+            }
+          },
+          "default": {
+            "description": "An unexpected error response.",
+            "schema": {
+              "$ref": "#/definitions/Status"
+            }
+          }
+        },
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "required": true,
+            "schema": {
+              "$ref": "#/definitions/CreateCreditAccountRequest"
+            }
+          }
+        ],
+        "tags": [
+          "financial-service"
+        ]
+      }
+    },
     "/financial-microservice/api/v1/financial-profile/business/note": {
       "post": {
         "summary": "Adds a note to a business account",
@@ -7556,6 +7608,10 @@
         "userId": {
           "type": "string",
           "title": "The user id.\nValidations:\n- user_id must have a minimum length of 1 character"
+        },
+        "linkId": {
+          "type": "string",
+          "format": "uint64"
         }
       },
       "description": "Add transactions to an account.",
@@ -7563,7 +7619,8 @@
         "accountId",
         "transactions",
         "profileType",
-        "userId"
+        "userId",
+        "linkId"
       ]
     },
     "AddTransactionsToManuallyLinkedAccountResponse": {
@@ -8029,6 +8086,45 @@
           "title": "The budget id"
         }
       }
+    },
+    "CreateCreditAccountRequest": {
+      "type": "object",
+      "properties": {
+        "userId": {
+          "type": "string",
+          "title": "The account ID associated with the user\nValidations:\n- user_id must be greater than 0"
+        },
+        "creditAccount": {
+          "$ref": "#/definitions/CreditAccount",
+          "title": "The bank account to create\nValidations:\n- cannot be nil hence required"
+        },
+        "profileType": {
+          "$ref": "#/definitions/FinancialUserProfileType"
+        },
+        "linkId": {
+          "type": "string",
+          "format": "uint64",
+          "title": "The linkId to associate this bank account with"
+        }
+      },
+      "title": "CreateCreditAccountRequest: Represents the request object invoked against the financial\nservice to create a credit account for a given user",
+      "required": [
+        "userId",
+        "creditAccount",
+        "profileType",
+        "linkId"
+      ]
+    },
+    "CreateCreditAccountResponse": {
+      "type": "object",
+      "properties": {
+        "creditAccountId": {
+          "type": "string",
+          "format": "uint64",
+          "title": "The bank account id"
+        }
+      },
+      "title": "CreateCreditAccountResponse: Represents the response object returned as a response to\nthe `create bank account` request"
     },
     "CreateManualLinkRequest": {
       "type": "object",

@@ -16,6 +16,7 @@ All URIs are relative to *http://user-service.platform.svc.cluster.local:9896*
 | [**checkIfQuotaExceeded**](FinancialServiceApi.md#checkIfQuotaExceeded) | **GET** /financial-microservice/api/v1/copilot/quota/exceeded/{userId} | Checks if the question quota has been exceeded |
 | [**createBankAccount**](FinancialServiceApi.md#createBankAccount) | **POST** /financial-microservice/api/v1/bank-account/profile | create a bank account for a given user profile |
 | [**createBudget**](FinancialServiceApi.md#createBudget) | **POST** /financial-microservice/api/v1/budget | create a budget |
+| [**createCreditAccount**](FinancialServiceApi.md#createCreditAccount) | **POST** /financial-microservice/api/v1/credit-account/profile | create a credit account for a given user profile |
 | [**createLink**](FinancialServiceApi.md#createLink) | **POST** /financial-microservice/api/v1/link | create link |
 | [**createMilestone**](FinancialServiceApi.md#createMilestone) | **POST** /financial-microservice/api/v1/milestone | create a milestone |
 | [**createSmartGoal**](FinancialServiceApi.md#createSmartGoal) | **POST** /financial-microservice/api/v1/smart-goal | create a smart goal |
@@ -432,6 +433,33 @@ create a budget
 ### Return type
 
 [**CreateBudgetResponse**](../Models/CreateBudgetResponse.md)
+
+### Authorization
+
+No authorization required
+
+### HTTP request headers
+
+- **Content-Type**: application/json
+- **Accept**: application/json
+
+<a name="createCreditAccount"></a>
+# **createCreditAccount**
+> CreateCreditAccountResponse createCreditAccount(CreateCreditAccountRequest)
+
+create a credit account for a given user profile
+
+    This endpoint creates a credit account for a given user profile
+
+### Parameters
+
+|Name | Type | Description  | Notes |
+|------------- | ------------- | ------------- | -------------|
+| **CreateCreditAccountRequest** | [**CreateCreditAccountRequest**](../Models/CreateCreditAccountRequest.md)|  | |
+
+### Return type
+
+[**CreateCreditAccountResponse**](../Models/CreateCreditAccountResponse.md)
 
 ### Authorization
 
